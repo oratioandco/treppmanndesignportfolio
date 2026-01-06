@@ -411,10 +411,11 @@ a:hover {
     overflow: hidden;
     border: 1px solid var(--color-border);
     transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        background-color 0.3s,
-        color 0.3s;
+        transform 0.3s ease-out,
+        box-shadow 0.3s ease-out,
+        background-color 0.5s ease-out,
+        color 0.5s ease-out,
+        border-color 0.5s ease-out;
     color: var(--color-text);
 }
 
@@ -424,6 +425,15 @@ a:hover {
     background-color: #4f8375;
     color: #f8f3ee;
     border-color: #4f8375;
+}
+
+.case-study-card h3,
+.case-study-card .subtitle,
+.case-study-card p,
+.case-study-card .tag {
+    transition:
+        color 0.5s ease-out,
+        background-color 0.5s ease-out;
 }
 
 .case-study-card:hover h3,
