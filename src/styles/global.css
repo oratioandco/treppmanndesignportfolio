@@ -412,13 +412,29 @@ a:hover {
     border: 1px solid var(--color-border);
     transition:
         transform 0.2s,
-        box-shadow 0.2s;
+        box-shadow 0.2s,
+        background-color 0.3s,
+        color 0.3s;
     color: var(--color-text);
 }
 
 .case-study-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    background-color: #4f8375;
+    color: #f8f3ee;
+    border-color: #4f8375;
+}
+
+.case-study-card:hover h3,
+.case-study-card:hover .subtitle,
+.case-study-card:hover p {
+    color: #f8f3ee;
+}
+
+.case-study-card:hover .tag {
+    background: rgba(248, 243, 238, 0.2);
+    color: #f8f3ee;
 }
 
 .case-study-cover {
