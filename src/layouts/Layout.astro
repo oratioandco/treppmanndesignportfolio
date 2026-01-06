@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description?: string;
+  showBackButton?: boolean;
 }
 
-const { title, description = "Design Leadership - Human-centered organizations for human-centered products" } = Astro.props;
+const { title, description = "Design Leadership - Human-centered organizations for human-centered products", showBackButton = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,15 +18,13 @@ const { title, description = "Design Leadership - Human-centered organizations f
     <title>{title} | Tobias Treppmann</title>
   </head>
   <body>
-    <nav class="nav">
-      <div class="container nav-inner">
-        <a href="/" class="nav-brand">Tobias Treppmann</a>
-        <ul class="nav-links">
-          <li><a href="/#case-studies">Case Studies</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
+    {showBackButton && (
+      <div class="back-button-container">
+        <div class="container">
+          <a href="/" class="back-button">← Back</a>
+        </div>
       </div>
-    </nav>
+    )}
 
     <main>
       <slot />

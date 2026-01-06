@@ -6,9 +6,43 @@ import Layout from '../layouts/Layout.astro';
   <section class="hero">
     <div class="container">
       <p class="hero-tagline">Design Leadership</p>
-      <h1>Human-centered organizations for human-centered products</h1>
+      <h1 class="animated-headline" id="animated-title">Human-centered organizations for human-centered products</h1>
+
+<script>
+  const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
+  const title = document.getElementById('animated-title');
+  const text = title.textContent;
+
+  // Wrap each letter in a span
+  title.innerHTML = text.split('').map((char, i) =>
+    char === ' ' ? ' ' : `<span class="letter" data-index="${i}">${char}</span>`
+  ).join('');
+
+  const letters = title.querySelectorAll('.letter');
+
+  // Each letter gets its own random behavior
+  letters.forEach((letter) => {
+    let currentFontIndex = Math.floor(Math.random() * fonts.length);
+    letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+
+    const animate = () => {
+      // Random jump to any font (not just neighbors)
+      const newIndex = Math.floor(Math.random() * fonts.length);
+      currentFontIndex = newIndex;
+      letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+
+      // Random interval between 1500-4000ms per change
+      const nextInterval = 1500 + Math.random() * 2500;
+      setTimeout(animate, nextInterval);
+    };
+
+    // Random start delay between 0-5000ms
+    const delay = Math.random() * 5000;
+    setTimeout(animate, delay);
+  });
+</script>
       <p class="hero-description">
-        I'm Tobias Treppmann, a hands-on design leader who builds the psychological safety,
+        I'm <a href="/about">Tobias Treppmann</a>, a hands-on design leader who builds the psychological safety,
         inclusive collaboration, and technical excellence that enables breakthrough user experiences.
       </p>
     </div>
@@ -23,6 +57,7 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="case-studies-grid">
         <a href="/case-studies/churchdesk" class="case-study-card">
+          <img src="/images/covers/churchdesk.jpeg" alt="ChurchDesk Booking System" class="case-study-cover" />
           <h3>When 'Simple Booking' Isn't Simple</h3>
           <p class="subtitle">ChurchDesk Booking System</p>
           <p>Designing a deceptively simple booking experience that masks extraordinary complexity—multi-stakeholder coordination for sensitive contexts.</p>
@@ -34,6 +69,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <a href="/case-studies/ninox" class="case-study-card">
+          <img src="/images/covers/leadership.jpeg" alt="Leadership & Inclusion" class="case-study-cover" />
           <h3>Redesigning How We Work Together</h3>
           <p class="subtitle">Leadership & Inclusion</p>
           <p>When a team labels someone "difficult," the instinct is to manage the person. But what if the problem isn't the person—it's how the team works?</p>
@@ -45,6 +81,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <a href="/case-studies/modern-practice" class="case-study-card">
+          <img src="/images/covers/ai.jpeg" alt="AI-First Design Process" class="case-study-cover" />
           <h3>Accelerating Design with AI</h3>
           <p class="subtitle">AI-First Design Process</p>
           <p>AI compresses the path from idea to testable prototype. Developing an AI-first design process at Bibel TV and teaching teams to do the same.</p>
