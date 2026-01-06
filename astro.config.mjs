@@ -4,6 +4,6 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  site: "https://oratioandco.github.io",
-  base: "/treppmanndesignportfolio",
+  site: "https://treppmann.design",
+  base: "/",
 });
