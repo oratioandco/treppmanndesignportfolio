@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="ChurchDesk Booking System" description="Designing a complex multi-stakeholder booking system for sensitive contexts">
+  <section class="case-study-hero">
+    <div class="container">
+      <p class="case-study-meta">Case Study</p>
+      <h1>When 'Simple Booking' Isn't Simple</h1>
+      <p class="hero-tagline">ChurchDesk Booking System</p>
+      <p class="hero-description">
+        Designing a deceptively simple booking experience that masks extraordinary
+        complexity—multiple stakeholders, rotating schedules, cemetery opening hours,
+        and the emotional weight of funeral planning.
+      </p>
+    </div>
+  </section>
+
+  <section class="case-study-content">
+    <div class="container content">
+      <h2>The Challenge</h2>
+      <p>
+        Funeral homes need to coordinate with churches to book a priest for funeral services.
+        This coordination—between funeral home, parish office, and priest—requires extensive
+        back-and-forth communication. For bereaved families, every additional phone call
+        adds to an already draining experience.
+      </p>
+      <p>
+        The complexity runs deep: priests take turns on-call but have preferences or
+        commitments to specific cemeteries. Teams of priests plan their availability
+        6 weeks into the future. Each cemetery has different opening hours. And beyond
+        funerals, ChurchDesk wanted to cover more booking use cases like room rentals.
+      </p>
+
+      <h2>The Design Tension</h2>
+      <p>
+        We faced a fundamental UX paradox:
+      </p>
+      <div class="star-story">
+        <div class="star-item">
+          <h4>For Funeral Homes</h4>
+          <p>
+            Should feel like booking a priest—simple, fast, reliable. Select a time,
+            get confirmation, done.
+          </p>
+        </div>
+
+        <div class="star-item">
+          <h4>For Priests</h4>
+          <p>
+            Should NOT feel like being booked. Maintain autonomy and control over
+            their own schedules. Service mentality, not service industry.
+          </p>
+        </div>
+      </div>
+      <p>
+        These opposing needs required careful system design to satisfy both perspectives
+        simultaneously.
+      </p>
+
+      <h2>The Solution Architecture</h2>
+      <p>
+        ChurchDesk already had a calendar with people and resource association for events.
+        We extended this foundation with a new concept:
+      </p>
+      <ul>
+        <li><strong>Availability as Event Type</strong> — A new event type that could be associated with booking pages</li>
+        <li><strong>Multi-Option Availability</strong> — Priests could make themselves available for multiple booking options (e.g., different cemeteries) in one action</li>
+        <li><strong>Recurring Events Integration</strong> — Leveraged existing recurring events for simple on-call schedule creation</li>
+        <li><strong>Cemetery Hours Overlay</strong> — Each cemetery's opening hours factored into availability calculation</li>
+        <li><strong>Request-Based Booking</strong> — Bookings presented as requests/enquiries that priests confirm or reject</li>
+      </ul>
+
+      <h2>Complexity Made Simple</h2>
+      <p>
+        The result: end-users (funeral homes) got a simple booking experience. Priests got
+        simple availability management—especially powerful with recurring events. And everyone
+        maintained appropriate control and visibility.
+      </p>
+
+      <h2>Technical Implementation</h2>
+      <p>
+        Built on React (web) with React Native components for mobile, extending ChurchDesk's
+        existing platform:
+      </p>
+      <ul>
+        <li><strong>Calendar System Extension</strong> — New availability event type integrated with existing calendar infrastructure</li>
+        <li><strong>Booking Page Generator</strong> — Dynamic pages based on availability and cemetery constraints</li>
+        <li><strong>Smart Filtering</strong> — Automatic matching of priest preferences to cemetery requirements</li>
+        <li><strong>GDPR+ Compliance</strong> — Privacy-first design for sensitive personal and religious data</li>
+      </ul>
+
+      <h2>Design Decisions</h2>
+      <div class="star-story">
+        <div class="star-item">
+          <h4>Request vs. Booking Language</h4>
+          <p>
+            To preserve priest autonomy, we framed all bookings as "requests" or "enquiries"
+            that require confirmation. This small language shift maintained the service
+            mentality while giving priests genuine control.
+          </p>
+        </div>
+
+        <div class="star-item">
+          <h4>Unified Availability Model</h4>
+          <p>
+            Rather than building separate systems for funerals, room rentals, and other use cases,
+            we designed a flexible availability model that scales to any booking scenario—a
+            platform investment, not just a feature.
+          </p>
+        </div>
+
+        <div class="star-item">
+          <h4>Progressive Disclosure</h4>
+          <p>
+            Funeral homes see only what they need: available times. The underlying complexity
+            of rotating schedules, cemetery hours, and priest preferences stays invisible.
+          </p>
+        </div>
+      </div>
+
+      <h2>Impact</h2>
+      <p>
+        Coordination time dropped from days of phone calls to minutes. The system achieved
+        high acceptance rates through smart filtering that only showed genuinely available
+        options. Most importantly, it became a core platform feature—the availability/booking
+        model now powers use cases far beyond the original funeral scheduling need.
+      </p>
+      <p>
+        <a href="https://churchdesk.com/en/app-booking/" target="_blank">See the feature live →</a>
+      </p>
+
+      <div style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-border);">
+        <p><a href="/#case-studies">← Back to Case Studies</a></p>
+      </div>
+    </div>
+  </section>
+</Layout>

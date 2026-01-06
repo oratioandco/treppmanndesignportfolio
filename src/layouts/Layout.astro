@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Design Leadership - Human-centered organizations for human-centered products" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Tobias Treppmann</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="/" class="nav-brand">Tobias Treppmann</a>
+        <ul class="nav-links">
+          <li><a href="/#case-studies">Case Studies</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} Tobias Treppmann. Berlin, Germany.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
