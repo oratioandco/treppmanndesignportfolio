@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portfolio Case Study",
+  "description": "Theme-independent, structured case study format for treppmann.design portfolio. Supports design case studies, executive summaries, business processes, leadership stories, and blog posts.",
+  
+  "type": "object",
+  "required": ["id", "title", "type", "tags", "company", "role", "duration", "sections"],
+  
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier, used for filtering and URL references. Format: {company}-{topic}. e.g. 'datameer-data-dense-analytics'",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short, engaging title. Should pose a question or state a transformation.",
+      "maxLength": 80
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "One-line context setter. Who, what, where.",
+      "maxLength": 150
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "design-case-study",
+        "executive-summary",
+        "business-process",
+        "leadership-story",
+        "blog-post",
+        "technical-deep-dive"
+      ],
+      "description": "Determines which layout template the theme uses for rendering."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "enterprise",
+          "data-dense",
+          "regulated",
+          "org-building",
+          "design-system",
+          "ai",
+          "measurable-impact",
+          "user-research",
+          "customer-collaboration",
+          "b2b",
+          "b2c",
+          "mobile",
+          "web",
+          "cross-platform",
+          "accessibility",
+          "leadership",
+          "hiring",
+          "culture",
+          "strategy",
+          "prototyping",
+          "saas",
+          "ecommerce",
+          "analytics",
+          "product-management",
+          "transformation",
+          "from-scratch"
+        ]
+      },
+      "minItems": 2
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "role": {
+      "type": "string",
+      "description": "Your role title at the time"
+    },
+    "team": {
+      "type": "string",
+      "description": "Team size and composition. e.g. '3 designers, Berlin + NYC'"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Time period. e.g. '2016 – 2021'"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "published", "archived"],
+      "default": "draft"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "hero_image": {
+      "$ref": "#/$defs/image"
+    },
+    "format_priority": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["in-depth", "executive", "blog", "process", "narrative"]
+      },
+      "description": "Ordered list of which formats this case study supports best. First = default."
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/section"
+      },
+      "minItems": 1
+    },
+    "variants": {
+      "type": "object",
+      "description": "Format-specific overrides. Each variant can provide a shorter summary, different angle, or curated section subset.",
+      "properties": {
+        "executive": {
+          "$ref": "#/$defs/variant"
+        },
+        "blog": {
+          "$ref": "#/$defs/variant"
+        },
+        "narrative": {
+          "$ref": "#/$defs/variant"
+        }
+      }
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of related case studies. e.g. ['churchdesk-booking-system']"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "read_time_minutes": { "type": "integer" },
+        "confidential": { "type": "boolean", "default": false },
+        "confidentiality_note": { "type": "string" },
+        "source": { "type": "string", "description": "Where this content came from. e.g. 'my-cv-tailor verification 2026-04-23'" }
+      }
+    }
+  },
+
+  "$defs": {
+    "image": {
+      "type": "object",
+      "required": ["src", "alt"],
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Path relative to case study image directory. e.g. '/images/datameer/hero.png'"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Accessible alt text — required."
+        },
+        "caption": {
+          "type": "string",
+          "description": "Optional visible caption."
+        },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" }
+      }
+    },
+
+    "metric": {
+      "type": "object",
+      "required": ["label"],
+      "properties": {
+        "label": { "type": "string" },
+        "value": { "type": "string" },
+        "before": { "type": "string" },
+        "after": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "oneOf": [
+        { "required": ["value"] },
+        { "required": ["before", "after"] }
+      ]
+    },
+
+    "section": {
+      "type": "object",
+      "required": ["type", "content"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "hero",
+            "narrative",
+            "callout",
+            "process",
+            "outcome",
+            "comparison",
+            "gallery",
+            "reflection",
+            "video",
+            "quote",
+            "code",
+            "data-table",
+            "key-takeaway"
+          ]
+        },
+        "content": { "type": "string" },
+        "headline": { "type": "string" },
+        "subtext": { "type": "string" },
+        "images": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/image" }
+        },
+        "quote": { "type": "string" },
+        "attribution": { "type": "string" },
+        "context": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "description"],
+            "properties": {
+              "label": { "type": "string" },
+              "description": { "type": "string" },
+              "image": { "$ref": "#/$defs/image" }
+            }
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/metric" }
+        },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/image" }
+        },
+        "layout": {
+          "type": "string",
+          "enum": ["full-width", "grid", "carousel", "side-by-side", "masonry"],
+          "default": "grid"
+        },
+        "variant": {
+          "type": "string",
+          "description": "Only render this section in the specified variant. Omit for all variants."
+        }
+      }
+    },
+
+    "variant": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string", "maxLength": 200 },
+        "angle": { "type": "string", "description": "Narrative angle for this format. e.g. 'The sample-uncertainty UX problem'" },
+        "sections": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Section indices or IDs to include in this variant. Omit to use all."
+        },
+        "max_read_time": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portfolio Filter Configuration",
+  "description": "Maps application/company slugs to curated case study selections with visibility control.",
+  
+  "type": "object",
+  "required": ["slug", "case_studies"],
+  
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL parameter value. e.g. 'liveeo' → treppmann.design/work?liveeo",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Page title for this view. e.g. 'Selected Work'"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Optional subtitle for the portfolio landing."
+    },
+    "theme": {
+      "type": "string",
+      "description": "Optional theme override for this view. e.g. 'dark', 'minimal', 'corporate'",
+      "default": "default"
+    },
+    "case_studies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "visibility"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Case study ID matching the case study JSON file."
+          },
+          "visibility": {
+            "type": "string",
+            "enum": ["featured", "browseable", "hidden"],
+            "description": "featured = shown immediately. browseable = behind 'show more'. hidden = only with ?all parameter."
+          },
+          "order": {
+            "type": "integer",
+            "description": "Display order. Lower = first."
+          },
+          "format_override": {
+            "type": "string",
+            "enum": ["in-depth", "executive", "blog", "process", "narrative"],
+            "description": "Force a specific format for this case study in this view."
+          }
+        }
+      }
+    },
+    "show_all_label": {
+      "type": "string",
+      "default": "Show more work",
+      "description": "Label for the toggle that reveals browseable case studies."
+    }
+  }
+}

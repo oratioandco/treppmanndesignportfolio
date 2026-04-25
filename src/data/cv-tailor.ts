@@ -1,13 +1,4 @@
 import type { GetStaticPaths } from 'astro';
-import fs from 'node:fs';
-import path from 'node:path';
-
-// --- Paths to my-cv-tailor data ---
-const CV_TAILOR_ROOT = path.resolve(process.cwd(), '..', 'my-cv-tailor');
-const FILTERS_DIR = path.join(CV_TAILOR_ROOT, 'data', 'case-studies', 'filters');
-const CASE_STUDIES_DIR = path.join(CV_TAILOR_ROOT, 'data', 'case-studies');
-const JOBS_DIR = path.join(CV_TAILOR_ROOT, 'data', 'jobs');
-const STRATEGIC_POSITIONING = path.join(CV_TAILOR_ROOT, 'data', 'strategic-positioning.md');
 
 // --- Types (aligned with my-cv-tailor schemas) ---
 
@@ -70,131 +61,56 @@ export interface CaseStudy {
   };
 }
 
-// --- Filter loading from my-cv-tailor ---
-
-function loadFilters(): FilterConfig[] {
-  if (!fs.existsSync(FILTERS_DIR)) return [];
-  
-  return fs.readdirSync(FILTERS_DIR)
-    .filter(f => f.endsWith('.json'))
-    .map(f => {
-      const raw = fs.readFileSync(path.join(FILTERS_DIR, f), 'utf-8');
-      return JSON.parse(raw) as FilterConfig;
-    });
+export interface StudyWithVisibility extends CaseStudy {
+  visibility: string;
+  format_override?: string;
 }
 
-// --- Case study loading from my-cv-tailor ---
+// --- Data loading via import.meta.glob ---
 
-function loadCaseStudy(id: string): CaseStudy | null {
-  const filePath = path.join(CASE_STUDIES_DIR, `${id}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  const raw = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(raw) as CaseStudy;
-}
+// Auto-discover all filter configs
+const filterModules = import.meta.glob<{ default: FilterConfig }>(
+  './cv-tailor-data/case-studies/filters/*.json',
+  { eager: true }
+);
 
-function loadAllCaseStudies(): Map<string, CaseStudy> {
-  const studies = new Map<string, CaseStudy>();
-  if (!fs.existsSync(CASE_STUDIES_DIR)) return studies;
-
-  fs.readdirSync(CASE_STUDIES_DIR)
-    .filter(f => f.endsWith('.json') && f !== 'schema.json' && f !== 'filter-schema.json')
-    .forEach(f => {
-      const raw = fs.readFileSync(path.join(CASE_STUDIES_DIR, f), 'utf-8');
-      const study = JSON.parse(raw) as CaseStudy;
-      studies.set(study.id, study);
-    });
-  
-  return studies;
-}
-
-// --- Job analysis loading ---
-
-export interface JobAnalysis {
-  slug: string;
-  company: string;
-  role: string;
-  location: string;
-  hero_tagline: string;
-  hero_headline: string;
-  hero_description: string;
-  about_snippet: string;
-  design_chops_highlight?: string;
-  leadership_angle?: string;
-  emphasized_skills: string[];
-}
-
-function findJobAnalysis(slug: string): JobAnalysis | null {
-  if (!fs.existsSync(JOBS_DIR)) return null;
-
-  // Look for files matching the slug pattern: {slug}-*.md
-  const files = fs.readdirSync(JOBS_DIR)
-    .filter(f => f.startsWith(slug) && f.endsWith('-analysis.md'));
-  
-  if (files.length === 0) return null;
-  
-  // Parse the analysis file for key fields
-  const raw = fs.readFileSync(path.join(JOBS_DIR, files[0]), 'utf-8');
-  return parseJobAnalysis(slug, raw);
-}
-
-function parseJobAnalysis(slug: string, content: string): JobAnalysis {
-  // Extract structured data from the analysis markdown
-  const company = extractField(content, 'Company') || slug;
-  const role = extractField(content, 'Role') || 'Product Design';
-  const location = extractField(content, 'Location') || 'Berlin, Germany';
-  
-  return {
-    slug,
-    company,
-    role,
-    location,
-    // These will be populated from the filter config + strategic positioning
-    hero_tagline: '',
-    hero_headline: '',
-    hero_description: '',
-    about_snippet: '',
-    emphasized_skills: [],
-  };
-}
-
-function extractField(content: string, field: string): string | null {
-  const regex = new RegExp(`\\*\\*${field}\\*\\*:\\s*(.+)`);
-  const match = content.match(regex);
-  return match ? match[1].trim() : null;
-}
+// Auto-discover all case studies
+const caseStudyModules = import.meta.glob<{ default: CaseStudy }>(
+  './cv-tailor-data/case-studies/*.json',
+  { eager: true }
+);
 
 // --- Public API ---
 
 export function getAllFilters(): FilterConfig[] {
-  return loadFilters();
+  return Object.values(filterModules).map(mod => mod.default);
 }
 
 export function getFilter(slug: string): FilterConfig | undefined {
-  return loadFilters().find(f => f.slug === slug);
+  return getAllFilters().find(f => f.slug === slug);
 }
 
-export function getCaseStudy(id: string): CaseStudy | null {
-  return loadCaseStudy(id);
-}
-
-export function getAllCaseStudies(): Map<string, CaseStudy> {
-  return loadAllCaseStudies();
+function getCaseStudy(id: string): CaseStudy | undefined {
+  const entry = Object.values(caseStudyModules).find(
+    mod => mod.default && (mod.default as CaseStudy).id === id
+  );
+  return entry ? (entry.default as CaseStudy) : undefined;
 }
 
 export function getFilterWithStudies(slug: string): {
   filter: FilterConfig;
-  studies: (CaseStudy & { visibility: string; format_override?: string })[];
+  studies: StudyWithVisibility[];
 } | null {
   const filter = getFilter(slug);
   if (!filter) return null;
 
   const studies = filter.case_studies
     .map(csRef => {
-      const study = loadCaseStudy(csRef.id);
+      const study = getCaseStudy(csRef.id);
       if (!study) return null;
       return { ...study, visibility: csRef.visibility, format_override: csRef.format_override };
     })
-    .filter(Boolean) as (CaseStudy & { visibility: string; format_override?: string })[];
+    .filter((s): s is StudyWithVisibility => s !== null);
 
   return { filter, studies };
 }

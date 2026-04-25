@@ -1,0 +1,39 @@
+{
+  "slug": "liveeo",
+  "title": "Selected Work",
+  "subtitle": "Enterprise data products, design systems, and building design functions",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "case_studies": [
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 5,
+      "format_override": "blog"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "id": "datameer-data-dense-analytics",
+  "title": "How do you make big data feel simple?",
+  "subtitle": "Redesigning a collaborative analytics platform for data analysts at the world's most regulated financial institutions",
+  "type": "design-case-study",
+  "tags": ["enterprise", "data-dense", "regulated", "org-building", "design-system", "user-research", "analytics", "from-scratch", "saas"],
+  "company": "Datameer",
+  "role": "Director of Design",
+  "team": "3 designers, Berlin + NYC",
+  "duration": "2016 – 2021",
+  "status": "draft",
+  "last_updated": "2026-04-24",
+  "hero_image": {
+    "src": "/images/datameer/hero.png",
+    "alt": "Datameer analytics platform dashboard showing data-dense visualization"
+  },
+  "format_priority": ["in-depth", "executive", "blog"],
+  
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "How do you make big data feel simple?",
+      "subtext": "A collaborative analytics platform. Top US, Canadian, and UK banks. Data so complex that the tools themselves created confusion.",
+      "images": [
+        {
+          "src": "/images/datameer/hero-dashboard.png",
+          "alt": "Datameer platform overview",
+          "caption": "The redesigned analytics platform"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The starting point",
+      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily — people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table.",
+      "images": [
+        {
+          "src": "/images/datameer/before-interface.png",
+          "alt": "Datameer interface before redesign",
+          "caption": "The original interface — functional but overwhelming"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "quote": "The query builder showed empty results. The full data existed. Users thought the system was broken.",
+      "context": "The sample-based uncertainty problem — the hardest UX challenge on the platform"
+    },
+    {
+      "type": "narrative",
+      "headline": "The core challenge",
+      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty — not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them — not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem — how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?"
+    },
+    {
+      "type": "process",
+      "headline": "Approach",
+      "steps": [
+        {
+          "label": "Customer Research",
+          "description": "I secured exec-sponsored access to visit regulated enterprise environments — banks and insurers in the US — joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked.",
+          "image": {
+            "src": "/images/datameer/process-research.png",
+            "alt": "Research process documentation",
+            "caption": "Field research in regulated enterprise environments"
+          }
+        },
+        {
+          "label": "Platform Redesign",
+          "description": "Complete overhaul of the analytics interface — from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system.",
+          "image": {
+            "src": "/images/datameer/process-redesign.png",
+            "alt": "Redesign process",
+            "caption": "Iterative redesign across all major surfaces"
+          }
+        },
+        {
+          "label": "Design System",
+          "description": "Built the platform's design system from scratch — the first unified visual language for a product that had grown organically for years. Created shared components, patterns, and documentation.",
+          "image": {
+            "src": "/images/datameer/design-system.png",
+            "alt": "Design system components",
+            "caption": "Design system in Figma"
+          }
+        },
+        {
+          "label": "Organizational Elevation",
+          "description": "Moved design from execution-only to strategic partner — earned a seat at the product table by demonstrating the business value of user-centered design in a deeply technical product."
+        }
+      ]
+    },
+    {
+      "type": "outcome",
+      "headline": "Results",
+      "metrics": [
+        {
+          "label": "UX Maturity",
+          "before": "Execution-only function — designers received specs",
+          "after": "Strategic business partner with exec-sponsored research access"
+        },
+        {
+          "label": "Design System",
+          "value": "Built from scratch (0 → 1)"
+        },
+        {
+          "label": "User Research",
+          "value": "Direct access to regulated enterprise environments — rare for a vendor"
+        },
+        {
+          "label": "Sample Uncertainty UX",
+          "value": "Designed honest feedback that maintained user trust in sampled previews"
+        }
+      ],
+      "narrative": "The biggest win wasn't a feature — it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap.",
+      "images": [
+        {
+          "src": "/images/datameer/after-dashboard.png",
+          "alt": "Redesigned dashboard",
+          "caption": "The redesigned analytics dashboard"
+        },
+        {
+          "src": "/images/datameer/after-filters.png",
+          "alt": "Redesigned filter system",
+          "caption": "Comprehensive filter logic"
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "layout": "grid",
+      "headline": "Key screens",
+      "items": [
+        {
+          "src": "/images/datameer/pivot-table.png",
+          "alt": "Big-data pivot table interface",
+          "caption": "Big-data pivot table with aggregated JSON views"
+        },
+        {
+          "src": "/images/datameer/column-charts.png",
+          "alt": "Column chart visualization",
+          "caption": "Column charts for analytical comparisons"
+        },
+        {
+          "src": "/images/datameer/filter-logic.png",
+          "alt": "Filter logic interface",
+          "caption": "Comprehensive filter system for complex queries"
+        },
+        {
+          "src": "/images/datameer/uncertainty-feedback.png",
+          "alt": "Sample uncertainty feedback design",
+          "caption": "Sample-uncertainty feedback — keeping users calibrated"
+        },
+        {
+          "src": "/images/datameer/result-cards.png",
+          "alt": "Result card components",
+          "caption": "Result cards for data exploration"
+        },
+        {
+          "src": "/images/datameer/design-system-components.png",
+          "alt": "Design system component library",
+          "caption": "Design system components"
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "headline": "What I learned",
+      "content": "The hardest part wasn't the design — it was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products — because they actually talk to humans."
+    },
+    {
+      "type": "key-takeaway",
+      "headline": "Why this matters for your team",
+      "content": "If you're building data-dense tools for technically sophisticated users in regulated environments, the design challenges are fundamentally different from consumer products. I've spent five years learning those differences — from sample-uncertainty communication to compliance-aware user research. This is transferable to any domain where the data is complex, the users are expert, and the stakes are high."
+    }
+  ],
+
+  "variants": {
+    "executive": {
+      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Built the design system from scratch and solved a fundamental data-uncertainty UX problem.",
+      "angle": "Organizational transformation through design",
+      "sections": ["hero", "outcome", "key-takeaway"],
+      "max_read_time": "2 min"
+    },
+    "blog": {
+      "summary": "What happens when your query builder shows empty results but the data exists? A UX design story from inside big data analytics.",
+      "angle": "The sample-uncertainty UX problem",
+      "sections": ["hero", "callout", "narrative", "reflection"],
+      "max_read_time": "5 min"
+    }
+  },
+
+  "related": [
+    "churchdesk-booking-system",
+    "ninox-org-building",
+    "bibeltv-ai-native-practice"
+  ],
+
+  "meta": {
+    "read_time_minutes": 8,
+    "confidential": true,
+    "confidentiality_note": "Screenshots may need to be anonymized or use demo data. Verify with Datameer before publishing.",
+    "source": "my-cv-tailor verification 2026-04-23 + experience data file"
+  }
+}
