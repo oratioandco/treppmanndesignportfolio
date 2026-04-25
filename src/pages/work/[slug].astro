@@ -25,18 +25,32 @@ if (!data) {
 const { studies } = data;
 const featuredStudies = studies.filter(s => s.visibility === 'featured');
 const browseableStudies = studies.filter(s => s.visibility === 'browseable');
-const hiddenStudies = studies.filter(s => s.visibility === 'hidden');
 
-// Derive page metadata from filter + first study context
-const pageTitle = `${filter.title} — Tobias Treppmann`;
-const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
+// Build a mapping: case study ID → case study page slug
+// Case studies live as hardcoded Astro pages OR will be dynamically generated
+const caseStudyRoutes: Record<string, string> = {
+  'datameer-data-dense-analytics': '/case-studies/datameer',
+  'churchdesk-booking-system': '/case-studies/churchdesk',
+  'ninox-org-building': '/case-studies/ninox',
+  'bibeltv-design-system': '/case-studies/bibel-tv',
+  'spreadshirt-user-research-strategy': '/case-studies/spreadshirt',
+};
+
+// Cover images per case study (fallback mapping)
+const coverImages: Record<string, string> = {
+  'datameer-data-dense-analytics': '/images/covers/churchdesk.jpeg',
+  'churchdesk-booking-system': '/images/covers/churchdesk.jpeg',
+  'ninox-org-building': '/images/covers/leadership.jpeg',
+  'bibeltv-design-system': '/images/covers/ai.jpeg',
+  'spreadshirt-user-research-strategy': '/images/covers/churchdesk.jpeg',
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title="Design Leadership">
   <section class="hero">
     <div class="container">
-      <p class="hero-tagline">Portfolio</p>
-      <h1 class="animated-headline" id="animated-title">{filter.title}</h1>
+      <p class="hero-tagline">Design Leadership</p>
+      <h1 class="animated-headline" id="animated-title">Human-centered organizations for human-centered products</h1>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
@@ -62,77 +76,49 @@ const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
     });
   }
 </script>
+      <p class="hero-description">
+        I'm <a href="/about">Tobias Treppmann</a>, a hands-on design leader who builds the psychological safety,
+        inclusive collaboration, and technical excellence that enables breakthrough user experiences.
+      </p>
       {filter.subtitle && (
-        <p class="hero-description">{filter.subtitle}</p>
+        <p class="context-note">{filter.subtitle}</p>
       )}
     </div>
   </section>
 
-  <!-- Featured Case Studies -->
-  {featuredStudies.length > 0 && (
-    <section class="section" id="case-studies">
-      <div class="container">
-        <div class="section-header">
-          <h2>Case Studies</h2>
-        </div>
-        <div class="case-studies-grid">
-          {featuredStudies.map((study: any) => {
-            const heroSection = study.sections?.find((s: any) => s.type === 'hero');
-            const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
-            return (
-              <div class="case-study-card-full">
-                <div class="cs-header">
-                  <div class="cs-meta">
-                    <span class="cs-company">{study.company}</span>
-                    <span class="cs-duration">{study.duration}</span>
-                    <span class="cs-role">{study.role}</span>
-                  </div>
-                  <h3>{heroSection?.headline || study.title}</h3>
-                  {study.subtitle && <p class="subtitle">{study.subtitle}</p>}
-                </div>
-
-                {(heroSection?.subtext || outcomeSection?.content) && (
-                  <p class="cs-description">
-                    {heroSection?.subtext || outcomeSection?.content?.substring(0, 200) + '...'}
-                  </p>
-                )}
-
-                {/* Metrics */}
-                {outcomeSection?.metrics && outcomeSection.metrics.length > 0 && (
-                  <div class="cs-metrics">
-                    {outcomeSection.metrics.map((m: any) => (
-                      <div class="metric">
-                        <span class="metric-label">{m.label}</span>
-                        {m.value && <span class="metric-value">{m.value}</span>}
-                        {m.before && m.after && (
-                          <span class="metric-change">{m.before} → {m.after}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Tags */}
-                <div class="cs-tags">
-                  {study.tags.slice(0, 5).map((tag: string) => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-
-                {/* Format indicator */}
-                {study.format_override && (
-                  <span class="format-badge">{study.format_override}</span>
-                )}
-              </div>
-            );
-          })}
-        </div>
+  <section class="section" id="case-studies">
+    <div class="container">
+      <div class="section-header">
+        <h2>Case Studies</h2>
+        <p class="text-muted">Selected work demonstrating hands-on leadership and technical depth</p>
       </div>
-    </section>
-  )}
 
-  <!-- Browseable Studies (collapsed) -->
-  {(browseableStudies.length > 0 || hiddenStudies.length > 0) && (
+      <div class="case-studies-grid">
+        {featuredStudies.map((study: any) => {
+          const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+          const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
+          const link = caseStudyRoutes[study.id] || '#';
+          const cover = study.hero_image?.src || coverImages[study.id] || '/images/covers/churchdesk.jpeg';
+
+          return (
+            <a href={link} class="case-study-card">
+              <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
+              <h3>{heroSection?.headline || study.title}</h3>
+              <p class="subtitle">{study.company} · {study.duration}</p>
+              <p>{heroSection?.subtext || study.subtitle}</p>
+              <div style="margin-top: var(--space-md);">
+                {study.tags.slice(0, 4).map((tag: string) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {browseableStudies.length > 0 && (
     <section class="section" id="more-work">
       <div class="container">
         <details class="show-more">
@@ -140,20 +126,21 @@ const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
           <div class="case-studies-grid" style="margin-top: var(--space-lg);">
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+              const link = caseStudyRoutes[study.id] || '#';
+              const cover = study.hero_image?.src || coverImages[study.id] || '/images/covers/churchdesk.jpeg';
+
               return (
-                <div class="case-study-card-full browseable">
-                  <div class="cs-meta">
-                    <span class="cs-company">{study.company}</span>
-                    <span class="cs-duration">{study.duration}</span>
-                  </div>
+                <a href={link} class="case-study-card">
+                  <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
                   <h3>{heroSection?.headline || study.title}</h3>
-                  {study.subtitle && <p class="subtitle">{study.subtitle}</p>}
-                  <div class="cs-tags">
+                  <p class="subtitle">{study.company} · {study.duration}</p>
+                  <p>{heroSection?.subtext || study.subtitle}</p>
+                  <div style="margin-top: var(--space-md);">
                     {study.tags.slice(0, 4).map((tag: string) => (
                       <span class="tag">{tag}</span>
                     ))}
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
@@ -162,129 +149,16 @@ const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
     </section>
   )}
 
-  <!-- CTA -->
-  <section class="section" id="next-steps">
-    <div class="container content">
-      <div class="section-header">
-        <h2>Let's Talk</h2>
-        <p>
-          Want the full picture? <a href="/about">Learn more about me</a>, or
-          <a href="/">see all case studies</a>.
-        </p>
-      </div>
-    </div>
-  </section>
 </Layout>
 
 <style>
-  /* Full-width case study cards */
-  .case-studies-grid {
-    display: grid;
-    gap: var(--space-lg);
-  }
-
-  .case-study-card-full {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--space-lg) var(--space-xl);
-    transition: border-color 0.2s;
-  }
-
-  .case-study-card-full:hover {
-    border-color: var(--color-accent);
-  }
-
-  .cs-header {
-    margin-bottom: var(--space-md);
-  }
-
-  .cs-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-  }
-
-  .cs-company {
-    font-weight: 600;
+  .context-note {
+    margin-top: var(--space-lg);
+    font-size: 0.85rem;
     color: var(--color-accent);
-  }
-
-  .cs-role {
     font-style: italic;
   }
 
-  .cs-header h3 {
-    font-size: 1.4rem;
-    margin-bottom: var(--space-xs);
-  }
-
-  .cs-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-md);
-  }
-
-  /* Metrics */
-  .cs-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
-    padding: var(--space-md);
-    background: var(--color-bg);
-    border-radius: 8px;
-  }
-
-  .metric {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .metric-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
-  }
-
-  .metric-value {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-accent);
-  }
-
-  .metric-change {
-    font-size: 0.85rem;
-    color: var(--color-text);
-  }
-
-  .cs-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
-
-  .format-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    padding: 2px 10px;
-    border-radius: 100px;
-    margin-top: var(--space-sm);
-  }
-
-  /* Show more toggle */
   .show-more {
     border: none;
     cursor: pointer;
@@ -315,13 +189,5 @@ const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
 
   .show-more[open] summary::before {
     content: '−';
-  }
-
-  .browseable {
-    opacity: 0.9;
-  }
-
-  #next-steps p {
-    font-size: 1.05rem;
   }
 </style>
