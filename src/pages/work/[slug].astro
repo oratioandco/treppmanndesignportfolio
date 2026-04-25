@@ -26,24 +26,9 @@ const { studies } = data;
 const featuredStudies = studies.filter(s => s.visibility === 'featured');
 const browseableStudies = studies.filter(s => s.visibility === 'browseable');
 
-// Build a mapping: case study ID → case study page slug
-// Case studies live as hardcoded Astro pages OR will be dynamically generated
-const caseStudyRoutes: Record<string, string> = {
-  'datameer-data-dense-analytics': '/case-studies/datameer',
-  'churchdesk-booking-system': '/case-studies/churchdesk',
-  'ninox-org-building': '/case-studies/ninox',
-  'bibeltv-design-system': '/case-studies/bibel-tv',
-  'spreadshirt-user-research-strategy': '/case-studies/spreadshirt',
-};
+// Scoped case study routes: /work/{slug}/{study-id}
+// No separate mapping needed — the scoped route IS the link
 
-// Cover images per case study (fallback mapping)
-const coverImages: Record<string, string> = {
-  'datameer-data-dense-analytics': '/images/covers/churchdesk.jpeg',
-  'churchdesk-booking-system': '/images/covers/churchdesk.jpeg',
-  'ninox-org-building': '/images/covers/leadership.jpeg',
-  'bibeltv-design-system': '/images/covers/ai.jpeg',
-  'spreadshirt-user-research-strategy': '/images/covers/churchdesk.jpeg',
-};
 ---
 
 <Layout title="Design Leadership">
@@ -97,8 +82,8 @@ const coverImages: Record<string, string> = {
         {featuredStudies.map((study: any) => {
           const heroSection = study.sections?.find((s: any) => s.type === 'hero');
           const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
-          const link = caseStudyRoutes[study.id] || '#';
-          const cover = study.hero_image?.src || coverImages[study.id] || '/images/covers/churchdesk.jpeg';
+          const link = `/work/${filter.slug}/${study.id}`;
+          const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
 
           return (
             <a href={link} class="case-study-card">
@@ -126,8 +111,8 @@ const coverImages: Record<string, string> = {
           <div class="case-studies-grid" style="margin-top: var(--space-lg);">
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
-              const link = caseStudyRoutes[study.id] || '#';
-              const cover = study.hero_image?.src || coverImages[study.id] || '/images/covers/churchdesk.jpeg';
+              const link = `/work/${filter.slug}/${study.id}`;
+              const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
 
               return (
                 <a href={link} class="case-study-card">

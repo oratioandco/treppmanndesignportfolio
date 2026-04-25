@@ -1,0 +1,293 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import {
+  getAllFilters,
+  getFilterWithStudies,
+  type CaseStudy,
+  type CaseStudySection,
+} from '../../../data/cv-tailor';
+
+export function getStaticPaths() {
+  const filters = getAllFilters();
+  const paths = [];
+
+  for (const filter of filters) {
+    const data = getFilterWithStudies(filter.slug);
+    if (!data) continue;
+
+    for (const study of data.studies) {
+      // Only generate pages for featured + browseable (not hidden)
+      if (study.visibility === 'hidden') continue;
+      paths.push({
+        params: { slug: filter.slug, study: study.id },
+        props: { filter, study },
+      });
+    }
+  }
+  return paths;
+}
+
+const { filter, study } = Astro.props;
+const backUrl = `/work/${filter.slug}`;
+
+function renderSection(section: CaseStudySection): string {
+  switch (section.type) {
+    case 'hero':
+      return '';
+    case 'narrative':
+      let html = '';
+      if (section.headline) html += `<h2>${section.headline}</h2>`;
+      if (section.content) html += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      if (section.images) {
+        for (const img of section.images) {
+          html += `<figure class="case-study-image">`;
+          html += `<img src="${img.src}" alt="${img.alt}" />`;
+          if (img.caption) html += `<figcaption>${img.caption}</figcaption>`;
+          html += `</figure>`;
+        }
+      }
+      return html;
+    case 'callout':
+      let callout = '<div class="star-story"><div class="star-item">';
+      if (section.headline) callout += `<h4>${section.headline}</h4>`;
+      if (section.quote) callout += `<blockquote>${section.quote}</blockquote>`;
+      if (section.context) callout += `<p class="context">${section.context}</p>`;
+      if (section.content) callout += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      callout += '</div></div>';
+      return callout;
+    case 'process':
+      let process = '';
+      if (section.headline) process += `<h2>${section.headline}</h2>`;
+      if (section.content) process += `<p>${section.content}</p>`;
+      if (section.steps) {
+        process += '<div class="star-story">';
+        for (const step of section.steps) {
+          process += '<div class="star-item">';
+          process += `<h4>${step.label}</h4>`;
+          process += `<p>${step.description}</p>`;
+          if (step.image) {
+            process += `<figure class="case-study-image">`;
+            process += `<img src="${step.image.src}" alt="${step.image.alt}" />`;
+            if (step.image.caption) process += `<figcaption>${step.image.caption}</figcaption>`;
+            process += `</figure>`;
+          }
+          process += '</div>';
+        }
+        process += '</div>';
+      }
+      return process;
+    case 'outcome':
+      let outcome = '';
+      if (section.headline) outcome += `<h2>${section.headline}</h2>`;
+      if (section.metrics && section.metrics.length > 0) {
+        outcome += '<div class="outcome-metrics">';
+        for (const m of section.metrics) {
+          outcome += '<div class="metric-card">';
+          outcome += `<span class="metric-label">${m.label}</span>`;
+          if (m.value) outcome += `<span class="metric-value">${m.value}</span>`;
+          if (m.before && m.after) outcome += `<span class="metric-change">${m.before} → ${m.after}</span>`;
+          outcome += '</div>';
+        }
+        outcome += '</div>';
+      }
+      if (section.narrative) outcome += `<p>${section.narrative}</p>`;
+      if (section.content) outcome += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      if (section.images) {
+        for (const img of section.images) {
+          outcome += `<figure class="case-study-image">`;
+          outcome += `<img src="${img.src}" alt="${img.alt}" />`;
+          if (img.caption) outcome += `<figcaption>${img.caption}</figcaption>`;
+          outcome += `</figure>`;
+        }
+      }
+      return outcome;
+    case 'comparison':
+      let comp = '';
+      if (section.headline) comp += `<h2>${section.headline}</h2>`;
+      if (section.content) comp += `<p>${section.content}</p>`;
+      return comp;
+    case 'gallery':
+      let gallery = '';
+      if (section.headline) gallery += `<h2>${section.headline}</h2>`;
+      if (section.items && section.items.length > 0) {
+        gallery += '<div class="gallery-grid">';
+        for (const img of section.items) {
+          gallery += '<figure class="case-study-image">';
+          gallery += `<img src="${img.src}" alt="${img.alt}" />`;
+          if (img.caption) gallery += `<figcaption>${img.caption}</figcaption>`;
+          gallery += '</figure>';
+        }
+        gallery += '</div>';
+      }
+      return gallery;
+    case 'reflection':
+      let reflection = '';
+      if (section.headline) reflection += `<h2>${section.headline}</h2>`;
+      if (section.content) reflection += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      return reflection;
+    case 'key-takeaway':
+      let takeaway = '<div class="key-takeaway">';
+      if (section.headline) takeaway += `<h2>${section.headline}</h2>`;
+      if (section.content) takeaway += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      takeaway += '</div>';
+      return takeaway;
+    default:
+      let def = '';
+      if (section.headline) def += `<h2>${section.headline}</h2>`;
+      if (section.content) def += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      return def;
+  }
+}
+
+const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
+const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
+const pageTitle = heroSection?.headline || study.title;
+const pageDescription = study.subtitle || '';
+
+// Filter out "hero" from rendering since it's handled in the template
+const renderedSections = contentSections.map(s => ({ section: s, html: renderSection(s) })).filter(s => s.html);
+---
+
+<Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl={backUrl} backLabel={`← Back to portfolio`}>
+  <section class="case-study-hero">
+    <div class="container">
+      <p class="case-study-meta">Case Study · {study.company}</p>
+      <h1>{pageTitle}</h1>
+      <p class="hero-tagline">{study.role} · {study.duration}</p>
+      {heroSection?.subtext && (
+        <p class="hero-description">{heroSection.subtext}</p>
+      )}
+      {!heroSection?.subtext && study.subtitle && (
+        <p class="hero-description">{study.subtitle}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="case-study-content">
+    <div class="container content">
+      {renderedSections.map(({ section, html }) => (
+        <Fragment set:html={html} />
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Extend existing case study styles */
+  .case-study-hero {
+    padding: var(--space-xxl) 0 var(--space-xl);
+    text-align: left;
+  }
+
+  .case-study-meta {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .case-study-hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 720px;
+    color: var(--color-text-muted);
+  }
+
+  .case-study-content {
+    padding-bottom: var(--space-xxl);
+  }
+
+  /* Outcome metrics */
+  .outcome-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  .metric-card {
+    background: var(--color-bg);
+    border-radius: 8px;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metric-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .metric-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .metric-change {
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  /* Gallery grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Key takeaway */
+  .key-takeaway {
+    background: var(--color-accent-light);
+    border-left: 3px solid var(--color-accent);
+    padding: var(--space-lg);
+    border-radius: 0 12px 12px 0;
+    margin: var(--space-xl) 0;
+  }
+
+  .key-takeaway h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-md);
+    margin: var(--space-md) 0;
+  }
+
+  .context {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: var(--space-xs);
+  }
+</style>
