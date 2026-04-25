@@ -1,0 +1,47 @@
+{
+  "slug": "ckm-group",
+  "company": "CKM Group",
+  "role": "AI Transformation & AI Enablement",
+  "location": "Berlin",
+  "hero": {
+    "tagline": "AI Transformation Leadership",
+    "headline": "Turning AI potential into real products — with the teams who build them",
+    "description": "I'm Tobias Treppmann, a hands-on design leader who bridges the gap between AI ambition and human-centered execution. I've shipped AI features in production, built the teams to sustain them, and taught others to do the same."
+  },
+  "aboutSnippet": "Specializing in AI product design and transformation — from building AI alt-text at ChurchDesk to developing AI-first prototyping processes. I help organizations adopt AI where it creates real value, not just hype.",
+  "designChopsHighlight": "Ship AI features hands-on — prototyping with Claude Code, Cursor, and Zed. Not just strategy slides, but working products.",
+  "leadershipAngle": "AI adoption fails when teams aren't ready. I build the culture, processes, and skills that make AI transformation stick.",
+  "content": [
+    {
+      "id": "modern-practice",
+      "type": "case-study",
+      "relevanceNote": "AI-first design process development and team training — directly relevant to AI enablement",
+      "tagsOverride": ["AI Prototyping", "Team Training", "Process Design"]
+    },
+    {
+      "id": "churchdesk",
+      "type": "case-study",
+      "relevanceNote": "Shipped AI-powered alt-text feature; complex system design for sensitive contexts",
+      "tagsOverride": ["AI Features", "Privacy-First", "Complex Systems"]
+    },
+    {
+      "id": "ai-user-agency",
+      "type": "article",
+      "relevanceNote": "Design principles for AI features that respect user agency — core to responsible AI transformation"
+    },
+    {
+      "id": "ninox",
+      "type": "case-study",
+      "relevanceNote": "Team transformation and inclusive leadership — essential for AI adoption culture",
+      "tagsOverride": ["Change Management", "Team Design", "Inclusion"]
+    }
+  ],
+  "emphasizedSkills": [
+    "AI Product Design",
+    "AI-First Prototyping",
+    "Team Enablement",
+    "Design Systems",
+    "Change Management",
+    "Human-Centered AI"
+  ]
+}

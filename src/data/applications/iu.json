@@ -1,0 +1,48 @@
+{
+  "slug": "iu",
+  "company": "IU International University",
+  "role": "AI in Education / Design Leadership",
+  "location": "Berlin",
+  "hero": {
+    "tagline": "Design for Learning at Scale",
+    "headline": "Designing learning experiences that work for everyone — not just the average",
+    "description": "I'm Tobias Treppmann, a design leader with 15+ years of experience building inclusive systems. I believe the same empathy that drives great product design must drive great education design — especially when AI enters the classroom."
+  },
+  "aboutSnippet": "Deep experience in inclusive design and accessibility — from designing for neurodivergent team members to privacy-first products in regulated environments. Education and mentoring are core to my practice: I teach at CareerFoundry and lead AI design workshops.",
+  "designChopsHighlight": "Complex system design that makes the hard feel simple — proven in multi-stakeholder environments with diverse user needs.",
+  "leadershipAngle": "I've spent 15+ years building inclusive teams that reflect the diversity of their users. The same principles apply to education: different minds need different systems.",
+  "content": [
+    {
+      "id": "churchdesk",
+      "type": "case-study",
+      "relevanceNote": "Multi-stakeholder coordination and progressive disclosure — directly applicable to complex learning platforms",
+      "tagsOverride": ["Progressive Disclosure", "Multi-Stakeholder", "Complex Systems"]
+    },
+    {
+      "id": "ninox",
+      "type": "case-study",
+      "relevanceNote": "Inclusive design for cognitive diversity — foundational for accessible education technology",
+      "tagsOverride": ["Cognitive Diversity", "Inclusive Design", "Accessibility"]
+    },
+    {
+      "id": "leadership-philosophy",
+      "type": "leadership",
+      "relevanceNote": "Human-centered leadership philosophy — building teams that design for everyone"
+    },
+    {
+      "id": "modern-practice",
+      "type": "case-study",
+      "relevanceNote": "AI-first process for rapid prototyping — relevant for AI-enhanced learning experiences",
+      "tagsOverride": ["AI Prototyping", "Education", "Rapid Iteration"]
+    }
+  ],
+  "emphasizedSkills": [
+    "Inclusive Design",
+    "Accessibility",
+    "Complex Systems",
+    "Multi-Stakeholder Design",
+    "AI in Product",
+    "Education & Mentoring",
+    "Privacy-First Design"
+  ]
+}

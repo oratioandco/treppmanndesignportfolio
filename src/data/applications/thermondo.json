@@ -1,0 +1,48 @@
+{
+  "slug": "thermondo",
+  "company": "thermondo",
+  "role": "Head of Product / Design Leadership",
+  "location": "Berlin",
+  "hero": {
+    "tagline": "Design Leadership",
+    "headline": "Building design teams that ship — and love the work",
+    "description": "I'm Tobias Treppmann, a hands-on design leader who has repeatedly built high-performing teams from the ground up. I can open Figma in the morning and facilitate cross-functional alignment in the afternoon. My teams ship real products, not just concepts."
+  },
+  "aboutSnippet": "15+ years of design leadership across B2B SaaS, platform design, and consumer products. Proven track record of UX maturity transformation at Datameer, Hypoport, Ninox, and ChurchDesk — turning design from a service function into a strategic partner.",
+  "designChopsHighlight": "Hands-on from wireframe to shipped feature. Complex systems, platform design, and privacy-first products — not just strategy decks.",
+  "leadershipAngle": "I transform how organizations value design. At every company, I've elevated design from a service function to a strategic partner — and built the teams to sustain it.",
+  "content": [
+    {
+      "id": "churchdesk",
+      "type": "case-study",
+      "relevanceNote": "End-to-end product design: from stakeholder research to shipped platform feature",
+      "tagsOverride": ["Product Design", "Platform", "E2E Delivery"]
+    },
+    {
+      "id": "ninox",
+      "type": "case-study",
+      "relevanceNote": "Team design and leadership transformation — building the org that builds the product",
+      "tagsOverride": ["Team Building", "Leadership", "Org Design"]
+    },
+    {
+      "id": "leadership-philosophy",
+      "type": "leadership",
+      "relevanceNote": "My leadership philosophy: psychological safety, inclusive participation, dialogue-based change"
+    },
+    {
+      "id": "modern-practice",
+      "type": "case-study",
+      "relevanceNote": "AI-first processes for faster shipping and modern design workflows",
+      "tagsOverride": ["AI Tools", "Modern Workflow", "Hands-on Craft"]
+    }
+  ],
+  "emphasizedSkills": [
+    "Design Leadership",
+    "Team Building",
+    "UX Maturity Transformation",
+    "Hands-on Craft",
+    "B2B SaaS",
+    "Platform Design",
+    "Cross-functional Alignment"
+  ]
+}
