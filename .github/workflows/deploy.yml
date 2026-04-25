@@ -18,8 +18,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout portfolio
         uses: actions/checkout@v4
+
+      - name: Checkout my-cv-tailor (data source)
+        uses: actions/checkout@v4
+        with:
+          repository: oratioandco/my-cv-tailor
+          path: my-cv-tailor
+          ref: main
+
+      - name: Link my-cv-tailor next to portfolio
+        run: |
+          # Portfolio is at $GITHUB_WORKSPACE
+          # my-cv-tailor is checked out inside at ./my-cv-tailor
+          # cv-tailor.ts resolves ../my-cv-tailor from process.cwd()
+          # which is $GITHUB_WORKSPACE → needs it at ../my-cv-tailor
+          mv my-cv-tailor ../my-cv-tailor
 
       - name: Setup Node
         uses: actions/setup-node@v4
