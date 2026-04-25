@@ -1,222 +1,163 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import {
-  getAllApplications,
-  getApplication,
-  contentMeta,
-  type ApplicationConfig,
-  type ContentRef,
-} from '../../data/applications';
+  getAllFilters,
+  getFilterWithStudies,
+  type FilterConfig,
+  type CaseStudy,
+} from '../../data/cv-tailor';
 
 export function getStaticPaths() {
-  const apps = getAllApplications();
-  return apps.map((app) => ({
-    params: { slug: app.slug },
-    props: { app },
+  const filters = getAllFilters();
+  return filters.map((filter) => ({
+    params: { slug: filter.slug },
+    props: { filter },
   }));
 }
 
-const { app } = Astro.props;
+const { filter } = Astro.props;
+const data = getFilterWithStudies(filter.slug);
 
-// Resolve content references to full metadata
-const resolvedContent = app.content
-  .map((ref: ContentRef) => {
-    const meta = contentMeta[ref.id];
-    if (!meta) return null;
-    return {
-      ...meta,
-      title: ref.titleOverride || meta.title,
-      description: ref.descriptionOverride || meta.description,
-      tags: ref.tagsOverride || meta.tags,
-      relevanceNote: ref.relevanceNote,
-    };
-  })
-  .filter(Boolean);
+if (!data) {
+  return Astro.redirect('/404');
+}
 
-// Group by type for section rendering
-const caseStudies = resolvedContent.filter((c: any) => c.type === 'case-study');
-const articles = resolvedContent.filter((c: any) => c.type === 'article');
-const leadership = resolvedContent.filter((c: any) => c.type === 'leadership');
-const sideProjects = resolvedContent.filter((c: any) => c.type === 'side-project');
+const { studies } = data;
+const featuredStudies = studies.filter(s => s.visibility === 'featured');
+const browseableStudies = studies.filter(s => s.visibility === 'browseable');
+const hiddenStudies = studies.filter(s => s.visibility === 'hidden');
 
-const pageTitle = `${app.company} — ${app.role}`;
-const pageDescription = `Portfolio for ${app.company}: ${app.role}. Tailored case studies and experience for ${app.company}.`;
+// Derive page metadata from filter + first study context
+const pageTitle = `${filter.title} — Tobias Treppmann`;
+const pageDescription = filter.subtitle || `Selected work for ${filter.slug}`;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="hero">
     <div class="container">
-      <p class="hero-tagline">{app.hero.tagline}</p>
-      <h1 class="animated-headline" id="animated-title">{app.hero.headline}</h1>
+      <p class="hero-tagline">Portfolio</p>
+      <h1 class="animated-headline" id="animated-title">{filter.title}</h1>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
   const title = document.getElementById('animated-title');
   if (title) {
     const text = title.textContent || '';
-
     title.innerHTML = text.split('').map((char, i) =>
       char === ' ' ? ' ' : `<span class="letter" data-index="${i}">${char}</span>`
     ).join('');
-
     const letters = title.querySelectorAll('.letter');
-
     letters.forEach((letter) => {
       let currentFontIndex = Math.floor(Math.random() * fonts.length);
       letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
-
       const animate = () => {
         const newIndex = Math.floor(Math.random() * fonts.length);
         currentFontIndex = newIndex;
         letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
-
         const nextInterval = 1500 + Math.random() * 2500;
         setTimeout(animate, nextInterval);
       };
-
       const delay = Math.random() * 5000;
       setTimeout(animate, delay);
     });
   }
 </script>
-      <p class="hero-description">
-        {app.hero.description}
-      </p>
-
-      <div class="hero-meta">
-        <span class="hero-badge">Prepared for {app.company}</span>
-        <span class="hero-badge">{app.role}</span>
-        <span class="hero-badge">{app.location}</span>
-      </div>
+      {filter.subtitle && (
+        <p class="hero-description">{filter.subtitle}</p>
+      )}
     </div>
   </section>
 
-  <!-- About + Skills -->
-  <section class="section" id="about-snippet">
-    <div class="container">
-      <div class="section-header">
-        <h2>Why This Fits</h2>
-      </div>
-      <div class="about-highlight">
-        <p class="about-text">{app.aboutSnippet}</p>
-        {app.designChopsHighlight && (
-          <div class="chops-callout">
-            <span class="chops-label">Design Chops</span>
-            <p>{app.designChopsHighlight}</p>
-          </div>
-        )}
-        {app.leadershipAngle && (
-          <div class="chops-callout">
-            <span class="chops-label">Leadership</span>
-            <p>{app.leadershipAngle}</p>
-          </div>
-        )}
-        <div class="skill-tags">
-          {app.emphasizedSkills.map((skill: string) => (
-            <span class="tag">{skill}</span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case Studies -->
-  {caseStudies.length > 0 && (
+  <!-- Featured Case Studies -->
+  {featuredStudies.length > 0 && (
     <section class="section" id="case-studies">
       <div class="container">
         <div class="section-header">
           <h2>Case Studies</h2>
-          <p class="text-muted">Selected work relevant to {app.company}</p>
         </div>
         <div class="case-studies-grid">
-          {caseStudies.map((study: any) => (
-            <a href={study.slug} class="case-study-card">
-              <img src={study.coverImage} alt={study.title} class="case-study-cover" />
-              <h3>{study.title}</h3>
-              <p class="subtitle">{study.subtitle}</p>
-              <p>{study.description}</p>
-              <p class="relevance-note">{study.relevanceNote}</p>
-              <div style="margin-top: var(--space-md);">
-                {study.tags.map((tag: string) => (
-                  <span class="tag">{tag}</span>
-                ))}
+          {featuredStudies.map((study: any) => {
+            const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+            const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
+            return (
+              <div class="case-study-card-full">
+                <div class="cs-header">
+                  <div class="cs-meta">
+                    <span class="cs-company">{study.company}</span>
+                    <span class="cs-duration">{study.duration}</span>
+                    <span class="cs-role">{study.role}</span>
+                  </div>
+                  <h3>{heroSection?.headline || study.title}</h3>
+                  {study.subtitle && <p class="subtitle">{study.subtitle}</p>}
+                </div>
+
+                {(heroSection?.subtext || outcomeSection?.content) && (
+                  <p class="cs-description">
+                    {heroSection?.subtext || outcomeSection?.content?.substring(0, 200) + '...'}
+                  </p>
+                )}
+
+                {/* Metrics */}
+                {outcomeSection?.metrics && outcomeSection.metrics.length > 0 && (
+                  <div class="cs-metrics">
+                    {outcomeSection.metrics.map((m: any) => (
+                      <div class="metric">
+                        <span class="metric-label">{m.label}</span>
+                        {m.value && <span class="metric-value">{m.value}</span>}
+                        {m.before && m.after && (
+                          <span class="metric-change">{m.before} → {m.after}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Tags */}
+                <div class="cs-tags">
+                  {study.tags.slice(0, 5).map((tag: string) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+
+                {/* Format indicator */}
+                {study.format_override && (
+                  <span class="format-badge">{study.format_override}</span>
+                )}
               </div>
-            </a>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
   )}
 
-  <!-- Articles -->
-  {articles.length > 0 && (
-    <section class="section" id="articles">
+  <!-- Browseable Studies (collapsed) -->
+  {(browseableStudies.length > 0 || hiddenStudies.length > 0) && (
+    <section class="section" id="more-work">
       <div class="container">
-        <div class="section-header">
-          <h2>Perspective</h2>
-          <p class="text-muted">How I think about {app.company}'s challenges</p>
-        </div>
-        <div class="articles-list">
-          {articles.map((article: any) => (
-            <a href={article.slug} class="article-card">
-              <div class="article-type">Article</div>
-              <h3>{article.title}</h3>
-              <p class="subtitle">{article.subtitle}</p>
-              <p>{article.description}</p>
-              <p class="relevance-note">{article.relevanceNote}</p>
-              <div style="margin-top: var(--space-sm);">
-                {article.tags.map((tag: string) => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Leadership -->
-  {leadership.length > 0 && (
-    <section class="section" id="leadership">
-      <div class="container">
-        <div class="section-header">
-          <h2>Leadership</h2>
-          <p class="text-muted">How I lead</p>
-        </div>
-        <div class="articles-list">
-          {leadership.map((item: any) => (
-            <a href={item.slug} class="article-card leadership-card">
-              <div class="article-type">Philosophy</div>
-              <h3>{item.title}</h3>
-              <p class="subtitle">{item.subtitle}</p>
-              <p>{item.description}</p>
-              <p class="relevance-note">{item.relevanceNote}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Side Projects -->
-  {sideProjects.length > 0 && (
-    <section class="section" id="side-projects">
-      <div class="container">
-        <div class="section-header">
-          <h2>Side Projects</h2>
-          <p class="text-muted">What I build when nobody's paying me</p>
-        </div>
-        <div class="articles-list">
-          {sideProjects.map((project: any) => (
-            <a href={project.slug} class="article-card">
-              <div class="article-type">Side Project</div>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <p class="relevance-note">{project.relevanceNote}</p>
-            </a>
-          ))}
-        </div>
+        <details class="show-more">
+          <summary>{filter.show_all_label || 'Show more work'}</summary>
+          <div class="case-studies-grid" style="margin-top: var(--space-lg);">
+            {browseableStudies.map((study: any) => {
+              const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+              return (
+                <div class="case-study-card-full browseable">
+                  <div class="cs-meta">
+                    <span class="cs-company">{study.company}</span>
+                    <span class="cs-duration">{study.duration}</span>
+                  </div>
+                  <h3>{heroSection?.headline || study.title}</h3>
+                  {study.subtitle && <p class="subtitle">{study.subtitle}</p>}
+                  <div class="cs-tags">
+                    {study.tags.slice(0, 4).map((tag: string) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </details>
       </div>
     </section>
   )}
@@ -227,7 +168,6 @@ const pageDescription = `Portfolio for ${app.company}: ${app.role}. Tailored cas
       <div class="section-header">
         <h2>Let's Talk</h2>
         <p>
-          This page highlights the experience most relevant to <strong>{app.company}</strong>.
           Want the full picture? <a href="/about">Learn more about me</a>, or
           <a href="/">see all case studies</a>.
         </p>
@@ -237,101 +177,101 @@ const pageDescription = `Portfolio for ${app.company}: ${app.role}. Tailored cas
 </Layout>
 
 <style>
-  .hero-meta {
+  /* Full-width case study cards */
+  .case-studies-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .case-study-card-full {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-lg) var(--space-xl);
+    transition: border-color 0.2s;
+  }
+
+  .case-study-card-full:hover {
+    border-color: var(--color-accent);
+  }
+
+  .cs-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .cs-meta {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
-    margin-top: var(--space-lg);
-  }
-
-  .hero-badge {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: var(--color-accent-light);
-    color: var(--color-accent);
-    border-radius: 100px;
+    margin-bottom: var(--space-sm);
     font-size: 0.8rem;
-    font-weight: 500;
+    color: var(--color-text-muted);
   }
 
-  .about-highlight {
-    background: var(--color-surface);
-    border-left: 3px solid var(--color-accent);
-    padding: var(--space-lg);
-    border-radius: 0 12px 12px 0;
-    max-width: var(--content-width);
+  .cs-company {
+    font-weight: 600;
+    color: var(--color-accent);
   }
 
-  .about-text {
-    font-size: 1.1rem;
-    line-height: 1.7;
+  .cs-role {
+    font-style: italic;
+  }
+
+  .cs-header h3 {
+    font-size: 1.4rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .cs-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
     margin-bottom: var(--space-md);
   }
 
-  .chops-callout {
-    background: var(--color-bg);
+  /* Metrics */
+  .cs-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
     padding: var(--space-md);
+    background: var(--color-bg);
     border-radius: 8px;
-    margin-bottom: var(--space-md);
   }
 
-  .chops-label {
-    display: inline-block;
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .metric-label {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .metric-value {
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--color-accent);
-    margin-bottom: var(--space-xs);
   }
 
-  .chops-callout p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
+  .metric-change {
+    font-size: 0.85rem;
+    color: var(--color-text);
   }
 
-  .skill-tags {
+  .cs-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
   }
 
-  .skill-tags .tag {
-    font-size: 0.7rem;
-  }
-
-  .relevance-note {
-    font-size: 0.85rem;
-    color: var(--color-accent) !important;
-    font-style: italic;
-    margin-top: var(--space-sm) !important;
-  }
-
-  /* Articles & Leadership cards */
-  .articles-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-lg);
-  }
-
-  .article-card {
-    display: block;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--space-lg);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  .article-card:hover {
-    border-color: var(--color-accent);
-    box-shadow: 0 2px 12px rgba(79, 131, 117, 0.1);
-  }
-
-  .article-type {
+  .format-badge {
     display: inline-block;
     font-size: 0.65rem;
     font-weight: 600;
@@ -341,26 +281,44 @@ const pageDescription = `Portfolio for ${app.company}: ${app.role}. Tailored cas
     background: var(--color-accent-light);
     padding: 2px 10px;
     border-radius: 100px;
-    margin-bottom: var(--space-sm);
+    margin-top: var(--space-sm);
   }
 
-  .leadership-card {
-    border-left: 3px solid var(--color-accent);
+  /* Show more toggle */
+  .show-more {
+    border: none;
+    cursor: pointer;
   }
 
-  .article-card h3 {
-    margin-bottom: var(--space-xs);
+  .show-more summary {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: var(--space-md) 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
   }
 
-  .article-card .subtitle {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-sm);
+  .show-more summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    font-weight: 600;
   }
 
-  .article-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
+  .show-more[open] summary::before {
+    content: '−';
+  }
+
+  .browseable {
+    opacity: 0.9;
   }
 
   #next-steps p {

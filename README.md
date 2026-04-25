@@ -12,81 +12,49 @@ A personal portfolio website with AI-powered chat functionality, built with Astr
 
 ## Dynamic Portfolio Routing (`/work/[slug]`)
 
-Each job application gets a custom portfolio URL (e.g., `treppmann.design/work/ckm-group`). The page shows a tailored hero, curated content mix (case studies, articles, leadership philosophy), emphasized skills, and role-specific framing — all driven by a JSON config.
-
-### Content Types
-
-The system supports four content types per application:
-
-| Type | Description |
-|------|-------------|
-| `case-study` | Deep project writeups with images |
-| `article` | Thought leadership pieces |
-| `leadership` | Leadership philosophy / approach |
-| `side-project` | Personal projects showing craft |
-
-Each content item can have custom tags and a relevance note for the specific role.
-
-### How to add a new application
-
-1. Create a JSON file in `src/data/applications/` named after the company slug:
-
-```json
-{
-  "slug": "company-name",
-  "company": "Company Display Name",
-  "role": "Job Title",
-  "location": "City",
-  "hero": {
-    "tagline": "Short descriptor",
-    "headline": "Main headline for this application",
-    "description": "1–2 sentence intro tailored to this company"
-  },
-  "aboutSnippet": "Why you're a great fit — shown in the 'Why This Fits' section",
-  "designChopsHighlight": "Evidence of hands-on design ability",
-  "leadershipAngle": "Leadership approach relevant to this role",
-  "content": [
-    {
-      "id": "modern-practice",
-      "type": "case-study",
-      "relevanceNote": "Why this matters for this role",
-      "tagsOverride": ["Custom", "Tags", "For", "This", "Context"]
-    },
-    {
-      "id": "ai-user-agency",
-      "type": "article",
-      "relevanceNote": "Relevance to this company"
-    },
-    {
-      "id": "leadership-philosophy",
-      "type": "leadership",
-      "relevanceNote": "Why leadership approach fits"
-    }
-  ],
-  "emphasizedSkills": [
-    "Skill 1",
-    "Skill 2"
-  ]
-}
-```
-
-2. **Valid content IDs**: See `src/data/applications.ts` → `contentMeta` for all registered content. Currently: `churchdesk`, `ninox`, `modern-practice`, `privacy-first`, `ai-user-agency`, `leadership-philosophy`
-3. **Build** — Astro's `getStaticPaths()` auto-discovers all JSON files in `src/data/applications/`, no registration needed
-4. The new page appears at `/work/{slug}`
+Each job application gets a custom portfolio URL (e.g., `treppmann.design/work/liveeo`). The page shows curated case studies pulled directly from **my-cv-tailor**'s data store — no duplication.
 
 ### Architecture
 
-- `src/data/applications.ts` — Content metadata registry + config loader via `import.meta.glob`
-- `src/data/applications/*.json` — One config per application
-- `src/pages/work/[slug].astro` — Dynamic page with grouped sections (Case Studies, Perspective, Leadership, Side Projects)
+The portfolio is the **rendering layer**. Data lives in my-cv-tailor:
+
+```
+my-cv-tailor/data/
+├── case-studies/
+│   ├── schema.json              # Case study validation schema
+│   ├── filter-schema.json       # Filter config schema
+│   ├── filters/                 # Per-application portfolio configs
+│   │   └── liveeo.json           # ← creates /work/liveeo
+│   ├── datameer-data-dense-analytics.json
+│   └── ...                      # More case study JSONs
+├── jobs/                        # Job analysis files
+├── experiences/                 # Work history
+└── strategic-positioning.md     # Career strategy
+```
+
+- `src/data/cv-tailor.ts` — Reads filter configs + case study JSONs from my-cv-tailor at build time
+- `src/pages/work/[slug].astro` — Dynamic page that renders based on filter config
+- Filter configs reference case studies by ID; studies are loaded from my-cv-tailor's `data/case-studies/`
+
+### How to add a new application
+
+1. In my-cv-tailor, run `@analyze-job-posting.mdc` for the new role
+2. Run `@prepare-portfolio.mdc` to create a filter config in `data/case-studies/filters/`
+3. Rebuild the portfolio — the new `/work/{slug}` page appears automatically
+
+### Visibility levels
+
+| Level | Behavior |
+|-------|----------|
+| `featured` | Shown immediately on the page |
+| `browseable` | Hidden behind "Show more work" toggle |
+| `hidden` | Not rendered (future: available with `?all` param) |
 
 ### Existing application pages
 
 | URL | Company | Role |
 |-----|---------|------|
-| `/work/ckm-group` | CKM Group | AI Transformation & AI Enablement |
-| `/work/iu` | IU International University | AI in Education / Design Leadership |
-| `/work/thermondo` | thermondo | Head of Product / Design Leadership |
+| `/work/liveeo` | LiveEO | Head of Product Design |
 
 ---
 
@@ -114,8 +82,7 @@ Visit http://localhost:4321
 portfolio/
 ├── src/
 │   ├── data/
-│   │   ├── applications.ts           # Content registry + config loader
-│   │   └── applications/             # One JSON per application
+│   │   └── cv-tailor.ts              # Reads from ../my-cv-tailor/data/
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
