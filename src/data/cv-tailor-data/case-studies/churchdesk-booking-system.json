@@ -1,0 +1,188 @@
+{
+  "id": "churchdesk-booking-system",
+  "title": "When 'Simple Booking' Isn't Simple",
+  "subtitle": "Designing a multi-stakeholder funeral planning system that balances autonomy and efficiency",
+  "type": "business-process",
+  "tags": ["measurable-impact", "customer-collaboration", "regulated", "b2b", "mobile", "cross-platform", "accessibility", "saas", "from-scratch"],
+  "company": "ChurchDesk GmbH",
+  "role": "Head of Platform and Design",
+  "team": "1 designer + engineering team, Berlin",
+  "duration": "2024 – 2025",
+  "status": "review",
+  "last_updated": "2026-05-06",
+  "hero_image": {
+    "src": "/images/churchdesk/hero.png",
+    "alt": "Funeral booking calendar interface showing available dates"
+  },
+  "format_priority": ["in-depth", "executive", "blog"],
+
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "When 'Simple Booking' Isn't Simple",
+      "subtext": "Deceptively simple — mask extraordinary complexity. Multiple stakeholders, rotating schedules, cemetery hours, and the emotional weight of funeral planning. Serve 20+ cemeteries in Hanau region.",
+      "images": [
+        {
+          "src": "/images/churchdesk/page-01.png",
+          "alt": "Funeral Booking Calendar — Project Overview",
+          "caption": "Funeral Calendar: Software development with and for the church"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The Challenge",
+      "content": "Funeral homes need to coordinate with churches to book a priest for funeral services. This coordination — between funeral home, parish office, and priest — requires extensive back-and-forth communication. For bereaved families, every additional phone call adds to an already draining experience.\n\nThe complexity runs deep: priests take turns on-call but have preferences or commitments to specific cemeteries. Teams of priests plan their availability 6 weeks into the future. Each cemetery has different opening hours. And beyond funerals, ChurchDesk wanted to cover more booking use cases like room rentals.\n\nBudget: €20,000. Timeline: 2 months until development release. Customer: a church customer who needed this specific tool."
+    },
+    {
+      "type": "callout",
+      "quote": "The design tension: For funeral homes it should feel like booking a priest — simple, fast, reliable. For priests it should NOT feel like being booked — they need autonomy and control over their own schedules.",
+      "context": "The UX paradox at the heart of the system"
+    },
+    {
+      "type": "narrative",
+      "headline": "The Stakeholders",
+      "images": [
+        {
+          "src": "/images/churchdesk/page-03.png",
+          "alt": "Stakeholder overview diagram",
+          "caption": "Three stakeholder groups: Funeral homes need instant visibility and quick responses. Parish assistants need to give competent information and manage priest vacancies. Priests need more predictability and control over their schedules."
+        }
+      ],
+      "content": "Three stakeholder groups, three different needs, one system:\n\n**Funeral homes** needed instant visibility and quick responses. They book dozens of funerals per week — every minute of delay compounds.\n\n**Parish assistants** needed to give competent information and manage priest vacancies. They were the operational hub between all parties.\n\n**Priests** needed predictability and control over their own schedules. Service mentality, not service industry."
+    },
+    {
+      "type": "process",
+      "headline": "Approach",
+      "steps": [
+        {
+          "label": "Rapid User Research",
+          "description": "Interviewed funeral homes, pastors, and cemetery administrators. Mapped their current phone-based workflows, pain points, and workarounds.",
+          "image": {
+            "src": "/images/churchdesk/page-02.png",
+            "alt": "The coordination challenge",
+            "caption": "So that bereaved families can plan..."
+          }
+        },
+        {
+          "label": "UX Psychology Application",
+          "description": "Applied Locus of Control Theory (keep users in control), Cognitive Load Reduction (familiar calendar interface), Progressive Disclosure (show only viable options), and Error Prevention (smart filtering)."
+        },
+        {
+          "label": "Collaborative Prototyping",
+          "description": "Worked directly with the engineering team to prototype and iterate. React Native cross-platform design with ShadCn design system.",
+          "image": {
+            "src": "/images/churchdesk/page-04.png",
+            "alt": "User flow diagram",
+            "caption": "The endless phone calls have come to an end"
+          }
+        },
+        {
+          "label": "Engineering Handoff",
+          "description": "Established collaborative handoff: component specs with interaction behavior, annotated flows, token-based naming, redlined measurements. Dialog-driven process ensuring engineering needs were met."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The Solution Architecture",
+      "content": "ChurchDesk already had a calendar system with people and resource association for events. We extended this foundation rather than building from scratch:\n\n**Availability as Event Type** — A new event type that could be associated with booking pages\n**Multi-Option Availability** — Priests could make themselves available for multiple booking options (e.g., different cemeteries) in one action\n**Recurring Events Integration** — Leveraged existing recurring events for simple on-call schedule creation\n**Cemetery Hours Overlay** — Each cemetery's opening hours factored into availability calculation\n**Request-Based Booking** — Bookings presented as requests that priests confirm or reject, not automatic bookings",
+      "images": [
+        {
+          "src": "/images/churchdesk/page-05.png",
+          "alt": "System architecture diagram",
+          "caption": "Simple yet complex: Individual availability schedules, 6-week advance planning, multiple cemeteries with different funeral times"
+        },
+        {
+          "src": "/images/churchdesk/page-06.png",
+          "alt": "Availability model",
+          "caption": "Simple for priests: Set availability for multiple cemeteries at once, automatic funeral time handling, seamless calendar integration"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "Key Design Decisions",
+      "content": "**Request vs. Booking Language** — To preserve priest autonomy, we framed all bookings as \"requests\" or \"enquiries\" requiring confirmation. This small language shift maintained service mentality while giving priests genuine control.\n\n**Unified Availability Model** — Rather than building separate systems for funerals, room rentals, and other use cases, we designed a flexible availability model that scales to any booking scenario — a platform investment, not just a feature.\n\n**Progressive Disclosure** — Funeral homes see only what they need: available times. The underlying complexity of rotating schedules, cemetery hours, and priest preferences stays invisible."
+    },
+    {
+      "type": "outcome",
+      "headline": "Results",
+      "metrics": [
+        {
+          "label": "Coordination Time",
+          "before": "Days of phone calls between multiple parties",
+          "after": "Hours for complete funeral arrangement coordination (70% reduction)"
+        },
+        {
+          "label": "Booking Acceptance Rate",
+          "value": "90% through smart filtering that only showed genuinely available options"
+        },
+        {
+          "label": "Delivery",
+          "before": "2-month deadline, €20k budget",
+          "after": "Met both constraints"
+        },
+        {
+          "label": "Platform Adoption",
+          "value": "Became a core platform feature, adopted beyond the initial Hessen region, serving 20+ cemeteries"
+        }
+      ],
+      "narrative": "Coordination time dropped from days to hours. The system achieved a 90% acceptance rate through smart filtering. But the biggest win was platform-level: the availability/booking model became a reusable foundation powering use cases far beyond the original funeral scheduling need. It became a core platform feature.",
+      "images": [
+        {
+          "src": "/images/churchdesk/page-07.png",
+          "alt": "Parish assistant interface",
+          "caption": "Simple for parish assistants: Easy overview of on-call schedules, ability to set availability for priests"
+        },
+        {
+          "src": "/images/churchdesk/page-08.png",
+          "alt": "Booking interface",
+          "caption": "Simple for funeral homes: Only actually available times are shown, digital processing enables quick responses"
+        },
+        {
+          "src": "/images/churchdesk/page-09.png",
+          "alt": "Complete solution overview",
+          "caption": "The entire process automated and in one place"
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "headline": "What I Learned",
+      "content": "This project taught me that the best multi-stakeholder design doesn't try to make everyone happy with the same interface — it gives each stakeholder exactly the right level of control and visibility. Funeral homes get speed. Priests get autonomy. Parish assistants get oversight.\n\nThe tension between those needs is what makes it interesting. And it's the kind of problem you only learn to solve by sitting with real users — in this case, bereaved families, stressed funeral directors, and overwhelmed parish offices."
+    },
+    {
+      "type": "key-takeaway",
+      "headline": "Why This Matters for Your Team",
+      "content": "If you're building products that serve multiple stakeholder groups with conflicting needs, the design challenge isn't finding a compromise — it's architecting a system where each group gets what they need without compromising anyone else. I've done this in a high-stakes, emotionally sensitive context. That experience is transferable to any domain where complexity hides behind a \"simple\" interface."
+    }
+  ],
+
+  "variants": {
+    "executive": {
+      "summary": "Built a multi-stakeholder booking system (70% time reduction, 90% acceptance rate) on a €20k budget in 2 months. Designed a reusable platform architecture that expanded beyond the original use case.",
+      "angle": "Platform-level thinking from a single feature",
+      "sections": ["hero", "outcome", "key-takeaway"],
+      "max_read_time": "2 min"
+    },
+    "blog": {
+      "summary": "Funeral planning is hard enough without phone-tag between funeral homes, churches, and cemeteries. Here's how we designed a system that makes it simple — for everyone.",
+      "angle": "The UX paradox of sensitive multi-stakeholder design",
+      "sections": ["hero", "callout", "narrative", "reflection"],
+      "max_read_time": "5 min"
+    }
+  },
+
+  "related": [
+    "datameer-data-dense-analytics",
+    "ninox-org-building"
+  ],
+
+  "meta": {
+    "read_time_minutes": 8,
+    "confidential": false,
+    "confidentiality_note": null,
+    "source": "my-cv-tailor verification 2026-04-23 + experience data file + existing Astro page"
+  }
+}

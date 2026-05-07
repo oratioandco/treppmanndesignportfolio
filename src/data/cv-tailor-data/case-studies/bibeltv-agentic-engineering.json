@@ -1,0 +1,149 @@
+{
+  "id": "bibeltv-agentic-engineering",
+  "title": "Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline",
+  "subtitle": "Using Claude Code and agentic engineering to build production-grade prototypes with real APIs — and why the prototype code became the design artifact",
+  "type": "process-innovation",
+  "tags": ["agentic-engineering", "ai-augmented", "prototyping", "design-code-collaboration", "streaming-media", "cross-platform"],
+  "company": "Bibel TV",
+  "role": "Head of Product Design",
+  "team": "Design-led initiative with engineering partner, Berlin",
+  "duration": "2025 – 2026",
+  "status": "review",
+  "last_updated": "2026-05-07",
+  "hero_image": {
+    "src": "/images/bibeltv/agentic-hero.png",
+    "alt": "Bibel TV Android prototype with real APIs and dynamic color theming"
+  },
+  "format_priority": ["in-depth", "executive", "blog"],
+
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline",
+      "subtext": "Traditional handoff assumes designers and engineers work sequentially. We collapsed the pipeline: I prototyped in code with real APIs using Claude Code, and engineering consumed the prototype directly. No Figma specs. No redlines. Working code.",
+      "images": [
+        {
+          "src": "/images/bibeltv/agentic-01.png",
+          "alt": "Bibel TV web prototype running with real API data",
+          "caption": "From design to deployable code in one continuous flow."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "quote": "The prototype is not a mockup. It is the first working version of the product.",
+      "context": "Rethinking what a design prototype should be"
+    },
+    {
+      "type": "narrative",
+      "headline": "The Old Workflow",
+      "content": "The traditional handoff looks like this:\n\n1. Designer researches and designs in Figma\n2. Designer creates specs and annotations\n3. Designer redlines measurements and interactions\n4. Engineering implements from specs\n5. Design reviews implementation, finds mismatches\n6. Back and forth for weeks\n\nEvery step introduces ambiguity. Every handoff loses information. And the prototype code that engineering writes bears no relation to the design thinking that produced it."
+    },
+    {
+      "type": "narrative",
+      "headline": "The New Workflow",
+      "content": "The pipeline I built for Bibel TV:\n\n1. I design conceptually in Figma (layout, flow, hierarchy)\n2. I prototype functionally in code using Claude Code + Cursor — real APIs, real data, real interactions\n3. I iterate on the prototype with engineering feedback in real time\n4. The prototype becomes part of the production codebase (component structures, API calls, data fetching patterns)\n5. Engineering refines, not re-implements\n\nThe key difference: there is no handoff. There is continuous collaboration. The design artifact is working code, not a static spec."
+    },
+    {
+      "type": "process",
+      "headline": "How Agentic Engineering Works in Practice",
+      "steps": [
+        {
+          "label": "Design Intent",
+          "description": "I start with conceptual design in Figma — layout, flow, visual hierarchy. This defines the what, not the how."
+        },
+        {
+          "label": "Agentic Prototyping",
+          "description": "I use Claude Code and Cursor to prototype with real Bibel TV APIs. I generate component structures, data fetching patterns, navigation flows. I make design decisions in code — adjusting layouts, refining interactions, testing edge cases."
+        },
+        {
+          "label": "Real Data Validation",
+          "description": "The prototype uses actual Bible TV content — real videos, real metadata, real user flows. This catches design problems that placeholder data never surfaces."
+        },
+        {
+          "label": "Engineering Integration",
+          "description": "The engineering team reviews the prototype code. They extract component patterns, API structures, and navigation logic directly. Refinement, not re-implementation."
+        },
+        {
+          "label": "Continuous Iteration",
+          "description": "When engineering finds a technical constraint, I iterate on the prototype in code. No Figma → spec → handoff cycle. The design evolves in the same medium as the product."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "Why This Is Better Than Figma Handoff",
+      "content": "**Speed.** One iteration cycle that used to take 3-5 days now takes hours. I can adjust a layout, run it with real data, and evaluate the change immediately.\n\n**Clarity.** Working code is unambiguous. A Figma spec says 'the card should feel premium.' Code says 'the card uses 16px padding, 4.5:1 contrast, and a 12px margin.' Engineers don't have to guess.\n\n**Shared language.** When design and engineering both work in the prototype, they share a vocabulary. No more 'what the designer meant' — it's in the code.\n\n**Quality.** The prototype is tested on the actual target platform (Android). We caught gradient rendering issues before a single line of production code was written."
+    },
+    {
+      "type": "narrative",
+      "headline": "The Android Gradient Problem",
+      "content": "A concrete example: I built the web prototype first with beautiful gradients. They looked great. When I moved to Android, the gradient rendering raised quality concerns — potential banding, performance questions on lower-end devices.\n\nIn a traditional workflow, I would have to file a ticket, explain the issue to engineering, wait for their assessment, maybe redesign. Instead: I iterated on the Android prototype in code, tested alternatives with real rendering, and found a solution that worked. The engineering team had a working reference, not a problem report."
+    },
+    {
+      "type": "narrative",
+      "headline": "What This Means for Design Leadership",
+      "content": "This workflow requires a design leader who is comfortable in code — not writing production systems, but building prototypes that demonstrate intent. It also requires an engineering culture that values prototype code as more than throwaway work.\n\nI spent part of my role actively evangelizing this approach with the broader team. The shift is cultural: prototype code is a design artifact as valuable as a Figma file. When engineers accept that, the collaboration fundamentally changes."
+    },
+    {
+      "type": "outcome",
+      "headline": "Results",
+      "metrics": [
+        {
+          "label": "Iteration Speed",
+          "value": "Days → hours. Design changes implemented and tested in the same session."
+        },
+        {
+          "label": "Prototype Quality",
+          "value": "Functional web and Android prototypes with real APIs and real content data. Both validated through user testing."
+        },
+        {
+          "label": "Engineering Adoption",
+          "value": "Prototype code consumed directly by engineering. Component structures, API calls, and navigation logic reused in production."
+        },
+        {
+          "label": "Platform Shift",
+          "value": "Web-first assumptions corrected before handoff. Android prototype validated the design direction. No re-implementation needed."
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "headline": "What I Learned",
+      "content": "The prototype is the best design spec because it eliminates ambiguity. Working code is unambiguous in ways that static specs never are. When engineering reviews code, they see exactly what works — and exactly what doesn't.\n\nThe cultural shift is harder than the technical one. Getting engineers to value prototype code requires trust and demonstration. Once the first prototype becomes production code, the shift happens organically. People stop asking 'is this ready for handoff?' and start asking 'what part of the prototype can I reuse?'"
+    },
+    {
+      "type": "key-takeaway",
+      "headline": "Why This Matters for Your Team",
+      "content": "If you're a design leader working with engineering teams, collapsing the handoff is the single highest-leverage process change available. It doesn't require new tools — it requires a different relationship between design intent and implementation. I used Claude Code to accelerate prototyping, but the insight is tool-agnostic: when your prototype is working code, the design-to-ship pipeline disappears."
+    }
+  ],
+
+  "variants": {
+    "executive": {
+      "summary": "Collapsed the design-to-ship pipeline using agentic engineering: I prototyped in code with real APIs, engineering consumed the prototype directly. Iteration speed improved from days to hours.",
+      "angle": "Design leadership through process innovation — collapsing handoff cycles",
+      "sections": ["hero", "outcome", "key-takeaway"],
+      "max_read_time": "2 min"
+    },
+    "blog": {
+      "summary": "Figma-to-handoff has a better alternative: prototype in code, iterate with engineering, ship working prototypes. Here's how.",
+      "angle": "The cultural shift required to make prototype code a design artifact",
+      "sections": ["hero", "callout", "process", "reflection"],
+      "max_read_time": "7 min"
+    }
+  },
+
+  "related": [
+    "bibeltv-app-redesign",
+    "bibeltv-design-system-api",
+    "bibeltv-color-api"
+  ],
+
+  "meta": {
+    "read_time_minutes": 8,
+    "confidential": false,
+    "confidentiality_note": null,
+    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study"
+  }
+}

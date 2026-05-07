@@ -1,38 +1,56 @@
 {
   "slug": "liveeo",
   "title": "Selected Work",
-  "subtitle": "Enterprise data products, design systems, and building design functions",
+  "subtitle": "Enterprise analytics, design systems as infrastructure, and competitive redesign",
   "theme": "default",
   "show_all_label": "Show more work",
   "case_studies": [
     {
-      "id": "datameer-data-dense-analytics",
+      "id": "churchdesk-booking-system",
       "visibility": "featured",
       "order": 1,
       "format_override": "in-depth"
     },
     {
-      "id": "churchdesk-booking-system",
+      "id": "bibeltv-color-api",
       "visibility": "featured",
       "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 3,
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-design-system",
-      "visibility": "featured",
-      "order": 3,
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
       "format_override": "executive"
     },
     {
       "id": "ninox-org-building",
       "visibility": "browseable",
-      "order": 4,
+      "order": 7,
       "format_override": "executive"
     },
     {
       "id": "spreadshirt-user-research-strategy",
       "visibility": "hidden",
-      "order": 5,
+      "order": 8,
       "format_override": "blog"
     }
   ]

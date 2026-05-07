@@ -1,0 +1,144 @@
+{
+  "id": "spreadshirt-user-research-strategy",
+  "title": "How do you change a company's direction with one prototype?",
+  "subtitle": "Using user research to overturn executive assumptions at a print-on-demand platform serving hundreds of thousands",
+  "type": "blog-post",
+  "tags": ["user-research", "strategy", "prototyping", "ecommerce", "b2c", "transformation", "mobile", "customer-collaboration"],
+  "company": "Spreadshirt",
+  "role": "UX Strategy Lead",
+  "team": "3 → growing to larger implementation teams, Leipzig",
+  "duration": "2014 – 2016",
+  "status": "draft",
+  "last_updated": "2026-05-06",
+  "hero_image": {
+    "src": "/images/spreadshirt/hero.png",
+    "alt": "Spreadshirt mobile t-shirt designer prototype"
+  },
+  "format_priority": ["blog", "executive", "narrative"],
+
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "How do you change a company's direction with one prototype?",
+      "subtext": "The management vision was a 60-second automated journey. User research said something completely different. Here's how data won.",
+      "images": [
+        {
+          "src": "/images/spreadshirt/hero.png",
+          "alt": "Spreadshirt platform — design your own custom t-shirt",
+          "caption": "Spreadshirt — where hundreds of thousands design custom products"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The Starting Point",
+      "content": "Spreadshirt was running on a product assumption that felt right at the top: shop owners wanted speed. The leadership vision was a 60-second fully automated journey — pick a template, customize automatically, ship it. Efficient. Scalable. Clean.\n\nThe company had tried to redesign the seller experience twice before and failed both times. I was brought in to lead the third attempt.\n\nInitial question: what if the assumption was wrong?"
+    },
+    {
+      "type": "callout",
+      "quote": "The t-shirt designer is the most uplifting experience I have all day.",
+      "attribution": "Shop owner during user interview",
+      "context": "This single sentence changed the product strategy"
+    },
+    {
+      "type": "narrative",
+      "headline": "The Discovery",
+      "content": "I went out and talked to actual shop owners. Not surveys, not analytics — conversations.\n\nWhat I found completely contradicted the leadership vision. Shop owners didn't want the design process automated away. For them, the t-shirt designer wasn't a friction point — it was the most joyful part of their day. They valued design control over speed. The creative process was the product.\n\nThis wasn't a small insight. It meant the entire 60-second automation strategy was headed in the wrong direction."
+    },
+    {
+      "type": "narrative",
+      "headline": "The Hard Part",
+      "content": "The data said one thing. The executive team's intuition said another. And this wasn't the first time the company had tried this redesign — two previous attempts had already failed.\n\nI needed to make the research undeniable. A presentation wouldn't work. I needed to show, not tell.\n\nSo I built a prototype — a mobile version of the t-shirt designer — and put it directly in users' hands. The goal wasn't to prove mobile was possible. It was to demonstrate that the design experience itself was worth preserving, even on a small screen."
+    },
+    {
+      "type": "process",
+      "headline": "The Approach",
+      "steps": [
+        {
+          "label": "User Interviews",
+          "description": "Conducted in-depth conversations with shop owners, revealing that the design process was the emotional core of their experience — not friction to be removed."
+        },
+        {
+          "label": "Research Prototype",
+          "description": "Built a mobile t-shirt designer prototype in Axure RP, developed in collaboration with UI designers over one intensive week. Designed specifically to elicit user feedback, not for shipping.",
+          "image": {
+            "src": "/images/spreadshirt/mobile-prototype.png",
+            "alt": "Mobile t-shirt designer prototype",
+            "caption": "One-week mobile prototype — proving desktop functionality could work on a small screen"
+          }
+        },
+        {
+          "label": "Executive Workshops",
+          "description": "Facilitated workshops with the executive team and business unit leadership, presenting research findings that contradicted leadership assumptions about automation."
+        },
+        {
+          "label": "User Testing",
+          "description": "Tested the mobile prototype with real users. Feedback was overwhelmingly positive — demonstrating that the full desktop experience could be adapted for mobile."
+        }
+      ]
+    },
+    {
+      "type": "outcome",
+      "headline": "Results",
+      "metrics": [
+        {
+          "label": "Product Strategy",
+          "before": "60-second fully automated journey — eliminate design friction",
+          "after": "Controlled automation — preserve user agency and creative control"
+        },
+        {
+          "label": "Mobile Prototype",
+          "value": "\"Resoundingly positive\" user feedback → moved to production implementation"
+        },
+        {
+          "label": "Redesign Project",
+          "before": "Two previous attempts had failed",
+          "after": "9-month project completed successfully, team grew from 3 to full implementation"
+        },
+        {
+          "label": "Executive Buy-in",
+          "value": "Secured leadership support for direction contradicting their original intuition"
+        }
+      ],
+      "narrative": "The mobile prototype succeeded — it showed that the design experience could work beautifully on mobile. User testing feedback was \"resoundingly positive.\" But the bigger impact was strategic: leadership changed the fundamental product approach from full automation to controlled automation. The project that had failed twice before completed successfully over 9 months, eventually scaling from a 3-person team to larger implementation teams."
+    },
+    {
+      "type": "reflection",
+      "headline": "What I Learned",
+      "content": "This experience taught me that data is not enough — you need to make it undeniable. When research contradicts leadership intuition, a presentation won't change minds. A prototype that puts users in control will.\n\nIt also reinforced that the best product strategy doesn't start with efficiency metrics — it starts with understanding what users actually value. Sometimes the thing you're trying to optimize away is the thing they love most."
+    },
+    {
+      "type": "key-takeaway",
+      "headline": "Why This Matters for Your Team",
+      "content": "If your team is headed in a direction that feels right but might be wrong, someone needs to talk to the users before more resources are committed. I can lead that conversation — and I can make the findings stick through research that speaks louder than any slide deck."
+    }
+  ],
+
+  "variants": {
+    "executive": {
+      "summary": "Changed a company's product strategy from full automation to controlled automation by conducting user research that revealed shop owners valued creative control above all else. Prototype succeeded, project completed after 2 prior failures.",
+      "angle": "How user research overturned executive intuition",
+      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "max_read_time": "2 min"
+    },
+    "narrative": {
+      "summary": "What happens when user research contradicts leadership intuition? This is the story of how one shop owner's quote changed an entire company's product direction.",
+      "angle": "The most uplifting experience",
+      "sections": ["hero", "callout", "discovery", "reflection"],
+      "max_read_time": "5 min"
+    }
+  },
+
+  "related": [
+    "datameer-data-dense-analytics",
+    "ninox-org-building",
+    "churchdesk-booking-system"
+  ],
+
+  "meta": {
+    "read_time_minutes": 7,
+    "confidential": false,
+    "confidentiality_note": null,
+    "source": "my-cv-tailor verification 2026-04-23 + experience data file"
+  }
+}
