@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-color-api",
-  "title": "Dark Mode Is the Industry Standard. We Had to Make Premium Work in Light.",
-  "subtitle": "Building a custom OKLCH color extraction API so Bibel TV users get a premium streaming experience that feels warm, not Hollywood",
+  "title": "A Color Engine Built for the Brand, Not the Industry Default",
+  "subtitle": "K-means perceptual color extraction that powers dynamic theming, card gradients, and WCAG-compliant text from content artwork",
   "type": "design-system",
   "tags": ["color-science", "design-systems", "accessibility", "api-first", "streaming-media", "brand-alignment", "technical-depth"],
   "company": "Bibel TV",
@@ -12,78 +12,47 @@
   "last_updated": "2026-05-07",
   "hero_image": {
     "src": "/images/bibeltv/color-api-hero.png",
-    "alt": "Dynamic color extraction: same content artwork rendered with both light and dark mode themes"
+    "alt": "Color extraction config UI: K-means clusters powering card gradients, text, and logo accent"
   },
   "format_priority": ["executive", "in-depth", "blog"],
 
   "sections": [
     {
       "type": "hero",
-      "headline": "Dark Mode Is the Industry Standard. We Had to Make Premium Work in Light.",
-      "subtext": "Netflix, Spotify, Apple TV+ — every major streaming app defaults to dark mode. But Bibel TV's users — German faith communities — associate the brand with light, warmth, and hope. Building a premium streaming UX in light mode meant solving a problem the industry hasn't solved: perceptually-correct dynamic color extraction for both modes.",
+      "headline": "A Color Engine Built for the Brand, Not the Industry Default",
+      "subtext": "Bibel TV needed dynamic color extraction that works in light mode, meets WCAG AA/AAA contrast, and feels warm rather than Hollywood dark. We built a K-means cluster engine in OKLCH perceptual color space that produces base color, accent color, text colors, and background gradients from a single content image.",
       "images": [
         {
           "src": "/images/bibeltv/color-api-01.png",
-          "alt": "Side-by-side comparison: same artwork with dark mode and light mode dynamic themes",
-          "caption": "Same content. Two modes. One API."
+          "alt": "Config UI showing artwork with K-means extracted colors mapped to card gradient, text, logo accent, and page background",
+          "caption": "From one artwork: base color, accent, two text colors, page gradient."
         }
       ]
     },
     {
       "type": "callout",
-      "quote": "You can't just invert dark-mode logic. OKLCH color extraction in light mode is a different problem entirely.",
-      "context": "The core design problem in one sentence"
+      "quote": "You can't just invert dark-mode logic. OKLCH color extraction is a different problem entirely.",
+      "context": "The core challenge: making dynamic color work from first principles"
     },
     {
       "type": "narrative",
-      "headline": "The Problem",
-      "content": "Pray.com was launching in Germany — a premium faith app built by ex-Netflix/Spotify engineers with a dark-mode-first, globally-oriented product design. Bibel TV has more content and a stronger local brand, but a weaker app experience.\n\nThe brief we gave ourselves: be the free but premium alternative to Pray.com. That meant signaling quality without defaulting to dark mode. Bibel TV users actively *want* light mode — dark feels impersonal to them. It doesn't feel like Bibel TV.\n\nStandard palette extraction (imgix, off-the-shelf libraries) works fine for dark mode. In light mode, the same artwork produces washed-out backgrounds, unreadable text, or colors that feel harsh. You need precise perceptual control over lightness and chroma — something RGB and HSL don't give you."
+      "headline": "What the Engine Extracts",
+      "content": "The K-means algorithm identifies the most prominent colors in any content artwork. But prominence alone isn't enough — we filter for hue and vibrance, then map clusters to specific design roles:\n\n**Base color** — Used for card gradients that sit below and overlap the image. Guaranteed to produce AA or AAA contrast with text. This is the anchor of the theme.\n\n**Accent color** — Extracted for the logo overlay and page background gradient. The gradient is composed of base color at 80% opacity over the background color. This creates the signature visual effect on the hero carousel.\n\n**Two text colors** — Designed to enable multi-tone text treatments like Bibel TV's on-air broadcast rebrand. We ultimately simplified for the denser phone display, but having two available gives flexibility. On mobile, busy multi-text looks don't work — one high-contrast text color is enough. The second text color exists in the engine but stays unused by default.\n\n**Page background gradient** — Computed from the base color at 80% opacity over the page background. Creates depth without overwhelming the content artwork."
     },
     {
       "type": "narrative",
-      "headline": "Why Standard Tools Don't Work",
-      "content": "We started with imgix — it was already in our stack, and the palette extraction feature seemed like a quick win for dark mode. And it was. Dark mode looked great. But when user research revealed the light mode requirement, imgix couldn't handle it.\n\nThe problem: standard extraction algorithms optimize for contrast against dark backgrounds. Flip to light mode, and the same extracted palette creates insufficient contrast with text, overly aggressive primary colors, and background gradients that feel cheap.\n\nWe needed a system that could reason about *perceptual* color qualities — not just extract dominant pixel values."
-    },
-    {
-      "type": "narrative",
-      "headline": "The Decision: Custom OKLCH API",
-      "content": "OKLCH is a perceptually uniform color space. You can reason about lightness (L) and chroma (C) in ways that RGB and HSL simply don't allow. It was the right tool for a problem that sits exactly at the intersection of design quality and technical infrastructure.\n\nThe decision tree looked like this:\n\n**Off-the-shelf (imgix, libraries):** Fast, but light mode would be compromised. We'd have to default to dark mode — wrong for the brand.\n\n**Custom OKLCH API:** More complexity upfront (K-means implementation, WCAG compliance, config management). But full control over both light and dark modes. Hero carousel with dynamic logo accent color as a signature effect. Full accessibility compliance built in.\n\nI pitched the decision with a pragmatic approach: start with imgix (show dark mode working), build the custom extraction service in parallel, then present the upgrade as a natural fix for the problems user testing had surfaced. The upgrade sell was easy — \"here's a working solution that fixes the exact problems you've seen.\""
-    },
-    {
-      "type": "process",
-      "headline": "How It Works",
-      "steps": [
-        {
-          "label": "K-means Clustering",
-          "description": "Cluster image pixels to find dominant colors. We run K-means on the full image, not just a sample, because hero artwork quality matters."
-        },
-        {
-          "label": "Perceptual Tuning",
-          "description": "Convert dominant colors to OKLCH. Extract base color (primary theme), two text colors (with WCAG contrast checking), background gradients, and a logo accent color for the hero carousel."
-        },
-        {
-          "label": "WCAG Compliance Check",
-          "description": "Every text color is validated against WCAG 2.1 AA contrast ratios — 4.5:1 for normal text, 3:1 for large text. If a color fails, the algorithm adjusts chroma and lightness until it passes."
-        },
-        {
-          "label": "Live Config",
-          "description": "The API serves theme configs as live data. No code deploys needed. When artwork changes, colors update automatically."
-        },
-        {
-          "label": "Figma Plugin Integration",
-          "description": "Built a companion TypeScript plugin so designers can test extracted palettes on artwork during the design phase, not after."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "Technical Architecture",
-      "content": "**Node.js service** — Lightweight API that receives an image URL and returns a theme config JSON.\n\n**K-means clustering** — Custom implementation, tuned for perceptual color spaces rather than RGB pixel averaging.\n\n**Output format:** { baseColor, textColors[2], backgroundGradient, logoAccentColor } — a complete theme specification.\n\n**Live config** — Artwork updates trigger new color extraction. No code deploys, no app updates needed.\n\nThe Figma plugin is the designer's version of the same API: point it at artwork, get the palette. This means design and production use the same color logic."
+      "headline": "Why Standard Extraction Doesn't Work",
+      "content": "Most extraction tools (imgix, off-the-shelf libraries) work in RGB. They optimize for contrast against dark backgrounds. Flip to light mode, and the same extracted colors washed out text or feel too aggressive. You need perceptual control over lightness and chroma — something RGB and HSL don't give you.\n\nOKLCH is a perceptually uniform color space. You can reason about lightness (L) and chroma (C) in ways that enable precise control over both light and dark mode themes simultaneously."
     },
     {
       "type": "narrative",
       "headline": "Key Design Decisions",
-      "content": "**Design-led infrastructure** — I owned the token API architecture, not just the Figma design. This is unusual for a Head of Design role. Infrastructure work typically lives with platform engineering. But color extraction *is* a design decision — and making it requires understanding both perceptual color science and the brand's emotional relationship with its users.\n\n**Light mode first** — The entire extraction pipeline was optimized for light mode correctness first, then verified in dark mode. This is the reverse of every streaming app's standard approach.\n\n**Hero accent as signature** — The logo's dynamic accent color (extracted from artwork and applied to the carousel header) became the app's most recognizable visual effect. It's a subtle detail but it bridges the premium streaming aesthetic with the warm, content-driven brand identity."
+      "content": "**Design-led infrastructure** — I owned the color extraction architecture, not just the Figma design. This is unusual. Color extraction is a design decision embedded in code — making it requires understanding both perceptual color science and the brand's emotional relationship with its users.\n\n**Light mode first** — We optimized for light mode correctness, then verified in dark mode. This is the reverse of streaming industry defaults.\n\n**Simplified text colors for phone** — The API could support complex multi-text color schemes like the on-air brand. But on a dense mobile display, the extra text colors created visual noise. Sometimes the best design decision is not to use what you built. We kept the engine flexible but shipped with one text color default."
+    },
+    {
+      "type": "narrative",
+      "headline": "Technical Architecture",
+      "content": "The color engine runs as part of the deployed API service. K-means clustering operates in RGB space, then converts to OKLCH for perceptual tuning. The algorithm:\n\n1. Image loaded from content URL\n2. K-means clustering identifies prominent colors\n3. Hue and vibrance filtering removes dull/neutral clusters\n4. Clusters mapped to roles: base color, accent, text 1, text 2\n5. Contrast ratios calculated via WCAG algorithm\n6. Config JSON returned with all theme values\n\nThe API serves configs as live data — artwork changes update the theme automatically, no code deploys."
     },
     {
       "type": "outcome",
@@ -91,43 +60,39 @@
       "metrics": [
         {
           "label": "Light Mode Preference",
-          "value": "87% of users preferred light mode in validation surveys (n=40)"
+          "value": "87% of validation survey users preferred light mode (n=40)"
         },
         {
-          "label": "Premium Feel Rating",
-          "value": "4.2/5 — users rated the light-mode interface quality higher than dark-mode competitor benchmarks"
-        },
-        {
-          "label": "WCAG Compliance",
-          "value": "All extracted palettes pass WCAG 2.1 AA contrast ratios — no manual intervention needed"
+          "label": "Contrast Compliance",
+          "value": "All extracted base colors produce AA or AAA compliant contrast with text"
         },
         {
           "label": "Delivery",
-          "value": "API live and running. Android prototype validated. Ready for production integration."
+          "value": "API live and running. Config UI functional. Figma plugin integrated."
         }
       ]
     },
     {
       "type": "reflection",
       "headline": "What I Learned",
-      "content": "The insight that matters: infrastructure work is design work. Most design leaders delegate token systems, color APIs, and automation to engineering. But the decisions embedded in these systems — perceptual color spaces, contrast compliance, multi-platform sync — are deeply design decisions. Owning them end-to-end means the final product matches the original vision.\n\nThe second insight: pitch the problem before the solution. I didn't lead with \"we need a custom color API.\" I led with user research showing dark mode didn't work for our users, then presented the upgrade as a fix for that specific finding. The technical investment was justified by the user problem."
+      "content": "The biggest insight: infrastructure work is design work. The decisions embedded in the color extraction algorithm — hue thresholds, vibrance filters, contrast compliance — are deeply design decisions. When you delegate them to a generic API, you delegate brand quality.\n\nThe second: on mobile, restraint beats flexibility. The engine could support complex multi-text looks. But phone displays are dense — the extra text colors created noise, not depth. The API ships with capability it doesn't always use. That's fine. Sometimes the best design is knowing when not to deploy what you built."
     },
     {
       "type": "key-takeaway",
       "headline": "Why This Matters for Your Team",
-      "content": "If you're building a product in a category where industry defaults conflict with your brand identity, the answer isn't to copy the defaults. It's to invest in the technical depth needed to make your brand work. I built a color extraction API because the only alternative was shipping a product that felt wrong to our users. That level of ownership — from design direction through API architecture through WCAG compliance — is what design leadership looks like on a product that matters."
+      "content": "If your brand has specific visual requirements that industry tools don't match, the answer isn't to compromise the brand. It's to build the tool that does. I designed a color extraction engine because standard tools didn't solve the light-mode problem. Owning that infrastructure — from K-means clustering through OKLCH tuning through contrast compliance — is what makes the final product match the original vision."
     }
   ],
 
   "variants": {
     "executive": {
-      "summary": "Built a custom OKLCH color extraction API so Bibel TV could deliver a premium streaming experience in light mode. 87% user preference for light mode, 4.2/5 premium rating, full WCAG AA compliance. Live and validated.",
-      "angle": "Design-led infrastructure investment that unlocked the brand's competitive differentiation",
+      "summary": "Built a K-means color extraction API in OKLCH space that powers dynamic theming for Bibel TV's streaming app. 87% light mode user preference, full AA/AAA contrast compliance. Live and validated.",
+      "angle": "Design-led infrastructure: when industry defaults don't match your brand requirements",
       "sections": ["hero", "narrative", "outcome", "key-takeaway"],
-      "max_read_time": "3 min"
+      "max_read_time": "2 min"
     },
     "blog": {
-      "summary": "Every streaming app defaults to dark mode. We had to make it work in light — for users who want warmth, not Hollywood. Here's how.",
+      "summary": "Every streaming app defaults to dark mode. We had to make premium work in light — for users who want warmth, not Hollywood. Here's how the color engine works.",
       "angle": "The technical depth behind a design problem the industry hasn't solved",
       "sections": ["hero", "callout", "process", "reflection"],
       "max_read_time": "6 min"
@@ -143,6 +108,6 @@
     "read_time_minutes": 8,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study"
+    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study + live API inspection"
   }
 }
