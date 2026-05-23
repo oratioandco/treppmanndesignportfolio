@@ -65,11 +65,12 @@ function figure(img: { src: string; alt: string; caption?: string }, figNum: num
   return html;
 }
 
-// Section opener: § NN · LABEL above the H2.
-// Returns a fragment of HTML; not a full section element.
-function sectionOpener(num: string, label: string, title: string): string {
+// Section opener: a small mono '§ NN' marker above the H2.
+// Pure structural punctuation — no category label. The H2 below carries
+// the section's meaning; the kicker is just a chapter-style marker.
+function sectionOpener(num: string, title: string): string {
   return `<header class="cs-section-head">
-    <span class="cs-section-label">§&nbsp;${num} &nbsp;·&nbsp; ${label}</span>
+    <span class="cs-section-label">§&nbsp;${num}</span>
     <h2 class="cs-section-title">${title}</h2>
   </header>`;
 }
@@ -85,8 +86,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
     case 'narrative': {
       let html = '';
       if (section.headline) {
-        const label = section.headline.toUpperCase();
-        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+        html += sectionOpener(String(sectionNum).padStart(2, "0"), section.headline);
       }
       if (section.content) {
         html += `<div class="cs-body cs-body--dropcap">${paragraphs(section.content)}</div>`;
@@ -115,8 +115,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
     case 'process': {
       let html = '';
       if (section.headline) {
-        const label = section.headline.toUpperCase();
-        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+        html += sectionOpener(String(sectionNum).padStart(2, "0"), section.headline);
       }
       if (section.content) {
         html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
@@ -143,8 +142,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
     case 'outcome': {
       let html = '';
       if (section.headline) {
-        const label = section.headline.toUpperCase();
-        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+        html += sectionOpener(String(sectionNum).padStart(2, "0"), section.headline);
       }
       if (section.metrics && section.metrics.length > 0) {
         html += '<dl class="cs-metrics">';
@@ -171,8 +169,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
     case 'reflection': {
       let html = '';
       if (section.headline) {
-        const label = section.headline.toUpperCase();
-        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+        html += sectionOpener(String(sectionNum).padStart(2, "0"), section.headline);
       }
       if (section.content) {
         html += `<div class="cs-body cs-body--reflection">${paragraphs(section.content)}</div>`;
@@ -198,8 +195,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
     default: {
       let html = '';
       if (section.headline) {
-        const label = section.headline.toUpperCase();
-        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+        html += sectionOpener(String(sectionNum).padStart(2, "0"), section.headline);
       }
       if (section.content) html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
       if (section.items && section.items.length > 0) {
