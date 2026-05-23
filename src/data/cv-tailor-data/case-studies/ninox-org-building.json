@@ -1,124 +1,108 @@
 {
   "id": "ninox-org-building",
-  "title": "How do you build design into a company?",
-  "subtitle": "Leading design org maturity at an AI-powered no-code platform, from execution-only to strategic partner",
+  "title": "Leading a team is a design problem",
+  "subtitle": "Building the design function at Ninox — and what I did when the team called one engineer \"difficult\"",
   "type": "leadership-story",
   "tags": ["org-building", "leadership", "hiring", "culture", "ai", "design-system", "saas", "transformation"],
   "company": "Ninox Software GmbH",
   "role": "Head of Product Design",
-  "team": "5 direct reports, 1 design lead, Berlin",
+  "team": "Team of 5, including a design lead, Berlin",
   "duration": "2023 – 2024",
-  "status": "review",
-  "last_updated": "2026-05-06",
-  "hero_image": {
-    "src": "/images/ninox/hero.png",
-    "alt": "Ninox platform overview showing the no-code/low-code interface"
-  },
+  "status": "draft",
+  "last_updated": "2026-05-23",
   "format_priority": ["in-depth", "executive", "blog"],
 
   "sections": [
     {
       "type": "hero",
-      "headline": "How do you build design into a company?",
-      "subtext": "Designing collaboration systems for cognitive diversity as a design leader.",
-      "images": [
-        {
-          "src": "/images/ninox/hero.png",
-          "alt": "Ninox platform interface",
-          "caption": "The Ninox platform — AI-powered no-code business apps"
-        }
-      ]
+      "headline": "Leading a team is a design problem",
+      "subtext": "At Ninox I was Head of Product Design: a team of five, a seat at the leadership table, and a design practice to turn into a real function. The part I think about most was none of that. It was a team that had quietly given up on one of its own."
     },
     {
       "type": "narrative",
-      "headline": "The Situation",
-      "content": "I inherited a team with a problem. One engineer — talented, experienced — had been labeled \"difficult\" by colleagues. Meetings were tense. His input was dismissed before he finished speaking. The team had learned to work around him rather than with him.\n\nThe conventional response would be performance management, coaching, or eventually managing him out. But something didn't add up. His code was excellent. His ideas, when I took time to understand them, were often the best in the room.\n\nThis wasn't an isolated issue. The broader team was stuck in old collaboration patterns — fast-paced, voice-dominated, with the loudest person defining the outcome."
+      "headline": "The role",
+      "content": "I joined Ninox to make design a real function. The company was shifting from a low-code tool to an AI-powered no-code platform, and design needed to carry the same weight as product and engineering, not sit downstream of them.\n\nMost of that was the expected work. I managed a team of five, including a design lead. I built a planning process so design, product, and engineering worked from the same picture. I set up shared governance of the design system across four designers and engineering. I hired people, and when someone was not the right fit, I made that call too.\n\nThe part that taught me the most was not on that list."
     },
     {
       "type": "callout",
-      "quote": "When collaboration breaks down, the first question is 'what's wrong with our system?' not 'what's wrong with that person?'",
-      "context": "The leadership reframe that changed everything"
+      "quote": "When collaboration breaks down, the first question is 'what is wrong with our system?', not 'what is wrong with that person?'",
+      "context": "The reframe at the centre of how I lead"
     },
     {
       "type": "narrative",
-      "headline": "The Insight",
-      "content": "I started paying attention to patterns. He struggled in fast-paced group discussions but thrived in written communication. He needed time to process before responding. His \"interruptions\" were actually delayed responses to topics we'd already moved past.\n\nI recognized neurodivergent patterns — not as a diagnosis, but as a design constraint. The problem wasn't him. The problem was that our collaboration systems were designed for one type of mind, and his didn't fit the mold.\n\nThis reframe changed everything. Instead of asking \"how do we fix this person?\" I asked \"how do we fix this system?\""
+      "headline": "The engineer the team worked around",
+      "content": "One engineer had been quietly labelled difficult. Meetings with him were tense. His points got cut off before he finished them, and the team had learned to route around him instead of working with him.\n\nIt did not add up. His code was excellent. His ideas, once I gave them room, were often the sharpest in the room. So I started watching the pattern instead of the person.\n\nHe struggled in fast, talk-over-each-other discussions, but he was precise in writing. He needed time to think before he answered. What the team read as interrupting was him returning to a point the meeting had already rushed past. This was not a diagnosis. It was a design constraint. Our collaboration ran on one default — fast, verbal, loudest-voice-first — and his mind did not fit it."
     },
     {
       "type": "process",
-      "headline": "What I Changed",
+      "headline": "What I changed",
       "steps": [
         {
-          "label": "Pre-Meeting 1:1s",
-          "description": "Before group discussions, I met with him individually. He could process ideas, prepare contributions, and flag concerns without the pressure of real-time response."
+          "label": "Agendas, shared early",
+          "description": "Every meeting got a written agenda in advance. No more \"quick syncs\" that turned into hour-long debates no one could prepare for."
         },
         {
-          "label": "Visual Agendas",
-          "description": "Every meeting got a written agenda shared in advance. No more \"quick syncs\" that turned into hour-long debates."
+          "label": "Room to prepare",
+          "description": "Context went out before group discussions, so processing could happen ahead of the meeting rather than under time pressure inside it."
         },
         {
-          "label": "Explicit Turn-Taking",
-          "description": "In group settings, I created space for sequential input rather than whoever-talks-loudest."
+          "label": "Turn-taking, on purpose",
+          "description": "In group settings I made space for sequential input, instead of letting whoever spoke loudest set the outcome."
         },
         {
-          "label": "Written Decisions",
-          "description": "Important decisions were documented, not left to whoever remembered the verbal conversation correctly."
+          "label": "Decisions in writing",
+          "description": "Important decisions were written down, not left to whoever remembered the conversation their way."
         },
         {
-          "label": "Team Coaching",
-          "description": "Coached the design lead on stakeholder management with a challenging engineering lead. Modeled empathy-first leadership for the whole team."
+          "label": "Coaching the design lead",
+          "description": "I coached my design lead through the same relationship — how to work with a difficult engineering counterpart directly, rather than around them."
         }
       ]
     },
     {
       "type": "narrative",
-      "headline": "The Resistance",
-      "content": "Not everyone was on board immediately. \"Why should we change how we work for one person?\" This was the question — sometimes asked directly, sometimes implied through eye-rolls and foot-dragging.\n\nThis became a teaching moment about equity versus equality. Equality means everyone gets the same thing. Equity means everyone gets what they need to contribute. Different minds need different systems — not special treatment, but appropriate accommodation.\n\nI also made the case pragmatically: we were losing good ideas because our process filtered them out. That's a business problem, not just a fairness problem."
+      "headline": "The pushback",
+      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\" — sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nIt became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. Different minds need different conditions, and that is accommodation, not special treatment.\n\nI also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question."
     },
     {
       "type": "outcome",
-      "headline": "Results",
+      "headline": "What changed",
       "metrics": [
         {
-          "label": "The \"Difficult\" Engineer",
-          "before": "Tension, dismissed ideas, team working around him",
-          "after": "One of the strongest contributors, ideas got airtime, caught bugs others missed"
+          "label": "The \"difficult\" engineer",
+          "before": "Tension, dismissed ideas, the team working around him",
+          "after": "One of the strongest contributors — ideas got airtime, and he caught problems others missed"
         },
         {
-          "label": "Team Norms",
-          "before": "Whoever-talks-loudest culture",
-          "after": "Structured approaches adopted voluntarily — pre-meeting prep, written agendas, documented decisions became standard"
+          "label": "Team norms",
+          "before": "Loudest-voice-first discussions",
+          "after": "Written agendas, prep time, and documented decisions became how the team worked by default"
         },
         {
-          "label": "Leadership Reflex",
-          "value": "Team learned to ask \"what's wrong with our system?\" before blaming individuals"
+          "label": "How the team thought about friction",
+          "value": "People started asking what was wrong with the process before deciding what was wrong with a person"
         }
       ],
-      "narrative": "Within months, the dynamic shifted. But the bigger change was cultural. Other team members started adopting the structured approaches for themselves. The pre-meeting prep, the written agendas, the documented decisions — these became team norms, not accommodations.\n\nThis work sat alongside broader org-building: I managed 5 direct reports, hired a designer and a writer, promoted a design lead, and served on the Senior Leadership Team. The same empathy I applied to team design is the same empathy I brought to product design — understanding different needs, designing for edge cases, testing assumptions."
+      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, the written decisions for themselves — they stopped being an accommodation and became the norm. The same attention I gave to one engineer's working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
     },
     {
       "type": "reflection",
-      "headline": "What I Learned",
-      "content": "This experience crystallized my approach to leadership. Human-centered organizations create human-centered products. You can't design inclusive software with an exclusive team process.\n\nIt also shaped my conviction that good leadership isn't about managing people — it's about designing the systems people work within. When collaboration breaks down, look at the system first, not the person."
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why This Matters for Your Team",
-      "content": "If your team has collaboration friction, the problem is probably not your people — it's your process. I can help you redesign how your team works, not by coaching individuals, but by designing better collaboration systems. That's the same design thinking I bring to product: understand the user, find the pain point, redesign the experience."
+      "headline": "What I took from it",
+      "content": "Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person.\n\nAnd you cannot build inclusive software with an exclusive team process. Human-centred teams are what make human-centred products possible."
     }
   ],
 
   "variants": {
     "executive": {
-      "summary": "Designed collaboration systems that transformed team dynamics — turned a \"difficult\" engineer into the strongest contributor and structured meetings that unlocked ideas the loudest people were filtering out.",
-      "angle": "System design for inclusive teams",
-      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "summary": "Built the design function at Ninox — a team of five, a design system, a seat at the leadership table. Defining example: redesigned how the team collaborated so a sidelined engineer became one of its strongest contributors.",
+      "angle": "Leadership as system design",
+      "sections": ["hero", "callout", "outcome", "reflection"],
       "max_read_time": "2 min"
     },
     "blog": {
-      "summary": "When a team labels someone 'difficult,' the instinct is to manage the person. But what if the problem isn't the person — it's how the team is designed to work?",
-      "angle": "The cognitive-diversity leadership story",
-      "sections": ["hero", "situation", "insight", "reflection"],
+      "summary": "When a team calls someone 'difficult,' the instinct is to manage the person. But what if the problem is not the person — it is how the team is designed to work?",
+      "angle": "Designing team collaboration for cognitive diversity",
+      "sections": ["hero", "narrative", "callout", "reflection"],
       "max_read_time": "5 min"
     }
   },
@@ -132,6 +116,6 @@
     "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": "No confidential company data referenced",
-    "source": "my-cv-tailor verification 2026-04-23 + experience data file"
+    "source": "ninox experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22"
   }
 }

@@ -1,0 +1,71 @@
+{
+  "slug": "jupus",
+  "title": "Selected Work",
+  "subtitle": "AI product design, complex B2B workflows, and design leadership — selected for Jupus",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 8
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "Jupus",
+      "role": "Product Design Lead",
+      "date": "2026-05-22",
+      "positioning": "Design Function Builder · AI-Native Leader · Regulated Domain Translator"
+    },
+    "selection_rationale": {
+      "ninox-ai-onboarding": "Primary AI story: conversational prompt-to-output UX, model uncertainty handling, user agency. Directly maps to Jupus chatbot and AI phone product.",
+      "churchdesk-booking-system": "Primary workflow story: opaque regulated domain simplified to clean UX, measurable outcomes (70%/90%), multi-stakeholder coordination. Bridges to legal workflow complexity.",
+      "bibeltv-color-api": "Design system from scratch: cross-platform, token-first, built without prior infrastructure. Shows ability to set technical foundations as first design hire.",
+      "ninox-org-building": "Leadership story: org building, team design, hiring, culture. Shows the 'first design hire' pattern Jupus needs.",
+      "datameer-data-dense-analytics": "Regulated industry depth: banks and insurers, data-dense interfaces, design elevated to strategic partner.",
+      "bibeltv-support-agent": "Second AI story: human-in-the-loop, AI tools for professional users, trust and control design."
+    }
+  }
+}
