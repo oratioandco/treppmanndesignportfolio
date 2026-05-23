@@ -1,132 +1,118 @@
 {
   "id": "bibeltv-design-system-api",
-  "title": "A Design System That Ships to Production, Not Figma",
-  "subtitle": "Architecting an API-first design token system that syncs across iOS, Android, web, and Figma from a single source of truth",
+  "title": "A design system that ships to production, not to Figma",
+  "subtitle": "An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth",
   "type": "design-system",
   "tags": ["design-systems", "token-architecture", "api-first", "multi-platform", "automation", "infrastructure", "technical-depth"],
   "company": "Bibel TV",
   "role": "Head of Product Design",
-  "team": "Design-led infrastructure initiative with engineering partner, Berlin",
+  "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
-  "status": "review",
-  "last_updated": "2026-05-07",
+  "status": "draft",
+  "last_updated": "2026-05-22",
   "hero_image": {
     "src": "/images/bibeltv/design-system-hero.png",
-    "alt": "Design token architecture: GitHub repo flowing to Android, iOS, Web, and Figma simultaneously"
+    "alt": "Design token architecture: a Git repo flowing to Android, iOS, web, and Figma"
   },
   "format_priority": ["executive", "in-depth"],
 
   "sections": [
     {
       "type": "hero",
-      "headline": "A Design System That Ships to Production, Not Figma",
-      "subtext": "Most design systems are Figma libraries — engineers copy-paste values into their platforms. We built a deployed service: GitHub + Style Dictionary + automated sync means one token change updates every platform within seconds. Figma is one consumer, not the source of truth.",
-      "images": [
-        {
-          "src": "/images/bibeltv/design-system-01.png",
-          "alt": "Token sync architecture diagram showing GitHub → Style Dictionary → platforms",
-          "caption": "Single source of truth. Multiple platform outputs. Zero manual sync."
-        }
-      ]
+      "headline": "A design system that ships to production, not to Figma",
+      "subtext": "Most design systems are Figma libraries — engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source."
     },
     {
       "type": "callout",
       "quote": "A design system in Figma is a promise. A design system as an API is a guarantee.",
-      "context": "The difference between a design system designers maintain and a service engineers consume"
+      "context": "The difference between a library designers maintain and a service engineers consume"
     },
     {
       "type": "narrative",
-      "headline": "The Problem",
-      "content": "Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each platform had its own way of managing colors, spacing, typography, and component tokens. Android used Kotlin values. iOS used Swift constants. Web used CSS variables. Figma had its own style definitions.\n\nWhen a design decision changed a color, four teams had to update their code. In practice: three of them fell behind, and the platforms started diverging. The design system was a Figma library — engineers referenced it, but nothing enforced consistency.\n\nThe question was architectural: how do you keep a design system in sync across multiple platforms without manual re-implementation or constant design-to-engineering coordination?\n\n**Budget reality:** No platform engineering team dedicated to design infrastructure. The Head of Design had to own this."
+      "headline": "The problem",
+      "content": "Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography — Kotlin values, Swift constants, CSS variables, Figma styles.\n\nWhen one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.\n\nThere was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would."
     },
     {
       "type": "narrative",
-      "headline": "The Alternatives We Considered",
-      "content": "**Figma library only:** Simple. Designers update Figma, engineers look at Figma and adjust. Works for small teams, breaks at scale — the copy-paste workflow introduces drift.\n\n**Per-platform design systems:** Separate token sets per platform. Maximum flexibility. Nightmare for consistency — every change requires N implementations.\n\n**Storybook-based system:** Great for web teams. Doesn't solve native platforms at all.\n\n**Manual sync workflows:** Someone (usually the designer) manually updates tokens across platforms. Reliable as long as the designer is consistent. Fragile when team velocity increases.\n\nWe needed something that was neither a Figma library nor a per-platform nightmare. It had to be automated, platform-agnostic, and owned by design — not a platform engineering team we didn't have."
-    },
-    {
-      "type": "narrative",
-      "headline": "The Architecture: API-First Token System",
-      "content": "The solution: a Git-based design token repository (DTCG format, Style Dictionary v4) that builds to a live API, consumed by platforms directly.\n\n**GitHub repo** (`bibelv-design-tokens`) — The single source of truth. Tokens are versioned, reviewed, and tracked like any other code.\n\n**Three-tier token hierarchy:**\n1. **Global tokens** (primitives): Raw colors in OKLCH, spacing units, font families\n2. **Semantic tokens** (meaning): `brand-primary`, `surface-elevated`, `text-primary`\n3. **Component tokens** (context): Button-specific overrides, state variants\n\n**Style Dictionary v4** — Builds platform-specific outputs from a single token definition:\n- Android: Kotlin format\n- iOS: Swift format (planned)\n- Web: CSS variables (planned)\n- Figma: Plugin format\n\n**n8n automation** — Sync workflows trigger on every token commit:\n- GitHub → Figma plugin (automatic)\n- GitHub → Android API endpoint (automatic)\n- iOS/web endpoints (planned)"
+      "headline": "The architecture",
+      "content": "The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.\n\nWhat I built is a Git-based token repository that builds to a live API the platforms consume directly.\n\n**One Git repo** holds the tokens, versioned and reviewed like any other code. **A three-tier hierarchy** keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. **Style Dictionary** builds platform-specific outputs from that single definition. **An automation layer** distributes every committed change to the platform endpoints and the Figma plugin.",
+      "images": [
+        {
+          "src": "/images/bibeltv/design-system-tokens.png",
+          "alt": "The token set, synced into the Figma plugin",
+          "caption": "The same tokens, in Figma — one consumer of the system, kept in sync automatically."
+        }
+      ]
     },
     {
       "type": "process",
-      "headline": "How It Works in Practice",
+      "headline": "How it works in practice",
       "steps": [
         {
-          "label": "Change a Token",
-          "description": "Designer or engineer pushes a token change to the GitHub repo. Standard PR workflow — review, approve, merge."
+          "label": "Change a token",
+          "description": "A designer or engineer opens a pull request against the token repo. Standard review, approve, merge."
         },
         {
-          "label": "Style Dictionary Builds",
-          "description": "CI pipeline runs Style Dictionary v4, generating platform-specific token outputs from the single source definition."
+          "label": "Style Dictionary builds",
+          "description": "CI runs Style Dictionary, generating platform-specific token files from the single source definition."
         },
         {
-          "label": "n8n Syncs Automatically",
-          "description": "Automation workflows distribute the built tokens to platform endpoints: Figma plugin, Android API, etc."
+          "label": "Sync runs automatically",
+          "description": "Automation workflows push the built tokens to the platform endpoints and the Figma plugin. No manual step."
         },
         {
-          "label": "Platforms Update",
-          "description": "Android app polls the API on launch, persists tokens locally. Figma updates via plugin. No code deploys needed for token changes."
+          "label": "Platforms pick it up",
+          "description": "The Android app reads the API on launch and stores tokens locally. Figma updates through the plugin. A token change needs no code deploy."
         }
       ]
     },
     {
       "type": "narrative",
-      "headline": "Key Design Decisions",
-      "content": "**GitHub as source of truth, not Figma** — This flips the standard dependency. In most teams, Figma is the design source and engineers maintain their own token sets. Here, the repo is the source. Figma is a consumer. This means design can change without engineering retouching each platform.\n\n**DTCG format (Design Tokens Community Group)** — We adopted the emerging standard format rather than defining our own. This matters for long-term maintainability — new tools will read DTCG natively.\n\n**Head of Design owning the architecture** — Token infrastructure is typically platform engineering work. Owning it meant I could make design decisions about color spaces (OKLCH), spacing scales (8px base), and token naming semantics without negotiation. But it also meant I had to understand style dictionaries, API endpoints, and n8n workflows.\n\n**Future: bidirectional sync** — The next phase is Figma → GitHub push support. A designer adjusts a color in Figma, and the change flows back into the token repo. This would close the loop completely."
-    },
-    {
-      "type": "narrative",
-      "headline": "What Makes This Different",
-      "content": "The standard design system model: Figma library, a documentation site, and hope. Engineers look at Figma. Sometimes they update things. Sometimes they don't. Over time, the platforms diverge.\n\nThe API-first model: the system is a deployed service. It version-controls every change. It enforces consistency through automation, not through documentation. And it opens the door to **server-driven UI** — change a token on the server, and every user's app updates within their next launch. A/B test designs, adjust colors for campaigns, fix contrast issues — all without shipping code.\n\nThis is not a design system. It's design infrastructure. And it treats design decisions with the same rigor that engineering treats deployment pipelines."
+      "headline": "The decisions that mattered",
+      "content": "### The repo is the source, not Figma\n\nThis flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer — so design can change without engineering retouching four platforms.\n\n### A standard token format\n\nI used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.\n\n### Design owned the architecture\n\nToken infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation — but it also meant learning style dictionaries, API endpoints, and automation workflows.\n\nBecause the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build."
     },
     {
       "type": "outcome",
-      "headline": "Results",
+      "headline": "What changed",
       "metrics": [
         {
-          "label": "Implementation",
-          "value": "Android consuming tokens via API, persisting locally. Figma plugin synced automatically via n8n."
+          "label": "Sync",
+          "before": "Four teams hand-updating tokens; platforms drifting apart",
+          "after": "One commit flows to every platform automatically"
         },
         {
-          "label": "Sync Automation",
-          "value": "Token changes flow from GitHub → platforms without manual intervention. Figma and Android update automatically."
+          "label": "Live today",
+          "value": "Android consuming tokens via the API; Figma synced automatically through the plugin"
         },
         {
-          "label": "Token Hierarchy",
-          "value": "3-tier architecture (global → semantic → component) implemented across all platforms. Consistency enforced by structure, not coordination."
+          "label": "Structure",
+          "value": "Three-tier token hierarchy — consistency enforced by structure, not by coordination"
         },
         {
-          "label": "Future-Ready",
-          "value": "Architecture supports server-driven UI. Platform endpoints for iOS and web defined and ready for implementation."
+          "label": "Future-ready",
+          "value": "Architecture supports server-driven UI; iOS and web endpoints defined and ready"
         }
       ]
     },
     {
       "type": "reflection",
-      "headline": "What I Learned",
-      "content": "The most significant thing I took from this project: infrastructure work is design leadership work. The design system I built is not a Figma file — it's a live service. That means I had to understand APIs, CI pipelines, token architectures, and automation workflows. Not because designers should become engineers, but because design decisions embedded in infrastructure are more impactful than design decisions documented in Figma.\n\nThe second learning: choosing a standard format (DTCG) matters more than building the most clever custom system. It means when new tools arrive, we're ready. It means new team members can understand our tokens without learning our proprietary format. It means the system outlasts its creators."
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why This Matters for Your Team",
-      "content": "If you're scaling design across platforms — native, web, or both — and you don't have a dedicated platform engineering team, you can't wait for someone to build the design infrastructure for you. I built it myself by treating it as a design problem, not an engineering handoff challenge. The result: consistent design across four platforms, automated sync, and a foundation for server-driven UI. That's what design leadership looks like when the team is too small for specialists."
+      "headline": "What I took from it",
+      "content": "Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it."
     }
   ],
 
   "variants": {
     "executive": {
-      "summary": "Built a deployed design token system (GitHub + Style Dictionary + n8n automation) that synchronizes across Android, Figma, and planned iOS/web. Single source of truth. Zero manual sync.",
-      "angle": "Design infrastructure as a competitive advantage — systems that outlast individual designers",
-      "sections": ["hero", "outcome", "key-takeaway"],
+      "summary": "Built a deployed design-token system — Git repo, Style Dictionary, automated sync — that keeps Android, Figma, and planned iOS/web in step from one source of truth. Zero manual sync.",
+      "angle": "Design infrastructure that outlasts the designer who built it",
+      "sections": ["hero", "outcome", "reflection"],
       "max_read_time": "2 min"
     },
     "in-depth": {
-      "summary": "Most design systems are Figma libraries. Ours is a deployed service. Here's how we built it — token architecture, automation, bidirectional sync — without a platform engineering team.",
-      "angle": "Head of Design building infrastructure: when to own the token API and when to delegate",
-      "sections": ["hero", "callout", "narrative", "process", "reflection", "key-takeaway"],
-      "max_read_time": "10 min"
+      "summary": "Most design systems are Figma libraries. This one is a deployed service. How it was built — token architecture, automation, a path to server-driven UI — without a platform-engineering team.",
+      "angle": "A Head of Design building infrastructure: when to own the token API",
+      "sections": ["hero", "callout", "narrative", "process", "reflection"],
+      "max_read_time": "8 min"
     }
   },
 
@@ -136,9 +122,9 @@
   ],
 
   "meta": {
-    "read_time_minutes": 10,
+    "read_time_minutes": 8,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study"
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22"
   }
 }

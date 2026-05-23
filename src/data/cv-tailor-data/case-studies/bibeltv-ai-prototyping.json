@@ -1,0 +1,154 @@
+{
+  "id": "bibeltv-ai-prototyping",
+  "title": "Agentic Design at Scale",
+  "subtitle": "Using AI-coded prototypes to collapse the design-to-production pipeline",
+  "type": "ai-product",
+  "tags": ["ai-native-design", "prototyping", "agentic-engineering", "code-generation", "multi-platform"],
+  "company": "Bibel TV",
+  "role": "Head of Product Design",
+  "team": "1 designer + engineering team, Hamburg/Berlin",
+  "duration": "2025 – Present",
+  "status": "in-progress",
+  "last_updated": "2026-05-06",
+  "format_priority": ["in-depth", "executive"],
+
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Agentic Design at Scale",
+      "subtext": "Designing in prototypes, not mockups. AI agents generate the code. Engineering teams ship the output directly.",
+      "images": [
+        {
+          "src": "/images/bibeltv/agentic-design-hero.png",
+          "alt": "Design to Code Pipeline",
+          "caption": "From design intent to shipped code in a single loop"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The Traditional Gap",
+      "content": "Most design workflows follow this pattern:\n\n1. Designer creates mockups in Figma\n2. Designer writes specs (pixel-perfect measurements, interaction states)\n3. Engineering team reads specs, estimates time\n4. Engineering rebuilds what's in the mockup\n5. QA tests, finds gaps (interactions not fully specified)\n6. Designer and engineer collaborate to close gaps\n7. Final code ships\n\nThis process has built-in delay and ambiguity. Even with the best specs, engineering has to make hundreds of micro-decisions about behavior that specs don't capture."
+    },
+    {
+      "type": "callout",
+      "quote": "What if instead of writing specs, I just showed the prototype *code* and the engineering team decided whether to ship it as-is, modify, or rebuild it cleanly?",
+      "context": "The insight that changed our process"
+    },
+    {
+      "type": "narrative",
+      "headline": "The AI-First Approach",
+      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a React Native (or Swift, or Kotlin) prototype.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
+    },
+    {
+      "type": "process",
+      "headline": "Workflow in Practice",
+      "steps": [
+        {
+          "label": "Interaction Design",
+          "description": "I design interactions in Figma, annotate key behaviors (swipes, gestures, state changes). Focus on user intent, not pixel perfection."
+        },
+        {
+          "label": "Prototype Generation",
+          "description": "I brief Claude Code: \"Here's what I designed. Build this as a functioning prototype.\" Claude generates working code (React, React Native, Swift, or Kotlin depending on target)."
+        },
+        {
+          "label": "Prototype Testing",
+          "description": "I test the prototype on device, verify interactions match intent. Iterate with Claude if behavior is off."
+        },
+        {
+          "label": "Engineering Review",
+          "description": "Engineering team reviews the prototype code. Evaluates architecture, performance, whether it's production-ready.",
+          "image": {
+            "src": "/images/bibeltv/prototype-to-code.png",
+            "alt": "Prototype Code Review",
+            "caption": "Code prototype ready for engineering evaluation"
+          }
+        },
+        {
+          "label": "Ship or Rebuild Decision",
+          "description": "Team decides: Ship the prototype as-is (if good enough), modify it, or rebuild using the prototype as a spec."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "Real Example: New Mobile App Redesign",
+      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build a React Native app with these screens, this navigation structure, these animations.\" Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
+    },
+    {
+      "type": "narrative",
+      "headline": "Key Insights",
+      "content": "### AI doesn't replace design thinking\n\nThe prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time.\n\n### Engineering makes the call\n\nI don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality.\n\n### Interaction fidelity matters\n\nWhere AI-generated code shines is capturing interactions — animations, gestures, state transitions — that specs typically under-specify. Shipping these interactions directly is a win.\n\n### Platform-specific code still gets rebuilt\n\nThe React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine — the prototype still saved time and validated the interaction model."
+    },
+    {
+      "type": "outcome",
+      "headline": "Results So Far",
+      "metrics": [
+        {
+          "label": "Design-to-Prototype Cycle",
+          "before": "3-5 days (designing mockups + writing specs)",
+          "after": "1 day (design in Figma + generate prototype)"
+        },
+        {
+          "label": "Spec-to-Code Ambiguity",
+          "before": "Typical: 30-50 back-and-forths during engineering",
+          "after": "Typical: 5-10 clarifications (most questions answered by seeing working code)"
+        },
+        {
+          "label": "Prototype-to-Ship Rate",
+          "value": "~70% of AI-generated code ships directly or with minor modifications"
+        },
+        {
+          "label": "Engineering Team Satisfaction",
+          "value": "High — they prefer working from code prototypes vs. specs"
+        }
+      ],
+      "narrative": "The biggest win is eliminated ambiguity. When engineering sees working code instead of a mockup, they ask better questions and make faster decisions.",
+      "images": [
+        {
+          "src": "/images/bibeltv/agentic-design-workflow.png",
+          "alt": "Agentic Design Workflow",
+          "caption": "From design intent to shipped code, collapsed timeline"
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "headline": "What I'm Learning",
+      "content": "Five years ago, I would've said \"designers don't code prototypes because spec communication is efficient.\" That was wrong. Specs are *lossy*. They can't capture all the micro-decisions a designer makes.\n\nWhat we're learning: AI-generated prototypes are efficient *and* high-fidelity. They preserve intent better than specs. They let engineering make informed decisions instead of guessing from drawings.\n\nThis might be the biggest shift in design-engineering collaboration since design systems."
+    },
+    {
+      "type": "key-takeaway",
+      "headline": "Why This Matters for Your Team",
+      "content": "If you're stuck in the traditional design-handoff-to-engineering loop, agentic prototyping is the escape route. I'm proving it works at Bibel TV with real products, real deadlines, and real engineering teams. The prototype doesn't have to be perfect — it just has to be better than a spec at communicating intent."
+    }
+  ],
+
+  "variants": {
+    "executive": {
+      "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes. Result: 2x faster design-to-prototype cycle, 70% of code ships directly.",
+      "angle": "Collapsing the design-engineering loop with agentic code",
+      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "max_read_time": "2 min"
+    },
+    "in-depth": {
+      "summary": "Deep dive into agentic design: how we use Claude Code to generate prototypes, how engineering teams evaluate them, and what this means for the future of design handoff.",
+      "angle": "Prototypes as specs: a working alternative to pixel-perfect mockups",
+      "sections": ["hero", "narrative", "callout", "process", "example", "insights", "outcome", "reflection", "key-takeaway"],
+      "max_read_time": "8 min"
+    }
+  },
+
+  "related": [
+    "bibeltv-color-api",
+    "ninox-org-building"
+  ],
+
+  "meta": {
+    "read_time_minutes": 8,
+    "confidential": false,
+    "confidentiality_note": null,
+    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23"
+  }
+}

@@ -30,10 +30,23 @@ const { filter, study } = Astro.props;
 const backUrl = `/work/${filter.slug}`;
 
 // Format paragraphs from a content string with \n\n separators.
+// Supports two pieces of markdown that survive in our content:
+//   - `### Heading` paragraphs become <h3 class="cs-sublabel"> (editorial
+//     sidehead with rule above).
+//   - Stray **bold** inside body paragraphs becomes <strong>. Safety net
+//     for legacy content; new content should use ### headings instead of
+//     the "**Lead phrase.** body" pattern.
 function paragraphs(content: string): string {
   return content
     .split(/\n{2,}/)
-    .map((p) => `<p>${p.trim()}</p>`)
+    .map((para) => {
+      const trimmed = para.trim();
+      if (trimmed.startsWith('### ')) {
+        return `<h3 class="cs-sublabel">${trimmed.slice(4).trim()}</h3>`;
+      }
+      const withStrong = trimmed.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>');
+      return `<p>${withStrong}</p>`;
+    })
     .join('');
 }
 
@@ -478,6 +491,30 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   .cs-body strong {
     font-weight: 600;
     color: var(--color-text);
+  }
+
+  /* Sidehead — for `### Heading` paragraphs inside narrative content.
+     A real sub-heading with a hairline above. Replaces the AI-looking
+     "**Lead phrase.** body" pattern. */
+  .cs-body h3.cs-sublabel {
+    font-family: var(--font-display-35);
+    font-style: italic;
+    font-weight: normal;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    line-height: 1.15;
+    color: var(--color-text);
+    margin: var(--space-xl) 0 var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-rule);
+    max-width: 28ch;
+  }
+
+  /* First sidehead in a body block doesn't need the top rule — the section
+     opener above already provides separation. */
+  .cs-body > h3.cs-sublabel:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
 
   /* Drop cap on the first paragraph after a section head. */
