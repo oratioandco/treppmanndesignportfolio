@@ -59,6 +59,19 @@
     font-display: swap;
 }
 
+/* Departure Mono — pixel mono by Helena Zhang, SIL OFL.
+   Used only for editorial structural marginalia (kickers, section labels,
+   captions, metric labels, end-marks). Never body. See public/fonts/DepartureMono-LICENSE.txt */
+@font-face {
+    font-family: "Departure Mono";
+    src:
+        url("/fonts/DepartureMono-Regular.woff2") format("woff2"),
+        url("/fonts/DepartureMono-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Reset & Base */
 *,
 *::before,
@@ -68,8 +81,13 @@
 
 :root {
     --font-display: "Redaction 20", Georgia, serif;
+    --font-display-20: "Redaction 20", Georgia, serif;
+    --font-display-35: "Redaction 35", Georgia, serif;
+    --font-display-50: "Redaction 50", Georgia, serif;
+    --font-display-70: "Redaction 70", Georgia, serif;
     --font-body:
         "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "Departure Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
     --color-bg: #f8f3ee;
     --color-surface: #ffffff;
@@ -78,6 +96,7 @@
     --color-accent: #4f8375;
     --color-accent-light: #e8f0ed;
     --color-border: #e5e0db;
+    --color-rule: #c9c0b6;
 
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
@@ -105,6 +124,10 @@ body {
     background: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Subtle paper grain — a low-opacity noise SVG. Heard, not seen.
+       Sits on a fixed layer so it doesn't reflow with scrolling content. */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-attachment: fixed;
 }
 
 /* Typography */

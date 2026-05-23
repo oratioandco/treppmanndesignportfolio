@@ -16,7 +16,6 @@ export function getStaticPaths() {
     if (!data) continue;
 
     for (const study of data.studies) {
-      // Only generate pages for featured + browseable (not hidden)
       if (study.visibility === 'hidden') continue;
       paths.push({
         params: { slug: filter.slug, study: study.id },
@@ -30,112 +29,176 @@ export function getStaticPaths() {
 const { filter, study } = Astro.props;
 const backUrl = `/work/${filter.slug}`;
 
-function renderSection(section: CaseStudySection): string {
+// Format paragraphs from a content string with \n\n separators.
+function paragraphs(content: string): string {
+  return content
+    .split(/\n{2,}/)
+    .map((p) => `<p>${p.trim()}</p>`)
+    .join('');
+}
+
+// HTML for a figure with a marginalia caption.
+// The figure is a subgrid item so its caption can sit in the rail column on desktop.
+function figure(img: { src: string; alt: string; caption?: string }, figNum: number): string {
+  let html = `<figure class="cs-figure">`;
+  html += `<img src="${img.src}" alt="${img.alt}" loading="lazy" />`;
+  if (img.caption) {
+    html += `<figcaption class="cs-caption">`;
+    html += `<span class="cs-caption-tag">Fig. ${String(figNum).padStart(2, '0')}</span>`;
+    html += `<span class="cs-caption-text">${img.caption}</span>`;
+    html += `</figcaption>`;
+  }
+  html += `</figure>`;
+  return html;
+}
+
+// Section opener: § NN · LABEL above the H2.
+// Returns a fragment of HTML; not a full section element.
+function sectionOpener(num: string, label: string, title: string): string {
+  return `<header class="cs-section-head">
+    <span class="cs-section-label">§&nbsp;${num} &nbsp;·&nbsp; ${label}</span>
+    <h2 class="cs-section-title">${title}</h2>
+  </header>`;
+}
+
+// Render one section into the markup we want.
+// We assign `§` numbers to non-hero sections sequentially, but skip pure callouts
+// and key-takeaways (those are visually distinct, don't need a number).
+function renderSection(section: CaseStudySection, sectionNum: number, figCounter: { n: number }): string {
   switch (section.type) {
     case 'hero':
-      return '';
-    case 'narrative':
+      return ''; // handled by template hero block
+
+    case 'narrative': {
       let html = '';
-      if (section.headline) html += `<h2>${section.headline}</h2>`;
-      if (section.content) html += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      if (section.headline) {
+        const label = section.headline.toUpperCase();
+        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+      }
+      if (section.content) {
+        html += `<div class="cs-body cs-body--dropcap">${paragraphs(section.content)}</div>`;
+      }
       if (section.images) {
         for (const img of section.images) {
-          html += `<figure class="case-study-image">`;
-          html += `<img src="${img.src}" alt="${img.alt}" />`;
-          if (img.caption) html += `<figcaption>${img.caption}</figcaption>`;
-          html += `</figure>`;
+          figCounter.n += 1;
+          html += figure(img, figCounter.n);
         }
       }
       return html;
-    case 'callout':
-      let callout = '<div class="star-story"><div class="star-item">';
-      if (section.headline) callout += `<h4>${section.headline}</h4>`;
-      if (section.quote) callout += `<blockquote>${section.quote}</blockquote>`;
-      if (section.context) callout += `<p class="context">${section.context}</p>`;
-      if (section.content) callout += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
-      callout += '</div></div>';
-      return callout;
-    case 'process':
-      let process = '';
-      if (section.headline) process += `<h2>${section.headline}</h2>`;
-      if (section.content) process += `<p>${section.content}</p>`;
+    }
+
+    case 'callout': {
+      // Pure pull quote — breakout, ornament, byline-style context.
+      let html = '<aside class="cs-pullquote">';
+      html += '<span class="cs-pullquote-mark" aria-hidden="true">✱</span>';
+      if (section.quote) html += `<blockquote class="cs-pullquote-text">${section.quote}</blockquote>`;
+      if (section.headline) html += `<p class="cs-pullquote-byline">${section.headline}</p>`;
+      if (section.context) html += `<p class="cs-pullquote-context">${section.context}</p>`;
+      if (section.content) html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
+      html += '</aside>';
+      return html;
+    }
+
+    case 'process': {
+      let html = '';
+      if (section.headline) {
+        const label = section.headline.toUpperCase();
+        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+      }
+      if (section.content) {
+        html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
+      }
       if (section.steps) {
-        process += '<div class="star-story">';
-        for (const step of section.steps) {
-          process += '<div class="star-item">';
-          process += `<h4>${step.label}</h4>`;
-          process += `<p>${step.description}</p>`;
+        html += '<ol class="cs-steps">';
+        section.steps.forEach((step, i) => {
+          html += '<li class="cs-step">';
+          html += `<span class="cs-step-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>`;
+          html += '<div class="cs-step-content">';
+          html += `<h3 class="cs-step-label">${step.label}</h3>`;
+          html += `<p>${step.description}</p>`;
           if (step.image) {
-            process += `<figure class="case-study-image">`;
-            process += `<img src="${step.image.src}" alt="${step.image.alt}" />`;
-            if (step.image.caption) process += `<figcaption>${step.image.caption}</figcaption>`;
-            process += `</figure>`;
+            figCounter.n += 1;
+            html += figure(step.image, figCounter.n);
           }
-          process += '</div>';
-        }
-        process += '</div>';
+          html += '</div></li>';
+        });
+        html += '</ol>';
       }
-      return process;
-    case 'outcome':
-      let outcome = '';
-      if (section.headline) outcome += `<h2>${section.headline}</h2>`;
+      return html;
+    }
+
+    case 'outcome': {
+      let html = '';
+      if (section.headline) {
+        const label = section.headline.toUpperCase();
+        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+      }
       if (section.metrics && section.metrics.length > 0) {
-        outcome += '<div class="outcome-metrics">';
+        html += '<dl class="cs-metrics">';
         for (const m of section.metrics) {
-          outcome += '<div class="metric-card">';
-          outcome += `<span class="metric-label">${m.label}</span>`;
-          if (m.value) outcome += `<span class="metric-value">${m.value}</span>`;
-          if (m.before && m.after) outcome += `<span class="metric-change">${m.before} → ${m.after}</span>`;
-          outcome += '</div>';
+          html += '<div class="cs-metric">';
+          html += `<dt class="cs-metric-label">${m.label}</dt>`;
+          if (m.value) html += `<dd class="cs-metric-value">${m.value}</dd>`;
+          if (m.before && m.after) html += `<dd class="cs-metric-change"><span class="cs-metric-before">${m.before}</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">${m.after}</span></dd>`;
+          html += '</div>';
         }
-        outcome += '</div>';
+        html += '</dl>';
       }
-      if (section.narrative) outcome += `<p>${section.narrative}</p>`;
-      if (section.content) outcome += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      if (section.narrative) html += `<div class="cs-body">${paragraphs(section.narrative)}</div>`;
+      if (section.content) html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
       if (section.images) {
         for (const img of section.images) {
-          outcome += `<figure class="case-study-image">`;
-          outcome += `<img src="${img.src}" alt="${img.alt}" />`;
-          if (img.caption) outcome += `<figcaption>${img.caption}</figcaption>`;
-          outcome += `</figure>`;
+          figCounter.n += 1;
+          html += figure(img, figCounter.n);
         }
       }
-      return outcome;
+      return html;
+    }
+
+    case 'reflection': {
+      let html = '';
+      if (section.headline) {
+        const label = section.headline.toUpperCase();
+        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
+      }
+      if (section.content) {
+        html += `<div class="cs-body cs-body--reflection">${paragraphs(section.content)}</div>`;
+      }
+      return html;
+    }
+
+    case 'key-takeaway': {
+      let html = '<section class="cs-takeaway">';
+      html += '<div class="cs-takeaway-rule" aria-hidden="true"></div>';
+      if (section.headline) {
+        html += `<span class="cs-takeaway-label">${section.headline.toUpperCase()}</span>`;
+      }
+      if (section.content) {
+        html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
+      }
+      html += '</section>';
+      return html;
+    }
+
     case 'comparison':
-      let comp = '';
-      if (section.headline) comp += `<h2>${section.headline}</h2>`;
-      if (section.content) comp += `<p>${section.content}</p>`;
-      return comp;
     case 'gallery':
-      let gallery = '';
-      if (section.headline) gallery += `<h2>${section.headline}</h2>`;
-      if (section.items && section.items.length > 0) {
-        gallery += '<div class="gallery-grid">';
-        for (const img of section.items) {
-          gallery += '<figure class="case-study-image">';
-          gallery += `<img src="${img.src}" alt="${img.alt}" />`;
-          if (img.caption) gallery += `<figcaption>${img.caption}</figcaption>`;
-          gallery += '</figure>';
-        }
-        gallery += '</div>';
+    default: {
+      let html = '';
+      if (section.headline) {
+        const label = section.headline.toUpperCase();
+        html += sectionOpener(String(sectionNum).padStart(2, '0'), label, section.headline);
       }
-      return gallery;
-    case 'reflection':
-      let reflection = '';
-      if (section.headline) reflection += `<h2>${section.headline}</h2>`;
-      if (section.content) reflection += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
-      return reflection;
-    case 'key-takeaway':
-      let takeaway = '<div class="key-takeaway">';
-      if (section.headline) takeaway += `<h2>${section.headline}</h2>`;
-      if (section.content) takeaway += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
-      takeaway += '</div>';
-      return takeaway;
-    default:
-      let def = '';
-      if (section.headline) def += `<h2>${section.headline}</h2>`;
-      if (section.content) def += `<p>${section.content.replace(/\n\n/g, '</p><p>')}</p>`;
-      return def;
+      if (section.content) html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
+      if (section.items && section.items.length > 0) {
+        html += '<div class="cs-gallery">';
+        for (const img of section.items) {
+          figCounter.n += 1;
+          html += figure(img, figCounter.n);
+        }
+        html += '</div>';
+      }
+      return html;
+    }
   }
 }
 
@@ -144,150 +207,633 @@ const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !
 const pageTitle = heroSection?.headline || study.title;
 const pageDescription = study.subtitle || '';
 
-// Filter out "hero" from rendering since it's handled in the template
-const renderedSections = contentSections.map(s => ({ section: s, html: renderSection(s) })).filter(s => s.html);
+// Number only the section types that carry an opener (narrative, process, outcome,
+// reflection, comparison, gallery, default). Skip callouts and key-takeaways.
+const figCounter = { n: 0 };
+let sectionNum = 0;
+const renderedSections = contentSections.map((s) => {
+  const isNumbered = !['callout', 'key-takeaway'].includes(s.type);
+  if (isNumbered) sectionNum += 1;
+  return { section: s, html: renderSection(s, sectionNum, figCounter) };
+}).filter((s) => s.html);
+
+// Hero kicker text. Falls back gracefully if fields are missing.
+const kickerParts = ['Case Study'];
+if (study.company) kickerParts.push(study.company);
+if (study.duration) kickerParts.push(study.duration);
+const kickerText = kickerParts.join(' · ').toUpperCase();
 ---
 
 <Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl={backUrl} backLabel={`← Back to portfolio`}>
-  <section class="case-study-hero">
-    <div class="container">
-      <p class="case-study-meta">Case Study · {study.company}</p>
-      <h1>{pageTitle}</h1>
-      <p class="hero-tagline">{study.role} · {study.duration}</p>
-      {heroSection?.subtext && (
-        <p class="hero-description">{heroSection.subtext}</p>
-      )}
-      {!heroSection?.subtext && study.subtitle && (
-        <p class="hero-description">{study.subtitle}</p>
+  <header class="cs-hero-wrap">
+    <div class="cs-hero">
+      <div class="cs-hero-text">
+        <span class="cs-kicker">{kickerText}</span>
+        <h1 class="cs-title">{pageTitle}</h1>
+        <p class="cs-tagline">{study.role}</p>
+        {heroSection?.subtext && (
+          <p class="cs-deck">{heroSection.subtext}</p>
+        )}
+        {!heroSection?.subtext && study.subtitle && (
+          <p class="cs-deck">{study.subtitle}</p>
+        )}
+      </div>
+      {study.hero_image && (
+        <figure class="cs-hero-figure">
+          <img src={study.hero_image.src} alt={study.hero_image.alt} />
+        </figure>
       )}
     </div>
-  </section>
+  </header>
 
-  <section class="case-study-content">
-    <div class="container content">
-      {renderedSections.map(({ section, html }) => (
-        <Fragment set:html={html} />
-      ))}
-    </div>
-  </section>
+  <article class="cs-article">
+    {renderedSections.map(({ html }) => (
+      <Fragment set:html={html} />
+    ))}
+
+    <p class="cs-endmark" aria-hidden="true">■</p>
+  </article>
 </Layout>
 
-<style>
-  /* Extend existing case study styles */
-  .case-study-hero {
-    padding: var(--space-xxl) 0 var(--space-xl);
-    text-align: left;
+<style is:global>
+  /* =========================================================================
+     CASE STUDY · EDITORIAL TYPOGRAPHY SYSTEM
+     (is:global because section bodies are injected via set:html, which strips
+     Astro's data-cid scoping attributes; scoped styles wouldn't apply.)
+     -------------------------------------------------------------------------
+     Layered grid: full-bleed / wide / body / rail / wide / full-bleed.
+     Body prose stays narrow; section heads, pull quotes, and figures break
+     out into adjacent zones. Captions sit in the rail on desktop, drop below
+     on mobile.
+     ========================================================================= */
+
+  /* ----- Layout grid ------------------------------------------------------
+     Two-column grid (body + rail) inside a centered max-width container.
+     Body holds prose; rail holds image captions, marginalia, metadata.
+     Hero, pull quotes, and tables span both columns. On narrow viewports
+     the rail collapses below the body. */
+
+  .cs-article {
+    --body-width: 36rem;
+    --rail-width: 14rem;
+    --gutter: 2.5rem;
+
+    max-width: calc(var(--body-width) + var(--gutter) + var(--rail-width) + 3rem);
+    margin: 0 auto;
+    padding: 0 1.5rem var(--space-2xl);
+
+    display: grid;
+    grid-template-columns:
+      [body-start] minmax(0, var(--body-width))
+      [body-end rail-start] var(--rail-width) [rail-end];
+    column-gap: var(--gutter);
+    row-gap: 0;
   }
 
-  .case-study-meta {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  /* Default placement: body column. */
+  .cs-article > * {
+    grid-column: body;
+    margin: 0;
+  }
+
+  /* Elements that span the entire grid width (body + gutter + rail).
+     Each is also styled in its own block below; this rule only fixes
+     grid-column placement, with parent specificity so it overrides the
+     default `.cs-article > *` above. */
+  .cs-article > .cs-hero,
+  .cs-article > .cs-section-head,
+  .cs-article > .cs-pullquote,
+  .cs-article > .cs-figure,
+  .cs-article > .cs-steps,
+  .cs-article > .cs-metrics,
+  .cs-article > .cs-takeaway,
+  .cs-article > .cs-gallery {
+    grid-column: 1 / -1;
+  }
+
+  /* Collapse to one column under ~50rem viewport. */
+  @media (max-width: 50rem) {
+    .cs-article {
+      grid-template-columns: 1fr;
+    }
+    .cs-article > * {
+      grid-column: 1;
+    }
+    .cs-article > .cs-hero,
+    .cs-article > .cs-section-head,
+    .cs-article > .cs-pullquote,
+    .cs-article > .cs-figure,
+    .cs-article > .cs-steps,
+    .cs-article > .cs-metrics,
+    .cs-article > .cs-takeaway,
+    .cs-article > .cs-gallery {
+      grid-column: 1;
+    }
+  }
+
+  /* ----- Hero ------------------------------------------------------------
+     Lives OUTSIDE the article max-width so it can run wider — magazine-
+     cover scale. Uses its own centered 80rem container with edge padding,
+     and gives the image a larger share than the text column. */
+
+  .cs-hero-wrap {
+    border-bottom: 1px solid var(--color-rule);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-2xl) 1.5rem var(--space-xl);
+  }
+
+  .cs-hero {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+
+  @media (max-width: 60rem) {
+    .cs-hero-wrap {
+      padding: var(--space-xl) 1.5rem var(--space-lg);
+    }
+    .cs-hero {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+  }
+
+  .cs-hero-text {
+    max-width: 36rem;
+  }
+
+  .cs-kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .cs-title {
+    font-family: var(--font-display-70);
+    font-style: italic;
+    font-weight: normal;
+    /* Bigger, more magazine-cover scale. */
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    line-height: 0.92;
     color: var(--color-accent);
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-lg);
+    letter-spacing: -0.015em;
   }
 
-  .case-study-hero h1 {
-    font-size: 2.2rem;
-    line-height: 1.2;
-    margin-bottom: var(--space-sm);
+  .cs-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
   }
 
-  .hero-tagline {
-    font-size: 1rem;
+  .cs-deck {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 38ch;
+    margin: 0;
+  }
+
+  .cs-hero-figure {
+    margin: 0;
+  }
+
+  .cs-hero-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 var(--color-rule), 0 24px 60px -24px rgba(26, 26, 26, 0.25);
+  }
+
+  /* ----- Section opener (§ NN · LABEL + H2) ------------------------------- */
+
+  .cs-section-head {
+    grid-column: 1 / -1;
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-section-head {
+      grid-column: 1;
+    }
+  }
+
+  .cs-section-head:first-child,
+  .cs-article > :first-child + .cs-section-head {
+    /* If a section head is the very first content after the hero,
+       remove the extra top rule (hero already provides a divider). */
+  }
+
+  .cs-section-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
   }
 
-  .hero-description {
-    font-size: 1.1rem;
+  .cs-section-title {
+    font-family: var(--font-display-50);
+    font-style: italic;
+    font-weight: normal;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.05;
+    color: var(--color-text);
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  /* ----- Body prose ------------------------------------------------------- */
+
+  .cs-body {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
     line-height: 1.7;
-    max-width: 720px;
-    color: var(--color-text-muted);
-  }
-
-  .case-study-content {
-    padding-bottom: var(--space-xxl);
-  }
-
-  /* Outcome metrics */
-  .outcome-metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-md);
-    margin: var(--space-lg) 0;
-  }
-
-  .metric-card {
-    background: var(--color-bg);
-    border-radius: 8px;
-    padding: var(--space-md);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .metric-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
-  }
-
-  .metric-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-accent);
-  }
-
-  .metric-change {
-    font-size: 0.9rem;
     color: var(--color-text);
   }
 
-  /* Gallery grid */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    margin: var(--space-lg) 0;
+  .cs-body p {
+    margin: 0 0 var(--space-md);
   }
 
-  @media (max-width: 768px) {
-    .gallery-grid {
+  .cs-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cs-body strong {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  /* Drop cap on the first paragraph after a section head. */
+  .cs-body--dropcap p:first-child::first-letter {
+    font-family: var(--font-display-50);
+    font-style: italic;
+    font-size: 5.8rem;
+    line-height: 0.82;
+    float: left;
+    color: var(--color-accent);
+    margin: 0.08em 0.1em -0.05em -0.04em;
+    padding-right: 0.04em;
+  }
+
+  /* Reflection: indented, slightly larger leading, italic — "author thinking". */
+  .cs-body--reflection {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    border-left: 1px solid var(--color-rule);
+    padding-left: var(--space-md);
+    margin-left: var(--space-sm);
+    font-style: italic;
+  }
+
+  .cs-body--reflection p {
+    font-style: italic;
+  }
+
+  /* ----- Pull quote (callout) -------------------------------------------- */
+
+  .cs-pullquote {
+    grid-column: 1 / -1;
+    position: relative;
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
+    text-align: left;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-pullquote {
+      grid-column: 1;
+    }
+  }
+
+  .cs-pullquote-mark {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    /* Pixel ornament — sits as a glyph above the quote, not boxed. */
+  }
+
+  .cs-pullquote-text {
+    font-family: var(--font-display-50);
+    font-style: italic;
+    font-weight: normal;
+    /* Louder than H2s, slightly less stretched than the hero title. The
+       "spoken" voice of the case study. */
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    max-width: 22ch;
+  }
+
+  .cs-pullquote-byline {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .cs-pullquote-context {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 42ch;
+  }
+
+  /* ----- Process (numbered design decisions) ----------------------------- */
+
+  .cs-steps {
+    grid-column: 1 / -1;
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0 0;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-steps {
+      grid-column: 1;
+    }
+  }
+
+  .cs-step {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    column-gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-step:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-step-num {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    padding-top: 0.35rem;
+  }
+
+  .cs-step-content {
+    min-width: 0;
+  }
+
+  .cs-step-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0 0 var(--space-sm);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .cs-step-content p {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 var(--space-md);
+    color: var(--color-text);
+  }
+
+  .cs-step-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ----- Outcome (metrics table-like) ------------------------------------ */
+
+  .cs-metrics {
+    grid-column: 1 / -1;
+    margin: var(--space-lg) 0 var(--space-xl);
+    padding: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-metrics {
+      grid-column: 1;
+    }
+  }
+
+  .cs-metric {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: var(--space-lg);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-metric-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .cs-metric-value {
+    font-family: var(--font-display-50);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    line-height: 1.1;
+    color: var(--color-accent);
+    margin: 0;
+    text-align: right;
+  }
+
+  .cs-metric-change {
+    grid-column: 1 / -1;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    margin: var(--space-xs) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5ch;
+    align-items: baseline;
+  }
+
+  .cs-metric-before {
+    color: var(--color-text-muted);
+  }
+
+  .cs-metric-arrow {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+  }
+
+  .cs-metric-after {
+    color: var(--color-text);
+  }
+
+  /* ----- Figures with rail captions -------------------------------------- */
+
+  .cs-figure {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    margin: var(--space-xl) 0;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-figure {
+      grid-column: 1;
+      display: block;
+    }
+  }
+
+  .cs-figure img {
+    grid-column: body;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-surface);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-figure img {
+      width: 100%;
+    }
+  }
+
+  .cs-caption {
+    grid-column: rail;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    align-self: end;
+    padding-bottom: 0.2rem;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-caption {
+      margin-top: var(--space-sm);
+      padding-bottom: 0;
+    }
+  }
+
+  .cs-caption-tag {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .cs-caption-text {
+    display: block;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ----- Gallery --------------------------------------------------------- */
+
+  .cs-gallery {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-gallery {
+      grid-column: 1;
       grid-template-columns: 1fr;
     }
   }
 
-  /* Key takeaway */
-  .key-takeaway {
-    background: var(--color-accent-light);
-    border-left: 3px solid var(--color-accent);
-    padding: var(--space-lg);
-    border-radius: 0 12px 12px 0;
-    margin: var(--space-xl) 0;
+  .cs-gallery .cs-figure {
+    grid-column: auto;
+    display: block;
+    margin: 0;
   }
 
-  .key-takeaway h2 {
-    margin-bottom: var(--space-sm);
+  .cs-gallery .cs-figure img {
+    grid-column: auto;
   }
 
-  blockquote {
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.6;
+  .cs-gallery .cs-caption {
+    grid-column: auto;
+    margin-top: var(--space-sm);
+  }
+
+  /* ----- Key takeaway (section opener treatment, not a card) -------------- */
+
+  .cs-takeaway {
+    grid-column: 1 / -1;
+    margin: var(--space-2xl) 0 var(--space-lg);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-takeaway {
+      grid-column: 1;
+    }
+  }
+
+  .cs-takeaway-rule {
+    height: 1px;
+    background: var(--color-text);
+    margin-bottom: var(--space-md);
+    width: 4rem;
+  }
+
+  .cs-takeaway-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
     color: var(--color-text);
-    border-left: 3px solid var(--color-accent);
-    padding-left: var(--space-md);
-    margin: var(--space-md) 0;
+    margin-bottom: var(--space-md);
   }
 
-  .context {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    font-style: italic;
-    margin-top: var(--space-xs);
+  /* ----- End mark -------------------------------------------------------- */
+
+  .cs-endmark {
+    grid-column: body;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: var(--space-xl) 0 0;
+  }
+
+  @media (max-width: 50rem) {
+    .cs-endmark {
+      grid-column: 1;
+    }
   }
 </style>
