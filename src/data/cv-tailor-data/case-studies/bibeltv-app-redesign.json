@@ -1,145 +1,105 @@
 {
   "id": "bibeltv-app-redesign",
-  "title": "Designing a Faith Streaming App That Feels Premium Without Defaulting to Dark Mode",
-  "subtitle": "Redesigning Bibel TV's mobile, web, and TV apps to defend against a global competitor — with research, infrastructure, and agentic engineering",
+  "title": "A premium faith app that doesn't default to dark mode",
+  "subtitle": "Redesigning Bibel TV's streaming apps to hold the German market against a global competitor",
   "type": "streaming-media",
-  "tags": ["competitive-strategy", "user-research", "agentic-engineering", "design-systems", "cross-platform", "behavioral-design", "brand-alignment"],
+  "tags": ["competitive-strategy", "user-research", "design-systems", "cross-platform", "behavioral-design", "brand-alignment"],
   "company": "Bibel TV",
   "role": "Head of Product Design",
-  "team": "1 designer (me) + 1 direct report (potential) + cross-functional partners, Berlin",
-  "duration": "August 2025 – Present",
-  "status": "in-progress",
-  "last_updated": "2026-05-07",
+  "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
+  "duration": "2025 – Present",
+  "status": "draft",
+  "last_updated": "2026-05-22",
   "hero_image": {
     "src": "/images/bibeltv/app-redesign-hero.png",
-    "alt": "Bibel TV app redesign: Mediathek section with warm light mode aesthetic and dynamic color theming"
+    "alt": "The redesigned Bibel TV app — Mediathek section, warm light-mode design"
   },
   "format_priority": ["in-depth", "executive", "blog"],
 
   "sections": [
     {
       "type": "hero",
-      "headline": "Designing a Faith Streaming App That Feels Premium Without Defaulting to Dark Mode",
-      "subtext": "Pray.com was launching in Germany — a premium faith app from ex-Netflix/Spotify engineers. Bibel TV has more content and 300+ years of archive, but a weaker UX. The redesign had to defend our market position by building a premium experience that feels warm, not Hollywood. That meant making light mode design genuinely work where the industry defaults to dark.",
-      "images": [
-        {
-          "src": "/images/bibeltv/app-redesign-01.png",
-          "alt": "Before and after: Bibel TV app redesign comparison",
-          "caption": "Before: dated patterns, no brand alignment. After: streaming-quality design with warm identity."
-        }
-      ]
+      "headline": "A premium faith app that doesn't default to dark mode",
+      "subtext": "Pray.com was coming to Germany — a polished, dark-mode faith app built by ex-Netflix and ex-Spotify people. Bibel TV had the deeper library and a 300-year archive, but an app that looked a few years behind. The redesign had to make that advantage visible."
     },
     {
       "type": "callout",
-      "quote": "Premium streaming apps default to dark mode. It's the industry standard. But our users want light. The question wasn't which trend to follow — it was how to make premium work the way our users needed it to.",
-      "context": "The strategic design tension at the heart of the project"
+      "quote": "Premium streaming means dark mode — that is the industry default. Our users want light. The question was not which trend to follow, but how to make a light interface feel genuinely premium.",
+      "context": "The strategic design bet at the centre of the project"
     },
     {
       "type": "narrative",
-      "headline": "The Business Case",
-      "content": "Bibel TV is the largest faith media platform in Europe with 300+ years of broadcast archive. But our app was lagging:\n\n- **Mediocre UI patterns** — not aligned with modern streaming apps\n- **No brand connection** — broadcast rebranded in 2024, app still looked 2020\n- **Limited content discovery** — users couldn't find what they wanted\n- **No habit formation** — no behavioral design for engagement or retention\n\nThe competitive threat was Pray.com: well-funded, built by ex-Netflix/Spotify engineers, launching in Germany with a beautiful dark-mode-first app. They were built for a global market. Bibel TV has German market knowledge and cultural legitimacy. That's our moat.\n\nThe design work had to make that moat visible. Users needed to feel that Bibel TV understood them — and that the product quality matched the content depth."
+      "headline": "The threat",
+      "content": "Bibel TV is the largest faith media platform in Europe, with a broadcast archive going back generations. The app did not show it. The patterns were dated, it had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThen Pray.com announced a German launch — well funded, built by people from Netflix and Spotify, with a polished dark-mode app aimed at a global market. Bibel TV's advantage is the opposite of global: German-market knowledge, cultural fit, and the archive. The redesign had to turn that advantage into something a user could feel in the first thirty seconds."
     },
     {
       "type": "narrative",
-      "headline": "Three Integrated Initiatives",
-      "content": "A single app redesign would have been surface-level. We built three initiatives that reinforced each other:\n\n**1. App Redesign (Mediathek-first)**\nNew visual language: lighter, warmer, premium-feeling. Aligned with the 2024 broadcast rebrand. Streaming-native patterns (discovery, pagination, search, watch-next). Three core sections: Mediathek (VOD), Bible Reading, Reading Plans. Behavioral design for retention.\n\n**2. Design System as API**\nNot a Figma library — a live token service. GitHub + Style Dictionary + n8n sync. Platforms: Android (live), iOS (planned), web (planned), Figma (synced). One source of truth, automatic sync.\n\n**3. OKLCH Color Extraction API**\nCustom K-means clustering in perceptual color space. Extracts themes from content artwork for both light and dark modes. WCAG-compliant. Live config — no code deploys needed."
-    },
-    {
-      "type": "narrative",
-      "headline": "The Process",
-      "content": "The work happened in three phases over approximately 9 months:\n\n**Phase 1: Research (Weeks 1–2)**\nCompetitive analysis — Netflix, Spotify, Apple TV+, YouTube, Pray.com, Hallow. How do global streaming apps handle discovery, personalization, engagement? Internal stakeholder interviews — PM, engineering, content, leadership. Brand alignment study — how does the broadcast identity translate to digital?\n\n**Phase 2: Direction & Prototyping (Weeks 3–6)**\nWe converged on aesthetic direction: light, warm, premium. Built a web prototype first for rapid iteration. But when we moved to Android, gradient rendering quality raised concerns. We pivoted to Android prototyping — and the design direction worked beautifully. The lesson: prototype on the target platform early. Web-first assumptions don't always hold.\n\n**Phase 3: Validation (Weeks 7–9)**\nInternal round: staff/team testing on UI clarity, navigation, color contrast. External round: user surveys (quantitative) and 10+ follow-up conversations (qualitative). Key findings: 87% preferred light mode. 4.2/5 premium feel rating. No critical UX issues flagged. The design direction held."
-    },
-    {
-      "type": "narrative",
-      "headline": "Key Design Decisions",
-      "content": "**Light mode as the primary design direction** — The industry standard for premium streaming is dark mode. We chose light because our users associate darkness with impersonality. This required making OKLCH color extraction work for light mode — which the industry hasn't solved. It was the harder path but the right one for this brand.\n\n**App redesign before infrastructure, infrastructure before everything else** — We designed the app first to validate direction. But the token API and color extraction had to run in parallel. Without infrastructure, the redesign would be static. With it, the redesign becomes dynamic and self-updating.\n\n**Agentic engineering as design method** — I used Claude Code and Cursor to prototype the web and Android experiences with real APIs and real data. The prototype code became the design artifact, not throwaway mockups. Engineering consumed the prototype directly — no Figma handoff, no specs, no ambiguity. This is how I'm changing the design-to-code pipeline for the whole team."
-    },
-    {
-      "type": "narrative",
-      "headline": "The Android Pivot",
-      "content": "A moment worth calling out: we built a web prototype first because it's fast. The gradients looked beautiful. But when we prototyped Android, we discovered gradient rendering quality was uncertain — banding potential, performance questions on lower-end devices.\n\nInstead of forcing the design direction to accommodate web assumptions, we pivoted and built a full Android prototype. It worked *better* than the web version. The design direction was sound — the problem was our prototyping approach, not our design.\n\nThis is a lesson I carry into every multi-platform project: prototype on the target platform early, or your assumptions will be wrong."
-    },
-    {
-      "type": "process",
-      "headline": "Agentic Engineering in Practice",
-      "steps": [
+      "headline": "The light-mode bet",
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas — the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision — it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static.",
+      "images": [
         {
-          "label": "Design to Code (Not Figma to Handoff)",
-          "description": "I designed new experiences as functional web and Android prototypes using Claude Code and Cursor. Real APIs, real content data. Not static mockups."
-        },
-        {
-          "label": "Prototype as Design Artifact",
-          "description": "The prototype code became the design spec — component structure, API calls, interaction patterns. Engineering consumed it directly."
-        },
-        {
-          "label": "Parallel Iteration",
-          "description": "Design and engineering worked in parallel, not sequentially. I could iterate quickly on engineer feedback because the design was already in code."
-        },
-        {
-          "label": "Evangelizing the Method",
-          "description": "Active evangelism with the broader team — trying to shift how design and engineering collaborate from sequential handoff to parallel development."
+          "src": "/images/bibeltv/app-redesign-beforeafter.png",
+          "alt": "The Bibel TV app before and after the redesign",
+          "caption": "Before and after: dated patterns and no brand link, to a warm light-mode experience aligned with the broadcast."
         }
       ]
     },
     {
+      "type": "narrative",
+      "headline": "Research, and a lesson about platforms",
+      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast. Moving it to Android, the gradient rendering raised real quality concerns. Rather than bend the design to web assumptions, I prototyped directly on Android — and the direction held. Prototype on the target platform early, or the assumptions you carry will be the wrong ones."
+    },
+    {
       "type": "outcome",
-      "headline": "Results",
+      "headline": "What changed",
       "metrics": [
         {
-          "label": "User Preference",
-          "value": "87% prefer light mode, 4.2/5 premium feel rating — validated across surveys and conversations"
+          "label": "User validation",
+          "value": "87% of survey users preferred light mode; 4.2 / 5 average \"premium feel\" rating (n=40, plus follow-up conversations)"
         },
         {
-          "label": "Design System",
-          "value": "Token API live, Android consuming tokens, Figma synced via n8n. Single source of truth."
-        },
-        {
-          "label": "Color Extraction",
-          "value": "OKLCH API running — all palettes WCAG AA compliant, no manual intervention needed"
+          "label": "Brand alignment",
+          "before": "App lagged the 2025 broadcast rebrand",
+          "after": "A shared visual language across app and broadcast"
         },
         {
           "label": "Readiness",
-          "value": "Design finalized. Moving to development handover. Engineering team has functional prototype code."
+          "value": "Design direction finalised and validated; moving into development with working prototype code"
         }
       ]
     },
     {
       "type": "reflection",
-      "headline": "What I Learned",
-      "content": "The biggest learning: owning design end-to-end means owning the infrastructure. Not just the Figma file — the token API, the color extraction logic, the automation workflows. These are design decisions embedded in code. When you delegate them, you delegate the quality of the final product.\n\nThe second learning: prototyping in code with agentic tools is not a compromise — it's a step up. I used Claude Code to explore faster, iterate more broadly, and produce design artifacts that engineering could consume directly. The traditional Figma-to-handoff model is slower and introduces more ambiguity.\n\nThe third: the Android pivot taught me to prototype on the target platform early. Web-first is fast. Target-platform-first is honest."
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why This Matters for Your Team",
-      "content": "If you're leading design across multiple platforms without a large team, you can't afford the luxury of sequential workflows. I designed the entire Bibel TV app experience — across mobile, web, and TV — as a single head of product design. The secret was treating infrastructure as design work and code as a design medium. That's not a technical skill — it's a leadership decision. When you collapse the design-to-code pipeline, you ship better products with fewer people."
+      "headline": "What I took from it",
+      "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision — it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
     }
   ],
 
   "variants": {
     "executive": {
-      "summary": "Led a full app redesign (mobile, web, TV) with custom color extraction API, deployed token system, and agentic engineering. 87% light mode user preference, 4.2/5 premium rating. Ready for development handover.",
-      "angle": "Multi-platform product leadership with technical depth — from competitive strategy through infrastructure",
-      "sections": ["hero", "outcome", "key-takeaway"],
+      "summary": "Led the redesign of Bibel TV's streaming apps to defend the German market against Pray.com — a premium, warm, light-mode experience. 87% light-mode preference, 4.2/5 premium rating, validated and ready for development.",
+      "angle": "A redesign as competitive strategy",
+      "sections": ["hero", "outcome", "reflection"],
       "max_read_time": "2 min"
     },
     "blog": {
-      "summary": "A global competitor was launching with a premium dark-mode app. We chose light mode because our users wanted warmth, not Hollywood. Here's how we made it work.",
-      "angle": "Design leadership for smaller teams: when to own the infrastructure and when to delegate",
+      "summary": "A global competitor was launching a premium dark-mode faith app in Germany. Bibel TV chose light mode, because its users want warmth, not Hollywood. Here is how that bet was made.",
+      "angle": "Choosing against the industry default, on purpose",
       "sections": ["hero", "callout", "narrative", "reflection"],
-      "max_read_time": "7 min"
+      "max_read_time": "6 min"
     }
   },
 
   "related": [
+    "bibeltv-agentic-engineering",
     "bibeltv-color-api",
-    "bibeltv-design-system-api",
-    "churchdesk-booking-system"
+    "bibeltv-design-system-api"
   ],
 
   "meta": {
-    "read_time_minutes": 10,
+    "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study"
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Jupus case-study quality pass 2026-05-22"
   }
 }
