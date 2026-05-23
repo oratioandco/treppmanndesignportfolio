@@ -1,18 +1,18 @@
 {
   "id": "bibeltv-color-api",
   "title": "A Color Engine Built for the Brand, Not the Industry Default",
-  "subtitle": "K-means perceptual color extraction that powers dynamic theming, card gradients, and WCAG-compliant text from content artwork",
+  "subtitle": "Perceptual color extraction from content artwork — enabling dynamic theming that feels warm, meets WCAG contrast, and scales across light and dark modes",
   "type": "design-system",
-  "tags": ["color-science", "design-systems", "accessibility", "api-first", "streaming-media", "brand-alignment", "technical-depth"],
+  "tags": ["color-science", "design-systems", "accessibility", "api-first", "streaming-media", "brand-alignment", "technical-depth", "k-means", "oklch"],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led initiative with engineering partner, Berlin",
   "duration": "2025 – 2026",
   "status": "review",
-  "last_updated": "2026-05-07",
+  "last_updated": "2026-05-23",
   "hero_image": {
-    "src": "/images/bibeltv/color-api-hero.png",
-    "alt": "Color extraction config UI: K-means clusters powering card gradients, text, and logo accent"
+    "src": "/images/bibeltv/color-lab.png",
+    "alt": "The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right — one in dark mode, one in light mode — both themed from the same extracted palette"
   },
   "format_priority": ["executive", "in-depth", "blog"],
 
@@ -20,12 +20,12 @@
     {
       "type": "hero",
       "headline": "A Color Engine Built for the Brand, Not the Industry Default",
-      "subtext": "Bibel TV needed dynamic color extraction that works in light mode, meets WCAG AA/AAA contrast, and feels warm rather than Hollywood dark. We built a K-means cluster engine in OKLCH perceptual color space that produces base color, accent color, text colors, and background gradients from a single content image.",
+      "subtext": "Every streaming app extracts colors from artwork. Most do it in RGB and default to dark mode. We built a K-means extraction engine in OKLCH perceptual color space — so Bibel TV gets warm, dynamic theming that works in both modes, meets AA/AAA contrast, and feels cohesive with the on-air brand.",
       "images": [
         {
           "src": "/images/bibeltv/color-api-01.png",
-          "alt": "Config UI showing artwork with K-means extracted colors mapped to card gradient, text, logo accent, and page background",
-          "caption": "From one artwork: base color, accent, two text colors, page gradient."
+          "alt": "Config UI showing artwork with K-means extracted colors, contrast ratios, and gradient preview",
+          "caption": "The color extraction config UI: from artwork to theme specification."
         }
       ]
     },
@@ -37,22 +37,57 @@
     {
       "type": "narrative",
       "headline": "What the Engine Extracts",
-      "content": "The K-means algorithm identifies the most prominent colors in any content artwork. But prominence alone isn't enough — we filter for hue and vibrance, then map clusters to specific design roles:\n\n**Base color** — Used for card gradients that sit below and overlap the image. Guaranteed to produce AA or AAA contrast with text. This is the anchor of the theme.\n\n**Accent color** — Extracted for the logo overlay and page background gradient. The gradient is composed of base color at 80% opacity over the background color. This creates the signature visual effect on the hero carousel.\n\n**Two text colors** — Designed to enable multi-tone text treatments like Bibel TV's on-air broadcast rebrand. We ultimately simplified for the denser phone display, but having two available gives flexibility. On mobile, busy multi-text looks don't work — one high-contrast text color is enough. The second text color exists in the engine but stays unused by default.\n\n**Page background gradient** — Computed from the base color at 80% opacity over the page background. Creates depth without overwhelming the content artwork."
+      "content": "From a single content image, the API produces a complete theme specification:\n\n**K-means clusters** — Identifies the most prominent colors through K-means clustering. But prominence alone isn't the goal — the algorithm includes a hue and vibrance filter, so dull, neutral grays are excluded. It finds the colors that actually define the artwork's visual character, not just its pixel distribution.\n\n**Base color** — The primary extracted color, used for the card gradient below and overlapping the image. The engine guarantees this color will produce AA or AAA contrast with the extracted text colors. The card gradient is the visual anchor — it connects the content artwork to the UI.\n\n**Accent color** — Used for the logo overlay and as part of the page background gradient. The page gradient is the base color rendered at 80% opacity over the page background. This creates that warm, connected-to-content feel without overwhelming the visual.\n\n**Two text colors** — Extracted to enable multi-tone text treatments, matching Bibel TV's 2024 on-air brand rebrand which uses two-text-color hierarchy for visual sophistication. We ultimately decided this was too colorful and busy for a denser phone display, but the engine produces them — the design team decides whether to use them.\n\n**Page background gradient** — Computed from the base color at 80% opacity over the page background. Creates depth and warmth without competing with the content artwork."
     },
     {
       "type": "narrative",
       "headline": "Why Standard Extraction Doesn't Work",
-      "content": "Most extraction tools (imgix, off-the-shelf libraries) work in RGB. They optimize for contrast against dark backgrounds. Flip to light mode, and the same extracted colors washed out text or feel too aggressive. You need perceptual control over lightness and chroma — something RGB and HSL don't give you.\n\nOKLCH is a perceptually uniform color space. You can reason about lightness (L) and chroma (C) in ways that enable precise control over both light and dark mode themes simultaneously."
+      "content": "Most extraction tools (imgix, off-the-shelf libraries) work in RGB. They optimize for contrast against dark backgrounds. Flip to light mode, and the same extracted colors washed out text or feel too aggressive. You need perceptual control over lightness and chroma — something RGB and HSL don't give you.\n\nOKLCH is a perceptually uniform color space. You can reason about lightness (L) and chroma (C) in ways that enable precise control over contrast ratios, both light and dark mode themes simultaneously, and gradient blending that feels natural."
     },
     {
       "type": "narrative",
       "headline": "Key Design Decisions",
-      "content": "**Design-led infrastructure** — I owned the color extraction architecture, not just the Figma design. This is unusual. Color extraction is a design decision embedded in code — making it requires understanding both perceptual color science and the brand's emotional relationship with its users.\n\n**Light mode first** — We optimized for light mode correctness, then verified in dark mode. This is the reverse of streaming industry defaults.\n\n**Simplified text colors for phone** — The API could support complex multi-text color schemes like the on-air brand. But on a dense mobile display, the extra text colors created visual noise. Sometimes the best design decision is not to use what you built. We kept the engine flexible but shipped with one text color default."
+      "content": "**Design-led infrastructure** — I owned the color extraction architecture, not just the Figma design. This is unusual for a Head of Design role. Infrastructure work typically lives with platform engineering. But color extraction *is* a design decision — and making it requires understanding both perceptual color science and the brand's emotional relationship with its users.\n\n**Light mode as default** — The brand identity for Bibel TV is warm, hopeful, light. Users associate the brand with brightness, not darkness. So the extraction pipeline was optimized for light mode correctness first, then verified in dark mode. This is the reverse of every streaming app's standard approach.\n\n**Hue and vibrance filtering** — Not every prominent color is useful. A gray, dark area might dominate pixel count, but it doesn't define the artwork's visual character. The hue and vibrance filter ensures the extraction focuses on colors that create warmth, not neutrality.\n\n**Simplified text colors for phone** — The on-air brand uses two text colors for complex visual hierarchy. But phone displays are dense. Two text colors created visual noise. Sometimes the best design decision is not to use what you built. We kept the engine flexible but shipped with one text color default on mobile.\n\n**Brand consistency through automation** — The 2024 Bibel TV on-air rebrand uses gradients created from a primary brand color overlaid at reduced opacity. The color API replicates this exact approach: base color at 80% opacity, creating a visual language that bridges the app with the broadcast identity."
     },
     {
       "type": "narrative",
       "headline": "Technical Architecture",
-      "content": "The color engine runs as part of the deployed API service. K-means clustering operates in RGB space, then converts to OKLCH for perceptual tuning. The algorithm:\n\n1. Image loaded from content URL\n2. K-means clustering identifies prominent colors\n3. Hue and vibrance filtering removes dull/neutral clusters\n4. Clusters mapped to roles: base color, accent, text 1, text 2\n5. Contrast ratios calculated via WCAG algorithm\n6. Config JSON returned with all theme values\n\nThe API serves configs as live data — artwork changes update the theme automatically, no code deploys."
+      "content": "**K-means clustering** — Image converted to pixel array. K-means identifies dominant color clusters. The algorithm works in OKLCH space — perceptually uniform, which means the extracted colors are meaningful to human vision, not just mathematical proximity.\n\n**Hue + vibrance filter** — Clusters below a vibrance threshold are excluded. This prevents neutral grays and desaturated tones from dominating the theme.\n\n**Contrast compliance** — Text colors are validated against extracted base color using the WCAG algorithm. The engine guarantees AA or AAA compliance — no manual checking needed.\n\n**Config UI** — Live administration interface for managing which artwork produces which colors, adjusting extraction parameters, and previewing results. Runs as a web service with access control.\n\n**The API returns** — A complete theme specification: base color, accent, text colors (1-2), page background gradient, logo accent, all validated for contrast compliance and perceptual quality."
+    },
+    {
+      "type": "process",
+      "headline": "How It Works",
+      "steps": [
+        {
+          "label": "Image Loading",
+          "description": "Content artwork loaded from URL or uploaded. Image converted to pixel array."
+        },
+        {
+          "label": "K-means Clustering",
+          "description": "Algorithm identifies the most prominent colors in the image. Works in OKLCH space for perceptual accuracy."
+        },
+        {
+          "label": "Hue + Vibrance Filtering",
+          "description": "Low-vibrance clusters filtered out. Only chromatically rich colors pass — the colors that define the artwork's visual character."
+        },
+        {
+          "label": "Role Mapping",
+          "description": "Clusters mapped to roles: base color (card gradient, highest dominant), accent (logo, secondary), text colors (contrast-optimized for readability)."
+        },
+        {
+          "label": "Contrast Validation",
+          "description": "Text colors validated against base color using WCAG AA/AAA algorithm. If any color pair fails, the algorithm adjusts L and C until compliance is met."
+        },
+        {
+          "label": "Theme Output",
+          "description": "JSON theme specification returned: all colors in hex/OKLCH, gradient configuration, contrast ratios. Ready for immediate use in app theming."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "headline": "The Brand Connection",
+      "content": "Bibel TV's 2024 on-air rebrand uses a sophisticated color system: primary colors blended at reduced opacity to create gradients, with text in multiple tones for visual hierarchy. The color API was designed to automate this brand language in the digital product.\n\nThe card gradient (base color below/overlapping artwork), the page gradient (base color at 80% opacity), the logo accent — these are all digital translations of the on-air visual language. The API ensures that every piece of content artowrk produces a theme that feels connected to the broadcast brand, without manual color selection.\n\nThis matters because it keeps the app feeling like Bibel TV — not like Netflix with a different logo. The brand's warmth, optimism, and light are embedded in the extraction algorithm."
     },
     {
       "type": "outcome",
@@ -64,29 +99,29 @@
         },
         {
           "label": "Contrast Compliance",
-          "value": "All extracted base colors produce AA or AAA compliant contrast with text"
+          "value": "All extracted theme colors validated at AA or AAA — zero manual checking"
         },
         {
           "label": "Delivery",
-          "value": "API live and running. Config UI functional. Figma plugin integrated."
+          "value": "API live and running. Config UI accessible. Integrated with Figma plugin for design workflow."
         }
       ]
     },
     {
       "type": "reflection",
       "headline": "What I Learned",
-      "content": "The biggest insight: infrastructure work is design work. The decisions embedded in the color extraction algorithm — hue thresholds, vibrance filters, contrast compliance — are deeply design decisions. When you delegate them to a generic API, you delegate brand quality.\n\nThe second: on mobile, restraint beats flexibility. The engine could support complex multi-text looks. But phone displays are dense — the extra text colors created noise, not depth. The API ships with capability it doesn't always use. That's fine. Sometimes the best design is knowing when not to deploy what you built."
+      "content": "The biggest insight: infrastructure work is design work. The decisions embedded in the color extraction algorithm — hue thresholds, vibrance filters, contrast compliance, perceptual vs. mathematical proximity — are deeply design decisions. When you delegate them to a generic API, you delegate brand quality.\n\nThe second: on mobile, restraint beats flexibility. The engine could support complex multi-text looks. But phone displays are dense — the extra text colors created noise, not depth. The API ships with capability it doesn't always use. That's fine. Sometimes the best design is knowing when not to deploy what you built.\n\nThe third: the on-air brand system and the digital product should feel like the same brand. Automating the color connection through the API is what makes that possible at scale. Without it, every content piece would need manual color matching — impossible for a content-heavy platform."
     },
     {
       "type": "key-takeaway",
       "headline": "Why This Matters for Your Team",
-      "content": "If your brand has specific visual requirements that industry tools don't match, the answer isn't to compromise the brand. It's to build the tool that does. I designed a color extraction engine because standard tools didn't solve the light-mode problem. Owning that infrastructure — from K-means clustering through OKLCH tuning through contrast compliance — is what makes the final product match the original vision."
+      "content": "If your brand has specific visual requirements that industry tools don't match, the answer isn't to compromise the brand. It's to build the tool that does. I designed a color extraction engine because standard tools didn't solve the light-mode problem. Owning that infrastructure — from K-means clustering in OKLCH through contrast compliance through brand-consistent gradient generation — is what makes the final product feel like the brand, not a template."
     }
   ],
 
   "variants": {
     "executive": {
-      "summary": "Built a K-means color extraction API in OKLCH space that powers dynamic theming for Bibel TV's streaming app. 87% light mode user preference, full AA/AAA contrast compliance. Live and validated.",
+      "summary": "Built a K-means color extraction API in OKLCH space that powers dynamic theming, card gradients, and WCAG-compliant text for Bibel TV's streaming app. 87% light mode user preference, zero manual contrast checking, brand-consistent automation.",
       "angle": "Design-led infrastructure: when industry defaults don't match your brand requirements",
       "sections": ["hero", "narrative", "outcome", "key-takeaway"],
       "max_read_time": "2 min"
@@ -101,13 +136,14 @@
 
   "related": [
     "bibeltv-design-system-api",
-    "ninox-org-building"
+    "bibeltv-app-redesign",
+    "bibeltv-agentic-engineering"
   ],
 
   "meta": {
-    "read_time_minutes": 8,
+    "read_time_minutes": 10,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study + live API inspection"
+    "source": "Bibel TV project interview 2026-05-06 + comprehensive project case study + Figma plugin source inspection"
   }
 }
