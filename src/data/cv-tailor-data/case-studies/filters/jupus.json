@@ -29,16 +29,15 @@
       "format_override": "in-depth"
     },
     {
-      "id": "datameer-data-dense-analytics",
+      "id": "bibeltv-support-agent",
       "visibility": "browseable",
       "order": 5,
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-support-agent",
-      "visibility": "browseable",
-      "order": 6,
-      "format_override": "executive"
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 6
     },
     {
       "id": "bibeltv-ai-prototyping",
@@ -64,8 +63,8 @@
       "churchdesk-booking-system": "Primary workflow story: opaque regulated domain simplified to clean UX, measurable outcomes (70%/90%), multi-stakeholder coordination. Bridges to legal workflow complexity.",
       "bibeltv-color-api": "Design system from scratch: cross-platform, token-first, built without prior infrastructure. Shows ability to set technical foundations as first design hire.",
       "ninox-org-building": "Leadership story: org building, team design, hiring, culture. Shows the 'first design hire' pattern Jupus needs.",
-      "datameer-data-dense-analytics": "Regulated industry depth: banks and insurers, data-dense interfaces, design elevated to strategic partner.",
-      "bibeltv-support-agent": "Second AI story: human-in-the-loop, AI tools for professional users, trust and control design."
+      "bibeltv-support-agent": "Second AI story: human-in-the-loop, AI tools for professional users, trust and control design.",
+      "datameer-data-dense-analytics": "DROPPED 2026-05-24 from Jupus filter. The regulated-industry-transfer argument (banks/insurers → legal compliance) is weaker than ChurchDesk's GDPR-plus angle, and Jupus is hiring a Product Design Lead for legal AI rather than a data-viz specialist. Kept as a case study file; not surfaced for Jupus."
     }
   }
 }
