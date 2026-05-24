@@ -42,11 +42,6 @@
       "type": "reflection",
       "headline": "What I took from it",
       "content": "A Copilot skill is a small piece of design surface but a useful one to do well. The leverage isn't in the model — it's in scoping what context to give it, what counts as a good output, and where the human stays in charge. Those are design decisions, not engineering ones.\n\nThe principle that ports to other domains: AI augments judgment, it doesn't replace it. In customer support, in legal drafting, in any domain where the human is liable for the output, the design job is to compress drafting time while leaving the judgment surface untouched."
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why this is relevant for legal AI",
-      "content": "The same pattern applies to AI-assisted legal drafting: load the firm's playbook as context, define what a good first draft looks like, keep the lawyer's edit-and-send authority absolute, and design escalation paths so the AI flags rather than guesses on cases that need full human handling. The leverage is in the scoping, not the model."
     }
   ],
 
@@ -54,7 +49,7 @@
     "executive": {
       "summary": "Designed a Copilot skill for the Bibel TV customer-support team. It drafts replies using the company's CS handbook as context; the team edits and sends. Design work was scoping the context, defining what counts as a good draft, and keeping the human send-decision absolute.",
       "angle": "AI augments judgment; the design work is the scoping",
-      "sections": ["hero", "callout", "reflection", "key-takeaway"],
+      "sections": ["hero", "callout", "reflection"],
       "max_read_time": "2 min"
     }
   },
