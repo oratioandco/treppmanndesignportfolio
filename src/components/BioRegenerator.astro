@@ -1,32 +1,38 @@
 ---
 /**
- * BioRegenerator — a small interactive control that lets the reader
- * pick which angle and length they want the intro bio in.
+ * BioRegenerator — three-dial control that picks lens × length × model
+ * and live-generates the bio via the treppmann-bio-api endpoint.
  *
- * Two dials: lens × length. All variants are pre-generated and curated
- * (see src/data/bio-variants.json). No runtime API call; the dials just
- * select which variant to show.
- *
- * The behaviour is implemented in a small inline <script>. The component
- * works without JS — initial render shows the default variant statically.
+ * - First paint: uses a pre-generated fallback variant from
+ *   src/data/bio-variants.json (so the page works without JS and during
+ *   API outages).
+ * - On any dial change: fetches POST /bio with the current params,
+ *   shows a loading state, replaces the text with the model's output.
+ *   On error: falls back to the pre-generated text for that lens+length
+ *   (independent of model — model variation is the API's value-add).
  */
 import bioData from '../data/bio-variants.json';
 
-const { lenses, lengths, default: defaultVariant, variants } = bioData;
-const defaultText = (variants as any)[defaultVariant.lens][defaultVariant.length];
-
-// Inline JSON so the client script can look up variants without an extra
-// fetch (Astro static build).
+const { lenses, lengths, models, default: defaultVariant, variants, api_url } =
+  bioData as any;
+const defaultText = variants[defaultVariant.lens][defaultVariant.length];
 const variantsJson = JSON.stringify(variants);
 ---
 
-<div class="bio-regen" data-default-lens={defaultVariant.lens} data-default-length={defaultVariant.length}>
-  <p class="bio-regen__hint">↻ &nbsp;TAP TO REGENERATE THIS BIO</p>
+<div
+  class="bio-regen"
+  data-default-lens={defaultVariant.lens}
+  data-default-length={defaultVariant.length}
+  data-default-model={defaultVariant.model}
+  data-api-url={api_url}
+>
+  <p class="bio-regen__hint">↻ &nbsp;TAP A DIAL — A LIVE MODEL WILL REGENERATE THIS BIO</p>
+
   <div class="bio-regen__controls" role="group" aria-label="Choose how to read this bio">
     <div class="bio-regen__dial">
       <span class="bio-regen__dial-label">LENS</span>
       <div class="bio-regen__options" role="radiogroup" aria-label="Lens">
-        {lenses.map((lens) => (
+        {lenses.map((lens: any) => (
           <button
             type="button"
             class="bio-regen__option"
@@ -45,7 +51,7 @@ const variantsJson = JSON.stringify(variants);
     <div class="bio-regen__dial">
       <span class="bio-regen__dial-label">LENGTH</span>
       <div class="bio-regen__options" role="radiogroup" aria-label="Length">
-        {lengths.map((len) => (
+        {lengths.map((len: any) => (
           <button
             type="button"
             class="bio-regen__option"
@@ -60,43 +66,128 @@ const variantsJson = JSON.stringify(variants);
         ))}
       </div>
     </div>
+
+    <div class="bio-regen__dial">
+      <span class="bio-regen__dial-label">MODEL</span>
+      <div class="bio-regen__options" role="radiogroup" aria-label="Model">
+        {models.map((m: any) => (
+          <button
+            type="button"
+            class="bio-regen__option"
+            data-axis="model"
+            data-value={m.id}
+            data-active={m.id === defaultVariant.model ? 'true' : 'false'}
+            role="radio"
+            aria-checked={m.id === defaultVariant.model ? 'true' : 'false'}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
 
   <p class="bio-regen__text" aria-live="polite" data-bio-text>
-    I'm <a href="/about">Tobias Treppmann</a>. {defaultText}
+    {defaultText}
+  </p>
+
+  <p class="bio-regen__caption" data-bio-caption>
+    <span class="bio-regen__caption-dot" aria-hidden="true">●</span>
+    <span data-bio-caption-text>Fallback bio shown on first paint &mdash; pick any dial to live-generate.</span>
   </p>
 </div>
 
 <script is:inline define:vars={{ variantsJson }}>
-  // Hydrate the dial controls. Static-site safe; no framework runtime.
+  // Static-site safe hydration. No framework runtime.
   (function () {
     const variants = JSON.parse(variantsJson);
     const roots = document.querySelectorAll('.bio-regen');
     roots.forEach((root) => {
       const textEl = root.querySelector('[data-bio-text]');
-      if (!textEl) return;
+      const captionEl = root.querySelector('[data-bio-caption-text]');
+      if (!textEl || !captionEl) return;
 
+      const apiUrl = root.getAttribute('data-api-url');
       let currentLens = root.getAttribute('data-default-lens');
       let currentLength = root.getAttribute('data-default-length');
+      let currentModel = root.getAttribute('data-default-model');
 
       const buttons = root.querySelectorAll('.bio-regen__option');
+      let inFlightToken = 0;
 
-      function setActive(axis, value) {
-        if (axis === 'lens') currentLens = value;
-        else if (axis === 'length') currentLength = value;
-
-        // Update button states for this axis.
+      function setButtonStates(axis, value) {
         buttons.forEach((btn) => {
           if (btn.getAttribute('data-axis') !== axis) return;
           const isActive = btn.getAttribute('data-value') === value;
           btn.setAttribute('data-active', isActive ? 'true' : 'false');
           btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
         });
+      }
 
-        // Swap the visible text.
-        const next = variants[currentLens]?.[currentLength];
-        if (next) {
-          textEl.innerHTML = `I'm <a href="/about">Tobias Treppmann</a>. ${next}`;
+      function setDisabled(disabled) {
+        buttons.forEach((btn) => {
+          if (disabled) btn.setAttribute('disabled', 'true');
+          else btn.removeAttribute('disabled');
+        });
+      }
+
+      function setCaption(text, kind) {
+        captionEl.textContent = text;
+        captionEl.parentElement.setAttribute('data-state', kind);
+      }
+
+      async function regenerate() {
+        const token = ++inFlightToken;
+        const lens = currentLens;
+        const length = currentLength;
+        const model = currentModel;
+
+        setCaption('Asking ' + model + '…', 'loading');
+        textEl.classList.add('bio-regen__text--loading');
+        setDisabled(true);
+
+        try {
+          const res = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lens: lens, length: length, model: model }),
+          });
+          if (token !== inFlightToken) return; // a newer click superseded us
+          if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData.error || ('HTTP ' + res.status));
+          }
+          const data = await res.json();
+          if (token !== inFlightToken) return;
+          textEl.textContent = data.text;
+          setCaption(
+            'Generated by ' +
+              model +
+              (data.cached ? ' · cached' : ' · live') +
+              ' · ' +
+              lens +
+              ' lens, ' +
+              length +
+              ' length',
+            'ok'
+          );
+        } catch (err) {
+          if (token !== inFlightToken) return;
+          // Fall back to pre-generated text for this lens+length (model
+          // dimension doesn't exist in the fallback set; that's by design).
+          const fallback = variants[lens] && variants[lens][length];
+          if (fallback) textEl.textContent = fallback;
+          setCaption(
+            'Live generation failed (' +
+              (err && err.message ? err.message : 'network error') +
+              ') — showing fallback text.',
+            'error'
+          );
+        } finally {
+          if (token === inFlightToken) {
+            textEl.classList.remove('bio-regen__text--loading');
+            setDisabled(false);
+          }
         }
       }
 
@@ -104,7 +195,12 @@ const variantsJson = JSON.stringify(variants);
         btn.addEventListener('click', () => {
           const axis = btn.getAttribute('data-axis');
           const value = btn.getAttribute('data-value');
-          if (axis && value) setActive(axis, value);
+          if (!axis || !value) return;
+          if (axis === 'lens') currentLens = value;
+          else if (axis === 'length') currentLength = value;
+          else if (axis === 'model') currentModel = value;
+          setButtonStates(axis, value);
+          regenerate();
         });
       });
     });
@@ -114,10 +210,6 @@ const variantsJson = JSON.stringify(variants);
 <style is:global>
   /* ---------------------------------------------------------------- */
   /* BioRegenerator                                                   */
-  /*                                                                  */
-  /* Two stacked dials (LENS, LENGTH), each rendered as an inline     */
-  /* mono-typographic set of segmented options. Active option is in   */
-  /* the sage accent; inactive options are muted with a hover lift.   */
   /* ---------------------------------------------------------------- */
 
   .bio-regen {
@@ -174,15 +266,11 @@ const variantsJson = JSON.stringify(variants);
     color: var(--color-text-muted);
     cursor: pointer;
     border-radius: 0;
-    transition:
-      color 0.15s ease,
-      background-color 0.15s ease;
+    transition: color 0.15s ease, opacity 0.15s ease;
     letter-spacing: 0.02em;
     position: relative;
   }
 
-  /* Hairline separator between options — a soft pipe character feel without
-     using actual pipes (so keyboard / screen readers ignore it). */
   .bio-regen__option + .bio-regen__option::before {
     content: '';
     position: absolute;
@@ -201,11 +289,8 @@ const variantsJson = JSON.stringify(variants);
 
   .bio-regen__option[data-active='true'] {
     color: var(--color-accent);
-    font-weight: normal;
   }
 
-  /* The selected option gets a subtle underline rule — sage and tight,
-     not a button background. */
   .bio-regen__option[data-active='true']::after {
     content: '';
     position: absolute;
@@ -216,6 +301,11 @@ const variantsJson = JSON.stringify(variants);
     background: var(--color-accent);
   }
 
+  .bio-regen__option[disabled] {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
   .bio-regen__text {
     font-family: var(--font-body);
     font-size: 1.1rem;
@@ -223,8 +313,49 @@ const variantsJson = JSON.stringify(variants);
     color: var(--color-text);
     max-width: 50ch;
     margin: 0;
-    /* Smooth out the text swap so it doesn't feel jarring. */
-    transition: opacity 0.12s ease;
+    transition: opacity 0.18s ease;
+  }
+
+  .bio-regen__text--loading {
+    opacity: 0.4;
+  }
+
+  /* Caption shows generation state: loading / ok / error / first-paint. */
+  .bio-regen__caption {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin: 0.6rem 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    max-width: 50ch;
+  }
+
+  .bio-regen__caption-dot {
+    color: var(--color-rule);
+    font-size: 0.5rem;
+    line-height: 1;
+    transform: translateY(-0.15rem);
+  }
+
+  .bio-regen__caption[data-state='loading'] .bio-regen__caption-dot {
+    color: var(--color-accent);
+    animation: bio-regen-pulse 1.2s ease-in-out infinite;
+  }
+
+  .bio-regen__caption[data-state='ok'] .bio-regen__caption-dot {
+    color: var(--color-accent);
+  }
+
+  .bio-regen__caption[data-state='error'] .bio-regen__caption-dot {
+    color: #b8624c;
+  }
+
+  @keyframes bio-regen-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
   }
 
   @media (max-width: 50rem) {

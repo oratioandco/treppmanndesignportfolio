@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BioRegenerator from '../components/BioRegenerator.astro';
 ---
 
 <Layout title="Design Leadership">
@@ -41,10 +42,7 @@ import Layout from '../layouts/Layout.astro';
     setTimeout(animate, delay);
   });
 </script>
-      <p class="hero-description">
-        I'm <a href="/about">Tobias Treppmann</a>, a hands-on design leader who builds the psychological safety,
-        inclusive collaboration, and technical excellence that enables breakthrough user experiences.
-      </p>
+      <BioRegenerator />
     </div>
   </section>
 
