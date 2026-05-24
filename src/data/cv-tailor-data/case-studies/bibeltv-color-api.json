@@ -81,7 +81,7 @@
         },
         {
           "label": "Delivery",
-          "value": "API live, config UI in use, integrated with the design team's Figma plugin"
+          "value": "Live in production. Color data is written onto every image in the content library, so each artwork ships with its theme pre-computed. The engine is also accessible through a Figma plugin when designers are working with those images."
         }
       ]
     },
