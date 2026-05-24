@@ -1,0 +1,27 @@
+{
+  "_about": "Pre-generated bio variants for the home/portfolio-landing regenerator. Two dial axes: lens × length. Six total. No runtime AI call; all text is pre-vetted against the source experience files. To regenerate or edit, update this file and rebuild.",
+  "lenses": [
+    { "id": "builder", "label": "Builder" },
+    { "id": "ai-native", "label": "AI-Native" },
+    { "id": "translator", "label": "Translator" }
+  ],
+  "lengths": [
+    { "id": "short", "label": "Short" },
+    { "id": "long", "label": "Long" }
+  ],
+  "default": { "lens": "ai-native", "length": "long" },
+  "variants": {
+    "builder": {
+      "short": "Three times now: walked into a company with no design culture, built one, shipped through it. Bibel TV, ChurchDesk, Ninox. First design hires don't scare me; they're what I do.",
+      "long": "Three times now: walked into a company with no design culture, built one, shipped through it. At Ninox I joined the senior leadership team, managed a team of five including a design lead, set up shared design-system governance with engineering, and made the harder calls when someone wasn't the right fit. ChurchDesk and Bibel TV the same shape on different scales. Fifteen years of complex B2B SaaS underneath, lately back to hands-on so the next person I hire doesn't out-craft me."
+    },
+    "ai-native": {
+      "short": "I design AI products and use AI to design. Right now: vibe-coding for databases, Copilot skills for sensitive support, agentic prototyping inside engineering. Hands-on, not from the sidelines.",
+      "long": "I design AI products and I use AI to design. At Ninox I shaped the vibe-coding onboarding directly with the founders — prompt-to-database with the schema rendering into the real editor, not a chat preview. At Bibel TV the same year I designed a Copilot skill for customer support (handbook as context, human keeps the send decision) and run agentic prototyping with engineering — Figma to Claude Code to working prototype the same week. The throughline: AI works best when its output lands on a surface the user can actually touch, not in a chat transcript about the artefact."
+    },
+    "translator": {
+      "short": "Fifteen years of taking opaque B2B work and making it simple. Banks, insurers, churches, faith broadcasting. Regulated, document-heavy, normally ugly — shipped clean.",
+      "long": "Fifteen years of making complex B2B work feel simple. Director of Design at Datameer (data analytics for top US/UK/Canada banks and insurers), Head of Platform and Design at ChurchDesk (GDPR-plus church management, six countries), Head of Product Design at Ninox (no-code platform for SMEs that run on documents — law firms, contractors, inspectors), Head of Product Design at Bibel TV (streaming app + design infrastructure for a faith-media broadcaster). Regulated, opaque, document-heavy — and shipped in the language users actually use, not the language the domain reaches for."
+    }
+  }
+}

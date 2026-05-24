@@ -1,0 +1,237 @@
+---
+/**
+ * BioRegenerator — a small interactive control that lets the reader
+ * pick which angle and length they want the intro bio in.
+ *
+ * Two dials: lens × length. All variants are pre-generated and curated
+ * (see src/data/bio-variants.json). No runtime API call; the dials just
+ * select which variant to show.
+ *
+ * The behaviour is implemented in a small inline <script>. The component
+ * works without JS — initial render shows the default variant statically.
+ */
+import bioData from '../data/bio-variants.json';
+
+const { lenses, lengths, default: defaultVariant, variants } = bioData;
+const defaultText = (variants as any)[defaultVariant.lens][defaultVariant.length];
+
+// Inline JSON so the client script can look up variants without an extra
+// fetch (Astro static build).
+const variantsJson = JSON.stringify(variants);
+---
+
+<div class="bio-regen" data-default-lens={defaultVariant.lens} data-default-length={defaultVariant.length}>
+  <p class="bio-regen__hint">↻ &nbsp;TAP TO REGENERATE THIS BIO</p>
+  <div class="bio-regen__controls" role="group" aria-label="Choose how to read this bio">
+    <div class="bio-regen__dial">
+      <span class="bio-regen__dial-label">LENS</span>
+      <div class="bio-regen__options" role="radiogroup" aria-label="Lens">
+        {lenses.map((lens) => (
+          <button
+            type="button"
+            class="bio-regen__option"
+            data-axis="lens"
+            data-value={lens.id}
+            data-active={lens.id === defaultVariant.lens ? 'true' : 'false'}
+            role="radio"
+            aria-checked={lens.id === defaultVariant.lens ? 'true' : 'false'}
+          >
+            {lens.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="bio-regen__dial">
+      <span class="bio-regen__dial-label">LENGTH</span>
+      <div class="bio-regen__options" role="radiogroup" aria-label="Length">
+        {lengths.map((len) => (
+          <button
+            type="button"
+            class="bio-regen__option"
+            data-axis="length"
+            data-value={len.id}
+            data-active={len.id === defaultVariant.length ? 'true' : 'false'}
+            role="radio"
+            aria-checked={len.id === defaultVariant.length ? 'true' : 'false'}
+          >
+            {len.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <p class="bio-regen__text" aria-live="polite" data-bio-text>
+    I'm <a href="/about">Tobias Treppmann</a>. {defaultText}
+  </p>
+</div>
+
+<script is:inline define:vars={{ variantsJson }}>
+  // Hydrate the dial controls. Static-site safe; no framework runtime.
+  (function () {
+    const variants = JSON.parse(variantsJson);
+    const roots = document.querySelectorAll('.bio-regen');
+    roots.forEach((root) => {
+      const textEl = root.querySelector('[data-bio-text]');
+      if (!textEl) return;
+
+      let currentLens = root.getAttribute('data-default-lens');
+      let currentLength = root.getAttribute('data-default-length');
+
+      const buttons = root.querySelectorAll('.bio-regen__option');
+
+      function setActive(axis, value) {
+        if (axis === 'lens') currentLens = value;
+        else if (axis === 'length') currentLength = value;
+
+        // Update button states for this axis.
+        buttons.forEach((btn) => {
+          if (btn.getAttribute('data-axis') !== axis) return;
+          const isActive = btn.getAttribute('data-value') === value;
+          btn.setAttribute('data-active', isActive ? 'true' : 'false');
+          btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        });
+
+        // Swap the visible text.
+        const next = variants[currentLens]?.[currentLength];
+        if (next) {
+          textEl.innerHTML = `I'm <a href="/about">Tobias Treppmann</a>. ${next}`;
+        }
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const axis = btn.getAttribute('data-axis');
+          const value = btn.getAttribute('data-value');
+          if (axis && value) setActive(axis, value);
+        });
+      });
+    });
+  })();
+</script>
+
+<style is:global>
+  /* ---------------------------------------------------------------- */
+  /* BioRegenerator                                                   */
+  /*                                                                  */
+  /* Two stacked dials (LENS, LENGTH), each rendered as an inline     */
+  /* mono-typographic set of segmented options. Active option is in   */
+  /* the sage accent; inactive options are muted with a hover lift.   */
+  /* ---------------------------------------------------------------- */
+
+  .bio-regen {
+    margin-top: var(--space-md);
+  }
+
+  .bio-regen__hint {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    margin: 0 0 0.5rem;
+    user-select: none;
+  }
+
+  .bio-regen__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: var(--space-md);
+    max-width: 50ch;
+  }
+
+  .bio-regen__dial {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    column-gap: 0.9rem;
+    align-items: baseline;
+  }
+
+  .bio-regen__dial-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    user-select: none;
+  }
+
+  .bio-regen__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.2;
+    align-items: baseline;
+  }
+
+  .bio-regen__option {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.55rem;
+    font: inherit;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border-radius: 0;
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+
+  /* Hairline separator between options — a soft pipe character feel without
+     using actual pipes (so keyboard / screen readers ignore it). */
+  .bio-regen__option + .bio-regen__option::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 1px;
+    background: var(--color-rule);
+  }
+
+  .bio-regen__option:hover,
+  .bio-regen__option:focus-visible {
+    color: var(--color-text);
+    outline: none;
+  }
+
+  .bio-regen__option[data-active='true'] {
+    color: var(--color-accent);
+    font-weight: normal;
+  }
+
+  /* The selected option gets a subtle underline rule — sage and tight,
+     not a button background. */
+  .bio-regen__option[data-active='true']::after {
+    content: '';
+    position: absolute;
+    left: 0.55rem;
+    right: 0.55rem;
+    bottom: 0.05rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .bio-regen__text {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    max-width: 50ch;
+    margin: 0;
+    /* Smooth out the text swap so it doesn't feel jarring. */
+    transition: opacity 0.12s ease;
+  }
+
+  @media (max-width: 50rem) {
+    .bio-regen__dial {
+      grid-template-columns: 1fr;
+      row-gap: 0.15rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>

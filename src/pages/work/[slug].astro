@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BioRegenerator from '../../components/BioRegenerator.astro';
 import {
   getAllFilters,
   getFilterWithStudies,
@@ -61,10 +62,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
     });
   }
 </script>
-      <p class="hero-description">
-        I'm <a href="/about">Tobias Treppmann</a>, a hands-on design leader who builds the psychological safety,
-        inclusive collaboration, and technical excellence that enables breakthrough user experiences.
-      </p>
+      <BioRegenerator />
       {filter.subtitle && (
         <p class="context-note">{filter.subtitle}</p>
       )}
