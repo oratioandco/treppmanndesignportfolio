@@ -120,11 +120,6 @@
           "caption": "The proof: the AI-generated schema becomes a real working product. Records, relations, and field types behave like any hand-built Ninox app."
         }
       ]
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why this matters for legal AI",
-      "content": "Legal AI has the same structural problem Ninox had. The artefacts — contracts, case files, intake forms, schedules — are large and structured. The user is an expert in their domain but not in the AI's representation of it. A chat-only interface either explodes into walls of generated text or assumes the user can spec the whole thing upfront. The split-screen pattern — AI generates into the real editing surface, direct manipulation lives next to chat, the artefact stays touchable from the first moment — ports directly. I've designed this exact handoff in a different domain."
     }
   ],
 
@@ -132,7 +127,7 @@
     "executive": {
       "summary": "Founder-led stealth project (with the CEO and technical co-founder, pre-product-team handoff) to extend Ninox's reach beyond the database-savvy. Designed the vibe-coding onboarding: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
-      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "sections": ["hero", "callout", "outcome", "reflection"],
       "max_read_time": "2 min"
     }
   },
