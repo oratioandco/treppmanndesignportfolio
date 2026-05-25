@@ -3,15 +3,27 @@
   "title": "Leading a team is a design problem",
   "subtitle": "Building the design function at Ninox — and what I did when the team called one engineer \"difficult\"",
   "type": "leadership-story",
-  "tags": ["org-building", "leadership", "hiring", "culture", "ai", "design-system", "saas", "transformation"],
+  "tags": [
+    "org-building",
+    "leadership",
+    "hiring",
+    "culture",
+    "ai",
+    "design-system",
+    "saas",
+    "transformation"
+  ],
   "company": "Ninox Software GmbH",
   "role": "Head of Product Design",
   "team": "Team of 5, including a design lead, Berlin",
   "duration": "2023 – 2024",
   "status": "draft",
   "last_updated": "2026-05-23",
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -91,31 +103,39 @@
       "content": "Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person.\n\nAnd you cannot build inclusive software with an exclusive team process. Human-centred teams are what make human-centred products possible."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Built the design function at Ninox — a team of five, a design system, a seat at the leadership table. Defining example: redesigned how the team collaborated so a sidelined engineer became one of its strongest contributors.",
       "angle": "Leadership as system design",
-      "sections": ["hero", "callout", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "When a team calls someone 'difficult,' the instinct is to manage the person. But what if the problem is not the person — it is how the team is designed to work?",
       "angle": "Designing team collaboration for cognitive diversity",
-      "sections": ["hero", "narrative", "callout", "reflection"],
+      "sections": [
+        "hero",
+        "narrative",
+        "callout",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "datameer-data-dense-analytics",
     "churchdesk-booking-system"
   ],
-
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": "No confidential company data referenced",
     "source": "ninox experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22"
-  }
+  },
+  "cover_image": "/images/covers/leadership.jpeg"
 }

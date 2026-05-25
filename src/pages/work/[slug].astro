@@ -81,7 +81,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
           const heroSection = study.sections?.find((s: any) => s.type === 'hero');
           const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
           const link = `/work/${filter.slug}/${study.id}`;
-          const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
+          const cover = study.cover_image || study.hero_image?.src || '/images/covers/churchdesk.jpeg';
 
           return (
             <a href={link} class="case-study-card">
@@ -110,7 +110,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
               const link = `/work/${filter.slug}/${study.id}`;
-              const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
+              const cover = study.cover_image || study.hero_image?.src || '/images/covers/churchdesk.jpeg';
 
               return (
                 <a href={link} class="case-study-card">

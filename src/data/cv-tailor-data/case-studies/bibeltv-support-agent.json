@@ -3,15 +3,22 @@
   "title": "A Copilot Skill for Customer Care",
   "subtitle": "Designed a Copilot skill that drafts customer-support responses against the CS handbook — and keeps every send decision with the team",
   "type": "ai-product",
-  "tags": ["ai-product", "customer-support", "copilot-skill", "ux-for-ai", "human-in-the-loop"],
+  "tags": [
+    "ai-product",
+    "customer-support",
+    "copilot-skill",
+    "ux-for-ai",
+    "human-in-the-loop"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Solo design lead in partnership with the CS team, Hamburg/Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
   "last_updated": "2026-05-23",
-  "format_priority": ["in-depth"],
-
+  "format_priority": [
+    "in-depth"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -44,26 +51,28 @@
       "content": "A Copilot skill is a small piece of design surface but a useful one to do well. The leverage isn't in the model — it's in scoping what context to give it, what counts as a good output, and where the human stays in charge. Those are design decisions, not engineering ones.\n\nThe principle that ports to other domains: AI augments judgment, it doesn't replace it. In customer support, in legal drafting, in any domain where the human is liable for the output, the design job is to compress drafting time while leaving the judgment surface untouched."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Designed a Copilot skill for the Bibel TV customer-support team. It drafts replies using the company's CS handbook as context; the team edits and sends. Design work was scoping the context, defining what counts as a good draft, and keeping the human send-decision absolute.",
       "angle": "AI augments judgment; the design work is the scoping",
-      "sections": ["hero", "callout", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     }
   },
-
   "related": [
     "ninox-ai-onboarding",
     "bibeltv-ai-prototyping",
     "churchdesk-booking-system"
   ],
-
   "meta": {
     "read_time_minutes": 3,
     "confidential": false,
     "confidentiality_note": "In production. Any operational metrics or UI screenshots require Bibel TV approval before publishing.",
     "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23"
-  }
+  },
+  "cover_image": "/images/covers/ai.jpeg"
 }

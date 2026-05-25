@@ -1,56 +1,39 @@
 ---
 /**
- * BioRegenerator — three-dial control that picks lens × length × model
- * and live-generates the bio via the treppmann-bio-api endpoint.
+ * BioRegenerator — three-dial control (Length × Model × Vibe) that
+ * live-generates Tobias Treppmann's bio via the treppmann-bio-api
+ * endpoint.
  *
- * - First paint: uses a pre-generated fallback variant from
- *   src/data/bio-variants.json (so the page works without JS and during
- *   API outages).
- * - On any dial change: fetches POST /bio with the current params,
- *   shows a loading state, replaces the text with the model's output.
- *   On error: falls back to the pre-generated text for that lens+length
- *   (independent of model — model variation is the API's value-add).
+ * - First paint: pre-generated fallback variant from bio-variants.json
+ *   (works without JS and during API outages).
+ * - On any dial change: POST /bio with current params, loading state on
+ *   the bio + caption, replace text with the model's output.
+ * - On error: fall back to the pre-generated text for the current length;
+ *   caption shows reason.
+ *
+ * Text container is a <div> so the renderer can emit proper <p> children
+ * per paragraph (Wikipedia long output uses real paragraph breaks).
  */
 import bioData from '../data/bio-variants.json';
 
-const { lenses, lengths, models, vibes, default: defaultVariant, variants, api_url } =
+const { lengths, models, vibes, default: defaultVariant, variants, api_url } =
   bioData as any;
-const defaultText = variants[defaultVariant.lens][defaultVariant.length];
+const defaultText = variants[defaultVariant.length];
 const variantsJson = JSON.stringify(variants);
 ---
 
 <div
   class="bio-regen"
-  data-default-lens={defaultVariant.lens}
   data-default-length={defaultVariant.length}
   data-default-model={defaultVariant.model}
   data-default-vibe={defaultVariant.vibe}
   data-api-url={api_url}
 >
-  <p class="bio-regen__text" aria-live="polite" data-bio-text>
-    {defaultText}
-  </p>
+  <div class="bio-regen__text" aria-live="polite" data-bio-text>
+    <p>{defaultText}</p>
+  </div>
 
   <div class="bio-regen__controls" role="group" aria-label="Choose how to read this bio">
-    <div class="bio-regen__dial">
-      <span class="bio-regen__dial-label">LENS</span>
-      <div class="bio-regen__options" role="radiogroup" aria-label="Lens">
-        {lenses.map((lens: any) => (
-          <button
-            type="button"
-            class="bio-regen__option"
-            data-axis="lens"
-            data-value={lens.id}
-            data-active={lens.id === defaultVariant.lens ? 'true' : 'false'}
-            role="radio"
-            aria-checked={lens.id === defaultVariant.lens ? 'true' : 'false'}
-          >
-            {lens.label}
-          </button>
-        ))}
-      </div>
-    </div>
-
     <div class="bio-regen__dial">
       <span class="bio-regen__dial-label">LENGTH</span>
       <div class="bio-regen__options" role="radiogroup" aria-label="Length">
@@ -116,7 +99,6 @@ const variantsJson = JSON.stringify(variants);
 </div>
 
 <script is:inline define:vars={{ variantsJson }}>
-  // Static-site safe hydration. No framework runtime.
   (function () {
     const variants = JSON.parse(variantsJson);
     const roots = document.querySelectorAll('.bio-regen');
@@ -126,26 +108,33 @@ const variantsJson = JSON.stringify(variants);
       if (!textEl || !captionEl) return;
 
       const apiUrl = root.getAttribute('data-api-url');
-      let currentLens = root.getAttribute('data-default-lens');
       let currentLength = root.getAttribute('data-default-length');
       let currentModel = root.getAttribute('data-default-model');
       let currentVibe = root.getAttribute('data-default-vibe');
 
-      // Tiny safe markdown renderer for the model output. Some models
-      // ignore "no markdown" and emit **bold** / *italic* / line breaks.
-      // We escape HTML first (XSS safety), then convert the two emphasis
-      // forms, then preserve paragraph breaks.
-      function renderInline(text) {
+      // Tiny safe markdown+paragraph renderer for the model output. Some
+      // models ignore "no markdown" and emit *italic* (this is intentional
+      // for the wikipedia vibe — company names). Some return multi-paragraph
+      // text with \n\n separators (wikipedia long, sci-fi long). Some return
+      // line-broken verse (poem). We handle all three.
+      function renderBio(text) {
         if (!text) return '';
         const escaped = String(text)
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;');
-        return escaped
-          .replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\*|\w)/g, '$1<em>$2</em>')
-          .replace(/\n{2,}/g, '</p><p>')
-          .replace(/\n/g, '<br>');
+        // Split into paragraphs on \n\n+.
+        const paragraphs = escaped.split(/\n{2,}/);
+        const rendered = paragraphs
+          .map((p) =>
+            p
+              .replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
+              .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\*|\w)/g, '$1<em>$2</em>')
+              .replace(/\n/g, '<br>')
+          )
+          .map((p) => '<p>' + p + '</p>')
+          .join('');
+        return rendered;
       }
 
       const buttons = root.querySelectorAll('.bio-regen__option');
@@ -174,7 +163,6 @@ const variantsJson = JSON.stringify(variants);
 
       async function regenerate() {
         const token = ++inFlightToken;
-        const lens = currentLens;
         const length = currentLength;
         const model = currentModel;
         const vibe = currentVibe;
@@ -187,35 +175,30 @@ const variantsJson = JSON.stringify(variants);
           const res = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ lens: lens, length: length, model: model, vibe: vibe }),
+            body: JSON.stringify({ length: length, model: model, vibe: vibe }),
           });
-          if (token !== inFlightToken) return; // a newer click superseded us
+          if (token !== inFlightToken) return;
           if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
             throw new Error(errData.error || ('HTTP ' + res.status));
           }
           const data = await res.json();
           if (token !== inFlightToken) return;
-          textEl.innerHTML = renderInline(data.text);
+          textEl.innerHTML = renderBio(data.text);
           setCaption(
             'Generated by ' +
               model +
               (data.cached ? ' · cached' : ' · live') +
               ' · ' +
-              lens +
-              ' lens, ' +
               length +
-              ' length, ' +
-              vibe +
-              ' vibe',
+              ' · ' +
+              vibe,
             'ok'
           );
         } catch (err) {
           if (token !== inFlightToken) return;
-          // Fall back to pre-generated text for this lens+length (model
-          // dimension doesn't exist in the fallback set; that's by design).
-          const fallback = variants[lens] && variants[lens][length];
-          if (fallback) textEl.innerHTML = renderInline(fallback);
+          const fallback = variants[length];
+          if (fallback) textEl.innerHTML = renderBio(fallback);
           setCaption(
             'Live generation failed (' +
               (err && err.message ? err.message : 'network error') +
@@ -235,8 +218,7 @@ const variantsJson = JSON.stringify(variants);
           const axis = btn.getAttribute('data-axis');
           const value = btn.getAttribute('data-value');
           if (!axis || !value) return;
-          if (axis === 'lens') currentLens = value;
-          else if (axis === 'length') currentLength = value;
+          if (axis === 'length') currentLength = value;
           else if (axis === 'model') currentModel = value;
           else if (axis === 'vibe') currentVibe = value;
           setButtonStates(axis, value);
@@ -254,6 +236,38 @@ const variantsJson = JSON.stringify(variants);
 
   .bio-regen {
     margin-top: var(--space-md);
+  }
+
+  .bio-regen__text {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    max-width: 50ch;
+    margin: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  /* Paragraph spacing inside the bio. Per-paragraph margin, not body
+     default. Tight enough that wiki long stays readable on a card-ish
+     viewport. */
+  .bio-regen__text p {
+    margin: 0 0 0.7em;
+  }
+  .bio-regen__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .bio-regen__text em {
+    font-style: italic;
+  }
+
+  .bio-regen__text strong {
+    font-weight: 600;
+  }
+
+  .bio-regen__text--loading {
+    opacity: 0.4;
   }
 
   .bio-regen__controls {
@@ -338,27 +352,12 @@ const variantsJson = JSON.stringify(variants);
     cursor: wait;
   }
 
-  .bio-regen__text {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--color-text);
-    max-width: 50ch;
-    margin: 0;
-    transition: opacity 0.18s ease;
-  }
-
-  .bio-regen__text--loading {
-    opacity: 0.4;
-  }
-
-  /* Caption shows generation state: loading / ok / error / first-paint. */
   .bio-regen__caption {
     font-family: var(--font-mono);
     font-size: 0.66rem;
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
-    margin: 0.6rem 0 0;
+    margin: 0;
     display: flex;
     align-items: baseline;
     gap: 0.5rem;

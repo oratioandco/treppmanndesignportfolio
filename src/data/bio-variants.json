@@ -1,9 +1,5 @@
 {
-  "_about": "Fallback pre-generated bio variants for first paint (and for when the live API fails). The live API (/bio) is what runs once a user interacts with any dial. Fallback set covers lens × length only (4 entries); model and vibe dimensions are only meaningful when the API generates.",
-  "lenses": [
-    { "id": "builder", "label": "Builder" },
-    { "id": "ai-native", "label": "AI-Native" }
-  ],
+  "_about": "Fallback pre-generated bio variants for first paint (and for when the live API fails). The live API at /bio is what runs once a user interacts with any dial. Fallback covers length only; model and vibe variation comes from live generation.",
   "lengths": [
     { "id": "short", "label": "Short" },
     { "id": "long", "label": "Long" }
@@ -20,16 +16,10 @@
     { "id": "scifi", "label": "Sci-fi" },
     { "id": "poem", "label": "Poem" }
   ],
-  "default": { "lens": "ai-native", "length": "long", "model": "claude", "vibe": "standard" },
+  "default": { "length": "short", "model": "claude", "vibe": "standard" },
   "api_url": "https://yt4kwr004s5eesq6ituyhbi8.167.235.138.184.sslip.io/bio",
   "variants": {
-    "builder": {
-      "short": "Senior design leadership at Bibel TV, ChurchDesk, Ninox, and Datameer. Shaping practice, hiring, design systems, and the harder calls — that's the shape of the job for me.",
-      "long": "Senior design leadership across four B2B SaaS companies over the past decade. At Bibel TV right now I'm redesigning the mobile app and bringing more user-centric thinking to the team — research cadence, A/B testing, behavioral design — alongside the design-token API and an in-house Color Lab. At Ninox, ChurchDesk, and Datameer I led existing teams — design system governance, hiring, and making the harder calls when someone wasn't the right fit. The throughline isn't 'first hire' — it's shaping practice from senior leadership wherever the function is at, and doing the design work itself."
-    },
-    "ai-native": {
-      "short": "I design AI products and use AI to design. Right now: vibe-coding for databases, Copilot skills for sensitive support, agentic prototyping inside engineering. Hands-on, not from the sidelines.",
-      "long": "I design AI products and I use AI to design. At Ninox I shaped the vibe-coding onboarding directly with the founders — prompt-to-database with the schema rendering into the real editor, not a chat preview. At Bibel TV the same year I designed a Copilot skill for customer support (handbook as context, human keeps the send decision) and run agentic prototyping with engineering — Figma to Claude Code to working prototype the same week. The throughline: AI works best when its output lands on a surface the user can actually touch, not in a chat transcript about the artefact."
-    }
+    "short": "I'm a Berlin-based design leader with fifteen years in complex B2B SaaS. Currently Head of Product Design at Bibel TV — redesigning the app, shifting the team toward user-centric thinking, and doing it hands-on with AI in the loop.",
+    "long": "I'm a Berlin-based design leader with fifteen years in complex B2B SaaS. Across four roles — Datameer, Ninox, ChurchDesk, Bibel TV — the work has been senior design leadership: shaping practice, hiring, design systems, governance with engineering. Currently at Bibel TV I'm redesigning the mobile app and bringing more user-centric thinking to the existing team (research cadence, A/B testing, behavioral design), alongside a cross-platform design-token API and an in-house Color Lab. Hands-on with AI too — vibe-coding onboarding at Ninox with the founders, a Copilot skill at Bibel TV, and agentic prototyping where Figma plus Claude Code becomes a working prototype the same week engineering needs it."
   }
 }
