@@ -13,7 +13,7 @@
  */
 import bioData from '../data/bio-variants.json';
 
-const { lenses, lengths, models, default: defaultVariant, variants, api_url } =
+const { lenses, lengths, models, vibes, default: defaultVariant, variants, api_url } =
   bioData as any;
 const defaultText = variants[defaultVariant.lens][defaultVariant.length];
 const variantsJson = JSON.stringify(variants);
@@ -24,6 +24,7 @@ const variantsJson = JSON.stringify(variants);
   data-default-lens={defaultVariant.lens}
   data-default-length={defaultVariant.length}
   data-default-model={defaultVariant.model}
+  data-default-vibe={defaultVariant.vibe}
   data-api-url={api_url}
 >
   <p class="bio-regen__hint">↻ &nbsp;TAP A DIAL — A LIVE MODEL WILL REGENERATE THIS BIO</p>
@@ -85,6 +86,25 @@ const variantsJson = JSON.stringify(variants);
         ))}
       </div>
     </div>
+
+    <div class="bio-regen__dial">
+      <span class="bio-regen__dial-label">VIBE</span>
+      <div class="bio-regen__options" role="radiogroup" aria-label="Vibe">
+        {vibes.map((v: any) => (
+          <button
+            type="button"
+            class="bio-regen__option"
+            data-axis="vibe"
+            data-value={v.id}
+            data-active={v.id === defaultVariant.vibe ? 'true' : 'false'}
+            role="radio"
+            aria-checked={v.id === defaultVariant.vibe ? 'true' : 'false'}
+          >
+            {v.label}
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
 
   <p class="bio-regen__text" aria-live="polite" data-bio-text>
@@ -111,6 +131,7 @@ const variantsJson = JSON.stringify(variants);
       let currentLens = root.getAttribute('data-default-lens');
       let currentLength = root.getAttribute('data-default-length');
       let currentModel = root.getAttribute('data-default-model');
+      let currentVibe = root.getAttribute('data-default-vibe');
 
       const buttons = root.querySelectorAll('.bio-regen__option');
       let inFlightToken = 0;
@@ -141,6 +162,7 @@ const variantsJson = JSON.stringify(variants);
         const lens = currentLens;
         const length = currentLength;
         const model = currentModel;
+        const vibe = currentVibe;
 
         setCaption('Asking ' + model + '…', 'loading');
         textEl.classList.add('bio-regen__text--loading');
@@ -150,7 +172,7 @@ const variantsJson = JSON.stringify(variants);
           const res = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ lens: lens, length: length, model: model }),
+            body: JSON.stringify({ lens: lens, length: length, model: model, vibe: vibe }),
           });
           if (token !== inFlightToken) return; // a newer click superseded us
           if (!res.ok) {
@@ -168,7 +190,9 @@ const variantsJson = JSON.stringify(variants);
               lens +
               ' lens, ' +
               length +
-              ' length',
+              ' length, ' +
+              vibe +
+              ' vibe',
             'ok'
           );
         } catch (err) {
@@ -199,6 +223,7 @@ const variantsJson = JSON.stringify(variants);
           if (axis === 'lens') currentLens = value;
           else if (axis === 'length') currentLength = value;
           else if (axis === 'model') currentModel = value;
+          else if (axis === 'vibe') currentVibe = value;
           setButtonStates(axis, value);
           regenerate();
         });

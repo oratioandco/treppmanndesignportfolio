@@ -1,5 +1,5 @@
 {
-  "_about": "Fallback pre-generated bio variants. Used for first paint (so the page works without JS) and during API outages. The live API endpoint (/api/bio) replaces these on dial change. Two lens × two length = 4 variants.",
+  "_about": "Fallback pre-generated bio variants for first paint (and for when the live API fails). The live API (/bio) is what runs once a user interacts with any dial. Fallback set covers lens × length only (4 entries); model and vibe dimensions are only meaningful when the API generates.",
   "lenses": [
     { "id": "builder", "label": "Builder" },
     { "id": "ai-native", "label": "AI-Native" }
@@ -14,12 +14,17 @@
     { "id": "mistral", "label": "Mistral" },
     { "id": "gemini", "label": "Gemini" }
   ],
-  "default": { "lens": "ai-native", "length": "long", "model": "claude" },
+  "vibes": [
+    { "id": "standard", "label": "Standard" },
+    { "id": "confident", "label": "Confident" },
+    { "id": "playful", "label": "Playful" }
+  ],
+  "default": { "lens": "ai-native", "length": "long", "model": "claude", "vibe": "standard" },
   "api_url": "https://yt4kwr004s5eesq6ituyhbi8.167.235.138.184.sslip.io/bio",
   "variants": {
     "builder": {
-      "short": "Three times now: walked into a company with no design culture, built one, shipped through it. Bibel TV, ChurchDesk, Ninox. First design hires don't scare me; they're what I do.",
-      "long": "Three times now: walked into a company with no design culture, built one, shipped through it. At Ninox I joined the senior leadership team, managed a team of five including a design lead, set up shared design-system governance with engineering, and made the harder calls when someone wasn't the right fit. ChurchDesk and Bibel TV the same shape on different scales. Fifteen years of complex B2B SaaS underneath, lately back to hands-on so the next person I hire doesn't out-craft me."
+      "short": "Senior design leadership at Bibel TV, ChurchDesk, Ninox, and Datameer. Shaping practice, hiring, design systems, and the harder calls — that's the shape of the job for me.",
+      "long": "Senior design leadership across four B2B SaaS companies over the past decade. At Bibel TV I came in as the first design hire and built the practice from scratch. At Ninox, ChurchDesk, and Datameer I led existing teams — design system governance, hiring, and making the harder calls when someone wasn't the right fit. The throughline isn't 'always first hire' — it's shaping the function from senior leadership wherever the function is at."
     },
     "ai-native": {
       "short": "I design AI products and use AI to design. Right now: vibe-coding for databases, Copilot skills for sensitive support, agentic prototyping inside engineering. Hands-on, not from the sidelines.",
