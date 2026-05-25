@@ -16,8 +16,9 @@
   ],
   "vibes": [
     { "id": "standard", "label": "Standard" },
-    { "id": "confident", "label": "Confident" },
-    { "id": "emoji", "label": "Emoji" }
+    { "id": "wikipedia", "label": "Wikipedia" },
+    { "id": "scifi", "label": "Sci-fi" },
+    { "id": "poem", "label": "Poem" }
   ],
   "default": { "lens": "ai-native", "length": "long", "model": "claude", "vibe": "standard" },
   "api_url": "https://yt4kwr004s5eesq6ituyhbi8.167.235.138.184.sslip.io/bio",
