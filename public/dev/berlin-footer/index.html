@@ -6,7 +6,6 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Berlin Footer — dev sandbox</title>
   <style>
-    /* Match the portfolio's editorial system colors + typography */
     @font-face {
       font-family: "Departure Mono";
       src: url("/fonts/DepartureMono-Regular.woff2") format("woff2"),
@@ -46,7 +45,6 @@
       color: var(--muted);
       margin: 0 0 0.5rem;
     }
-
     h1 b { color: var(--sage); font-weight: normal; }
 
     .lede {
@@ -97,6 +95,8 @@
       border-top: 1px solid var(--rule);
       display: flex;
       justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .state-toggles {
@@ -128,35 +128,27 @@
       background: var(--rule);
     }
 
-    .state-toggles button[aria-pressed='true'] {
-      color: var(--sage);
-    }
-
+    .state-toggles button[aria-pressed='true'] { color: var(--sage); }
     .state-toggles button[aria-pressed='true']::after {
       content: '';
       position: absolute;
-      left: 0.8rem;
-      right: 0.8rem;
-      bottom: 0.15rem;
-      height: 1px;
+      left: 0.8rem; right: 0.8rem; bottom: 0.15rem; height: 1px;
       background: var(--sage);
     }
 
-    /* Weather state visibility — controlled by data-weather on .stage */
+    /* Weather state visibility — controlled by data-weather on .stage.
+       NOTE: in the inline SVG these are on the elements; outer wrapper
+       attribute drives them via CSS attribute selectors. */
     .stage .weather-layer { display: none; }
     .stage[data-weather='sunny'] .weather-sun,
     .stage[data-weather='sunny'] .weather-pope-cross { display: inline; }
     .stage[data-weather='cloudy'] .weather-cloud { display: inline; }
     .stage[data-weather='rainy']  .weather-cloud,
     .stage[data-weather='rainy']  .weather-rain  { display: inline; }
-    .stage[data-weather='night']  .weather-moon,
-    .stage[data-weather='night']  .weather-stars { display: inline; }
 
-    /* Half-size and quarter-size renderings for "how big it'll feel on a real page" */
     .at-size { display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch; }
-    .at-size .row { display: flex; gap: 1rem; align-items: flex-start; }
-    .at-size .row > div { flex: 1; }
-    .at-size svg { display: block; }
+    .at-size .row { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
+    .at-size .row > div { flex: 1; min-width: 300px; }
 
     .open-issues {
       font-family: var(--body);
@@ -181,6 +173,15 @@
       padding: 0.05rem 0.3rem;
       border-radius: 2px;
     }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 700px) {
+      .compare-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -194,213 +195,231 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V1                                                        -->
+    <!-- DRAFT V2 — line-art / pixel-broken edges                        -->
     <!-- ============================================================== -->
     <section class="section">
-      <p class="section-label">§ 01 · DRAFT V1 — composition only (no animation yet)</p>
+      <p class="section-label">§ 02 · DRAFT V2 — line-art, outlined, pixel-broken edges (current)</p>
 
-      <div class="state-toggles" data-toggle-for="stage-v1">
+      <div class="state-toggles" data-toggle-for="stage-v2">
         <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
         <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
         <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
       </div>
 
       <div class="frame">
-        <div id="stage-v1" class="stage" data-weather="sunny">
-          <!-- Inline SVG so CSS can show/hide weather layers per state -->
+        <div id="stage-v2" class="stage" data-weather="sunny">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 180" shape-rendering="crispEdges">
+            <defs>
+              <style>
+                .out { fill: none; stroke: #4f8375; stroke-width: 2; }
+                .out-loose  { stroke-dasharray: 2 2; }
+                .out-tight  { stroke-dasharray: 3 1; }
+                .out-sparse { stroke-dasharray: 1 3; }
+                .out-solid  { }
+                .dot      { fill: #4f8375; }
+                .dot-soft { fill: #4f8375; opacity: 0.55; }
+                .neg      { fill: #f8f3ee; }
+              </style>
+            </defs>
 
-            <!-- SKY LAYERS -->
-            <g class="weather-layer weather-sun" fill="#d8b16e">
-              <circle cx="360" cy="40" r="10" />
-              <rect x="358" y="20" width="4" height="4" />
-              <rect x="358" y="56" width="4" height="4" />
-              <rect x="340" y="38" width="4" height="4" />
-              <rect x="376" y="38" width="4" height="4" />
-              <rect x="346" y="26" width="4" height="4" />
-              <rect x="370" y="50" width="4" height="4" />
-              <rect x="346" y="50" width="4" height="4" />
-              <rect x="370" y="26" width="4" height="4" />
+            <!-- SUN -->
+            <g class="weather-layer weather-sun">
+              <circle cx="360" cy="40" r="9" fill="none" stroke="#d8b16e" stroke-width="2" stroke-dasharray="2 1" />
+              <g fill="#d8b16e">
+                <rect x="359" y="24" width="2" height="3" />
+                <rect x="359" y="55" width="2" height="3" />
+                <rect x="343" y="39" width="3" height="2" />
+                <rect x="374" y="39" width="3" height="2" />
+                <rect x="348" y="28" width="2" height="2" />
+                <rect x="370" y="50" width="2" height="2" />
+                <rect x="348" y="50" width="2" height="2" />
+                <rect x="370" y="28" width="2" height="2" />
+              </g>
             </g>
 
+            <!-- CLOUDS -->
             <g class="weather-layer weather-cloud">
-              <g fill="#8aa49d">
-                <rect x="80" y="40" width="56" height="8" />
-                <rect x="84" y="36" width="48" height="4" />
-                <rect x="88" y="32" width="32" height="4" />
-                <rect x="76" y="44" width="64" height="4" />
-              </g>
-              <g fill="#a8bcb6">
-                <rect x="200" y="28" width="40" height="6" />
-                <rect x="204" y="24" width="32" height="4" />
-                <rect x="196" y="32" width="48" height="4" />
-              </g>
+              <path d="M 76 48 L 76 44 L 84 44 L 84 40 L 92 40 L 92 36 L 116 36 L 116 32 L 128 32 L 128 36 L 136 36 L 136 40 L 140 40 L 140 48 Z" class="out out-tight" />
+              <path d="M 196 36 L 196 32 L 204 32 L 204 28 L 212 28 L 212 24 L 232 24 L 232 28 L 240 28 L 240 32 L 244 32 L 244 36 Z" class="out out-loose" />
             </g>
 
-            <g class="weather-layer weather-rain" fill="#8aa49d" opacity="0.7">
-              <rect x="84"  y="56" width="1" height="4" />
-              <rect x="92"  y="60" width="1" height="4" />
-              <rect x="100" y="56" width="1" height="4" />
-              <rect x="108" y="60" width="1" height="4" />
-              <rect x="116" y="56" width="1" height="4" />
-              <rect x="124" y="60" width="1" height="4" />
-              <rect x="132" y="56" width="1" height="4" />
-              <rect x="204" y="40" width="1" height="4" />
-              <rect x="212" y="44" width="1" height="4" />
-              <rect x="220" y="40" width="1" height="4" />
-              <rect x="228" y="44" width="1" height="4" />
-              <rect x="236" y="40" width="1" height="4" />
+            <!-- RAIN -->
+            <g class="weather-layer weather-rain" stroke="#4f8375" stroke-width="1" opacity="0.7">
+              <line x1="84" y1="54" x2="84" y2="58" />
+              <line x1="92" y1="58" x2="92" y2="62" />
+              <line x1="100" y1="54" x2="100" y2="58" />
+              <line x1="108" y1="58" x2="108" y2="62" />
+              <line x1="116" y1="54" x2="116" y2="58" />
+              <line x1="124" y1="58" x2="124" y2="62" />
+              <line x1="132" y1="54" x2="132" y2="58" />
+              <line x1="204" y1="42" x2="204" y2="46" />
+              <line x1="212" y1="44" x2="212" y2="48" />
+              <line x1="220" y1="42" x2="220" y2="46" />
+              <line x1="228" y1="44" x2="228" y2="48" />
+              <line x1="236" y1="42" x2="236" y2="46" />
             </g>
 
-            <!-- SKYLINE -->
-            <g fill="#4f8375">
-              <!-- Reichstag — kept for now; will likely be removed in v2 -->
-              <g>
-                <rect x="30" y="124" width="60" height="26" />
-                <rect x="48" y="112" width="24" height="4" />
-                <rect x="44" y="116" width="32" height="4" />
-                <rect x="40" y="120" width="40" height="4" />
-                <rect x="58" y="108" width="4" height="4" />
-              </g>
+            <!-- DISTANT BUILDINGS -->
+            <rect x="40" y="128" width="22" height="22" class="out out-sparse" />
+            <rect x="66" y="122" width="14" height="28" class="out out-sparse" />
+            <rect x="84" y="130" width="12" height="20" class="out out-sparse" />
 
-              <!-- Generic buildings -->
-              <rect x="100" y="116" width="20" height="34" />
-              <rect x="124" y="120" width="16" height="30" />
+            <!-- STEPPED BUILDING -->
+            <path d="M 100 150 L 100 124 L 110 124 L 110 116 L 120 116 L 120 124 L 130 124 L 130 150 Z" class="out out-tight" />
+            <rect x="103" y="130" width="2" height="2" class="dot" />
+            <rect x="111" y="120" width="2" height="2" class="dot" />
+            <rect x="123" y="130" width="2" height="2" class="dot" />
+            <rect x="111" y="138" width="2" height="2" class="dot" />
 
-              <!-- Crane -->
-              <g>
-                <rect x="156" y="80" width="2" height="70" />
-                <rect x="132" y="80" width="44" height="2" />
-                <rect x="156" y="76" width="14" height="2" />
-                <rect x="154" y="84" width="6" height="4" />
-                <rect x="138" y="84" width="2" height="6" />
-                <rect x="136" y="90" width="6" height="2" />
-              </g>
+            <!-- CRANE -->
+            <g stroke="#4f8375" stroke-width="2" fill="none">
+              <line x1="156" y1="78" x2="156" y2="150" stroke-dasharray="3 1" />
+              <line x1="132" y1="80" x2="176" y2="80" stroke-dasharray="2 1" />
+              <line x1="156" y1="76" x2="170" y2="76" />
+              <rect x="153" y="82" width="6" height="5" stroke-width="1" />
+              <line x1="138" y1="80" x2="138" y2="92" stroke-width="1" />
+            </g>
+            <rect x="136" y="92" width="4" height="2" class="dot" />
 
-              <!-- More buildings -->
-              <rect x="180" y="124" width="28" height="26" />
+            <!-- SLANTED-ROOF BUILDING -->
+            <path d="M 184 150 L 184 130 L 188 124 L 208 124 L 212 130 L 212 150 Z" class="out out-tight" />
+            <rect x="190" y="134" width="2" height="2" class="dot" />
+            <rect x="198" y="134" width="2" height="2" class="dot" />
+            <rect x="206" y="134" width="2" height="2" class="dot" />
+            <rect x="190" y="142" width="2" height="2" class="dot" />
+            <rect x="198" y="142" width="2" height="2" class="dot" />
+            <rect x="206" y="142" width="2" height="2" class="dot" />
 
-              <!-- Berliner Dom -->
-              <g>
-                <rect x="220" y="130" width="64" height="20" />
-                <rect x="240" y="118" width="24" height="12" />
-                <rect x="244" y="114" width="16" height="4" />
-                <rect x="246" y="110" width="12" height="4" />
-                <rect x="248" y="106" width="8" height="4" />
-                <rect x="250" y="102" width="4" height="4" />
-                <rect x="251" y="96" width="2" height="6" />
-                <rect x="249" y="98" width="6" height="2" />
-                <rect x="220" y="120" width="8" height="10" />
-                <rect x="276" y="120" width="8" height="10" />
-                <rect x="222" y="116" width="4" height="4" />
-                <rect x="278" y="116" width="4" height="4" />
-              </g>
-
-              <!-- More buildings -->
-              <rect x="294" y="122" width="22" height="28" />
-              <rect x="320" y="128" width="16" height="22" />
-
-              <!-- TV Tower -->
-              <g>
-                <rect x="391" y="20" width="2" height="36" />
-                <rect x="389" y="50" width="6" height="6" />
-                <rect x="384" y="58" width="16" height="4" />
-                <rect x="382" y="62" width="20" height="8" />
-                <rect x="384" y="70" width="16" height="4" />
-                <rect x="390" y="74" width="4" height="8" />
-                <rect x="391" y="82" width="2" height="64" />
-                <rect x="386" y="146" width="12" height="4" />
-              </g>
+            <!-- BERLINER DOM -->
+            <g class="out out-tight">
+              <rect x="220" y="130" width="64" height="20" />
+              <rect x="240" y="118" width="24" height="12" />
+              <rect x="220" y="120" width="8" height="10" />
+              <rect x="276" y="120" width="8" height="10" />
+            </g>
+            <g class="dot">
+              <rect x="244" y="116" width="2" height="2" />
+              <rect x="246" y="114" width="2" height="2" />
+              <rect x="248" y="112" width="2" height="2" />
+              <rect x="250" y="110" width="4" height="2" />
+              <rect x="254" y="112" width="2" height="2" />
+              <rect x="256" y="114" width="2" height="2" />
+              <rect x="258" y="116" width="2" height="2" />
+              <rect x="251" y="106" width="2" height="4" />
+              <rect x="251" y="100" width="2" height="6" />
+              <rect x="248" y="102" width="8" height="2" />
+            </g>
+            <rect x="222" y="116" width="4" height="4" class="dot" />
+            <rect x="278" y="116" width="4" height="4" class="dot" />
+            <g class="dot-soft">
+              <rect x="228" y="132" width="1" height="14" />
+              <rect x="236" y="132" width="1" height="14" />
+              <rect x="244" y="132" width="1" height="14" />
+              <rect x="252" y="132" width="1" height="14" />
+              <rect x="260" y="132" width="1" height="14" />
+              <rect x="268" y="132" width="1" height="14" />
+              <rect x="276" y="132" width="1" height="14" />
             </g>
 
-            <!-- Window dots (cream) -->
-            <g fill="#f8f3ee">
-              <rect x="104" y="120" width="4" height="4" />
-              <rect x="112" y="120" width="4" height="4" />
-              <rect x="104" y="128" width="4" height="4" />
-              <rect x="112" y="128" width="4" height="4" />
-              <rect x="104" y="136" width="4" height="4" />
-              <rect x="112" y="136" width="4" height="4" />
-              <rect x="128" y="124" width="4" height="4" />
-              <rect x="128" y="132" width="4" height="4" />
-              <rect x="128" y="140" width="4" height="4" />
-              <rect x="184" y="128" width="4" height="4" />
-              <rect x="192" y="128" width="4" height="4" />
-              <rect x="200" y="128" width="4" height="4" />
-              <rect x="184" y="136" width="4" height="4" />
-              <rect x="192" y="136" width="4" height="4" />
-              <rect x="200" y="136" width="4" height="4" />
-              <rect x="298" y="126" width="4" height="4" />
-              <rect x="306" y="126" width="4" height="4" />
-              <rect x="298" y="134" width="4" height="4" />
-              <rect x="306" y="134" width="4" height="4" />
-              <rect x="324" y="132" width="4" height="4" />
-              <rect x="324" y="140" width="4" height="4" />
-              <!-- TV Tower sphere windows -->
-              <rect x="386" y="64" width="2" height="2" />
-              <rect x="390" y="64" width="2" height="2" />
-              <rect x="394" y="64" width="2" height="2" />
-              <rect x="398" y="64" width="2" height="2" />
-            </g>
+            <!-- MID BUILDINGS -->
+            <path d="M 294 150 L 294 128 L 304 128 L 304 122 L 316 122 L 316 128 L 320 128 L 320 150 Z" class="out out-tight" />
+            <rect x="298" y="134" width="2" height="2" class="dot" />
+            <rect x="308" y="128" width="2" height="2" class="dot" />
+            <rect x="298" y="142" width="2" height="2" class="dot" />
+            <rect x="308" y="138" width="2" height="2" class="dot" />
 
-            <!-- POPE'S REVENGE — only in sunny state -->
-            <g class="weather-layer weather-pope-cross" fill="#f8f3ee">
-              <rect x="391" y="62" width="2" height="10" />
-              <rect x="387" y="65" width="10" height="2" />
+            <rect x="324" y="134" width="12" height="16" class="out out-loose" />
+            <rect x="328" y="138" width="2" height="2" class="dot" />
+            <rect x="328" y="144" width="2" height="2" class="dot" />
+
+            <rect x="342" y="126" width="6" height="24" class="out out-loose" />
+
+            <!-- TV TOWER -->
+            <line x1="392" y1="14" x2="392" y2="50" stroke="#4f8375" stroke-width="2" />
+            <rect x="389" y="50" width="6" height="6" class="out out-solid" />
+            <g class="dot">
+              <rect x="388" y="56" width="2" height="2" />
+              <rect x="390" y="56" width="4" height="2" />
+              <rect x="394" y="56" width="2" height="2" />
+              <rect x="384" y="58" width="2" height="2" />
+              <rect x="386" y="58" width="2" height="2" />
+              <rect x="396" y="58" width="2" height="2" />
+              <rect x="398" y="58" width="2" height="2" />
+              <rect x="382" y="60" width="2" height="2" />
+              <rect x="400" y="60" width="2" height="2" />
+              <rect x="382" y="62" width="2" height="2" />
+              <rect x="400" y="62" width="2" height="2" />
+              <rect x="382" y="64" width="2" height="2" />
+              <rect x="400" y="64" width="2" height="2" />
+              <rect x="384" y="66" width="2" height="2" />
+              <rect x="386" y="66" width="2" height="2" />
+              <rect x="396" y="66" width="2" height="2" />
+              <rect x="398" y="66" width="2" height="2" />
+              <rect x="388" y="68" width="2" height="2" />
+              <rect x="390" y="68" width="4" height="2" />
+              <rect x="394" y="68" width="2" height="2" />
+            </g>
+            <rect x="388" y="62" width="2" height="2" class="neg" />
+            <rect x="394" y="62" width="2" height="2" class="neg" />
+            <rect x="389" y="70" width="6" height="6" class="out out-solid" />
+            <line x1="392" y1="76" x2="392" y2="146" stroke="#4f8375" stroke-width="2" />
+            <rect x="386" y="146" width="12" height="4" class="out out-solid" />
+
+            <!-- POPE'S REVENGE -->
+            <g class="weather-layer weather-pope-cross neg">
+              <rect x="391" y="58" width="2" height="12" />
+              <rect x="385" y="62" width="14" height="2" />
             </g>
 
             <!-- GROUND -->
-            <rect x="0" y="150" width="480" height="2" fill="#4f8375" />
-            <rect x="0" y="154" width="480" height="2" fill="#4f8375" opacity="0.4" />
+            <line x1="0" y1="151" x2="480" y2="151" stroke="#4f8375" stroke-width="2" stroke-dasharray="3 1" />
+            <line x1="0" y1="155" x2="480" y2="155" stroke="#4f8375" stroke-width="1" stroke-dasharray="1 4" opacity="0.5" />
 
             <!-- TREE -->
-            <g fill="#4f8375">
-              <rect x="446" y="142" width="2" height="10" />
-              <rect x="442" y="134" width="10" height="2" />
-              <rect x="440" y="136" width="14" height="2" />
-              <rect x="438" y="138" width="18" height="4" />
-              <rect x="440" y="142" width="14" height="2" />
-            </g>
+            <line x1="446" y1="142" x2="446" y2="151" stroke="#4f8375" stroke-width="2" />
+            <circle cx="446" cy="136" r="6" class="out out-tight" />
+            <rect x="444" y="134" width="1" height="1" class="dot" />
+            <rect x="448" y="136" width="1" height="1" class="dot" />
+            <rect x="445" y="138" width="1" height="1" class="dot" />
 
-            <!-- Grass tufts -->
-            <g fill="#4f8375">
-              <rect x="20" y="148" width="2" height="2" />
-              <rect x="26" y="148" width="2" height="2" />
-              <rect x="160" y="148" width="2" height="2" />
-              <rect x="170" y="148" width="2" height="2" />
-              <rect x="350" y="148" width="2" height="2" />
-              <rect x="360" y="148" width="2" height="2" />
-              <rect x="460" y="148" width="2" height="2" />
+            <!-- GRASS -->
+            <g stroke="#4f8375" stroke-width="1">
+              <line x1="20" y1="149" x2="20" y2="151" />
+              <line x1="24" y1="148" x2="24" y2="151" />
+              <line x1="170" y1="148" x2="170" y2="151" />
+              <line x1="174" y1="149" x2="174" y2="151" />
+              <line x1="350" y1="149" x2="350" y2="151" />
+              <line x1="354" y1="148" x2="354" y2="151" />
+              <line x1="358" y1="149" x2="358" y2="151" />
+              <line x1="460" y1="148" x2="460" y2="151" />
+              <line x1="464" y1="149" x2="464" y2="151" />
             </g>
 
           </svg>
         </div>
         <p class="frame-caption">
-          <span>480 × 180 SVG · sage palette · pixel-grid composition</span>
-          <span>WEATHER STATE: <span id="state-readout-v1">SUNNY</span></span>
+          <span>V2 · outlined / pixel-broken / Reichstag dropped / TV Tower sphere = discrete pixel circle / varied rooflines / colonnade hint on the Dom</span>
+          <span>STATE: <span id="state-readout-v2">SUNNY</span></span>
         </p>
       </div>
 
-      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0;">
-        ABOVE: rendered at 1000px wide. Below: at smaller "actual footer" widths.
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        ABOVE: at full preview width (~1000px). The actual footer will be 600–800px on desktop, ~360px on mobile.
+        Below: v2 at realistic widths.
       </p>
 
-      <div class="at-size" style="margin-top: 1rem;">
+      <div class="at-size">
         <div class="row">
           <div>
-            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~600px (desktop footer width)</p>
+            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~600px (desktop footer)</p>
             <div class="frame" style="max-width: 600px;">
-              <div class="stage" data-weather="sunny" style="width: 600px;">
-                <object data="/dev/berlin-footer/draft-v1.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
-              </div>
+              <object data="/dev/berlin-footer/draft-v2.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
             </div>
           </div>
           <div>
-            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~360px (mobile footer width)</p>
+            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~360px (mobile footer)</p>
             <div class="frame" style="max-width: 360px;">
-              <div class="stage" data-weather="sunny" style="width: 360px;">
-                <object data="/dev/berlin-footer/draft-v1.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
-              </div>
+              <object data="/dev/berlin-footer/draft-v2.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
             </div>
           </div>
         </div>
@@ -408,32 +427,55 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- OPEN ISSUES — annotated for the iteration                       -->
+    <!-- V1 (for reference)                                              -->
     <!-- ============================================================== -->
     <section class="section">
-      <p class="section-label">§ 02 · OPEN ISSUES &amp; CHANGES PROPOSED FOR V2</p>
+      <p class="section-label">§ 01 · DRAFT V1 — filled silhouettes (previous draft, kept for comparison)</p>
+
+      <div class="frame" style="max-width: 720px;">
+        <object data="/dev/berlin-footer/draft-v1.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
+        <p class="frame-caption">
+          <span>V1 · filled silhouettes (sunny only) — what the user reacted to as "too solid, not enough redacted-font character"</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- OPEN ISSUES                                                     -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 03 · OPEN ISSUES &amp; NEXT MOVES</p>
 
       <div class="open-issues">
+        <h3>v2 changes vs v1</h3>
         <ul>
-          <li><strong>Drop the Reichstag on the far left.</strong> Reads as a blob, not as the Reichstag. TV Tower + Berliner Dom are enough Berlin signal.</li>
-          <li><strong>Re-draw the TV Tower sphere.</strong> Current pixel approximation is rectangular; a 6×6 pixel hemisphere reads as more round.</li>
-          <li><strong>Vary the rooflines</strong> on the generic buildings (one stepped, one slanted) so the middle of the skyline has rhythm.</li>
-          <li><strong>Slightly bigger Pope's Revenge cross</strong> — 3px arms instead of 2px so it's unambiguous.</li>
-          <li><strong>Tree placement</strong> — currently far right competing with the TV Tower. Move it inward, or replace with grass tufts only.</li>
-          <li>Optional: <strong>night state</strong> with a moon + 2–3 stars, triggered when local Berlin time is post-sunset.</li>
+          <li>Filled silhouettes → <strong>outlined / line-art</strong> via <code>stroke-dasharray</code> for the pixel-broken edge character</li>
+          <li><strong>Three dash patterns</strong> in use: <code>out-tight (3 1)</code> for foreground, <code>out-loose (2 2)</code> for mid-ground, <code>out-sparse (1 3)</code> for distant buildings — gives each element its own texture, like Redaction's per-character distress</li>
+          <li>Reichstag <strong>dropped</strong> (was the weakest element)</li>
+          <li>TV Tower sphere redrawn as a <strong>discrete pixel circle</strong> (rect cluster forming a round shape)</li>
+          <li>Building rooflines now <strong>varied</strong> — stepped, slanted, flat — for skyline rhythm</li>
+          <li>Berliner Dom gets a sparse <strong>colonnade hint</strong> (vertical 1px ticks on the base)</li>
+          <li>Tree foliage = outlined circle with a few internal "leaf" dots, not a filled blob</li>
+          <li>Ground line is now dashed too — pixel-broken</li>
         </ul>
 
-        <h3>Once composition is locked</h3>
+        <h3>If v2 is the direction</h3>
         <ul>
-          <li>Wrap in <code>BerlinFooter.astro</code> component</li>
-          <li>Add CSS animations: cloud drift, rain fall, sun pulse, Pope's Revenge fade-in</li>
-          <li>JS: fetch Open-Meteo weather for Berlin, set <code>data-weather</code> attribute on the stage</li>
-          <li>Mount in <code>Layout.astro</code> so it appears site-wide</li>
+          <li>Add animation: <code>stroke-dashoffset</code> shifts subtly over time to give the outlines a "shimmer / alive" feel like the Redaction headline</li>
+          <li>Clouds drift slowly horizontally (60s loop)</li>
+          <li>Rain falls (~2s loop, multiple offsets)</li>
+          <li>Sun pulses gently (radius / opacity, 5s loop)</li>
+          <li>Pope's Revenge cross fades in over 1.5s when sunny state activates</li>
+          <li>Then wrap in <code>BerlinFooter.astro</code> + add Open-Meteo weather fetch + mount in <code>Layout.astro</code></li>
         </ul>
 
-        <h3>Out of scope for this experiment</h3>
+        <h3>Still to decide</h3>
         <ul>
-          <li>Glyph separators (<code>~~~~</code>, <code>~•~</code>) for section breaks — separate concern, will sandbox separately</li>
+          <li>Is the line-art aesthetic right or should we go further (even sparser, even more broken-up)?</li>
+          <li>Should we add a NIGHT state (moon + a few stars) for post-sunset visits?</li>
+          <li>Should there be a small Departure Mono caption: e.g. <code>BERLIN · ⛅ 12°C</code>?</li>
+          <li>Tree: keep on the right, or move inward? (Currently still rightmost element)</li>
+          <li>Should the Pope's Revenge cross extend beyond the sphere a bit, since the real reflection does?</li>
         </ul>
       </div>
     </section>
@@ -441,15 +483,14 @@
   </div>
 
   <script>
-    // Hook the state toggles to their stage's data-weather attribute.
     document.querySelectorAll('.state-toggles').forEach(group => {
       const targetId = group.getAttribute('data-toggle-for');
       const stage = document.getElementById(targetId);
-      const readout = document.getElementById('state-readout-v1');
+      const readout = stage ? document.getElementById('state-readout-v2') : null;
       group.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
           const state = btn.getAttribute('data-state');
-          stage.setAttribute('data-weather', state);
+          if (stage) stage.setAttribute('data-weather', state);
           group.querySelectorAll('button').forEach(b =>
             b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
           if (readout) readout.textContent = state.toUpperCase();
