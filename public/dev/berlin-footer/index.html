@@ -352,10 +352,10 @@
             }
             // Soft probabilistic rule — stays in continuous flux instead of dying/freezing
             if (alive[i]) {
-              const p = 0.30 + 0.10 * n;     // alive: stay-alive probability
+              const p = 0.50 + 0.10 * n;     // alive: stay-alive probability (was 0.30)
               next[i] = Math.random() < p ? 1 : 0;
             } else {
-              const p = 0.02 + 0.06 * n;     // dead: birth probability
+              const p = 0.06 + 0.08 * n;     // dead: birth probability (was 0.02 + 0.06)
               next[i] = Math.random() < p ? 1 : 0;
             }
           }
