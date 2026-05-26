@@ -223,7 +223,10 @@
       </div>
 
       <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
-        Rules: edge cells = cells JUST OUTSIDE the silhouette boundary. Each CA step (every 100ms) each edge cell counts its alive neighbors. If currently alive: stay alive with probability 0.3 + 0.1×neighbors. If currently dead: be born with probability 0.02 + 0.06×neighbors. Soft probabilistic instead of strict Conway — strict GoL on this scale either dies out or freezes into still-lifes. The probabilistic version stays in continuous flux.
+        Rules now affect the ENTIRE shape, not just the outer crust. Two rule regimes per cell:
+        <strong>Interior</strong> (inside silhouette): survival 0.94 + 0.005×n, revival 0.72 + 0.03×n. Mostly always alive but with ~5% steady-state dropouts that quickly refill.
+        <strong>Edge</strong> (just outside silhouette): survival 0.50 + 0.10×n, birth 0.06 + 0.08×n. Boils outward.
+        The silhouette is no longer drawn statically — the CA's alive set IS the rendered shape.
       </p>
     </section>
 
@@ -329,10 +332,16 @@
       }
 
       // ============ CA state ============
+      // The CA now affects BOTH interior cells (inside silhouette) AND
+      // edge cells (just outside silhouette). Interior cells have high
+      // survival/revival so they're mostly always alive, with occasional
+      // dropouts that quickly refill. Edge cells have moderate rates and
+      // produce the boiling-outward effect.
       let alive = new Uint8Array(COLS * ROWS);
       let next = new Uint8Array(COLS * ROWS);
       for (let i = 0; i < COLS * ROWS; i++) {
-        if (edge[i] && Math.random() < 0.25) alive[i] = 1;
+        if (inside[i]) alive[i] = 1;                              // seed: interior fully alive
+        else if (edge[i] && Math.random() < 0.2) alive[i] = 1;    // edge: sparse seed
       }
 
       function step() {
@@ -340,7 +349,10 @@
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c < COLS; c++) {
             const i = r * COLS + c;
-            if (!edge[i]) continue;
+            const isInside = inside[i];
+            const isEdge = edge[i];
+            if (!isInside && !isEdge) continue;
+
             let n = 0;
             for (let dr = -1; dr <= 1; dr++) {
               for (let dc = -1; dc <= 1; dc++) {
@@ -350,14 +362,20 @@
                 if (alive[nr * COLS + nc]) n++;
               }
             }
-            // Soft probabilistic rule — stays in continuous flux instead of dying/freezing
-            if (alive[i]) {
-              const p = 0.50 + 0.10 * n;     // alive: stay-alive probability (was 0.30)
-              next[i] = Math.random() < p ? 1 : 0;
+
+            // Two rule regimes — interior vs edge — applied per-cell
+            let p;
+            if (isInside) {
+              // Interior cell: stays alive most of the time. Dropouts occur but
+              // are quickly refilled by the high birth probability.
+              p = alive[i] ? (0.94 + 0.005 * n)     // ~94-98% survival
+                           : (0.72 + 0.03  * n);    // ~72-96% revival
             } else {
-              const p = 0.06 + 0.08 * n;     // dead: birth probability (was 0.02 + 0.06)
-              next[i] = Math.random() < p ? 1 : 0;
+              // Edge cell: moderate, produces the boiling-outward extension
+              p = alive[i] ? (0.50 + 0.10 * n)
+                           : (0.06 + 0.08 * n);
             }
+            next[i] = Math.random() < p ? 1 : 0;
           }
         }
         const tmp = alive; alive = next; next = tmp;
@@ -413,15 +431,9 @@
         ctx.fillStyle = CREAM;
         ctx.fillRect(0, 0, W, H);
 
-        // Static silhouettes
+        // All alive cells (interior + edge — the CA owns the whole shape now,
+        // not just the boundary)
         ctx.fillStyle = TEAL;
-        for (let r = 0; r < ROWS; r++) {
-          for (let c = 0; c < COLS; c++) {
-            if (inside[r * COLS + c]) ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
-          }
-        }
-
-        // CA-alive edge cells
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c < COLS; c++) {
             if (alive[r * COLS + c]) ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
