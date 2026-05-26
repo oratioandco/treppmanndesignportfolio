@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Berlin Footer — dev sandbox</title>
+  <style>
+    /* Match the portfolio's editorial system colors + typography */
+    @font-face {
+      font-family: "Departure Mono";
+      src: url("/fonts/DepartureMono-Regular.woff2") format("woff2"),
+           url("/fonts/DepartureMono-Regular.woff") format("woff");
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #f8f3ee;
+      --text: #1a1a1a;
+      --muted: #666;
+      --sage: #4f8375;
+      --rule: #c9c0b6;
+      --mono: "Departure Mono", ui-monospace, monospace;
+      --body: "Switzer", -apple-system, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    h1 {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+
+    h1 b { color: var(--sage); font-weight: normal; }
+
+    .lede {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 0 0 3rem;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin: 0 0 3rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .frame {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      padding: 0;
+      margin: 0 0 1rem;
+      position: relative;
+    }
+
+    .frame svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      shape-rendering: crispEdges;
+    }
+
+    .frame-caption {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 0.5rem 0.75rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .state-toggles {
+      display: flex;
+      gap: 0;
+      margin: 0 0 1rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .state-toggles button {
+      background: none;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font: inherit;
+      color: var(--muted);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .state-toggles button + button::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 1px;
+      background: var(--rule);
+    }
+
+    .state-toggles button[aria-pressed='true'] {
+      color: var(--sage);
+    }
+
+    .state-toggles button[aria-pressed='true']::after {
+      content: '';
+      position: absolute;
+      left: 0.8rem;
+      right: 0.8rem;
+      bottom: 0.15rem;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    /* Weather state visibility — controlled by data-weather on .stage */
+    .stage .weather-layer { display: none; }
+    .stage[data-weather='sunny'] .weather-sun,
+    .stage[data-weather='sunny'] .weather-pope-cross { display: inline; }
+    .stage[data-weather='cloudy'] .weather-cloud { display: inline; }
+    .stage[data-weather='rainy']  .weather-cloud,
+    .stage[data-weather='rainy']  .weather-rain  { display: inline; }
+    .stage[data-weather='night']  .weather-moon,
+    .stage[data-weather='night']  .weather-stars { display: inline; }
+
+    /* Half-size and quarter-size renderings for "how big it'll feel on a real page" */
+    .at-size { display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch; }
+    .at-size .row { display: flex; gap: 1rem; align-items: flex-start; }
+    .at-size .row > div { flex: 1; }
+    .at-size svg { display: block; }
+
+    .open-issues {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      max-width: 70ch;
+      color: var(--text);
+    }
+    .open-issues ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+    .open-issues li { margin-bottom: 0.4rem; }
+    .open-issues h3 {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      background: rgba(0,0,0,0.04);
+      padding: 0.05rem 0.3rem;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1><b>BERLIN FOOTER</b> · DEV SANDBOX</h1>
+    <p class="lede">
+      Iterative previews of the pixel-art Berlin skyline footer.
+      Live URL; not indexed (robots noindex). Update by pushing to portfolio main; auto-deploys via GitHub Pages.
+      Toggle weather states to see how the scene morphs.
+    </p>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V1                                                        -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 01 · DRAFT V1 — composition only (no animation yet)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v1">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v1" class="stage" data-weather="sunny">
+          <!-- Inline SVG so CSS can show/hide weather layers per state -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 180" shape-rendering="crispEdges">
+
+            <!-- SKY LAYERS -->
+            <g class="weather-layer weather-sun" fill="#d8b16e">
+              <circle cx="360" cy="40" r="10" />
+              <rect x="358" y="20" width="4" height="4" />
+              <rect x="358" y="56" width="4" height="4" />
+              <rect x="340" y="38" width="4" height="4" />
+              <rect x="376" y="38" width="4" height="4" />
+              <rect x="346" y="26" width="4" height="4" />
+              <rect x="370" y="50" width="4" height="4" />
+              <rect x="346" y="50" width="4" height="4" />
+              <rect x="370" y="26" width="4" height="4" />
+            </g>
+
+            <g class="weather-layer weather-cloud">
+              <g fill="#8aa49d">
+                <rect x="80" y="40" width="56" height="8" />
+                <rect x="84" y="36" width="48" height="4" />
+                <rect x="88" y="32" width="32" height="4" />
+                <rect x="76" y="44" width="64" height="4" />
+              </g>
+              <g fill="#a8bcb6">
+                <rect x="200" y="28" width="40" height="6" />
+                <rect x="204" y="24" width="32" height="4" />
+                <rect x="196" y="32" width="48" height="4" />
+              </g>
+            </g>
+
+            <g class="weather-layer weather-rain" fill="#8aa49d" opacity="0.7">
+              <rect x="84"  y="56" width="1" height="4" />
+              <rect x="92"  y="60" width="1" height="4" />
+              <rect x="100" y="56" width="1" height="4" />
+              <rect x="108" y="60" width="1" height="4" />
+              <rect x="116" y="56" width="1" height="4" />
+              <rect x="124" y="60" width="1" height="4" />
+              <rect x="132" y="56" width="1" height="4" />
+              <rect x="204" y="40" width="1" height="4" />
+              <rect x="212" y="44" width="1" height="4" />
+              <rect x="220" y="40" width="1" height="4" />
+              <rect x="228" y="44" width="1" height="4" />
+              <rect x="236" y="40" width="1" height="4" />
+            </g>
+
+            <!-- SKYLINE -->
+            <g fill="#4f8375">
+              <!-- Reichstag — kept for now; will likely be removed in v2 -->
+              <g>
+                <rect x="30" y="124" width="60" height="26" />
+                <rect x="48" y="112" width="24" height="4" />
+                <rect x="44" y="116" width="32" height="4" />
+                <rect x="40" y="120" width="40" height="4" />
+                <rect x="58" y="108" width="4" height="4" />
+              </g>
+
+              <!-- Generic buildings -->
+              <rect x="100" y="116" width="20" height="34" />
+              <rect x="124" y="120" width="16" height="30" />
+
+              <!-- Crane -->
+              <g>
+                <rect x="156" y="80" width="2" height="70" />
+                <rect x="132" y="80" width="44" height="2" />
+                <rect x="156" y="76" width="14" height="2" />
+                <rect x="154" y="84" width="6" height="4" />
+                <rect x="138" y="84" width="2" height="6" />
+                <rect x="136" y="90" width="6" height="2" />
+              </g>
+
+              <!-- More buildings -->
+              <rect x="180" y="124" width="28" height="26" />
+
+              <!-- Berliner Dom -->
+              <g>
+                <rect x="220" y="130" width="64" height="20" />
+                <rect x="240" y="118" width="24" height="12" />
+                <rect x="244" y="114" width="16" height="4" />
+                <rect x="246" y="110" width="12" height="4" />
+                <rect x="248" y="106" width="8" height="4" />
+                <rect x="250" y="102" width="4" height="4" />
+                <rect x="251" y="96" width="2" height="6" />
+                <rect x="249" y="98" width="6" height="2" />
+                <rect x="220" y="120" width="8" height="10" />
+                <rect x="276" y="120" width="8" height="10" />
+                <rect x="222" y="116" width="4" height="4" />
+                <rect x="278" y="116" width="4" height="4" />
+              </g>
+
+              <!-- More buildings -->
+              <rect x="294" y="122" width="22" height="28" />
+              <rect x="320" y="128" width="16" height="22" />
+
+              <!-- TV Tower -->
+              <g>
+                <rect x="391" y="20" width="2" height="36" />
+                <rect x="389" y="50" width="6" height="6" />
+                <rect x="384" y="58" width="16" height="4" />
+                <rect x="382" y="62" width="20" height="8" />
+                <rect x="384" y="70" width="16" height="4" />
+                <rect x="390" y="74" width="4" height="8" />
+                <rect x="391" y="82" width="2" height="64" />
+                <rect x="386" y="146" width="12" height="4" />
+              </g>
+            </g>
+
+            <!-- Window dots (cream) -->
+            <g fill="#f8f3ee">
+              <rect x="104" y="120" width="4" height="4" />
+              <rect x="112" y="120" width="4" height="4" />
+              <rect x="104" y="128" width="4" height="4" />
+              <rect x="112" y="128" width="4" height="4" />
+              <rect x="104" y="136" width="4" height="4" />
+              <rect x="112" y="136" width="4" height="4" />
+              <rect x="128" y="124" width="4" height="4" />
+              <rect x="128" y="132" width="4" height="4" />
+              <rect x="128" y="140" width="4" height="4" />
+              <rect x="184" y="128" width="4" height="4" />
+              <rect x="192" y="128" width="4" height="4" />
+              <rect x="200" y="128" width="4" height="4" />
+              <rect x="184" y="136" width="4" height="4" />
+              <rect x="192" y="136" width="4" height="4" />
+              <rect x="200" y="136" width="4" height="4" />
+              <rect x="298" y="126" width="4" height="4" />
+              <rect x="306" y="126" width="4" height="4" />
+              <rect x="298" y="134" width="4" height="4" />
+              <rect x="306" y="134" width="4" height="4" />
+              <rect x="324" y="132" width="4" height="4" />
+              <rect x="324" y="140" width="4" height="4" />
+              <!-- TV Tower sphere windows -->
+              <rect x="386" y="64" width="2" height="2" />
+              <rect x="390" y="64" width="2" height="2" />
+              <rect x="394" y="64" width="2" height="2" />
+              <rect x="398" y="64" width="2" height="2" />
+            </g>
+
+            <!-- POPE'S REVENGE — only in sunny state -->
+            <g class="weather-layer weather-pope-cross" fill="#f8f3ee">
+              <rect x="391" y="62" width="2" height="10" />
+              <rect x="387" y="65" width="10" height="2" />
+            </g>
+
+            <!-- GROUND -->
+            <rect x="0" y="150" width="480" height="2" fill="#4f8375" />
+            <rect x="0" y="154" width="480" height="2" fill="#4f8375" opacity="0.4" />
+
+            <!-- TREE -->
+            <g fill="#4f8375">
+              <rect x="446" y="142" width="2" height="10" />
+              <rect x="442" y="134" width="10" height="2" />
+              <rect x="440" y="136" width="14" height="2" />
+              <rect x="438" y="138" width="18" height="4" />
+              <rect x="440" y="142" width="14" height="2" />
+            </g>
+
+            <!-- Grass tufts -->
+            <g fill="#4f8375">
+              <rect x="20" y="148" width="2" height="2" />
+              <rect x="26" y="148" width="2" height="2" />
+              <rect x="160" y="148" width="2" height="2" />
+              <rect x="170" y="148" width="2" height="2" />
+              <rect x="350" y="148" width="2" height="2" />
+              <rect x="360" y="148" width="2" height="2" />
+              <rect x="460" y="148" width="2" height="2" />
+            </g>
+
+          </svg>
+        </div>
+        <p class="frame-caption">
+          <span>480 × 180 SVG · sage palette · pixel-grid composition</span>
+          <span>WEATHER STATE: <span id="state-readout-v1">SUNNY</span></span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0;">
+        ABOVE: rendered at 1000px wide. Below: at smaller "actual footer" widths.
+      </p>
+
+      <div class="at-size" style="margin-top: 1rem;">
+        <div class="row">
+          <div>
+            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~600px (desktop footer width)</p>
+            <div class="frame" style="max-width: 600px;">
+              <div class="stage" data-weather="sunny" style="width: 600px;">
+                <object data="/dev/berlin-footer/draft-v1.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 0 0 0.3rem;">~360px (mobile footer width)</p>
+            <div class="frame" style="max-width: 360px;">
+              <div class="stage" data-weather="sunny" style="width: 360px;">
+                <object data="/dev/berlin-footer/draft-v1.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- OPEN ISSUES — annotated for the iteration                       -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 02 · OPEN ISSUES &amp; CHANGES PROPOSED FOR V2</p>
+
+      <div class="open-issues">
+        <ul>
+          <li><strong>Drop the Reichstag on the far left.</strong> Reads as a blob, not as the Reichstag. TV Tower + Berliner Dom are enough Berlin signal.</li>
+          <li><strong>Re-draw the TV Tower sphere.</strong> Current pixel approximation is rectangular; a 6×6 pixel hemisphere reads as more round.</li>
+          <li><strong>Vary the rooflines</strong> on the generic buildings (one stepped, one slanted) so the middle of the skyline has rhythm.</li>
+          <li><strong>Slightly bigger Pope's Revenge cross</strong> — 3px arms instead of 2px so it's unambiguous.</li>
+          <li><strong>Tree placement</strong> — currently far right competing with the TV Tower. Move it inward, or replace with grass tufts only.</li>
+          <li>Optional: <strong>night state</strong> with a moon + 2–3 stars, triggered when local Berlin time is post-sunset.</li>
+        </ul>
+
+        <h3>Once composition is locked</h3>
+        <ul>
+          <li>Wrap in <code>BerlinFooter.astro</code> component</li>
+          <li>Add CSS animations: cloud drift, rain fall, sun pulse, Pope's Revenge fade-in</li>
+          <li>JS: fetch Open-Meteo weather for Berlin, set <code>data-weather</code> attribute on the stage</li>
+          <li>Mount in <code>Layout.astro</code> so it appears site-wide</li>
+        </ul>
+
+        <h3>Out of scope for this experiment</h3>
+        <ul>
+          <li>Glyph separators (<code>~~~~</code>, <code>~•~</code>) for section breaks — separate concern, will sandbox separately</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Hook the state toggles to their stage's data-weather attribute.
+    document.querySelectorAll('.state-toggles').forEach(group => {
+      const targetId = group.getAttribute('data-toggle-for');
+      const stage = document.getElementById(targetId);
+      const readout = document.getElementById('state-readout-v1');
+      group.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const state = btn.getAttribute('data-state');
+          stage.setAttribute('data-weather', state);
+          group.querySelectorAll('button').forEach(b =>
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          if (readout) readout.textContent = state.toUpperCase();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
