@@ -146,6 +146,11 @@
     .stage[data-weather='rainy']  .weather-cloud,
     .stage[data-weather='rainy']  .weather-rain  { display: inline; }
 
+    /* Pope's Revenge fades in (visible AND transitioning opacity) only
+       in sunny state. Outside sunny, display: none above hides it
+       entirely so it doesn't flash through during state transitions. */
+    .stage[data-weather='sunny'] .weather-pope-cross { opacity: 1; }
+
     .at-size { display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch; }
     .at-size .row { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
     .at-size .row > div { flex: 1; min-width: 300px; }
@@ -195,10 +200,198 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V2 — line-art / pixel-broken edges                        -->
+    <!-- DRAFT V3 — v2 + animations (current focal point)                -->
     <!-- ============================================================== -->
     <section class="section">
-      <p class="section-label">§ 02 · DRAFT V2 — line-art, outlined, pixel-broken edges (current)</p>
+      <p class="section-label">§ 03 · DRAFT V3 — v2 composition + animations (CURRENT)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v3">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v3" class="stage" data-weather="sunny">
+          <object data="/dev/berlin-footer/draft-v3.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
+        </div>
+        <p class="frame-caption">
+          <span>V3 · animations embedded in SVG · stroke-dashoffset shimmer · clouds drift back-and-forth · sun pulses · rain falls · Pope's Revenge fades in</span>
+          <span>STATE: <span id="state-readout-v3">SUNNY</span></span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        NOTE: state toggles work via the wrapping element's <code>data-weather</code> attribute. But because the SVG above is loaded via <code>&lt;object&gt;</code>, CSS in this page can't reach inside it. So toggle clicks change the URL fragment to drive the SVG's own internal CSS; see the inline-SVG version below for the live state-toggle preview.
+      </p>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        Below: V3 inlined so state toggles actually flip layers (animations and toggles both working).
+      </p>
+
+      <div class="frame">
+        <div id="stage-v3-inline" class="stage" data-weather="sunny">
+          <!-- Inline copy of v3 SVG so state toggles work in this preview -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 180" shape-rendering="crispEdges">
+            <defs>
+              <style>
+                .out { fill: none; stroke: #4f8375; stroke-width: 2; }
+                .out-loose  { stroke-dasharray: 2 2; }
+                .out-tight  { stroke-dasharray: 3 1; }
+                .out-sparse { stroke-dasharray: 1 3; }
+                .out-solid  { }
+                .dot      { fill: #4f8375; }
+                .dot-soft { fill: #4f8375; opacity: 0.55; }
+                .neg      { fill: #f8f3ee; }
+                @keyframes shimmer-a { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 8;  } }
+                @keyframes shimmer-b { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 12; } }
+                @keyframes shimmer-c { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 16; } }
+                .out-tight  { animation: shimmer-a 3.2s steps(8) infinite; }
+                .out-loose  { animation: shimmer-b 4.8s steps(6) infinite reverse; }
+                .out-sparse { animation: shimmer-c 6.4s steps(4) infinite; }
+                @keyframes drift-fg { from { transform: translateX(0); } to { transform: translateX(40px); } }
+                @keyframes drift-bg { from { transform: translateX(0); } to { transform: translateX(-26px); } }
+                .cloud-a { animation: drift-fg 48s ease-in-out infinite alternate; transform-origin: center; transform-box: fill-box; }
+                .cloud-b { animation: drift-bg 72s ease-in-out infinite alternate; transform-origin: center; transform-box: fill-box; }
+                @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+                .weather-sun { animation: pulse 5s ease-in-out infinite; }
+                @keyframes rain-fall {
+                  from { transform: translateY(-6px); opacity: 0; }
+                  20%  { opacity: 0.7; }
+                  80%  { opacity: 0.7; }
+                  to   { transform: translateY(6px);  opacity: 0; }
+                }
+                .weather-rain line { animation: rain-fall 1.2s linear infinite; }
+                .weather-rain line:nth-child(2n)   { animation-delay: 0.3s; }
+                .weather-rain line:nth-child(3n)   { animation-delay: 0.6s; }
+                .weather-rain line:nth-child(5n)   { animation-delay: 0.9s; }
+                .weather-rain line:nth-child(7n+1) { animation-delay: 0.15s; }
+              </style>
+            </defs>
+
+            <g class="weather-layer weather-sun">
+              <circle cx="360" cy="40" r="9" fill="none" stroke="#d8b16e" stroke-width="2" stroke-dasharray="2 1" />
+              <g fill="#d8b16e">
+                <rect x="359" y="24" width="2" height="3" /><rect x="359" y="55" width="2" height="3" />
+                <rect x="343" y="39" width="3" height="2" /><rect x="374" y="39" width="3" height="2" />
+                <rect x="348" y="28" width="2" height="2" /><rect x="370" y="50" width="2" height="2" />
+                <rect x="348" y="50" width="2" height="2" /><rect x="370" y="28" width="2" height="2" />
+              </g>
+            </g>
+
+            <g class="weather-layer weather-cloud">
+              <path class="out out-tight cloud-a" d="M 76 48 L 76 44 L 84 44 L 84 40 L 92 40 L 92 36 L 116 36 L 116 32 L 128 32 L 128 36 L 136 36 L 136 40 L 140 40 L 140 48 Z" />
+              <path class="out out-loose cloud-b" d="M 196 36 L 196 32 L 204 32 L 204 28 L 212 28 L 212 24 L 232 24 L 232 28 L 240 28 L 240 32 L 244 32 L 244 36 Z" />
+            </g>
+
+            <g class="weather-layer weather-rain" stroke="#4f8375" stroke-width="1">
+              <line x1="84" y1="54" x2="84" y2="58" /><line x1="92" y1="58" x2="92" y2="62" />
+              <line x1="100" y1="54" x2="100" y2="58" /><line x1="108" y1="58" x2="108" y2="62" />
+              <line x1="116" y1="54" x2="116" y2="58" /><line x1="124" y1="58" x2="124" y2="62" />
+              <line x1="132" y1="54" x2="132" y2="58" /><line x1="204" y1="42" x2="204" y2="46" />
+              <line x1="212" y1="44" x2="212" y2="48" /><line x1="220" y1="42" x2="220" y2="46" />
+              <line x1="228" y1="44" x2="228" y2="48" /><line x1="236" y1="42" x2="236" y2="46" />
+            </g>
+
+            <rect x="40" y="128" width="22" height="22" class="out out-sparse" />
+            <rect x="66" y="122" width="14" height="28" class="out out-sparse" />
+            <rect x="84" y="130" width="12" height="20" class="out out-sparse" />
+
+            <path d="M 100 150 L 100 124 L 110 124 L 110 116 L 120 116 L 120 124 L 130 124 L 130 150 Z" class="out out-tight" />
+            <rect x="103" y="130" width="2" height="2" class="dot" /><rect x="111" y="120" width="2" height="2" class="dot" />
+            <rect x="123" y="130" width="2" height="2" class="dot" /><rect x="111" y="138" width="2" height="2" class="dot" />
+
+            <g stroke="#4f8375" stroke-width="2" fill="none">
+              <line x1="156" y1="78" x2="156" y2="150" stroke-dasharray="3 1" />
+              <line x1="132" y1="80" x2="176" y2="80" stroke-dasharray="2 1" />
+              <line x1="156" y1="76" x2="170" y2="76" />
+              <rect x="153" y="82" width="6" height="5" stroke-width="1" />
+              <line x1="138" y1="80" x2="138" y2="92" stroke-width="1" />
+            </g>
+            <rect x="136" y="92" width="4" height="2" class="dot" />
+
+            <path d="M 184 150 L 184 130 L 188 124 L 208 124 L 212 130 L 212 150 Z" class="out out-tight" />
+            <rect x="190" y="134" width="2" height="2" class="dot" /><rect x="198" y="134" width="2" height="2" class="dot" />
+            <rect x="206" y="134" width="2" height="2" class="dot" /><rect x="190" y="142" width="2" height="2" class="dot" />
+            <rect x="198" y="142" width="2" height="2" class="dot" /><rect x="206" y="142" width="2" height="2" class="dot" />
+
+            <g class="out out-tight">
+              <rect x="220" y="130" width="64" height="20" /><rect x="240" y="118" width="24" height="12" />
+              <rect x="220" y="120" width="8" height="10" /><rect x="276" y="120" width="8" height="10" />
+            </g>
+            <g class="dot">
+              <rect x="244" y="116" width="2" height="2" /><rect x="246" y="114" width="2" height="2" />
+              <rect x="248" y="112" width="2" height="2" /><rect x="250" y="110" width="4" height="2" />
+              <rect x="254" y="112" width="2" height="2" /><rect x="256" y="114" width="2" height="2" />
+              <rect x="258" y="116" width="2" height="2" /><rect x="251" y="106" width="2" height="4" />
+              <rect x="251" y="100" width="2" height="6" /><rect x="248" y="102" width="8" height="2" />
+            </g>
+            <rect x="222" y="116" width="4" height="4" class="dot" /><rect x="278" y="116" width="4" height="4" class="dot" />
+            <g class="dot-soft">
+              <rect x="228" y="132" width="1" height="14" /><rect x="236" y="132" width="1" height="14" />
+              <rect x="244" y="132" width="1" height="14" /><rect x="252" y="132" width="1" height="14" />
+              <rect x="260" y="132" width="1" height="14" /><rect x="268" y="132" width="1" height="14" />
+              <rect x="276" y="132" width="1" height="14" />
+            </g>
+
+            <path d="M 294 150 L 294 128 L 304 128 L 304 122 L 316 122 L 316 128 L 320 128 L 320 150 Z" class="out out-tight" />
+            <rect x="298" y="134" width="2" height="2" class="dot" /><rect x="308" y="128" width="2" height="2" class="dot" />
+            <rect x="298" y="142" width="2" height="2" class="dot" /><rect x="308" y="138" width="2" height="2" class="dot" />
+            <rect x="324" y="134" width="12" height="16" class="out out-loose" />
+            <rect x="328" y="138" width="2" height="2" class="dot" /><rect x="328" y="144" width="2" height="2" class="dot" />
+            <rect x="342" y="126" width="6" height="24" class="out out-loose" />
+
+            <line x1="392" y1="14" x2="392" y2="50" stroke="#4f8375" stroke-width="2" />
+            <rect x="389" y="50" width="6" height="6" class="out out-solid" />
+            <g class="dot">
+              <rect x="388" y="56" width="2" height="2" /><rect x="390" y="56" width="4" height="2" />
+              <rect x="394" y="56" width="2" height="2" /><rect x="384" y="58" width="2" height="2" />
+              <rect x="386" y="58" width="2" height="2" /><rect x="396" y="58" width="2" height="2" />
+              <rect x="398" y="58" width="2" height="2" /><rect x="382" y="60" width="2" height="2" />
+              <rect x="400" y="60" width="2" height="2" /><rect x="382" y="62" width="2" height="2" />
+              <rect x="400" y="62" width="2" height="2" /><rect x="382" y="64" width="2" height="2" />
+              <rect x="400" y="64" width="2" height="2" /><rect x="384" y="66" width="2" height="2" />
+              <rect x="386" y="66" width="2" height="2" /><rect x="396" y="66" width="2" height="2" />
+              <rect x="398" y="66" width="2" height="2" /><rect x="388" y="68" width="2" height="2" />
+              <rect x="390" y="68" width="4" height="2" /><rect x="394" y="68" width="2" height="2" />
+            </g>
+            <rect x="389" y="70" width="6" height="6" class="out out-solid" />
+            <line x1="392" y1="76" x2="392" y2="146" stroke="#4f8375" stroke-width="2" />
+            <rect x="386" y="146" width="12" height="4" class="out out-solid" />
+
+            <g class="weather-layer weather-pope-cross neg" style="transition: opacity 1.5s ease-out 0.3s;">
+              <rect x="390" y="54" width="4" height="18" /><rect x="383" y="61" width="18" height="4" />
+            </g>
+
+            <line x1="0" y1="151" x2="480" y2="151" stroke="#4f8375" stroke-width="2" stroke-dasharray="3 1" />
+            <line x1="0" y1="155" x2="480" y2="155" stroke="#4f8375" stroke-width="1" stroke-dasharray="1 4" opacity="0.5" />
+
+            <line x1="446" y1="142" x2="446" y2="151" stroke="#4f8375" stroke-width="2" />
+            <circle cx="446" cy="136" r="6" class="out out-tight" />
+            <rect x="444" y="134" width="1" height="1" class="dot" />
+            <rect x="448" y="136" width="1" height="1" class="dot" />
+            <rect x="445" y="138" width="1" height="1" class="dot" />
+
+            <g stroke="#4f8375" stroke-width="1">
+              <line x1="20" y1="149" x2="20" y2="151" /><line x1="24" y1="148" x2="24" y2="151" />
+              <line x1="170" y1="148" x2="170" y2="151" /><line x1="174" y1="149" x2="174" y2="151" />
+              <line x1="350" y1="149" x2="350" y2="151" /><line x1="354" y1="148" x2="354" y2="151" />
+              <line x1="358" y1="149" x2="358" y2="151" /><line x1="460" y1="148" x2="460" y2="151" />
+              <line x1="464" y1="149" x2="464" y2="151" />
+            </g>
+          </svg>
+        </div>
+        <p class="frame-caption">
+          <span>V3 inlined — same SVG, but in-page so state toggles flip the weather layers live</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V2 — kept for comparison                                  -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 02 · DRAFT V2 — line-art, outlined, pixel-broken edges (no animations)</p>
 
       <div class="state-toggles" data-toggle-for="stage-v2">
         <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
@@ -485,12 +678,18 @@
   <script>
     document.querySelectorAll('.state-toggles').forEach(group => {
       const targetId = group.getAttribute('data-toggle-for');
-      const stage = document.getElementById(targetId);
-      const readout = stage ? document.getElementById('state-readout-v2') : null;
+      // v3 toggle drives BOTH the inline-SVG stage AND the object-wrapped
+      // stage by id pattern; falls back gracefully if either is missing.
+      const stages = [
+        document.getElementById(targetId),
+        document.getElementById(targetId + '-inline'),
+      ].filter(Boolean);
+      const readoutId = 'state-readout-' + (targetId || '').replace('stage-', '');
+      const readout = document.getElementById(readoutId);
       group.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
           const state = btn.getAttribute('data-state');
-          if (stage) stage.setAttribute('data-weather', state);
+          stages.forEach(s => s.setAttribute('data-weather', state));
           group.querySelectorAll('button').forEach(b =>
             b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
           if (readout) readout.textContent = state.toUpperCase();
