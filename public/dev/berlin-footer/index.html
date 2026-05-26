@@ -200,7 +200,34 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V6 — sun on left + visible pulse/drift animations         -->
+    <!-- DRAFT V7 — silhouettes themselves boil at the edges             -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 07 · DRAFT V7 — edge-breath layer: ~180 perimeter pixels across all silhouettes, each with its own pulse/blink phase. Buildings constantly redraw at the boundary (CURRENT)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v7">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v7" class="stage" data-weather="sunny">
+          <object data="/dev/berlin-footer/draft-v7.svg" type="image/svg+xml" style="display:block;width:100%;"></object>
+        </div>
+        <p class="frame-caption">
+          <span>V7 · perimeter pixels on every silhouette pulse and blink at varied phases — the buildings boil at the edges</span>
+          <span>(state toggles use inline copy below)</span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        Note: this preview uses &lt;object&gt; embedding so animations run cleanly. State toggles work on the inline copy below.
+      </p>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V6 — previous (archived)                                  -->
     <!-- ============================================================== -->
     <section class="section">
       <p class="section-label">§ 06 · DRAFT V6 — sun moved LEFT, life pixels always visible (pulsing brightness), 6 drift pixels translate across sky, sun breathes via scale (CURRENT)</p>
