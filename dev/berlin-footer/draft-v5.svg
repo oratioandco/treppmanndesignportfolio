@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 180" shape-rendering="crispEdges">
+  <!-- DRAFT V5 — Monkey Island chunky silhouettes + Game-of-Life pixel
+       life layer, monochromatic (teal + cream only). No more outlines,
+       no more multi-pass strokes, no more gold. Solid teal silhouettes
+       breathe via a flickering pixel layer scattered across the sky
+       and along the silhouette edges. -->
+
+  <defs>
+    <style>
+      .teal { fill: #4f8375; }
+      .neg  { fill: #f8f3ee; }
+
+      /* ===================================================================
+         GAME-OF-LIFE PIXEL LIFE LAYER
+         Each scattered pixel uses one of 8 flicker variants with different
+         periods and delays. The composite reads as a "breathing" cellular
+         field — pixels independently come alive and die across the scene.
+         For pixels in clusters of 2-3 with cascading delays, the eye reads
+         a moving glow (CA-style propagation).
+         =================================================================== */
+      @keyframes flicker {
+        0%, 100% { opacity: 0; }
+        40%, 60% { opacity: 1; }
+      }
+      .life-1 { animation: flicker 3.2s ease-in-out infinite;       }
+      .life-2 { animation: flicker 4.0s ease-in-out infinite 0.6s;  }
+      .life-3 { animation: flicker 4.8s ease-in-out infinite 1.2s;  }
+      .life-4 { animation: flicker 5.6s ease-in-out infinite 0.4s;  }
+      .life-5 { animation: flicker 6.4s ease-in-out infinite 1.8s;  }
+      .life-6 { animation: flicker 3.6s ease-in-out infinite 2.4s;  }
+      .life-7 { animation: flicker 5.2s ease-in-out infinite 0.0s;  }
+      .life-8 { animation: flicker 4.4s ease-in-out infinite 1.0s;  }
+
+      /* Slower / fainter pulse for atmospheric life pixels */
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.25; }
+        50%      { opacity: 0.9;  }
+      }
+      .life-slow-a { animation: pulse-slow  8s ease-in-out infinite;      }
+      .life-slow-b { animation: pulse-slow 10s ease-in-out infinite 2s;   }
+      .life-slow-c { animation: pulse-slow 12s ease-in-out infinite 4s;   }
+
+      /* ===================================================================
+         CLOUD DRIFT — simple translateX, no transform-box (which was
+         the v4 bug). Plain SVG transforms work from viewport origin and
+         translate just fine.
+         =================================================================== */
+      @keyframes drift-a { 0% { transform: translateX(0);   } 100% { transform: translateX( 60px); } }
+      @keyframes drift-b { 0% { transform: translateX(0);   } 100% { transform: translateX(-44px); } }
+      .cloud-a { animation: drift-a 14s ease-in-out infinite alternate; }
+      .cloud-b { animation: drift-b 18s ease-in-out infinite alternate; }
+
+      /* ===================================================================
+         RAIN — falls + staggered, simple translateY
+         =================================================================== */
+      @keyframes rain-fall {
+        0%   { transform: translateY(-6px); opacity: 0;   }
+        25%  {                              opacity: 0.8; }
+        75%  {                              opacity: 0.8; }
+        100% { transform: translateY( 8px); opacity: 0;   }
+      }
+      .rain-drop { animation: rain-fall 1.0s linear infinite; }
+      .rain-drop:nth-child(2n)   { animation-delay: 0.25s; }
+      .rain-drop:nth-child(3n)   { animation-delay: 0.50s; }
+      .rain-drop:nth-child(5n)   { animation-delay: 0.75s; }
+      .rain-drop:nth-child(7n+1) { animation-delay: 0.10s; }
+
+      /* ===================================================================
+         SUN — gentle pulse (no rotation, no gold; solid teal disc reads
+         as sun by shape + rays in monochromatic palette)
+         =================================================================== */
+      @keyframes sun-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+      .sun { animation: sun-pulse 4s ease-in-out infinite; }
+
+      /* ===================================================================
+         POPE'S REVENGE — cream cross drawn INSIDE the teal sphere, fades
+         in over 1.5s when sunny. Cream-on-teal reads as light shining
+         through the steel panel seams (which is what the reflection
+         actually is).
+         =================================================================== */
+      .pope-cross { opacity: 0; transition: opacity 1.5s ease-out 0.3s; }
+    </style>
+  </defs>
+
+  <!-- ================================================================ -->
+  <!-- SKY LIFE PIXEL FIELD                                              -->
+  <!-- Scattered teal pixels across the sky (y < 100). Each is 2x2 and   -->
+  <!-- flickers via one of 8 variants. Some come in adjacent pairs/      -->
+  <!-- triples for cascading-glow effect (CA-style propagation).         -->
+  <!-- Always visible across all weather states.                         -->
+  <!-- ================================================================ -->
+  <g class="teal life-field">
+    <!-- Far left -->
+    <rect x="18"  y="22" width="2" height="2" class="life-1" />
+    <rect x="20"  y="22" width="2" height="2" class="life-2" />
+    <rect x="32"  y="16" width="2" height="2" class="life-3" />
+    <rect x="48"  y="42" width="2" height="2" class="life-4" />
+    <rect x="50"  y="42" width="2" height="2" class="life-5" />
+    <rect x="64"  y="28" width="2" height="2" class="life-6" />
+    <rect x="76"  y="14" width="2" height="2" class="life-7" />
+    <rect x="92"  y="56" width="2" height="2" class="life-8" />
+    <rect x="106" y="38" width="2" height="2" class="life-1" />
+    <rect x="108" y="38" width="2" height="2" class="life-2" />
+    <rect x="120" y="22" width="2" height="2" class="life-3" />
+    <rect x="138" y="64" width="2" height="2" class="life-4" />
+    <rect x="148" y="44" width="2" height="2" class="life-5" />
+    <rect x="160" y="20" width="2" height="2" class="life-6" />
+    <rect x="172" y="56" width="2" height="2" class="life-7" />
+    <rect x="186" y="68" width="2" height="2" class="life-8" />
+    <rect x="188" y="68" width="2" height="2" class="life-1" />
+    <rect x="202" y="42" width="2" height="2" class="life-2" />
+    <rect x="216" y="80" width="2" height="2" class="life-3" />
+    <rect x="232" y="58" width="2" height="2" class="life-4" />
+    <rect x="234" y="58" width="2" height="2" class="life-5" />
+    <rect x="248" y="92" width="2" height="2" class="life-6" />
+    <rect x="262" y="74" width="2" height="2" class="life-7" />
+    <rect x="278" y="46" width="2" height="2" class="life-8" />
+    <rect x="294" y="86" width="2" height="2" class="life-1" />
+    <rect x="296" y="86" width="2" height="2" class="life-2" />
+    <rect x="312" y="62" width="2" height="2" class="life-3" />
+    <rect x="328" y="98" width="2" height="2" class="life-4" />
+    <rect x="344" y="76" width="2" height="2" class="life-5" />
+    <rect x="386" y="100" width="2" height="2" class="life-6" />
+    <rect x="408" y="90" width="2" height="2" class="life-7" />
+    <rect x="410" y="90" width="2" height="2" class="life-8" />
+    <rect x="424" y="64" width="2" height="2" class="life-1" />
+    <rect x="438" y="100" width="2" height="2" class="life-2" />
+    <rect x="452" y="80" width="2" height="2" class="life-3" />
+    <rect x="466" y="44" width="2" height="2" class="life-4" />
+    <!-- Slow-pulse atmospheric pixels (sparse, larger interval) -->
+    <rect x="36"  y="80" width="2" height="2" class="life-slow-a" />
+    <rect x="146" y="92" width="2" height="2" class="life-slow-b" />
+    <rect x="226" y="14" width="2" height="2" class="life-slow-c" />
+    <rect x="304" y="34" width="2" height="2" class="life-slow-a" />
+    <rect x="376" y="76" width="2" height="2" class="life-slow-b" />
+    <rect x="430" y="28" width="2" height="2" class="life-slow-c" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- WEATHER: SUN (sunny state only)                                   -->
+  <!-- Solid teal pixel-disc with rays. Monochromatic so the sun reads   -->
+  <!-- by SHAPE not color. Chunky 4px pixel grid for Monkey Island feel. -->
+  <!-- ================================================================ -->
+  <g class="weather-layer weather-sun sun teal">
+    <!-- Pixel disc (octagonal, ~16px diameter) -->
+    <rect x="354" y="30" width="12" height="2" />
+    <rect x="350" y="32" width="20" height="2" />
+    <rect x="348" y="34" width="24" height="2" />
+    <rect x="346" y="36" width="28" height="8" />
+    <rect x="348" y="44" width="24" height="2" />
+    <rect x="350" y="46" width="20" height="2" />
+    <rect x="354" y="48" width="12" height="2" />
+    <!-- Rays — 8 directions -->
+    <rect x="359" y="20" width="2" height="6" />
+    <rect x="359" y="54" width="2" height="6" />
+    <rect x="338" y="39" width="6" height="2" />
+    <rect x="376" y="39" width="6" height="2" />
+    <rect x="345" y="24" width="2" height="2" />
+    <rect x="347" y="26" width="2" height="2" />
+    <rect x="371" y="52" width="2" height="2" />
+    <rect x="373" y="54" width="2" height="2" />
+    <rect x="345" y="54" width="2" height="2" />
+    <rect x="347" y="52" width="2" height="2" />
+    <rect x="371" y="26" width="2" height="2" />
+    <rect x="373" y="24" width="2" height="2" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- WEATHER: CLOUDS (cloudy/rainy states)                             -->
+  <!-- Solid teal cloud silhouettes with dithered edges. Dithering =     -->
+  <!-- alternating present/absent pixels at the boundary, creating a    -->
+  <!-- soft gradient fade (classic Monkey Island shading technique).    -->
+  <!-- ================================================================ -->
+  <g class="weather-layer weather-cloud teal">
+    <g class="cloud-a">
+      <!-- Main solid body -->
+      <rect x="84" y="40" width="56" height="8" />
+      <rect x="88" y="36" width="48" height="4" />
+      <rect x="92" y="32" width="40" height="4" />
+      <!-- Lower dither edge (every other pixel) -->
+      <rect x="84" y="48" width="2" height="2" />
+      <rect x="88" y="48" width="2" height="2" />
+      <rect x="92" y="48" width="2" height="2" />
+      <rect x="100" y="48" width="2" height="2" />
+      <rect x="108" y="48" width="2" height="2" />
+      <rect x="116" y="48" width="2" height="2" />
+      <rect x="124" y="48" width="2" height="2" />
+      <rect x="132" y="48" width="2" height="2" />
+      <rect x="136" y="48" width="2" height="2" />
+      <!-- Upper dither edge -->
+      <rect x="96" y="30" width="2" height="2" />
+      <rect x="104" y="30" width="2" height="2" />
+      <rect x="116" y="30" width="2" height="2" />
+      <rect x="124" y="30" width="2" height="2" />
+      <!-- Left dither edge -->
+      <rect x="82" y="42" width="2" height="2" />
+      <rect x="82" y="46" width="2" height="2" />
+      <!-- Right dither edge -->
+      <rect x="140" y="42" width="2" height="2" />
+      <rect x="140" y="46" width="2" height="2" />
+    </g>
+
+    <g class="cloud-b">
+      <rect x="200" y="28" width="40" height="6" />
+      <rect x="204" y="24" width="32" height="4" />
+      <rect x="196" y="32" width="48" height="2" />
+      <!-- Lower dither -->
+      <rect x="196" y="34" width="2" height="2" />
+      <rect x="200" y="34" width="2" height="2" />
+      <rect x="208" y="34" width="2" height="2" />
+      <rect x="216" y="34" width="2" height="2" />
+      <rect x="224" y="34" width="2" height="2" />
+      <rect x="232" y="34" width="2" height="2" />
+      <rect x="240" y="34" width="2" height="2" />
+      <rect x="244" y="34" width="2" height="2" />
+      <!-- Upper dither -->
+      <rect x="208" y="22" width="2" height="2" />
+      <rect x="220" y="22" width="2" height="2" />
+      <rect x="228" y="22" width="2" height="2" />
+    </g>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- WEATHER: RAIN (rainy only) — small teal pixel drops              -->
+  <!-- ================================================================ -->
+  <g class="weather-layer weather-rain teal">
+    <rect class="rain-drop" x="84"  y="54" width="1" height="3" />
+    <rect class="rain-drop" x="92"  y="58" width="1" height="3" />
+    <rect class="rain-drop" x="100" y="54" width="1" height="3" />
+    <rect class="rain-drop" x="108" y="58" width="1" height="3" />
+    <rect class="rain-drop" x="116" y="54" width="1" height="3" />
+    <rect class="rain-drop" x="124" y="58" width="1" height="3" />
+    <rect class="rain-drop" x="132" y="54" width="1" height="3" />
+    <rect class="rain-drop" x="204" y="42" width="1" height="3" />
+    <rect class="rain-drop" x="212" y="46" width="1" height="3" />
+    <rect class="rain-drop" x="220" y="42" width="1" height="3" />
+    <rect class="rain-drop" x="228" y="46" width="1" height="3" />
+    <rect class="rain-drop" x="236" y="42" width="1" height="3" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- SKYLINE — Monkey Island solid teal silhouettes                    -->
+  <!-- ================================================================ -->
+  <g class="teal">
+    <!-- Distant buildings (left cluster) -->
+    <rect x="40" y="128" width="22" height="22" />
+    <rect x="66" y="120" width="14" height="30" />
+    <rect x="84" y="130" width="12" height="20" />
+
+    <!-- Stepped building -->
+    <path d="M 100 150 L 100 124 L 110 124 L 110 116 L 120 116 L 120 124 L 130 124 L 130 150 Z" />
+
+    <!-- Slanted-roof building -->
+    <path d="M 184 150 L 184 130 L 188 124 L 208 124 L 212 130 L 212 150 Z" />
+
+    <!-- Berliner Dom base + colonnade body -->
+    <rect x="220" y="130" width="64" height="20" />
+    <rect x="240" y="118" width="24" height="12" />
+    <!-- Side towers -->
+    <rect x="220" y="120" width="8" height="10" />
+    <rect x="276" y="120" width="8" height="10" />
+    <!-- Side tower caps -->
+    <rect x="222" y="116" width="4" height="4" />
+    <rect x="278" y="116" width="4" height="4" />
+    <!-- Pixel dome (stepped pyramid → arc) -->
+    <rect x="244" y="114" width="16" height="4" />
+    <rect x="246" y="110" width="12" height="4" />
+    <rect x="248" y="106" width="8"  height="4" />
+    <!-- Lantern -->
+    <rect x="250" y="102" width="4" height="4" />
+    <!-- Cross on top of Dom -->
+    <rect x="251" y="96"  width="2" height="6" />
+    <rect x="249" y="98"  width="6" height="2" />
+
+    <!-- Mid buildings between Dom and TV Tower -->
+    <path d="M 294 150 L 294 128 L 304 128 L 304 122 L 316 122 L 316 128 L 320 128 L 320 150 Z" />
+    <rect x="324" y="134" width="12" height="16" />
+    <rect x="342" y="126" width="6"  height="24" />
+
+    <!-- TV Tower antenna -->
+    <rect x="391" y="14" width="2" height="42" />
+    <!-- Antenna base widening -->
+    <rect x="389" y="50" width="6" height="6" />
+    <!-- Sphere (chunky pixel approximation, solid teal) -->
+    <rect x="386" y="58" width="12" height="2" />
+    <rect x="384" y="60" width="16" height="2" />
+    <rect x="382" y="62" width="20" height="6" />
+    <rect x="384" y="68" width="16" height="2" />
+    <rect x="386" y="70" width="12" height="2" />
+    <!-- Sphere → tapered column -->
+    <rect x="389" y="72" width="6" height="6" />
+    <rect x="391" y="78" width="2" height="68" />
+    <!-- Wider tower base -->
+    <rect x="386" y="146" width="12" height="4" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- POPE'S REVENGE — cream cross INSIDE the teal sphere               -->
+  <!-- Drawn AFTER the sphere so it overlays (it's the "highlight"       -->
+  <!-- reading as panel-seam reflection). Fades in over 1.5s when sunny. -->
+  <!-- ================================================================ -->
+  <g class="weather-layer pope-cross neg">
+    <!-- Vertical arm — through sphere center -->
+    <rect x="391" y="60" width="2" height="12" />
+    <!-- Horizontal arm — at sphere equator -->
+    <rect x="384" y="64" width="16" height="2" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- CRANE — keeps line-art (structural, not silhouette)               -->
+  <!-- ================================================================ -->
+  <g class="teal">
+    <rect x="156" y="78" width="2" height="72" />   <!-- mast -->
+    <rect x="132" y="80" width="44" height="2" />   <!-- jib -->
+    <rect x="156" y="76" width="14" height="2" />   <!-- counter-jib -->
+    <rect x="153" y="84" width="6"  height="4" />   <!-- operator cabin -->
+    <rect x="138" y="80" width="1"  height="12" />  <!-- hook line -->
+    <rect x="136" y="92" width="4"  height="2" />   <!-- hook -->
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- BUILDING WINDOWS — small cream negative-space pixels              -->
+  <!-- ================================================================ -->
+  <g class="neg">
+    <!-- Stepped building -->
+    <rect x="103" y="130" width="2" height="2" />
+    <rect x="111" y="120" width="2" height="2" />
+    <rect x="123" y="130" width="2" height="2" />
+    <rect x="111" y="138" width="2" height="2" />
+    <rect x="105" y="142" width="2" height="2" />
+    <rect x="119" y="142" width="2" height="2" />
+    <!-- Slanted-roof building -->
+    <rect x="190" y="134" width="2" height="2" />
+    <rect x="198" y="134" width="2" height="2" />
+    <rect x="206" y="134" width="2" height="2" />
+    <rect x="190" y="142" width="2" height="2" />
+    <rect x="198" y="142" width="2" height="2" />
+    <rect x="206" y="142" width="2" height="2" />
+    <!-- Dom colonnade arches -->
+    <rect x="228" y="134" width="2" height="12" />
+    <rect x="236" y="134" width="2" height="12" />
+    <rect x="244" y="134" width="2" height="12" />
+    <rect x="252" y="134" width="2" height="12" />
+    <rect x="260" y="134" width="2" height="12" />
+    <rect x="268" y="134" width="2" height="12" />
+    <rect x="276" y="134" width="2" height="12" />
+    <!-- Mid building -->
+    <rect x="298" y="134" width="2" height="2" />
+    <rect x="308" y="128" width="2" height="2" />
+    <rect x="298" y="142" width="2" height="2" />
+    <rect x="308" y="138" width="2" height="2" />
+    <rect x="328" y="138" width="2" height="2" />
+    <rect x="328" y="144" width="2" height="2" />
+    <!-- Distant building hints -->
+    <rect x="48" y="132" width="2" height="2" />
+    <rect x="52" y="138" width="2" height="2" />
+    <rect x="70" y="128" width="2" height="2" />
+    <rect x="74" y="136" width="2" height="2" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- EDGE LIFE PIXELS — flicker around silhouettes for breathing feel  -->
+  <!-- Teal pixels positioned just outside building edges, with offset   -->
+  <!-- delays so they cascade (the eye reads CA-style propagation).      -->
+  <!-- ================================================================ -->
+  <g class="teal">
+    <!-- Stepped building edge halo -->
+    <rect x="98"  y="124" width="2" height="2" class="life-1" />
+    <rect x="98"  y="122" width="2" height="2" class="life-2" />
+    <rect x="132" y="124" width="2" height="2" class="life-3" />
+    <rect x="120" y="114" width="2" height="2" class="life-4" />
+    <!-- Slanted roof halo -->
+    <rect x="182" y="130" width="2" height="2" class="life-5" />
+    <rect x="214" y="130" width="2" height="2" class="life-6" />
+    <rect x="196" y="122" width="2" height="2" class="life-7" />
+    <!-- Dom halo -->
+    <rect x="218" y="120" width="2" height="2" class="life-8" />
+    <rect x="286" y="120" width="2" height="2" class="life-1" />
+    <rect x="248" y="100" width="2" height="2" class="life-2" />
+    <rect x="252" y="94"  width="2" height="2" class="life-3" />
+    <rect x="244" y="104" width="2" height="2" class="life-4" />
+    <!-- TV Tower halo -->
+    <rect x="380" y="64" width="2" height="2" class="life-5" />
+    <rect x="402" y="64" width="2" height="2" class="life-6" />
+    <rect x="386" y="56" width="2" height="2" class="life-7" />
+    <rect x="396" y="56" width="2" height="2" class="life-8" />
+    <rect x="389" y="10" width="2" height="2" class="life-1" />
+    <rect x="389" y="6"  width="2" height="2" class="life-slow-a" />
+    <!-- Mid building edges -->
+    <rect x="292" y="128" width="2" height="2" class="life-2" />
+    <rect x="322" y="134" width="2" height="2" class="life-3" />
+    <rect x="338" y="126" width="2" height="2" class="life-4" />
+    <!-- Distant edge sparkles -->
+    <rect x="38"  y="128" width="2" height="2" class="life-5" />
+    <rect x="62"  y="120" width="2" height="2" class="life-6" />
+    <rect x="82"  y="130" width="2" height="2" class="life-7" />
+    <rect x="98"  y="130" width="2" height="2" class="life-8" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- GROUND                                                            -->
+  <!-- ================================================================ -->
+  <rect x="0" y="150" width="480" height="2" class="teal" />
+  <rect x="0" y="154" width="480" height="2" class="teal" opacity="0.4" />
+
+  <!-- ================================================================ -->
+  <!-- TREE                                                              -->
+  <!-- ================================================================ -->
+  <g class="teal">
+    <!-- Trunk -->
+    <rect x="446" y="142" width="2" height="10" />
+    <!-- Foliage cluster (Monkey Island style) -->
+    <rect x="442" y="134" width="10" height="2" />
+    <rect x="440" y="136" width="14" height="4" />
+    <rect x="438" y="140" width="18" height="2" />
+    <rect x="440" y="142" width="14" height="2" />
+    <!-- Foliage life pixels (leaves "moving" in the wind) -->
+    <rect x="436" y="138" width="2" height="2" class="life-1" />
+    <rect x="456" y="138" width="2" height="2" class="life-3" />
+    <rect x="442" y="132" width="2" height="2" class="life-5" />
+    <rect x="450" y="132" width="2" height="2" class="life-7" />
+    <rect x="438" y="144" width="2" height="2" class="life-2" />
+    <rect x="454" y="144" width="2" height="2" class="life-4" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- GRASS TUFTS                                                       -->
+  <!-- ================================================================ -->
+  <g class="teal">
+    <rect x="20"  y="148" width="2" height="2" />
+    <rect x="26"  y="148" width="2" height="2" />
+    <rect x="160" y="148" width="2" height="2" />
+    <rect x="170" y="148" width="2" height="2" />
+    <rect x="350" y="148" width="2" height="2" />
+    <rect x="360" y="148" width="2" height="2" />
+    <rect x="460" y="148" width="2" height="2" />
+    <!-- Grass life pixels (occasional flicker, like swaying) -->
+    <rect x="32"  y="148" width="2" height="2" class="life-6" />
+    <rect x="180" y="148" width="2" height="2" class="life-8" />
+    <rect x="340" y="148" width="2" height="2" class="life-2" />
+    <rect x="450" y="148" width="2" height="2" class="life-4" />
+  </g>
+
+</svg>

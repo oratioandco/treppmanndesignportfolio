@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 180" shape-rendering="crispEdges" style="background: #f8f3ee">
+
+  <!-- Layout reference (4px pixel grid):
+       0-100 sky, 100-150 skyline, 150-156 ground, 156-180 foreground.
+       x order (left → right): Reichstag, buildings, crane, Dom, buildings, TV Tower, tree. -->
+
+  <!-- ================================================================ -->
+  <!-- BACKGROUND ELEMENTS / WEATHER LAYER (sky)                         -->
+  <!-- ================================================================ -->
+
+  <!-- Sun (sunny state) -->
+  <g id="sun" fill="#d8b16e">
+    <circle cx="360" cy="40" r="10" />
+    <!-- Pixel rays -->
+    <rect x="358" y="20" width="4" height="4" />
+    <rect x="358" y="56" width="4" height="4" />
+    <rect x="340" y="38" width="4" height="4" />
+    <rect x="376" y="38" width="4" height="4" />
+    <rect x="346" y="26" width="4" height="4" />
+    <rect x="370" y="50" width="4" height="4" />
+    <rect x="346" y="50" width="4" height="4" />
+    <rect x="370" y="26" width="4" height="4" />
+  </g>
+
+  <!-- Cloud cluster (cloudy / rainy state) -->
+  <g id="cloud-a" fill="#8aa49d">
+    <rect x="80" y="40" width="56" height="8" />
+    <rect x="84" y="36" width="48" height="4" />
+    <rect x="88" y="32" width="32" height="4" />
+    <rect x="76" y="44" width="64" height="4" />
+  </g>
+
+  <g id="cloud-b" fill="#a8bcb6">
+    <rect x="200" y="28" width="40" height="6" />
+    <rect x="204" y="24" width="32" height="4" />
+    <rect x="196" y="32" width="48" height="4" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- SKYLINE — sage silhouettes                                        -->
+  <!-- ================================================================ -->
+
+  <g id="skyline" fill="#4f8375">
+
+    <!-- ===== Reichstag (left) ===== -->
+    <g id="reichstag">
+      <!-- Base building -->
+      <rect x="30" y="124" width="60" height="26" />
+      <!-- Glass dome (simplified semi-circle) -->
+      <rect x="48" y="112" width="24" height="4" />
+      <rect x="44" y="116" width="32" height="4" />
+      <rect x="40" y="120" width="40" height="4" />
+      <!-- Top "lantern" -->
+      <rect x="58" y="108" width="4" height="4" />
+      <!-- Column hints (4 darker verticals on the front) -->
+    </g>
+
+    <!-- ===== Generic medium buildings ===== -->
+    <rect x="100" y="116" width="20" height="34" />
+    <rect x="104" y="120" width="4" height="4" fill="#f8f3ee" />
+    <rect x="112" y="120" width="4" height="4" fill="#f8f3ee" />
+    <rect x="104" y="128" width="4" height="4" fill="#f8f3ee" />
+    <rect x="112" y="128" width="4" height="4" fill="#f8f3ee" />
+    <rect x="104" y="136" width="4" height="4" fill="#f8f3ee" />
+    <rect x="112" y="136" width="4" height="4" fill="#f8f3ee" />
+
+    <rect x="124" y="120" width="16" height="30" />
+    <rect x="128" y="124" width="4" height="4" fill="#f8f3ee" />
+    <rect x="128" y="132" width="4" height="4" fill="#f8f3ee" />
+    <rect x="128" y="140" width="4" height="4" fill="#f8f3ee" />
+
+    <!-- ===== Construction crane (Berlin signature) ===== -->
+    <g id="crane">
+      <!-- Mast -->
+      <rect x="156" y="80" width="2" height="70" />
+      <!-- Jib (horizontal arm) -->
+      <rect x="132" y="80" width="44" height="2" />
+      <!-- Counter-jib -->
+      <rect x="156" y="76" width="14" height="2" />
+      <!-- Operator cabin -->
+      <rect x="154" y="84" width="6" height="4" />
+      <!-- Hook -->
+      <rect x="138" y="84" width="2" height="6" />
+      <rect x="136" y="90" width="6" height="2" />
+    </g>
+
+    <!-- More buildings between crane and Dom -->
+    <rect x="180" y="124" width="28" height="26" />
+    <rect x="184" y="128" width="4" height="4" fill="#f8f3ee" />
+    <rect x="192" y="128" width="4" height="4" fill="#f8f3ee" />
+    <rect x="200" y="128" width="4" height="4" fill="#f8f3ee" />
+    <rect x="184" y="136" width="4" height="4" fill="#f8f3ee" />
+    <rect x="192" y="136" width="4" height="4" fill="#f8f3ee" />
+    <rect x="200" y="136" width="4" height="4" fill="#f8f3ee" />
+
+    <!-- ===== Berliner Dom (the second anchor) ===== -->
+    <g id="berliner-dom" transform="translate(0,0)">
+      <!-- Base/colonnade -->
+      <rect x="220" y="130" width="64" height="20" />
+      <!-- Central dome drum -->
+      <rect x="240" y="118" width="24" height="12" />
+      <!-- Dome itself (pixel approximation of a hemisphere) -->
+      <rect x="244" y="114" width="16" height="4" />
+      <rect x="240" y="118" width="24" height="0" />
+      <rect x="246" y="110" width="12" height="4" />
+      <rect x="248" y="106" width="8" height="4" />
+      <!-- Lantern + cross on top -->
+      <rect x="250" y="102" width="4" height="4" />
+      <rect x="251" y="96" width="2" height="6" />
+      <!-- Cross arms -->
+      <rect x="249" y="98" width="6" height="2" />
+      <!-- Side towers -->
+      <rect x="220" y="120" width="8" height="10" />
+      <rect x="276" y="120" width="8" height="10" />
+      <!-- Side tower caps -->
+      <rect x="222" y="116" width="4" height="4" />
+      <rect x="278" y="116" width="4" height="4" />
+    </g>
+
+    <!-- More buildings between Dom and TV Tower -->
+    <rect x="294" y="122" width="22" height="28" />
+    <rect x="298" y="126" width="4" height="4" fill="#f8f3ee" />
+    <rect x="306" y="126" width="4" height="4" fill="#f8f3ee" />
+    <rect x="298" y="134" width="4" height="4" fill="#f8f3ee" />
+    <rect x="306" y="134" width="4" height="4" fill="#f8f3ee" />
+
+    <rect x="320" y="128" width="16" height="22" />
+    <rect x="324" y="132" width="4" height="4" fill="#f8f3ee" />
+    <rect x="324" y="140" width="4" height="4" fill="#f8f3ee" />
+
+    <!-- ===== Fernsehturm (TV Tower) — dominant on the right ===== -->
+    <g id="tv-tower">
+      <!-- Antenna spike -->
+      <rect x="391" y="20" width="2" height="36" />
+      <!-- Wider antenna base -->
+      <rect x="389" y="50" width="6" height="6" />
+      <!-- Sphere (pixel-approximated circle, ~16px) -->
+      <rect x="384" y="58" width="16" height="4" />
+      <rect x="382" y="62" width="20" height="8" />
+      <rect x="384" y="70" width="16" height="4" />
+      <!-- Sphere "windows" -->
+      <rect x="386" y="64" width="2" height="2" fill="#f8f3ee" />
+      <rect x="390" y="64" width="2" height="2" fill="#f8f3ee" />
+      <rect x="394" y="64" width="2" height="2" fill="#f8f3ee" />
+      <rect x="398" y="64" width="2" height="2" fill="#f8f3ee" />
+      <!-- Tapered column from sphere down -->
+      <rect x="390" y="74" width="4" height="8" />
+      <rect x="391" y="82" width="2" height="64" />
+      <!-- Wider base -->
+      <rect x="386" y="146" width="12" height="4" />
+    </g>
+
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- POPE'S REVENGE — cross overlay on TV Tower sphere (sunny only)    -->
+  <!-- ================================================================ -->
+
+  <g id="pope-cross" fill="#f8f3ee">
+    <!-- Vertical bar -->
+    <rect x="391" y="62" width="2" height="10" />
+    <!-- Horizontal bar -->
+    <rect x="387" y="65" width="10" height="2" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- GROUND + FOREGROUND                                               -->
+  <!-- ================================================================ -->
+
+  <!-- Ground line -->
+  <rect x="0" y="150" width="480" height="2" fill="#4f8375" />
+  <rect x="0" y="154" width="480" height="2" fill="#4f8375" opacity="0.4" />
+
+  <!-- Sapling / tree foreground (right side, like the sketches) -->
+  <g id="tree" fill="#4f8375">
+    <!-- Trunk -->
+    <rect x="446" y="142" width="2" height="10" />
+    <!-- Foliage (pixel cluster) -->
+    <rect x="442" y="134" width="10" height="2" />
+    <rect x="440" y="136" width="14" height="2" />
+    <rect x="438" y="138" width="18" height="4" />
+    <rect x="440" y="142" width="14" height="2" />
+  </g>
+
+  <!-- Tufts of grass -->
+  <rect x="20" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="26" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="160" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="170" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="350" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="360" y="148" width="2" height="2" fill="#4f8375" />
+  <rect x="460" y="148" width="2" height="2" fill="#4f8375" />
+
+  <!-- ================================================================ -->
+  <!-- RAIN (rainy state only — not shown in this composition draft)     -->
+  <!-- ================================================================ -->
+
+  <g id="rain" fill="#8aa49d" opacity="0.7">
+    <rect x="100" y="56" width="1" height="4" />
+    <rect x="108" y="60" width="1" height="4" />
+    <rect x="116" y="56" width="1" height="4" />
+    <rect x="124" y="60" width="1" height="4" />
+    <rect x="92" y="60" width="1" height="4" />
+  </g>
+
+</svg>
