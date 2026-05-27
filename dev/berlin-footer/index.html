@@ -1255,43 +1255,31 @@
         drawPaddleBoarder(off, time);
       }
 
-      // ============ Shimmer + occasional deep cycle ============
-      const CYCLE_MS = 18000;
-      const SHIMMER_MS = 15000;
-      const DEEP_MS = 3000;
-      const DEEP_UP = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48];
-      const DEEP_DOWN = [48, 32, 24, 16, 12, 8, 6, 4, 3, 2, 1];
+      // ============ Scene cycle: hold crisp, then single-direction ramp ============
+      // No back-and-forth between diffusion levels. Scene stays at N=1 for
+      // 14s. Transition is a single 1.2s ramp UP through diffusion levels.
+      // At end of cycle: composition swaps and N snaps back to 1.
+      const SCENE_MS = 14000;
+      const RAMP_UP_MS = 1200;
+      const CYCLE_MS = SCENE_MS + RAMP_UP_MS;
+      const RAMP_UP = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 48, 48];
 
       let compIdx = 0;
-      let lastSwapCycle = -1;
-
-      function getN(time) {
-        const t = time % CYCLE_MS;
-        if (t < SHIMMER_MS) {
-          const wave = (Math.sin(t / 800) + 1) / 2;
-          if (wave < 0.55) return 1;
-          if (wave < 0.85) return 2;
-          return 3;
-        } else {
-          const dt = (t - SHIMMER_MS) / DEEP_MS;
-          if (dt < 0.5) {
-            const idx = Math.min(Math.floor(dt * 2 * DEEP_UP.length), DEEP_UP.length - 1);
-            return DEEP_UP[idx];
-          } else {
-            const idx = Math.min(Math.floor((dt - 0.5) * 2 * DEEP_DOWN.length), DEEP_DOWN.length - 1);
-            return DEEP_DOWN[idx];
-          }
-        }
-      }
+      let lastSwapCycle = 0;
 
       function update(time) {
         const cycleNum = Math.floor(time / CYCLE_MS);
         const t = time % CYCLE_MS;
-        if (cycleNum !== lastSwapCycle && t >= SHIMMER_MS + DEEP_MS / 2) {
+        // At start of each new cycle: swap composition (instant snap to crisp)
+        if (cycleNum !== lastSwapCycle) {
           compIdx = (compIdx + 1) % COMPOSITIONS.length;
           lastSwapCycle = cycleNum;
         }
-        return getN(time);
+        if (t < SCENE_MS) return 1;
+        // Single-direction ramp up — no ramp down (snap at cycle wrap)
+        const dt = (t - SCENE_MS) / RAMP_UP_MS;
+        const idx = Math.min(Math.floor(dt * RAMP_UP.length), RAMP_UP.length - 1);
+        return RAMP_UP[idx];
       }
 
       function downsampleAndPresent(N) {
