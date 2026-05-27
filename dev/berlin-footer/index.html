@@ -200,7 +200,316 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V10 — Monkey Island: static pixel shapes, smooth object motion -->
+    <!-- DRAFT V11 — diffusion-style resolution cycle                     -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 11 · DRAFT V11 — diffusion-style resolution cycle. The scene refines from chunky blocks to crisp pixels then holds, like watching a generation pass complete. (CURRENT)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v11">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v11" class="stage" data-weather="sunny">
+          <canvas id="berlin-canvas-v11" width="480" height="180"
+                  style="display:block; width: 100%; aspect-ratio: 480/180; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
+        </div>
+        <p class="frame-caption">
+          <span>V11 · scene refines through resolution stages (32→16→8→4→2→1) then holds crisp for ~5s. Same v10 animated objects continue underneath</span>
+          <span>STATE: <span id="state-readout-v11">SUNNY</span></span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        Approach: every frame the full v10 scene (silhouettes + atmospheric depth + bird + smoke + sun + weather) is drawn to an offscreen canvas at native 480x180. Then it's downsampled to (W/N × H/N) via drawImage with imageSmoothingEnabled=false, then upsampled back to 480x180 — chunky pixel blocks of size N. Stages cycle: N=32 (~0.6s) → 16 → 8 → 4 → 2 → 1 (~5s hold) → loop. Roughly 7s per generation cycle. Same algorithm could trigger on Intersection Observer for one-shot scroll-reveal on cover images.
+      </p>
+    </section>
+
+    <script>
+    (function () {
+      const stage = document.getElementById('stage-v11');
+      if (!stage) return;
+      const canvas = document.getElementById('berlin-canvas-v11');
+      const ctx = canvas.getContext('2d');
+
+      const W = 480, H = 180;
+      const TEAL = '#4f8375';
+      const CREAM = '#f8f3ee';
+
+      // Offscreen canvas for the full-res scene
+      const offscreen = document.createElement('canvas');
+      offscreen.width = W;
+      offscreen.height = H;
+      const off = offscreen.getContext('2d');
+
+      // Temp canvas for downsample step
+      const tmp = document.createElement('canvas');
+      const tmpCtx = tmp.getContext('2d');
+
+      // ============ Drawing primitives (render to `off`) ============
+      // Same drawing as v10, but parameterized to take a target ctx so we
+      // can render into the offscreen canvas.
+
+      function drawDistant(c) {
+        c.fillRect(40, 128, 22, 22);
+        c.fillRect(66, 120, 14, 30);
+        c.fillRect(84, 130, 12, 20);
+      }
+      function drawDistantWindows(c) {
+        c.fillRect(48, 132, 2, 2); c.fillRect(52, 138, 2, 2);
+        c.fillRect(70, 128, 2, 2); c.fillRect(74, 136, 2, 2);
+        c.fillRect(72, 116, 4, 4); // chimney
+      }
+      function drawCrane(c) {
+        c.fillRect(156, 78, 2, 72); c.fillRect(132, 80, 44, 2);
+        c.fillRect(156, 76, 14, 2); c.fillRect(153, 84, 6, 4);
+        c.fillRect(138, 80, 1, 12); c.fillRect(136, 92, 4, 2);
+      }
+      function drawMidBuildings(c) {
+        c.fill(new Path2D('M 100 150 L 100 124 L 110 124 L 110 116 L 120 116 L 120 124 L 130 124 L 130 150 Z'));
+        c.fill(new Path2D('M 184 150 L 184 130 L 188 124 L 208 124 L 212 130 L 212 150 Z'));
+        c.fill(new Path2D('M 294 150 L 294 128 L 304 128 L 304 122 L 316 122 L 316 128 L 320 128 L 320 150 Z'));
+        c.fillRect(324, 134, 12, 16);
+        c.fillRect(342, 126, 6, 24);
+      }
+      function drawMidWindows(c) {
+        const w = [
+          [103, 130, 2, 2], [111, 120, 2, 2], [123, 130, 2, 2], [111, 138, 2, 2],
+          [105, 142, 2, 2], [119, 142, 2, 2],
+          [190, 134, 2, 2], [198, 134, 2, 2], [206, 134, 2, 2],
+          [190, 142, 2, 2], [198, 142, 2, 2], [206, 142, 2, 2],
+          [298, 134, 2, 2], [308, 128, 2, 2], [298, 142, 2, 2],
+          [308, 138, 2, 2], [328, 138, 2, 2], [328, 144, 2, 2]
+        ];
+        for (const r of w) c.fillRect(r[0], r[1], r[2], r[3]);
+      }
+      function drawDom(c) {
+        c.fillRect(220, 130, 64, 20); c.fillRect(240, 118, 24, 12);
+        c.fillRect(220, 120, 8, 10); c.fillRect(276, 120, 8, 10);
+        c.fillRect(222, 116, 4, 4); c.fillRect(278, 116, 4, 4);
+        c.fillRect(244, 114, 16, 4); c.fillRect(246, 110, 12, 4);
+        c.fillRect(248, 106, 8, 4); c.fillRect(250, 102, 4, 4);
+        c.fillRect(251, 96, 2, 6); c.fillRect(249, 98, 6, 2);
+      }
+      function drawDomWindows(c) {
+        const w = [
+          [228, 134, 2, 12], [236, 134, 2, 12], [244, 134, 2, 12], [252, 134, 2, 12],
+          [260, 134, 2, 12], [268, 134, 2, 12], [276, 134, 2, 12]
+        ];
+        for (const r of w) c.fillRect(r[0], r[1], r[2], r[3]);
+      }
+      function drawTVTower(c) {
+        c.fillRect(391, 14, 2, 42); c.fillRect(389, 50, 6, 6);
+        c.fillRect(386, 58, 12, 2); c.fillRect(384, 60, 16, 2);
+        c.fillRect(382, 62, 20, 6); c.fillRect(384, 68, 16, 2); c.fillRect(386, 70, 12, 2);
+        c.fillRect(389, 72, 6, 6); c.fillRect(391, 78, 2, 68); c.fillRect(386, 146, 12, 4);
+      }
+      function drawTree(c) {
+        c.fillRect(446, 142, 2, 10);
+        c.fillRect(442, 134, 10, 2); c.fillRect(440, 136, 14, 4);
+        c.fillRect(438, 140, 18, 2); c.fillRect(440, 142, 14, 2);
+      }
+      function drawGround(c) {
+        c.fillRect(0, 150, 480, 2);
+        [20, 26, 160, 170, 350, 360, 460].forEach(x => c.fillRect(x, 148, 2, 2));
+        c.globalAlpha = 0.4;
+        c.fillRect(0, 154, 480, 2);
+        c.globalAlpha = 1;
+      }
+      function drawBird(c, time) {
+        const cycle = 26000;
+        const t = (time % cycle) / cycle;
+        if (t > 0.85) return;
+        const x = Math.floor(-10 + t * (W + 30) / 0.85);
+        const y = Math.floor(48 + Math.sin(time / 700) * 4);
+        const wingFrame = Math.floor(time / 180) % 2;
+        c.fillStyle = TEAL;
+        if (wingFrame === 0) {
+          c.fillRect(x,     y,     1, 1);
+          c.fillRect(x + 5, y,     1, 1);
+          c.fillRect(x + 1, y + 1, 4, 1);
+        } else {
+          c.fillRect(x + 1, y,     4, 1);
+          c.fillRect(x,     y + 1, 1, 1);
+          c.fillRect(x + 5, y + 1, 1, 1);
+        }
+      }
+      function drawSmoke(c, time) {
+        const chimneyX = 73, chimneyY = 114;
+        const NUM_PUFFS = 5, LIFETIME_MS = 5000;
+        c.fillStyle = TEAL;
+        for (let i = 0; i < NUM_PUFFS; i++) {
+          const phase = ((time + i * (LIFETIME_MS / NUM_PUFFS)) % LIFETIME_MS) / LIFETIME_MS;
+          const dy = Math.floor(phase * 18);
+          const dx = Math.floor(Math.sin(phase * 3 + i) * 2 + (1 - phase) * 1);
+          const opacity = (1 - phase) * 0.55;
+          c.globalAlpha = opacity;
+          c.fillRect(chimneyX + dx, chimneyY - dy, 2, 2);
+          if (phase < 0.4) c.fillRect(chimneyX + dx + 2, chimneyY - dy, 1, 1);
+        }
+        c.globalAlpha = 1;
+      }
+      function drawSun(c, time, weather) {
+        if (weather !== 'sunny') return;
+        const sx = 80, sy = 40 + Math.sin(time / 1200) * 2;
+        const s = 1 + 0.04 * Math.sin(time / 700);
+        c.save();
+        c.translate(sx, sy); c.scale(s, s); c.translate(-sx, -sy);
+        c.fillStyle = TEAL;
+        c.fillRect(74, 30, 12, 2); c.fillRect(70, 32, 20, 2);
+        c.fillRect(68, 34, 24, 2); c.fillRect(66, 36, 28, 8);
+        c.fillRect(68, 44, 24, 2); c.fillRect(70, 46, 20, 2); c.fillRect(74, 48, 12, 2);
+        c.fillRect(79, 20, 2, 6); c.fillRect(79, 54, 2, 6);
+        c.fillRect(58, 39, 6, 2); c.fillRect(96, 39, 6, 2);
+        c.fillRect(65, 24, 2, 2); c.fillRect(67, 26, 2, 2);
+        c.fillRect(91, 52, 2, 2); c.fillRect(93, 54, 2, 2);
+        c.fillRect(65, 54, 2, 2); c.fillRect(67, 52, 2, 2);
+        c.fillRect(91, 26, 2, 2); c.fillRect(93, 24, 2, 2);
+        c.restore();
+      }
+      function drawClouds(c, time, weather) {
+        if (weather !== 'cloudy' && weather !== 'rainy') return;
+        const tx_a = Math.sin(time / 7000) * 30;
+        const tx_b = Math.sin(time / 9000 + 1) * -22;
+        c.fillStyle = TEAL;
+        c.save(); c.translate(tx_a, 0);
+        c.fillRect(184, 40, 56, 8); c.fillRect(188, 36, 48, 4); c.fillRect(192, 32, 40, 4);
+        [184, 188, 192, 200, 208, 216, 224, 232, 236].forEach(x => c.fillRect(x, 48, 2, 2));
+        [196, 204, 216, 224].forEach(x => c.fillRect(x, 30, 2, 2));
+        c.fillRect(182, 42, 2, 2); c.fillRect(182, 46, 2, 2);
+        c.fillRect(240, 42, 2, 2); c.fillRect(240, 46, 2, 2);
+        c.restore();
+        c.save(); c.translate(tx_b, 0);
+        c.fillRect(300, 28, 40, 6); c.fillRect(304, 24, 32, 4); c.fillRect(296, 32, 48, 2);
+        [296, 300, 308, 316, 324, 332, 340, 344].forEach(x => c.fillRect(x, 34, 2, 2));
+        [308, 320, 328].forEach(x => c.fillRect(x, 22, 2, 2));
+        c.restore();
+      }
+      function drawRain(c, time, weather) {
+        if (weather !== 'rainy') return;
+        const drops = [
+          [184, 54], [192, 58], [200, 54], [208, 58], [216, 54], [224, 58], [232, 54],
+          [304, 42], [312, 46], [320, 42], [328, 46], [336, 42]
+        ];
+        c.fillStyle = TEAL;
+        for (let i = 0; i < drops.length; i++) {
+          const [x, y0] = drops[i];
+          const phase = ((time / 1000 + i * 0.13) % 1);
+          const yOff = phase * 14 - 6;
+          let a;
+          if (phase < 0.2) a = phase * 5 * 0.8;
+          else if (phase > 0.8) a = (1 - phase) * 5 * 0.8;
+          else a = 0.8;
+          c.globalAlpha = a;
+          c.fillRect(x, y0 + yOff, 1, 3);
+        }
+        c.globalAlpha = 1;
+      }
+      function drawPopeCross(c, weather) {
+        if (weather !== 'sunny') return;
+        c.fillStyle = CREAM;
+        c.fillRect(391, 60, 2, 12);
+        c.fillRect(384, 64, 16, 2);
+      }
+
+      function renderFullScene(time, weather) {
+        off.fillStyle = CREAM;
+        off.fillRect(0, 0, W, H);
+
+        drawSun(off, time, weather);
+        drawClouds(off, time, weather);
+
+        // Atmospheric depth layers
+        off.fillStyle = TEAL;
+        off.globalAlpha = 0.50; drawDistant(off);
+        off.fillStyle = CREAM;  drawDistantWindows(off);
+
+        off.fillStyle = TEAL;
+        off.globalAlpha = 0.65; drawCrane(off);
+
+        off.fillStyle = TEAL;
+        off.globalAlpha = 0.80; drawMidBuildings(off);
+        off.fillStyle = CREAM;  drawMidWindows(off);
+
+        off.fillStyle = TEAL;
+        off.globalAlpha = 0.90; drawDom(off);
+        off.fillStyle = CREAM;  drawDomWindows(off);
+
+        off.fillStyle = TEAL;
+        off.globalAlpha = 0.95; drawTVTower(off);
+
+        off.globalAlpha = 1;
+        drawPopeCross(off, weather);
+
+        drawSmoke(off, time);
+        drawBird(off, time);
+        drawRain(off, time, weather);
+
+        off.fillStyle = TEAL;
+        off.globalAlpha = 1;
+        drawTree(off);
+        drawGround(off);
+      }
+
+      // ============ Resolution cycle ============
+      const STAGES = [
+        { N: 32, ms: 600 },
+        { N: 16, ms: 500 },
+        { N: 8,  ms: 400 },
+        { N: 4,  ms: 300 },
+        { N: 2,  ms: 200 },
+        { N: 1,  ms: 5000 } // crisp hold
+      ];
+      const TOTAL_MS = STAGES.reduce((s, x) => s + x.ms, 0);
+
+      function currentN(time) {
+        let phase = time % TOTAL_MS;
+        for (const s of STAGES) {
+          if (phase < s.ms) return s.N;
+          phase -= s.ms;
+        }
+        return 1;
+      }
+
+      function downsampleAndPresent(N) {
+        if (N === 1) {
+          ctx.imageSmoothingEnabled = false;
+          ctx.drawImage(offscreen, 0, 0);
+          return;
+        }
+        const dw = Math.max(1, Math.ceil(W / N));
+        const dh = Math.max(1, Math.ceil(H / N));
+        tmp.width = dw;
+        tmp.height = dh;
+        tmpCtx.imageSmoothingEnabled = false;
+        tmpCtx.clearRect(0, 0, dw, dh);
+        tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
+
+        ctx.imageSmoothingEnabled = false;
+        ctx.fillStyle = CREAM;
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
+      }
+
+      function render(time) {
+        const weather = stage.getAttribute('data-weather') || 'sunny';
+        renderFullScene(time, weather);
+        const N = currentN(time);
+        downsampleAndPresent(N);
+      }
+
+      function loop(time) {
+        render(time);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
+    </script>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V10 — Monkey Island: static pixel shapes, smooth motion   -->
     <!-- ============================================================== -->
     <section class="section">
       <p class="section-label">§ 10 · DRAFT V10 — Monkey Island style: static pixel-art silhouettes with atmospheric depth, smooth-animated pixel objects (bird, smoke, sun bob). No pixel flicker. (CURRENT)</p>
