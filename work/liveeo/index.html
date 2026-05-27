@@ -1272,33 +1272,43 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
         drawPaddleBoarder(off, time);
       }
 
-      // ============ Scene cycle: REVEAL (super low res -> crisp) ============
-      // At start of each cycle: composition swaps, snaps to super low res.
-      // Then ramps DOWN through all diffusion stages until crisp (high res).
-      // Then holds at N=1 for the scene duration. Loop.
-      const REVEAL_MS = 1500;
-      const SCENE_MS = 13500;
-      const CYCLE_MS = REVEAL_MS + SCENE_MS;
-      const RAMP_DOWN = [48, 48, 48, 32, 24, 16, 12, 8, 6, 4, 3, 2];
+      // ============ Scene cycle: OUT then IN (bi-directional transition) ============
+      // 1. Hold crisp (N=1) for SCENE_MS
+      // 2. OUT: ramp crisp -> chunky through all diffusion stages
+      // 3. At peak chunky: composition swaps (invisible — too chunky to see)
+      // 4. IN: ramp chunky -> crisp through all stages with the NEW composition
+      // 5. Loop
+      const SCENE_MS = 13000;
+      const OUT_MS = 1100;
+      const IN_MS = 1300;
+      const CYCLE_MS = SCENE_MS + OUT_MS + IN_MS;
+      const RAMP_OUT = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 48];
+      const RAMP_IN  = [48, 48, 32, 24, 16, 12, 8, 6, 4, 3, 2];
 
       let compIdx = 0;
-      let lastSwapCycle = 0;
+      let lastSwapCycle = -1;
 
       function update(time) {
         const cycleNum = Math.floor(time / CYCLE_MS);
         const t = time % CYCLE_MS;
-        // At start of each new cycle: swap composition (new scene begins at chunky)
-        if (cycleNum !== lastSwapCycle) {
+        // Composition swap at peak chunkiness (boundary between OUT and IN)
+        if (cycleNum !== lastSwapCycle && t >= SCENE_MS + OUT_MS) {
           compIdx = (compIdx + 1) % COMPOSITIONS.length;
           lastSwapCycle = cycleNum;
         }
-        if (t < REVEAL_MS) {
-          // REVEAL: super low res progressively becomes crisp
-          const dt = t / REVEAL_MS;
-          const idx = Math.min(Math.floor(dt * RAMP_DOWN.length), RAMP_DOWN.length - 1);
-          return RAMP_DOWN[idx];
+        if (t < SCENE_MS) {
+          return 1;   // crisp scene
         }
-        return 1;  // crisp scene for the rest of the cycle
+        if (t < SCENE_MS + OUT_MS) {
+          // OUT: ramping from crisp to chunky
+          const dt = (t - SCENE_MS) / OUT_MS;
+          const idx = Math.min(Math.floor(dt * RAMP_OUT.length), RAMP_OUT.length - 1);
+          return RAMP_OUT[idx];
+        }
+        // IN: ramping from chunky back to crisp (with new composition)
+        const dt = (t - SCENE_MS - OUT_MS) / IN_MS;
+        const idx = Math.min(Math.floor(dt * RAMP_IN.length), RAMP_IN.length - 1);
+        return RAMP_IN[idx];
       }
 
       function downsampleAndPresent(N) {
