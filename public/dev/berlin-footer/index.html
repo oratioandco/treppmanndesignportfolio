@@ -418,23 +418,40 @@
       }
 
       function drawReichstag(c) {
+        // Main body
         c.fillRect(200, 174, 100, 26);
+        // Corner caps
+        c.fillRect(200, 170, 6, 4); c.fillRect(294, 170, 6, 4);
+        // Front portico
         c.fillRect(232, 172, 36, 2);
         [234, 240, 246, 252, 258, 264].forEach(x => c.fillRect(x, 174, 2, 22));
-        c.fillRect(232, 168, 36, 4);
-        c.fillRect(238, 164, 24, 4);
-        c.fillRect(244, 160, 12, 4);
-        c.fillRect(246, 156, 8, 4);
-        c.fillRect(248, 152, 4, 4);
-        c.fillRect(200, 170, 6, 4); c.fillRect(294, 170, 6, 4);
+        // === Round Glass Kuppel (Norman Foster's dome) ===
+        c.fillRect(238, 170, 24, 4);      // cylindrical drum (4 tall)
+        // Hemispherical curve — narrower at top, wider near base
+        c.fillRect(239, 168, 22, 2);
+        c.fillRect(240, 166, 20, 2);
+        c.fillRect(241, 164, 18, 2);
+        c.fillRect(243, 162, 14, 2);
+        c.fillRect(245, 160, 10, 2);
+        c.fillRect(247, 158, 6, 2);
+        c.fillRect(249, 156, 2, 2);       // top of dome
       }
       function drawReichstagWindows(c) {
+        // Body windows
         for (let y = 0; y < 3; y++) {
           for (let x = 0; x < 4; x++) {
             c.fillRect(206 + x * 6, 180 + y * 6, 2, 2);
             c.fillRect(272 + x * 6, 180 + y * 6, 2, 2);
           }
         }
+        // Glass pane lines on the Kuppel (cream — structural ribs / panel divisions)
+        c.fillRect(250, 157, 1, 13);      // central vertical rib
+        c.fillRect(247, 162, 1, 8);       // left rib
+        c.fillRect(253, 162, 1, 8);       // right rib
+        c.fillRect(243, 166, 1, 4);       // outer left rib
+        c.fillRect(257, 166, 1, 4);       // outer right rib
+        // Horizontal band suggesting the spiral walkway inside
+        c.fillRect(241, 167, 18, 1);
       }
 
       // === Siegessäule + Goldelse (Victoria with raised standard) ===
