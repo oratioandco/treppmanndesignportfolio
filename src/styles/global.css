@@ -80,6 +80,8 @@
 }
 
 :root {
+    color-scheme: light dark;
+
     --font-display: "Redaction 20", Georgia, serif;
     --font-display-20: "Redaction 20", Georgia, serif;
     --font-display-35: "Redaction 35", Georgia, serif;
@@ -89,6 +91,7 @@
         "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-mono: "Departure Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
+    /* Light theme (default) */
     --color-bg: #f8f3ee;
     --color-surface: #ffffff;
     --color-text: #1a1a1a;
@@ -107,6 +110,18 @@
 
     --max-width: 1200px;
     --content-width: 720px;
+}
+
+/* Dark theme — palette from the Berlin footer's night mode */
+[data-theme="dark"] {
+    --color-bg: #1a2520;
+    --color-surface: #2c3e38;
+    --color-text: #e8e0d2;
+    --color-text-muted: #97a59f;
+    --color-accent: #a4c6b9;
+    --color-accent-light: #2c3e38;
+    --color-border: #3a4a44;
+    --color-rule: #4a5a54;
 }
 
 html {
@@ -445,9 +460,9 @@ a:hover {
 .case-study-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    background-color: #4f8375;
-    color: #f8f3ee;
-    border-color: #4f8375;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
 }
 
 .case-study-card h3,
@@ -462,12 +477,12 @@ a:hover {
 .case-study-card:hover h3,
 .case-study-card:hover .subtitle,
 .case-study-card:hover p {
-    color: #f8f3ee;
+    color: var(--color-bg);
 }
 
 .case-study-card:hover .tag {
-    background: rgba(248, 243, 238, 0.2);
-    color: #f8f3ee;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-bg);
 }
 
 a.case-study-card:hover {

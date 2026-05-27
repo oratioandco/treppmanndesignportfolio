@@ -18,6 +18,73 @@ const { title, description = "Design Leadership - Human-centered organizations f
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} | Tobias Treppmann</title>
+    <script is:inline>
+      // Set theme BEFORE first paint to avoid FOUC.
+      // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
+      (function () {
+        let h;
+        try {
+          h = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+        } catch (e) {
+          h = new Date().getHours();
+        }
+        const isNight = !isNaN(h) && (h < 7 || h >= 19);
+        const deviceDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isNight || deviceDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+        // React to OS-level dark-mode toggle
+        if (window.matchMedia) {
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", function (e) {
+              const hh = parseInt(
+                new Date().toLocaleString("en-US", {
+                  hour: "2-digit",
+                  hour12: false,
+                  timeZone: "Europe/Berlin",
+                }),
+                10,
+              );
+              const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+              if (night || e.matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+              } else {
+                document.documentElement.removeAttribute("data-theme");
+              }
+            });
+        }
+        // Re-check time every 5 minutes for natural day/night transitions
+        setInterval(function () {
+          const hh = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+          const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+          const dDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (night || dDark) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+        }, 300000);
+      })();
+    </script>
   </head>
   <body>
     {showBackButton && (
