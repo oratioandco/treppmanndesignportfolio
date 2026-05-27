@@ -200,7 +200,809 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V13 — shimmer + occasional deep cycle + detailed landmarks -->
+    <!-- DRAFT V14 — bigger canvas, background fill, new landmarks       -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 14 · DRAFT V14 — 480×220 canvas. Background filler horizon. 5 compositions. New: Park Inn + swing, WELT balloon, Potsdamer Platz, U-Bahn on Oberbaum + elevated track, double-decker bus. Improved Brandenburg quadriga + Oberbaum. (CURRENT)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v14">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v14" class="stage" data-weather="sunny">
+          <canvas id="berlin-canvas-v14" width="480" height="220"
+                  style="display:block; width: 100%; aspect-ratio: 480/220; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
+        </div>
+        <p class="frame-caption">
+          <span>V14 · 5 compositions rotate: East (TV+Dom+Park Inn) · Mitte historic (Brandenburg+Reichstag+Siegessäule) · Potsdamer (Sony+Kollhoff) · West (Gedächtnis+Estrel) · Spree (Molecule Man+Oberbaum+U-Bahn)</span>
+          <span>STATE: <span id="state-readout-v14">SUNNY</span></span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        New landmarks (drawn as solid teal silhouettes): Park Inn (rectangular slab + rooftop frame + animated person on swing), WELT balloon (helium balloon with basket + tether, gentle bob), Sony Center (rectangular body + tent peak), Kollhoff Tower (tall body + angular peak), U-Bahn train (3 cars sliding across Oberbaum's upper walkway then continuing on Kreuzberg's elevated track), double-decker bus (animated along road bottom). Background filler horizon at 30% opacity always visible — keeps the city feeling populated as the foreground rotates. Shading: 5 opacity tiers (30/50/65/80/95%) for atmospheric depth.
+      </p>
+    </section>
+
+    <script>
+    (function () {
+      const stage = document.getElementById('stage-v14');
+      if (!stage) return;
+      const canvas = document.getElementById('berlin-canvas-v14');
+      const ctx = canvas.getContext('2d');
+
+      const W = 480, H = 220;
+      const TEAL = '#4f8375';
+      const CREAM = '#f8f3ee';
+      const GROUND_Y = 200;
+
+      const offscreen = document.createElement('canvas');
+      offscreen.width = W; offscreen.height = H;
+      const off = offscreen.getContext('2d');
+      const tmp = document.createElement('canvas');
+      const tmpCtx = tmp.getContext('2d');
+
+      // ============ Background filler (always visible) ============
+      function drawHorizonFiller(c) {
+        // Generic small buildings scattered along horizon
+        const fillers = [
+          [4, 184, 8, 16], [14, 180, 6, 20], [22, 186, 10, 14],
+          [160, 188, 8, 12], [172, 182, 6, 18], [194, 186, 10, 14],
+          [206, 180, 8, 20], [218, 184, 6, 16], [232, 188, 10, 12],
+          [350, 184, 8, 16], [360, 188, 6, 12], [372, 182, 10, 18],
+          [432, 184, 8, 16], [440, 178, 6, 22], [452, 186, 10, 14],
+          [466, 180, 6, 20]
+        ];
+        fillers.forEach(([x, y, w, h]) => c.fillRect(x, y, w, h));
+      }
+
+      function drawTree(c) {
+        c.fillRect(424, 192, 2, 8);
+        c.fillRect(420, 184, 10, 2); c.fillRect(418, 186, 14, 4);
+        c.fillRect(416, 190, 18, 2); c.fillRect(418, 192, 14, 2);
+      }
+
+      function drawGround(c) {
+        c.fillRect(0, GROUND_Y, W, 2);
+        c.globalAlpha = 0.4;
+        c.fillRect(0, GROUND_Y + 4, W, 2);
+        c.globalAlpha = 1;
+        [20, 26, 460].forEach(x => c.fillRect(x, GROUND_Y - 2, 2, 2));
+      }
+
+      // ============ Existing landmarks (re-coord'd for y=200 ground) ============
+      function drawDistantBuildings(c) {
+        c.fillRect(40, 178, 22, 22);
+        c.fillRect(66, 170, 14, 30);
+        c.fillRect(84, 180, 12, 20);
+      }
+      function drawDistantWindows(c) {
+        c.fillRect(48, 182, 2, 2); c.fillRect(52, 188, 2, 2);
+        c.fillRect(70, 178, 2, 2); c.fillRect(74, 186, 2, 2);
+        c.fillRect(72, 166, 4, 4);
+      }
+      function drawCrane(c) {
+        c.fillRect(156, 128, 2, 72); c.fillRect(132, 130, 44, 2);
+        c.fillRect(156, 126, 14, 2); c.fillRect(153, 134, 6, 4);
+        c.fillRect(138, 130, 1, 12); c.fillRect(136, 142, 4, 2);
+      }
+      function drawSteppedBuilding(c) {
+        c.fill(new Path2D('M 100 200 L 100 174 L 110 174 L 110 166 L 120 166 L 120 174 L 130 174 L 130 200 Z'));
+      }
+      function drawSteppedWindows(c) {
+        c.fillRect(103, 180, 2, 2); c.fillRect(111, 170, 2, 2); c.fillRect(123, 180, 2, 2);
+        c.fillRect(111, 188, 2, 2); c.fillRect(105, 192, 2, 2); c.fillRect(119, 192, 2, 2);
+      }
+      function drawSlantedRoof(c) {
+        c.fill(new Path2D('M 184 200 L 184 180 L 188 174 L 208 174 L 212 180 L 212 200 Z'));
+      }
+      function drawSlantedWindows(c) {
+        c.fillRect(190, 184, 2, 2); c.fillRect(198, 184, 2, 2); c.fillRect(206, 184, 2, 2);
+        c.fillRect(190, 192, 2, 2); c.fillRect(198, 192, 2, 2); c.fillRect(206, 192, 2, 2);
+      }
+      function drawMidBuildings(c) {
+        c.fill(new Path2D('M 294 200 L 294 178 L 304 178 L 304 172 L 316 172 L 316 178 L 320 178 L 320 200 Z'));
+        c.fillRect(324, 184, 12, 16);
+        c.fillRect(342, 176, 6, 24);
+      }
+      function drawMidWindows(c) {
+        c.fillRect(298, 184, 2, 2); c.fillRect(308, 178, 2, 2);
+        c.fillRect(298, 192, 2, 2); c.fillRect(308, 188, 2, 2);
+        c.fillRect(328, 188, 2, 2); c.fillRect(328, 194, 2, 2);
+      }
+      function drawBerlinerDom(c) {
+        c.fillRect(220, 180, 64, 20);
+        c.fillRect(240, 168, 24, 12);
+        c.fillRect(220, 170, 8, 10); c.fillRect(276, 170, 8, 10);
+        c.fillRect(222, 166, 4, 4); c.fillRect(278, 166, 4, 4);
+        c.fillRect(244, 164, 16, 4); c.fillRect(246, 160, 12, 4); c.fillRect(248, 156, 8, 4);
+        c.fillRect(250, 152, 4, 4); c.fillRect(251, 146, 2, 6); c.fillRect(249, 148, 6, 2);
+      }
+      function drawDomWindows(c) {
+        [228, 236, 244, 252, 260, 268, 276].forEach(x => c.fillRect(x, 184, 2, 12));
+      }
+      function drawTVTower(c) {
+        c.fillRect(391, 14, 2, 42); c.fillRect(389, 56, 6, 6);
+        c.fillRect(386, 64, 12, 2); c.fillRect(384, 66, 16, 2);
+        c.fillRect(382, 68, 20, 6); c.fillRect(384, 74, 16, 2); c.fillRect(386, 76, 12, 2);
+        c.fillRect(389, 78, 6, 6); c.fillRect(391, 84, 2, 116); c.fillRect(386, 196, 12, 4);
+      }
+
+      // === Brandenburg Gate (improved quadriga, columns with bases) ===
+      function drawBrandenburgGate(c) {
+        // Stylobate (3 steps)
+        c.fillRect(108, 198, 56, 2);
+        c.fillRect(110, 196, 52, 2);
+        c.fillRect(112, 194, 48, 2);
+        // 5 columns with capitals and bases
+        const cols = [116, 124, 132, 140, 148];
+        cols.forEach(x => {
+          c.fillRect(x, 172, 4, 22);          // shaft
+          c.fillRect(x - 1, 170, 6, 2);       // capital
+          c.fillRect(x - 1, 192, 6, 2);       // base
+        });
+        // Architrave (3 horizontal bands)
+        c.fillRect(112, 166, 48, 4);
+        // Frieze
+        c.fillRect(112, 162, 48, 4);
+        // Cornice
+        c.fillRect(110, 158, 52, 4);
+        // === Improved Quadriga ===
+        // Chariot platform (under horses + chariot)
+        c.fillRect(120, 154, 30, 4);
+        // 4 horse heads facing forward (in a row)
+        [122, 128, 134, 140].forEach(x => {
+          c.fillRect(x, 148, 3, 4);           // head + neck
+          c.fillRect(x + 3, 150, 1, 1);       // ear/mane
+        });
+        // Horse bodies (connecting band, 4 horses abreast)
+        c.fillRect(122, 150, 21, 4);
+        // 8 horse legs (2 per horse)
+        [123, 126, 129, 132, 135, 138, 141, 144].forEach(x => {
+          c.fillRect(x, 154, 1, 3);
+        });
+        // Reins from horses back to chariot
+        c.fillRect(143, 148, 4, 1);
+        // Chariot box (taller, more substantial)
+        c.fillRect(146, 144, 6, 10);
+        c.fillRect(144, 146, 2, 2);            // chariot front edge
+        // Chariot wheel
+        c.fillRect(147, 152, 4, 2);
+        c.fillRect(146, 154, 6, 1);
+        // Victoria figure in chariot
+        c.fillRect(148, 134, 2, 10);           // body
+        c.fillRect(147, 136, 4, 2);            // shoulders
+        c.fillRect(148, 132, 2, 2);            // head
+        // Wings (more detailed, feathered look)
+        c.fillRect(142, 136, 5, 4);            // left wing
+        c.fillRect(141, 138, 1, 2);            // left tip
+        c.fillRect(140, 140, 1, 1);            // wing extension
+        c.fillRect(151, 136, 5, 4);            // right wing
+        c.fillRect(156, 138, 1, 2);            // right tip
+        c.fillRect(157, 140, 1, 1);            // wing extension
+        // Raised arm holding standard
+        c.fillRect(150, 128, 1, 6);            // arm
+        // Standard (eagle/wreath on staff)
+        c.fillRect(149, 124, 3, 4);            // wreath/eagle body
+        c.fillRect(150, 122, 1, 2);            // top crown
+        c.fillRect(148, 124, 5, 1);            // eagle wings
+      }
+      function drawBrandenburgGateDetails(c) {
+        // Metope pattern
+        [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 163, 4, 2));
+        // Inter-column shadow gaps
+        [120, 128, 136, 144].forEach(x => c.fillRect(x, 180, 4, 12));
+        // Column flutes (vertical accent lines)
+        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 175, 1, 16));
+      }
+
+      function drawReichstag(c) {
+        c.fillRect(200, 174, 100, 26);
+        c.fillRect(232, 172, 36, 2);
+        [234, 240, 246, 252, 258, 264].forEach(x => c.fillRect(x, 174, 2, 22));
+        c.fillRect(232, 168, 36, 4);
+        c.fillRect(238, 164, 24, 4);
+        c.fillRect(244, 160, 12, 4);
+        c.fillRect(246, 156, 8, 4);
+        c.fillRect(248, 152, 4, 4);
+        c.fillRect(200, 170, 6, 4); c.fillRect(294, 170, 6, 4);
+      }
+      function drawReichstagWindows(c) {
+        for (let y = 0; y < 3; y++) {
+          for (let x = 0; x < 4; x++) {
+            c.fillRect(206 + x * 6, 180 + y * 6, 2, 2);
+            c.fillRect(272 + x * 6, 180 + y * 6, 2, 2);
+          }
+        }
+      }
+
+      function drawSiegessauele(c) {
+        c.fillRect(348, 194, 18, 6);
+        c.fillRect(350, 190, 14, 4);
+        c.fillRect(354, 130, 6, 60);
+        c.fillRect(352, 150, 10, 1);
+        c.fillRect(352, 165, 10, 1);
+        c.fillRect(352, 180, 10, 1);
+        c.fillRect(352, 126, 10, 4);
+        c.fillRect(354, 118, 6, 8);
+        c.fillRect(350, 116, 14, 2);
+        c.fillRect(356, 114, 2, 4);
+      }
+
+      function drawGedaechtniskirche(c) {
+        c.fillRect(130, 138, 14, 60);
+        c.fillRect(128, 194, 18, 6);
+        c.fillRect(130, 132, 10, 6);
+        c.fillRect(134, 128, 6, 4);
+        c.fillRect(132, 122, 4, 6);
+        c.fillRect(138, 118, 2, 4);
+        c.fillRect(152, 158, 18, 42);
+        c.fillRect(150, 156, 22, 2);
+        c.fillRect(148, 198, 22, 2);
+      }
+      function drawGedaechtniskircheWindows(c) {
+        c.fillRect(134, 168, 2, 8); c.fillRect(140, 168, 2, 8);
+        c.fillRect(154, 162, 1, 34); c.fillRect(158, 162, 1, 34);
+        c.fillRect(162, 162, 1, 34); c.fillRect(166, 162, 1, 34);
+      }
+
+      function drawEstrelTower(c) {
+        c.fillRect(248, 110, 2, 10);
+        c.fillRect(244, 120, 10, 80);
+        c.fillRect(242, 198, 14, 2);
+      }
+      function drawEstrelTowerWindows(c) {
+        for (let y = 0; y < 18; y++) c.fillRect(245, 126 + y * 4, 8, 1);
+      }
+
+      // === Park Inn Hotel (with rooftop swing) ===
+      function drawParkInn(c) {
+        // Main slab body (tall rectangular tower)
+        c.fillRect(346, 146, 36, 54);
+        // Side accent columns (slightly darker edges)
+        c.fillRect(346, 146, 2, 54);
+        c.fillRect(380, 146, 2, 54);
+        // Rooftop swing frame (T-shape on top)
+        c.fillRect(363, 138, 2, 8);           // mast
+        c.fillRect(355, 138, 18, 2);          // crossbar
+      }
+      function drawParkInnWindows(c) {
+        // Grid of windows
+        for (let y = 0; y < 12; y++) {
+          for (let x = 0; x < 6; x++) {
+            c.fillRect(350 + x * 5, 150 + y * 4, 2, 2);
+          }
+        }
+        // Hotel name strip
+        c.fillRect(348, 196, 32, 1);
+      }
+      function drawParkInnSwing(c, time) {
+        // Animated person on rope swing (oscillates back and forth)
+        const angle = Math.sin(time / 1500) * 0.6;   // -0.6 to 0.6 rad
+        const pivotX = 364, pivotY = 140;
+        const ropeLen = 8;
+        const px = pivotX + Math.round(Math.sin(angle) * ropeLen);
+        const py = pivotY + Math.round(Math.cos(angle) * ropeLen);
+        // Rope (small dots)
+        c.fillStyle = TEAL;
+        c.fillRect(pivotX + Math.round(Math.sin(angle) * 3), pivotY + Math.round(Math.cos(angle) * 3), 1, 1);
+        c.fillRect(pivotX + Math.round(Math.sin(angle) * 5), pivotY + Math.round(Math.cos(angle) * 5), 1, 1);
+        // Tiny person (head + body + legs)
+        c.fillRect(px, py, 2, 2);            // body
+        c.fillRect(px, py + 2, 1, 2);        // left leg
+        c.fillRect(px + 1, py + 2, 1, 2);    // right leg
+        c.fillRect(px - 1, py + 1, 1, 1);    // left arm
+        c.fillRect(px + 2, py + 1, 1, 1);    // right arm
+      }
+
+      // === WELT Hot Air Balloon ===
+      function drawWeltBalloon(c, time, anchor) {
+        const bobY = Math.round(Math.sin(time / 2200) * 3);
+        const x = anchor.x, y = anchor.y + bobY;
+        // Balloon body (rounded)
+        c.fillRect(x + 8, y, 14, 2);
+        c.fillRect(x + 4, y + 2, 22, 2);
+        c.fillRect(x + 2, y + 4, 26, 4);
+        c.fillRect(x, y + 8, 30, 14);
+        c.fillRect(x + 2, y + 22, 26, 4);
+        c.fillRect(x + 4, y + 26, 22, 2);
+        c.fillRect(x + 10, y + 28, 10, 2);
+        // Basket (small box hanging below)
+        c.fillRect(x + 13, y + 32, 4, 4);
+        // Suspension cables (basket to balloon)
+        c.fillRect(x + 13, y + 30, 1, 2);
+        c.fillRect(x + 16, y + 30, 1, 2);
+        // Tether cable to ground
+        for (let ty = y + 36; ty < GROUND_Y; ty += 3) {
+          c.fillRect(x + 14, ty, 1, 1);
+        }
+      }
+      function drawWeltBalloonDetails(c, time, anchor) {
+        const bobY = Math.round(Math.sin(time / 2200) * 3);
+        const x = anchor.x, y = anchor.y + bobY;
+        // Logo placeholder — cream strip across balloon
+        c.fillRect(x + 6, y + 14, 18, 2);
+      }
+
+      // === Sony Center (Potsdamer Platz) ===
+      function drawSonyCenter(c) {
+        // Main building body
+        c.fillRect(214, 160, 50, 40);
+        // Tent-like peak roof
+        c.fillRect(218, 158, 42, 2);
+        c.fillRect(224, 156, 30, 2);
+        c.fillRect(230, 154, 18, 2);
+        c.fillRect(236, 152, 6, 2);
+      }
+      function drawSonyCenterWindows(c) {
+        for (let y = 0; y < 8; y++) {
+          for (let x = 0; x < 11; x++) {
+            c.fillRect(216 + x * 4, 164 + y * 4, 2, 2);
+          }
+        }
+      }
+
+      // === Kollhoff Tower (Potsdamer Platz, dark angular peak) ===
+      function drawKollhoffTower(c) {
+        c.fillRect(266, 134, 24, 66);
+        // Angular triangular peak
+        c.fillRect(266, 130, 24, 4);
+        c.fillRect(270, 126, 16, 4);
+        c.fillRect(274, 122, 8, 4);
+        c.fillRect(276, 118, 4, 4);
+      }
+      function drawKollhoffWindows(c) {
+        for (let x = 0; x < 4; x++) {
+          c.fillRect(268 + x * 6, 138, 1, 58);
+        }
+      }
+
+      // === Oberbaum Bridge (improved spires + arches) ===
+      function drawOberbaumBridge(c) {
+        // Left tower: smaller spire (left of pair)
+        c.fillRect(178, 160, 6, 12);
+        c.fillRect(180, 158, 2, 2);
+        c.fillRect(179, 156, 4, 2);
+        c.fillRect(180, 154, 2, 2);
+        // Main spire (taller, right of pair)
+        c.fillRect(186, 148, 8, 24);
+        c.fillRect(186, 146, 8, 2);
+        c.fillRect(187, 144, 6, 2);
+        c.fillRect(188, 142, 4, 2);
+        c.fillRect(189, 140, 2, 2);
+        // Crenellated parapet between
+        c.fillRect(184, 168, 12, 4);
+        c.fillRect(184, 166, 2, 2);
+        c.fillRect(188, 166, 2, 2);
+        c.fillRect(192, 166, 2, 2);
+        c.fillRect(178, 172, 18, 6);
+        // Right tower: mirror
+        c.fillRect(338, 160, 6, 12);
+        c.fillRect(340, 158, 2, 2);
+        c.fillRect(339, 156, 4, 2);
+        c.fillRect(340, 154, 2, 2);
+        c.fillRect(328, 148, 8, 24);
+        c.fillRect(328, 146, 8, 2);
+        c.fillRect(329, 144, 6, 2);
+        c.fillRect(330, 142, 4, 2);
+        c.fillRect(331, 140, 2, 2);
+        c.fillRect(326, 168, 12, 4);
+        c.fillRect(326, 166, 2, 2);
+        c.fillRect(330, 166, 2, 2);
+        c.fillRect(334, 166, 2, 2);
+        c.fillRect(326, 172, 18, 6);
+        // Upper walkway
+        c.fillRect(196, 168, 130, 14);
+        // Lower bridge deck
+        c.fillRect(196, 182, 130, 4);
+        // Pillars with capitals
+        const pillars = [196, 222, 248, 274, 300, 322];
+        pillars.forEach(x => {
+          c.fillRect(x, 186, 4, 14);
+          c.fillRect(x - 1, 184, 6, 2);
+        });
+      }
+      function drawOberbaumBridgeDetails(c) {
+        // Arched walkway windows
+        const archXs = [200, 220, 240, 260, 280, 300];
+        archXs.forEach(x => {
+          c.fillRect(x, 172, 8, 8);
+          c.fillRect(x + 1, 171, 6, 1);
+          c.fillRect(x + 2, 170, 4, 1);
+          c.fillRect(x + 3, 169, 2, 1);
+        });
+        // Gothic arches under bridge
+        const archesBelow = [
+          { x: 200, w: 18 }, { x: 226, w: 18 },
+          { x: 252, w: 18 }, { x: 278, w: 18 },
+          { x: 304, w: 14 },
+        ];
+        archesBelow.forEach(({ x, w }) => {
+          c.fillRect(x, 188, w, 10);
+          c.fillRect(x + 1, 187, w - 2, 1);
+          c.fillRect(x + 2, 186, w - 4, 1);
+          c.fillRect(x + Math.floor(w / 2) - 1, 185, 2, 1);
+        });
+      }
+
+      // === Elevated U-Bahn track (Kreuzberg U1 viaduct continuing right) ===
+      function drawElevatedTrack(c) {
+        // Track deck from x=344 to right edge (continuing from Oberbaum)
+        c.fillRect(344, 168, 136, 4);
+        // Railing/parapet
+        c.fillRect(344, 166, 136, 2);
+        // Support pillars
+        [358, 388, 418, 448, 470].forEach(x => {
+          c.fillRect(x, 172, 4, 28);
+          c.fillRect(x - 1, 170, 6, 2);
+        });
+      }
+
+      // === U-Bahn train (animated on track) ===
+      function drawUBahnTrain(c, time) {
+        // Crosses Oberbaum upper walkway then continues right on elevated
+        const cycle = 16000;
+        const t = (time % cycle) / cycle;
+        // Position: starts at x=170, ends at x=480 (off-screen right)
+        const x = Math.floor(170 + t * 320);
+        const trainW = 60;
+        if (x + trainW < 170 || x > 480) return;
+        // Train sits on the track (y depends on whether on bridge or elevated)
+        const y = x < 196 ? 162 : (x > 326 ? 162 : 162);
+        // 3 connected cars
+        c.fillStyle = TEAL;
+        c.fillRect(x, y, 18, 6);
+        c.fillRect(x + 20, y, 18, 6);
+        c.fillRect(x + 40, y, 18, 6);
+        // Windows
+        c.fillStyle = CREAM;
+        for (let i = 0; i < 3; i++) {
+          for (let w = 0; w < 3; w++) {
+            c.fillRect(x + i * 20 + 3 + w * 5, y + 2, 2, 2);
+          }
+        }
+        c.fillStyle = TEAL;
+      }
+
+      // === Double-decker bus ===
+      function drawBus(c, time) {
+        const cycle = 28000;
+        const t = (time % cycle) / cycle;
+        const x = Math.floor(-32 + t * (W + 64));
+        if (x < -32 || x > W + 32) return;
+        const y = 188;
+        c.fillStyle = TEAL;
+        // Lower deck
+        c.fillRect(x, y, 30, 10);
+        // Upper deck
+        c.fillRect(x + 2, y - 6, 26, 6);
+        // Wheels (cream gaps)
+        c.fillStyle = CREAM;
+        c.fillRect(x + 4, y + 8, 4, 2);
+        c.fillRect(x + 22, y + 8, 4, 2);
+        // Windows (lower)
+        for (let i = 0; i < 5; i++) c.fillRect(x + 4 + i * 5, y + 2, 2, 2);
+        // Windows (upper)
+        for (let i = 0; i < 5; i++) c.fillRect(x + 4 + i * 5, y - 4, 2, 2);
+        c.fillStyle = TEAL;
+      }
+
+      // === Molecule Man ===
+      function drawMoleculeMan(c) {
+        drawFigureWithHole(c, 86, 180);
+        drawFigureWithHole(c, 104, 174);
+        drawFigureWithHole(c, 122, 180);
+      }
+      function drawFigureWithHole(c, x, y) {
+        c.fillRect(x + 1, y, 2, 2);
+        c.fillRect(x, y + 2, 4, 10);
+        c.fillRect(x - 2, y + 4, 8, 1);
+        c.fillRect(x, y + 12, 1, 8);
+        c.fillRect(x + 3, y + 12, 1, 8);
+      }
+      function drawMoleculeManHoles(c) {
+        c.fillRect(87, 184, 2, 2);
+        c.fillRect(105, 178, 2, 2);
+        c.fillRect(123, 184, 2, 2);
+      }
+
+      // ============ Compositions ============
+      const COMPOSITIONS = [
+        {
+          name: 'East — Alex with Park Inn',
+          sphereCenter: { x: 392, y: 70 },
+          smokeSource: { x: 73, y: 164 },
+          weltAnchor: null,
+          hasParkInnSwing: true,
+          hasUBahn: false,
+          drawSkyline(c, time) {
+            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
+            c.fillStyle = CREAM; drawDistantWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.65; drawCrane(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.80;
+            drawSteppedBuilding(c); drawSlantedRoof(c);
+            c.fillStyle = CREAM; drawSteppedWindows(c); drawSlantedWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawBerlinerDom(c);
+            c.fillStyle = CREAM; drawDomWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawParkInn(c);
+            c.fillStyle = CREAM; drawParkInnWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.95; drawTVTower(c);
+            c.globalAlpha = 1;
+          },
+        },
+        {
+          name: 'Mitte — Brandenburg / Reichstag / Siegessäule',
+          sphereCenter: null,
+          smokeSource: { x: 73, y: 164 },
+          weltAnchor: null,
+          hasParkInnSwing: false,
+          hasUBahn: false,
+          drawSkyline(c, time) {
+            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
+            c.fillStyle = CREAM; drawDistantWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawBrandenburgGate(c);
+            c.fillStyle = CREAM; drawBrandenburgGateDetails(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.80; drawReichstag(c);
+            c.fillStyle = CREAM; drawReichstagWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.95; drawSiegessauele(c);
+            c.globalAlpha = 1;
+          },
+        },
+        {
+          name: 'Potsdamer Platz — Sony / Kollhoff with WELT balloon',
+          sphereCenter: null,
+          smokeSource: { x: 73, y: 164 },
+          weltAnchor: { x: 80, y: 30 },
+          hasParkInnSwing: false,
+          hasUBahn: false,
+          drawSkyline(c, time) {
+            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
+            c.fillStyle = CREAM; drawDistantWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawKollhoffTower(c);
+            c.fillStyle = CREAM; drawKollhoffWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawSonyCenter(c);
+            c.fillStyle = CREAM; drawSonyCenterWindows(c);
+            c.globalAlpha = 1;
+          },
+        },
+        {
+          name: 'West — Gedächtniskirche / Estrel',
+          sphereCenter: null,
+          smokeSource: { x: 73, y: 164 },
+          weltAnchor: null,
+          hasParkInnSwing: false,
+          hasUBahn: false,
+          drawSkyline(c, time) {
+            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
+            c.fillStyle = CREAM; drawDistantWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawGedaechtniskirche(c);
+            c.fillStyle = CREAM; drawGedaechtniskircheWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawEstrelTower(c);
+            c.fillStyle = CREAM; drawEstrelTowerWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.80; drawMidBuildings(c);
+            c.fillStyle = CREAM; drawMidWindows(c);
+            c.globalAlpha = 1;
+          },
+        },
+        {
+          name: 'Spree — Molecule Man / Oberbaum + U-Bahn',
+          sphereCenter: null,
+          smokeSource: { x: 73, y: 164 },
+          weltAnchor: null,
+          hasParkInnSwing: false,
+          hasUBahn: true,
+          drawSkyline(c, time) {
+            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
+            c.fillStyle = CREAM; drawDistantWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawMoleculeMan(c);
+            c.fillStyle = CREAM; drawMoleculeManHoles(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawOberbaumBridge(c);
+            c.fillStyle = CREAM; drawOberbaumBridgeDetails(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.65; drawElevatedTrack(c);
+            c.globalAlpha = 1;
+          },
+        },
+      ];
+
+      // ============ Animated overlays ============
+      function drawBird(c, time) {
+        const cycle = 26000;
+        const t = (time % cycle) / cycle;
+        if (t > 0.85) return;
+        const x = Math.floor(-10 + t * (W + 30) / 0.85);
+        const y = Math.floor(48 + Math.sin(time / 700) * 4);
+        const wingFrame = Math.floor(time / 180) % 2;
+        c.fillStyle = TEAL;
+        if (wingFrame === 0) {
+          c.fillRect(x, y, 1, 1); c.fillRect(x + 5, y, 1, 1);
+          c.fillRect(x + 1, y + 1, 4, 1);
+        } else {
+          c.fillRect(x + 1, y, 4, 1);
+          c.fillRect(x, y + 1, 1, 1); c.fillRect(x + 5, y + 1, 1, 1);
+        }
+      }
+      function drawSmoke(c, time, source) {
+        const NUM_PUFFS = 5, LIFETIME_MS = 5000;
+        c.fillStyle = TEAL;
+        for (let i = 0; i < NUM_PUFFS; i++) {
+          const phase = ((time + i * (LIFETIME_MS / NUM_PUFFS)) % LIFETIME_MS) / LIFETIME_MS;
+          const dy = Math.floor(phase * 18);
+          const dx = Math.floor(Math.sin(phase * 3 + i) * 2 + (1 - phase) * 1);
+          const opacity = (1 - phase) * 0.55;
+          c.globalAlpha = opacity;
+          c.fillRect(source.x + dx, source.y - dy, 2, 2);
+          if (phase < 0.4) c.fillRect(source.x + dx + 2, source.y - dy, 1, 1);
+        }
+        c.globalAlpha = 1;
+      }
+      function drawSun(c, time, weather) {
+        if (weather !== 'sunny') return;
+        const sx = 80, sy = 40 + Math.sin(time / 1200) * 2;
+        const s = 1 + 0.04 * Math.sin(time / 700);
+        c.save();
+        c.translate(sx, sy); c.scale(s, s); c.translate(-sx, -sy);
+        c.fillStyle = TEAL;
+        c.fillRect(74, 30, 12, 2); c.fillRect(70, 32, 20, 2);
+        c.fillRect(68, 34, 24, 2); c.fillRect(66, 36, 28, 8);
+        c.fillRect(68, 44, 24, 2); c.fillRect(70, 46, 20, 2); c.fillRect(74, 48, 12, 2);
+        c.fillRect(79, 20, 2, 6); c.fillRect(79, 54, 2, 6);
+        c.fillRect(58, 39, 6, 2); c.fillRect(96, 39, 6, 2);
+        c.fillRect(65, 24, 2, 2); c.fillRect(67, 26, 2, 2);
+        c.fillRect(91, 52, 2, 2); c.fillRect(93, 54, 2, 2);
+        c.fillRect(65, 54, 2, 2); c.fillRect(67, 52, 2, 2);
+        c.fillRect(91, 26, 2, 2); c.fillRect(93, 24, 2, 2);
+        c.restore();
+      }
+      function drawClouds(c, time, weather) {
+        if (weather !== 'cloudy' && weather !== 'rainy') return;
+        const tx_a = Math.sin(time / 7000) * 30;
+        const tx_b = Math.sin(time / 9000 + 1) * -22;
+        c.fillStyle = TEAL;
+        c.save(); c.translate(tx_a, 0);
+        c.fillRect(184, 40, 56, 8); c.fillRect(188, 36, 48, 4); c.fillRect(192, 32, 40, 4);
+        [184, 188, 192, 200, 208, 216, 224, 232, 236].forEach(x => c.fillRect(x, 48, 2, 2));
+        [196, 204, 216, 224].forEach(x => c.fillRect(x, 30, 2, 2));
+        c.fillRect(182, 42, 2, 2); c.fillRect(182, 46, 2, 2);
+        c.fillRect(240, 42, 2, 2); c.fillRect(240, 46, 2, 2);
+        c.restore();
+        c.save(); c.translate(tx_b, 0);
+        c.fillRect(300, 28, 40, 6); c.fillRect(304, 24, 32, 4); c.fillRect(296, 32, 48, 2);
+        [296, 300, 308, 316, 324, 332, 340, 344].forEach(x => c.fillRect(x, 34, 2, 2));
+        [308, 320, 328].forEach(x => c.fillRect(x, 22, 2, 2));
+        c.restore();
+      }
+      function drawRain(c, time, weather) {
+        if (weather !== 'rainy') return;
+        const drops = [
+          [184, 54], [192, 58], [200, 54], [208, 58], [216, 54], [224, 58], [232, 54],
+          [304, 42], [312, 46], [320, 42], [328, 46], [336, 42]
+        ];
+        c.fillStyle = TEAL;
+        for (let i = 0; i < drops.length; i++) {
+          const [x, y0] = drops[i];
+          const phase = ((time / 1000 + i * 0.13) % 1);
+          const yOff = phase * 14 - 6;
+          let a;
+          if (phase < 0.2) a = phase * 5 * 0.8;
+          else if (phase > 0.8) a = (1 - phase) * 5 * 0.8;
+          else a = 0.8;
+          c.globalAlpha = a;
+          c.fillRect(x, y0 + yOff, 1, 3);
+        }
+        c.globalAlpha = 1;
+      }
+      function drawPopeCross(c, weather, center) {
+        if (weather !== 'sunny' || !center) return;
+        c.fillStyle = CREAM;
+        c.fillRect(center.x - 1, center.y - 4, 2, 12);
+        c.fillRect(center.x - 8, center.y, 16, 2);
+      }
+
+      function renderFullScene(time, weather, compIdx) {
+        off.fillStyle = CREAM;
+        off.fillRect(0, 0, W, H);
+        drawSun(off, time, weather);
+        drawClouds(off, time, weather);
+        const comp = COMPOSITIONS[compIdx];
+        comp.drawSkyline(off, time);
+        off.globalAlpha = 1;
+        drawPopeCross(off, weather, comp.sphereCenter);
+        if (comp.weltAnchor) {
+          off.fillStyle = TEAL;
+          drawWeltBalloon(off, time, comp.weltAnchor);
+          off.fillStyle = CREAM;
+          drawWeltBalloonDetails(off, time, comp.weltAnchor);
+        }
+        if (comp.hasParkInnSwing) drawParkInnSwing(off, time);
+        if (comp.hasUBahn) drawUBahnTrain(off, time);
+        drawSmoke(off, time, comp.smokeSource);
+        drawBird(off, time);
+        drawRain(off, time, weather);
+        drawBus(off, time);
+        off.fillStyle = TEAL;
+        off.globalAlpha = 1;
+        drawTree(off);
+        drawGround(off);
+      }
+
+      // ============ Shimmer + occasional deep cycle ============
+      const CYCLE_MS = 18000;
+      const SHIMMER_MS = 15000;
+      const DEEP_MS = 3000;
+      const DEEP_UP = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48];
+      const DEEP_DOWN = [48, 32, 24, 16, 12, 8, 6, 4, 3, 2, 1];
+
+      let compIdx = 0;
+      let lastSwapCycle = -1;
+
+      function getN(time) {
+        const t = time % CYCLE_MS;
+        if (t < SHIMMER_MS) {
+          const wave = (Math.sin(t / 800) + 1) / 2;
+          if (wave < 0.55) return 1;
+          if (wave < 0.85) return 2;
+          return 3;
+        } else {
+          const dt = (t - SHIMMER_MS) / DEEP_MS;
+          if (dt < 0.5) {
+            const idx = Math.min(Math.floor(dt * 2 * DEEP_UP.length), DEEP_UP.length - 1);
+            return DEEP_UP[idx];
+          } else {
+            const idx = Math.min(Math.floor((dt - 0.5) * 2 * DEEP_DOWN.length), DEEP_DOWN.length - 1);
+            return DEEP_DOWN[idx];
+          }
+        }
+      }
+
+      function update(time) {
+        const cycleNum = Math.floor(time / CYCLE_MS);
+        const t = time % CYCLE_MS;
+        if (cycleNum !== lastSwapCycle && t >= SHIMMER_MS + DEEP_MS / 2) {
+          compIdx = (compIdx + 1) % COMPOSITIONS.length;
+          lastSwapCycle = cycleNum;
+        }
+        return getN(time);
+      }
+
+      function downsampleAndPresent(N) {
+        if (N === 1) {
+          ctx.imageSmoothingEnabled = false;
+          ctx.drawImage(offscreen, 0, 0);
+          return;
+        }
+        const dw = Math.max(1, Math.ceil(W / N));
+        const dh = Math.max(1, Math.ceil(H / N));
+        tmp.width = dw; tmp.height = dh;
+        tmpCtx.imageSmoothingEnabled = false;
+        tmpCtx.clearRect(0, 0, dw, dh);
+        tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
+        ctx.imageSmoothingEnabled = false;
+        ctx.fillStyle = CREAM;
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
+      }
+
+      function loop(time) {
+        const weather = stage.getAttribute('data-weather') || 'sunny';
+        const N = update(time);
+        renderFullScene(time, weather, compIdx);
+        downsampleAndPresent(N);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
+    </script>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V13 — shimmer + occasional deep cycle (archived)          -->
     <!-- ============================================================== -->
     <section class="section">
       <p class="section-label">§ 13 · DRAFT V13 — continuous subtle shimmer (N=1/2/3) + occasional deep diffusion every 18s + improved Brandenburg Gate and Oberbaum Bridge (CURRENT)</p>
