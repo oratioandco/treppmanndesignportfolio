@@ -1238,11 +1238,24 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
         comp.drawSkyline(off, time);
         off.globalAlpha = 1;
 
-        // Pope's Revenge cross
-        if (weather === 'sunny' && !isNight() && comp.sphereCenter) {
+        // Pope's Revenge — cross reflection on TV Tower sphere.
+        // Visible when sky is clear (weather=sunny) day OR night.
+        // Slightly off-center (intersection upper-right of sphere center)
+        // and doesn't fill the whole sphere. Fainter (smaller) at night
+        // since the moon reflects less than the sun.
+        if (weather === 'sunny' && comp.sphereCenter) {
+          const cx = comp.sphereCenter.x;
+          const cy = comp.sphereCenter.y;
           off.fillStyle = WINDOW_LIT;
-          off.fillRect(comp.sphereCenter.x - 1, comp.sphereCenter.y - 4, 2, 12);
-          off.fillRect(comp.sphereCenter.x - 8, comp.sphereCenter.y, 16, 2);
+          if (isNight()) {
+            // Night moon reflection — smaller, fainter
+            off.fillRect(cx + 1, cy - 2, 1, 5);    // 5 tall vertical
+            off.fillRect(cx - 1, cy,     4, 1);    // 4 wide horizontal
+          } else {
+            // Day sun reflection — bigger but still partial + off-center
+            off.fillRect(cx + 1, cy - 4, 1, 9);    // 9 tall vertical (slightly right)
+            off.fillRect(cx - 4, cy - 1, 10, 1);   // 10 wide horizontal (slightly up)
+          }
         }
 
         // WELT balloon
