@@ -396,23 +396,23 @@
         c.fillRect(112, 168, 48, 4);
         // Cornice
         c.fillRect(110, 164, 52, 4);
-        // === Compact Quadriga ===
-        c.fillRect(124, 160, 24, 4);          // platform
-        [124, 130, 136, 140].forEach(x => c.fillRect(x, 156, 2, 4));
-        c.fillRect(124, 158, 18, 2);          // horse body band
-        [125, 131, 137, 141].forEach(x => c.fillRect(x, 160, 1, 2));
-        c.fillRect(144, 154, 4, 8);           // chariot box
-        c.fillRect(146, 160, 3, 2);           // wheel
-        c.fillRect(146, 144, 2, 10);          // Victoria body
-        c.fillRect(145, 146, 4, 2);           // shoulders
-        c.fillRect(146, 142, 2, 2);           // head
-        c.fillRect(140, 146, 5, 3);           // left wing
-        c.fillRect(149, 146, 5, 3);           // right wing
-        c.fillRect(139, 148, 1, 1);
-        c.fillRect(154, 148, 1, 1);
-        c.fillRect(148, 138, 1, 4);           // arm
-        c.fillRect(147, 134, 3, 4);           // standard (eagle)
-        c.fillRect(148, 132, 1, 2);           // top
+        // === Quadriga (shifted −3px so its bounding box centers on gate x=136) ===
+        c.fillRect(121, 160, 24, 4);          // platform
+        [121, 127, 133, 137].forEach(x => c.fillRect(x, 156, 2, 4));
+        c.fillRect(121, 158, 18, 2);          // horse body band
+        [122, 128, 134, 138].forEach(x => c.fillRect(x, 160, 1, 2));
+        c.fillRect(141, 154, 4, 8);           // chariot box
+        c.fillRect(143, 160, 3, 2);           // wheel
+        c.fillRect(143, 144, 2, 10);          // Victoria body
+        c.fillRect(142, 146, 4, 2);           // shoulders
+        c.fillRect(143, 142, 2, 2);           // head
+        c.fillRect(137, 146, 5, 3);           // left wing
+        c.fillRect(146, 146, 5, 3);           // right wing
+        c.fillRect(136, 148, 1, 1);
+        c.fillRect(151, 148, 1, 1);
+        c.fillRect(145, 138, 1, 4);           // arm
+        c.fillRect(144, 134, 3, 4);           // standard (eagle)
+        c.fillRect(145, 132, 1, 2);           // top
       }
       function drawBrandenburgGateDetails(c) {
         [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 169, 4, 2));
@@ -440,18 +440,24 @@
         }
       }
 
-      // === Siegessäule (RESCALED — 67m, ~45px tall vs old 88px) ===
+      // === Siegessäule (Victoria restructured — clear head/neck/body, wings from shoulders) ===
       function drawSiegessauele(c) {
         c.fillRect(348, 196, 18, 4);          // stepped base
         c.fillRect(350, 192, 14, 4);
-        c.fillRect(354, 168, 6, 24);          // column (24 tall, was 60)
+        c.fillRect(354, 168, 6, 24);          // column
         c.fillRect(352, 175, 10, 1);          // ring band 1
         c.fillRect(352, 182, 10, 1);          // ring band 2
         c.fillRect(352, 188, 10, 1);          // ring band 3
         c.fillRect(352, 165, 10, 3);          // capital
-        c.fillRect(354, 158, 6, 7);           // Victoria body
-        c.fillRect(350, 156, 14, 2);          // wings
-        c.fillRect(356, 154, 2, 2);           // head
+        // === Victoria figure ===
+        c.fillRect(355, 158, 4, 7);           // body / skirt (y=158-165 down to capital)
+        c.fillRect(351, 159, 4, 2);           // left wing (from shoulder)
+        c.fillRect(359, 159, 4, 2);           // right wing
+        c.fillRect(350, 160, 1, 1);           // left wing tip
+        c.fillRect(363, 160, 1, 1);           // right wing tip
+        c.fillRect(354, 156, 6, 2);           // shoulders (wider than body)
+        c.fillRect(356, 154, 2, 2);           // head (above shoulders)
+        c.fillRect(355, 152, 4, 2);           // crown / laurel wreath
       }
 
       // === Gedächtniskirche (RESCALED — 113m, ~70px vs old 80px) ===
