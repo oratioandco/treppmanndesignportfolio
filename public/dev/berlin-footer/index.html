@@ -213,8 +213,8 @@
 
       <div class="frame">
         <div id="stage-v14" class="stage" data-weather="sunny" style="position: relative;">
-          <canvas id="berlin-canvas-v14" width="480" height="220"
-                  style="display:block; width: 100%; aspect-ratio: 480/220; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
+          <canvas id="berlin-canvas-v14" width="480" height="250"
+                  style="display:block; width: 100%; aspect-ratio: 480/250; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
           <div id="footer-readout-v14"
                style="position: absolute; top: 0.5rem; right: 0.75rem; font-family: 'Departure Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #4f8375; pointer-events: none; text-transform: uppercase;">
             BERLIN · <span id="time-display-v14">--:--</span> · <span id="temp-display-v14">--°</span>
@@ -238,8 +238,9 @@
       const canvas = document.getElementById('berlin-canvas-v14');
       const ctx = canvas.getContext('2d');
 
-      const W = 480, H = 220;
+      const W = 480, H = 250;
       const GROUND_Y = 200;
+      const RIVER_Y = 210;  // top of Spree river surface
 
       // === Mutable palette (swaps day ↔ night) ===
       // Pre-calculated opaque values (teal blended over the appropriate bg).
@@ -1021,6 +1022,81 @@
         },
       ];
 
+      // ============ Spree river + boats ============
+      function drawRiver(c, time) {
+        // Water surface line
+        c.fillStyle = TEAL;
+        c.fillRect(0, RIVER_Y, W, 1);
+        // Body of water (slightly more transparent teal pre-blended)
+        c.fillStyle = TEAL_HAZE;
+        c.fillRect(0, RIVER_Y + 1, W, H - RIVER_Y - 1);
+        // Wave dashes — drift slowly across to suggest current
+        c.fillStyle = TEAL;
+        const drift = Math.floor((time / 80) % 16);
+        for (let y = RIVER_Y + 6; y < H; y += 6) {
+          for (let x = -drift; x < W; x += 16) {
+            c.fillRect(x, y, 6, 1);
+          }
+        }
+      }
+      function drawTouristBoat(c, time) {
+        // Sightseeing boat drifts left-to-right slowly (~42s cycle)
+        const cycle = 42000;
+        const t = (time % cycle) / cycle;
+        const x = Math.floor(-50 + t * (W + 100));
+        if (x < -50 || x > W + 50) return;
+        const y = 218;
+        c.fillStyle = TEAL;
+        // Flag
+        c.fillRect(x + 17, y - 6, 4, 1);
+        // Mast
+        c.fillRect(x + 17, y - 5, 1, 5);
+        // Cabin top
+        c.fillRect(x + 8, y, 22, 1);
+        // Cabin body
+        c.fillRect(x + 8, y + 1, 22, 4);
+        // Hull top deck
+        c.fillRect(x + 4, y + 5, 30, 1);
+        // Hull body (sloped sides via stair-step)
+        c.fillRect(x + 4, y + 6, 30, 2);
+        c.fillRect(x + 6, y + 8, 26, 1);
+        c.fillRect(x + 8, y + 9, 22, 1);
+        // Bow point
+        c.fillRect(x + 2, y + 6, 2, 2);
+        c.fillRect(x + 34, y + 6, 2, 2);
+        // Cabin windows (cream)
+        c.fillStyle = CREAM;
+        for (let i = 0; i < 6; i++) {
+          c.fillRect(x + 10 + i * 3, y + 2, 1, 2);
+        }
+      }
+      function drawPaddleBoarder(c, time) {
+        // Paddle boarder drifts opposite direction, slower (~54s cycle)
+        const cycle = 54000;
+        const t = (time % cycle) / cycle;
+        const x = Math.floor((W + 20) - t * (W + 40));
+        if (x < -20 || x > W + 20) return;
+        const y = 220;
+        c.fillStyle = TEAL;
+        // Board
+        c.fillRect(x, y + 5, 8, 1);
+        // Person body
+        c.fillRect(x + 3, y + 1, 1, 4);
+        // Person head
+        c.fillRect(x + 3, y, 1, 1);
+        // Paddle (animated: tilts back and forth)
+        const paddleSwing = Math.sin(time / 600) > 0 ? 1 : -1;
+        if (paddleSwing > 0) {
+          // Forward stroke
+          c.fillRect(x + 4, y, 3, 1);
+          c.fillRect(x + 6, y + 1, 1, 3);
+        } else {
+          // Back stroke
+          c.fillRect(x + 1, y, 3, 1);
+          c.fillRect(x, y + 1, 1, 3);
+        }
+      }
+
       // ============ Animated overlays ============
       function drawBird(c, time) {
         const cycle = 26000;
@@ -1171,6 +1247,11 @@
         off.globalAlpha = 1;
         drawTree(off);
         drawGround(off);
+
+        // River and boats in front of road (newest foreground layer)
+        drawRiver(off, time);
+        drawTouristBoat(off, time);
+        drawPaddleBoarder(off, time);
       }
 
       // ============ Shimmer + occasional deep cycle ============
