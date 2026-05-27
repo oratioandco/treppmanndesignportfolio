@@ -667,49 +667,51 @@
       // towers rise from low deck up to elevated-track height so U-Bahn
       // walkway connects to the elevated viaduct on both sides) ===
       function drawOberbaumBridge(c) {
-        // === BRIDGE DECK (just above the river at y=210) ===
-        c.fillRect(178, 204, 166, 2);            // deck top
-
-        // === Pillars DIP INTO the river (river at y=210+) ===
-        [196, 222, 248, 274, 300, 322].forEach(x => {
-          c.fillRect(x, 206, 4, 14);             // 14 tall, partially submerged
-        });
-
-        // === LEFT TOWER complex ===
-        c.fillRect(178, 198, 18, 6);             // base sitting on deck (6 tall)
-        c.fillRect(180, 188, 14, 10);            // body through walkway level
-        c.fillRect(180, 186, 4, 2);              // crenellation above walkway
-        c.fillRect(186, 186, 2, 2);
-        c.fillRect(190, 186, 4, 2);
-        c.fillRect(180, 178, 4, 8);              // smaller spire
+        // === SPIRES (asymmetric twin spires per tower) ===
+        // Left tower
+        c.fillRect(180, 178, 4, 8);
         c.fillRect(181, 176, 2, 2);
-        c.fillRect(186, 172, 8, 14);             // main spire body
+        c.fillRect(186, 172, 8, 14);
         c.fillRect(187, 170, 6, 2);
         c.fillRect(188, 168, 4, 2);
-        c.fillRect(189, 166, 2, 2);              // main spire peak
-
-        // === RIGHT TOWER (mirror) ===
-        c.fillRect(326, 198, 18, 6);
-        c.fillRect(328, 188, 14, 10);
-        c.fillRect(326, 186, 4, 2);
-        c.fillRect(332, 186, 2, 2);
-        c.fillRect(336, 186, 4, 2);
+        c.fillRect(189, 166, 2, 2);
+        // Right tower (mirror)
         c.fillRect(340, 178, 4, 8);
         c.fillRect(341, 176, 2, 2);
         c.fillRect(328, 172, 8, 14);
         c.fillRect(329, 170, 6, 2);
         c.fillRect(330, 168, 4, 2);
         c.fillRect(331, 166, 2, 2);
-
-        // === UPPER WALKWAY (U-Bahn level, between tower tops) ===
-        c.fillRect(196, 188, 130, 6);
+        // === CRENELLATION ===
+        c.fillRect(180, 186, 4, 2);
+        c.fillRect(186, 186, 2, 2);
+        c.fillRect(190, 186, 4, 2);
+        c.fillRect(326, 186, 4, 2);
+        c.fillRect(332, 186, 2, 2);
+        c.fillRect(336, 186, 4, 2);
+        // === CONTINUOUS UPPER WALL (walkway + tower bodies, no gap) ===
+        c.fillRect(180, 188, 164, 10);
+        // === Tower BASES (slightly wider, sit on deck) ===
+        c.fillRect(178, 198, 18, 6);
+        c.fillRect(326, 198, 18, 6);
+        // === Support PILLARS between walkway and deck (gothic arches between) ===
+        [196, 222, 248, 274, 300, 322].forEach(x => {
+          c.fillRect(x, 198, 4, 6);
+        });
+        // === BRIDGE DECK ===
+        c.fillRect(178, 204, 166, 2);
+        // === Underwater PILLARS dipping into river ===
+        [196, 222, 248, 274, 300, 322].forEach(x => {
+          c.fillRect(x, 206, 4, 14);
+        });
       }
       function drawOberbaumBridgeDetails(c) {
-        // Arched walkway windows (in the new walkway at y=188-194)
-        const archXs = [200, 220, 240, 260, 280, 300];
+        // Arched walkway windows (now in continuous upper wall y=188-198)
+        const archXs = [202, 226, 250, 274, 298];
         archXs.forEach(x => {
-          c.fillRect(x, 190, 8, 3);
-          c.fillRect(x + 1, 189, 6, 1);
+          c.fillRect(x, 191, 6, 5);
+          c.fillRect(x + 1, 190, 4, 1);
+          c.fillRect(x + 2, 189, 2, 1);
         });
       }
 
@@ -771,42 +773,42 @@
         c.fillStyle = TEAL;
       }
 
-      // === Molecule Man (redesigned: 3 linked figures, many holes) ===
-      // Jonathan Borofsky's three figures grip each other in the Spree.
-      // Each figure is a stylized humanoid with multiple holes through
-      // the body (the "molecule" metaphor). Arms reach out and overlap
-      // with neighbors so they read as one connected group.
+      // === Molecule Man (LARGER + standing IN the Spree water) ===
+      // Borofsky's three figures grip each other, partially submerged.
+      // Bottom of figures at y=220 (10px below the water surface y=210),
+      // so legs are visibly in the water. Heights bumped from 22-25 to 32-35.
       function drawMoleculeFigure(c, cx, height) {
-        const top = 200 - height - 2;          // bottom at y=198
-        const bodyH = height - 13;
-        c.fillRect(cx - 1, top, 2, 3);            // head
-        c.fillRect(cx - 2, top + 3, 5, 2);        // shoulders
-        c.fillRect(cx - 6, top + 4, 4, 2);        // left arm (extends to grip neighbor)
-        c.fillRect(cx + 3, top + 4, 4, 2);        // right arm
-        c.fillRect(cx - 2, top + 5, 5, bodyH);    // body
-        c.fillRect(cx - 2, top + 5 + bodyH, 2, 8); // left leg
-        c.fillRect(cx + 1, top + 5 + bodyH, 2, 8); // right leg
+        const top = 220 - height;                 // bottom at y=220 (submerged)
+        const bodyH = height - 21;
+        c.fillRect(cx - 1, top, 2, 4);             // head (4 tall)
+        c.fillRect(cx - 3, top + 4, 7, 3);         // shoulders (wider)
+        c.fillRect(cx - 8, top + 5, 5, 2);         // left arm (gripping neighbor)
+        c.fillRect(cx + 4, top + 5, 5, 2);         // right arm
+        c.fillRect(cx - 2, top + 7, 5, bodyH);     // body
+        c.fillRect(cx - 2, top + 7 + bodyH, 2, 14); // left leg (14 tall, into water)
+        c.fillRect(cx + 1, top + 7 + bodyH, 2, 14); // right leg
       }
       function drawMoleculeFigureHoles(c, cx, height) {
-        const top = 200 - height - 2;
-        // Many small holes scattered through the body — the iconic detail
-        c.fillRect(cx,     top + 1,  1, 1);  // head
-        c.fillRect(cx - 1, top + 6,  1, 1);
-        c.fillRect(cx + 1, top + 7,  1, 1);
-        c.fillRect(cx,     top + 9,  1, 1);
-        c.fillRect(cx - 1, top + 11, 1, 1);
-        c.fillRect(cx + 1, top + 12, 1, 1);
+        const top = 220 - height;
+        // More holes for the larger figures (the "molecule" metaphor)
+        c.fillRect(cx,     top + 2,  1, 1);   // head
+        c.fillRect(cx - 1, top + 9,  1, 1);
+        c.fillRect(cx + 1, top + 11, 1, 1);
         c.fillRect(cx,     top + 13, 1, 1);
+        c.fillRect(cx - 1, top + 16, 1, 1);
+        c.fillRect(cx + 1, top + 18, 1, 1);
+        c.fillRect(cx,     top + 20, 1, 1);
+        c.fillRect(cx - 1, top + 23, 1, 1);
       }
       function drawMoleculeMan(c) {
-        drawMoleculeFigure(c, 78, 22);   // left, 22 tall
-        drawMoleculeFigure(c, 88, 25);   // middle, taller
-        drawMoleculeFigure(c, 98, 22);   // right
+        drawMoleculeFigure(c, 76, 32);   // left
+        drawMoleculeFigure(c, 88, 35);   // middle, tallest
+        drawMoleculeFigure(c, 100, 32);  // right
       }
       function drawMoleculeManHoles(c) {
-        drawMoleculeFigureHoles(c, 78, 22);
-        drawMoleculeFigureHoles(c, 88, 25);
-        drawMoleculeFigureHoles(c, 98, 22);
+        drawMoleculeFigureHoles(c, 76, 32);
+        drawMoleculeFigureHoles(c, 88, 35);
+        drawMoleculeFigureHoles(c, 100, 32);
       }
 
       // ============ Stars + Moon (night mode) ============
@@ -1193,41 +1195,35 @@
       }
 
       function renderFullScene(time, weather, compIdx) {
-        // Swap palette day/night based on Berlin time
         updatePalette();
 
         off.fillStyle = BG_COLOR;
         off.fillRect(0, 0, W, H);
 
-        // Stars (night only)
         drawStars(off, time);
-
-        // Sun or Moon
-        if (isNight()) {
-          drawMoon(off, time);
-        } else {
-          drawSun(off, time, weather);
-        }
-
+        if (isNight()) drawMoon(off, time);
+        else drawSun(off, time, weather);
         drawClouds(off, time, weather);
 
-        // BACKGROUND: all landmarks always at low opacity
+        // BACKGROUND: all landmarks at low opacity
         drawAllLandmarksBg(off);
 
-        // FOREGROUND: composition's featured landmarks
+        // RIVER drawn early so Molecule Man (in composition) can stand IN it
+        drawRiver(off, time);
+
+        // FOREGROUND composition
         const comp = COMPOSITIONS[compIdx];
         comp.drawSkyline(off, time);
         off.globalAlpha = 1;
 
-        // Pope's Revenge cross — uses WINDOW_LIT (yellow at night)
+        // Pope's Revenge cross
         if (weather === 'sunny' && !isNight() && comp.sphereCenter) {
           off.fillStyle = WINDOW_LIT;
           off.fillRect(comp.sphereCenter.x - 1, comp.sphereCenter.y - 4, 2, 12);
           off.fillRect(comp.sphereCenter.x - 8, comp.sphereCenter.y, 16, 2);
         }
 
-        // WELT balloon — anchor moved down to y=40 (was 30) so balloon
-        // top stays clearly below TV Tower top (y=14) at all bob phases
+        // WELT balloon
         const WELT_ANCHOR = { x: 300, y: 40 };
         off.fillStyle = TEAL;
         drawWeltBalloon(off, time, WELT_ANCHOR);
@@ -1240,8 +1236,6 @@
         drawBird(off, time);
         drawRain(off, time, weather);
         drawBus(off, time);
-
-        // Plane with banner (always on)
         drawPlane(off, time);
 
         off.fillStyle = TEAL;
@@ -1249,8 +1243,7 @@
         drawTree(off);
         drawGround(off);
 
-        // River and boats in front of road (newest foreground layer)
-        drawRiver(off, time);
+        // Boats sail on the water — drawn last so they're on top
         drawTouristBoat(off, time);
         drawPaddleBoarder(off, time);
       }
