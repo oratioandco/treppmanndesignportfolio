@@ -376,17 +376,16 @@
         c.fillRect(389, 78, 6, 6); c.fillRect(391, 84, 2, 116); c.fillRect(386, 196, 12, 4);
       }
 
-      // === Brandenburg Gate (RESCALED smaller — real gate is 26m vs
-      // Fernsehturm 368m, so should be ~14x shorter; compromised at ~50px
-      // tall for quadriga + columns to remain readable) ===
+      // === Brandenburg Gate — 6 Doric columns (corrected from 5)
+      // Quadriga shrunk to ~1/5 of gate height (was way too big) ===
       function drawBrandenburgGate(c) {
         // Stylobate
         c.fillRect(110, 198, 52, 2);
         c.fillRect(112, 196, 48, 2);
-        // 5 columns with capitals + bases (shorter shafts)
-        const cols = [116, 124, 132, 140, 148];
+        // 6 columns at x=113, 121, 129, 137, 145, 153 (4 wide each, 4 gap)
+        const cols = [113, 121, 129, 137, 145, 153];
         cols.forEach(x => {
-          c.fillRect(x, 178, 4, 18);          // shaft (was 22, now 18)
+          c.fillRect(x, 178, 4, 18);
           c.fillRect(x - 1, 176, 6, 2);
           c.fillRect(x - 1, 194, 6, 2);
         });
@@ -396,28 +395,26 @@
         c.fillRect(112, 168, 48, 4);
         // Cornice
         c.fillRect(110, 164, 52, 4);
-        // === Centered Quadriga (Victoria + chariot ABOVE 4 horses, all centered on x=134) ===
-        c.fillRect(133, 132, 3, 2);           // wreath / eagle
-        c.fillRect(134, 134, 1, 4);           // staff
-        c.fillRect(133, 138, 3, 2);           // head (centered)
-        c.fillRect(135, 138, 1, 2);           // arm raised
-        c.fillRect(131, 140, 7, 2);           // shoulders
-        c.fillRect(127, 140, 4, 2);           // left wing
-        c.fillRect(138, 140, 4, 2);           // right wing
-        c.fillRect(126, 141, 1, 1);
-        c.fillRect(142, 141, 1, 1);
-        c.fillRect(132, 142, 5, 5);           // body
-        c.fillRect(130, 147, 9, 4);           // chariot
-        c.fillRect(128, 150, 2, 3);           // left wheel
-        c.fillRect(139, 150, 2, 3);           // right wheel
-        [126, 131, 136, 141].forEach(x => c.fillRect(x, 154, 2, 4));
-        c.fillRect(126, 158, 17, 2);          // horse body band
-        [127, 132, 137, 142].forEach(x => c.fillRect(x, 160, 1, 2));
+        // === Smaller Quadriga (~19px tall, centered on x=135 between mid columns) ===
+        c.fillRect(133, 145, 5, 1);           // standard wreath / eagle
+        c.fillRect(135, 146, 1, 4);           // standard staff
+        c.fillRect(134, 150, 3, 2);           // head + crown
+        c.fillRect(132, 152, 7, 1);           // shoulders
+        c.fillRect(130, 153, 2, 1);           // left wing
+        c.fillRect(139, 153, 2, 1);           // right wing
+        c.fillRect(134, 153, 3, 4);           // body
+        c.fillRect(132, 157, 7, 2);           // chariot box
+        [128, 132, 136, 140].forEach(x => c.fillRect(x, 159, 2, 3));   // 4 horse heads
+        c.fillRect(128, 162, 14, 1);           // horse body band
+        [129, 133, 137, 141].forEach(x => c.fillRect(x, 163, 1, 1));   // legs
       }
       function drawBrandenburgGateDetails(c) {
-        [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 169, 4, 2));
-        [120, 128, 136, 144].forEach(x => c.fillRect(x, 184, 4, 10));
-        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 180, 1, 14));
+        // Metopes — 5 inter-column positions (between 6 columns)
+        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 169, 4, 2));
+        // Inter-column shadow gaps — 5 gaps between 6 columns
+        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 184, 4, 10));
+        // Column flutes (1px line on each of the 6 columns)
+        [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 180, 1, 14));
       }
 
       function drawReichstag(c) {
