@@ -428,16 +428,28 @@
         // Front portico
         c.fillRect(232, 172, 36, 2);
         [234, 240, 246, 252, 258, 264].forEach(x => c.fillRect(x, 174, 2, 22));
-        // === Round Glass Kuppel (Norman Foster's dome) ===
-        c.fillRect(238, 170, 24, 4);      // cylindrical drum (4 tall)
-        // Hemispherical curve — narrower at top, wider near base
-        c.fillRect(239, 168, 22, 2);
-        c.fillRect(240, 166, 20, 2);
-        c.fillRect(241, 164, 18, 2);
-        c.fillRect(243, 162, 14, 2);
-        c.fillRect(245, 160, 10, 2);
-        c.fillRect(247, 158, 6, 2);
-        c.fillRect(249, 156, 2, 2);       // top of dome
+        // Dome is drawn separately by drawReichstagDome() so it can use a
+        // lighter (translucent) color than the building body.
+      }
+      // === Translucent round glass Kuppel ===
+      // Drawn at TEAL_HAZE (day) / WINDOW_LIT (night) — visibly lighter than
+      // the building body. Smoother hemisphere via single-pixel y-steps.
+      function drawReichstagDome(c, bgColor) {
+        c.fillStyle = bgColor || (isNight() ? WINDOW_LIT : TEAL_HAZE);
+        // Cylindrical drum (rotunda base)
+        c.fillRect(240, 167, 20, 7);
+        // Hemispherical curve — 11 single-pixel rows for smoother round profile
+        c.fillRect(240, 166, 20, 1);
+        c.fillRect(240, 165, 20, 1);
+        c.fillRect(240, 164, 20, 1);
+        c.fillRect(241, 163, 18, 1);
+        c.fillRect(242, 162, 16, 1);
+        c.fillRect(243, 161, 14, 1);
+        c.fillRect(244, 160, 12, 1);
+        c.fillRect(245, 159, 10, 1);
+        c.fillRect(246, 158,  8, 1);
+        c.fillRect(247, 157,  6, 1);
+        c.fillRect(249, 156,  2, 1);     // top
       }
       function drawReichstagWindows(c) {
         // Body windows
@@ -447,14 +459,13 @@
             c.fillRect(272 + x * 6, 180 + y * 6, 2, 2);
           }
         }
-        // Glass pane lines on the Kuppel (cream — structural ribs / panel divisions)
-        c.fillRect(250, 157, 1, 13);      // central vertical rib
-        c.fillRect(247, 162, 1, 8);       // left rib
-        c.fillRect(253, 162, 1, 8);       // right rib
-        c.fillRect(243, 166, 1, 4);       // outer left rib
-        c.fillRect(257, 166, 1, 4);       // outer right rib
-        // Horizontal band suggesting the spiral walkway inside
-        c.fillRect(241, 167, 18, 1);
+        // Glass pane structural ribs on the dome
+        c.fillRect(250, 157, 1, 12);     // central vertical
+        c.fillRect(247, 161, 1, 6);      // left rib
+        c.fillRect(253, 161, 1, 6);      // right rib
+        c.fillRect(243, 165, 1, 2);      // outer left
+        c.fillRect(257, 165, 1, 2);      // outer right
+        c.fillRect(241, 167, 18, 1);     // horizontal mid-band (spiral walkway inside)
       }
 
       // === Siegessäule + Goldelse (Victoria with raised standard) ===
@@ -945,6 +956,7 @@
         drawParkInn(c);
         drawBrandenburgGate(c);
         drawReichstag(c);
+        drawReichstagDome(c, TEAL_BG);    // dome too, matching bg color
         drawSiegessauele(c);
         drawBahnTower(c);
         drawPotsdamerHRA(c);
@@ -988,6 +1000,7 @@
             c.fillStyle = TEAL;       drawBrandenburgGate(c);
             c.fillStyle = CREAM;      drawBrandenburgGateDetails(c);  // architectural negative space
             c.fillStyle = TEAL_FRONT; drawReichstag(c);
+            drawReichstagDome(c);   // translucent dome (uses its own lighter color)
             c.fillStyle = WINDOW_LIT; drawReichstagWindows(c);
             c.fillStyle = TEAL;       drawSiegessauele(c);
             drawGoldelseAccents(c);
@@ -1220,7 +1233,7 @@
         drawStars(off, time);
         if (isNight()) drawMoon(off, time);
         else drawSun(off, time, weather);
-        drawClouds(off, time, weather);
+        // CLOUDS drawn LATER (after rain) — see below
 
         // BACKGROUND: all landmarks at low opacity
         drawAllLandmarksBg(off);
@@ -1250,8 +1263,13 @@
         if (comp.hasParkInnSwing) drawParkInnSwing(off, time);
         if (comp.hasUBahn) drawUBahnTrain(off, time);
         drawSmoke(off, time, comp.smokeSource);
-        drawBird(off, time);
+
+        // RAIN drawn BEFORE clouds so clouds cover the rain's spawn point
         drawRain(off, time, weather);
+        // CLOUDS drawn AFTER rain — rain is now "under the clouds" in z-order
+        drawClouds(off, time, weather);
+
+        drawBird(off, time);
         drawBus(off, time);
         drawPlane(off, time);
 
@@ -1260,19 +1278,18 @@
         drawTree(off);
         drawGround(off);
 
-        // Boats sail on the water — drawn last so they're on top
         drawTouristBoat(off, time);
         drawPaddleBoarder(off, time);
       }
 
-      // ============ Scene cycle: hold crisp, then single-direction ramp ============
-      // No back-and-forth between diffusion levels. Scene stays at N=1 for
-      // 14s. Transition is a single 1.2s ramp UP through diffusion levels.
-      // At end of cycle: composition swaps and N snaps back to 1.
-      const SCENE_MS = 14000;
-      const RAMP_UP_MS = 1200;
-      const CYCLE_MS = SCENE_MS + RAMP_UP_MS;
-      const RAMP_UP = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 48, 48];
+      // ============ Scene cycle: REVEAL (super low res -> crisp) ============
+      // At start of each cycle: composition swaps, snaps to super low res.
+      // Then ramps DOWN through all diffusion stages until crisp (high res).
+      // Then holds at N=1 for the scene duration. Loop.
+      const REVEAL_MS = 1500;
+      const SCENE_MS = 13500;
+      const CYCLE_MS = REVEAL_MS + SCENE_MS;
+      const RAMP_DOWN = [48, 48, 48, 32, 24, 16, 12, 8, 6, 4, 3, 2];
 
       let compIdx = 0;
       let lastSwapCycle = 0;
@@ -1280,16 +1297,18 @@
       function update(time) {
         const cycleNum = Math.floor(time / CYCLE_MS);
         const t = time % CYCLE_MS;
-        // At start of each new cycle: swap composition (instant snap to crisp)
+        // At start of each new cycle: swap composition (new scene begins at chunky)
         if (cycleNum !== lastSwapCycle) {
           compIdx = (compIdx + 1) % COMPOSITIONS.length;
           lastSwapCycle = cycleNum;
         }
-        if (t < SCENE_MS) return 1;
-        // Single-direction ramp up — no ramp down (snap at cycle wrap)
-        const dt = (t - SCENE_MS) / RAMP_UP_MS;
-        const idx = Math.min(Math.floor(dt * RAMP_UP.length), RAMP_UP.length - 1);
-        return RAMP_UP[idx];
+        if (t < REVEAL_MS) {
+          // REVEAL: super low res progressively becomes crisp
+          const dt = t / REVEAL_MS;
+          const idx = Math.min(Math.floor(dt * RAMP_DOWN.length), RAMP_DOWN.length - 1);
+          return RAMP_DOWN[idx];
+        }
+        return 1;  // crisp scene for the rest of the cycle
       }
 
       function downsampleAndPresent(N) {
