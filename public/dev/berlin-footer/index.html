@@ -239,6 +239,16 @@
       const CREAM = '#f8f3ee';
       const GROUND_Y = 200;
 
+      // === Pre-calculated opaque palette (teal blended over cream bg)
+      // Avoids using globalAlpha so overlapping landmarks don't bleed
+      // through each other. Each value is the actual rendered color
+      // at the given effective teal-coverage over the cream background.
+      const TEAL_BG     = '#d6ddd6';   // ~20% teal over cream — atmospheric
+      const TEAL_HAZE   = '#a4bbb2';   // ~50% — mid-distance
+      const TEAL_FG     = '#779e93';   // ~75% — foreground filler
+      const TEAL_FRONT  = '#5e8c7d';   // ~90% — featured prominent
+      // TEAL (#4f8375) = full strength — featured primary / discrete objects
+
       const offscreen = document.createElement('canvas');
       offscreen.width = W; offscreen.height = H;
       const off = offscreen.getContext('2d');
@@ -331,72 +341,48 @@
         c.fillRect(389, 78, 6, 6); c.fillRect(391, 84, 2, 116); c.fillRect(386, 196, 12, 4);
       }
 
-      // === Brandenburg Gate (improved quadriga, columns with bases) ===
+      // === Brandenburg Gate (RESCALED smaller — real gate is 26m vs
+      // Fernsehturm 368m, so should be ~14x shorter; compromised at ~50px
+      // tall for quadriga + columns to remain readable) ===
       function drawBrandenburgGate(c) {
-        // Stylobate (3 steps)
-        c.fillRect(108, 198, 56, 2);
-        c.fillRect(110, 196, 52, 2);
-        c.fillRect(112, 194, 48, 2);
-        // 5 columns with capitals and bases
+        // Stylobate
+        c.fillRect(110, 198, 52, 2);
+        c.fillRect(112, 196, 48, 2);
+        // 5 columns with capitals + bases (shorter shafts)
         const cols = [116, 124, 132, 140, 148];
         cols.forEach(x => {
-          c.fillRect(x, 172, 4, 22);          // shaft
-          c.fillRect(x - 1, 170, 6, 2);       // capital
-          c.fillRect(x - 1, 192, 6, 2);       // base
+          c.fillRect(x, 178, 4, 18);          // shaft (was 22, now 18)
+          c.fillRect(x - 1, 176, 6, 2);
+          c.fillRect(x - 1, 194, 6, 2);
         });
-        // Architrave (3 horizontal bands)
-        c.fillRect(112, 166, 48, 4);
+        // Architrave
+        c.fillRect(112, 172, 48, 4);
         // Frieze
-        c.fillRect(112, 162, 48, 4);
+        c.fillRect(112, 168, 48, 4);
         // Cornice
-        c.fillRect(110, 158, 52, 4);
-        // === Improved Quadriga ===
-        // Chariot platform (under horses + chariot)
-        c.fillRect(120, 154, 30, 4);
-        // 4 horse heads facing forward (in a row)
-        [122, 128, 134, 140].forEach(x => {
-          c.fillRect(x, 148, 3, 4);           // head + neck
-          c.fillRect(x + 3, 150, 1, 1);       // ear/mane
-        });
-        // Horse bodies (connecting band, 4 horses abreast)
-        c.fillRect(122, 150, 21, 4);
-        // 8 horse legs (2 per horse)
-        [123, 126, 129, 132, 135, 138, 141, 144].forEach(x => {
-          c.fillRect(x, 154, 1, 3);
-        });
-        // Reins from horses back to chariot
-        c.fillRect(143, 148, 4, 1);
-        // Chariot box (taller, more substantial)
-        c.fillRect(146, 144, 6, 10);
-        c.fillRect(144, 146, 2, 2);            // chariot front edge
-        // Chariot wheel
-        c.fillRect(147, 152, 4, 2);
-        c.fillRect(146, 154, 6, 1);
-        // Victoria figure in chariot
-        c.fillRect(148, 134, 2, 10);           // body
-        c.fillRect(147, 136, 4, 2);            // shoulders
-        c.fillRect(148, 132, 2, 2);            // head
-        // Wings (more detailed, feathered look)
-        c.fillRect(142, 136, 5, 4);            // left wing
-        c.fillRect(141, 138, 1, 2);            // left tip
-        c.fillRect(140, 140, 1, 1);            // wing extension
-        c.fillRect(151, 136, 5, 4);            // right wing
-        c.fillRect(156, 138, 1, 2);            // right tip
-        c.fillRect(157, 140, 1, 1);            // wing extension
-        // Raised arm holding standard
-        c.fillRect(150, 128, 1, 6);            // arm
-        // Standard (eagle/wreath on staff)
-        c.fillRect(149, 124, 3, 4);            // wreath/eagle body
-        c.fillRect(150, 122, 1, 2);            // top crown
-        c.fillRect(148, 124, 5, 1);            // eagle wings
+        c.fillRect(110, 164, 52, 4);
+        // === Compact Quadriga ===
+        c.fillRect(124, 160, 24, 4);          // platform
+        [124, 130, 136, 140].forEach(x => c.fillRect(x, 156, 2, 4));
+        c.fillRect(124, 158, 18, 2);          // horse body band
+        [125, 131, 137, 141].forEach(x => c.fillRect(x, 160, 1, 2));
+        c.fillRect(144, 154, 4, 8);           // chariot box
+        c.fillRect(146, 160, 3, 2);           // wheel
+        c.fillRect(146, 144, 2, 10);          // Victoria body
+        c.fillRect(145, 146, 4, 2);           // shoulders
+        c.fillRect(146, 142, 2, 2);           // head
+        c.fillRect(140, 146, 5, 3);           // left wing
+        c.fillRect(149, 146, 5, 3);           // right wing
+        c.fillRect(139, 148, 1, 1);
+        c.fillRect(154, 148, 1, 1);
+        c.fillRect(148, 138, 1, 4);           // arm
+        c.fillRect(147, 134, 3, 4);           // standard (eagle)
+        c.fillRect(148, 132, 1, 2);           // top
       }
       function drawBrandenburgGateDetails(c) {
-        // Metope pattern
-        [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 163, 4, 2));
-        // Inter-column shadow gaps
-        [120, 128, 136, 144].forEach(x => c.fillRect(x, 180, 4, 12));
-        // Column flutes (vertical accent lines)
-        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 175, 1, 16));
+        [114, 122, 130, 138, 146, 154].forEach(x => c.fillRect(x, 169, 4, 2));
+        [120, 128, 136, 144].forEach(x => c.fillRect(x, 184, 4, 10));
+        [117, 125, 133, 141, 149].forEach(x => c.fillRect(x, 180, 1, 14));
       }
 
       function drawReichstag(c) {
@@ -419,34 +405,35 @@
         }
       }
 
+      // === Siegessäule (RESCALED — 67m, ~45px tall vs old 88px) ===
       function drawSiegessauele(c) {
-        c.fillRect(348, 194, 18, 6);
-        c.fillRect(350, 190, 14, 4);
-        c.fillRect(354, 130, 6, 60);
-        c.fillRect(352, 150, 10, 1);
-        c.fillRect(352, 165, 10, 1);
-        c.fillRect(352, 180, 10, 1);
-        c.fillRect(352, 126, 10, 4);
-        c.fillRect(354, 118, 6, 8);
-        c.fillRect(350, 116, 14, 2);
-        c.fillRect(356, 114, 2, 4);
+        c.fillRect(348, 196, 18, 4);          // stepped base
+        c.fillRect(350, 192, 14, 4);
+        c.fillRect(354, 168, 6, 24);          // column (24 tall, was 60)
+        c.fillRect(352, 175, 10, 1);          // ring band 1
+        c.fillRect(352, 182, 10, 1);          // ring band 2
+        c.fillRect(352, 188, 10, 1);          // ring band 3
+        c.fillRect(352, 165, 10, 3);          // capital
+        c.fillRect(354, 158, 6, 7);           // Victoria body
+        c.fillRect(350, 156, 14, 2);          // wings
+        c.fillRect(356, 154, 2, 2);           // head
       }
 
+      // === Gedächtniskirche (RESCALED — 113m, ~70px vs old 80px) ===
       function drawGedaechtniskirche(c) {
-        c.fillRect(130, 138, 14, 60);
-        c.fillRect(128, 194, 18, 6);
-        c.fillRect(130, 132, 10, 6);
-        c.fillRect(134, 128, 6, 4);
-        c.fillRect(132, 122, 4, 6);
-        c.fillRect(138, 118, 2, 4);
-        c.fillRect(152, 158, 18, 42);
-        c.fillRect(150, 156, 22, 2);
+        c.fillRect(130, 144, 14, 54);         // old church tower
+        c.fillRect(128, 194, 18, 6);          // base
+        c.fillRect(130, 140, 10, 4);          // broken steeple (start)
+        c.fillRect(134, 136, 6, 4);
+        c.fillRect(132, 132, 4, 4);           // broken peak
+        c.fillRect(152, 164, 18, 36);         // modern bell tower
+        c.fillRect(150, 162, 22, 2);
         c.fillRect(148, 198, 22, 2);
       }
       function drawGedaechtniskircheWindows(c) {
-        c.fillRect(134, 168, 2, 8); c.fillRect(140, 168, 2, 8);
-        c.fillRect(154, 162, 1, 34); c.fillRect(158, 162, 1, 34);
-        c.fillRect(162, 162, 1, 34); c.fillRect(166, 162, 1, 34);
+        c.fillRect(134, 174, 2, 6); c.fillRect(140, 174, 2, 6);
+        c.fillRect(154, 168, 1, 28); c.fillRect(158, 168, 1, 28);
+        c.fillRect(162, 168, 1, 28); c.fillRect(166, 168, 1, 28);
       }
 
       function drawEstrelTower(c) {
@@ -528,23 +515,20 @@
         c.fillRect(x + 6, y + 14, 18, 2);
       }
 
-      // === Bahn Tower (Potsdamer Platz, curved glass top) ===
+      // === Bahn Tower (RESCALED — 103m, ~55px vs old 74px) ===
       function drawBahnTower(c) {
-        // Body
-        c.fillRect(104, 138, 24, 62);
-        // Curved glass top — stepped to suggest the smooth curve
-        c.fillRect(106, 136, 20, 2);
-        c.fillRect(108, 134, 16, 2);
-        c.fillRect(110, 132, 12, 2);
-        c.fillRect(112, 130, 8, 2);
-        c.fillRect(114, 128, 4, 2);
-        c.fillRect(115, 126, 2, 2);
+        c.fillRect(104, 148, 24, 52);         // body (52 tall, was 62)
+        // Curved glass top — stepped
+        c.fillRect(106, 146, 20, 2);
+        c.fillRect(108, 144, 16, 2);
+        c.fillRect(110, 142, 12, 2);
+        c.fillRect(113, 140, 6, 2);
+        c.fillRect(115, 138, 2, 2);
       }
       function drawBahnTowerWindows(c) {
-        // Curtain wall grid
-        for (let y = 0; y < 14; y++) {
+        for (let y = 0; y < 12; y++) {
           for (let x = 0; x < 5; x++) {
-            c.fillRect(106 + x * 4, 142 + y * 4, 2, 2);
+            c.fillRect(106 + x * 4, 152 + y * 4, 2, 2);
           }
         }
       }
@@ -606,30 +590,25 @@
         }
       }
 
-      // === Kollhoff Tower (with distinctive cube on top) ===
+      // === Kollhoff Tower (RESCALED — 103m, ~60px vs old 90px) ===
       function drawKollhoffTower(c) {
-        // Tall main body
-        c.fillRect(300, 132, 28, 68);
-        // Base widening
-        c.fillRect(298, 196, 32, 4);
-        // Stepped transition to cube
-        c.fillRect(302, 128, 24, 4);
-        // CUBE on top (smaller than body, distinctive shape)
-        c.fillRect(306, 114, 16, 14);
-        // Small pyramidal/antenna accent above cube
-        c.fillRect(310, 110, 8, 4);
-        c.fillRect(312, 106, 4, 4);
-        c.fillRect(313, 104, 2, 2);
+        c.fillRect(300, 148, 28, 52);         // main body (52 tall)
+        c.fillRect(298, 196, 32, 4);          // base
+        c.fillRect(302, 144, 24, 4);          // step to cube
+        c.fillRect(306, 136, 16, 8);          // cube on top (compact)
+        // Small pyramidal accent above cube
+        c.fillRect(310, 132, 8, 4);
+        c.fillRect(312, 130, 4, 2);
       }
       function drawKollhoffWindows(c) {
-        // Vertical accent lines on body (dark brick suggests vertical fenestration)
+        // Vertical accent lines on body
         for (let x = 0; x < 5; x++) {
-          c.fillRect(302 + x * 5, 136, 1, 60);
+          c.fillRect(302 + x * 5, 152, 1, 44);
         }
         // Cube windows
-        for (let y = 0; y < 3; y++) {
+        for (let y = 0; y < 2; y++) {
           for (let x = 0; x < 3; x++) {
-            c.fillRect(308 + x * 5, 118 + y * 4, 2, 2);
+            c.fillRect(308 + x * 5, 138 + y * 3, 2, 2);
           }
         }
       }
@@ -702,36 +681,40 @@
         });
       }
 
-      // === Elevated U-Bahn track (Kreuzberg U1 viaduct continuing right) ===
+      // === Elevated U-Bahn track (FULL WIDTH: left of bridge + right of bridge) ===
+      // Models the U1 viaduct (Magistratsschirm) running across Kreuzberg
+      // and Friedrichshain, with the Oberbaum Brücke as the middle span.
       function drawElevatedTrack(c) {
-        // Track deck from x=344 to right edge (continuing from Oberbaum)
+        // Left section: x=0 to x=178 (before bridge)
+        c.fillRect(0, 168, 178, 4);
+        c.fillRect(0, 166, 178, 2);
+        [10, 40, 70, 100, 130, 160].forEach(x => {
+          c.fillRect(x, 172, 4, 28);
+          c.fillRect(x - 1, 170, 6, 2);   // capital
+        });
+        // Right section: x=344 to right edge (continuing into Kreuzberg)
         c.fillRect(344, 168, 136, 4);
-        // Railing/parapet
         c.fillRect(344, 166, 136, 2);
-        // Support pillars
-        [358, 388, 418, 448, 470].forEach(x => {
+        [354, 384, 414, 444, 470].forEach(x => {
           c.fillRect(x, 172, 4, 28);
           c.fillRect(x - 1, 170, 6, 2);
         });
       }
 
-      // === U-Bahn train (animated on track) ===
+      // === U-Bahn train (traverses full canvas width) ===
       function drawUBahnTrain(c, time) {
-        // Crosses Oberbaum upper walkway then continues right on elevated
-        const cycle = 16000;
+        // Cycle: train starts off-screen left, crosses entire canvas
+        // (elevated track + bridge + elevated track), exits off-screen right
+        const cycle = 24000;
         const t = (time % cycle) / cycle;
-        // Position: starts at x=170, ends at x=480 (off-screen right)
-        const x = Math.floor(170 + t * 320);
+        const x = Math.floor(-60 + t * 600);
         const trainW = 60;
-        if (x + trainW < 170 || x > 480) return;
-        // Train sits on the track (y depends on whether on bridge or elevated)
-        const y = x < 196 ? 162 : (x > 326 ? 162 : 162);
-        // 3 connected cars
+        if (x + trainW < 0 || x > 480) return;
+        const y = 162;
         c.fillStyle = TEAL;
         c.fillRect(x, y, 18, 6);
         c.fillRect(x + 20, y, 18, 6);
         c.fillRect(x + 40, y, 18, 6);
-        // Windows
         c.fillStyle = CREAM;
         for (let i = 0; i < 3; i++) {
           for (let w = 0; w < 3; w++) {
@@ -764,23 +747,42 @@
         c.fillStyle = TEAL;
       }
 
-      // === Molecule Man ===
-      function drawMoleculeMan(c) {
-        drawFigureWithHole(c, 86, 180);
-        drawFigureWithHole(c, 104, 174);
-        drawFigureWithHole(c, 122, 180);
+      // === Molecule Man (redesigned: 3 linked figures, many holes) ===
+      // Jonathan Borofsky's three figures grip each other in the Spree.
+      // Each figure is a stylized humanoid with multiple holes through
+      // the body (the "molecule" metaphor). Arms reach out and overlap
+      // with neighbors so they read as one connected group.
+      function drawMoleculeFigure(c, cx, height) {
+        const top = 200 - height - 2;          // bottom at y=198
+        const bodyH = height - 13;
+        c.fillRect(cx - 1, top, 2, 3);            // head
+        c.fillRect(cx - 2, top + 3, 5, 2);        // shoulders
+        c.fillRect(cx - 6, top + 4, 4, 2);        // left arm (extends to grip neighbor)
+        c.fillRect(cx + 3, top + 4, 4, 2);        // right arm
+        c.fillRect(cx - 2, top + 5, 5, bodyH);    // body
+        c.fillRect(cx - 2, top + 5 + bodyH, 2, 8); // left leg
+        c.fillRect(cx + 1, top + 5 + bodyH, 2, 8); // right leg
       }
-      function drawFigureWithHole(c, x, y) {
-        c.fillRect(x + 1, y, 2, 2);
-        c.fillRect(x, y + 2, 4, 10);
-        c.fillRect(x - 2, y + 4, 8, 1);
-        c.fillRect(x, y + 12, 1, 8);
-        c.fillRect(x + 3, y + 12, 1, 8);
+      function drawMoleculeFigureHoles(c, cx, height) {
+        const top = 200 - height - 2;
+        // Many small holes scattered through the body — the iconic detail
+        c.fillRect(cx,     top + 1,  1, 1);  // head
+        c.fillRect(cx - 1, top + 6,  1, 1);
+        c.fillRect(cx + 1, top + 7,  1, 1);
+        c.fillRect(cx,     top + 9,  1, 1);
+        c.fillRect(cx - 1, top + 11, 1, 1);
+        c.fillRect(cx + 1, top + 12, 1, 1);
+        c.fillRect(cx,     top + 13, 1, 1);
+      }
+      function drawMoleculeMan(c) {
+        drawMoleculeFigure(c, 78, 22);   // left, 22 tall
+        drawMoleculeFigure(c, 88, 25);   // middle, taller
+        drawMoleculeFigure(c, 98, 22);   // right
       }
       function drawMoleculeManHoles(c) {
-        c.fillRect(87, 184, 2, 2);
-        c.fillRect(105, 178, 2, 2);
-        c.fillRect(123, 184, 2, 2);
+        drawMoleculeFigureHoles(c, 78, 22);
+        drawMoleculeFigureHoles(c, 88, 25);
+        drawMoleculeFigureHoles(c, 98, 22);
       }
 
       // ============ ALL landmarks at low opacity (always visible) ============
@@ -790,8 +792,9 @@
       // city mass; iconic shapes (TV Tower antenna, Brandenburg's
       // columns, Sony's tent roof) read through the haze.
       function drawAllLandmarksBg(c) {
-        c.globalAlpha = 0.20;
-        c.fillStyle = TEAL;
+        // Opaque pre-calculated color — NO globalAlpha. Overlapping
+        // landmarks no longer "bleed through" each other.
+        c.fillStyle = TEAL_BG;
         drawDistantBuildings(c);
         drawCrane(c);
         drawSteppedBuilding(c);
@@ -813,7 +816,6 @@
         drawMoleculeMan(c);
         drawOberbaumBridge(c);
         drawElevatedTrack(c);
-        c.globalAlpha = 1;
       }
 
       // ============ Compositions ============
@@ -828,13 +830,12 @@
           hasParkInnSwing: true,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawBerlinerDom(c);
-            c.fillStyle = CREAM; drawDomWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawParkInn(c);
-            c.fillStyle = CREAM; drawParkInnWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.95; drawTVTower(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.70; drawCrane(c);
-            c.globalAlpha = 1;
+            c.fillStyle = TEAL_FRONT; drawBerlinerDom(c);
+            c.fillStyle = CREAM;      drawDomWindows(c);
+            c.fillStyle = TEAL_FRONT; drawParkInn(c);
+            c.fillStyle = CREAM;      drawParkInnWindows(c);
+            c.fillStyle = TEAL;       drawTVTower(c);
+            c.fillStyle = TEAL_HAZE;  drawCrane(c);
           },
         },
         {
@@ -844,12 +845,11 @@
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawBrandenburgGate(c);
-            c.fillStyle = CREAM; drawBrandenburgGateDetails(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawReichstag(c);
-            c.fillStyle = CREAM; drawReichstagWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.95; drawSiegessauele(c);
-            c.globalAlpha = 1;
+            c.fillStyle = TEAL;       drawBrandenburgGate(c);
+            c.fillStyle = CREAM;      drawBrandenburgGateDetails(c);
+            c.fillStyle = TEAL_FRONT; drawReichstag(c);
+            c.fillStyle = CREAM;      drawReichstagWindows(c);
+            c.fillStyle = TEAL;       drawSiegessauele(c);
           },
         },
         {
@@ -859,18 +859,16 @@
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            // All 5 Potsdamer buildings at full opacity
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawBahnTower(c);
-            c.fillStyle = CREAM; drawBahnTowerWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawPotsdamerHRA(c);
-            c.fillStyle = CREAM; drawPotsdamerHRAWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawPotsdamerHRB(c);
-            c.fillStyle = CREAM; drawPotsdamerHRBWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawSonyCenter(c);
-            c.fillStyle = CREAM; drawSonyCenterWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawKollhoffTower(c);
-            c.fillStyle = CREAM; drawKollhoffWindows(c);
-            c.globalAlpha = 1;
+            c.fillStyle = TEAL_FRONT; drawBahnTower(c);
+            c.fillStyle = CREAM;      drawBahnTowerWindows(c);
+            c.fillStyle = TEAL_FG;    drawPotsdamerHRA(c);
+            c.fillStyle = CREAM;      drawPotsdamerHRAWindows(c);
+            c.fillStyle = TEAL_FG;    drawPotsdamerHRB(c);
+            c.fillStyle = CREAM;      drawPotsdamerHRBWindows(c);
+            c.fillStyle = TEAL_FRONT; drawSonyCenter(c);
+            c.fillStyle = CREAM;      drawSonyCenterWindows(c);
+            c.fillStyle = TEAL;       drawKollhoffTower(c);
+            c.fillStyle = CREAM;      drawKollhoffWindows(c);
           },
         },
         {
@@ -880,11 +878,10 @@
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawGedaechtniskirche(c);
-            c.fillStyle = CREAM; drawGedaechtniskircheWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.88; drawEstrelTower(c);
-            c.fillStyle = CREAM; drawEstrelTowerWindows(c);
-            c.globalAlpha = 1;
+            c.fillStyle = TEAL;       drawGedaechtniskirche(c);
+            c.fillStyle = CREAM;      drawGedaechtniskircheWindows(c);
+            c.fillStyle = TEAL_FRONT; drawEstrelTower(c);
+            c.fillStyle = CREAM;      drawEstrelTowerWindows(c);
           },
         },
         {
@@ -894,12 +891,11 @@
           hasParkInnSwing: false,
           hasUBahn: true,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.88; drawMoleculeMan(c);
-            c.fillStyle = CREAM; drawMoleculeManHoles(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawOberbaumBridge(c);
-            c.fillStyle = CREAM; drawOberbaumBridgeDetails(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.75; drawElevatedTrack(c);
-            c.globalAlpha = 1;
+            c.fillStyle = TEAL_FRONT; drawMoleculeMan(c);
+            c.fillStyle = CREAM;      drawMoleculeManHoles(c);
+            c.fillStyle = TEAL;       drawOberbaumBridge(c);
+            c.fillStyle = CREAM;      drawOberbaumBridgeDetails(c);
+            c.fillStyle = TEAL_FG;    drawElevatedTrack(c);
           },
         },
       ];
