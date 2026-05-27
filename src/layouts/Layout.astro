@@ -1,4 +1,6 @@
 ---
+import BerlinFooter from '../components/BerlinFooter.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -98,6 +100,8 @@ const { title, description = "Design Leadership - Human-centered organizations f
     <main>
       <slot />
     </main>
+
+    <BerlinFooter />
 
     <footer class="footer">
       <div class="container">
