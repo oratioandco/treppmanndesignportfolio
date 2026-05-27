@@ -1061,15 +1061,33 @@
         // Water surface line
         c.fillStyle = TEAL;
         c.fillRect(0, RIVER_Y, W, 1);
-        // Body of water (slightly more transparent teal pre-blended)
+        // Body of water (lighter teal)
         c.fillStyle = TEAL_HAZE;
         c.fillRect(0, RIVER_Y + 1, W, H - RIVER_Y - 1);
-        // Wave dashes — drift slowly across to suggest current
+
+        // Wavy animated wave bands — each follows its own sine curve and
+        // drifts horizontally. The sine phase evolves with time so the
+        // waves visibly FLOW rather than just slide.
         c.fillStyle = TEAL;
-        const drift = Math.floor((time / 80) % 16);
-        for (let y = RIVER_Y + 6; y < H; y += 6) {
-          for (let x = -drift; x < W; x += 16) {
-            c.fillRect(x, y, 6, 1);
+        const t = time * 0.001;
+        const bands = [
+          { y: 216, freq: 0.18, speed: 0.7, phase: 0.0, amp: 1.5, dashLen: 4, dashGap: 6 },
+          { y: 224, freq: 0.14, speed: 0.5, phase: 1.5, amp: 2.0, dashLen: 5, dashGap: 7 },
+          { y: 233, freq: 0.20, speed: 0.8, phase: 3.0, amp: 1.5, dashLen: 3, dashGap: 5 },
+          { y: 242, freq: 0.16, speed: 0.6, phase: 4.7, amp: 1.8, dashLen: 5, dashGap: 8 },
+        ];
+        for (let b = 0; b < bands.length; b++) {
+          const band = bands[b];
+          const dashTotal = band.dashLen + band.dashGap;
+          const dashOffset = Math.floor(t * band.speed * 15);
+          for (let x = 0; x < W; x++) {
+            // Sine y-offset — gives each band a flowing wave shape
+            const wave = Math.sin(x * band.freq + t * band.speed + band.phase) * band.amp;
+            const y = Math.round(band.y + wave);
+            // Dashed pattern shifts over time → sense of flow
+            if (((x + dashOffset) % dashTotal) < band.dashLen) {
+              c.fillRect(x, y, 1, 1);
+            }
           }
         }
       }
