@@ -212,9 +212,13 @@
       </div>
 
       <div class="frame">
-        <div id="stage-v14" class="stage" data-weather="sunny">
+        <div id="stage-v14" class="stage" data-weather="sunny" style="position: relative;">
           <canvas id="berlin-canvas-v14" width="480" height="220"
                   style="display:block; width: 100%; aspect-ratio: 480/220; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
+          <div id="footer-readout-v14"
+               style="position: absolute; top: 0.5rem; right: 0.75rem; font-family: 'Departure Mono', ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #4f8375; pointer-events: none; text-transform: uppercase;">
+            BERLIN · <span id="time-display-v14">--:--</span> · <span id="temp-display-v14">--°</span>
+          </div>
         </div>
         <p class="frame-caption">
           <span>V14 · 5 compositions rotate: East (TV+Dom+Park Inn) · Mitte historic (Brandenburg+Reichstag+Siegessäule) · Potsdamer (Sony+Kollhoff) · West (Gedächtnis+Estrel) · Spree (Molecule Man+Oberbaum+U-Bahn)</span>
@@ -223,7 +227,7 @@
       </div>
 
       <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
-        ALL landmarks always present at 20% opacity (the full Berlin skyline reads as a unified silhouette). Each composition's deep-cycle highlight brings 2-5 landmarks into the foreground at 88-95% opacity. WELT balloon always visible at fixed sky position with ~20px Y oscillation over 18s — visibly bobbing up and down. Potsdamer composition now has the full 5-building cluster: Bahn Tower (curved glass top), 2 high rises (Beisheim/Atrium-style boxy), Sony Center (multi-peak tent roof), Kollhoff Tower (cube on top + pyramidal accent).
+        NEW: Oberbaum bridge LOWERED (deck just above water, towers extend up to elevated track height) · plane with banner "MADE WITH ♥ IN BERLIN" trails across the sky · live Berlin time + temperature overlay (Departure Mono, top-right) · weather state auto-driven by Open-Meteo (real Berlin weather) · day/night mode based on Berlin local hour: 07:00-19:00 day (cream bg, sun), else night (dark bg, moon, twinkling stars, windows light up warm yellow) · opaque palette (no globalAlpha — no bleeding between overlapping landmarks).
       </p>
     </section>
 
@@ -235,19 +239,49 @@
       const ctx = canvas.getContext('2d');
 
       const W = 480, H = 220;
-      const TEAL = '#4f8375';
-      const CREAM = '#f8f3ee';
       const GROUND_Y = 200;
 
-      // === Pre-calculated opaque palette (teal blended over cream bg)
-      // Avoids using globalAlpha so overlapping landmarks don't bleed
-      // through each other. Each value is the actual rendered color
-      // at the given effective teal-coverage over the cream background.
-      const TEAL_BG     = '#d6ddd6';   // ~20% teal over cream — atmospheric
-      const TEAL_HAZE   = '#a4bbb2';   // ~50% — mid-distance
-      const TEAL_FG     = '#779e93';   // ~75% — foreground filler
-      const TEAL_FRONT  = '#5e8c7d';   // ~90% — featured prominent
-      // TEAL (#4f8375) = full strength — featured primary / discrete objects
+      // === Mutable palette (swaps day ↔ night) ===
+      // Pre-calculated opaque values (teal blended over the appropriate bg).
+      // updated by updatePalette() each frame based on Berlin local hour.
+      let BG_COLOR, TEAL_BG, TEAL_HAZE, TEAL_FG, TEAL_FRONT, TEAL, CREAM, WINDOW_LIT;
+
+      function berlinHour() {
+        try {
+          const h = parseInt(new Date().toLocaleString('en-US', {
+            hour: '2-digit', hour12: false, timeZone: 'Europe/Berlin'
+          }), 10);
+          return isNaN(h) ? 12 : h;
+        } catch (e) { return new Date().getHours(); }
+      }
+
+      function isNight() {
+        const h = berlinHour();
+        return h < 7 || h >= 19;
+      }
+
+      function updatePalette() {
+        if (isNight()) {
+          BG_COLOR    = '#1a2520';   // deep night sky
+          TEAL_BG     = '#2c3e38';   // very faint silhouette on dark
+          TEAL_HAZE   = '#456057';
+          TEAL_FG     = '#5e8278';
+          TEAL_FRONT  = '#7aa297';
+          TEAL        = '#a4c6b9';   // brightest teal — pops against dark
+          CREAM       = '#1a2520';   // negative space = same as bg (dark)
+          WINDOW_LIT  = '#f0d878';   // warm yellow — lit windows at night
+        } else {
+          BG_COLOR    = '#f8f3ee';
+          TEAL_BG     = '#d6ddd6';
+          TEAL_HAZE   = '#a4bbb2';
+          TEAL_FG     = '#779e93';
+          TEAL_FRONT  = '#5e8c7d';
+          TEAL        = '#4f8375';
+          CREAM       = '#f8f3ee';   // negative space = cream bg
+          WINDOW_LIT  = '#f8f3ee';   // windows = bg (dark openings during day)
+        }
+      }
+      updatePalette();
 
       const offscreen = document.createElement('canvas');
       offscreen.width = W; offscreen.height = H;
@@ -613,71 +647,68 @@
         }
       }
 
-      // === Oberbaum Bridge (improved spires + arches) ===
+      // === Oberbaum Bridge (LOWERED — deck just above water/ground level;
+      // towers rise from low deck up to elevated-track height so U-Bahn
+      // walkway connects to the elevated viaduct on both sides) ===
       function drawOberbaumBridge(c) {
-        // Left tower: smaller spire (left of pair)
-        c.fillRect(178, 160, 6, 12);
-        c.fillRect(180, 158, 2, 2);
-        c.fillRect(179, 156, 4, 2);
-        c.fillRect(180, 154, 2, 2);
-        // Main spire (taller, right of pair)
-        c.fillRect(186, 148, 8, 24);
-        c.fillRect(186, 146, 8, 2);
-        c.fillRect(187, 144, 6, 2);
-        c.fillRect(188, 142, 4, 2);
-        c.fillRect(189, 140, 2, 2);
-        // Crenellated parapet between
-        c.fillRect(184, 168, 12, 4);
-        c.fillRect(184, 166, 2, 2);
-        c.fillRect(188, 166, 2, 2);
-        c.fillRect(192, 166, 2, 2);
-        c.fillRect(178, 172, 18, 6);
-        // Right tower: mirror
-        c.fillRect(338, 160, 6, 12);
-        c.fillRect(340, 158, 2, 2);
-        c.fillRect(339, 156, 4, 2);
-        c.fillRect(340, 154, 2, 2);
-        c.fillRect(328, 148, 8, 24);
-        c.fillRect(328, 146, 8, 2);
-        c.fillRect(329, 144, 6, 2);
-        c.fillRect(330, 142, 4, 2);
-        c.fillRect(331, 140, 2, 2);
-        c.fillRect(326, 168, 12, 4);
-        c.fillRect(326, 166, 2, 2);
-        c.fillRect(330, 166, 2, 2);
-        c.fillRect(334, 166, 2, 2);
-        c.fillRect(326, 172, 18, 6);
-        // Upper walkway
-        c.fillRect(196, 168, 130, 14);
-        // Lower bridge deck
-        c.fillRect(196, 182, 130, 4);
-        // Pillars with capitals
+        // === Left tower complex ===
+        // Tower body rises from low deck
+        c.fillRect(180, 178, 14, 14);          // body
+        c.fillRect(178, 188, 18, 4);           // base bulge above deck
+        // Crenellation top
+        c.fillRect(180, 176, 4, 2);
+        c.fillRect(186, 176, 2, 2);
+        c.fillRect(190, 176, 4, 2);
+        // Twin spires above
+        c.fillRect(180, 168, 4, 8);             // smaller spire body
+        c.fillRect(181, 166, 2, 2);             // smaller spire peak
+        c.fillRect(186, 162, 8, 14);            // main spire body
+        c.fillRect(187, 160, 6, 2);             // main spire pyramid step 1
+        c.fillRect(188, 158, 4, 2);
+        c.fillRect(189, 156, 2, 2);             // main spire peak
+
+        // === Right tower complex (mirror) ===
+        c.fillRect(328, 178, 14, 14);
+        c.fillRect(326, 188, 18, 4);
+        c.fillRect(330, 176, 4, 2);
+        c.fillRect(336, 176, 2, 2);
+        c.fillRect(340, 176, 4, 2);
+        c.fillRect(340, 168, 4, 8);
+        c.fillRect(341, 166, 2, 2);
+        c.fillRect(328, 162, 8, 14);
+        c.fillRect(329, 160, 6, 2);
+        c.fillRect(330, 158, 4, 2);
+        c.fillRect(331, 156, 2, 2);
+
+        // === Upper walkway (U-Bahn level at y=168 — matches elevated track) ===
+        c.fillRect(196, 168, 130, 10);          // walkway wall (10 tall)
+
+        // === LOW bridge deck (just above ground/water) ===
+        c.fillRect(178, 192, 166, 2);           // deck span
+
+        // === Short arch pillars between deck and ground ===
         const pillars = [196, 222, 248, 274, 300, 322];
         pillars.forEach(x => {
-          c.fillRect(x, 186, 4, 14);
-          c.fillRect(x - 1, 184, 6, 2);
+          c.fillRect(x, 194, 4, 6);             // 6 tall pillar
         });
       }
       function drawOberbaumBridgeDetails(c) {
-        // Arched walkway windows
+        // Arched walkway windows (in the upper U-Bahn level wall)
         const archXs = [200, 220, 240, 260, 280, 300];
         archXs.forEach(x => {
-          c.fillRect(x, 172, 8, 8);
-          c.fillRect(x + 1, 171, 6, 1);
-          c.fillRect(x + 2, 170, 4, 1);
-          c.fillRect(x + 3, 169, 2, 1);
+          c.fillRect(x, 170, 8, 6);
+          c.fillRect(x + 1, 169, 6, 1);
+          c.fillRect(x + 2, 168, 4, 1);
         });
-        // Gothic arches under bridge
+        // Pointed gothic arches under bridge deck (in the short pillar zone)
         const archesBelow = [
           { x: 200, w: 18 }, { x: 226, w: 18 },
           { x: 252, w: 18 }, { x: 278, w: 18 },
           { x: 304, w: 14 },
         ];
         archesBelow.forEach(({ x, w }) => {
-          c.fillRect(x, 188, w, 10);
-          c.fillRect(x + 1, 187, w - 2, 1);
-          c.fillRect(x + 2, 186, w - 4, 1);
-          c.fillRect(x + Math.floor(w / 2) - 1, 185, 2, 1);
+          c.fillRect(x, 194, w, 6);
+          c.fillRect(x + 1, 193, w - 2, 1);
         });
       }
 
@@ -785,6 +816,109 @@
         drawMoleculeFigureHoles(c, 98, 22);
       }
 
+      // ============ Stars + Moon (night mode) ============
+      const STARS = [
+        [22, 14], [54, 8], [78, 18], [116, 6], [148, 12], [186, 8],
+        [218, 16], [256, 6], [294, 14], [332, 8], [368, 12],
+        [402, 6], [428, 16], [456, 10],
+        [34, 38], [98, 32], [158, 42], [232, 38], [310, 36], [388, 42]
+      ];
+      function drawStars(c, time) {
+        if (!isNight()) return;
+        c.fillStyle = '#f8f3ee';
+        for (let i = 0; i < STARS.length; i++) {
+          const [x, y] = STARS[i];
+          const twinkle = Math.sin(time / (800 + i * 100) + i) > 0.2;
+          if (twinkle) c.fillRect(x, y, 1, 1);
+        }
+      }
+      function drawMoon(c, time) {
+        if (!isNight()) return;
+        const sx = 80, sy = 40 + Math.sin(time / 1200) * 2;
+        c.fillStyle = '#f8f3ee';
+        // 10x10 pixel moon
+        c.fillRect(sx - 3, sy - 5, 6, 1);
+        c.fillRect(sx - 4, sy - 4, 8, 1);
+        c.fillRect(sx - 5, sy - 3, 10, 2);
+        c.fillRect(sx - 5, sy - 1, 10, 2);
+        c.fillRect(sx - 5, sy + 1, 10, 2);
+        c.fillRect(sx - 4, sy + 3, 8, 1);
+        c.fillRect(sx - 3, sy + 4, 6, 1);
+        // Craters (small dark spots)
+        c.fillStyle = BG_COLOR;
+        c.fillRect(sx - 2, sy - 2, 1, 1);
+        c.fillRect(sx + 2, sy + 1, 1, 1);
+        c.fillRect(sx, sy + 3, 1, 1);
+      }
+
+      // ============ Pixel font (3-5px wide, 5px tall) for plane banner ============
+      const FONT = {
+        'A':[[0,1,1,0],[1,0,0,1],[1,1,1,1],[1,0,0,1],[1,0,0,1]],
+        'B':[[1,1,1,0],[1,0,0,1],[1,1,1,0],[1,0,0,1],[1,1,1,0]],
+        'D':[[1,1,1,0],[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,1,1,0]],
+        'E':[[1,1,1,1],[1,0,0,0],[1,1,1,0],[1,0,0,0],[1,1,1,1]],
+        'H':[[1,0,0,1],[1,0,0,1],[1,1,1,1],[1,0,0,1],[1,0,0,1]],
+        'I':[[1,1,1],[0,1,0],[0,1,0],[0,1,0],[1,1,1]],
+        'L':[[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,1,1,1]],
+        'M':[[1,0,0,0,1],[1,1,0,1,1],[1,0,1,0,1],[1,0,0,0,1],[1,0,0,0,1]],
+        'N':[[1,0,0,1],[1,1,0,1],[1,0,1,1],[1,0,0,1],[1,0,0,1]],
+        'R':[[1,1,1,0],[1,0,0,1],[1,1,1,0],[1,0,1,0],[1,0,0,1]],
+        'T':[[1,1,1],[0,1,0],[0,1,0],[0,1,0],[0,1,0]],
+        'W':[[1,0,0,0,1],[1,0,0,0,1],[1,0,1,0,1],[1,1,0,1,1],[1,0,0,0,1]],
+      };
+      const HEART = [[0,1,0,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0]];
+      function drawPixelText(c, text, x, y, textColor) {
+        let cx = x;
+        c.fillStyle = textColor;
+        for (const ch of text.toUpperCase()) {
+          if (ch === ' ') { cx += 2; continue; }
+          if (ch === '♥' || ch === '❤') {
+            c.fillStyle = '#d04a5e';
+            for (let dy = 0; dy < 5; dy++)
+              for (let dx = 0; dx < 5; dx++)
+                if (HEART[dy][dx]) c.fillRect(cx + dx, y + dy, 1, 1);
+            c.fillStyle = textColor;
+            cx += 6;
+            continue;
+          }
+          const g = FONT[ch];
+          if (!g) { cx += 4; continue; }
+          const w = g[0].length;
+          for (let dy = 0; dy < 5; dy++)
+            for (let dx = 0; dx < w; dx++)
+              if (g[dy][dx]) c.fillRect(cx + dx, y + dy, 1, 1);
+          cx += w + 1;
+        }
+      }
+
+      // ============ Plane + banner ============
+      function drawPlane(c, time) {
+        const cycle = 38000;
+        const t = (time % cycle) / cycle;
+        const x = Math.floor(-120 + t * (W + 140));
+        const y = 18;
+        if (x < -120 || x > W + 20) return;
+        c.fillStyle = TEAL;
+        // Plane silhouette (5x3)
+        c.fillRect(x + 2, y, 1, 1);             // nose
+        c.fillRect(x, y + 1, 5, 1);              // body + wings
+        c.fillRect(x + 1, y + 2, 1, 1);          // tail
+        c.fillRect(x + 3, y + 2, 1, 1);
+        // Cable from plane tail to banner
+        c.fillRect(x - 4, y + 1, 4, 1);
+        // Banner (rectangle outline)
+        const bannerW = 102;
+        const bx = x - 4 - bannerW;
+        c.fillRect(bx, y - 1, bannerW, 1);       // top edge
+        c.fillRect(bx, y + 6, bannerW, 1);       // bottom edge
+        c.fillRect(bx, y - 1, 1, 8);             // left edge
+        // Banner interior fill (cream/window color so text is readable)
+        c.fillStyle = isNight() ? '#3a4a44' : '#f8f3ee';
+        c.fillRect(bx + 1, y, bannerW - 1, 6);
+        // Text on banner
+        drawPixelText(c, 'MADE WITH ♥ IN BERLIN', bx + 3, y + 1, TEAL);
+      }
+
       // ============ ALL landmarks at low opacity (always visible) ============
       // The full Berlin skyline is always there in the background.
       // Each composition just brings a subset into the foreground at
@@ -831,9 +965,9 @@
           hasUBahn: false,
           drawSkyline(c, time) {
             c.fillStyle = TEAL_FRONT; drawBerlinerDom(c);
-            c.fillStyle = CREAM;      drawDomWindows(c);
+            c.fillStyle = WINDOW_LIT; drawDomWindows(c);
             c.fillStyle = TEAL_FRONT; drawParkInn(c);
-            c.fillStyle = CREAM;      drawParkInnWindows(c);
+            c.fillStyle = WINDOW_LIT; drawParkInnWindows(c);
             c.fillStyle = TEAL;       drawTVTower(c);
             c.fillStyle = TEAL_HAZE;  drawCrane(c);
           },
@@ -846,9 +980,9 @@
           hasUBahn: false,
           drawSkyline(c, time) {
             c.fillStyle = TEAL;       drawBrandenburgGate(c);
-            c.fillStyle = CREAM;      drawBrandenburgGateDetails(c);
+            c.fillStyle = CREAM;      drawBrandenburgGateDetails(c);  // architectural negative space
             c.fillStyle = TEAL_FRONT; drawReichstag(c);
-            c.fillStyle = CREAM;      drawReichstagWindows(c);
+            c.fillStyle = WINDOW_LIT; drawReichstagWindows(c);
             c.fillStyle = TEAL;       drawSiegessauele(c);
           },
         },
@@ -860,15 +994,15 @@
           hasUBahn: false,
           drawSkyline(c, time) {
             c.fillStyle = TEAL_FRONT; drawBahnTower(c);
-            c.fillStyle = CREAM;      drawBahnTowerWindows(c);
+            c.fillStyle = WINDOW_LIT; drawBahnTowerWindows(c);
             c.fillStyle = TEAL_FG;    drawPotsdamerHRA(c);
-            c.fillStyle = CREAM;      drawPotsdamerHRAWindows(c);
+            c.fillStyle = WINDOW_LIT; drawPotsdamerHRAWindows(c);
             c.fillStyle = TEAL_FG;    drawPotsdamerHRB(c);
-            c.fillStyle = CREAM;      drawPotsdamerHRBWindows(c);
+            c.fillStyle = WINDOW_LIT; drawPotsdamerHRBWindows(c);
             c.fillStyle = TEAL_FRONT; drawSonyCenter(c);
-            c.fillStyle = CREAM;      drawSonyCenterWindows(c);
+            c.fillStyle = WINDOW_LIT; drawSonyCenterWindows(c);
             c.fillStyle = TEAL;       drawKollhoffTower(c);
-            c.fillStyle = CREAM;      drawKollhoffWindows(c);
+            c.fillStyle = WINDOW_LIT; drawKollhoffWindows(c);
           },
         },
         {
@@ -879,9 +1013,9 @@
           hasUBahn: false,
           drawSkyline(c, time) {
             c.fillStyle = TEAL;       drawGedaechtniskirche(c);
-            c.fillStyle = CREAM;      drawGedaechtniskircheWindows(c);
+            c.fillStyle = WINDOW_LIT; drawGedaechtniskircheWindows(c);
             c.fillStyle = TEAL_FRONT; drawEstrelTower(c);
-            c.fillStyle = CREAM;      drawEstrelTowerWindows(c);
+            c.fillStyle = WINDOW_LIT; drawEstrelTowerWindows(c);
           },
         },
         {
@@ -892,9 +1026,9 @@
           hasUBahn: true,
           drawSkyline(c, time) {
             c.fillStyle = TEAL_FRONT; drawMoleculeMan(c);
-            c.fillStyle = CREAM;      drawMoleculeManHoles(c);
+            c.fillStyle = CREAM;      drawMoleculeManHoles(c);  // body holes are negative space
             c.fillStyle = TEAL;       drawOberbaumBridge(c);
-            c.fillStyle = CREAM;      drawOberbaumBridgeDetails(c);
+            c.fillStyle = WINDOW_LIT; drawOberbaumBridgeDetails(c);
             c.fillStyle = TEAL_FG;    drawElevatedTrack(c);
           },
         },
@@ -995,22 +1129,40 @@
       }
 
       function renderFullScene(time, weather, compIdx) {
-        off.fillStyle = CREAM;
+        // Swap palette day/night based on Berlin time
+        updatePalette();
+
+        off.fillStyle = BG_COLOR;
         off.fillRect(0, 0, W, H);
-        drawSun(off, time, weather);
+
+        // Stars (night only)
+        drawStars(off, time);
+
+        // Sun or Moon
+        if (isNight()) {
+          drawMoon(off, time);
+        } else {
+          drawSun(off, time, weather);
+        }
+
         drawClouds(off, time, weather);
 
-        // === BACKGROUND: all landmarks always visible at low opacity ===
+        // BACKGROUND: all landmarks always at low opacity
         drawAllLandmarksBg(off);
 
-        // === FOREGROUND: composition's featured landmarks at full opacity ===
+        // FOREGROUND: composition's featured landmarks
         const comp = COMPOSITIONS[compIdx];
         comp.drawSkyline(off, time);
         off.globalAlpha = 1;
 
-        drawPopeCross(off, weather, comp.sphereCenter);
+        // Pope's Revenge cross — uses WINDOW_LIT (yellow at night)
+        if (weather === 'sunny' && !isNight() && comp.sphereCenter) {
+          off.fillStyle = WINDOW_LIT;
+          off.fillRect(comp.sphereCenter.x - 1, comp.sphereCenter.y - 4, 2, 12);
+          off.fillRect(comp.sphereCenter.x - 8, comp.sphereCenter.y, 16, 2);
+        }
 
-        // === WELT balloon: always visible, fixed sky position, large Y bob ===
+        // WELT balloon
         const WELT_ANCHOR = { x: 300, y: 30 };
         off.fillStyle = TEAL;
         drawWeltBalloon(off, time, WELT_ANCHOR);
@@ -1023,6 +1175,10 @@
         drawBird(off, time);
         drawRain(off, time, weather);
         drawBus(off, time);
+
+        // Plane with banner (always on)
+        drawPlane(off, time);
+
         off.fillStyle = TEAL;
         off.globalAlpha = 1;
         drawTree(off);
@@ -1081,7 +1237,7 @@
         tmpCtx.clearRect(0, 0, dw, dh);
         tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
         ctx.imageSmoothingEnabled = false;
-        ctx.fillStyle = CREAM;
+        ctx.fillStyle = BG_COLOR;
         ctx.fillRect(0, 0, W, H);
         ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
       }
@@ -1094,6 +1250,53 @@
         requestAnimationFrame(loop);
       }
       requestAnimationFrame(loop);
+
+      // ============ Live Berlin time + temperature + auto weather ============
+      const timeEl = document.getElementById('time-display-v14');
+      const tempEl = document.getElementById('temp-display-v14');
+      const readoutEl = document.getElementById('footer-readout-v14');
+
+      function updateReadoutColor() {
+        if (readoutEl) readoutEl.style.color = isNight() ? '#a4c6b9' : '#4f8375';
+      }
+      function updateTime() {
+        if (!timeEl) return;
+        try {
+          const time = new Date().toLocaleTimeString('de-DE', {
+            hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin'
+          });
+          timeEl.textContent = time;
+        } catch (e) {}
+        updateReadoutColor();
+      }
+      updateTime();
+      setInterval(updateTime, 30000);
+
+      // Open-Meteo: real Berlin weather → drives SUNNY/CLOUDY/RAINY automatically
+      async function fetchWeather() {
+        try {
+          const r = await fetch(
+            'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,weather_code&timezone=Europe/Berlin'
+          );
+          const j = await r.json();
+          const temp = j.current && j.current.temperature_2m;
+          const code = j.current && j.current.weather_code;
+          if (tempEl && typeof temp === 'number') {
+            tempEl.textContent = Math.round(temp) + '°';
+          }
+          if (typeof code === 'number') {
+            const state = code === 0 ? 'sunny' : (code <= 48 ? 'cloudy' : 'rainy');
+            stage.setAttribute('data-weather', state);
+            document.querySelectorAll('[data-toggle-for="stage-v14"] button').forEach(b => {
+              b.setAttribute('aria-pressed', b.getAttribute('data-state') === state ? 'true' : 'false');
+            });
+            const ro = document.getElementById('state-readout-v14');
+            if (ro) ro.textContent = state.toUpperCase();
+          }
+        } catch (e) {}
+      }
+      fetchWeather();
+      setInterval(fetchWeather, 600000);
     })();
     </script>
 
