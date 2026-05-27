@@ -1,4 +1,70 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Using Claude Code and agentic engineering to build production-grade prototypes with real APIs — and why the prototype code became the design artifact"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline | Tobias Treppmann</title><link rel="stylesheet" href="/_astro/about.BR7JZ5Ie.css">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Using Claude Code and agentic engineering to build production-grade prototypes with real APIs — and why the prototype code became the design artifact"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline | Tobias Treppmann</title><script>
+      // Set theme BEFORE first paint to avoid FOUC.
+      // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
+      (function () {
+        let h;
+        try {
+          h = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+        } catch (e) {
+          h = new Date().getHours();
+        }
+        const isNight = !isNaN(h) && (h < 7 || h >= 19);
+        const deviceDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isNight || deviceDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+        // React to OS-level dark-mode toggle
+        if (window.matchMedia) {
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", function (e) {
+              const hh = parseInt(
+                new Date().toLocaleString("en-US", {
+                  hour: "2-digit",
+                  hour12: false,
+                  timeZone: "Europe/Berlin",
+                }),
+                10,
+              );
+              const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+              if (night || e.matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+              } else {
+                document.documentElement.removeAttribute("data-theme");
+              }
+            });
+        }
+        // Re-check time every 5 minutes for natural day/night transitions
+        setInterval(function () {
+          const hh = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+          const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+          const dDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (night || dDark) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+        }, 300000);
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.B2sFJ8lU.css">
 <link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/liveeo" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · BIBEL TV · 2025 – 2026</span> <h1 class="cs-title">Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">Traditional handoff assumes designers and engineers work sequentially. We collapsed the pipeline: I prototyped in code with real APIs using Claude Code, and engineering consumed the prototype directly. No Figma specs. No redlines. Working code.</p>  </div> <figure class="cs-hero-figure"> <img src="/images/bibeltv/agentic-hero.png" alt="Bibel TV Android prototype with real APIs and dynamic color theming"> </figure> </div> </header> <article class="cs-article"> <aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">The prototype is not a mockup. It is the first working version of the product.</blockquote><p class="cs-pullquote-context">Rethinking what a design prototype should be</p></aside><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
     <h2 class="cs-section-title">The Old Workflow</h2>

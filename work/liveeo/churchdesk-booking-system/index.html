@@ -1,4 +1,70 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A funeral booking system designed so the rest of the ChurchDesk platform could build on it. Three stakeholder groups with opposite needs; one foundation deeply integrated with the product they already use."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>When booking a priest isn&#39;t simple | Tobias Treppmann</title><link rel="stylesheet" href="/_astro/about.BR7JZ5Ie.css">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A funeral booking system designed so the rest of the ChurchDesk platform could build on it. Three stakeholder groups with opposite needs; one foundation deeply integrated with the product they already use."><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>When booking a priest isn&#39;t simple | Tobias Treppmann</title><script>
+      // Set theme BEFORE first paint to avoid FOUC.
+      // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
+      (function () {
+        let h;
+        try {
+          h = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+        } catch (e) {
+          h = new Date().getHours();
+        }
+        const isNight = !isNaN(h) && (h < 7 || h >= 19);
+        const deviceDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isNight || deviceDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+        // React to OS-level dark-mode toggle
+        if (window.matchMedia) {
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", function (e) {
+              const hh = parseInt(
+                new Date().toLocaleString("en-US", {
+                  hour: "2-digit",
+                  hour12: false,
+                  timeZone: "Europe/Berlin",
+                }),
+                10,
+              );
+              const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+              if (night || e.matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+              } else {
+                document.documentElement.removeAttribute("data-theme");
+              }
+            });
+        }
+        // Re-check time every 5 minutes for natural day/night transitions
+        setInterval(function () {
+          const hh = parseInt(
+            new Date().toLocaleString("en-US", {
+              hour: "2-digit",
+              hour12: false,
+              timeZone: "Europe/Berlin",
+            }),
+            10,
+          );
+          const night = !isNaN(hh) && (hh < 7 || hh >= 19);
+          const dDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (night || dDark) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+        }, 300000);
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.B2sFJ8lU.css">
 <link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/liveeo" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · CHURCHDESK GMBH · 2024 – 2025</span> <h1 class="cs-title">When booking a priest isn&#39;t simple</h1> <p class="cs-tagline">Head of Platform and Design</p> <p class="cs-deck">Booking a priest for a funeral looks like picking a date. Underneath sit rotating on-call rotas, cemetery opening hours, and a grieving family waiting for an answer. ChurchDesk asked me to lead product and design on a system that would keep the surface simple — and become something the rest of the platform could build on, not just funeral booking.</p>  </div> <figure class="cs-hero-figure"> <img src="/images/churchdesk/funeral-home-booking.jpg" alt="The funeral home's booking screen — a full week of time slots for the Main Cemetery, with only the slots that resolve true against the priest's on-call rota, the cemetery's opening hours, and any standing commitments"> </figure> </div> </header> <article class="cs-article"> <header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
     <h2 class="cs-section-title">The problem was the phone</h2>

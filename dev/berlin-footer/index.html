@@ -258,7 +258,10 @@
 
       function isNight() {
         const h = berlinHour();
-        return h < 7 || h >= 19;
+        const deviceDark = window.matchMedia
+          && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Dark when it's night in Berlin OR the device prefers dark
+        return (h < 7 || h >= 19) || deviceDark;
       }
 
       function updatePalette() {
