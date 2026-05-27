@@ -200,7 +200,276 @@
     </p>
 
     <!-- ============================================================== -->
-    <!-- DRAFT V8 — vanilla canvas CA running on silhouette edges        -->
+    <!-- DRAFT V9 — flowing noise field for glistening effect            -->
+    <!-- ============================================================== -->
+    <section class="section">
+      <p class="section-label">§ 09 · DRAFT V9 — flowing 2D noise field. Glistening highlights move coherently across silhouettes, not random flicker. (CURRENT)</p>
+
+      <div class="state-toggles" data-toggle-for="stage-v9">
+        <button type="button" data-state="sunny"  aria-pressed="true">SUNNY</button>
+        <button type="button" data-state="cloudy" aria-pressed="false">CLOUDY</button>
+        <button type="button" data-state="rainy"  aria-pressed="false">RAINY</button>
+      </div>
+
+      <div class="frame">
+        <div id="stage-v9" class="stage" data-weather="sunny">
+          <canvas id="berlin-canvas-v9" width="480" height="180"
+                  style="display:block; width: 100%; aspect-ratio: 480/180; image-rendering: pixelated; image-rendering: crisp-edges; background: #f8f3ee;"></canvas>
+        </div>
+        <p class="frame-caption">
+          <span>V9 · FBM noise field flows with time · coherent moving highlights, not random pixels</span>
+          <span>STATE: <span id="state-readout-v9">SUNNY</span></span>
+        </p>
+      </div>
+
+      <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
+        Approach: hash-based 2D value noise + 2-octave FBM + time offset = a smooth animated noise field. Each render frame, sample the noise at every silhouette/edge cell position. Interior cells render TEAL by default but "punch through" to cream when noise &gt; 0.62 (creates moving highlight patches). Edge cells render TEAL only when noise &gt; 0.72 (creates boiling-out extensions where the noise field peaks). Same field drives both — so the highlight patches and the edge extensions are correlated, sweeping across the scene together.
+      </p>
+    </section>
+
+    <script>
+    (function () {
+      const stage = document.getElementById('stage-v9');
+      if (!stage) return;
+      const canvas = document.getElementById('berlin-canvas-v9');
+      const ctx = canvas.getContext('2d');
+
+      const W = 480, H = 180;
+      const TEAL = '#4f8375';
+      const CREAM = '#f8f3ee';
+      const CELL = 2;
+      const COLS = W / CELL;
+      const ROWS = H / CELL;
+
+      // ============ Silhouette mask (same as v8) ============
+      const off = document.createElement('canvas');
+      off.width = W; off.height = H;
+      const oc = off.getContext('2d');
+      oc.fillStyle = '#000';
+      oc.fillRect(40, 128, 22, 22);
+      oc.fillRect(66, 120, 14, 30);
+      oc.fillRect(84, 130, 12, 20);
+      oc.fill(new Path2D('M 100 150 L 100 124 L 110 124 L 110 116 L 120 116 L 120 124 L 130 124 L 130 150 Z'));
+      oc.fill(new Path2D('M 184 150 L 184 130 L 188 124 L 208 124 L 212 130 L 212 150 Z'));
+      oc.fillRect(220, 130, 64, 20);
+      oc.fillRect(240, 118, 24, 12);
+      oc.fillRect(220, 120, 8, 10);
+      oc.fillRect(276, 120, 8, 10);
+      oc.fillRect(222, 116, 4, 4);
+      oc.fillRect(278, 116, 4, 4);
+      oc.fillRect(244, 114, 16, 4);
+      oc.fillRect(246, 110, 12, 4);
+      oc.fillRect(248, 106, 8, 4);
+      oc.fillRect(250, 102, 4, 4);
+      oc.fillRect(251, 96, 2, 6);
+      oc.fillRect(249, 98, 6, 2);
+      oc.fill(new Path2D('M 294 150 L 294 128 L 304 128 L 304 122 L 316 122 L 316 128 L 320 128 L 320 150 Z'));
+      oc.fillRect(324, 134, 12, 16);
+      oc.fillRect(342, 126, 6, 24);
+      oc.fillRect(391, 14, 2, 42);
+      oc.fillRect(389, 50, 6, 6);
+      oc.fillRect(386, 58, 12, 2);
+      oc.fillRect(384, 60, 16, 2);
+      oc.fillRect(382, 62, 20, 6);
+      oc.fillRect(384, 68, 16, 2);
+      oc.fillRect(386, 70, 12, 2);
+      oc.fillRect(389, 72, 6, 6);
+      oc.fillRect(391, 78, 2, 68);
+      oc.fillRect(386, 146, 12, 4);
+      oc.fillRect(156, 78, 2, 72);
+      oc.fillRect(132, 80, 44, 2);
+      oc.fillRect(156, 76, 14, 2);
+      oc.fillRect(153, 84, 6, 4);
+      oc.fillRect(138, 80, 1, 12);
+      oc.fillRect(136, 92, 4, 2);
+      oc.fillRect(446, 142, 2, 10);
+      oc.fillRect(442, 134, 10, 2);
+      oc.fillRect(440, 136, 14, 4);
+      oc.fillRect(438, 140, 18, 2);
+      oc.fillRect(440, 142, 14, 2);
+
+      const imgData = oc.getImageData(0, 0, W, H).data;
+      const inside = new Uint8Array(COLS * ROWS);
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const idx = ((r * CELL + 1) * W + (c * CELL + 1)) * 4 + 3;
+          inside[r * COLS + c] = imgData[idx] > 128 ? 1 : 0;
+        }
+      }
+
+      const edge = new Uint8Array(COLS * ROWS);
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const i = r * COLS + c;
+          if (inside[i]) continue;
+          let touches = false;
+          for (let dr = -1; dr <= 1 && !touches; dr++) {
+            for (let dc = -1; dc <= 1 && !touches; dc++) {
+              if (!dr && !dc) continue;
+              const nr = r + dr, nc = c + dc;
+              if (nr < 0 || nr >= ROWS || nc < 0 || nc >= COLS) continue;
+              if (inside[nr * COLS + nc]) touches = true;
+            }
+          }
+          edge[i] = touches ? 1 : 0;
+        }
+      }
+
+      // ============ Noise: hash → bilinear value noise → 2-octave FBM ============
+      function hash(x, y) {
+        let h = (x | 0) * 374761393 + (y | 0) * 668265263;
+        h = Math.imul(h ^ (h >>> 13), 1274126177);
+        return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+      }
+      function vnoise(x, y) {
+        const xi = Math.floor(x), xf = x - xi;
+        const yi = Math.floor(y), yf = y - yi;
+        const a = hash(xi,     yi);
+        const b = hash(xi + 1, yi);
+        const c = hash(xi,     yi + 1);
+        const d = hash(xi + 1, yi + 1);
+        const u = xf * xf * (3 - 2 * xf);
+        const v = yf * yf * (3 - 2 * yf);
+        return a * (1 - u) * (1 - v) + b * u * (1 - v) + c * (1 - u) * v + d * u * v;
+      }
+      // FBM with time-driven flow. Two octaves moving at slightly different speeds
+      // and directions creates organic-looking turbulence.
+      function fbm(x, y, t) {
+        const n1 = vnoise(x * 0.6 + t * 0.45, y * 0.6 + t * 0.08);
+        const n2 = vnoise(x * 1.5 + t * 0.20, y * 1.5 + t * 0.35);
+        return 0.65 * n1 + 0.35 * n2;
+      }
+
+      // Tunable thresholds
+      const THRESH_INSIDE = 0.62;   // noise above this punches a cream highlight inside silhouette
+      const THRESH_EDGE   = 0.72;   // noise above this extends teal beyond silhouette
+
+      // ============ Static overlays (same as v8) ============
+      const WINDOWS = [
+        [103, 130, 2, 2], [111, 120, 2, 2], [123, 130, 2, 2], [111, 138, 2, 2],
+        [105, 142, 2, 2], [119, 142, 2, 2],
+        [190, 134, 2, 2], [198, 134, 2, 2], [206, 134, 2, 2],
+        [190, 142, 2, 2], [198, 142, 2, 2], [206, 142, 2, 2],
+        [228, 134, 2, 12], [236, 134, 2, 12], [244, 134, 2, 12], [252, 134, 2, 12],
+        [260, 134, 2, 12], [268, 134, 2, 12], [276, 134, 2, 12],
+        [298, 134, 2, 2], [308, 128, 2, 2], [298, 142, 2, 2],
+        [308, 138, 2, 2], [328, 138, 2, 2], [328, 144, 2, 2],
+        [48, 132, 2, 2], [52, 138, 2, 2], [70, 128, 2, 2], [74, 136, 2, 2]
+      ];
+      const SUN_RECTS = [
+        [74, 30, 12, 2], [70, 32, 20, 2], [68, 34, 24, 2], [66, 36, 28, 8],
+        [68, 44, 24, 2], [70, 46, 20, 2], [74, 48, 12, 2],
+        [79, 20, 2, 6], [79, 54, 2, 6], [58, 39, 6, 2], [96, 39, 6, 2],
+        [65, 24, 2, 2], [67, 26, 2, 2], [91, 52, 2, 2], [93, 54, 2, 2],
+        [65, 54, 2, 2], [67, 52, 2, 2], [91, 26, 2, 2], [93, 24, 2, 2]
+      ];
+      const CLOUD_A = [[184, 40, 56, 8], [188, 36, 48, 4], [192, 32, 40, 4]];
+      const CLOUD_A_DITHER = [
+        [184, 48], [188, 48], [192, 48], [200, 48], [208, 48], [216, 48], [224, 48], [232, 48], [236, 48],
+        [196, 30], [204, 30], [216, 30], [224, 30],
+        [182, 42], [182, 46], [240, 42], [240, 46]
+      ];
+      const CLOUD_B = [[300, 28, 40, 6], [304, 24, 32, 4], [296, 32, 48, 2]];
+      const CLOUD_B_DITHER = [
+        [296, 34], [300, 34], [308, 34], [316, 34], [324, 34], [332, 34], [340, 34], [344, 34],
+        [308, 22], [320, 22], [328, 22]
+      ];
+      const RAIN_DROPS = [
+        [184, 54], [192, 58], [200, 54], [208, 58], [216, 54], [224, 58], [232, 54],
+        [304, 42], [312, 46], [320, 42], [328, 46], [336, 42]
+      ];
+      const GRASS = [[20, 148], [26, 148], [160, 148], [170, 148], [350, 148], [360, 148], [460, 148]];
+
+      // ============ Render ============
+      function render(time) {
+        ctx.fillStyle = CREAM;
+        ctx.fillRect(0, 0, W, H);
+
+        // Flowing noise — every silhouette cell sampled
+        ctx.fillStyle = TEAL;
+        const t = time / 1500;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const i = r * COLS + c;
+            if (inside[i]) {
+              // Interior: render TEAL unless noise peak — then leave cream (highlight)
+              if (fbm(c * 0.18, r * 0.18, t) < THRESH_INSIDE) {
+                ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
+              }
+            } else if (edge[i]) {
+              // Edge cell: render TEAL only when noise peaks beyond silhouette
+              if (fbm(c * 0.18, r * 0.18, t) > THRESH_EDGE) {
+                ctx.fillRect(c * CELL, r * CELL, CELL, CELL);
+              }
+            }
+          }
+        }
+
+        // Windows (always cream)
+        ctx.fillStyle = CREAM;
+        for (const w of WINDOWS) ctx.fillRect(w[0], w[1], w[2], w[3]);
+
+        // Ground + grass
+        ctx.fillStyle = TEAL;
+        ctx.fillRect(0, 150, 480, 2);
+        for (const g of GRASS) ctx.fillRect(g[0], g[1], 2, 2);
+        ctx.globalAlpha = 0.4;
+        ctx.fillRect(0, 154, 480, 2);
+        ctx.globalAlpha = 1;
+
+        // Weather
+        const weather = stage.getAttribute('data-weather') || 'sunny';
+        if (weather === 'sunny') {
+          const s = 1 + 0.06 * Math.sin(time / 600);
+          ctx.save();
+          ctx.translate(80, 40); ctx.scale(s, s); ctx.translate(-80, -40);
+          ctx.fillStyle = TEAL;
+          for (const r of SUN_RECTS) ctx.fillRect(r[0], r[1], r[2], r[3]);
+          ctx.restore();
+          ctx.fillStyle = CREAM;
+          ctx.fillRect(391, 60, 2, 12);
+          ctx.fillRect(384, 64, 16, 2);
+        }
+        if (weather === 'cloudy' || weather === 'rainy') {
+          const tx_a = Math.sin(time / 7000) * 30;
+          const tx_b = Math.sin(time / 9000 + 1) * -22;
+          ctx.fillStyle = TEAL;
+          ctx.save(); ctx.translate(tx_a, 0);
+          for (const r of CLOUD_A) ctx.fillRect(r[0], r[1], r[2], r[3]);
+          for (const d of CLOUD_A_DITHER) ctx.fillRect(d[0], d[1], 2, 2);
+          ctx.restore();
+          ctx.save(); ctx.translate(tx_b, 0);
+          for (const r of CLOUD_B) ctx.fillRect(r[0], r[1], r[2], r[3]);
+          for (const d of CLOUD_B_DITHER) ctx.fillRect(d[0], d[1], 2, 2);
+          ctx.restore();
+        }
+        if (weather === 'rainy') {
+          ctx.fillStyle = TEAL;
+          for (let i = 0; i < RAIN_DROPS.length; i++) {
+            const [x, y0] = RAIN_DROPS[i];
+            const phase = ((time / 1000 + i * 0.13) % 1);
+            const yOff = phase * 14 - 6;
+            let a;
+            if (phase < 0.2) a = phase * 5 * 0.8;
+            else if (phase > 0.8) a = (1 - phase) * 5 * 0.8;
+            else a = 0.8;
+            ctx.globalAlpha = a;
+            ctx.fillRect(x, y0 + yOff, 1, 3);
+          }
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      function loop(time) {
+        render(time);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
+    </script>
+
+    <!-- ============================================================== -->
+    <!-- DRAFT V8 — vanilla canvas CA (archived)                         -->
     <!-- ============================================================== -->
     <section class="section">
       <p class="section-label">§ 08 · DRAFT V8 — vanilla canvas cellular automaton on silhouette edges. Real CA, not 180 hand-placed dots. (CURRENT)</p>
