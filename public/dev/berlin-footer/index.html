@@ -1147,6 +1147,7 @@
         c.fillRect(91, 14, 2, 2);  c.fillRect(93, 12, 2, 2);
         c.restore();
       }
+      function drawClouds(c, time, weather) {
         if (weather !== 'cloudy' && weather !== 'rainy') return;
         const tx_a = Math.sin(time / 7000) * 30;
         const tx_b = Math.sin(time / 9000 + 1) * -22;
