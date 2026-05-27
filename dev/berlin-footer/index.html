@@ -521,8 +521,9 @@
 
       // === WELT Hot Air Balloon ===
       function drawWeltBalloon(c, time, anchor) {
-        // Larger Y oscillation — visibly bobs up and down (~20px range over ~18s)
-        const bobY = Math.round(Math.sin(time / 2800) * 10);
+        // Y oscillation — bobs ~16px range over ~18s (reduced from ±10 to ±8
+        // so balloon top stays clearly below TV Tower top at y=14)
+        const bobY = Math.round(Math.sin(time / 2800) * 8);
         const x = anchor.x, y = anchor.y + bobY;
         // Balloon body (rounded)
         c.fillRect(x + 8, y, 14, 2);
@@ -651,64 +652,61 @@
       // towers rise from low deck up to elevated-track height so U-Bahn
       // walkway connects to the elevated viaduct on both sides) ===
       function drawOberbaumBridge(c) {
-        // === Left tower complex ===
-        // Tower body rises from low deck
-        c.fillRect(180, 178, 14, 14);          // body
-        c.fillRect(178, 188, 18, 4);           // base bulge above deck
-        // Crenellation top
-        c.fillRect(180, 176, 4, 2);
-        c.fillRect(186, 176, 2, 2);
-        c.fillRect(190, 176, 4, 2);
-        // Twin spires above
-        c.fillRect(180, 168, 4, 8);             // smaller spire body
-        c.fillRect(181, 166, 2, 2);             // smaller spire peak
-        c.fillRect(186, 162, 8, 14);            // main spire body
-        c.fillRect(187, 160, 6, 2);             // main spire pyramid step 1
-        c.fillRect(188, 158, 4, 2);
-        c.fillRect(189, 156, 2, 2);             // main spire peak
+        // === LEFT tower complex (lowered: walkway now at y=180) ===
+        c.fillRect(180, 188, 14, 8);            // body above deck (8 tall)
+        c.fillRect(178, 192, 18, 2);            // base bulge
+        c.fillRect(180, 186, 4, 2);             // crenellation
+        c.fillRect(186, 186, 2, 2);
+        c.fillRect(190, 186, 4, 2);
+        c.fillRect(180, 178, 4, 8);              // smaller spire
+        c.fillRect(181, 176, 2, 2);
+        c.fillRect(186, 172, 8, 14);             // main spire body
+        c.fillRect(187, 170, 6, 2);
+        c.fillRect(188, 168, 4, 2);
+        c.fillRect(189, 166, 2, 2);              // main spire peak
 
-        // === Right tower complex (mirror) ===
-        c.fillRect(328, 178, 14, 14);
-        c.fillRect(326, 188, 18, 4);
-        c.fillRect(330, 176, 4, 2);
-        c.fillRect(336, 176, 2, 2);
-        c.fillRect(340, 176, 4, 2);
-        c.fillRect(340, 168, 4, 8);
-        c.fillRect(341, 166, 2, 2);
-        c.fillRect(328, 162, 8, 14);
-        c.fillRect(329, 160, 6, 2);
-        c.fillRect(330, 158, 4, 2);
-        c.fillRect(331, 156, 2, 2);
+        // === RIGHT tower (mirror) ===
+        c.fillRect(328, 188, 14, 8);
+        c.fillRect(326, 192, 18, 2);
+        c.fillRect(330, 186, 4, 2);
+        c.fillRect(336, 186, 2, 2);
+        c.fillRect(340, 186, 4, 2);
+        c.fillRect(340, 178, 4, 8);
+        c.fillRect(341, 176, 2, 2);
+        c.fillRect(328, 172, 8, 14);
+        c.fillRect(329, 170, 6, 2);
+        c.fillRect(330, 168, 4, 2);
+        c.fillRect(331, 166, 2, 2);
 
-        // === Upper walkway (U-Bahn level at y=168 — matches elevated track) ===
-        c.fillRect(196, 168, 130, 10);          // walkway wall (10 tall)
+        // === Upper walkway (U-Bahn level at y=180 — matches new lower elevated track) ===
+        c.fillRect(196, 180, 130, 8);
 
         // === LOW bridge deck (just above ground/water) ===
-        c.fillRect(178, 192, 166, 2);           // deck span
+        c.fillRect(178, 194, 166, 2);
 
         // === Short arch pillars between deck and ground ===
         const pillars = [196, 222, 248, 274, 300, 322];
         pillars.forEach(x => {
-          c.fillRect(x, 194, 4, 6);             // 6 tall pillar
+          c.fillRect(x, 196, 4, 4);              // 4 tall pillar
         });
       }
       function drawOberbaumBridgeDetails(c) {
-        // Arched walkway windows (in the upper U-Bahn level wall)
+        // Arched walkway windows (in the new lower walkway wall)
         const archXs = [200, 220, 240, 260, 280, 300];
         archXs.forEach(x => {
-          c.fillRect(x, 170, 8, 6);
-          c.fillRect(x + 1, 169, 6, 1);
-          c.fillRect(x + 2, 168, 4, 1);
+          c.fillRect(x, 182, 8, 4);
+          c.fillRect(x + 1, 181, 6, 1);
+          c.fillRect(x + 2, 180, 4, 1);
         });
-        // Pointed gothic arches under bridge deck (in the short pillar zone)
+        // Pointed arches between short pillars (deck just above water)
         const archesBelow = [
           { x: 200, w: 18 }, { x: 226, w: 18 },
           { x: 252, w: 18 }, { x: 278, w: 18 },
           { x: 304, w: 14 },
         ];
         archesBelow.forEach(({ x, w }) => {
-          c.fillRect(x, 194, w, 6);
-          c.fillRect(x + 1, 193, w - 2, 1);
+          c.fillRect(x, 196, w, 4);
+          c.fillRect(x + 1, 195, w - 2, 1);
         });
       }
 
@@ -716,19 +714,18 @@
       // Models the U1 viaduct (Magistratsschirm) running across Kreuzberg
       // and Friedrichshain, with the Oberbaum Brücke as the middle span.
       function drawElevatedTrack(c) {
-        // Left section: x=0 to x=178 (before bridge)
-        c.fillRect(0, 168, 178, 4);
-        c.fillRect(0, 166, 178, 2);
+        // LOWERED — deck at y=180 (was y=168) so train rides closer to bridge
+        c.fillRect(0, 180, 178, 4);
+        c.fillRect(0, 178, 178, 2);
         [10, 40, 70, 100, 130, 160].forEach(x => {
-          c.fillRect(x, 172, 4, 28);
-          c.fillRect(x - 1, 170, 6, 2);   // capital
+          c.fillRect(x, 184, 4, 16);
+          c.fillRect(x - 1, 182, 6, 2);
         });
-        // Right section: x=344 to right edge (continuing into Kreuzberg)
-        c.fillRect(344, 168, 136, 4);
-        c.fillRect(344, 166, 136, 2);
+        c.fillRect(344, 180, 136, 4);
+        c.fillRect(344, 178, 136, 2);
         [354, 384, 414, 444, 470].forEach(x => {
-          c.fillRect(x, 172, 4, 28);
-          c.fillRect(x - 1, 170, 6, 2);
+          c.fillRect(x, 184, 4, 16);
+          c.fillRect(x - 1, 182, 6, 2);
         });
       }
 
@@ -741,7 +738,7 @@
         const x = Math.floor(-60 + t * 600);
         const trainW = 60;
         if (x + trainW < 0 || x > 480) return;
-        const y = 162;
+        const y = 174;
         c.fillStyle = TEAL;
         c.fillRect(x, y, 18, 6);
         c.fillRect(x + 20, y, 18, 6);
@@ -759,21 +756,17 @@
       function drawBus(c, time) {
         const cycle = 28000;
         const t = (time % cycle) / cycle;
-        const x = Math.floor(-32 + t * (W + 64));
+        // Reversed direction: bus drives right-to-left
+        const x = Math.floor((W + 32) - t * (W + 64));
         if (x < -32 || x > W + 32) return;
         const y = 188;
         c.fillStyle = TEAL;
-        // Lower deck
         c.fillRect(x, y, 30, 10);
-        // Upper deck
         c.fillRect(x + 2, y - 6, 26, 6);
-        // Wheels (cream gaps)
         c.fillStyle = CREAM;
         c.fillRect(x + 4, y + 8, 4, 2);
         c.fillRect(x + 22, y + 8, 4, 2);
-        // Windows (lower)
         for (let i = 0; i < 5; i++) c.fillRect(x + 4 + i * 5, y + 2, 2, 2);
-        // Windows (upper)
         for (let i = 0; i < 5; i++) c.fillRect(x + 4 + i * 5, y - 4, 2, 2);
         c.fillStyle = TEAL;
       }
@@ -834,9 +827,9 @@
       }
       function drawMoon(c, time) {
         if (!isNight()) return;
-        const sx = 80, sy = 40 + Math.sin(time / 1200) * 2;
+        // Matches sun's new higher position (was sy=40, now sy=28)
+        const sx = 80, sy = 28 + Math.sin(time / 1200) * 2;
         c.fillStyle = '#f8f3ee';
-        // 10x10 pixel moon
         c.fillRect(sx - 3, sy - 5, 6, 1);
         c.fillRect(sx - 4, sy - 4, 8, 1);
         c.fillRect(sx - 5, sy - 3, 10, 2);
@@ -844,7 +837,6 @@
         c.fillRect(sx - 5, sy + 1, 10, 2);
         c.fillRect(sx - 4, sy + 3, 8, 1);
         c.fillRect(sx - 3, sy + 4, 6, 1);
-        // Craters (small dark spots)
         c.fillStyle = BG_COLOR;
         c.fillRect(sx - 2, sy - 2, 1, 1);
         c.fillRect(sx + 2, sy + 1, 1, 1);
@@ -896,26 +888,21 @@
         const cycle = 38000;
         const t = (time % cycle) / cycle;
         const x = Math.floor(-120 + t * (W + 140));
-        const y = 18;
+        const y = 85;   // Below balloon basket (anchor y=40 + body 36 = y=76 at lowest)
         if (x < -120 || x > W + 20) return;
         c.fillStyle = TEAL;
-        // Plane silhouette (5x3)
-        c.fillRect(x + 2, y, 1, 1);             // nose
-        c.fillRect(x, y + 1, 5, 1);              // body + wings
-        c.fillRect(x + 1, y + 2, 1, 1);          // tail
+        c.fillRect(x + 2, y, 1, 1);
+        c.fillRect(x, y + 1, 5, 1);
+        c.fillRect(x + 1, y + 2, 1, 1);
         c.fillRect(x + 3, y + 2, 1, 1);
-        // Cable from plane tail to banner
         c.fillRect(x - 4, y + 1, 4, 1);
-        // Banner (rectangle outline)
         const bannerW = 102;
         const bx = x - 4 - bannerW;
-        c.fillRect(bx, y - 1, bannerW, 1);       // top edge
-        c.fillRect(bx, y + 6, bannerW, 1);       // bottom edge
-        c.fillRect(bx, y - 1, 1, 8);             // left edge
-        // Banner interior fill (cream/window color so text is readable)
+        c.fillRect(bx, y - 1, bannerW, 1);
+        c.fillRect(bx, y + 6, bannerW, 1);
+        c.fillRect(bx, y - 1, 1, 8);
         c.fillStyle = isNight() ? '#3a4a44' : '#f8f3ee';
         c.fillRect(bx + 1, y, bannerW - 1, 6);
-        // Text on banner
         drawPixelText(c, 'MADE WITH ♥ IN BERLIN', bx + 3, y + 1, TEAL);
       }
 
@@ -1067,23 +1054,23 @@
       }
       function drawSun(c, time, weather) {
         if (weather !== 'sunny') return;
-        const sx = 80, sy = 40 + Math.sin(time / 1200) * 2;
+        // Moved higher: center y was 40, now 28
+        const sx = 80, sy = 28 + Math.sin(time / 1200) * 2;
         const s = 1 + 0.04 * Math.sin(time / 700);
         c.save();
         c.translate(sx, sy); c.scale(s, s); c.translate(-sx, -sy);
         c.fillStyle = TEAL;
-        c.fillRect(74, 30, 12, 2); c.fillRect(70, 32, 20, 2);
-        c.fillRect(68, 34, 24, 2); c.fillRect(66, 36, 28, 8);
-        c.fillRect(68, 44, 24, 2); c.fillRect(70, 46, 20, 2); c.fillRect(74, 48, 12, 2);
-        c.fillRect(79, 20, 2, 6); c.fillRect(79, 54, 2, 6);
-        c.fillRect(58, 39, 6, 2); c.fillRect(96, 39, 6, 2);
-        c.fillRect(65, 24, 2, 2); c.fillRect(67, 26, 2, 2);
-        c.fillRect(91, 52, 2, 2); c.fillRect(93, 54, 2, 2);
-        c.fillRect(65, 54, 2, 2); c.fillRect(67, 52, 2, 2);
-        c.fillRect(91, 26, 2, 2); c.fillRect(93, 24, 2, 2);
+        c.fillRect(74, 18, 12, 2); c.fillRect(70, 20, 20, 2);
+        c.fillRect(68, 22, 24, 2); c.fillRect(66, 24, 28, 8);
+        c.fillRect(68, 32, 24, 2); c.fillRect(70, 34, 20, 2); c.fillRect(74, 36, 12, 2);
+        c.fillRect(79, 8, 2, 6);   c.fillRect(79, 42, 2, 6);
+        c.fillRect(58, 27, 6, 2);  c.fillRect(96, 27, 6, 2);
+        c.fillRect(65, 12, 2, 2);  c.fillRect(67, 14, 2, 2);
+        c.fillRect(91, 40, 2, 2);  c.fillRect(93, 42, 2, 2);
+        c.fillRect(65, 42, 2, 2);  c.fillRect(67, 40, 2, 2);
+        c.fillRect(91, 14, 2, 2);  c.fillRect(93, 12, 2, 2);
         c.restore();
       }
-      function drawClouds(c, time, weather) {
         if (weather !== 'cloudy' && weather !== 'rainy') return;
         const tx_a = Math.sin(time / 7000) * 30;
         const tx_b = Math.sin(time / 9000 + 1) * -22;
@@ -1162,8 +1149,9 @@
           off.fillRect(comp.sphereCenter.x - 8, comp.sphereCenter.y, 16, 2);
         }
 
-        // WELT balloon
-        const WELT_ANCHOR = { x: 300, y: 30 };
+        // WELT balloon — anchor moved down to y=40 (was 30) so balloon
+        // top stays clearly below TV Tower top (y=14) at all bob phases
+        const WELT_ANCHOR = { x: 300, y: 40 };
         off.fillStyle = TEAL;
         drawWeltBalloon(off, time, WELT_ANCHOR);
         off.fillStyle = CREAM;
@@ -1840,12 +1828,8 @@
       function getN(time) {
         const t = time % CYCLE_MS;
         if (t < SHIMMER_MS) {
-          // Shimmer mode — smooth sinusoidal pulse N=1/2/3
-          // Period: ~5s. Mostly N=1, brief moments at N=2 and N=3.
-          const wave = (Math.sin(t / 800) + 1) / 2;   // 0 to 1
-          if (wave < 0.55) return 1;
-          if (wave < 0.85) return 2;
-          return 3;
+          // No shimmer — image stays crisp at N=1 until the deep cycle
+          return 1;
         } else {
           // Deep cycle
           const dt = (t - SHIMMER_MS) / DEEP_MS;
