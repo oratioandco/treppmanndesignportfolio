@@ -223,7 +223,7 @@
       </div>
 
       <p style="font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin: 1rem 0 0.5rem;">
-        New landmarks (drawn as solid teal silhouettes): Park Inn (rectangular slab + rooftop frame + animated person on swing), WELT balloon (helium balloon with basket + tether, gentle bob), Sony Center (rectangular body + tent peak), Kollhoff Tower (tall body + angular peak), U-Bahn train (3 cars sliding across Oberbaum's upper walkway then continuing on Kreuzberg's elevated track), double-decker bus (animated along road bottom). Background filler horizon at 30% opacity always visible — keeps the city feeling populated as the foreground rotates. Shading: 5 opacity tiers (30/50/65/80/95%) for atmospheric depth.
+        ALL landmarks always present at 20% opacity (the full Berlin skyline reads as a unified silhouette). Each composition's deep-cycle highlight brings 2-5 landmarks into the foreground at 88-95% opacity. WELT balloon always visible at fixed sky position with ~20px Y oscillation over 18s — visibly bobbing up and down. Potsdamer composition now has the full 5-building cluster: Bahn Tower (curved glass top), 2 high rises (Beisheim/Atrium-style boxy), Sony Center (multi-peak tent roof), Kollhoff Tower (cube on top + pyramidal accent).
       </p>
     </section>
 
@@ -500,7 +500,8 @@
 
       // === WELT Hot Air Balloon ===
       function drawWeltBalloon(c, time, anchor) {
-        const bobY = Math.round(Math.sin(time / 2200) * 3);
+        // Larger Y oscillation — visibly bobs up and down (~20px range over ~18s)
+        const bobY = Math.round(Math.sin(time / 2800) * 10);
         const x = anchor.x, y = anchor.y + bobY;
         // Balloon body (rounded)
         c.fillRect(x + 8, y, 14, 2);
@@ -527,36 +528,109 @@
         c.fillRect(x + 6, y + 14, 18, 2);
       }
 
-      // === Sony Center (Potsdamer Platz) ===
-      function drawSonyCenter(c) {
-        // Main building body
-        c.fillRect(214, 160, 50, 40);
-        // Tent-like peak roof
-        c.fillRect(218, 158, 42, 2);
-        c.fillRect(224, 156, 30, 2);
-        c.fillRect(230, 154, 18, 2);
-        c.fillRect(236, 152, 6, 2);
+      // === Bahn Tower (Potsdamer Platz, curved glass top) ===
+      function drawBahnTower(c) {
+        // Body
+        c.fillRect(104, 138, 24, 62);
+        // Curved glass top — stepped to suggest the smooth curve
+        c.fillRect(106, 136, 20, 2);
+        c.fillRect(108, 134, 16, 2);
+        c.fillRect(110, 132, 12, 2);
+        c.fillRect(112, 130, 8, 2);
+        c.fillRect(114, 128, 4, 2);
+        c.fillRect(115, 126, 2, 2);
       }
-      function drawSonyCenterWindows(c) {
-        for (let y = 0; y < 8; y++) {
-          for (let x = 0; x < 11; x++) {
-            c.fillRect(216 + x * 4, 164 + y * 4, 2, 2);
+      function drawBahnTowerWindows(c) {
+        // Curtain wall grid
+        for (let y = 0; y < 14; y++) {
+          for (let x = 0; x < 5; x++) {
+            c.fillRect(106 + x * 4, 142 + y * 4, 2, 2);
           }
         }
       }
 
-      // === Kollhoff Tower (Potsdamer Platz, dark angular peak) ===
+      // === Potsdamer High Rise A (boxy, beside Bahn) ===
+      function drawPotsdamerHRA(c) {
+        c.fillRect(132, 148, 16, 52);
+        // Small flat-top accent
+        c.fillRect(134, 146, 12, 2);
+      }
+      function drawPotsdamerHRAWindows(c) {
+        for (let y = 0; y < 11; y++) {
+          for (let x = 0; x < 3; x++) {
+            c.fillRect(134 + x * 5, 152 + y * 4, 2, 2);
+          }
+        }
+      }
+
+      // === Potsdamer High Rise B (boxy, slightly shorter) ===
+      function drawPotsdamerHRB(c) {
+        c.fillRect(152, 154, 16, 46);
+        c.fillRect(154, 152, 12, 2);
+      }
+      function drawPotsdamerHRBWindows(c) {
+        for (let y = 0; y < 10; y++) {
+          for (let x = 0; x < 3; x++) {
+            c.fillRect(154 + x * 5, 158 + y * 4, 2, 2);
+          }
+        }
+      }
+
+      // === Sony Center (improved: multi-peak tent roof) ===
+      function drawSonyCenter(c) {
+        // Main building body (wider than v14)
+        c.fillRect(198, 162, 70, 38);
+        // Tent roof — 3 peaks (Helmut Jahn's iconic fabric structure)
+        // Roof base across building
+        c.fillRect(198, 160, 70, 2);
+        // Left peak
+        c.fillRect(206, 156, 10, 4);
+        c.fillRect(208, 154, 6, 2);
+        c.fillRect(210, 152, 2, 2);
+        // Center peak (tallest)
+        c.fillRect(226, 154, 14, 6);
+        c.fillRect(228, 150, 10, 4);
+        c.fillRect(230, 146, 6, 4);
+        c.fillRect(232, 144, 2, 2);
+        // Right peak
+        c.fillRect(248, 156, 12, 4);
+        c.fillRect(250, 154, 8, 2);
+        c.fillRect(252, 152, 4, 2);
+      }
+      function drawSonyCenterWindows(c) {
+        // Glass curtain wall
+        for (let y = 0; y < 8; y++) {
+          for (let x = 0; x < 15; x++) {
+            c.fillRect(200 + x * 4, 166 + y * 4, 2, 2);
+          }
+        }
+      }
+
+      // === Kollhoff Tower (with distinctive cube on top) ===
       function drawKollhoffTower(c) {
-        c.fillRect(266, 134, 24, 66);
-        // Angular triangular peak
-        c.fillRect(266, 130, 24, 4);
-        c.fillRect(270, 126, 16, 4);
-        c.fillRect(274, 122, 8, 4);
-        c.fillRect(276, 118, 4, 4);
+        // Tall main body
+        c.fillRect(300, 132, 28, 68);
+        // Base widening
+        c.fillRect(298, 196, 32, 4);
+        // Stepped transition to cube
+        c.fillRect(302, 128, 24, 4);
+        // CUBE on top (smaller than body, distinctive shape)
+        c.fillRect(306, 114, 16, 14);
+        // Small pyramidal/antenna accent above cube
+        c.fillRect(310, 110, 8, 4);
+        c.fillRect(312, 106, 4, 4);
+        c.fillRect(313, 104, 2, 2);
       }
       function drawKollhoffWindows(c) {
-        for (let x = 0; x < 4; x++) {
-          c.fillRect(268 + x * 6, 138, 1, 58);
+        // Vertical accent lines on body (dark brick suggests vertical fenestration)
+        for (let x = 0; x < 5; x++) {
+          c.fillRect(302 + x * 5, 136, 1, 60);
+        }
+        // Cube windows
+        for (let y = 0; y < 3; y++) {
+          for (let x = 0; x < 3; x++) {
+            c.fillRect(308 + x * 5, 118 + y * 4, 2, 2);
+          }
         }
       }
 
@@ -709,28 +783,57 @@
         c.fillRect(123, 184, 2, 2);
       }
 
+      // ============ ALL landmarks at low opacity (always visible) ============
+      // The full Berlin skyline is always there in the background.
+      // Each composition just brings a subset into the foreground at
+      // higher opacity. Overlapping silhouettes blend into a unified
+      // city mass; iconic shapes (TV Tower antenna, Brandenburg's
+      // columns, Sony's tent roof) read through the haze.
+      function drawAllLandmarksBg(c) {
+        c.globalAlpha = 0.20;
+        c.fillStyle = TEAL;
+        drawDistantBuildings(c);
+        drawCrane(c);
+        drawSteppedBuilding(c);
+        drawSlantedRoof(c);
+        drawMidBuildings(c);
+        drawBerlinerDom(c);
+        drawTVTower(c);
+        drawParkInn(c);
+        drawBrandenburgGate(c);
+        drawReichstag(c);
+        drawSiegessauele(c);
+        drawBahnTower(c);
+        drawPotsdamerHRA(c);
+        drawPotsdamerHRB(c);
+        drawSonyCenter(c);
+        drawKollhoffTower(c);
+        drawGedaechtniskirche(c);
+        drawEstrelTower(c);
+        drawMoleculeMan(c);
+        drawOberbaumBridge(c);
+        drawElevatedTrack(c);
+        c.globalAlpha = 1;
+      }
+
       // ============ Compositions ============
+      // The background already draws ALL landmarks at 20%. Each
+      // composition's drawSkyline only needs to RE-draw its featured
+      // subset at 90-95% opacity to bring them into the foreground.
       const COMPOSITIONS = [
         {
           name: 'East — Alex with Park Inn',
           sphereCenter: { x: 392, y: 70 },
           smokeSource: { x: 73, y: 164 },
-          weltAnchor: null,
           hasParkInnSwing: true,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
-            c.fillStyle = CREAM; drawDistantWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.65; drawCrane(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.80;
-            drawSteppedBuilding(c); drawSlantedRoof(c);
-            c.fillStyle = CREAM; drawSteppedWindows(c); drawSlantedWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawBerlinerDom(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawBerlinerDom(c);
             c.fillStyle = CREAM; drawDomWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawParkInn(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawParkInn(c);
             c.fillStyle = CREAM; drawParkInnWindows(c);
             c.fillStyle = TEAL; c.globalAlpha = 0.95; drawTVTower(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.70; drawCrane(c);
             c.globalAlpha = 1;
           },
         },
@@ -738,36 +841,35 @@
           name: 'Mitte — Brandenburg / Reichstag / Siegessäule',
           sphereCenter: null,
           smokeSource: { x: 73, y: 164 },
-          weltAnchor: null,
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
-            c.fillStyle = CREAM; drawDistantWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawBrandenburgGate(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawBrandenburgGate(c);
             c.fillStyle = CREAM; drawBrandenburgGateDetails(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.80; drawReichstag(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawReichstag(c);
             c.fillStyle = CREAM; drawReichstagWindows(c);
             c.fillStyle = TEAL; c.globalAlpha = 0.95; drawSiegessauele(c);
             c.globalAlpha = 1;
           },
         },
         {
-          name: 'Potsdamer Platz — Sony / Kollhoff with WELT balloon',
+          name: 'Potsdamer Platz — full cluster',
           sphereCenter: null,
           smokeSource: { x: 73, y: 164 },
-          weltAnchor: { x: 80, y: 30 },
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
-            c.fillStyle = CREAM; drawDistantWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawKollhoffTower(c);
-            c.fillStyle = CREAM; drawKollhoffWindows(c);
+            // All 5 Potsdamer buildings at full opacity
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawBahnTower(c);
+            c.fillStyle = CREAM; drawBahnTowerWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawPotsdamerHRA(c);
+            c.fillStyle = CREAM; drawPotsdamerHRAWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawPotsdamerHRB(c);
+            c.fillStyle = CREAM; drawPotsdamerHRBWindows(c);
             c.fillStyle = TEAL; c.globalAlpha = 0.90; drawSonyCenter(c);
             c.fillStyle = CREAM; drawSonyCenterWindows(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawKollhoffTower(c);
+            c.fillStyle = CREAM; drawKollhoffWindows(c);
             c.globalAlpha = 1;
           },
         },
@@ -775,19 +877,13 @@
           name: 'West — Gedächtniskirche / Estrel',
           sphereCenter: null,
           smokeSource: { x: 73, y: 164 },
-          weltAnchor: null,
           hasParkInnSwing: false,
           hasUBahn: false,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
-            c.fillStyle = CREAM; drawDistantWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawGedaechtniskirche(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawGedaechtniskirche(c);
             c.fillStyle = CREAM; drawGedaechtniskircheWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawEstrelTower(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.88; drawEstrelTower(c);
             c.fillStyle = CREAM; drawEstrelTowerWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.80; drawMidBuildings(c);
-            c.fillStyle = CREAM; drawMidWindows(c);
             c.globalAlpha = 1;
           },
         },
@@ -795,18 +891,14 @@
           name: 'Spree — Molecule Man / Oberbaum + U-Bahn',
           sphereCenter: null,
           smokeSource: { x: 73, y: 164 },
-          weltAnchor: null,
           hasParkInnSwing: false,
           hasUBahn: true,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL; c.globalAlpha = 0.30; drawHorizonFiller(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.50; drawDistantBuildings(c);
-            c.fillStyle = CREAM; drawDistantWindows(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.85; drawMoleculeMan(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.88; drawMoleculeMan(c);
             c.fillStyle = CREAM; drawMoleculeManHoles(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.90; drawOberbaumBridge(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.92; drawOberbaumBridge(c);
             c.fillStyle = CREAM; drawOberbaumBridgeDetails(c);
-            c.fillStyle = TEAL; c.globalAlpha = 0.65; drawElevatedTrack(c);
+            c.fillStyle = TEAL; c.globalAlpha = 0.75; drawElevatedTrack(c);
             c.globalAlpha = 1;
           },
         },
@@ -911,16 +1003,24 @@
         off.fillRect(0, 0, W, H);
         drawSun(off, time, weather);
         drawClouds(off, time, weather);
+
+        // === BACKGROUND: all landmarks always visible at low opacity ===
+        drawAllLandmarksBg(off);
+
+        // === FOREGROUND: composition's featured landmarks at full opacity ===
         const comp = COMPOSITIONS[compIdx];
         comp.drawSkyline(off, time);
         off.globalAlpha = 1;
+
         drawPopeCross(off, weather, comp.sphereCenter);
-        if (comp.weltAnchor) {
-          off.fillStyle = TEAL;
-          drawWeltBalloon(off, time, comp.weltAnchor);
-          off.fillStyle = CREAM;
-          drawWeltBalloonDetails(off, time, comp.weltAnchor);
-        }
+
+        // === WELT balloon: always visible, fixed sky position, large Y bob ===
+        const WELT_ANCHOR = { x: 300, y: 30 };
+        off.fillStyle = TEAL;
+        drawWeltBalloon(off, time, WELT_ANCHOR);
+        off.fillStyle = CREAM;
+        drawWeltBalloonDetails(off, time, WELT_ANCHOR);
+
         if (comp.hasParkInnSwing) drawParkInnSwing(off, time);
         if (comp.hasUBahn) drawUBahnTrain(off, time);
         drawSmoke(off, time, comp.smokeSource);
