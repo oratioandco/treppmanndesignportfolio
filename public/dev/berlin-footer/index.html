@@ -653,10 +653,18 @@
       // towers rise from low deck up to elevated-track height so U-Bahn
       // walkway connects to the elevated viaduct on both sides) ===
       function drawOberbaumBridge(c) {
-        // === LEFT tower complex (lowered: walkway now at y=180) ===
-        c.fillRect(180, 188, 14, 8);            // body above deck (8 tall)
-        c.fillRect(178, 192, 18, 2);            // base bulge
-        c.fillRect(180, 186, 4, 2);             // crenellation
+        // === BRIDGE DECK (just above the river at y=210) ===
+        c.fillRect(178, 204, 166, 2);            // deck top
+
+        // === Pillars DIP INTO the river (river at y=210+) ===
+        [196, 222, 248, 274, 300, 322].forEach(x => {
+          c.fillRect(x, 206, 4, 14);             // 14 tall, partially submerged
+        });
+
+        // === LEFT TOWER complex ===
+        c.fillRect(178, 198, 18, 6);             // base sitting on deck (6 tall)
+        c.fillRect(180, 188, 14, 10);            // body through walkway level
+        c.fillRect(180, 186, 4, 2);              // crenellation above walkway
         c.fillRect(186, 186, 2, 2);
         c.fillRect(190, 186, 4, 2);
         c.fillRect(180, 178, 4, 8);              // smaller spire
@@ -666,12 +674,12 @@
         c.fillRect(188, 168, 4, 2);
         c.fillRect(189, 166, 2, 2);              // main spire peak
 
-        // === RIGHT tower (mirror) ===
-        c.fillRect(328, 188, 14, 8);
-        c.fillRect(326, 192, 18, 2);
-        c.fillRect(330, 186, 4, 2);
-        c.fillRect(336, 186, 2, 2);
-        c.fillRect(340, 186, 4, 2);
+        // === RIGHT TOWER (mirror) ===
+        c.fillRect(326, 198, 18, 6);
+        c.fillRect(328, 188, 14, 10);
+        c.fillRect(326, 186, 4, 2);
+        c.fillRect(332, 186, 2, 2);
+        c.fillRect(336, 186, 4, 2);
         c.fillRect(340, 178, 4, 8);
         c.fillRect(341, 176, 2, 2);
         c.fillRect(328, 172, 8, 14);
@@ -679,35 +687,15 @@
         c.fillRect(330, 168, 4, 2);
         c.fillRect(331, 166, 2, 2);
 
-        // === Upper walkway (U-Bahn level at y=180 — matches new lower elevated track) ===
-        c.fillRect(196, 180, 130, 8);
-
-        // === LOW bridge deck (just above ground/water) ===
-        c.fillRect(178, 194, 166, 2);
-
-        // === Short arch pillars between deck and ground ===
-        const pillars = [196, 222, 248, 274, 300, 322];
-        pillars.forEach(x => {
-          c.fillRect(x, 196, 4, 4);              // 4 tall pillar
-        });
+        // === UPPER WALKWAY (U-Bahn level, between tower tops) ===
+        c.fillRect(196, 188, 130, 6);
       }
       function drawOberbaumBridgeDetails(c) {
-        // Arched walkway windows (in the new lower walkway wall)
+        // Arched walkway windows (in the new walkway at y=188-194)
         const archXs = [200, 220, 240, 260, 280, 300];
         archXs.forEach(x => {
-          c.fillRect(x, 182, 8, 4);
-          c.fillRect(x + 1, 181, 6, 1);
-          c.fillRect(x + 2, 180, 4, 1);
-        });
-        // Pointed arches between short pillars (deck just above water)
-        const archesBelow = [
-          { x: 200, w: 18 }, { x: 226, w: 18 },
-          { x: 252, w: 18 }, { x: 278, w: 18 },
-          { x: 304, w: 14 },
-        ];
-        archesBelow.forEach(({ x, w }) => {
-          c.fillRect(x, 196, w, 4);
-          c.fillRect(x + 1, 195, w - 2, 1);
+          c.fillRect(x, 190, 8, 3);
+          c.fillRect(x + 1, 189, 6, 1);
         });
       }
 
@@ -715,18 +703,15 @@
       // Models the U1 viaduct (Magistratsschirm) running across Kreuzberg
       // and Friedrichshain, with the Oberbaum Brücke as the middle span.
       function drawElevatedTrack(c) {
-        // LOWERED — deck at y=180 (was y=168) so train rides closer to bridge
-        c.fillRect(0, 180, 178, 4);
-        c.fillRect(0, 178, 178, 2);
+        // Track sits at SAME level as bridge walkway (y=188-194). Pillars
+        // are SHORT (6 tall, was 16) — track is barely elevated above road.
+        c.fillRect(0, 188, 178, 6);
         [10, 40, 70, 100, 130, 160].forEach(x => {
-          c.fillRect(x, 184, 4, 16);
-          c.fillRect(x - 1, 182, 6, 2);
+          c.fillRect(x, 194, 4, 6);              // 6 tall pillar
         });
-        c.fillRect(344, 180, 136, 4);
-        c.fillRect(344, 178, 136, 2);
+        c.fillRect(344, 188, 136, 6);
         [354, 384, 414, 444, 470].forEach(x => {
-          c.fillRect(x, 184, 4, 16);
-          c.fillRect(x - 1, 182, 6, 2);
+          c.fillRect(x, 194, 4, 6);
         });
       }
 
@@ -739,7 +724,7 @@
         const x = Math.floor(-60 + t * 600);
         const trainW = 60;
         if (x + trainW < 0 || x > 480) return;
-        const y = 174;
+        const y = 182;
         c.fillStyle = TEAL;
         c.fillRect(x, y, 18, 6);
         c.fillRect(x + 20, y, 18, 6);
