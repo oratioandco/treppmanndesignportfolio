@@ -1045,11 +1045,13 @@
           hasParkInnSwing: false,
           hasUBahn: true,
           drawSkyline(c, time) {
-            c.fillStyle = TEAL_FRONT; drawMoleculeMan(c);
-            c.fillStyle = CREAM;      drawMoleculeManHoles(c);  // body holes are negative space
+            // Background infrastructure first
+            c.fillStyle = TEAL_FG;    drawElevatedTrack(c);
             c.fillStyle = TEAL;       drawOberbaumBridge(c);
             c.fillStyle = WINDOW_LIT; drawOberbaumBridgeDetails(c);
-            c.fillStyle = TEAL_FG;    drawElevatedTrack(c);
+            // Molecule Man in front, on top of bridge + track
+            c.fillStyle = TEAL_FRONT; drawMoleculeMan(c);
+            c.fillStyle = CREAM;      drawMoleculeManHoles(c);
           },
         },
       ];
@@ -1233,7 +1235,6 @@
         drawStars(off, time);
         if (isNight()) drawMoon(off, time);
         else drawSun(off, time, weather);
-        // CLOUDS drawn LATER (after rain) — see below
 
         // BACKGROUND: all landmarks at low opacity
         drawAllLandmarksBg(off);
@@ -1241,7 +1242,13 @@
         // RIVER drawn early so Molecule Man (in composition) can stand IN it
         drawRiver(off, time);
 
-        // FOREGROUND composition
+        // GROUND drawn BEFORE composition so Molecule Man's legs cover the
+        // road line at y=200-202 (not the other way around)
+        off.fillStyle = TEAL;
+        drawGround(off);
+
+        // FOREGROUND composition (Molecule Man in Spree comp now in front
+        // of both the road and the elevated track pillars)
         const comp = COMPOSITIONS[compIdx];
         comp.drawSkyline(off, time);
         off.globalAlpha = 1;
@@ -1264,9 +1271,8 @@
         if (comp.hasUBahn) drawUBahnTrain(off, time);
         drawSmoke(off, time, comp.smokeSource);
 
-        // RAIN drawn BEFORE clouds so clouds cover the rain's spawn point
+        // RAIN -> CLOUDS (rain under clouds)
         drawRain(off, time, weather);
-        // CLOUDS drawn AFTER rain — rain is now "under the clouds" in z-order
         drawClouds(off, time, weather);
 
         drawBird(off, time);
@@ -1276,7 +1282,6 @@
         off.fillStyle = TEAL;
         off.globalAlpha = 1;
         drawTree(off);
-        drawGround(off);
 
         drawTouristBoat(off, time);
         drawPaddleBoarder(off, time);
