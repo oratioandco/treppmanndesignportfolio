@@ -1,14 +1,12 @@
 ---
 // Berlin footer — animated pixel-art skyline. This IS the site footer:
-// it sits flush at the bottom of every page. The copyright line is
-// overlaid top-left, mirroring the BERLIN time/temp readout top-right.
-// Auto-driven by Berlin time + Open-Meteo; palette syncs with data-theme.
-const year = new Date().getFullYear();
+// it sits flush at the bottom of every page. Just the BERLIN time/temp
+// readout overlaid top-right. Auto-driven by Berlin time + Open-Meteo;
+// palette syncs with the site's data-theme attribute.
 ---
 
 <div id="stage" class="berlin-footer" data-weather="sunny">
   <canvas id="berlin-canvas" width="480" height="250"></canvas>
-  <div class="berlin-copyright">© {year} TREPPMANN</div>
   <div id="footer-readout" class="berlin-readout">
     BERLIN · <span id="time-display">--:--</span> · <span id="temp-display">--°</span>
   </div>
@@ -38,19 +36,6 @@ const year = new Date().getFullYear();
     max-height: 320px;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-  }
-  .berlin-copyright {
-    position: absolute;
-    top: 0.75rem;
-    left: 1rem;
-    font-family: "Departure Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--color-accent);
-    pointer-events: none;
-    text-transform: uppercase;
-    line-height: 1;
-    z-index: 1;
   }
   .berlin-readout {
     position: absolute;
