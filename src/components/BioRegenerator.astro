@@ -92,9 +92,15 @@ const variantsJson = JSON.stringify(variants);
     </div>
   </div>
 
+  <div class="bio-regen__action">
+    <button type="button" class="bio-regen__generate" data-bio-generate>
+      ↻ Regenerate bio
+    </button>
+  </div>
+
   <p class="bio-regen__caption" data-bio-caption>
     <span class="bio-regen__caption-dot" aria-hidden="true">●</span>
-    <span data-bio-caption-text>↻ Fallback bio — tap any dial above to regenerate via a live model.</span>
+    <span data-bio-caption-text>Pre-written bio. Set the dials, then hit Regenerate for a live AI version.</span>
   </p>
 </div>
 
@@ -138,7 +144,9 @@ const variantsJson = JSON.stringify(variants);
       }
 
       const buttons = root.querySelectorAll('.bio-regen__option');
+      const generateBtn = root.querySelector('[data-bio-generate]');
       let inFlightToken = 0;
+      let hasGenerated = false;
 
       function setButtonStates(axis, value) {
         buttons.forEach((btn) => {
@@ -154,6 +162,10 @@ const variantsJson = JSON.stringify(variants);
           if (disabled) btn.setAttribute('disabled', 'true');
           else btn.removeAttribute('disabled');
         });
+        if (generateBtn) {
+          if (disabled) generateBtn.setAttribute('disabled', 'true');
+          else generateBtn.removeAttribute('disabled');
+        }
       }
 
       function setCaption(text, kind) {
@@ -213,6 +225,10 @@ const variantsJson = JSON.stringify(variants);
         }
       }
 
+      // Dial clicks ONLY update the selection — no API call. This avoids
+      // firing a generation on every parameter change (which would be 3
+      // calls to set length + model + vibe). The user picks settings,
+      // then hits Regenerate to fire a single call.
       buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
           const axis = btn.getAttribute('data-axis');
@@ -222,9 +238,21 @@ const variantsJson = JSON.stringify(variants);
           else if (axis === 'model') currentModel = value;
           else if (axis === 'vibe') currentVibe = value;
           setButtonStates(axis, value);
-          regenerate();
+          // Once the user has generated at least once, nudge them that the
+          // current bio no longer matches the freshly-changed dials.
+          if (hasGenerated) {
+            setCaption('Settings changed — hit Regenerate to apply.', 'idle');
+          }
         });
       });
+
+      // The Regenerate button is the only thing that fires the API call.
+      if (generateBtn) {
+        generateBtn.addEventListener('click', () => {
+          hasGenerated = true;
+          regenerate();
+        });
+      }
     });
   })();
 </script>
@@ -348,6 +376,38 @@ const variantsJson = JSON.stringify(variants);
   }
 
   .bio-regen__option[disabled] {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
+  .bio-regen__action {
+    margin-bottom: 0.6rem;
+  }
+
+  .bio-regen__generate {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--color-bg);
+    background: var(--color-accent);
+    border: none;
+    padding: 0.45rem 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+  }
+
+  .bio-regen__generate:hover,
+  .bio-regen__generate:focus-visible {
+    opacity: 0.88;
+    outline: none;
+  }
+
+  .bio-regen__generate:active {
+    transform: translateY(1px);
+  }
+
+  .bio-regen__generate[disabled] {
     opacity: 0.5;
     cursor: wait;
   }
