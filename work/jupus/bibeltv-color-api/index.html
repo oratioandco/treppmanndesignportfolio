@@ -64,7 +64,7 @@
           }
         }, 300000);
       })();
-    </script><link rel="stylesheet" href="/_astro/about.BiYQtxf-.css">
+    </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css">
 <link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/jupus" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · BIBEL TV · 2025 – 2026</span> <h1 class="cs-title">A color engine built for the brand, not the industry default</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">Bibel TV has over 10,000 videos in its catalog and a team too small to hand-pick a theme color for each one. A larger operation might do that as part of its artwork pipeline; at Bibel TV&#39;s size, it isn&#39;t on the table. So the colors have to come from the artwork itself, computed. I built the engine that does it, in OKLCH so every card carries an evenly-weighted theme and the grid reads as a coherent collection in both light and dark mode.</p>  </div> <figure class="cs-hero-figure"> <img src="/images/bibeltv/color-lab.png" alt="The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right — one in dark mode, one in light mode — both themed from the same extracted palette"> </figure> </div> </header> <article class="cs-article"> <aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">Some cards demanded the page; others almost disappeared. The artwork didn't decide which — the RGB math did.</blockquote><p class="cs-pullquote-context">What the off-the-shelf palette extractor produced</p></aside><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
     <h2 class="cs-section-title">Why a custom engine, and how it works</h2>
@@ -1097,8 +1097,9 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       function renderFullScene(time, weather, compIdx) {
         updatePalette();
 
-        off.fillStyle = BG_COLOR;
-        off.fillRect(0, 0, W, H);
+        // Clear to TRANSPARENT so the page's own (noise-textured) background
+        // shows through the sky — guarantees the footer bg matches the site bg.
+        off.clearRect(0, 0, W, H);
 
         drawStars(off, time);
         if (isNight()) drawMoon(off, time);
@@ -1208,6 +1209,7 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       }
 
       function downsampleAndPresent(N) {
+        ctx.clearRect(0, 0, W, H);   // transparent — page bg shows through sky
         if (N === 1) {
           ctx.imageSmoothingEnabled = false;
           ctx.drawImage(offscreen, 0, 0);
@@ -1220,8 +1222,6 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
         tmpCtx.clearRect(0, 0, dw, dh);
         tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
         ctx.imageSmoothingEnabled = false;
-        ctx.fillStyle = BG_COLOR;
-        ctx.fillRect(0, 0, W, H);
         ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
       }
 

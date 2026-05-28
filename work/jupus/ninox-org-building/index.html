@@ -64,7 +64,7 @@
           }
         }, 300000);
       })();
-    </script><link rel="stylesheet" href="/_astro/about.BiYQtxf-.css">
+    </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css">
 <link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/jupus" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · NINOX SOFTWARE GMBH · 2023 – 2024</span> <h1 class="cs-title">Leading a team is a design problem</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">At Ninox I was Head of Product Design: a team of five, a seat at the leadership table, and a design practice to turn into a real function. The part I think about most was none of that. It was a team that had quietly given up on one of its own.</p>  </div>  </div> </header> <article class="cs-article"> <header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
     <h2 class="cs-section-title">The role</h2>
@@ -1100,8 +1100,9 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       function renderFullScene(time, weather, compIdx) {
         updatePalette();
 
-        off.fillStyle = BG_COLOR;
-        off.fillRect(0, 0, W, H);
+        // Clear to TRANSPARENT so the page's own (noise-textured) background
+        // shows through the sky — guarantees the footer bg matches the site bg.
+        off.clearRect(0, 0, W, H);
 
         drawStars(off, time);
         if (isNight()) drawMoon(off, time);
@@ -1211,6 +1212,7 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       }
 
       function downsampleAndPresent(N) {
+        ctx.clearRect(0, 0, W, H);   // transparent — page bg shows through sky
         if (N === 1) {
           ctx.imageSmoothingEnabled = false;
           ctx.drawImage(offscreen, 0, 0);
@@ -1223,8 +1225,6 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
         tmpCtx.clearRect(0, 0, dw, dh);
         tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
         ctx.imageSmoothingEnabled = false;
-        ctx.fillStyle = BG_COLOR;
-        ctx.fillRect(0, 0, W, H);
         ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
       }
 

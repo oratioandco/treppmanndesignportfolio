@@ -64,7 +64,7 @@
           }
         }, 300000);
       })();
-    </script><link rel="stylesheet" href="/_astro/about.BiYQtxf-.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/" class="back-button">← Back</a> </div> </div> <main>  <section class="case-study-hero"> <div class="container"> <p class="case-study-meta">Case Study</p> <h1>When 'Simple Booking' Isn't Simple</h1> <p class="hero-tagline">ChurchDesk Booking System</p> <p class="hero-description">
+    </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/" class="back-button">← Back</a> </div> </div> <main>  <section class="case-study-hero"> <div class="container"> <p class="case-study-meta">Case Study</p> <h1>When 'Simple Booking' Isn't Simple</h1> <p class="hero-tagline">ChurchDesk Booking System</p> <p class="hero-description">
 Designing a deceptively simple booking experience that masks extraordinary
         complexity—multiple stakeholders, rotating schedules, cemetery opening hours,
         and the emotional weight of funeral planning.
@@ -1132,8 +1132,9 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       function renderFullScene(time, weather, compIdx) {
         updatePalette();
 
-        off.fillStyle = BG_COLOR;
-        off.fillRect(0, 0, W, H);
+        // Clear to TRANSPARENT so the page's own (noise-textured) background
+        // shows through the sky — guarantees the footer bg matches the site bg.
+        off.clearRect(0, 0, W, H);
 
         drawStars(off, time);
         if (isNight()) drawMoon(off, time);
@@ -1243,6 +1244,7 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
       }
 
       function downsampleAndPresent(N) {
+        ctx.clearRect(0, 0, W, H);   // transparent — page bg shows through sky
         if (N === 1) {
           ctx.imageSmoothingEnabled = false;
           ctx.drawImage(offscreen, 0, 0);
@@ -1255,8 +1257,6 @@ BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span 
         tmpCtx.clearRect(0, 0, dw, dh);
         tmpCtx.drawImage(offscreen, 0, 0, W, H, 0, 0, dw, dh);
         ctx.imageSmoothingEnabled = false;
-        ctx.fillStyle = BG_COLOR;
-        ctx.fillRect(0, 0, W, H);
         ctx.drawImage(tmp, 0, 0, dw, dh, 0, 0, dw * N, dh * N);
       }
 
