@@ -1,0 +1,69 @@
+{
+  "slug": "n8n",
+  "title": "Selected Work",
+  "subtitle": "Audience expansion, AI-era product design, design engineering, and leadership — selected for n8n",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work"
+}
