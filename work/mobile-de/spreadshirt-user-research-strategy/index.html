@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>A design system that ships to production, not to Figma | Tobias Treppmann</title><script>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Using user research to overturn executive assumptions at a print-on-demand platform serving hundreds of thousands"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>How do you change a company&#39;s direction with one prototype? | Tobias Treppmann</title><script>
       // Set theme BEFORE first paint to avoid FOUC.
       // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
       (function () {
@@ -65,114 +65,25 @@
         }, 300000);
       })();
     </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css">
-<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/liveeo" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · BIBEL TV · 2025 – 2026</span> <h1 class="cs-title">A design system that ships to production, not to Figma</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">Most design systems are Figma libraries — engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source.</p>  </div> <figure class="cs-hero-figure"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 470" class="token-diagram" role="img" aria-label="Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma, with Figma writing changes back to the repo">
-  <style>
-    /* Inlined into the page, so these CSS vars resolve against the site
-       theme (data-theme) and flip automatically in dark mode. The second
-       value in each var() is a light-mode fallback for when this SVG is
-       loaded standalone (e.g. via &lt;img&gt;). */
-    .token-diagram .box {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-    }
-    .token-diagram .label {
-      fill: var(--color-text, #1a1a1a);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 21px;
-      letter-spacing: 0.02em;
-      text-anchor: middle;
-      dominant-baseline: central;
-    }
-    .token-diagram .flow {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-dasharray: 7 6;
-      opacity: 0.65;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback-label {
-      fill: var(--color-text-muted, #666);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-anchor: middle;
-    }
-  </style>
-
-  <defs>
-    <marker id="ds-arrow" markerWidth="12" markerHeight="12" refX="7" refY="5"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M2,2 L9,5 L2,8" fill="none"
-            stroke="var(--color-accent, #4f8375)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-    </marker>
-  </defs>
-
-  <!-- GitHub Repo (source of truth) -->
-  <rect class="box" x="320" y="28" width="200" height="56" rx="12" />
-  <text class="label" x="420" y="57">GitHub Repo</text>
-
-  <!-- Token API (build + serve) -->
-  <rect class="box" x="320" y="172" width="200" height="72" rx="12" />
-  <text class="label" x="420" y="208">Token API</text>
-
-  <!-- Platform consumers -->
-  <rect class="box" x="23"  y="380" width="140" height="56" rx="12" />
-  <text class="label" x="93"  y="408">Android</text>
-  <rect class="box" x="186" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="256" y="408">iOS</text>
-  <rect class="box" x="349" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="419" y="408">Web</text>
-  <rect class="box" x="512" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="582" y="408">TV</text>
-  <rect class="box" x="675" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="745" y="408">Figma</text>
-
-  <!-- GitHub Repo -> Token API -->
-  <path class="flow" d="M420,84 L420,166" marker-end="url(#ds-arrow)" />
-
-  <!-- Token API -> distribution bus -> each platform -->
-  <path class="flow" d="M420,244 L420,326" />
-  <path class="flow" d="M93,326 L745,326" />
-  <path class="flow" d="M93,326 L93,372"   marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M256,326 L256,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M419,326 L419,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M582,326 L582,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M745,326 L745,372" marker-end="url(#ds-arrow)" />
-
-  <!-- Figma writes token edits back to the repo (round trip) -->
-  <path class="feedback" d="M815,408 L828,408 L828,56 L524,56" marker-end="url(#ds-arrow)" />
-  <text class="feedback-label" x="828" y="240" transform="rotate(90 828 240)">edits sync back</text>
-</svg>
- </figure> </div> </header> <article class="cs-article"> <aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">A design system in Figma is a promise. A design system as an API is a guarantee.</blockquote><p class="cs-pullquote-context">The difference between a library designers maintain and a service engineers consume</p></aside><header class="cs-section-head">
+<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/mobile-de" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · SPREADSHIRT · 2014 – 2016</span> <h1 class="cs-title">How do you change a company&#39;s direction with one prototype?</h1> <p class="cs-tagline">UX Strategy Lead</p> <p class="cs-deck">The management vision was a 60-second automated journey. User research said something completely different. Here&#39;s how data won.</p>  </div> <figure class="cs-hero-figure"> <img src="/images/spreadshirt/hero.png" alt="Spreadshirt mobile t-shirt designer prototype"> </figure> </div> </header> <article class="cs-article"> <header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
-    <h2 class="cs-section-title">The problem</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography — Kotlin values, Swift constants, CSS variables, Figma styles.</p><p>When one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.</p><p>There was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The Starting Point</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>Spreadshirt was running on a product assumption that felt right at the top: shop owners wanted speed. The leadership vision was a 60-second fully automated journey — pick a template, customize automatically, ship it. Efficient. Scalable. Clean.</p><p>The company had tried to redesign the seller experience twice before and failed both times. I was brought in to lead the third attempt.</p><p>Initial question: what if the assumption was wrong?</p></div><aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">The t-shirt designer is the most uplifting experience I have all day.</blockquote><p class="cs-pullquote-context">This single sentence changed the product strategy</p></aside><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;02</span>
-    <h2 class="cs-section-title">The architecture</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.</p><p>What I built is a Git-based token repository that builds to a live API the platforms consume directly.</p><p><strong>One Git repo</strong> holds the tokens, versioned and reviewed like any other code. <strong>A three-tier hierarchy</strong> keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. <strong>Style Dictionary</strong> builds platform-specific outputs from that single definition. <strong>An automation layer</strong> distributes every committed change to the platform endpoints and the Figma plugin.</p></div><figure class="cs-figure"><img src="/images/bibeltv/design-system-tokens.png" alt="The token set, synced into the Figma plugin" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 01</span><span class="cs-caption-text">The same tokens, in Figma — one consumer of the system, kept in sync automatically.</span></figcaption></figure><header class="cs-section-head">
+    <h2 class="cs-section-title">The Discovery</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>I went out and talked to actual shop owners. Not surveys, not analytics — conversations.</p><p>What I found completely contradicted the leadership vision. Shop owners didn't want the design process automated away. For them, the t-shirt designer wasn't a friction point — it was the most joyful part of their day. They valued design control over speed. The creative process was the product.</p><p>This wasn't a small insight. It meant the entire 60-second automation strategy was headed in the wrong direction.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;03</span>
-    <h2 class="cs-section-title">How it works in practice</h2>
-  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">Change a token</h3><p>A designer or engineer opens a pull request against the token repo. Standard review, approve, merge.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Style Dictionary builds</h3><p>CI runs Style Dictionary, generating platform-specific token files from the single source definition.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">Sync runs automatically</h3><p>Automation workflows push the built tokens to the platform endpoints and the Figma plugin. No manual step.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">Platforms pick it up</h3><p>The Android app reads the API on launch and stores tokens locally. Figma updates through the plugin. A token change needs no code deploy.</p></div></li></ol><header class="cs-section-head">
+    <h2 class="cs-section-title">The Hard Part</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>The data said one thing. The executive team's intuition said another. And this wasn't the first time the company had tried this redesign — two previous attempts had already failed.</p><p>I needed to make the research undeniable. A presentation wouldn't work. I needed to show, not tell.</p><p>So I built a prototype — a mobile version of the t-shirt designer — and put it directly in users' hands. The goal wasn't to prove mobile was possible. It was to demonstrate that the design experience itself was worth preserving, even on a small screen.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;04</span>
-    <h2 class="cs-section-title">The decisions that mattered</h2>
-  </header><div class="cs-body cs-body--dropcap"><h3 class="cs-sublabel">The repo is the source, not Figma</h3><p>This flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer — so design can change without engineering retouching four platforms.</p><h3 class="cs-sublabel">A standard token format</h3><p>I used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.</p><h3 class="cs-sublabel">Design owned the architecture</h3><p>Token infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation — but it also meant learning style dictionaries, API endpoints, and automation workflows.</p><p>Because the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The Approach</h2>
+  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">User Interviews</h3><p>Conducted in-depth conversations with shop owners, revealing that the design process was the emotional core of their experience — not friction to be removed.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Research Prototype</h3><p>Built a mobile t-shirt designer prototype in Axure RP, developed in collaboration with UI designers over one intensive week. Designed specifically to elicit user feedback, not for shipping.</p><figure class="cs-figure"><img src="/images/spreadshirt/mobile-prototype.png" alt="Mobile t-shirt designer prototype" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 01</span><span class="cs-caption-text">One-week mobile prototype — proving desktop functionality could work on a small screen</span></figcaption></figure></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">Executive Workshops</h3><p>Facilitated workshops with the executive team and business unit leadership, presenting research findings that contradicted leadership assumptions about automation.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">User Testing</h3><p>Tested the mobile prototype with real users. Feedback was overwhelmingly positive — demonstrating that the full desktop experience could be adapted for mobile.</p></div></li></ol><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;05</span>
-    <h2 class="cs-section-title">What changed</h2>
-  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">Sync</dt><dd class="cs-metric-change"><span class="cs-metric-before">Four teams hand-updating tokens; platforms drifting apart</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">One commit flows to every platform automatically</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Live today</dt><dd class="cs-metric-value">Android consuming tokens via the API; Figma synced automatically through the plugin</dd></div><div class="cs-metric"><dt class="cs-metric-label">Structure</dt><dd class="cs-metric-value">Three-tier token hierarchy — consistency enforced by structure, not by coordination</dd></div><div class="cs-metric"><dt class="cs-metric-label">Future-ready</dt><dd class="cs-metric-value">Architecture supports server-driven UI; iOS and web endpoints defined and ready</dd></div></dl><header class="cs-section-head">
+    <h2 class="cs-section-title">Results</h2>
+  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">Product Strategy</dt><dd class="cs-metric-change"><span class="cs-metric-before">60-second fully automated journey — eliminate design friction</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">Controlled automation — preserve user agency and creative control</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Mobile Prototype</dt><dd class="cs-metric-value">"Resoundingly positive" user feedback → moved to production implementation</dd></div><div class="cs-metric"><dt class="cs-metric-label">Redesign Project</dt><dd class="cs-metric-change"><span class="cs-metric-before">Two previous attempts had failed</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">9-month project completed successfully, team grew from 3 to full implementation</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Executive Buy-in</dt><dd class="cs-metric-value">Secured leadership support for direction contradicting their original intuition</dd></div></dl><div class="cs-body"><p>The mobile prototype succeeded — it showed that the design experience could work beautifully on mobile. User testing feedback was "resoundingly positive." But the bigger impact was strategic: leadership changed the fundamental product approach from full automation to controlled automation. The project that had failed twice before completed successfully over 9 months, eventually scaling from a 3-person team to larger implementation teams.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;06</span>
-    <h2 class="cs-section-title">What I took from it</h2>
-  </header><div class="cs-body cs-body--reflection"><p>Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.</p><p>The other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it.</p></div> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
+    <h2 class="cs-section-title">What I Learned</h2>
+  </header><div class="cs-body cs-body--reflection"><p>This experience taught me that data is not enough — you need to make it undeniable. When research contradicts leadership intuition, a presentation won't change minds. A prototype that puts users in control will.</p><p>It also reinforced that the best product strategy doesn't start with efficiency metrics — it starts with understanding what users actually value. Sometimes the thing you're trying to optimize away is the thing they love most.</p></div><section class="cs-takeaway"><div class="cs-takeaway-rule" aria-hidden="true"></div><span class="cs-takeaway-label">WHY THIS MATTERS FOR YOUR TEAM</span><div class="cs-body"><p>If your team is headed in a direction that feels right but might be wrong, someone needs to talk to the users before more resources are committed. I can lead that conversation — and I can make the findings stick through research that speaks louder than any slide deck.</p></div></section> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
 BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span id="temp-display" data-astro-cid-mncituio>--°</span> </div> </div>  <script>
 (function () {
       const stage = document.getElementById('stage');

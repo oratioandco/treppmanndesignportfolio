@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>A design system that ships to production, not to Figma | Tobias Treppmann</title><script>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Building the design function at Ninox — and what I did when the team called one engineer &#34;difficult&#34;"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Leading a team is a design problem | Tobias Treppmann</title><script>
       // Set theme BEFORE first paint to avoid FOUC.
       // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
       (function () {
@@ -65,114 +65,25 @@
         }, 300000);
       })();
     </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css">
-<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/liveeo" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · BIBEL TV · 2025 – 2026</span> <h1 class="cs-title">A design system that ships to production, not to Figma</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">Most design systems are Figma libraries — engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source.</p>  </div> <figure class="cs-hero-figure"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 470" class="token-diagram" role="img" aria-label="Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma, with Figma writing changes back to the repo">
-  <style>
-    /* Inlined into the page, so these CSS vars resolve against the site
-       theme (data-theme) and flip automatically in dark mode. The second
-       value in each var() is a light-mode fallback for when this SVG is
-       loaded standalone (e.g. via &lt;img&gt;). */
-    .token-diagram .box {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-    }
-    .token-diagram .label {
-      fill: var(--color-text, #1a1a1a);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 21px;
-      letter-spacing: 0.02em;
-      text-anchor: middle;
-      dominant-baseline: central;
-    }
-    .token-diagram .flow {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-dasharray: 7 6;
-      opacity: 0.65;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback-label {
-      fill: var(--color-text-muted, #666);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-anchor: middle;
-    }
-  </style>
-
-  <defs>
-    <marker id="ds-arrow" markerWidth="12" markerHeight="12" refX="7" refY="5"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M2,2 L9,5 L2,8" fill="none"
-            stroke="var(--color-accent, #4f8375)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-    </marker>
-  </defs>
-
-  <!-- GitHub Repo (source of truth) -->
-  <rect class="box" x="320" y="28" width="200" height="56" rx="12" />
-  <text class="label" x="420" y="57">GitHub Repo</text>
-
-  <!-- Token API (build + serve) -->
-  <rect class="box" x="320" y="172" width="200" height="72" rx="12" />
-  <text class="label" x="420" y="208">Token API</text>
-
-  <!-- Platform consumers -->
-  <rect class="box" x="23"  y="380" width="140" height="56" rx="12" />
-  <text class="label" x="93"  y="408">Android</text>
-  <rect class="box" x="186" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="256" y="408">iOS</text>
-  <rect class="box" x="349" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="419" y="408">Web</text>
-  <rect class="box" x="512" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="582" y="408">TV</text>
-  <rect class="box" x="675" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="745" y="408">Figma</text>
-
-  <!-- GitHub Repo -> Token API -->
-  <path class="flow" d="M420,84 L420,166" marker-end="url(#ds-arrow)" />
-
-  <!-- Token API -> distribution bus -> each platform -->
-  <path class="flow" d="M420,244 L420,326" />
-  <path class="flow" d="M93,326 L745,326" />
-  <path class="flow" d="M93,326 L93,372"   marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M256,326 L256,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M419,326 L419,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M582,326 L582,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M745,326 L745,372" marker-end="url(#ds-arrow)" />
-
-  <!-- Figma writes token edits back to the repo (round trip) -->
-  <path class="feedback" d="M815,408 L828,408 L828,56 L524,56" marker-end="url(#ds-arrow)" />
-  <text class="feedback-label" x="828" y="240" transform="rotate(90 828 240)">edits sync back</text>
-</svg>
- </figure> </div> </header> <article class="cs-article"> <aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">A design system in Figma is a promise. A design system as an API is a guarantee.</blockquote><p class="cs-pullquote-context">The difference between a library designers maintain and a service engineers consume</p></aside><header class="cs-section-head">
+<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/n8n" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · NINOX SOFTWARE GMBH · 2023 – 2024</span> <h1 class="cs-title">Leading a team is a design problem</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">At Ninox I was Head of Product Design: a team of five, a seat at the leadership table, and a design practice to turn into a real function. The part I think about most was none of that. It was a team that had quietly given up on one of its own.</p>  </div>  </div> </header> <article class="cs-article"> <header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
-    <h2 class="cs-section-title">The problem</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography — Kotlin values, Swift constants, CSS variables, Figma styles.</p><p>When one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.</p><p>There was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The role</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>I joined Ninox to make design a real function. The company was shifting from a low-code tool to an AI-powered no-code platform, and design needed to carry the same weight as product and engineering, not sit downstream of them.</p><p>Most of that was the expected work. I managed a team of five, including a design lead. I built a planning process so design, product, and engineering worked from the same picture. I set up shared governance of the design system across four designers and engineering. I hired people, and when someone was not the right fit, I made that call too.</p><p>The part that taught me the most was not on that list.</p></div><aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">When collaboration breaks down, the first question is 'what is wrong with our system?', not 'what is wrong with that person?'</blockquote><p class="cs-pullquote-context">The reframe at the centre of how I lead</p></aside><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;02</span>
-    <h2 class="cs-section-title">The architecture</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.</p><p>What I built is a Git-based token repository that builds to a live API the platforms consume directly.</p><p><strong>One Git repo</strong> holds the tokens, versioned and reviewed like any other code. <strong>A three-tier hierarchy</strong> keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. <strong>Style Dictionary</strong> builds platform-specific outputs from that single definition. <strong>An automation layer</strong> distributes every committed change to the platform endpoints and the Figma plugin.</p></div><figure class="cs-figure"><img src="/images/bibeltv/design-system-tokens.png" alt="The token set, synced into the Figma plugin" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 01</span><span class="cs-caption-text">The same tokens, in Figma — one consumer of the system, kept in sync automatically.</span></figcaption></figure><header class="cs-section-head">
+    <h2 class="cs-section-title">The engineer the team worked around</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>One engineer had been quietly labelled difficult. Meetings with him were tense. His points got cut off before he finished them, and the team had learned to route around him instead of working with him.</p><p>It did not add up. His code was excellent. His ideas, once I gave them room, were often the sharpest in the room. So I started watching the pattern instead of the person.</p><p>He struggled in fast, talk-over-each-other discussions, but he was precise in writing. He needed time to think before he answered. What the team read as interrupting was him returning to a point the meeting had already rushed past. This was not a diagnosis. It was a design constraint. Our collaboration ran on one default — fast, verbal, loudest-voice-first — and his mind did not fit it.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;03</span>
-    <h2 class="cs-section-title">How it works in practice</h2>
-  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">Change a token</h3><p>A designer or engineer opens a pull request against the token repo. Standard review, approve, merge.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Style Dictionary builds</h3><p>CI runs Style Dictionary, generating platform-specific token files from the single source definition.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">Sync runs automatically</h3><p>Automation workflows push the built tokens to the platform endpoints and the Figma plugin. No manual step.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">Platforms pick it up</h3><p>The Android app reads the API on launch and stores tokens locally. Figma updates through the plugin. A token change needs no code deploy.</p></div></li></ol><header class="cs-section-head">
+    <h2 class="cs-section-title">What I changed</h2>
+  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">Agendas, shared early</h3><p>Every meeting got a written agenda in advance. No more "quick syncs" that turned into hour-long debates no one could prepare for.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Room to prepare</h3><p>Context went out before group discussions, so processing could happen ahead of the meeting rather than under time pressure inside it.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">Turn-taking, on purpose</h3><p>In group settings I made space for sequential input, instead of letting whoever spoke loudest set the outcome.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">Decisions in writing</h3><p>Important decisions were written down, not left to whoever remembered the conversation their way.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">05</span><div class="cs-step-content"><h3 class="cs-step-label">Coaching the design lead</h3><p>I coached my design lead through the same relationship — how to work with a difficult engineering counterpart directly, rather than around them.</p></div></li></ol><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;04</span>
-    <h2 class="cs-section-title">The decisions that mattered</h2>
-  </header><div class="cs-body cs-body--dropcap"><h3 class="cs-sublabel">The repo is the source, not Figma</h3><p>This flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer — so design can change without engineering retouching four platforms.</p><h3 class="cs-sublabel">A standard token format</h3><p>I used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.</p><h3 class="cs-sublabel">Design owned the architecture</h3><p>Token infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation — but it also meant learning style dictionaries, API endpoints, and automation workflows.</p><p>Because the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The pushback</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>Not everyone agreed at first. "Why should we change how we work for one person?" — sometimes asked out loud, sometimes through eye-rolls and foot-dragging.</p><p>It became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. Different minds need different conditions, and that is accommodation, not special treatment.</p><p>I also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;05</span>
     <h2 class="cs-section-title">What changed</h2>
-  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">Sync</dt><dd class="cs-metric-change"><span class="cs-metric-before">Four teams hand-updating tokens; platforms drifting apart</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">One commit flows to every platform automatically</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Live today</dt><dd class="cs-metric-value">Android consuming tokens via the API; Figma synced automatically through the plugin</dd></div><div class="cs-metric"><dt class="cs-metric-label">Structure</dt><dd class="cs-metric-value">Three-tier token hierarchy — consistency enforced by structure, not by coordination</dd></div><div class="cs-metric"><dt class="cs-metric-label">Future-ready</dt><dd class="cs-metric-value">Architecture supports server-driven UI; iOS and web endpoints defined and ready</dd></div></dl><header class="cs-section-head">
+  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">The "difficult" engineer</dt><dd class="cs-metric-change"><span class="cs-metric-before">Tension, dismissed ideas, the team working around him</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">One of the strongest contributors — ideas got airtime, and he caught problems others missed</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Team norms</dt><dd class="cs-metric-change"><span class="cs-metric-before">Loudest-voice-first discussions</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">Written agendas, prep time, and documented decisions became how the team worked by default</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">How the team thought about friction</dt><dd class="cs-metric-value">People started asking what was wrong with the process before deciding what was wrong with a person</dd></div></dl><div class="cs-body"><p>Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, the written decisions for themselves — they stopped being an accommodation and became the norm. The same attention I gave to one engineer's working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;06</span>
     <h2 class="cs-section-title">What I took from it</h2>
-  </header><div class="cs-body cs-body--reflection"><p>Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.</p><p>The other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it.</p></div> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
+  </header><div class="cs-body cs-body--reflection"><p>Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person.</p><p>And you cannot build inclusive software with an exclusive team process. Human-centred teams are what make human-centred products possible.</p></div> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
 BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span id="temp-display" data-astro-cid-mncituio>--°</span> </div> </div>  <script>
 (function () {
       const stage = document.getElementById('stage');

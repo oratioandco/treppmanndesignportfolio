@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>A design system that ships to production, not to Figma | Tobias Treppmann</title><script>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Designing the onboarding for a vibe-coding platform where AI builds databases from plain-language descriptions — and users stay in control"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Who Controls the AI? | Tobias Treppmann</title><script>
       // Set theme BEFORE first paint to avoid FOUC.
       // Dark when it's night in Berlin (19:00-07:00) OR device prefers dark.
       (function () {
@@ -65,114 +65,25 @@
         }, 300000);
       })();
     </script><link rel="stylesheet" href="/_astro/about.BdIhTabk.css">
-<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/liveeo" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · BIBEL TV · 2025 – 2026</span> <h1 class="cs-title">A design system that ships to production, not to Figma</h1> <p class="cs-tagline">Head of Product Design</p> <p class="cs-deck">Most design systems are Figma libraries — engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source.</p>  </div> <figure class="cs-hero-figure"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 470" class="token-diagram" role="img" aria-label="Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma, with Figma writing changes back to the repo">
-  <style>
-    /* Inlined into the page, so these CSS vars resolve against the site
-       theme (data-theme) and flip automatically in dark mode. The second
-       value in each var() is a light-mode fallback for when this SVG is
-       loaded standalone (e.g. via &lt;img&gt;). */
-    .token-diagram .box {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-    }
-    .token-diagram .label {
-      fill: var(--color-text, #1a1a1a);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 21px;
-      letter-spacing: 0.02em;
-      text-anchor: middle;
-      dominant-baseline: central;
-    }
-    .token-diagram .flow {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback {
-      fill: none;
-      stroke: var(--color-accent, #4f8375);
-      stroke-width: 2;
-      stroke-dasharray: 7 6;
-      opacity: 0.65;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .token-diagram .feedback-label {
-      fill: var(--color-text-muted, #666);
-      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-anchor: middle;
-    }
-  </style>
-
-  <defs>
-    <marker id="ds-arrow" markerWidth="12" markerHeight="12" refX="7" refY="5"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M2,2 L9,5 L2,8" fill="none"
-            stroke="var(--color-accent, #4f8375)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-    </marker>
-  </defs>
-
-  <!-- GitHub Repo (source of truth) -->
-  <rect class="box" x="320" y="28" width="200" height="56" rx="12" />
-  <text class="label" x="420" y="57">GitHub Repo</text>
-
-  <!-- Token API (build + serve) -->
-  <rect class="box" x="320" y="172" width="200" height="72" rx="12" />
-  <text class="label" x="420" y="208">Token API</text>
-
-  <!-- Platform consumers -->
-  <rect class="box" x="23"  y="380" width="140" height="56" rx="12" />
-  <text class="label" x="93"  y="408">Android</text>
-  <rect class="box" x="186" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="256" y="408">iOS</text>
-  <rect class="box" x="349" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="419" y="408">Web</text>
-  <rect class="box" x="512" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="582" y="408">TV</text>
-  <rect class="box" x="675" y="380" width="140" height="56" rx="12" />
-  <text class="label" x="745" y="408">Figma</text>
-
-  <!-- GitHub Repo -> Token API -->
-  <path class="flow" d="M420,84 L420,166" marker-end="url(#ds-arrow)" />
-
-  <!-- Token API -> distribution bus -> each platform -->
-  <path class="flow" d="M420,244 L420,326" />
-  <path class="flow" d="M93,326 L745,326" />
-  <path class="flow" d="M93,326 L93,372"   marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M256,326 L256,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M419,326 L419,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M582,326 L582,372" marker-end="url(#ds-arrow)" />
-  <path class="flow" d="M745,326 L745,372" marker-end="url(#ds-arrow)" />
-
-  <!-- Figma writes token edits back to the repo (round trip) -->
-  <path class="feedback" d="M815,408 L828,408 L828,56 L524,56" marker-end="url(#ds-arrow)" />
-  <text class="feedback-label" x="828" y="240" transform="rotate(90 828 240)">edits sync back</text>
-</svg>
- </figure> </div> </header> <article class="cs-article"> <aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">A design system in Figma is a promise. A design system as an API is a guarantee.</blockquote><p class="cs-pullquote-context">The difference between a library designers maintain and a service engineers consume</p></aside><header class="cs-section-head">
+<link rel="stylesheet" href="/_astro/_study_.xdEM7Oo6.css"></head> <body> <div class="back-button-container"> <div class="container"> <a href="/work/n8n" class="back-button">← Back to portfolio</a> </div> </div> <main>  <header class="cs-hero-wrap"> <div class="cs-hero"> <div class="cs-hero-text"> <span class="cs-kicker">CASE STUDY · NINOX SOFTWARE GMBH · 2024</span> <h1 class="cs-title">Who Controls the AI?</h1> <p class="cs-tagline">Design lead (freelance, founder-led stealth project)</p> <p class="cs-deck">A founder-led stealth project to extend Ninox&#39;s reach. The platform is incredibly powerful once a schema exists — but defining the schema was the gate that kept most non-technical SMEs out. The vibe-coding approach generates a schema from a plain-language description. The design problem: how to hand a non-database-savvy user a schema they can actually own.</p>  </div> <figure class="cs-hero-figure"> <img src="/images/ninox/ai-onboarding-hero.png" alt="Ninox AI onboarding interface — user types a database description, AI generates the structure, user edits the result"> </figure> </div> </header> <article class="cs-article"> <header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;01</span>
-    <h2 class="cs-section-title">The problem</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography — Kotlin values, Swift constants, CSS variables, Figma styles.</p><p>When one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.</p><p>There was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The Context</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>Ninox is a no-code business application platform — people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly — law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.</p><p>That database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The vibe-coding initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.</p><p>I worked on this directly with Ninox's CEO and technical co-founder in a stealth pre-product-team phase — a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?</p></div><figure class="cs-figure"><img src="/images/ninox/prompt-input.png" alt="Ninox AI onboarding — the prompt input screen, with category suggestions and an empty preview panel" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 01</span><span class="cs-caption-text">The entry point: describe what you want to build. The right panel is empty until the AI generates something.</span></figcaption></figure><aside class="cs-pullquote"><span class="cs-pullquote-mark" aria-hidden="true">✱</span><blockquote class="cs-pullquote-text">Show the output. Then let the user edit it. Never leave them staring at something they can't change.</blockquote><p class="cs-pullquote-context">The core design principle that shaped the onboarding</p></aside><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;02</span>
-    <h2 class="cs-section-title">The architecture</h2>
-  </header><div class="cs-body cs-body--dropcap"><p>The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.</p><p>What I built is a Git-based token repository that builds to a live API the platforms consume directly.</p><p><strong>One Git repo</strong> holds the tokens, versioned and reviewed like any other code. <strong>A three-tier hierarchy</strong> keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. <strong>Style Dictionary</strong> builds platform-specific outputs from that single definition. <strong>An automation layer</strong> distributes every committed change to the platform endpoints and the Figma plugin.</p></div><figure class="cs-figure"><img src="/images/bibeltv/design-system-tokens.png" alt="The token set, synced into the Figma plugin" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 01</span><span class="cs-caption-text">The same tokens, in Figma — one consumer of the system, kept in sync automatically.</span></figcaption></figure><header class="cs-section-head">
+    <h2 class="cs-section-title">Why chat alone wouldn't work</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>The obvious AI-onboarding pattern is a chat interface: user describes the database, AI replies with the schema rendered as text or a structured response, user asks for changes in chat, repeat. That pattern breaks here in two ways that aren't theoretical.</p><h3 class="cs-sublabel">Long chat outputs don't scale to schemas</h3><p>A realistic SME database has eight or twelve tables, each with ten or twenty fields, plus relations. A chat that prints that schema back to the user — and then expects the user to type 'change the `Customer` table's `phone` field to a multi-value field, and add a `country` field after it' — is going to feel like writing migration scripts in prose. The schema is large enough that the chat transcript stops being a conversation and starts being a wall of generated text the user has to navigate.</p><h3 class="cs-sublabel">Trial users won't write a long spec upfront</h3><p>The other end of the conversation has the same problem in reverse. A trial user is not going to type a 400-word spec into the first prompt: 'I need a CRM for my law firm with clients, matters, case files, billing records, deadlines, contact people per client, document attachments per matter…' They will type one sentence. The first AI-generated schema will be off by at least a little — sometimes by more. Recovering from that mismatch through additional chat turns leads back to the first problem.</p><p>Both constraints together meant chat alone was not a viable interaction model. The schema had to live on a surface the user could see and touch directly.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;03</span>
-    <h2 class="cs-section-title">How it works in practice</h2>
-  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">Change a token</h3><p>A designer or engineer opens a pull request against the token repo. Standard review, approve, merge.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Style Dictionary builds</h3><p>CI runs Style Dictionary, generating platform-specific token files from the single source definition.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">Sync runs automatically</h3><p>Automation workflows push the built tokens to the platform endpoints and the Figma plugin. No manual step.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">Platforms pick it up</h3><p>The Android app reads the API on launch and stores tokens locally. Figma updates through the plugin. A token change needs no code deploy.</p></div></li></ol><header class="cs-section-head">
+    <h2 class="cs-section-title">Design decisions</h2>
+  </header><ol class="cs-steps"><li class="cs-step"><span class="cs-step-num" aria-hidden="true">01</span><div class="cs-step-content"><h3 class="cs-step-label">Schema renders into the real data-model editor</h3><p>The AI doesn't produce a chat-rendered preview of the schema; it generates directly into the same data-model editor a user would touch to build a database manually. Tables appear as cards, fields are clickable, relationships are drawn as arrows. The user sees what they would normally see — just generated, not built by hand.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">02</span><div class="cs-step-content"><h3 class="cs-step-label">Direct manipulation as the primary path; chat as the alternative</h3><p>Every table card has 'add field' and 'edit' affordances right there. Users can add fields, rename them, change types, add or remove entire tables without opening the chat. Chat stays available for changes that are easier to describe than to click — but the user picks which path matches the change they want to make. Both paths converge on the same schema.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">03</span><div class="cs-step-content"><h3 class="cs-step-label">First-schema-is-wrong, handled gracefully</h3><p>Because the first prompt will be short and the first schema will be off, the design accepts that as the normal case. Suggested-actions chips below the chat propose obvious additions ('add SLA tracking to tickets', 'add escalation flags to agents'). The user doesn't have to remember everything they want — the AI keeps proposing, the user keeps editing, and the schema grows incrementally.</p></div></li><li class="cs-step"><span class="cs-step-num" aria-hidden="true">04</span><div class="cs-step-content"><h3 class="cs-step-label">The schema, once built, is just a Ninox app</h3><p>There is no separate 'AI mode' the user has to leave. Once the schema feels right, they click into the app and start using it — same builder, same sidebar, same edit affordances they have just used. The vibe-coding generation step folds into Ninox's normal authoring surface; it doesn't replace it.</p></div></li></ol><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;04</span>
-    <h2 class="cs-section-title">The decisions that mattered</h2>
-  </header><div class="cs-body cs-body--dropcap"><h3 class="cs-sublabel">The repo is the source, not Figma</h3><p>This flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer — so design can change without engineering retouching four platforms.</p><h3 class="cs-sublabel">A standard token format</h3><p>I used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.</p><h3 class="cs-sublabel">Design owned the architecture</h3><p>Token infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation — but it also meant learning style dictionaries, API endpoints, and automation workflows.</p><p>Because the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build.</p></div><header class="cs-section-head">
+    <h2 class="cs-section-title">The design principle behind it</h2>
+  </header><div class="cs-body cs-body--dropcap"><p>The underlying principle isn't unique to databases. It applies to any AI-generated artefact that a human has to take ownership of.</p><p>The AI's job is to reduce the blank-screen problem. The hardest part of building a database from scratch — especially as someone who has never built one — is starting. AI solves that. But once the screen has content, the user has to feel immediately in control of it, or the AI has just moved the problem: instead of staring at a blank screen, they're staring at someone else's database.</p><p>For an SME owner — a partner at a small law firm, the dispatcher at a roofing company — the schema needs to belong to them within a few minutes of seeing it. That ownership shift is what makes the rest of Ninox's power available to them. Auto-magical interfaces only feel magical if the data model underneath is yours.</p></div><figure class="cs-figure"><img src="/images/ninox/dual-paths.png" alt="The AI builder showing both the chat panel (with iterative edits) and the visual data model with editable table cards" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 02</span><span class="cs-caption-text">Two paths, side by side. Chat-driven iteration on the left; direct-edit affordances (‘Create field’ on every card) on the right. The user picks whichever matches the change they want to make.</span></figcaption></figure><figure class="cs-figure"><img src="/images/ninox/schema-in-builder.png" alt="The generated schema running as a normal Ninox app, in the standard builder UI with the sidebar tables and Builder mode toggle" loading="lazy" /><figcaption class="cs-caption"><span class="cs-caption-tag">Fig. 03</span><span class="cs-caption-text">After generation, the AI-built schema is just a regular Ninox app. Same builder, same sidebar, same edit affordances. There is no separate ‘AI mode’ to leave.</span></figcaption></figure><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;05</span>
-    <h2 class="cs-section-title">What changed</h2>
-  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">Sync</dt><dd class="cs-metric-change"><span class="cs-metric-before">Four teams hand-updating tokens; platforms drifting apart</span><span class="cs-metric-arrow" aria-hidden="true">→</span><span class="cs-metric-after">One commit flows to every platform automatically</span></dd></div><div class="cs-metric"><dt class="cs-metric-label">Live today</dt><dd class="cs-metric-value">Android consuming tokens via the API; Figma synced automatically through the plugin</dd></div><div class="cs-metric"><dt class="cs-metric-label">Structure</dt><dd class="cs-metric-value">Three-tier token hierarchy — consistency enforced by structure, not by coordination</dd></div><div class="cs-metric"><dt class="cs-metric-label">Future-ready</dt><dd class="cs-metric-value">Architecture supports server-driven UI; iOS and web endpoints defined and ready</dd></div></dl><header class="cs-section-head">
+    <h2 class="cs-section-title">Outcome</h2>
+  </header><dl class="cs-metrics"><div class="cs-metric"><dt class="cs-metric-label">Engagement scope</dt><dd class="cs-metric-value">Founder-led stealth phase; design handed off to the product team as the basis for the public Ninox AI platform (beta 2026)</dd></div><div class="cs-metric"><dt class="cs-metric-label">Interaction model</dt><dd class="cs-metric-value">Split-screen direct manipulation alongside chat — adopted as the primary onboarding pattern</dd></div><div class="cs-metric"><dt class="cs-metric-label">Audience reach</dt><dd class="cs-metric-value">Designed to make Ninox usable for SMEs without database knowledge — law firms, construction, contractors, inspectors — where setup previously required a consultant</dd></div></dl><div class="cs-body"><p>The 'show the schema, let the user edit it directly' principle became the spine of the AI onboarding when the work transitioned from founder collaboration to product-team build-out. The strategic point — that direct manipulation has to coexist with chat, not be replaced by it — set the interaction model for the beta.</p></div><header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;06</span>
-    <h2 class="cs-section-title">What I took from it</h2>
-  </header><div class="cs-body cs-body--reflection"><p>Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.</p><p>The other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it.</p></div> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
+    <h2 class="cs-section-title">What this means for AI product design</h2>
+  </header><div class="cs-body cs-body--reflection"><p>Chat-only AI interfaces work well for short, completable interactions — write me an email, summarise this document, answer this question. They stop working when the artefact is structured and large enough that the user needs to see and touch it directly: a database schema, a contract draft, an org chart, a project plan.</p><p>For those cases, the design problem is the seam — how the chat output lands somewhere the user can actually own. In Ninox, that seam is the data-model editor: the AI generates into it, and the user picks up editing in it. The chat doesn't disappear; it stops being the only path. That coexistence is what made AI-assisted onboarding feasible for users who couldn't have written the spec themselves and wouldn't have managed the schema through chat.</p><p>The same seam will matter wherever AI is used to onboard non-experts into a structured artefact — legal AI included. The user needs the document, not a chat transcript about the document.</p></div> <p class="cs-endmark" aria-hidden="true">■</p> </article>  </main> <div id="stage" class="berlin-footer" data-weather="sunny" data-astro-cid-mncituio> <canvas id="berlin-canvas" width="480" height="250" data-astro-cid-mncituio></canvas> <div id="footer-readout" class="berlin-readout" data-astro-cid-mncituio>
 BERLIN · <span id="time-display" data-astro-cid-mncituio>--:--</span> · <span id="temp-display" data-astro-cid-mncituio>--°</span> </div> </div>  <script>
 (function () {
       const stage = document.getElementById('stage');
