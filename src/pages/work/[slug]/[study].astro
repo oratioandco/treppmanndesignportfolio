@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import Layout from '../../../layouts/Layout.astro';
 import {
   getAllFilters,
@@ -216,6 +218,21 @@ const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !
 const pageTitle = heroSection?.headline || study.title;
 const pageDescription = study.subtitle || '';
 
+// Inline SVG hero images so they inherit the page's CSS variables (the
+// diagram colors track the light/dark theme) and the site fonts. Raster
+// heroes still render as a plain <img>.
+let heroInlineSvg = '';
+if (study.hero_image?.src?.endsWith('.svg')) {
+  try {
+    heroInlineSvg = fs.readFileSync(
+      path.join(process.cwd(), 'public', study.hero_image.src),
+      'utf8'
+    );
+  } catch (e) {
+    heroInlineSvg = '';
+  }
+}
+
 // Number only the section types that carry an opener (narrative, process, outcome,
 // reflection, comparison, gallery, default). Skip callouts and key-takeaways.
 const figCounter = { n: 0 };
@@ -249,7 +266,9 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
       </div>
       {study.hero_image && (
         <figure class="cs-hero-figure">
-          <img src={study.hero_image.src} alt={study.hero_image.alt} />
+          {heroInlineSvg
+            ? <Fragment set:html={heroInlineSvg} />
+            : <img src={study.hero_image.src} alt={study.hero_image.alt} />}
         </figure>
       )}
     </div>

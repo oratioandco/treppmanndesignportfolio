@@ -8,11 +8,11 @@
   "role": "Head of Product Design",
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
-  "status": "draft",
+  "status": "published",
   "last_updated": "2026-05-22",
   "hero_image": {
-    "src": "/images/bibeltv/design-system-hero.png",
-    "alt": "Design token architecture: a Git repo flowing to Android, iOS, web, and Figma"
+    "src": "/images/bibeltv/design-system-hero.svg",
+    "alt": "Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma — with Figma writing changes back to the repo"
   },
   "format_priority": ["executive", "in-depth"],
 

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 470" class="token-diagram" role="img" aria-label="Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma, with Figma writing changes back to the repo">
+  <style>
+    /* Inlined into the page, so these CSS vars resolve against the site
+       theme (data-theme) and flip automatically in dark mode. The second
+       value in each var() is a light-mode fallback for when this SVG is
+       loaded standalone (e.g. via &lt;img&gt;). */
+    .token-diagram .box {
+      fill: none;
+      stroke: var(--color-accent, #4f8375);
+      stroke-width: 2;
+    }
+    .token-diagram .label {
+      fill: var(--color-text, #1a1a1a);
+      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+      font-size: 21px;
+      letter-spacing: 0.02em;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .token-diagram .flow {
+      fill: none;
+      stroke: var(--color-accent, #4f8375);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .token-diagram .feedback {
+      fill: none;
+      stroke: var(--color-accent, #4f8375);
+      stroke-width: 2;
+      stroke-dasharray: 7 6;
+      opacity: 0.65;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .token-diagram .feedback-label {
+      fill: var(--color-text-muted, #666);
+      font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-anchor: middle;
+    }
+  </style>
+
+  <defs>
+    <marker id="ds-arrow" markerWidth="12" markerHeight="12" refX="7" refY="5"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L9,5 L2,8" fill="none"
+            stroke="var(--color-accent, #4f8375)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <!-- GitHub Repo (source of truth) -->
+  <rect class="box" x="320" y="28" width="200" height="56" rx="12" />
+  <text class="label" x="420" y="57">GitHub Repo</text>
+
+  <!-- Token API (build + serve) -->
+  <rect class="box" x="320" y="172" width="200" height="72" rx="12" />
+  <text class="label" x="420" y="208">Token API</text>
+
+  <!-- Platform consumers -->
+  <rect class="box" x="23"  y="380" width="140" height="56" rx="12" />
+  <text class="label" x="93"  y="408">Android</text>
+  <rect class="box" x="186" y="380" width="140" height="56" rx="12" />
+  <text class="label" x="256" y="408">iOS</text>
+  <rect class="box" x="349" y="380" width="140" height="56" rx="12" />
+  <text class="label" x="419" y="408">Web</text>
+  <rect class="box" x="512" y="380" width="140" height="56" rx="12" />
+  <text class="label" x="582" y="408">TV</text>
+  <rect class="box" x="675" y="380" width="140" height="56" rx="12" />
+  <text class="label" x="745" y="408">Figma</text>
+
+  <!-- GitHub Repo -> Token API -->
+  <path class="flow" d="M420,84 L420,166" marker-end="url(#ds-arrow)" />
+
+  <!-- Token API -> distribution bus -> each platform -->
+  <path class="flow" d="M420,244 L420,326" />
+  <path class="flow" d="M93,326 L745,326" />
+  <path class="flow" d="M93,326 L93,372"   marker-end="url(#ds-arrow)" />
+  <path class="flow" d="M256,326 L256,372" marker-end="url(#ds-arrow)" />
+  <path class="flow" d="M419,326 L419,372" marker-end="url(#ds-arrow)" />
+  <path class="flow" d="M582,326 L582,372" marker-end="url(#ds-arrow)" />
+  <path class="flow" d="M745,326 L745,372" marker-end="url(#ds-arrow)" />
+
+  <!-- Figma writes token edits back to the repo (round trip) -->
+  <path class="feedback" d="M815,408 L828,408 L828,56 L524,56" marker-end="url(#ds-arrow)" />
+  <text class="feedback-label" x="828" y="240" transform="rotate(90 828 240)">edits sync back</text>
+</svg>

@@ -1,0 +1,71 @@
+{
+  "slug": "mobile-de",
+  "title": "Selected Work",
+  "subtitle": "Consumer product design, design systems at scale, marketplace UX, and design leadership — selected for mobile.de",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 8
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "mobile.de",
+      "role": "Product Design Lead",
+      "date": "2026-06-14",
+      "positioning": "Consumer Product Design · Design Systems at Scale · Marketplace UX · Design Leadership"
+    },
+    "selection_rationale": {
+      "bibeltv-app-redesign": "Primary consumer story: a polished multi-platform app redesign for a real audience. Closest analogue to mobile.de's large B2C product surface.",
+      "bibeltv-design-system-api": "Design systems at scale: API-first token system syncing iOS, Android, web, TV, and Figma from one source. mobile.de runs a large multi-platform product where this kind of infrastructure pays off.",
+      "ninox-org-building": "Leadership story for a Product Design Lead role — building and leading a design team, hiring, culture, design-as-a-function.",
+      "ninox-ai-onboarding": "AI product design: prompt-to-output UX, model uncertainty, user agency. Relevant as marketplaces add AI-assisted flows (pricing, listing, search).",
+      "spreadshirt-user-research-strategy": "Marketplace / e-commerce research and strategy: changing a company's direction with one prototype. Direct marketplace-domain relevance.",
+      "churchdesk-booking-system": "Complex workflow simplified to clean UX with measurable outcomes and multi-stakeholder coordination — transferable to marketplace transaction flows."
+    }
+  }
+}
