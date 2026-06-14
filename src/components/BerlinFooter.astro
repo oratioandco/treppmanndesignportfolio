@@ -27,13 +27,14 @@
   .berlin-footer canvas {
     display: block;
     width: 100%;
+    /* Cap WIDTH (not height) so aspect-ratio is never overridden. With an
+       explicit width:100% a max-height would just clamp height and leave the
+       canvas full-width — stretching it. Capping width keeps 480:250 exact at
+       every viewport: 614px ÷ (480/250) ≈ 320px tall. The flex parent centers
+       it and the transparent footer bg (page noise) fills the sides on desktop;
+       mobile stays under the cap and fills the full width. */
+    max-width: 614px;
     aspect-ratio: 480 / 250;
-    /* Cap height so the footer doesn't dominate on wide viewports.
-       On viewports wider than ~615px the canvas hits this cap and its
-       width auto-shrinks to maintain 480:250 (centered, --color-bg
-       filling the sides). Mobile never reaches the cap so the canvas
-       fills the full width. */
-    max-height: 320px;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
