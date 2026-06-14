@@ -38,8 +38,8 @@
       "content": "The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.\n\nWhat I built is a Git-based token repository that builds to a live API the platforms consume directly.\n\n**One Git repo** holds the tokens, versioned and reviewed like any other code. **A three-tier hierarchy** keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. **Style Dictionary** builds platform-specific outputs from that single definition. **An automation layer** distributes every committed change to the platform endpoints and the Figma plugin.",
       "images": [
         {
-          "src": "/images/bibeltv/design-system-tokens.png",
-          "alt": "The token set, synced into the Figma plugin",
+          "src": "/images/bibeltv/design-system-tokens.jpg",
+          "alt": "The BibelTV Design Tools Figma plugin syncing tokens from the API, beside the primitive color swatches it generates",
           "caption": "The same tokens, in Figma — one consumer of the system, kept in sync automatically."
         }
       ]
