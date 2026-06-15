@@ -281,6 +281,32 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
 
     <p class="cs-endmark" aria-hidden="true">■</p>
   </article>
+<script>
+  // Per-letter Redaction shimmer on the case-study title — same treatment as
+  // the homepage hero headline: each letter perpetually shuffles between
+  // Redaction weights at its own random cadence. Honours reduced-motion.
+  const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
+  const title = document.querySelector('.cs-title');
+  if (title) {
+    const text = title.textContent;
+    title.innerHTML = text
+      .split('')
+      .map((char) => (char === ' ' ? ' ' : `<span class="letter">${char}</span>`))
+      .join('');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      title.querySelectorAll('.letter').forEach((letter) => {
+        let i = Math.floor(Math.random() * fonts.length);
+        letter.style.fontFamily = `"${fonts[i]}", Georgia, serif`;
+        const animate = () => {
+          i = Math.floor(Math.random() * fonts.length);
+          letter.style.fontFamily = `"${fonts[i]}", Georgia, serif`;
+          setTimeout(animate, 1500 + Math.random() * 2500);
+        };
+        setTimeout(animate, Math.random() * 5000);
+      });
+    }
+  }
+</script>
 </Layout>
 
 <style is:global>
