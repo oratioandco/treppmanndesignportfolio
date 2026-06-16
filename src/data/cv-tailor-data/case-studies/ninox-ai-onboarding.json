@@ -3,7 +3,15 @@
   "title": "Who Controls the AI?",
   "subtitle": "Designing the onboarding for a vibe-coding platform where AI builds databases from plain-language descriptions — and users stay in control",
   "type": "design-case-study",
-  "tags": ["ai", "saas", "b2b", "prototyping", "from-scratch", "user-research", "strategy"],
+  "tags": [
+    "ai",
+    "saas",
+    "b2b",
+    "prototyping",
+    "from-scratch",
+    "user-research",
+    "strategy"
+  ],
   "company": "Ninox Software GmbH",
   "role": "Design lead (freelance, founder-led stealth project)",
   "team": "Direct collaboration with Ninox CEO and technical co-founder, pre-product-team handoff, Berlin",
@@ -11,11 +19,13 @@
   "status": "draft",
   "last_updated": "2026-05-24",
   "hero_image": {
-    "src": "/images/ninox/ai-onboarding-hero.png",
-    "alt": "Ninox AI onboarding interface — user types a database description, AI generates the structure, user edits the result"
+    "src": "/images/covers/generated/ninox-ai-onboarding.svg",
+    "alt": "Who Controls the AI? — abstract resolution-field cover"
   },
-  "format_priority": ["in-depth", "executive"],
-
+  "format_priority": [
+    "in-depth",
+    "executive"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -122,22 +132,24 @@
       ]
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Founder-led stealth project (with the CEO and technical co-founder, pre-product-team handoff) to extend Ninox's reach beyond the database-savvy. Designed the vibe-coding onboarding: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
-      "sections": ["hero", "callout", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     }
   },
-
   "related": [
     "bibeltv-support-agent",
     "bibeltv-ai-prototyping",
     "ninox-org-building"
   ],
-
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,

@@ -3,7 +3,14 @@
   "title": "Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline",
   "subtitle": "Using Claude Code and agentic engineering to build production-grade prototypes with real APIs — and why the prototype code became the design artifact",
   "type": "process-innovation",
-  "tags": ["agentic-engineering", "ai-augmented", "prototyping", "design-code-collaboration", "streaming-media", "cross-platform"],
+  "tags": [
+    "agentic-engineering",
+    "ai-augmented",
+    "prototyping",
+    "design-code-collaboration",
+    "streaming-media",
+    "cross-platform"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led initiative with engineering partner, Berlin",
@@ -11,11 +18,14 @@
   "status": "review",
   "last_updated": "2026-05-07",
   "hero_image": {
-    "src": "/images/bibeltv/agentic-hero.png",
-    "alt": "Bibel TV Android prototype with real APIs and dynamic color theming"
+    "src": "/images/covers/generated/bibeltv-agentic-engineering.svg",
+    "alt": "Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline — abstract resolution-field cover"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -118,28 +128,34 @@
       "content": "If you're a design leader working with engineering teams, collapsing the handoff is the single highest-leverage process change available. It doesn't require new tools — it requires a different relationship between design intent and implementation. I used Claude Code to accelerate prototyping, but the insight is tool-agnostic: when your prototype is working code, the design-to-ship pipeline disappears."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Collapsed the design-to-ship pipeline using agentic engineering: I prototyped in code with real APIs, engineering consumed the prototype directly. Iteration speed improved from days to hours.",
       "angle": "Design leadership through process innovation — collapsing handoff cycles",
-      "sections": ["hero", "outcome", "key-takeaway"],
+      "sections": [
+        "hero",
+        "outcome",
+        "key-takeaway"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "Figma-to-handoff has a better alternative: prototype in code, iterate with engineering, ship working prototypes. Here's how.",
       "angle": "The cultural shift required to make prototype code a design artifact",
-      "sections": ["hero", "callout", "process", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "process",
+        "reflection"
+      ],
       "max_read_time": "7 min"
     }
   },
-
   "related": [
     "bibeltv-app-redesign",
     "bibeltv-design-system-api",
     "bibeltv-color-api"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": false,

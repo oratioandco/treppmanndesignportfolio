@@ -3,15 +3,23 @@
   "title": "Agentic Design at Scale",
   "subtitle": "Using AI-coded prototypes to collapse the design-to-production pipeline",
   "type": "ai-product",
-  "tags": ["ai-native-design", "prototyping", "agentic-engineering", "code-generation", "multi-platform"],
+  "tags": [
+    "ai-native-design",
+    "prototyping",
+    "agentic-engineering",
+    "code-generation",
+    "multi-platform"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "1 designer + engineering team, Hamburg/Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
   "last_updated": "2026-05-06",
-  "format_priority": ["in-depth", "executive"],
-
+  "format_priority": [
+    "in-depth",
+    "executive"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -124,31 +132,47 @@
       "content": "If you're stuck in the traditional design-handoff-to-engineering loop, agentic prototyping is the escape route. I'm proving it works at Bibel TV with real products, real deadlines, and real engineering teams. The prototype doesn't have to be perfect — it just has to be better than a spec at communicating intent."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes. Result: 2x faster design-to-prototype cycle, 70% of code ships directly.",
       "angle": "Collapsing the design-engineering loop with agentic code",
-      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "key-takeaway"
+      ],
       "max_read_time": "2 min"
     },
     "in-depth": {
       "summary": "Deep dive into agentic design: how we use Claude Code to generate prototypes, how engineering teams evaluate them, and what this means for the future of design handoff.",
       "angle": "Prototypes as specs: a working alternative to pixel-perfect mockups",
-      "sections": ["hero", "narrative", "callout", "process", "example", "insights", "outcome", "reflection", "key-takeaway"],
+      "sections": [
+        "hero",
+        "narrative",
+        "callout",
+        "process",
+        "example",
+        "insights",
+        "outcome",
+        "reflection",
+        "key-takeaway"
+      ],
       "max_read_time": "8 min"
     }
   },
-
   "related": [
     "bibeltv-color-api",
     "ninox-org-building"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": false,
     "confidentiality_note": null,
     "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23"
+  },
+  "hero_image": {
+    "src": "/images/covers/generated/bibeltv-ai-prototyping.svg",
+    "alt": "Agentic Design at Scale — abstract resolution-field cover"
   }
 }

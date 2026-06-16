@@ -3,7 +3,15 @@
   "title": "A design system that ships to production, not to Figma",
   "subtitle": "An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth",
   "type": "design-system",
-  "tags": ["design-systems", "token-architecture", "api-first", "multi-platform", "automation", "infrastructure", "technical-depth"],
+  "tags": [
+    "design-systems",
+    "token-architecture",
+    "api-first",
+    "multi-platform",
+    "automation",
+    "infrastructure",
+    "technical-depth"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
@@ -11,11 +19,13 @@
   "status": "published",
   "last_updated": "2026-05-22",
   "hero_image": {
-    "src": "/images/bibeltv/design-system-hero.svg",
-    "alt": "Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma — with Figma writing changes back to the repo"
+    "src": "/images/covers/generated/bibeltv-design-system-api.svg",
+    "alt": "A design system that ships to production, not to Figma — abstract resolution-field cover"
   },
-  "format_priority": ["executive", "in-depth"],
-
+  "format_priority": [
+    "executive",
+    "in-depth"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -37,6 +47,11 @@
       "headline": "The architecture",
       "content": "The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.\n\nWhat I built is a Git-based token repository that builds to a live API the platforms consume directly.\n\n**One Git repo** holds the tokens, versioned and reviewed like any other code. **A three-tier hierarchy** keeps them sane: global primitives (raw OKLCH colors, spacing, type), semantic tokens (`brand-primary`, `surface-elevated`), and component tokens. **Style Dictionary** builds platform-specific outputs from that single definition. **An automation layer** distributes every committed change to the platform endpoints and the Figma plugin.",
       "images": [
+        {
+          "src": "/images/bibeltv/design-system-hero.svg",
+          "alt": "Design token architecture: a Git repo feeds a Token API that syncs to Android, iOS, web, TV, and Figma — with Figma writing changes back to the repo",
+          "caption": "The architecture: one Git repo builds a Token API that every platform — and Figma — consumes, with edits syncing back."
+        },
         {
           "src": "/images/bibeltv/design-system-tokens.jpg",
           "alt": "The BibelTV Design Tools Figma plugin syncing tokens from the API, beside the primitive color swatches it generates",
@@ -100,27 +115,34 @@
       "content": "Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Built a deployed design-token system — Git repo, Style Dictionary, automated sync — that keeps Android, Figma, and planned iOS/web in step from one source of truth. Zero manual sync.",
       "angle": "Design infrastructure that outlasts the designer who built it",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "in-depth": {
       "summary": "Most design systems are Figma libraries. This one is a deployed service. How it was built — token architecture, automation, a path to server-driven UI — without a platform-engineering team.",
       "angle": "A Head of Design building infrastructure: when to own the token API",
-      "sections": ["hero", "callout", "narrative", "process", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "process",
+        "reflection"
+      ],
       "max_read_time": "8 min"
     }
   },
-
   "related": [
     "bibeltv-color-api",
     "bibeltv-app-redesign"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": false,

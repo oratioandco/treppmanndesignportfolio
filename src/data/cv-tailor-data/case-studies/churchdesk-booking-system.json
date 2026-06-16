@@ -3,7 +3,17 @@
   "title": "When booking a priest isn't simple",
   "subtitle": "A funeral booking system designed so the rest of the ChurchDesk platform could build on it. Three stakeholder groups with opposite needs; one foundation deeply integrated with the product they already use.",
   "type": "business-process",
-  "tags": ["measurable-impact", "customer-collaboration", "regulated", "b2b", "mobile", "cross-platform", "saas", "platform-thinking", "product-management"],
+  "tags": [
+    "measurable-impact",
+    "customer-collaboration",
+    "regulated",
+    "b2b",
+    "mobile",
+    "cross-platform",
+    "saas",
+    "platform-thinking",
+    "product-management"
+  ],
   "company": "ChurchDesk GmbH",
   "role": "Head of Platform and Design",
   "team": "1 designer + engineering team, Berlin",
@@ -11,11 +21,14 @@
   "status": "draft",
   "last_updated": "2026-05-23",
   "hero_image": {
-    "src": "/images/churchdesk/funeral-home-booking.jpg",
-    "alt": "The funeral home's booking screen — a full week of time slots for the Main Cemetery, with only the slots that resolve true against the priest's on-call rota, the cemetery's opening hours, and any standing commitments"
+    "src": "/images/covers/generated/churchdesk-booking-system.svg",
+    "alt": "When booking a priest isn't simple — abstract resolution-field cover"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -96,7 +109,14 @@
     {
       "type": "narrative",
       "headline": "How the system fits together",
-      "content": "The design rests on one composition: a priest sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nEvery booking is a request, not an automatic booking. The priest confirms or declines. That single decision is what kept the system from feeling like priests were being booked over their heads.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation — it was a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back."
+      "content": "The design rests on one composition: a priest sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nEvery booking is a request, not an automatic booking. The priest confirms or declines. That single decision is what kept the system from feeling like priests were being booked over their heads.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation — it was a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back.",
+      "images": [
+        {
+          "src": "/images/churchdesk/funeral-home-booking.jpg",
+          "alt": "The funeral home's booking view — the available slots that remain after the priest's availability and the cemetery's constraints are resolved",
+          "caption": "What the funeral home sees: only the slots that remain after every constraint resolves."
+        }
+      ]
     },
     {
       "type": "outcome",
@@ -129,27 +149,33 @@
       "content": "The best multi-stakeholder design does not try to make everyone happy with one interface. It gives each group the right level of control and visibility. Funeral homes got speed. Priests got control. Parish assistants got oversight.\n\nThe tension between those needs is the actual design work — and on this project a lot of that translation was possible because the customer had already done the synthesis themselves. They knew their community: bereaved families, busy funeral directors, stretched parish offices. They handed us the goals. My job was the translation and the validation, not the discovery.\n\nThe other lesson is about leverage — and it's where the product role mattered as much as the design role. The most consequential move on this project wasn't a design choice; it was the scoping choice. Once build-vs-buy was off the table (the custom-form requirement ruled out third-party tools), the real fork was between a standalone module and an integrated platform feature. The standalone module would have shipped funeral booking on time, but it would have been one more thing for parishes to learn alongside the platform. The integrated path was deeper and harder: build the booking capability into the calendar and form builder that parishes already used, so it would compose with whatever came after. That choice cost more upfront and paid back across the rest of the product."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Owned product and design on ChurchDesk's funeral booking system, scoped so the rest of the platform could build on it. Delivered in two months on a €20,000 budget; 70% less coordination time, 90% booking acceptance. Started from the launch customer's own design-thinking output and validated with stakeholders rather than running upfront research; extended the existing calendar and form builder rather than building a standalone module (the faster path that was floated and rejected).",
       "angle": "A booking capability deeply integrated into the platform, launched as funeral booking",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "Funeral planning is hard enough without phone-tag between funeral homes, churches, and cemeteries. Here is how the booking system made it simple for everyone involved — and why the right answer was to build deeper into the platform, not to buy a tool or build a standalone module.",
       "angle": "Designing for stakeholders who want opposite things — and choosing platform integration over the fast path",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "datameer-data-dense-analytics",
     "ninox-org-building"
   ],
-
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,

@@ -74,5 +74,9 @@
     "confidentiality_note": "In production. Any operational metrics or UI screenshots require Bibel TV approval before publishing.",
     "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23"
   },
-  "cover_image": "/images/covers/ai.jpeg"
+  "cover_image": "/images/covers/ai.jpeg",
+  "hero_image": {
+    "src": "/images/covers/generated/bibeltv-support-agent.svg",
+    "alt": "A Copilot Skill for Customer Care — abstract resolution-field cover"
+  }
 }

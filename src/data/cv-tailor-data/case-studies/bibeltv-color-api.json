@@ -3,7 +3,17 @@
   "title": "A color engine built for the brand, not the industry default",
   "subtitle": "Perceptual color extraction from content artwork — dynamic theming that stays warm, meets WCAG contrast, and works in light and dark mode",
   "type": "design-system",
-  "tags": ["color-science", "design-systems", "accessibility", "api-first", "streaming-media", "brand-alignment", "technical-depth", "k-means", "oklch"],
+  "tags": [
+    "color-science",
+    "design-systems",
+    "accessibility",
+    "api-first",
+    "streaming-media",
+    "brand-alignment",
+    "technical-depth",
+    "k-means",
+    "oklch"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led, with an engineering partner. Hamburg / Berlin",
@@ -11,11 +21,14 @@
   "status": "draft",
   "last_updated": "2026-05-23",
   "hero_image": {
-    "src": "/images/bibeltv/color-lab.png",
-    "alt": "The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right — one in dark mode, one in light mode — both themed from the same extracted palette"
+    "src": "/images/covers/generated/bibeltv-color-api.svg",
+    "alt": "A color engine built for the brand, not the industry default — abstract resolution-field cover"
   },
-  "format_priority": ["executive", "in-depth", "blog"],
-
+  "format_priority": [
+    "executive",
+    "in-depth",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -30,7 +43,14 @@
     {
       "type": "narrative",
       "headline": "Why a custom engine, and how it works",
-      "content": "The first attempt wasn't a custom engine at all. Bibel TV already runs its images through imgix, and imgix ships with a palette-extraction feature. So we used it, and looked at what came out across the catalog.\n\nThere were two problems. The first was visible at a glance: too often the colors collapsed. In dark mode the catalog drifted toward beige and brown, in light mode toward pink and rose — different artworks ending up with too-similar themes. The second problem was less obvious in any one card but unmistakable across a grid: the colors weren't perceptually uniform. Some cards came back heavy and saturated, others washed out and weak, and the difference had no relationship to the artwork itself. Scrolling the grid was noisy — some cards demanded the eye, others almost disappeared, with no rhythm — and that uneven weight is the real reason the catalog stopped feeling like a coherent collection.\n\nThe diagnosis for both failures was the color space. RGB isn't perceptually uniform: two colors that are mathematically far apart can read as nearly the same shade to a human, and two colors that are mathematically close can read as very different visual weights. An RGB extractor has no way to control for either — so it produces both monotone drift and uneven weighting at the same time.\n\nSo I built the engine in OKLCH, the perceptual color space — where lightness and chroma map to how humans actually see, not to how RGB numerically partitions a cube. The win in OKLCH isn't theoretical: you can clamp output to a band of perceived lightness so every card lands in the same visual weight range, and reason about chroma directly so cards stay distinct without one demanding the page and another disappearing.\n\nThe algorithm is short. K-means clustering finds the most prominent colors in the artwork; a hue-and-vibrance filter drops the clusters that are dull or neutral, so muddy beiges never win just by covering the most pixels. The remaining clusters are mapped to roles — base, accent, text. Text colors are validated against the base using the WCAG contrast algorithm; if the pair fails, lightness and chroma are adjusted until it passes. The page-background gradient is computed from the base color at reduced opacity, so the page feels like it belongs to the content.\n\nFrom a single piece of artwork, the API returns a full theme: a base color anchoring the card gradient, an accent for the logo, one or two text colors that clear AA or AAA contrast against the base without anyone checking.\n\nThe engine is tuned through Color Lab — the internal configuration tool shown above. The normalization curves and hue-exclusion gradients on the left of that screen are how the extraction is calibrated for Bibel TV specifically; the system is bespoke to one brand, not a generic per-brand tool. The two phone previews on the right show the same content card rendered in dark and light mode from the same extracted palette."
+      "content": "The first attempt wasn't a custom engine at all. Bibel TV already runs its images through imgix, and imgix ships with a palette-extraction feature. So we used it, and looked at what came out across the catalog.\n\nThere were two problems. The first was visible at a glance: too often the colors collapsed. In dark mode the catalog drifted toward beige and brown, in light mode toward pink and rose — different artworks ending up with too-similar themes. The second problem was less obvious in any one card but unmistakable across a grid: the colors weren't perceptually uniform. Some cards came back heavy and saturated, others washed out and weak, and the difference had no relationship to the artwork itself. Scrolling the grid was noisy — some cards demanded the eye, others almost disappeared, with no rhythm — and that uneven weight is the real reason the catalog stopped feeling like a coherent collection.\n\nThe diagnosis for both failures was the color space. RGB isn't perceptually uniform: two colors that are mathematically far apart can read as nearly the same shade to a human, and two colors that are mathematically close can read as very different visual weights. An RGB extractor has no way to control for either — so it produces both monotone drift and uneven weighting at the same time.\n\nSo I built the engine in OKLCH, the perceptual color space — where lightness and chroma map to how humans actually see, not to how RGB numerically partitions a cube. The win in OKLCH isn't theoretical: you can clamp output to a band of perceived lightness so every card lands in the same visual weight range, and reason about chroma directly so cards stay distinct without one demanding the page and another disappearing.\n\nThe algorithm is short. K-means clustering finds the most prominent colors in the artwork; a hue-and-vibrance filter drops the clusters that are dull or neutral, so muddy beiges never win just by covering the most pixels. The remaining clusters are mapped to roles — base, accent, text. Text colors are validated against the base using the WCAG contrast algorithm; if the pair fails, lightness and chroma are adjusted until it passes. The page-background gradient is computed from the base color at reduced opacity, so the page feels like it belongs to the content.\n\nFrom a single piece of artwork, the API returns a full theme: a base color anchoring the card gradient, an accent for the logo, one or two text colors that clear AA or AAA contrast against the base without anyone checking.\n\nThe engine is tuned through Color Lab — the internal configuration tool shown here. The normalization curves and hue-exclusion gradients on the left of that screen are how the extraction is calibrated for Bibel TV specifically; the system is bespoke to one brand, not a generic per-brand tool. The two phone previews on the right show the same content card rendered in dark and light mode from the same extracted palette.",
+      "images": [
+        {
+          "src": "/images/bibeltv/color-lab.png",
+          "alt": "Color Lab — the internal tuning tool: normalization curves and hue-exclusion gradients on the left, two phone previews of the same card in dark and light mode on the right",
+          "caption": "Color Lab — the tuning tool: calibration curves on the left, the same card rendered dark and light from one extracted palette on the right."
+        }
+      ]
     },
     {
       "type": "process",
@@ -91,28 +111,35 @@
       "content": "Infrastructure work is design work. The thresholds and filters inside the extraction algorithm are design decisions, and when you hand them to a generic library you hand over brand quality with them.\n\nThe other lesson was restraint. The engine can produce complex multi-tone looks. On a phone, the simpler output was the better one. Sometimes the design decision is to not use what you built."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Built a K-means color extraction engine in OKLCH that powers dynamic theming, card gradients, and WCAG-compliant text for the Bibel TV app. 87% light-mode preference, zero manual contrast checking, brand-consistent by default.",
       "angle": "Design-led infrastructure, when industry defaults don't fit the brand",
-      "sections": ["hero", "narrative", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "narrative",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "Every streaming app defaults to dark mode. Bibel TV had to make theming work in light, for users who want warmth. Here is how the color engine does it.",
       "angle": "The technical depth behind a color problem the industry skips",
-      "sections": ["hero", "callout", "process", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "process",
+        "reflection"
+      ],
       "max_read_time": "6 min"
     }
   },
-
   "related": [
     "bibeltv-design-system-api",
     "bibeltv-app-redesign",
     "bibeltv-agentic-engineering"
   ],
-
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,

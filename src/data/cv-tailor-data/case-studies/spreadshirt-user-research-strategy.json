@@ -3,7 +3,16 @@
   "title": "How do you change a company's direction with one prototype?",
   "subtitle": "Using user research to overturn executive assumptions at a print-on-demand platform serving hundreds of thousands",
   "type": "blog-post",
-  "tags": ["user-research", "strategy", "prototyping", "ecommerce", "b2c", "transformation", "mobile", "customer-collaboration"],
+  "tags": [
+    "user-research",
+    "strategy",
+    "prototyping",
+    "ecommerce",
+    "b2c",
+    "transformation",
+    "mobile",
+    "customer-collaboration"
+  ],
   "company": "Spreadshirt",
   "role": "UX Strategy Lead",
   "team": "3 → growing to larger implementation teams, Leipzig",
@@ -11,11 +20,14 @@
   "status": "draft",
   "last_updated": "2026-05-06",
   "hero_image": {
-    "src": "/images/spreadshirt/hero.png",
-    "alt": "Spreadshirt mobile t-shirt designer prototype"
+    "src": "/images/covers/generated/spreadshirt-user-research-strategy.svg",
+    "alt": "How do you change a company's direction with one prototype? — abstract resolution-field cover"
   },
-  "format_priority": ["blog", "executive", "narrative"],
-
+  "format_priority": [
+    "blog",
+    "executive",
+    "narrative"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -113,28 +125,35 @@
       "content": "If your team is headed in a direction that feels right but might be wrong, someone needs to talk to the users before more resources are committed. I can lead that conversation — and I can make the findings stick through research that speaks louder than any slide deck."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Changed a company's product strategy from full automation to controlled automation by conducting user research that revealed shop owners valued creative control above all else. Prototype succeeded, project completed after 2 prior failures.",
       "angle": "How user research overturned executive intuition",
-      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "key-takeaway"
+      ],
       "max_read_time": "2 min"
     },
     "narrative": {
       "summary": "What happens when user research contradicts leadership intuition? This is the story of how one shop owner's quote changed an entire company's product direction.",
       "angle": "The most uplifting experience",
-      "sections": ["hero", "callout", "discovery", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "discovery",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "datameer-data-dense-analytics",
     "ninox-org-building",
     "churchdesk-booking-system"
   ],
-
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,

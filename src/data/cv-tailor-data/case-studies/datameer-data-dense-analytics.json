@@ -3,7 +3,17 @@
   "title": "How do you make big data feel simple?",
   "subtitle": "Redesigning a collaborative analytics platform for data analysts at the world's most regulated financial institutions",
   "type": "design-case-study",
-  "tags": ["enterprise", "data-dense", "regulated", "org-building", "design-system", "user-research", "analytics", "from-scratch", "saas"],
+  "tags": [
+    "enterprise",
+    "data-dense",
+    "regulated",
+    "org-building",
+    "design-system",
+    "user-research",
+    "analytics",
+    "from-scratch",
+    "saas"
+  ],
   "company": "Datameer",
   "role": "Director of Design",
   "team": "3 designers, Berlin + NYC",
@@ -11,11 +21,14 @@
   "status": "draft",
   "last_updated": "2026-04-24",
   "hero_image": {
-    "src": "/images/datameer/hero.png",
-    "alt": "Datameer analytics platform dashboard showing data-dense visualization"
+    "src": "/images/covers/generated/datameer-data-dense-analytics.svg",
+    "alt": "How do you make big data feel simple? — abstract resolution-field cover"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-  
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -172,28 +185,34 @@
       "content": "If you're building data-dense tools for technically sophisticated users in regulated environments, the design challenges are fundamentally different from consumer products. I've spent five years learning those differences — from sample-uncertainty communication to compliance-aware user research. This is transferable to any domain where the data is complex, the users are expert, and the stakes are high."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Built the design system from scratch and solved a fundamental data-uncertainty UX problem.",
       "angle": "Organizational transformation through design",
-      "sections": ["hero", "outcome", "key-takeaway"],
+      "sections": [
+        "hero",
+        "outcome",
+        "key-takeaway"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "What happens when your query builder shows empty results but the data exists? A UX design story from inside big data analytics.",
       "angle": "The sample-uncertainty UX problem",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "churchdesk-booking-system",
     "ninox-org-building",
     "bibeltv-ai-native-practice"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": true,

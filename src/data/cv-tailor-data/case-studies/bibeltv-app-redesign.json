@@ -3,7 +3,14 @@
   "title": "A premium faith app that doesn't default to dark mode",
   "subtitle": "Redesigning Bibel TV's streaming apps to hold the German market against a global competitor",
   "type": "streaming-media",
-  "tags": ["competitive-strategy", "user-research", "design-systems", "cross-platform", "behavioral-design", "brand-alignment"],
+  "tags": [
+    "competitive-strategy",
+    "user-research",
+    "design-systems",
+    "cross-platform",
+    "behavioral-design",
+    "brand-alignment"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
@@ -11,11 +18,14 @@
   "status": "draft",
   "last_updated": "2026-05-22",
   "hero_image": {
-    "src": "/images/bibeltv/app-redesign-hero.png",
-    "alt": "The redesigned Bibel TV app — Mediathek section, warm light-mode design"
+    "src": "/images/covers/generated/bibeltv-app-redesign.svg",
+    "alt": "A premium faith app that doesn't default to dark mode — abstract resolution-field cover"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -74,28 +84,34 @@
       "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision — it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Led the redesign of Bibel TV's streaming apps to defend the German market against Pray.com — a premium, warm, light-mode experience. 87% light-mode preference, 4.2/5 premium rating, validated and ready for development.",
       "angle": "A redesign as competitive strategy",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "A global competitor was launching a premium dark-mode faith app in Germany. Bibel TV chose light mode, because its users want warmth, not Hollywood. Here is how that bet was made.",
       "angle": "Choosing against the industry default, on purpose",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "6 min"
     }
   },
-
   "related": [
     "bibeltv-agentic-engineering",
     "bibeltv-color-api",
     "bibeltv-design-system-api"
   ],
-
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,
