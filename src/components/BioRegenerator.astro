@@ -146,8 +146,9 @@ const variantsJson = JSON.stringify(variants);
       if (prefersReduced) return;
       const words = wrapWords(el);
       if (!words.length) return;
-      // Keep the whole sweep ~0.8s regardless of bio length.
-      const stagger = Math.max(8, Math.min(26, Math.round(800 / words.length)));
+      // Deliberate, perceptible left-to-right resolve (~2.2s sweep), so it
+      // reads as the bio being generated rather than a quick flicker.
+      const stagger = Math.max(20, Math.min(60, Math.round(2200 / words.length)));
       words.forEach((w, i) => {
         w.classList.add('bio-word--scrambling');
         w.style.fontFamily = REDACT[0] + ', Georgia, serif';
@@ -156,7 +157,7 @@ const variantsJson = JSON.stringify(variants);
           step += 1;
           if (step < REDACT.length) {
             w.style.fontFamily = REDACT[step] + ', Georgia, serif';
-            setTimeout(tick, 55);
+            setTimeout(tick, 95);
           } else {
             w.style.fontFamily = '';
             w.classList.remove('bio-word--scrambling');

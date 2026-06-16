@@ -30,10 +30,10 @@
     /* Cap WIDTH (not height) so aspect-ratio is never overridden. With an
        explicit width:100% a max-height would just clamp height and leave the
        canvas full-width — stretching it. Capping width keeps 480:250 exact at
-       every viewport: 614px ÷ (480/250) ≈ 320px tall. The flex parent centers
-       it and the transparent footer bg (page noise) fills the sides on desktop;
-       mobile stays under the cap and fills the full width. */
-    max-width: 614px;
+       every viewport: the canvas fills the screen up to this cap (≈750px tall
+       at 1440), then centres on ultra-wide displays. The transparent footer bg
+       (page noise) fills any sides; mobile fills the full width. */
+    max-width: 1440px;
     aspect-ratio: 480 / 250;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
