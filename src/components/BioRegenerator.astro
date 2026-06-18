@@ -19,6 +19,10 @@ import bioData from '../data/bio-variants.json';
 const { lengths, models, vibes, default: defaultVariant, variants, api_url } =
   bioData as any;
 const defaultText = variants[defaultVariant.length];
+const defaultHtml = defaultText.replace(
+  /Tobias Treppmann/g,
+  '<strong>Tobias Treppmann</strong>'
+);
 const variantsJson = JSON.stringify(variants);
 ---
 
@@ -30,7 +34,7 @@ const variantsJson = JSON.stringify(variants);
   data-api-url={api_url}
 >
   <div class="bio-regen__text" aria-live="polite" data-bio-text>
-    <p>{defaultText}</p>
+    <p set:html={defaultHtml}></p>
   </div>
 
   <div class="bio-regen__controls" role="group" aria-label="Choose how to read this bio">
@@ -201,7 +205,11 @@ const variantsJson = JSON.stringify(variants);
           )
           .map((p) => '<p>' + p + '</p>')
           .join('');
-        return rendered;
+        // Always render the full name bold, exactly once (unwrap any existing
+        // bold around just the name first, so we never double-wrap).
+        return rendered
+          .replace(/<strong>(Tobias Treppmann)<\/strong>/g, '$1')
+          .replace(/Tobias Treppmann/g, '<strong>Tobias Treppmann</strong>');
       }
 
       const buttons = root.querySelectorAll('.bio-regen__option');
