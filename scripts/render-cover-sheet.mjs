@@ -6,8 +6,8 @@ import sharp from 'sharp';
 import { listStudies, svgBaked, LIGHT, DARK } from './generate-covers.mjs';
 
 const OUT = '/tmp/cover-sheet.png';
-const CW = 480; // thumb width
-const CH = 320; // thumb height
+const CW = 600; // thumb width
+const CH = 400; // thumb height
 const LABEL = 150; // left label column
 const GAP = 16;
 const PAD = 24;

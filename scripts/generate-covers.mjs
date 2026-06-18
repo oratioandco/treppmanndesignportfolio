@@ -40,7 +40,7 @@ const METAPHOR = {
   'bibeltv-agentic-engineering': 'diffusion',   // agents condensing
   'bibeltv-ai-prototyping': 'diffusion',
   'bibeltv-support-agent': 'converge',
-  'churchdesk-booking-system': 'lattice',       // time-slots locking together
+  'churchdesk-booking-system': 'booking',        // a calendar of booked slots
   'datameer-data-dense-analytics': 'scatter',   // dense data resolving
   'ninox-org-building': 'constellation',        // dots aligning into structure
   'ninox-ai-onboarding': 'diffusion',
@@ -141,6 +141,18 @@ function structureField(kind, seed, focal) {
         return clamp01(1 - Math.min(a, b) / 0.62);
       };
     }
+    case 'booking': {
+      // a calendar of slots, some "booked" (filled), some open
+      const gx = 8, gy = 5;
+      return (nx, ny) => {
+        const cx = Math.floor(nx * gx);
+        const cy = Math.floor(ny * gy);
+        const booked = (cx * 7 + cy * 3) % 3 === 0 ? 1 : 0.22;
+        const dx = Math.abs(((nx * gx) % 1) - 0.5);
+        const dy = Math.abs(((ny * gy) % 1) - 0.5);
+        return dx < 0.36 && dy < 0.36 ? booked : 0;
+      };
+    }
     case 'spectrum': {
       const bands = 6;
       return (_nx, ny) => clamp01((Math.floor(ny * bands) + 0.5) / bands);
@@ -190,100 +202,69 @@ function structureField(kind, seed, focal) {
   }
 }
 
-// ---- build the cell list -------------------------------------------------
-// Resolution radiates outward from the metaphor's focal point: fine + crisp
-// structure near the focal, coarsening into quiet low-fi texture toward the
-// edges. Calm by design — the background step dominates (drawn once), and
-// only non-background cells are emitted, run-length merged per row.
-function buildCells(metaphor, seed, steps) {
+// ---- build the halftone dot field -----------------------------------------
+// Dots on a regular grid, radius ∝ value (classic halftone — same visual
+// language as the Redaction typeface). Structure is sharpest near the
+// metaphor's focal point and dissolves outward into a quiet, faintly textured
+// field. Calm by design: most of the canvas is small/no dots.
+function buildDots(metaphor, seed) {
   const noise = makeNoise(seed);
   const focal = getFocal(metaphor, seed);
   const field = structureField(metaphor, seed, focal);
-  const cols = 120;
-  const rows = 80;
-  const cw = +(W / cols).toFixed(3);
-  const ch = +(H / rows).toFixed(3);
-  const QMAX = 8; // coarsest quantization (cells) far from focal
-  const maxR = 0.85;
-  const cells = [];
-  for (let row = 0; row < rows; row++) {
-    let runIdx = -1;
-    let runStart = 0;
-    const flush = (endCol) => {
-      if (runIdx > 0) {
-        cells.push({
-          x: +(runStart * cw).toFixed(1),
-          y: +(row * ch).toFixed(1),
-          w: +((endCol - runStart) * cw).toFixed(1),
-          h: ch,
-          idx: runIdx,
-        });
-      }
-    };
-    for (let col = 0; col < cols; col++) {
-      const ncx = (col + 0.5) / cols;
-      const ncy = (row + 0.5) / rows;
-      const d = Math.hypot(ncx - focal[0], ncy - focal[1]);
-      const r = 1 - smooth(0, 1, clamp01(d / maxR)); // 1 at focal → 0 at edge
-      const q = Math.max(1, Math.round(QMAX + (1 - QMAX) * r)); // fine near focal
-      const snx = clamp01((Math.floor(col / q) * q + q / 2) / cols);
-      const sny = clamp01((Math.floor(row / q) * q + q / 2) / rows);
-      const quiet = noise(snx, sny) * 0.4; // far side stays in the low steps
-      const val = clamp01(quiet * (1 - r) + field(snx, sny) * r);
-      const idx = Math.max(0, Math.min(steps - 1, Math.round(val * (steps - 1))));
-      if (idx !== runIdx) {
-        flush(col);
-        runIdx = idx;
-        runStart = col;
-      }
+  const DOT = 34; // grid spacing (px) — bolder dots that hold up at card size
+  const maxR = DOT * 0.6; // largest dot radius
+  const maxRes = 0.85; // resolve falloff radius
+  const dots = [];
+  for (let y = DOT / 2; y < H; y += DOT) {
+    for (let x = DOT / 2; x < W; x += DOT) {
+      const nx = x / W;
+      const ny = y / H;
+      const resolve = 1 - smooth(0, 1, clamp01(Math.hypot(nx - focal[0], ny - focal[1]) / maxRes));
+      // structure fades outward to an 18% floor; a faint noise texture fills
+      // the periphery so the field never reads as empty.
+      const v = clamp01(field(nx, ny) * (0.18 + 0.82 * resolve) + noise(nx, ny) * 0.1 * (1 - resolve));
+      const r = v * maxR;
+      if (r > 0.7) dots.push({ cx: +x.toFixed(1), cy: +y.toFixed(1), r: +r.toFixed(1) });
     }
-    flush(cols);
   }
-  return cells;
+  return dots;
 }
 
 // ---- SVG emitters --------------------------------------------------------
-const GRAIN = `<filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0"/></filter>`;
-
-function svgProduction(cells, steps) {
-  const lightVars = LIGHT.map((c, i) => `--cv${i}:${c}`).join(';');
-  const darkVars = DARK.map((c, i) => `--cv${i}:${c}`).join(';');
-  const classes = Array.from({ length: steps }, (_, i) => `.c${i}{fill:var(--cv${i})}`).join('');
+// Halftone: a single ink dot colour over the background. Theme-aware via an
+// internal prefers-color-scheme @media block, so the dots flip with the OS
+// theme whether the SVG is inlined or loaded as an <img>.
+function svgProduction(dots) {
   const style =
-    `svg{${lightVars}}` +
-    `@media (prefers-color-scheme:dark){svg{${darkVars}}}` +
-    classes;
-  const rects = cells
-    .map((c) => `<rect class="c${c.idx}" x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}"/>`)
+    `svg{--bg:${LIGHT[0]};--dot:${LIGHT[5]}}` +
+    `@media (prefers-color-scheme:dark){svg{--bg:${DARK[0]};--dot:${DARK[5]}}}` +
+    `.dot{fill:var(--dot)}`;
+  const circles = dots
+    .map((d) => `<circle class="dot" cx="${d.cx}" cy="${d.cy}" r="${d.r}"/>`)
     .join('');
   return (
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract teal resolution field">` +
-    `<style>${style}</style><defs>${GRAIN}</defs>` +
-    `<rect class="c0" x="0" y="0" width="${W}" height="${H}"/>` +
-    rects +
-    `<rect x="0" y="0" width="${W}" height="${H}" filter="url(#g)" opacity="0.04"/>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract teal halftone field">` +
+    `<style>${style}</style>` +
+    `<rect x="0" y="0" width="${W}" height="${H}" fill="var(--bg)"/>` +
+    circles +
     `</svg>`
   );
 }
 
-function svgBaked(cells, palette) {
-  const rects = cells
-    .map((c) => `<rect fill="${palette[c.idx]}" x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}"/>`)
+function svgBaked(dots, palette) {
+  const circles = dots
+    .map((d) => `<circle cx="${d.cx}" cy="${d.cy}" r="${d.r}" fill="${palette[5]}"/>`)
     .join('');
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">` +
-    `<defs>${GRAIN}</defs>` +
     `<rect fill="${palette[0]}" x="0" y="0" width="${W}" height="${H}"/>` +
-    rects +
-    `<rect x="0" y="0" width="${W}" height="${H}" filter="url(#g)" opacity="0.04"/>` +
+    circles +
     `</svg>`
   );
 }
 
 // ---- exports + run -------------------------------------------------------
-const steps = LIGHT.length;
-
-export { LIGHT, DARK, METAPHOR, buildCells, svgBaked, svgProduction, steps };
+export { LIGHT, DARK, METAPHOR, buildDots, svgBaked, svgProduction };
 
 export function listStudies() {
   return fs
@@ -301,7 +282,7 @@ export function listStudies() {
     .map((id) => {
       const metaphor = METAPHOR[id] || 'diffusion';
       const seed = hashStr(id);
-      return { id, metaphor, seed, cells: buildCells(metaphor, seed, steps) };
+      return { id, metaphor, seed, cells: buildDots(metaphor, seed) };
     });
 }
 
@@ -311,7 +292,7 @@ function main() {
   const studies = listStudies();
   const previewRows = [];
   for (const { id, metaphor, cells } of studies) {
-    fs.writeFileSync(path.join(OUT_DIR, `${id}.svg`), svgProduction(cells, steps));
+    fs.writeFileSync(path.join(OUT_DIR, `${id}.svg`), svgProduction(cells));
     previewRows.push(
       `<div class="row"><div class="meta"><b>${id}</b><span>${metaphor}</span></div>` +
         `<div class="pair"><div class="cell light">${svgBaked(cells, LIGHT)}</div>` +
