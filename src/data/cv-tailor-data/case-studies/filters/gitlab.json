@@ -1,0 +1,96 @@
+{
+  "slug": "gitlab",
+  "title": "Selected Work",
+  "subtitle": "Knowledge-graph UX, design-system-as-API, AI-native product design, and IC-craft leadership — selected for GitLab",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "GitLab",
+      "role": "Staff Product Designer (Knowledge Graph)",
+      "date": "2026-06-20",
+      "positioning": "Knowledge-Graph UX (AI over relational entities) · Design-System-as-API (Pajamas analogue) · MVC Scoping with PM + Engineering · AI-Native Design · IC-Craft Mentoring at Staff Level"
+    },
+    "selection_rationale": {
+      "ninox-ai-onboarding": "Primary positioning hook and the strongest single narrative thread for this role. Knowledge Graph maps repo entities into a queryable structure that grounds Duo / agentic flows; Ninox vibe-coding is structurally identical — AI generates a graph of entities (database schema), and the user inspects, edits, and re-prompts against that graph via a direct-manipulation surface. Split-screen direct manipulation, chat-and-direct-manipulation coexistence, and 'first output is wrong, handle it as the normal case' all transfer 1:1. In-depth format because this is THE story to anchor the read.",
+      "bibeltv-design-system-api": "The cleanest Pajamas analogue Tobias has. JD asks for active Pajamas contribution and systems-thinking + DS experience as a must-have; BibelTV DS-as-API is a deployed service (Git + Style Dictionary + automated sync), DTCG-standard format (deliberately open-source-ready), three-tier token hierarchy, Android consuming via API live, Figma auto-synced. 'Design system shipped to production, not to Figma; Figma is one consumer' maps directly onto Pajamas as a public, contributable system. In-depth format — the architecture detail is what makes the Pajamas-fit case.",
+      "churchdesk-booking-system": "MVC-scoping STAR + measurable impact + cross-functional PM+Engineering partnership in one story. JD calls out 'shape priorities, scope MVCs, and maintain design intent through development' — ChurchDesk Booking is textbook: dual PM/Design role, €20k / 2-month, build-vs-buy + standalone-vs-integrated decisions, scope reframe from 'funeral-booking feature' to 'platform booking capability shipped as funeral booking', 70% coordination-time reduction, 90% acceptance, became core platform feature beyond initial region. Also the strongest 'multi-entity relational coordination' adjacency to knowledge-graph thinking (cemeteries × pastors × funeral homes × families). In-depth because the scoping decision narrative is what carries the JD match.",
+      "bibeltv-agentic-engineering": "Second AI proof + design-engineering credibility for Staff-IC framing. JD asks for 'Figma and prototyping tools' as must-have — agentic prototyping (Cursor / Claude Code / Zed; AI-coded prototypes consumed by engineering in production) is a 2026 signal few Staff-IC candidates can match, and directly counters the DevSecOps-adjacency honest gap by showing designer-in-engineering-workflow fluency. Executive format keeps it complementary to the design-system-API anchor without two BibelTV in-depth pieces dominating the featured surface.",
+      "ninox-org-building": "Mentoring + craft-elevation evidence for Staff-IC framing, not people-management framing. JD asks for 'Coach Product Designers and Senior Product Designers through pairing and design critiques' — lateral, craft-elevation, not perf management. The 'leading a team is a design problem' story (sidelined neurodivergent engineer, redesigned team norms — written agendas, prep time, documented decisions, structured turn-taking; coached design lead through the same relationship) reframes Tobias's recent management track as system-design at the team level, which is precisely how a Staff IC operates. Executive format because the Knowledge-Graph parallel and Pajamas analogue come first; this is the depth-proof for the IC-craft-with-mentoring-instinct positioning.",
+      "bibeltv-color-api": "Hidden — narrower scope (single token domain) vs. the design-system-API anchor which covers the full architecture. Risks over-weighting Bibel TV in the featured surface.",
+      "datameer-data-dense-analytics": "Hidden — the CV references Datameer's 5-year cross-Atlantic Director tenure as the distributed-team + data-engineer-user anchor; the portfolio surface leans on Ninox + BibelTV for the AI / dev-tool-adjacent / knowledge-graph-shape match GitLab specifically asks for. Kept for ?all readers as the structured-data-UX depth proof.",
+      "spreadshirt-user-research-strategy": "Hidden — strategic-influence proof from 2014-16; ChurchDesk is the more current strategic-influence anchor for this application. Kept for ?all.",
+      "bibeltv-app-redesign": "Hidden — growth + competitive-strategy angle is good but narrower GitLab fit. Kept for ?all.",
+      "bibeltv-support-agent": "Hidden — second/third AI story; Ninox vibe-coding + BibelTV agentic engineering already cover the AI dimension at higher relevance. Kept for ?all.",
+      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering. Hidden to avoid surfacing two near-duplicate stories. (Status 'in-progress' with known AI-slop issues from earlier reviews; out of scope to fix for this application.)"
+    },
+    "sequencing_note": "Slight reorder from the n8n filter precedent (which used the same featured set with ninox-org-building in featured slot 3 and churchdesk-booking-system in browseable). For GitLab, Knowledge Graph is the explicit project hook so the structural-match anchor (ninox-ai-onboarding) leads, Pajamas analogue (bibeltv-design-system-api) follows, and MVC-scoping STAR (churchdesk-booking-system) is promoted into the third featured slot because the JD names 'shape priorities, scope MVCs, and maintain design intent through development' as a must-have. ninox-org-building drops to browseable: the management-track depth proof is still on the page for any reader who goes one click deeper, but it doesn't dilute the three-anchor read-from-top story for an IC-track role.",
+    "gaps_not_addressed_by_new_case_studies": {
+      "direct_devsecops_design": "No shipped UX inside a developer-facing product (IDE plugin, CLI tool, CI dashboard, repo browser, code-review tool, code-intelligence chat). Bridge through Ninox citizen-developers + dev agencies + Datameer data-engineers + BibelTV agentic-engineering. Honest 'ramp' framing handled in the cover letter per personal-preferences §6 — not a portfolio gap to paper over with a fabricated case study.",
+      "public_open_source_ds_contribution": "BibelTV DS-API is internal; no shipped component to Pajamas / Material / Carbon. DTCG-standard-format choice was deliberately open-source-ready. Cover letter frames as 'architecture built for contribution; contribution itself as natural next step.' Not a portfolio gap to invent.",
+      "public_handbook_blog_talk_artifact": "No surfaced public-handbook / blog / conference talk artifact in existing data files. The 'Designing with and for AI' workshop series exists but specific published outputs are not documented. Portfolio carries the internal handbook-style practice via the case-study set + this filter's selection rationale; cover letter cites the data-file corpus and BibelTV design-token-API project documentation as the truthful evidence."
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "deliveryhero",
+  "title": "Selected Work",
+  "subtitle": "AI copilot tooling for customer-support teams, multi-stakeholder coordination, leadership as system design — selected for Delivery Hero",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "Delivery Hero SE",
+      "role": "Senior Manager, Product Design (Logistics, Service Efficiency)",
+      "date": "2026-06-20",
+      "positioning": "AI Copilot for CS Agents · Internal Operations Tooling · Manager-of-Managers Coaching · Multi-Stakeholder Coordination · Efficiency-with-Empathy"
+    },
+    "selection_rationale": {
+      "bibeltv-support-agent": "Primary positioning hook and the headline asset for this application. The Bibel TV CS Copilot Skill is structurally identical to what DH's Efficient Service tribe within the Service Productline is presumably building — AI-assisted drafting for CS agents with the human keeping the send-decision. Honesty-rescoped 2026-05-23 to Copilot-skill framing (no overclaim of custom-trained model, no fabricated metrics). Per the verification log, this is the single sharpest piece of evidence Tobias has for the JD's most distinctive must-have ('designing products for customer service agents, internal operations tools').",
+      "ninox-org-building": "The polished answer to the JD's must-have #2 ('Proven success coaching senior ICs and design leads'). The coachee is a design lead, the coaching content is leadership-skill (stakeholder management with a difficult engineering counterpart), the method is system-design-thinking applied to team building. Per the verification log this case study is ready for portfolio + interview use; pairs with the broader hired/let-go track record to show coaching-and-accountability range. Most direct piece of manager-of-managers evidence Tobias has.",
+      "churchdesk-booking-system": "Multi-stakeholder coordination + measurable impact (70% coordination-time reduction, 90% acceptance) + dual PM + design mandate + regulated-industry GDPR-plus context. The closest documented analog in Tobias's portfolio for the agent+customer+ops+AI multi-actor workflows DH's Service Efficiency tribe is likely building. Only featured case study with 4 real screenshots already staged on disk.",
+      "ninox-ai-onboarding": "AI-integration leadership at organisational level — user-agency principles ('show output and allow users to edit') and vibe-coding philosophy that port as transferable AI best practice for the Service Efficiency tribe. Has 5 real screenshots staged. Strong but slightly off-domain for DH (no-code business platform vs CS-agent tooling); kept browseable behind Bibel TV CS Copilot which is the more on-target AI proof.",
+      "spreadshirt-user-research-strategy": "Stakeholder management at executive level + the cleanest example of DH's exact 'efficiency-with-empathy' cultural-fit phrasing — changed product strategy from full automation to controlled automation preserving creator agency. Older era (2014-2016), so executive-format browseable rather than featured.",
+      "bibeltv-design-system-api": "Hidden — design-system depth is real and shipped, but the DH role is management-track / CS-ops tooling, not design-systems-track. Surfacing risks re-framing Tobias as design-engineer when the JD asks for Senior Manager.",
+      "bibeltv-agentic-engineering": "Hidden — second AI-prototyping proof; substantially overlaps with bibeltv-ai-prototyping. Ninox vibe-coding is the better AI-integration-leadership story for this view.",
+      "datameer-data-dense-analytics": "Hidden — confidential flag set, and Datameer's NY↔Berlin cross-Atlantic distributed-team framework (which is the actual asset relevant to DH's Berlin↔Singapore scope) lives in the CV bullet block + cover-letter paragraph per personal-preferences-applied.md §5–6, not in the portfolio surface.",
+      "bibeltv-app-redesign": "Hidden — consumer-side app design; not the DH-internal-tooling story.",
+      "bibeltv-color-api": "Hidden — niche craft-depth; risks over-weighting Bibel TV in the featured surface and pulls toward IC craft rather than management track.",
+      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering; flagged in-progress with known AI-slop issues from earlier reviews. Out of scope to fix here."
+    },
+    "asset_readiness": {
+      "shippable_as_is": [
+        "churchdesk-booking-system (4 real screenshots on disk; needs JSON sections[].images wiring)",
+        "ninox-ai-onboarding (5 real screenshots on disk; needs JSON sections[].images wiring)"
+      ],
+      "blocks_publication": [
+        "bibeltv-support-agent — hero image + 2 section diagrams; UI screenshots require Bibel TV approval per case-study confidentiality note. Stylised diagrams a viable fallback for the handbook-as-context and escalation-as-first-class-output sections.",
+        "ninox-org-building — hero + 1+ supporting diagram (system intervention before/after); fully written story but no visuals on disk.",
+        "spreadshirt-user-research-strategy — at minimum one hero; executive-format limits the surface so a single visual unblocks the browseable view."
+      ]
+    },
+    "gaps_not_addressed_by_new_case_studies": {
+      "hypoport_itsm_service_desk": "Per verification log: anchor #2 in the three-strand CS/ops cluster (Hypoport Hub SE service-productization for a shared service center). No standalone case study exists and none is required — the framing lives in CV bullets + cover-letter paragraph per personal-preferences-applied.md §5. Honesty guardrail (per 2026-04-23 correction): Hypoport Hub SE = shared service center, NOT financial services / real estate tech.",
+      "churchdesk_shared_inbox_case_management": "Per verification log: anchor #3 in the three-strand cluster. No measured impact metrics on file; do not transpose the booking-system 70%/90% numbers onto it. Stays at CV-bullet level. The booking-system case study covers the multi-stakeholder coordination dimension as proxy.",
+      "logistics_marketplace_vertical": "No direct experience. No case study; cover letter handles the gap honestly via ChurchDesk multi-stakeholder coordination as analogue (not as logistics-network claim).",
+      "apac_singapore_team_management": "No direct experience. Datameer NY↔Berlin distributed-team framework ports the methodology (same ~6-7h delta, opposite direction); lives in CV Datameer bullet block + cover-letter paragraph, not in portfolio surface.",
+      "public_company_productline_band_tenure": "Adjacent only (Hypoport sibling-company proximity, Datameer regulated-industry bank clients). Frame as deliberate next-step move toward deeper organisational impact; cover-letter handles it."
+    }
+  }
+}
