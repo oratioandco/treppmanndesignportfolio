@@ -8,6 +8,7 @@ export interface FilterConfig {
   subtitle?: string;
   theme?: string;
   show_all_label?: string;
+  cv?: { href: string; label?: string; note?: string };
   case_studies: {
     id: string;
     visibility: 'featured' | 'browseable' | 'hidden';

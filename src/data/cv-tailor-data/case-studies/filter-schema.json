@@ -2,10 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Portfolio Filter Configuration",
   "description": "Maps application/company slugs to curated case study selections with visibility control.",
-  
   "type": "object",
-  "required": ["slug", "case_studies"],
-  
+  "required": [
+    "slug",
+    "case_studies"
+  ],
   "properties": {
     "slug": {
       "type": "string",
@@ -29,7 +30,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "visibility"],
+        "required": [
+          "id",
+          "visibility"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -37,7 +41,11 @@
           },
           "visibility": {
             "type": "string",
-            "enum": ["featured", "browseable", "hidden"],
+            "enum": [
+              "featured",
+              "browseable",
+              "hidden"
+            ],
             "description": "featured = shown immediately. browseable = behind 'show more'. hidden = only with ?all parameter."
           },
           "order": {
@@ -46,7 +54,13 @@
           },
           "format_override": {
             "type": "string",
-            "enum": ["in-depth", "executive", "blog", "process", "narrative"],
+            "enum": [
+              "in-depth",
+              "executive",
+              "blog",
+              "process",
+              "narrative"
+            ],
             "description": "Force a specific format for this case study in this view."
           }
         }
@@ -56,6 +70,27 @@
       "type": "string",
       "default": "Show more work",
       "description": "Label for the toggle that reveals browseable case studies."
+    },
+    "cv": {
+      "type": "object",
+      "description": "Tailored CV for this application, linked from the portfolio view.",
+      "required": [
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Path to the PDF, e.g. /documents/tobias-treppmann-cv-kleinanzeigen.pdf"
+        },
+        "label": {
+          "type": "string",
+          "description": "Link text. Defaults to 'Download CV (PDF)'."
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional short qualifier shown next to the link."
+        }
+      }
     }
   }
 }

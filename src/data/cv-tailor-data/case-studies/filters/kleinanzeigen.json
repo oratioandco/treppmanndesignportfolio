@@ -4,6 +4,11 @@
   "subtitle": "Coordination between people who have never met, design systems that ship to production, and colour that stays readable for everyone",
   "theme": "default",
   "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-kleinanzeigen.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
   "case_studies": [
     {
       "id": "churchdesk-booking-system",
