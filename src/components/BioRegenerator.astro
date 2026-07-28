@@ -21,9 +21,19 @@ const { lengths, models, vibes, default: defaultVariant, variants, api_url } =
 
 // Optional per-view override. Portfolio views for a specific application pass
 // a bio written for that role; the generic bio is only a fallback.
-const { bio: bioOverride } = Astro.props as { bio?: { short?: string; long?: string } };
+const { bio: bioOverride } = Astro.props as {
+  bio?: { short?: string; long?: string; context?: Record<string, string> };
+};
+const bioContext = bioOverride?.context ?? null;
 const mergedVariants = bioOverride
-  ? { ...variants, ...Object.fromEntries(Object.entries(bioOverride).filter(([, v]) => v)) }
+  ? {
+      ...variants,
+      ...Object.fromEntries(
+        (['short', 'long'] as const)
+          .filter((k) => bioOverride[k])
+          .map((k) => [k, bioOverride[k] as string])
+      ),
+    }
   : variants;
 const defaultText = mergedVariants[defaultVariant.length] ?? variants[defaultVariant.length];
 const defaultHtml = defaultText.replace(
@@ -39,6 +49,7 @@ const variantsJson = JSON.stringify(mergedVariants);
   data-default-model={defaultVariant.model}
   data-default-vibe={defaultVariant.vibe}
   data-api-url={api_url}
+  data-context={bioContext ? JSON.stringify(bioContext) : undefined}
 >
   <div class="bio-regen__text" aria-live="polite" data-bio-text>
     <p set:html={defaultHtml}></p>
@@ -186,6 +197,15 @@ const variantsJson = JSON.stringify(mergedVariants);
       if (!textEl || !captionEl) return;
 
       const apiUrl = root.getAttribute('data-api-url');
+      // Per-view context (company, role, emphasis, avoid). Null on the generic
+      // homepage bio. Sent so the model writes for the reader of THIS page.
+      let bioContext = null;
+      try {
+        const raw = root.getAttribute('data-context');
+        if (raw) bioContext = JSON.parse(raw);
+      } catch (e) {
+        bioContext = null;
+      }
       let currentLength = root.getAttribute('data-default-length');
       let currentModel = root.getAttribute('data-default-model');
       let currentVibe = root.getAttribute('data-default-vibe');
@@ -263,7 +283,11 @@ const variantsJson = JSON.stringify(mergedVariants);
           const res = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ length: length, model: model, vibe: vibe }),
+            body: JSON.stringify(
+              bioContext
+                ? { length: length, model: model, vibe: vibe, context: bioContext }
+                : { length: length, model: model, vibe: vibe }
+            ),
           });
           if (token !== inFlightToken) return;
           if (!res.ok) {

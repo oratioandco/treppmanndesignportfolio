@@ -101,6 +101,26 @@
         },
         "long": {
           "type": "string"
+        },
+        "context": {
+          "type": "object",
+          "description": "Sent to the bio API so regeneration stays on-message for this application. Ignored gracefully if the API does not support it.",
+          "properties": {
+            "company": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "emphasis": {
+              "type": "string",
+              "description": "What to foreground."
+            },
+            "avoid": {
+              "type": "string",
+              "description": "Framings that work against this application."
+            }
+          }
         }
       }
     }
