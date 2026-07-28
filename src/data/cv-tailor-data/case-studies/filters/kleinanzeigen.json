@@ -1,7 +1,7 @@
 {
   "slug": "kleinanzeigen",
   "title": "Selected Work",
-  "subtitle": "Complex systems made simple — coordination between strangers, design systems, and search that holds up under load",
+  "subtitle": "Coordination between people who have never met, design systems that ship to production, and colour that stays readable for everyone",
   "theme": "default",
   "show_all_label": "Show more work",
   "case_studies": [
@@ -12,19 +12,19 @@
       "format_override": "in-depth"
     },
     {
-      "id": "datameer-data-dense-analytics",
+      "id": "bibeltv-design-system-api",
       "visibility": "featured",
       "order": 2,
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "bibeltv-color-api",
       "visibility": "featured",
       "order": 3,
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-app-redesign",
+      "id": "datameer-data-dense-analytics",
       "visibility": "browseable",
       "order": 4,
       "format_override": "in-depth"
@@ -36,10 +36,10 @@
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-color-api",
+      "id": "bibeltv-app-redesign",
       "visibility": "browseable",
       "order": 6,
-      "format_override": "executive"
+      "format_override": "in-depth"
     },
     {
       "id": "bibeltv-agentic-engineering",

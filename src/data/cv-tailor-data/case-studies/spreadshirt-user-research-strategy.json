@@ -32,14 +32,7 @@
     {
       "type": "hero",
       "headline": "How do you change a company's direction with one prototype?",
-      "subtext": "The management vision was a 60-second automated journey. User research said something completely different. Here's how data won.",
-      "images": [
-        {
-          "src": "/images/spreadshirt/hero.png",
-          "alt": "Spreadshirt platform — design your own custom t-shirt",
-          "caption": "Spreadshirt — where hundreds of thousands design custom products"
-        }
-      ]
+      "subtext": "The management vision was a 60-second automated journey. User research said something completely different. Here's how data won."
     },
     {
       "type": "narrative",
@@ -72,12 +65,7 @@
         },
         {
           "label": "Research Prototype",
-          "description": "Built a mobile t-shirt designer prototype in Axure RP, developed in collaboration with UI designers over one intensive week. Designed specifically to elicit user feedback, not for shipping.",
-          "image": {
-            "src": "/images/spreadshirt/mobile-prototype.png",
-            "alt": "Mobile t-shirt designer prototype",
-            "caption": "One-week mobile prototype — proving desktop functionality could work on a small screen"
-          }
+          "description": "Built a mobile t-shirt designer prototype in Axure RP, developed in collaboration with UI designers over one intensive week. Designed specifically to elicit user feedback, not for shipping."
         },
         {
           "label": "Executive Workshops",

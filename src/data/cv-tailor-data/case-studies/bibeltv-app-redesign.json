@@ -45,14 +45,7 @@
     {
       "type": "narrative",
       "headline": "The light-mode bet",
-      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas — the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision — it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static.",
-      "images": [
-        {
-          "src": "/images/bibeltv/app-redesign-beforeafter.png",
-          "alt": "The Bibel TV app before and after the redesign",
-          "caption": "Before and after: dated patterns and no brand link, to a warm light-mode experience aligned with the broadcast."
-        }
-      ]
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas — the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision — it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static."
     },
     {
       "type": "narrative",

@@ -30,14 +30,7 @@
     {
       "type": "hero",
       "headline": "Prototyping in Code: How I Collapsed the Design-to-Ship Pipeline",
-      "subtext": "Traditional handoff assumes designers and engineers work sequentially. We collapsed the pipeline: I prototyped in code with real APIs using Claude Code, and engineering consumed the prototype directly. No Figma specs. No redlines. Working code.",
-      "images": [
-        {
-          "src": "/images/bibeltv/agentic-01.png",
-          "alt": "Bibel TV web prototype running with real API data",
-          "caption": "From design to deployable code in one continuous flow."
-        }
-      ]
+      "subtext": "Traditional handoff assumes designers and engineers work sequentially. We collapsed the pipeline: I prototyped in code with real APIs using Claude Code, and engineering consumed the prototype directly. No Figma specs. No redlines. Working code."
     },
     {
       "type": "callout",
