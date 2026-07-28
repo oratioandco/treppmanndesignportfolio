@@ -48,7 +48,14 @@
     {
       "type": "narrative",
       "headline": "The core challenge",
-      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty — not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them — not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem — how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?"
+      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty — not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them — not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem — how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?",
+      "images": [
+        {
+          "src": "/images/diagrams/datameer-sample-uncertainty.svg",
+          "alt": "Diagram: the same query returns 4,812 matches against the full dataset and zero against a 1% sample, because the sample captured none of the matching rows.",
+          "caption": "Diagram — why a sampled preview can report nothing while the data is sitting there."
+        }
+      ]
     },
     {
       "type": "process",

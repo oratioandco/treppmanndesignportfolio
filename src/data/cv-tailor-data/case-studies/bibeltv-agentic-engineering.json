@@ -45,7 +45,14 @@
     {
       "type": "narrative",
       "headline": "The New Workflow",
-      "content": "The pipeline I built for Bibel TV:\n\n1. I design conceptually in Figma (layout, flow, hierarchy)\n2. I prototype functionally in code using Claude Code + Cursor — real APIs, real data, real interactions\n3. I iterate on the prototype with engineering feedback in real time\n4. The prototype becomes part of the production codebase (component structures, API calls, data fetching patterns)\n5. Engineering refines, not re-implements\n\nThe key difference: there is no handoff. There is continuous collaboration. The design artifact is working code, not a static spec."
+      "content": "The pipeline I built for Bibel TV:\n\n1. I design conceptually in Figma (layout, flow, hierarchy)\n2. I prototype functionally in code using Claude Code + Cursor — real APIs, real data, real interactions\n3. I iterate on the prototype with engineering feedback in real time\n4. The prototype becomes part of the production codebase (component structures, API calls, data fetching patterns)\n5. Engineering refines, not re-implements\n\nThe key difference: there is no handoff. There is continuous collaboration. The design artifact is working code, not a static spec.",
+      "images": [
+        {
+          "src": "/images/diagrams/bibeltv-handoff-collapse.svg",
+          "alt": "Diagram: the sequential pipeline breaks at a handoff boundary between redlines and engineering implementation; the code-prototype pipeline runs as one continuous track with no handoff.",
+          "caption": "Diagram — the handoff boundary, and what replaced it."
+        }
+      ]
     },
     {
       "type": "process",

@@ -37,7 +37,14 @@
     {
       "type": "narrative",
       "headline": "The Starting Point",
-      "content": "Spreadshirt was running on a product assumption that felt right at the top: shop owners wanted speed. The leadership vision was a 60-second fully automated journey — pick a template, customize automatically, ship it. Efficient. Scalable. Clean.\n\nThe company had tried to redesign the seller experience twice before and failed both times. I was brought in to lead the third attempt.\n\nInitial question: what if the assumption was wrong?"
+      "content": "Spreadshirt was running on a product assumption that felt right at the top: shop owners wanted speed. The leadership vision was a 60-second fully automated journey — pick a template, customize automatically, ship it. Efficient. Scalable. Clean.\n\nThe company had tried to redesign the seller experience twice before and failed both times. I was brought in to lead the third attempt.\n\nInitial question: what if the assumption was wrong?",
+      "images": [
+        {
+          "src": "/images/diagrams/spreadshirt-automation-agency.svg",
+          "alt": "Diagram: management wanted a fully automated 60-second journey, research found shop owners valued the design process itself, and the product shipped between the two, closer to user control.",
+          "caption": "Diagram — where management wanted the product, what research found, and where it shipped."
+        }
+      ]
     },
     {
       "type": "callout",
