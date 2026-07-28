@@ -1,0 +1,57 @@
+{
+  "slug": "kleinanzeigen",
+  "title": "Selected Work",
+  "subtitle": "Complex systems made simple — coordination between strangers, design systems, and search that holds up under load",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 7,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "hidden",
+      "order": 8,
+      "format_override": "executive"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {
+  getAllFilters,
+  getFilterWithStudies,
+  type FilterConfig,
+  type CaseStudy,
+} from '../../data/cv-tailor';
+
+export function getStaticPaths() {
+  const filters = getAllFilters();
+  return filters.map((filter) => ({
+    params: { slug: filter.slug },
+    props: { filter },
+  }));
+}
+
+const { filter } = Astro.props;
+const data = getFilterWithStudies(filter.slug);
+
+if (!data) {
+  return Astro.redirect('/404');
+}
+
+const { studies } = data;
+const featuredStudies = studies.filter(s => s.visibility === 'featured');
+const browseableStudies = studies.filter(s => s.visibility === 'browseable');
+
+// Scoped case study routes: /for/{slug}/{study-id}
+// No separate mapping needed — the scoped route IS the link
+
+---
+
+<Layout title="Design Leadership">
+  <section class="hero">
+    <div class="container">
+      <p class="hero-tagline">Design Leadership</p>
+      <h1 class="animated-headline" id="animated-title">Human-centered organizations for human-centered products</h1>
+
+<script>
+  const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
+  const title = document.getElementById('animated-title');
+  if (title) {
+    const text = title.textContent || '';
+    title.innerHTML = text.split('').map((char, i) =>
+      char === ' ' ? ' ' : `<span class="letter" data-index="${i}">${char}</span>`
+    ).join('');
+    const letters = title.querySelectorAll('.letter');
+    letters.forEach((letter) => {
+      let currentFontIndex = Math.floor(Math.random() * fonts.length);
+      letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+      const animate = () => {
+        const newIndex = Math.floor(Math.random() * fonts.length);
+        currentFontIndex = newIndex;
+        letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+        const nextInterval = 1500 + Math.random() * 2500;
+        setTimeout(animate, nextInterval);
+      };
+      const delay = Math.random() * 5000;
+      setTimeout(animate, delay);
+    });
+  }
+</script>
+      <p class="hero-description">
+        I'm <a href="/about">Tobias Treppmann</a>, a hands-on design leader who builds the psychological safety,
+        inclusive collaboration, and technical excellence that enables breakthrough user experiences.
+      </p>
+      {filter.subtitle && (
+        <p class="context-note">{filter.subtitle}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section" id="case-studies">
+    <div class="container">
+      <div class="section-header">
+        <h2>Case Studies</h2>
+        <p class="text-muted">Selected work demonstrating hands-on leadership and technical depth</p>
+      </div>
+
+      <div class="case-studies-grid">
+        {featuredStudies.map((study: any) => {
+          const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+          const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
+          const link = `/for/${filter.slug}/${study.id}`;
+          const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
+
+          return (
+            <a href={link} class="case-study-card">
+              <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
+              <h3>{heroSection?.headline || study.title}</h3>
+              <p class="subtitle">{study.company} · {study.duration}</p>
+              <p>{heroSection?.subtext || study.subtitle}</p>
+              <div style="margin-top: var(--space-md);">
+                {study.tags.slice(0, 4).map((tag: string) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {browseableStudies.length > 0 && (
+    <section class="section" id="more-work">
+      <div class="container">
+        <details class="show-more">
+          <summary>{filter.show_all_label || 'Show more work'}</summary>
+          <div class="case-studies-grid" style="margin-top: var(--space-lg);">
+            {browseableStudies.map((study: any) => {
+              const heroSection = study.sections?.find((s: any) => s.type === 'hero');
+              const link = `/for/${filter.slug}/${study.id}`;
+              const cover = study.hero_image?.src || '/images/covers/churchdesk.jpeg';
+
+              return (
+                <a href={link} class="case-study-card">
+                  <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
+                  <h3>{heroSection?.headline || study.title}</h3>
+                  <p class="subtitle">{study.company} · {study.duration}</p>
+                  <p>{heroSection?.subtext || study.subtitle}</p>
+                  <div style="margin-top: var(--space-md);">
+                    {study.tags.slice(0, 4).map((tag: string) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </details>
+      </div>
+    </section>
+  )}
+
+</Layout>
+
+<style>
+  .context-note {
+    margin-top: var(--space-lg);
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-style: italic;
+  }
+
+  .show-more {
+    border: none;
+    cursor: pointer;
+  }
+
+  .show-more summary {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: var(--space-md) 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .show-more summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    font-weight: 600;
+  }
+
+  .show-more[open] summary::before {
+    content: '−';
+  }
+</style>
