@@ -33,26 +33,12 @@
     {
       "type": "hero",
       "headline": "How do you make big data feel simple?",
-      "subtext": "A collaborative analytics platform. Top US, Canadian, and UK banks. Data so complex that the tools themselves created confusion.",
-      "images": [
-        {
-          "src": "/images/datameer/hero-dashboard.png",
-          "alt": "Datameer platform overview",
-          "caption": "The redesigned analytics platform"
-        }
-      ]
+      "subtext": "A collaborative analytics platform. Top US, Canadian, and UK banks. Data so complex that the tools themselves created confusion."
     },
     {
       "type": "narrative",
       "headline": "The starting point",
-      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily — people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table.",
-      "images": [
-        {
-          "src": "/images/datameer/before-interface.png",
-          "alt": "Datameer interface before redesign",
-          "caption": "The original interface — functional but overwhelming"
-        }
-      ]
+      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily — people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table."
     },
     {
       "type": "callout",
@@ -70,30 +56,15 @@
       "steps": [
         {
           "label": "Customer Research",
-          "description": "I secured exec-sponsored access to visit regulated enterprise environments — banks and insurers in the US — joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked.",
-          "image": {
-            "src": "/images/datameer/process-research.png",
-            "alt": "Research process documentation",
-            "caption": "Field research in regulated enterprise environments"
-          }
+          "description": "I secured exec-sponsored access to visit regulated enterprise environments — banks and insurers in the US — joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked."
         },
         {
           "label": "Platform Redesign",
-          "description": "Complete overhaul of the analytics interface — from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system.",
-          "image": {
-            "src": "/images/datameer/process-redesign.png",
-            "alt": "Redesign process",
-            "caption": "Iterative redesign across all major surfaces"
-          }
+          "description": "Complete overhaul of the analytics interface — from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system."
         },
         {
           "label": "Design System",
-          "description": "Built the platform's design system from scratch — the first unified visual language for a product that had grown organically for years. Created shared components, patterns, and documentation.",
-          "image": {
-            "src": "/images/datameer/design-system.png",
-            "alt": "Design system components",
-            "caption": "Design system in Figma"
-          }
+          "description": "Built the platform's design system from scratch — the first unified visual language for a product that had grown organically for years. Created shared components, patterns, and documentation."
         },
         {
           "label": "Organizational Elevation",
@@ -123,56 +94,7 @@
           "value": "Designed honest feedback that maintained user trust in sampled previews"
         }
       ],
-      "narrative": "The biggest win wasn't a feature — it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap.",
-      "images": [
-        {
-          "src": "/images/datameer/after-dashboard.png",
-          "alt": "Redesigned dashboard",
-          "caption": "The redesigned analytics dashboard"
-        },
-        {
-          "src": "/images/datameer/after-filters.png",
-          "alt": "Redesigned filter system",
-          "caption": "Comprehensive filter logic"
-        }
-      ]
-    },
-    {
-      "type": "gallery",
-      "layout": "grid",
-      "headline": "Key screens",
-      "items": [
-        {
-          "src": "/images/datameer/pivot-table.png",
-          "alt": "Big-data pivot table interface",
-          "caption": "Big-data pivot table with aggregated JSON views"
-        },
-        {
-          "src": "/images/datameer/column-charts.png",
-          "alt": "Column chart visualization",
-          "caption": "Column charts for analytical comparisons"
-        },
-        {
-          "src": "/images/datameer/filter-logic.png",
-          "alt": "Filter logic interface",
-          "caption": "Comprehensive filter system for complex queries"
-        },
-        {
-          "src": "/images/datameer/uncertainty-feedback.png",
-          "alt": "Sample uncertainty feedback design",
-          "caption": "Sample-uncertainty feedback — keeping users calibrated"
-        },
-        {
-          "src": "/images/datameer/result-cards.png",
-          "alt": "Result card components",
-          "caption": "Result cards for data exploration"
-        },
-        {
-          "src": "/images/datameer/design-system-components.png",
-          "alt": "Design system component library",
-          "caption": "Design system components"
-        }
-      ]
+      "narrative": "The biggest win wasn't a feature — it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap."
     },
     {
       "type": "reflection",
