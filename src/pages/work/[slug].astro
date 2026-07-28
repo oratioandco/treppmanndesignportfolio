@@ -62,7 +62,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
     });
   }
 </script>
-      <BioRegenerator />
+      <BioRegenerator bio={filter.bio} />
       {filter.subtitle && (
         <p class="context-note">{filter.subtitle}</p>
       )}

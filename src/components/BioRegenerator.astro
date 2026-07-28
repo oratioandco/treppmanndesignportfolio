@@ -18,12 +18,19 @@ import bioData from '../data/bio-variants.json';
 
 const { lengths, models, vibes, default: defaultVariant, variants, api_url } =
   bioData as any;
-const defaultText = variants[defaultVariant.length];
+
+// Optional per-view override. Portfolio views for a specific application pass
+// a bio written for that role; the generic bio is only a fallback.
+const { bio: bioOverride } = Astro.props as { bio?: { short?: string; long?: string } };
+const mergedVariants = bioOverride
+  ? { ...variants, ...Object.fromEntries(Object.entries(bioOverride).filter(([, v]) => v)) }
+  : variants;
+const defaultText = mergedVariants[defaultVariant.length] ?? variants[defaultVariant.length];
 const defaultHtml = defaultText.replace(
   /Tobias Treppmann/g,
   '<strong>Tobias Treppmann</strong>'
 );
-const variantsJson = JSON.stringify(variants);
+const variantsJson = JSON.stringify(mergedVariants);
 ---
 
 <div

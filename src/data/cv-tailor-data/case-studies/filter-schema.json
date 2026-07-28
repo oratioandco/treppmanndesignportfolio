@@ -91,6 +91,18 @@
           "description": "Optional short qualifier shown next to the link."
         }
       }
+    },
+    "bio": {
+      "type": "object",
+      "description": "Bio written for this application. Overrides the generic first-paint bio in BioRegenerator.",
+      "properties": {
+        "short": {
+          "type": "string"
+        },
+        "long": {
+          "type": "string"
+        }
+      }
     }
   }
 }

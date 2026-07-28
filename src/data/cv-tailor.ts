@@ -9,6 +9,7 @@ export interface FilterConfig {
   theme?: string;
   show_all_label?: string;
   cv?: { href: string; label?: string; note?: string };
+  bio?: { short?: string; long?: string };
   case_studies: {
     id: string;
     visibility: 'featured' | 'browseable' | 'hidden';
