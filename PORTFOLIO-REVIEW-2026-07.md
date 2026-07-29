@@ -22,10 +22,14 @@ don't exist yet).
 
 Five findings, in order of cost:
 
-1. **The public site shows the old, weak pages.** `index.astro` hardcodes links to
-   `/case-studies/churchdesk`, `/ninox`, `/modern-practice` — the 2025 legacy pages the previous
-   audit rated 🟡 / 🟡 / 🔴. Every good study lives at `/work/{company}/{study}` and is unreachable
-   without a direct link. Highest ROI fix in the repo, and it's routing, not content.
+1. **The default entry point shows the old, weak pages.** The per-application curated views
+   (`/for/{company}`) are a good idea, correctly built, and rightly not linked from the homepage.
+   But `index.astro` hardcodes links to `/case-studies/churchdesk`, `/ninox`, `/modern-practice` —
+   the 2025 legacy pages the previous audit rated 🟡 / 🟡 / 🔴, illustrated with German-language
+   ChurchDesk conference slides. Anyone arriving without a curated link sees only that. Give the
+   homepage a default curated view. Highest ROI fix in the repo, and it's routing, not content.
+   (Related: `/for/` and `/work/` are byte-identical duplicate route trees — 94 of 101 built pages.
+   Collapse them before doing any template work, or you'll do all of it twice.)
 2. **Card covers carry no information.** Three abstract halftone dot fields. A design hiring
    manager's first instinct is "show me the work"; the shop window currently answers with a
    decorative pattern.
@@ -277,16 +281,64 @@ as a second example.
 
 ## 4. Cross-cutting problems
 
-### 4.1 The public site doesn't show any of this work
+### 4.1 The generic public entry point shows the weakest version of the work
 
-`src/pages/index.astro` links to `/case-studies/churchdesk`, `/case-studies/ninox`,
-`/case-studies/modern-practice` — three hand-built legacy `.astro` pages (179 / 109 / 120 lines) that
-the 2025 audit rated 🟡 / 🟡 / 🔴. Every study in this review renders only at
-`/work/{filter}/{study}`, reachable only via a direct link you send someone.
+**First, credit where it's due:** the per-application curated collections are a genuinely good idea
+and correctly built. `filters/*.json` drives seven tailored views (`kleinanzeigen`, `gitlab`, `n8n`,
+`jupus`, `deliveryhero`, `liveeo`, `mobile-de`), each with its own study selection, ordering,
+`visibility` tiers, per-view bio, CV link, and a `_context.selection_rationale` documenting why each
+study was chosen. Sending a hiring manager a URL curated for them is better practice than sending
+everyone the same portfolio. It is also correct that the homepage doesn't link to these — they're
+meant to be handed out, not browsed.
 
-So: an inbound recruiter who finds treppmann.design organically sees the weakest version of your
-work. Fix the routing, retire the legacy pages, and give the homepage a default filter (or a
-canonical `/work/` index). **Do this first — it costs an afternoon.**
+Verified: `_context.selection_rationale` does **not** leak into the built HTML, and no `/for/` or
+`/work/` page names another target company. Good.
+
+**The problem is the default path.** `src/pages/index.astro` links to `/case-studies/churchdesk`,
+`/case-studies/ninox`, `/case-studies/modern-practice` — three hand-built legacy `.astro` pages
+(179 / 109 / 120 lines) that the 2025 audit rated 🟡 / 🟡 / 🔴. So anyone who arrives *without* a
+curated link — an inbound recruiter, someone who Googles you, a hiring manager forwarded the bare
+domain — gets the 2025 version and never sees any of the work reviewed here.
+
+Confirmed against the build, not just the source: `public/CNAME` is `treppmann.design`, and
+`dist/index.html` contains exactly three case-study links — `/case-studies/churchdesk`,
+`/case-studies/modern-practice`, `/case-studies/ninox`. Zero links to any `/work/` path, even though
+`dist/work/` contains all seven audience views.
+
+It is worse than "the older text," because of how the legacy ChurchDesk page is illustrated. Its nine
+figures are `churchdesk/page-01.png` … `page-09.png` — **slides exported from the ChurchDesk
+conference deck of 2025-02-26.** They are 4000×2250 presentation slides in **German**, in
+**ChurchDesk's brand** (their teal header bar, their logo top-right, their type), and mostly bullet
+lists: *"Einfach — Für Pfarrpersonen"* over six bullets; *"Der gesamte Prozess automatisiert und an
+einem Ort."* So the ChurchDesk case study a recruiter actually reaches is illustrated with a client's
+German-language sales deck rather than with your own portfolio visuals.
+
+Fix: give the homepage a **default curated view** (a generic `filters/default.json` rendered at `/`,
+or a canonical `/work/` index) and retire the three legacy pages. The curated-link mechanism stays
+exactly as it is; it just stops being the *only* way to reach the good work.
+**Do this first — it costs an afternoon.**
+
+#### 4.1a `/for/` and `/work/` are two byte-identical copies of the entire collection system
+
+`src/pages/for/[slug].astro` and `src/pages/work/[slug].astro` differ in **three lines**; the two
+`[study].astro` files differ in **one** (`backUrl`). The only difference is the link prefix. The
+build produces **47 HTML pages under `/for/` and 47 under `/work/`** — 94 of the site's 101 pages are
+the same content twice.
+
+Two consequences:
+
+- **Every template fix in this review has to be made twice**, or the two copies drift. The scope bar,
+  the metric typography, the figure sizing — all of it. This is the one finding that will actively
+  cost you time on everything else.
+- Duplicate content on an indexable domain, with no `rel=canonical` and no `noindex` on either set.
+
+Pick one prefix (`/for/` reads better for a tailored link — *"treppmann.design/for/kleinanzeigen"* is
+a nice thing to put in a cover letter), make the other a redirect, and delete the duplicate templates.
+
+Minor, related: `public/robots.txt` advertises `https://treppmann.design/sitemap-index.xml`, but no
+sitemap is generated — there's no sitemap integration in `astro.config.mjs`. Either add
+`@astrojs/sitemap` or drop the line. If you add one, exclude the tailored `/for/*` views so a
+curated application page isn't served up to a different employer via search.
 
 Related: 9 of 11 studies are `draft` / `in-progress` / `review`; exactly one is `published`. Since
 `scripts/check-images.mjs` only *blocks* on published studies, drafts can ship with broken images.
@@ -455,7 +507,22 @@ You were right that pictures are missing — but the more urgent problem is that
 *have* aren't working. Below: a presentation standard first, then a per-study shot list.
 
 Only three files are actually missing on disk (all in `ai-prototyping`, which I recommend deleting).
-Everything else in this section is new sourcing.
+Everything else in this section is new sourcing — **with one useful exception.**
+
+**You already own more raw material than the JSON studies use.** `churchdesk/page-01.png` …
+`page-09.png` are the nine slides from the 2025-02-26 conference deck. They are not portfolio-grade
+as-is — 4000×2250 slides in German, in ChurchDesk's brand, mostly bullet lists — so don't drop them
+into a case study (that's what the legacy page does, §4.1). But they are good *source* for two P0
+items below:
+
+- **`page-03.png` already contains the three-stakeholder content** — Bestatter / Assistenzen /
+  Pfarrpersonen with the needs per group. Redraw it in the portfolio's visual language, in English.
+- **`page-09.png` contains a booking-request card mock** (*Neue Buchungsanfage · Status: Angefragt ·
+  Angefragte Ressourcen · confirm/decline*) — the request-not-assignment decision, already visualised.
+
+One caution: the vision-sheet photo inside `page-03.png` carries the **same video-player scrubber
+overlay** as the current Fig. 01, which means the overlay came from the deck. Re-source Fig. 01 from
+the original photograph, not from the deck or its PDF.
 
 ### 6.0 Presentation standard — apply to every new image
 
@@ -488,10 +555,10 @@ Everything else in this section is new sourcing.
 |---|---|---|---|
 | **P0** | **Re-source Fig. 01** | The vision sheet, clean | Reshoot the physical flipchart, or crop the video frame to kill the scrubber + letterbox bars. If neither, redraw it as a clean bilingual translation panel |
 | **P0** | **Constraint-resolution diagram** | Priest availability ∩ cemetery hours ∩ standing commitments → what the funeral home sees | The section *"How the system fits together"* describes this in prose and shows nothing. This is the intellectual core of the study. Build it like the existing `/diagrams/*.svg` (theme-aware, embedded font) |
-| **P0** | **Three-stakeholder map** | Funeral home / parish assistant / priest — what each needs, sees, controls | Serves the "three groups, three needs" section, which is currently pure text |
+| **P0** | **Three-stakeholder map** | Funeral home / parish assistant / priest — what each needs, sees, controls | Serves the "three groups, three needs" section, which is currently pure text. **Content already exists in `page-03.png`** — redraw in English, in your visual language |
 | **P1** | **Annotate `priest-availability.jpg`** | Same screenshot + 2 callouts: ① on-call set as a recurring event *in the existing calendar*, ② one event, multiple cemeteries | The caption already makes exactly these two claims; make them visible |
 | **P1** | **Annotate `booking-form.jpg`** | Crop to the custom-field block; callout: "these fields are parish-configured via the existing form builder — Calendly's form is fixed" | Crop tighter; 1440px→648px is losing the field labels |
-| **P2** | Mobile priest view | The priest confirming/declining a request on phone | You state web + mobile (React + React Native); currently only web is shown |
+| **P2** | Mobile priest view | The priest confirming/declining a request on phone | You state web + mobile (React + React Native); currently only web is shown. **`page-09.png` has a request card with confirm/decline** to work from |
 | **P2** | Adoption/impact panel | 20+ cemeteries, region map or simple bar; before/after coordination timeline | Turn the metrics into one visual |
 | **P2** | Figma process artefact | A frame from the working file — explorations, the rejected standalone-module concept | Cheap seniority signal: shows the road not taken |
 
@@ -598,7 +665,9 @@ and the entire hero paragraph, with no outcome anywhere. Compare:
 
 ### 6.10 Suggested sequence
 
-1. **Routing fix** — point the homepage at the real studies, retire the legacy pages. *(1 afternoon,
+0. **Collapse `/for/` and `/work/` into one route tree.** *(1 hour.)* Do this before any template
+   work or you'll make every subsequent fix twice.
+1. **Routing fix** — give the homepage a default curated view, retire the legacy pages. *(1 afternoon,
    biggest single ROI.)*
 2. **Scope bar + outcome strip + big-numeral metrics** in the template, fed from existing JSON
    fields. *(1 day, fixes §4.4 and §4.5 across all 11 studies at once.)*
