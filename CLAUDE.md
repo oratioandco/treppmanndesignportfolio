@@ -63,3 +63,22 @@ a Hono service deployed via **Coolify on Hetzner**. The prompt is in
 - WIP studies reference body images that don't exist yet (datameer/draft,
   spreadshirt, app-redesign, agentic, ai-prototyping) — the image guard warns
   (non-blocking). Add the assets or remove the refs when those studies are finished.
+- **`npm install` needed before any build**: `node_modules/astro/dist/runtime/server/
+  render/astro/` is missing, so `astro build` and `astro dev` both fail with
+  `Cannot find module … factory.js`. Unrelated to any content change — the install is
+  just incomplete. `npm ci` fixes it. Nothing has been built or previewed since.
+- **`bibeltv-llm-safe-design-system` is new and at `status: review`** — needs a read
+  before it goes to `published`. Authored from the ProtoBible repo (spec 095: CI gates
+  for token safety + the MCP/plugin prototyping surface); source of record is that
+  repo's `specs/095-llm-safe-token-prototyping/plan.md`.
+  - Framing to preserve: the driver is that **Bibel TV has no in-house design team**,
+    so Storybook-as-source-of-truth plus a prototyping layer was the pre-existing
+    strategy, and CI enforcement is what makes it safe without a design reviewer.
+    Polar's Orbit is deliberately kept to a single closing reference — it is
+    convergent prior art, **not** the origin of the approach. Don't promote it.
+  - Three body screenshots are in `public/images/bibeltv/llm-safe-*.png`, captured
+    headlessly from the ProtoBible Storybook (`packages/design-system`, port 6007).
+  - Two optional screenshots are noted in the study's `meta.screenshots_pending`;
+    neither blocks publishing.
+  - Not yet added to any `case-studies/filters/*.json`, so it won't appear for a
+    tailored audience until it is.

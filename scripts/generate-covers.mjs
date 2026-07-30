@@ -35,6 +35,7 @@ const DARK = ['#1a2520', '#2c3e38', '#456057', '#5e8278', '#7aa297', '#a4c6b9'];
 // Per-study metaphor. Default 'diffusion'.
 const METAPHOR = {
   'bibeltv-design-system-api': 'grid',          // a token grid resolving
+  'bibeltv-llm-safe-design-system': 'converge',  // off-system values pulled back onto the grid
   'bibeltv-app-redesign': 'stack',              // frames aligning
   'bibeltv-color-api': 'spectrum',              // a colour field banding
   'bibeltv-agentic-engineering': 'diffusion',   // agents condensing
