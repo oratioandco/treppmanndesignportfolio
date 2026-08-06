@@ -9,4 +9,11 @@ export default defineConfig({
   output: "static",
   site: "https://treppmann.design",
   base: "/",
+  redirects: {
+    // The leadership case study used to live at a company-named URL. It is now
+    // anonymised, so the slug must not name the employer either — but the old
+    // URL is already indexed and shared, so it redirects instead of 404ing.
+    // Search engines consolidate on the new URL and drop the old one.
+    "/case-studies/ninox": "/case-studies/collaboration-redesign",
+  },
 });

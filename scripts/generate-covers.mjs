@@ -43,7 +43,7 @@ const METAPHOR = {
   'bibeltv-support-agent': 'converge',
   'churchdesk-booking-system': 'booking',        // a calendar of booked slots
   'datameer-data-dense-analytics': 'scatter',   // dense data resolving
-  'ninox-org-building': 'constellation',        // dots aligning into structure
+  'leading-a-team-is-a-design-problem': 'constellation', // dots aligning into structure
   'ninox-ai-onboarding': 'diffusion',
   'spreadshirt-user-research-strategy': 'converge', // research converging
 };

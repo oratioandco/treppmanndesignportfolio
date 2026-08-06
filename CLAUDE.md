@@ -35,6 +35,25 @@ via `prefers-color-scheme`). They're used as both the **card image** and the
 - Meaningful images (diagrams, screenshots) live in the case-study **bodies**
   (section `images`), not as heroes.
 
+## Anonymised leadership study — do not reverse
+
+`leading-a-team-is-a-design-problem` (page: `/case-studies/collaboration-redesign`) is
+**deliberately anonymised**. It describes a real, still-identifiable former colleague.
+
+- The employer is **not** named in this study — it is "a B2B SaaS platform company". Ninox
+  stays in the CV, the bio, and the `ninox-ai-onboarding` product study; only this one is
+  anonymised. Do not "restore" the company name here, and do not put it back in the study
+  `id`, the page slug, or the cover filename.
+- The individual is **"a senior engineer"** and nothing more. No personality description
+  ("difficult"), no dates or timeline, no mention of how their employment ended, no
+  pronouns beyond they/them.
+- **Never** use "neurodivergent", "neurodiverse", "cognitive diversity", "different minds",
+  or any diagnostic/psychological label anywhere in the portfolio. The story is framed
+  entirely as *when* collaboration failed (group settings, cold questions, time pressure)
+  versus when it worked (1:1, in writing, prepared) — conditions, not people.
+- `/case-studies/ninox` is a redirect (`astro.config.mjs`) so old indexed links land on the
+  anonymised page. Keep it.
+
 ## Data & components
 
 - Case studies: `src/data/cv-tailor-data/case-studies/*.json`. Filters (which

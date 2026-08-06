@@ -198,8 +198,8 @@ artefact.
 ### 3.5 Ninox org building 🟡 — the only leadership study, and it has no images
 
 Genuinely well-written, and the reframe ("what's wrong with our system?" not "what's wrong with that
-person?") is the most senior *thinking* in the portfolio. The equity-vs-equality passage and the
-business case for cognitive diversity are strong.
+person?") is the most senior *thinking* in the portfolio. The business case — that the process was
+filtering out good ideas before they were heard — is strong.
 
 But it is one anecdote about one engineer, carrying the entire weight of your leadership claim, as
 an unbroken text wall. The role paragraph gestures at the rest — team of five, a design lead, a
@@ -208,9 +208,12 @@ I made that call too"* — and then explicitly walks away from all of it: *"The 
 most was not on that list."* That's a good literary move and a bad hiring move. Everything you
 skipped is what a VP-hiring panel needs.
 
-Also flag consent handling: "one engineer had been quietly labelled difficult" is a real, identifiable
-person to anyone who worked there. Add an explicit note ("shared with his permission" / "details
-adapted").
+~~Also flag consent handling: the original text described a real, identifiable person to anyone who
+worked there.~~ **Resolved 2026-08-06.** The study was fully anonymised: employer removed from this
+story, individual reduced to "a senior engineer", all personality description and any speculation
+about how they think removed, and the story reframed around *when* collaboration failed versus when
+it worked. The study id and both page URLs were renamed so the employer is not in the path either.
+Do not reintroduce any of it.
 
 ### 3.6 Bibel TV app redesign 🟠 — the redesign is invisible
 
