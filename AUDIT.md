@@ -70,7 +70,7 @@ The thinking is senior. The framing is not. This is a solid mid-weight case stud
 
 This is the only case study that reads like a *leader* wrote it. The reframe from "fix the person" to "fix the system" is exactly the kind of strategic thinking you'd expect from a Head of Design or VP. The section on resistance ("Why should we change for one person?") and how Tobias handled it shows real organizational leadership — not just design craft.
 
-The equity vs. equality framing, the business case for cognitive diversity ("we were losing good ideas"), and the systemic change outcome ("the team learned a new reflex") all signal senior leadership. This is the closest thing in the portfolio to a VP-level case study.
+The business case ("we were losing good ideas") and the systemic change outcome ("the team learned a new reflex") all signal senior leadership. This is the closest thing in the portfolio to a VP-level case study.
 
 ### Business Impact: 🔴 Absent
 
@@ -93,7 +93,7 @@ This is genuinely good. It shows Tobias operating at the level he's targeting.
 ### Story Structure: 🟢 Very Good
 
 Excellent narrative arc:
-- Hook: "When a team labels someone 'difficult'..." — immediately compelling
+- Hook: "When collaboration keeps breaking down..." — immediately compelling
 - Rising tension: The pattern recognition, the reframe
 - Conflict: Team resistance
 - Resolution: Systemic change, culture shift

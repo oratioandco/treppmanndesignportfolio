@@ -10,7 +10,8 @@
 
 ### What Exists (3 case studies)
 1. **ChurchDesk Booking System** — Complex systems, multi-stakeholder platform design
-2. **Ninox Leadership** — Neurodivergent team member, redesigning collaboration
+2. **Leading a team is a design problem** — anonymised leadership story: diagnosing when
+   collaboration broke down and redesigning the system (employer and individual not identified)
 3. **AI-First Design** — AI prototyping at Bibel TV, teaching workshops
 
 ### What's Missing

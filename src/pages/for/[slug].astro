@@ -93,7 +93,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
             <a href={link} class="case-study-card">
               <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
               <h3>{heroSection?.headline || study.title}</h3>
-              <p class="subtitle">{study.company} · {study.duration}</p>
+              <p class="subtitle">{[study.company, study.duration].filter(Boolean).join(" · ")}</p>
               <p>{heroSection?.subtext || study.subtitle}</p>
               <div style="margin-top: var(--space-md);">
                 {study.tags.slice(0, 4).map((tag: string) => (
@@ -122,7 +122,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
                 <a href={link} class="case-study-card">
                   <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
                   <h3>{heroSection?.headline || study.title}</h3>
-                  <p class="subtitle">{study.company} · {study.duration}</p>
+                  <p class="subtitle">{[study.company, study.duration].filter(Boolean).join(" · ")}</p>
                   <p>{heroSection?.subtext || study.subtitle}</p>
                   <div style="margin-top: var(--space-md);">
                     {study.tags.slice(0, 4).map((tag: string) => (
