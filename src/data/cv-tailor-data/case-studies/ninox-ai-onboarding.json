@@ -1,7 +1,7 @@
 {
   "id": "ninox-ai-onboarding",
   "title": "Who Controls the AI?",
-  "subtitle": "Designing the onboarding for a vibe-coding platform where AI builds databases from plain-language descriptions — and users stay in control",
+  "subtitle": "Designing the onboarding for prompt-to-database with split-screen direct manipulation, where AI builds databases from plain-language descriptions — and users stay in control",
   "type": "design-case-study",
   "tags": [
     "ai",
@@ -30,7 +30,7 @@
     {
       "type": "hero",
       "headline": "Who Controls the AI?",
-      "subtext": "A founder-led stealth project to extend Ninox's reach. The platform is incredibly powerful once a schema exists — but defining the schema was the gate that kept most non-technical SMEs out. The vibe-coding approach generates a schema from a plain-language description. The design problem: how to hand a non-database-savvy user a schema they can actually own.",
+      "subtext": "A founder-led stealth project to extend Ninox's reach. The platform is incredibly powerful once a schema exists — but defining the schema was the gate that kept most non-technical SMEs out. Prompt-to-database generates a schema from a plain-language description. The design problem: how to hand a non-database-savvy user a schema they can actually own.",
       "images": [
         {
           "src": "/images/ninox/ai-onboarding-hero.png",
@@ -42,7 +42,7 @@
     {
       "type": "narrative",
       "headline": "The Context",
-      "content": "Ninox is a no-code business application platform — people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly — law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The vibe-coding initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this directly with Ninox's CEO and technical co-founder in a stealth pre-product-team phase — a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
+      "content": "Ninox is a no-code business application platform — people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly — law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The prompt-to-database initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this directly with Ninox's CEO and technical co-founder in a stealth pre-product-team phase — a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
       "images": [
         {
           "src": "/images/ninox/prompt-input.png",
@@ -79,7 +79,7 @@
         },
         {
           "label": "The schema, once built, is just a Ninox app",
-          "description": "There is no separate 'AI mode' the user has to leave. Once the schema feels right, they click into the app and start using it — same builder, same sidebar, same edit affordances they have just used. The vibe-coding generation step folds into Ninox's normal authoring surface; it doesn't replace it."
+          "description": "There is no separate 'AI mode' the user has to leave. Once the schema feels right, they click into the app and start using it — same builder, same sidebar, same edit affordances they have just used. The prompt-to-database generation step folds into Ninox's normal authoring surface; it doesn't replace it."
         }
       ]
     },
@@ -134,7 +134,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Founder-led stealth project (with the CEO and technical co-founder, pre-product-team handoff) to extend Ninox's reach beyond the database-savvy. Designed the vibe-coding onboarding: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
+      "summary": "Founder-led stealth project (with the CEO and technical co-founder, pre-product-team handoff) to extend Ninox's reach beyond the database-savvy. Designed the prompt-to-database onboarding with split-screen direct manipulation: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
       "sections": [
         "hero",
