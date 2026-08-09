@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /for/
+Disallow: /cv/
 
 Sitemap: https://treppmann.design/sitemap.xml
