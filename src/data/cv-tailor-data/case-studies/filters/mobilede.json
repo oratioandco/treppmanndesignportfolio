@@ -1,0 +1,111 @@
+{
+  "slug": "mobilede",
+  "title": "Selected Work",
+  "subtitle": "B2B marketplace, multi-stakeholder coordination, AI-native design — selected for mobile.de",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "mobile.de GmbH",
+      "role": "UX Manager, Dealer Products (d/f/m)",
+      "date": "2026-06-07",
+      "positioning": "B2B Marketplace · Multi-Stakeholder Coordination · AI-Native Design · Senior Leadership Scope"
+    },
+    "selection_rationale": {
+      "spreadshirt-user-research-strategy": "Primary marketplace anchor. Two-sided print-on-demand platform serving ~5,000 business sellers — the structural shape of mobile.de's dealer side (professional users whose livelihood depends on the platform). Research-vs-exec strategy flip from '60-second automation' to controlled automation = the cleanest single STAR for research-practice ownership and influencing senior stakeholders with conviction. Sentence-for-sentence parallel to JD's 'champion dealer understanding' and 'research consistently shaping strategy, not just informing it.'",
+      "churchdesk-booking-system": "Direct phrasal match for the JD's verbatim 'dealers as customers and advocates, not just users' — launch parish (Evangelische Kirche von Kurhessen-Waldeck) was customer + co-design partner. Multi-stakeholder coordination craft across three groups with opposite needs (funeral homes / parish assistants / priests). Measurable impact: 70% coordination-time reduction, 90% booking acceptance, adopted across 20+ cemeteries. Dual product+design role = cross-functional credibility beyond design-only.",
+      "bibeltv-agentic-engineering": "The standout differentiator for this specific role. JD verbatim: 'Experience applying AI tools and technologies in UX workflows or product development — not just awareness, but hands-on experimentation.' AI-coded prototypes consumed by engineering directly in production; team evangelism of vibe-coded prototyping. Most senior-design candidates lack this combination of shipped agentic practice.",
+      "ninox-org-building": "Leadership scope evidence — 5 direct reports + 1 design lead + Senior Leadership Team membership; performance calls (hired 1 designer + 1 writer; let go 1 designer + 1 writer); coached design lead through a difficult engineering-counterpart relationship; designed team norms that turned a sidelined neurodivergent engineer into one of the team's strongest contributors. Direct match for JD's 'lead and develop,' 'shape ways of working,' and 'foster psychological safety.' Executive format keeps it complementary to the in-depth marketplace + multi-stakeholder + AI trio above.",
+      "datameer-data-dense-analytics": "Research-practice ownership at scale + enterprise/regulated breadth. Pioneered iterative usertesting.com screening to reach hard-to-reach banking/insurance personas inside compliance-locked organisations; secured executive support for research; moved design from execution-only to strategic business partner via research. Confidential flag → executive format only; reinforces 'set a research agenda' without claiming UXR direct reports (honest stretch handled in cover letter).",
+      "ninox-ai-onboarding": "Second AI proof point + B2B audience-expansion pattern. Founder-led stealth work with Ninox CEO + technical co-founder; split-screen direct manipulation coexisting with chat; 'show output and let users edit' user-agency principle. Reinforces the AI hands-on signal alongside bibeltv-agentic-engineering, in a B2B SME platform context that maps better to dealer products than the streaming-media Bibel TV stories.",
+      "bibeltv-design-system-api": "Hidden — design-engineering infrastructure depth is real but a narrower fit for a dealer-products people-leadership role; keeps featured surface from over-weighting Bibel TV. Reachable via ?all.",
+      "bibeltv-color-api": "Hidden — narrow technical craft signal (OKLCH, k-means) for a B2B-marketplace dealer-products role.",
+      "bibeltv-app-redesign": "Hidden — B2C streaming media positioning. Wrong industry signal to surface for B2B dealer products; Spreadshirt is the marketplace anchor instead.",
+      "bibeltv-support-agent": "Hidden — narrower AI scope; in-progress status; ninox-ai-onboarding + bibeltv-agentic-engineering already cover the AI dimension better for this role.",
+      "bibeltv-ai-prototyping": "Hidden — substantial overlap with bibeltv-agentic-engineering; in-progress with known content-quality issues from earlier reviews."
+    },
+    "gaps_not_addressed_by_new_case_studies": {
+      "researcher_direct_reports": "Per verification log Gap 1: Tobias has owned the research practice (Datameer pioneering screening; Spreadshirt research-driven strategy flip; Bibel TV experimentation framework) and worked alongside researchers, but has not had a UX researcher as a formal direct report. No fabricated case study. Cover letter acknowledges as a development edge; CV foregrounds 'set research agenda' / 'owned research practice' — accurate.",
+      "sales_commercial_gtm_partnership": "Per verification log Gap 2: SLT-peer-level commercial adjacency at Ninox + customer-facing main contact at ChurchDesk + AI fundraising pipeline at Bibel TV. No fabricated Sales-specific deliverable. Cover letter frames as readiness, not claimed expertise.",
+      "automotive_domain": "Per verification log Gap 5: no automotive product experience. Cover letter leans in — marketplace pattern + B2B platform depth + AI-native workflow as the bridge; 60–90 days deep with dealers as first move.",
+      "service_design_lens": "JD names 'service design' explicitly. Verification log frames it as methodological lens applied across roles (Hypoport service-to-product transformation; ChurchDesk booking as in-product service blueprint). The featured churchdesk-booking-system case study carries the in-product proof; CV surfaces Hypoport more prominently than past CVs; no separate case study needed.",
+      "researcher_management_direct_reports_in_application_form": "If the application form asks explicitly about UXR direct reports, the honest answer is 'no' — verification log gap-navigation script applies."
+    },
+    "asset_blocking_summary": {
+      "blocks_featured_publishing": [
+        "spreadshirt: hero",
+        "bibeltv-agentic-engineering: hero (android-prototype.png) + web-prototype.png"
+      ],
+      "blocks_browseable_publishing": [
+        "datameer: hero (anonymised demo data required) + sample-uncertainty (anonymised)"
+      ],
+      "non_blocking": [
+        "spreadshirt: mobile-prototype.png (acceptable to drop)",
+        "ninox-org-building: hero (cover_image fallback works)"
+      ]
+    }
+  }
+}

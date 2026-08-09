@@ -1,0 +1,153 @@
+{
+  "slug": "lovehoney-ai-innovation-enablement-specialist",
+  "title": "Selected Work",
+  "subtitle": "A Claude Project + Claude Skill shipped, a Copilot skill introduced team by team, and vibe-coding onboarding co-defined with founders — selected for Lovehoney",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/cv/lovehoney-ai-innovation-enablement-specialist.pdf",
+    "label": "Download CV (PDF)"
+  },
+  "bio": {
+    "short": "I'm Tobias Treppmann, a design leader in Berlin working closer to the model than to the screen. Fifteen-plus years across four Head- and Director-of-design tenures, most recently at Bibel TV — where an AI fundraising ecosystem I built solo runs on a Claude Project with follow-up-question loops and a Claude Skill that carries the same voice into in-app notifications, web banners, and video scripts. I run a personal twelve-agent MCP-configured stack as daily practice, and I've been facilitating workshops for non-designer, non-engineer audiences — HR, marketing, service teams — since Hypoport.",
+    "long": "I'm Tobias Treppmann, a design leader based in Berlin, and lately my work sits closer to the model than to the screen. At Bibel TV I built a fundraising ecosystem end to end — analysed which letters historically outperform, encoded the analysis into a Claude Project that asks follow-up questions before it drafts anything, built a web prototype for the generation flow, and shipped a Claude Skill that produces the follow-up notifications, web banners, and video scripts from the same source. All of it solo, at the layer where prompt design and product design stop being separable. I also designed, scoped, and shipped a Copilot skill for the customer-support team, introduced through a self-testing week and 1:1 sessions with each team member; adoption held across the seniority-and-scepticism spectrum, including the initially most sceptical person on the team.\n\nBefore Bibel TV I spent a year at ChurchDesk mapping a funeral-coordination process that ran on phone calls between funeral homes, parishes, and cemeteries. I reframed it from a booking feature into a booking capability wired deep into the platform. Days of phone-tag became hours; the acceptance rate landed at ninety percent; twenty-plus cemeteries came on board. At Ninox I co-defined the vibe-coding onboarding with the CEO and technical co-founder in a stealth pre-product-team phase — prompt to database schema, rendered into the real data-model editor with direct manipulation and chat side by side, so a non-technical SME owner can own the schema within minutes of seeing it. In parallel I ran the design system as a structured cross-functional group: one design lead assigned, one engineer assigned, regular meeting rhythm, documented process for identifying component changes and escalating them.\n\nWhat runs underneath all of that is a personal practice with the same tools this role customises for Lovehoney. Claude Skills, Claude Projects, Claude Code, Claude Co-work, Microsoft Copilot, and a twelve-agent MCP-configured stack I self-host and use every day. I've been running the \"Designing with and for AI\" workshop series for designers and engineers since 2024 — and at Hypoport Hub SE I ran design-thinking training programs for executive leadership plus service teams that included HR, marketing, and other non-designer, non-engineer functions. I'm plain-spoken, comfortable in sensitive-context work (ChurchDesk was GDPR-plus across six countries), and Berlin is home.",
+    "context": {
+      "company": "Lovehoney Group — UK-owned adult retail group, 800+ employees across 11 offices, Bain-Capital-backed. Berlin office. Category is adult-wellness / sexual-wellbeing e-commerce.",
+      "role": "AI Innovation and Enablement Specialist — an internal-tooling operator role, IC-shaped despite Specialist title. Owns the Claude Enterprise rollout function by function across the group, runs a Champions Programme of internal AI advocates, customises Claude Skills / Claude Projects / Claude Code / MCP servers, facilitates workshops for both technical and non-technical audiences, and maps process inefficiencies into automations.",
+      "emphasis": "Foreground the exact JD-named primitives that Tobias uses daily: Claude Skills and Claude Projects (production at Bibel TV — flagship fundraising ecosystem), Claude Code (agentic prototyping consumed by engineering), MCP servers (openclaw personal 12-agent stack, daily practice), Microsoft Copilot (CS Copilot at Bibel TV). Foreground the workshops-for-non-technical-audiences story — Hypoport Hub SE design-thinking training for HR, marketing, service teams. Foreground the structured cross-functional working group at Ninox (design system with named members, meeting rhythm, escalation process) as the Champions-Programme-adjacent structural precedent. Foreground process-mapping flagship (ChurchDesk booking system) for the inefficiency-identification requirement. Berlin base, German native, English fluent, sensitive-context comfort from ChurchDesk GDPR-plus work.",
+      "avoid": "Do NOT claim to have run a 'Champions Programme' by name — Ninox governance group is Champions-Programme-adjacent structure, not the named artefact. Do NOT claim a Claude Enterprise rollout at 800+ / 11-office scale — largest documented internal-tool rollout is Bibel TV CS Copilot at ~30-person team scale. Do NOT claim a custom-built AI agent for the CS Copilot — it is an MS Copilot configured skill; truthful verbs are designed / scoped / configured / shipped. Do NOT claim formal AI-governance / acceptable-use / policy-authorship work — Q5 answer is no; the honest bridge is GDPR-plus + accessibility governance muscle from ChurchDesk. Do NOT claim adult-category retail domain fluency — no prior work; ChurchDesk sensitive-context muscle (funerals, GDPR+, Protestant / Catholic data protection) is the closest transferable comfort. Do NOT claim a degree in business, economics, or a digital discipline — BA-equivalent Theology 2003–2007 + MA Leadership 2022–Present at Kairos University are the honest degrees. Do NOT write '20+ years' or '25+ years' — always '15+ years'."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 11
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 12
+    }
+  ],
+  "_context": {
+    "application": {
+      "company": "Lovehoney Group",
+      "role": "AI Innovation and Enablement Specialist",
+      "date": "2026-08-09",
+      "pursuit_framing": "PATH 1 — direct pursuit. Capability-axis fit is one of the strongest in the current roster; JD-named primitives (Claude Skills, Claude Projects, Claude Code, MCP) are Tobias's daily practice at Bibel TV + openclaw.",
+      "positioning": "AI-Enablement Operator · Claude-Primitive Fluency in Production · Workshops for Technical AND Non-Technical Audiences · Champions-Programme-Adjacent Structural Precedent · Process-Mapping in Sensitive Contexts",
+      "source": "https://jobs.eu.lever.co/lovehoneygroup/e6046a94-3fa2-43dd-8cf7-b6c1bd37a0d7",
+      "brief": "data/applications/lovehoney-ai-innovation-enablement-specialist/cv-tailoring-brief.md",
+      "notes": "data/applications/lovehoney-ai-innovation-enablement-specialist/cv-tailoring-notes.md",
+      "verification": "data/verification-log/lovehoney-ai-innovation-enablement-specialist-verification.md"
+    },
+    "selection_rationale": {
+      "bibeltv-ai-fundraising": "Featured #1. THE flagship 'Claude Project + Claude Skill in production' story — near-1:1 match to the JD's 'customising Claude Projects and Claude Skills to meet team and business needs.' Analysis → Claude Project with follow-up-question loops → web prototype → Claude Skill producing follow-up content across three surfaces (in-app notifications, web banners, video scripts). All solo, at the prompt-and-context layer. In-depth format because the four-artefact ecosystem + design decisions compress badly at executive altitude. Screenshots + performance-data confidentiality gaps carried in asset_gaps_blocking_publication.",
+      "bibeltv-support-agent": "Featured #2. THE flagship enablement-of-a-non-technical-team story. Designed / scoped / shipped an MS Copilot skill for the Bibel TV customer-support team; introduced through a self-testing week followed by 1:1 sessions with each team member; qualitative adoption across the seniority-and-scepticism spectrum, including the initially most sceptical person on the team. This is the champions-in-miniature playbook — the closest single artefact in the portfolio to Lovehoney's 'sustain a network of internal AI advocates.' Honest scope: MS Copilot configured skill, not a custom-built agent (truthfulness rule #1). In-depth format because the human-in-the-loop + escalation-as-first-class-output + handbook-as-context design decisions are what make it credible.",
+      "ninox-ai-onboarding": "Featured #3. Second AI proof + the Champions-Programme-adjacent structural precedent surfaces here through the case study's related work (ninox-org-building) and through the case study's founder-team collaboration story. Vibe-coding split-screen direct manipulation co-defined with the CEO and technical co-founder in stealth pre-product-team phase — real dual-path workflow design (chat + direct manipulation coexist; first-schema-is-wrong handled as normal case; user-agency principle 'show output, allow users to edit'). Fully illustrated (5 images on disk). In-depth format.",
+      "churchdesk-booking-system": "Browseable #1. THE flagship process-mapping / inefficiency-identification story for JD Must-Have #7. Mapped the phone-based funeral coordination process with parishes / funeral homes / cemeteries; reframed from a single feature into a booking capability deeply integrated into the platform. 70% coordination-time reduction (days → hours), 90% booking acceptance rate, 20+ cemeteries, 2-month delivery on €20k budget. Also carries the sensitive-context muscle (Protestant + Catholic data protection frameworks, multi-country DE/DK/UK/SE/NO/CH) as the transferable bridge to Lovehoney's adult-category comfort requirement — without claiming category fluency. Fully illustrated (4 real screenshots on disk). Executive format because the AI angle (production alt-text) is downstream here; the featured trio already carries the AI-primitive signal.",
+      "bibeltv-agentic-engineering": "Browseable #2. Agentic-engineering-as-design-method proof for the JD's 'formal or self-taught' technical foundation requirement — Claude Code prototypes with real Bibel TV APIs, engineering consumes prototype code directly, days-to-hours iteration shift, team-wide evangelism of vibe-coded prototyping. Executive format because the two in-depth-heavy Bibel TV slots are spent on the AI-fundraising ecosystem and the CS Copilot. Asset gap: hero + web-prototype images missing on disk (carried in asset_gaps_blocking_publication).",
+      "bibeltv-design-system-api": "Browseable #3. Infrastructure-adjacency proof for the technical-foundation requirement — Git-based token repo + Style Dictionary + three-tier hierarchy + automated Web / iOS / Android / Figma sync. Architecturally analogous to MCP as shared context (a useful bridge for a reader whose lens is 'MCP servers as internal infrastructure'). Executive format because the browseable tier's job here is complementary depth, not headline. Fully illustrated.",
+      "ninox-org-building": "Hidden — strong leadership story (performance calls in both directions, hired 1 designer + 1 writer, let go 1 of each, coached the design lead through a difficult engineering-lead partnership, inclusive team norms) but Lovehoney's JD is enablement-operator-shaped, not design-team-leadership-shaped. Surfacing it as featured would muddy the IC-specialist positioning the role reads as. The Champions-Programme-adjacent structural precedent (design system as structured group with named members + meeting rhythm + escalation process) is carried in the CV instead (Ninox bullet per cv-tailoring-notes §Ninox). Available via ?all for readers who go deep on leadership history.",
+      "bibeltv-app-redesign": "Hidden — B2C media-app growth angle is good but not Lovehoney-domain-adjacent. The AI-primitive stories carry the current-role signal.",
+      "bibeltv-color-api": "Hidden — craft-depth proof (OKLCH, k-means brand-color extraction) but narrowest Lovehoney fit of the Bibel TV set; risks pulling the recruiter's attention away from the AI-enablement anchors.",
+      "datameer-data-dense-analytics": "Hidden — the CV references the 5-year Datameer director tenure + regulated-industry banking customer base as the enterprise-navigation muscle. Portfolio surface stays focused on AI-enablement + Champions-adjacent + workshops evidence. Available via ?all for readers going deep on the enterprise / data-dense / regulated background.",
+      "spreadshirt-user-research-strategy": "Hidden — 2014-16, predates AI-era work entirely; not Lovehoney-domain-adjacent. ChurchDesk is the more current strategic-influence anchor.",
+      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering AND status=in-progress with known AI-slop issues flagged at the n8n review. Avoid surfacing two near-duplicate stories in the Lovehoney view, and avoid surfacing a story that hasn't passed the writing quality gate."
+    },
+    "gaps_not_addressed_by_new_case_studies": {
+      "hypoport_non_technical_workshop_story": "Q1 answer (2026-08-09) elevates Hypoport Hub SE design-thinking training for executives + HR + marketing + service teams to the flagship non-designer / non-engineer group-workshop story. NO case study exists for Hypoport in the corpus, and creating one for a single application would be scope-creep. The story is carried in the CV Older Experience block (cv-tailoring-notes §Hypoport) and in the cover letter (when generated). Portfolio bio.long names it explicitly as the workshops-for-non-technical-audiences signal.",
+      "openclaw_personal_agent_stack": "Personal 12-agent MCP-configured stack — daily-fluency evidence with the exact JD-named primitives. NO case study exists (it's a personal ops project, not a client / employer engagement). Carried in the CV Skills section, Profile summary, cover letter, and bio.long. Portfolio does NOT surface a personal-project case study — treppmann.design/for/lovehoney is professional-experience-shaped.",
+      "champions_programme_by_name": "Q2 answer (2026-08-09) confirms Ninox design-system governance was a structured group with named members, regular rhythm, and escalation process — but NOT named a 'Champions Programme.' Rule #1 truthfulness gate. Ninox case studies (ninox-ai-onboarding featured + ninox-org-building hidden) carry the structural-precedent signal honestly; no fabricated 'Champions Programme' framing anywhere in the portfolio.",
+      "enterprise_scale_800_11_office_rollout": "Q3 answer (2026-08-09): no such precedent. Transformation work stays at ≤200-person org scale (Ninox ≤50, Bibel TV ≤80, ChurchDesk smaller HQ). Framed honestly as pattern-transferable from customer-facing multi-country work (ChurchDesk DE/DK/UK/SE/NO/CH; Ninox global; Datameer Germany+NYC). Cover letter carries the honest bridge; portfolio doesn't imply enterprise-scale internal rollout.",
+      "formal_ai_governance_policy_authorship": "Q5 answer (2026-08-09): no formal policy-authorship work. AI work stayed within existing team norms. Portfolio doesn't imply otherwise; cover letter positions honestly as 'would build this from the GDPR / accessibility governance muscle' using ChurchDesk GDPR+ + AI-alt-text as the transferable precedent — NOT as a policy-authorship claim.",
+      "adult_category_domain_fluency": "No prior work in adult retail. Portfolio + CV don't claim otherwise. ChurchDesk sensitive-context work (funerals, GDPR+, Protestant / Catholic data protection) is the closest transferable comfort — surfaced as browseable via churchdesk-booking-system, not as a category claim. Cover letter (if generated) handles the ramp-up disclosure honestly.",
+      "degree_in_digital_discipline": "BA-equivalent Theology 2003–2007 + MA Leadership 2022–Present at Kairos University (in progress) are the honest degrees. Satisfies the literal 'Bachelor's or Master's' clause of Must-Have #7 but NOT the 'e.g. business, economics, or digital disciplines' examples. Honest disclosure in CV Education block; not surfaced in bio or case studies."
+    },
+    "asset_gaps_blocking_publication": {
+      "bibeltv-ai-fundraising": [
+        "hero image — NOT set in JSON (new case study; needs one). Recommended: a stylized diagram of the four-artefact ecosystem (analysis → Claude Project → web prototype → Claude Skill → 3 downstream surfaces). 1600x900. Placeholder diagram is fine for draft status.",
+        "screenshot of the Claude Project asking a follow-up question before generation — supports the 'multi-turn clarification loop' claim visually. Needs Bibel TV approval given the source material is confidential.",
+        "screenshot of the web prototype UI — supports the 'proper surface for generation, not chat-only' claim.",
+        "screenshot of the Claude Skill producing one of the three downstream surfaces (in-app notification / web banner / video-script preview).",
+        "screenshots spec file: data/case-studies/screenshots-bibeltv-ai-fundraising.md — needs creation.",
+        "performance / fundraising figures are confidential to Bibel TV per verification log — case study body deliberately says nothing about donation lift; keep it that way."
+      ],
+      "bibeltv-support-agent": [
+        "hero image — NOT set in JSON (only cover_image /images/covers/ai.jpeg placeholder). Needed: a screenshot of the MS Copilot skill drafting a response with the CS handbook context visible, or a still that shows the human-in-the-loop send / edit / escalate decision surface. 1600x900. Screenshot spec file needed: data/case-studies/screenshots-bibeltv-support-agent.md.",
+        "at least one narrative-section image — NOT set. Recommended: a schematic of the single-step-draft + escalation flow (message → drafted response OR escalation flag → human edit + send). Diagram, not a screenshot; low fidelity is fine.",
+        "confidentiality note in meta already flags 'operational metrics or UI screenshots require Bibel TV approval before publishing.' Any real UI shot needs approval before it goes live."
+      ],
+      "bibeltv-agentic-engineering": [
+        "hero image /images/bibeltv/android-prototype.png — file missing on disk (referenced in JSON).",
+        "section 3 image /images/bibeltv/web-prototype.png — file missing on disk.",
+        "Browseable tier so not blocking publication of the featured trio, but check-images will flag these two on npm run build."
+      ]
+    },
+    "browseable_asset_gaps_note": "Browseable tier is one visibility level below featured; if the featured trio ships clean, the portfolio can go live even with browseable assets still placeholder. bibeltv-agentic-engineering carries two file-missing references above; churchdesk-booking-system and bibeltv-design-system-api are fully illustrated.",
+    "application_specific_external_assets": {
+      "portfolio_link_required": "YES — Lever ATS supports a portfolio URL field. treppmann.design/for/lovehoney-ai-innovation-enablement-specialist is what to paste (route is /for/, per prepare-portfolio.mdc Step 7).",
+      "workflow_screenshot_required": "NO — Lovehoney JD does not ask for a workflow screenshot the way n8n's own JD did.",
+      "design_challenge_or_take_home": "NO — Lovehoney JD does not include a design-challenge deliverable. Standard Lever form + CV + cover letter."
+    },
+    "portfolio_url": "https://treppmann.design/for/lovehoney-ai-innovation-enablement-specialist",
+    "publish_pending": "This filter is written but NOT yet synced to the portfolio repo. The CV referenced at cv.href does not exist yet — generate-cv is the next pipeline step. Sync flow: (1) generate-cv produces tobias-treppmann-cv-lovehoney-public.pdf in this repo's outputs/cv/; (2) cd ../treppmanndesignportfolio && npm run sync:cv-data -- lovehoney-ai-innovation-enablement-specialist; (3) commit + push. Do NOT sync until the CV exists — sync-cv-data.mjs refuses non -public.pdf variants."
+  }
+}

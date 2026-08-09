@@ -1,0 +1,91 @@
+{
+  "slug": "edenspiekermann-design-strategy-director",
+  "title": "Selected Work",
+  "subtitle": "Product strategy, AI-driven development, and design leadership — selected for Edenspiekermann",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "Edenspiekermann GmbH",
+      "role": "Design Strategy Director",
+      "date": "2026-06-02",
+      "positioning": "Product Strategy Director · AI-Driven Development Practitioner · Transformation Leader"
+    },
+    "selection_rationale": {
+      "churchdesk-booking-system": "Primary engagement story: opaque regulated workflow simplified, multi-stakeholder coordination, measurable outcomes (70% coordination time, 90% acceptance). Reads as a finished consulting engagement.",
+      "bibeltv-app-redesign": "Primary brand+AI story: premium broadcast-brand-aligned redesign, behavioral design, agentic engineering integrated into the build. Hits brand strategy mechanics AND AI-driven development in one artifact.",
+      "ninox-org-building": "Primary leadership story: first design hire builds the function — hiring, governance, decision rights. Maps verbatim to the JD's 'restructure teams, clarify decision rights, redesign ways of working'.",
+      "bibeltv-color-api": "Brand mechanics with technical depth (OKLCH, k-means, accessibility math). Shows that brand strategy at this level is also an engineering decision.",
+      "bibeltv-agentic-engineering": "Real-proof-point for 'agentic workflows' — Claude Code prototype-to-production, not a vendor pitch. Concrete artifact for the JD's most-emphasized requirement.",
+      "datameer-data-dense-analytics": "Enterprise / regulated / data-dense breadth. Confidential — executive format only and behind 'Show more work' to honor that flag.",
+      "bibeltv-ai-prototyping": "HIDDEN: overlaps with bibeltv-agentic-engineering for the same audience. Surfaced via ?all for completeness.",
+      "bibeltv-design-system-api": "HIDDEN: brand-mechanics slot already filled by bibeltv-color-api. Reachable via ?all.",
+      "bibeltv-support-agent": "HIDDEN: second AI proof, less strategic framing than agentic-engineering.",
+      "ninox-ai-onboarding": "HIDDEN: Ninox already represented by ninox-org-building, which is the stronger signal for this role.",
+      "spreadshirt-user-research-strategy": "HIDDEN: older but on-theme — kept reachable but not surfaced over more recent work."
+    }
+  }
+}

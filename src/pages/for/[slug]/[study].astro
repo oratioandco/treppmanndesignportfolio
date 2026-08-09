@@ -249,6 +249,10 @@ if (study.company) kickerParts.push(study.company);
 if (study.duration) kickerParts.push(study.duration);
 const kickerText = kickerParts.join(' · ').toUpperCase();
 ---
+<Fragment slot="head">
+  <meta name="robots" content="noindex, nofollow" />
+</Fragment>
+
 
 <Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl={backUrl} backLabel={`← Back to portfolio`}>
   <header class="cs-hero-wrap">

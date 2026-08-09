@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /dev/
+Disallow: /for/
 
-Sitemap: https://treppmann.design/sitemap-index.xml
+Sitemap: https://treppmann.design/sitemap.xml

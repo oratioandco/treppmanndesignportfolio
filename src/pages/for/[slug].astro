@@ -31,6 +31,10 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
 // No separate mapping needed — the scoped route IS the link
 
 ---
+<Fragment slot="head">
+  <meta name="robots" content="noindex, nofollow" />
+</Fragment>
+
 
 <Layout title="Design Leadership">
   <section class="hero">

@@ -1,0 +1,108 @@
+{
+  "slug": "dayone-ai-experience-designer",
+  "title": "Selected Work",
+  "subtitle": "AI workflows shipped, agentic prototyping consumed by engineering, design systems as deployed APIs — selected for DAYONE",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Show more work",
+  "_context": {
+    "application": {
+      "company": "DAYONE GmbH",
+      "role": "AI Experience Designer (w/m/d)",
+      "date": "2026-06-30",
+      "positioning": "AI-Workflow-Architect · High-Speed Agentic Building · Solution Engineering · Tech-Enabler"
+    },
+    "selection_rationale": {
+      "bibeltv-agentic-engineering": "Primary positioning hook. Direct hit on DAYONE's 'High-Speed Product Design & Building with AI-IDEs' + 'Rapid Iteration' + 'Tech-Enabler' pillars. Claude Code, real Bibel TV APIs, engineering consumes prototype code directly, days-to-hours iteration shift, team-wide evangelism of vibe-coded prototyping as design practice. This is the story DAYONE is hiring for.",
+      "bibeltv-design-system-api": "Solution Engineering anchor. Verbatim parallel to the JD's 'technologische Abkürzungen für komplexe Business-Probleme' framing. Concrete shipped infrastructure (Git + Style Dictionary + DTCG standard + automated CI sync) replacing four-platforms-drifting-apart copy-paste, without a platform-engineering team. Also proves Technisches Fundament (APIs, structured data).",
+      "bibeltv-support-agent": "AI-Workflow-Architect anchor. Production agent workflow with handbook-as-runtime-context, human-in-the-loop send decision treated as a design point, escalation as a first-class output. Executive format keeps the surface tight — the two in-depth slots are spent on agentic-engineering and design-system-api; this is the third anchor in compressed form.",
+      "ninox-ai-onboarding": "Second AI proof and the most directly user-facing AI design story. Vibe-coding prompt-to-database with split-screen direct manipulation; user agency preservation in AI systems. Reinforces AI-Native Mindset + Product/Interface Focus. Browseable rather than featured because Bibel TV is the current role and carries more JD-aligned signal.",
+      "churchdesk-booking-system": "Speed + measurable-impact proof for any reader wanting quantitative evidence. 2-month delivery, 70% coordination-time reduction, 90% acceptance via smart filtering. Engineering built directly from design in React / React Native — non-AI design-to-shipped-software chops underneath the agentic ones. Executive format because the in-depth narrative is long and the AI angle (AI alt-text) is downstream of the main story.",
+      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering. Hidden to avoid surfacing two near-duplicate stories in the DAYONE view. Also: status 'in-progress' with known AI-slop concerns from earlier reviews; out of scope to fix here.",
+      "bibeltv-color-api": "Hidden — craft-depth proof (OKLCH, k-means brand-color extraction) but narrower fit for an AI-builder role. Risks over-weighting Bibel TV in the surface.",
+      "bibeltv-app-redesign": "Hidden — growth + competitive-strategy + design-system angle is good but narrower DAYONE fit; the agentic-engineering and design-system-API case studies already cover the Bibel TV technical depth.",
+      "ninox-org-building": "Hidden — actively anti-aligned with the JD framing. The brief explicitly says: position Tobias as a hands-on AI builder, not as an org leader looking for headcount. Surfacing this story would muddy the positioning. Kept available behind ?all for any reader who goes deep on leadership history.",
+      "datameer-data-dense-analytics": "Hidden — the CV references the 5-year Datameer director tenure as the technical-foundation anchor; the portfolio surface stays focused on AI / agentic / studio-relevant work. Kept for ?all readers going deep on the enterprise / data-dense / regulated background.",
+      "spreadshirt-user-research-strategy": "Hidden — 2014-16, predates AI-era work entirely; not DAYONE-domain-adjacent. ChurchDesk is the more current strategic-influence anchor for any reader who wants one."
+    },
+    "gaps_not_addressed_by_new_case_studies": {
+      "n8n_workflow_in_production": "Per brief Gap 1 and verification log: no production n8n deployment. The four Bibel TV n8n workflows are documentation-only today. Aperto Bible-translation n8n workflow is being built personally this week as builder-signal. Acknowledged honestly in the cover letter ('two AI workflows shipped on Copilot-skill infrastructure at Bibel TV, not n8n; transferable orchestration practice; would pick up n8n on the first project'). Once the Aperto workflow ships, surfaces as a cover-letter reference + screenshot, not as a portfolio case study.",
+      "cursor_windsurf_specific": "Per brief Gap 2 and verification log: Claude Code is the verified daily AI-IDE; Cursor and Windsurf are not named in any verified source. Cover letter reframes honestly ('Claude Code is my daily agentic-coding tool — Cursor and Windsurf are the same shape of tool; I'd move between them quickly'). No fabricated Cursor/Windsurf case study."
+    },
+    "asset_gaps_blocking_publication": {
+      "bibeltv-agentic-engineering": [
+        "hero image /images/bibeltv/android-prototype.png — file missing",
+        "section 3 image /images/bibeltv/web-prototype.png — file missing"
+      ],
+      "bibeltv-design-system-api": [
+        "hero image /images/bibeltv/design-system-hero.png — file missing",
+        "section 3 image /images/bibeltv/design-system-tokens.png — file missing"
+      ],
+      "bibeltv-support-agent": [
+        "hero image — not set in JSON",
+        "at least one narrative-section image — not set"
+      ]
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "hellofresh-director-ux-design",
+  "title": "Selected Work",
+  "subtitle": "Craft in production, design systems that ship as engineering infrastructure, and AI-native design–engineering — selected for HelloFresh",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/cv/hellofresh-director-ux-design.pdf",
+    "label": "Download CV (PDF)"
+  },
+  "bio": {
+    "short": "I'm Tobias Treppmann, a design leader in Berlin. Fifteen years across four Head- and Director-of-design tenures, most recently at Bibel TV, where the design system ships as a live token API across Web, iOS, Android and Figma, and where the color engine that themes every card in the catalog is one I built and shipped in production. I lead through the work rather than around it, and I've been running an AI-native design–engineering practice long enough to have opinions about what breaks.",
+    "long": "I'm Tobias Treppmann, a design leader in Berlin. Fifteen-plus years leading design at product-first companies — Bibel TV, ChurchDesk, Ninox, Datameer — with hiring, coaching and performance calls made across design and writing. I lead through the work, not around it.\n\nAt Bibel TV the design system ships as an API: Style Dictionary in a Git repo, three-tier tokens (primitives → semantic → component), automated sync across Web, iOS, Android and Figma. The color engine that themes every card in the catalog is one I built in OKLCH with WCAG contrast validation, live in production — the off-the-shelf palette extractor made half the artwork disappear, so design kept the thresholds and the tokens rather than delegating to a generic library. Prototypes are generated with agentic coding and engineering consumes the prototype code directly. At ChurchDesk I reframed a funeral-booking feature into a booking capability wired deep into the platform, shipped to twenty-plus cemeteries in two months on a €20k budget, and cut coordination from days of phone-tag to hours. At Ninox I ran a team of five designers plus a design lead, hired one designer and one writer, let go one of each, and coached the design lead through a difficult engineering-lead partnership — including redesigning the team's collaboration system so a sidelined neurodivergent engineer could actually participate.\n\nWhat I care about is that the design decisions inside the pipeline stay with design — the color thresholds, the token architecture, the interaction agency the user actually gets when AI writes the first draft. I'm plain-spoken, comfortable moving without a map, and I've been shipping consumer-facing work in production, in Berlin, from the same office you'd hire me into.",
+    "context": {
+      "company": "HelloFresh Group / HelloTech — Consumer UX team inside the Consumer mega alliance. Eight brands, sixteen markets, 6M+ subscribers. Berlin HQ.",
+      "role": "Director UX Design — a leadership role in a matrixed alliance alongside peer Directors, not solo design lead. Owns hiring, coaching and developing designers from IC through managers; owns execution across a product line at consumer scale; is expected to be a design-technologist and to have a POV on AI-native design.",
+      "emphasis": "Lead with leads-through-the-work + AI-native + design-engineering credibility — the differentiator against typical Director candidates. Foreground shipped-in-production craft (color engine, design-system-as-API), bias to ship at product-line scale (ChurchDesk booking, 70/90/95 metrics), matrixed peer among functional heads (Datameer 5-year director tenure), hiring and performance calls (Ninox), coaching design leads (Ninox). Berlin base, German native, English C2, EU work rights.",
+      "avoid": "Do NOT claim 6M+ B2C consumer scale — largest documented is Spreadshirt (hundreds of thousands, 2014–2016) and Bibel TV (<1M). Frame as a growth arc, not existing scope. Do NOT claim multi-brand experience — no genuinely-distinct brand identities on shared tokens; the honest bridge is multi-surface consistency (Web / iOS / Android / Figma sync at Bibel TV). Do NOT claim a motion showreel — motion evidence is easing curves added to the design system as system-thinking, not a dedicated consumer-motion showcase. Do NOT claim FMCG or meal-kit category expertise — zero. Do NOT frame as an IC role — this is a Director-tier leadership pitch."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 7,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "_context": {
+    "application": {
+      "company": "HelloFresh Group / HelloTech",
+      "role": "Director UX Design (or Senior Director based on final scope) — Consumer UX team, Berlin",
+      "date": "2026-07-30",
+      "positioning": "Leads-through-the-work · AI-Native Design–Engineering · Design-System-as-API · Shipped Consumer Craft · Matrixed Peer Among Functional Heads",
+      "source": "https://careers.hellofresh.com/global/en/job/HELLGLOBAL8030038EXTERNALENGLOBAL/Director-UX-Design",
+      "brief": "data/applications/hellofresh-director-ux-design/cv-tailoring-brief.md",
+      "notes": "data/applications/hellofresh-director-ux-design/cv-tailoring-notes.md",
+      "verification": "data/verification-log/hellofresh-director-ux-design-verification.md"
+    },
+    "selection_rationale": {
+      "bibeltv-color-api": "Featured #1 — the craft anchor. HelloFresh's JD names 'zest-appeal' and 'the last 10%' explicitly; this is the closest thing in the portfolio to that language in production. K-means + OKLCH + WCAG contrast validation, shipped, beating the off-the-shelf palette extractor because design kept the thresholds and tokens rather than delegating them to a generic library. Direct hit on JD Priority 3 (craft authority) and Priority 2 (bias to ship). In-depth format — the design decisions that make this case study credible strip out at executive altitude.",
+      "bibeltv-design-system-api": "Featured #2 — design-technologist + multi-brand bridge. Style Dictionary + Git repo + automated sync across Web / iOS / Android / Figma with a three-tier token hierarchy. Direct hit on JD Priority 4 (design-engineering boundary, component architecture, front-end-constraints fluency). Also the honest multi-brand bridge per Q2 discipline — 'multi-surface consistency on a shared token foundation' is the transferable capability against Zest across 8 brands and 16 markets; explicitly NOT a multi-brand claim. In-depth format because the three-tier architecture + sync mechanics + governance model compress badly.",
+      "churchdesk-booking-system": "Featured #3 — ship-at-scale + cross-functional advocacy. 70% coordination-time reduction (days → hours), 90% booking acceptance rate, 20+ cemeteries in 2 months on €20k. Reframed 'funeral-booking feature' into 'booking capability deeply integrated into the platform' — held the design line on scope against pressure toward the cheaper standalone-module path. Direct hit on JD Priority 2 (bias to ship at product-line scale) + Priority 7-adjacent (cross-functional advocacy under pressure). In-depth format because the build-vs-buy narrative + measurable outcomes + regulated context compress badly. Only featured case study with full real screenshots already staged in the portfolio repo.",
+      "bibeltv-agentic-engineering": "Browseable #1 — AI-native + design-engineering bridge. Web + Android prototypes generated via agentic coding, engineering consuming prototype code directly in production. Active team evangelism of vibe-coded prototyping. Direct hit on JD Priority 5 (AI-native design practice, Claude named in JD) and Priority 4 (design-technologist mindset). Executive format keeps it complementary to the design-system-api anchor rather than competing.",
+      "ninox-org-building": "Browseable #2 — the leadership evidence. Performance calls in both directions (hired 1 designer + 1 writer, let go 1 of each). Coached the design lead through a difficult engineering-lead partnership; personally redesigned the collaboration system (pre-meeting prep, written agendas, structured turn-taking, documented decisions) to include a sidelined neurodivergent engineer. Direct hit on JD Priority 1 (design leadership from IC through managers) — reframes 'leading a team' as 'a design problem'. Executive format because HelloFresh's JD is craft-and-ship-shaped, not headcount-shaped; the leadership signal is complementary depth, not the featured anchor.",
+      "bibeltv-app-redesign": "Browseable #3 — current-B2C consumer craft. Mobile-app redesign to broaden reach + engagement and defend against global market entrants (Pray.com, Hallow). The most direct 'shipped consumer-mobile design at a subscription-media platform' evidence in the portfolio, though at Bibel TV's <1M scale (Q1 discipline: framing is honest, not fabricated 6M).",
+      "ninox-ai-onboarding": "Browseable #4 — AI-in-product with a user-agency principle. Prompt-to-database with split-screen direct manipulation and 'show output and let users edit'. Second AI story surfacing the design principles behind AI product integration (versus agentic-engineering, which is AI in the design practice). Executive format keeps it complementary.",
+      "bibeltv-support-agent": "Hidden — narrower fit for a consumer-craft-and-shipping JD. Handbook-as-context Copilot with escalation-as-first-class-output is strong AI evidence, but agentic-engineering + ninox-ai-onboarding already cover the AI dimension from more relevant angles (design practice + product integration). Kept reachable via ?all for the AI-in-CS-ops reader.",
+      "datameer-data-dense-analytics": "Hidden — Datameer's 5-year director tenure + matrixed-peer positioning is a load-bearing CV bullet (see cv-tailoring-notes §Datameer), not a portfolio surface. Also older (2016–2021) and B2B-regulated-data-analytics rather than B2C-consumer-food-tech. Kept for ?all.",
+      "spreadshirt-user-research-strategy": "Hidden — the historical hundreds-of-thousands-of-consumers scale anchor. Lives in CV Older Experience block (cv-tailoring-notes §Spreadshirt) rather than portfolio surface, because it's a decade old and the JD reads current craft over historical scale.",
+      "bibeltv-ai-prototyping": "Hidden — status=in-progress with known AI-slop issues from prior reviews (see n8n/xentral filter rationales). Substantially overlaps bibeltv-agentic-engineering, which is the writing-quality-gate-safe surface for that story."
+    },
+    "gaps_not_addressed_by_new_case_studies": {
+      "consumer_b2c_6m_scale": "Per Q1 answered 2026-07-12: no hidden metric to surface. Bibel TV <1M + Spreadshirt hundreds-of-thousands (2014–2016) is the whole recent-consumer story. CV foregrounds Bibel TV for current B2C craft + Spreadshirt for consumer-scale execution history; cover letter names the growth arc explicitly. No case study fabricated to close this gap.",
+      "multi_brand_governance": "Per Q2 answered 2026-07-12: no genuinely-distinct-brand-identities-on-shared-tokens experience. bibeltv-design-system-api is the honest bridge — 'multi-surface consistency on a shared token foundation' — surfaced as featured with that explicit framing. No case study fabricated.",
+      "motion_micro_interaction_showcase": "Per Q3 answered 2026-07-12: no dedicated consumer-motion showreel. Motion evidence is custom easing curves added at Ninox + Datameer as design-system foundation (B2B volume). CV skills-section mentions 'motion easing curves as design-system foundation'; portfolio does NOT foreground a motion story. No case study fabricated.",
+      "fmcg_meal_kit_category": "Zero direct FMCG / meal-kit / subscription-food experience. Cover letter handles by naming it directly and bridging via subscription/recurring-revenue B2C patterns. No case study to create; the honest position is that category vocabulary is learn-on-arrival ramp.",
+      "team_of_teams_10_to_20": "Per Q5 answered 2026-07-12: peak documented direct-report headcount is 5 (Ninox) + 1 design lead, effective ~8–10 design orbit including engineering partners on the shared design system. Cover letter frames as honest step-up. ninox-org-building carries the depth-evidence for the coaching + hiring + performance-calls sub-question."
+    },
+    "assets_note": "Featured case studies asset check (per Pre-Publish Checklist): bibeltv-color-api hero → /images/bibeltv/color-lab.png (on disk ✓); bibeltv-design-system-api hero → /images/bibeltv/design-system-hero.png (on disk ✓); churchdesk-booking-system → 4 real screenshots on disk (funeral-home-booking.jpg, booking-form.jpg, priest-availability.jpg, vision-sheet-design-thinking.jpg) ✓. Run scripts/check-images.mjs before publish to confirm all sections resolve.",
+    "publish_pending": "This filter is written but NOT yet synced to the portfolio repo. The CV referenced at cv.href does not exist yet — generate-cv is the next pipeline step. Sync flow: (1) generate-cv produces tobias-treppmann-cv-hellofresh-public.pdf in this repo; (2) copy the -public.pdf variant to portfolio/public/documents/tobias-treppmann-cv-hellofresh.pdf; (3) cd ../treppmanndesignportfolio && npm run sync:cv-data -- hellofresh-director-ux-design; (4) commit + push. Do NOT sync until the CV exists — sync-cv-data.mjs refuses non -public.pdf variants."
+  }
+}

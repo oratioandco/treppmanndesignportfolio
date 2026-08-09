@@ -11,7 +11,7 @@
       "format_override": "in-depth"
     },
     {
-      "id": "leading-a-team-is-a-design-problem",
+      "id": "ninox-org-building",
       "visibility": "featured",
       "order": 2,
       "format_override": "in-depth"
@@ -75,7 +75,7 @@
     },
     "selection_rationale": {
       "bibeltv-support-agent": "Primary positioning hook and the headline asset for this application. The Bibel TV CS Copilot Skill is structurally identical to what DH's Efficient Service tribe within the Service Productline is presumably building — AI-assisted drafting for CS agents with the human keeping the send-decision. Honesty-rescoped 2026-05-23 to Copilot-skill framing (no overclaim of custom-trained model, no fabricated metrics). Per the verification log, this is the single sharpest piece of evidence Tobias has for the JD's most distinctive must-have ('designing products for customer service agents, internal operations tools').",
-      "leading-a-team-is-a-design-problem": "The polished answer to the JD's must-have #2 ('Proven success coaching senior ICs and design leads'). The coachee is a design lead, the coaching content is leadership-skill (working through a strained engineering relationship directly rather than around it), the method is system-design-thinking applied to team building. Per the verification log this case study is ready for portfolio + interview use; pairs with the broader hiring-and-accountability track record to show coaching range. Most direct piece of manager-of-managers evidence Tobias has.",
+      "ninox-org-building": "The polished answer to the JD's must-have #2 ('Proven success coaching senior ICs and design leads'). The coachee is a design lead, the coaching content is leadership-skill (stakeholder management with a difficult engineering counterpart), the method is system-design-thinking applied to team building. Per the verification log this case study is ready for portfolio + interview use; pairs with the broader hired/let-go track record to show coaching-and-accountability range. Most direct piece of manager-of-managers evidence Tobias has.",
       "churchdesk-booking-system": "Multi-stakeholder coordination + measurable impact (70% coordination-time reduction, 90% acceptance) + dual PM + design mandate + regulated-industry GDPR-plus context. The closest documented analog in Tobias's portfolio for the agent+customer+ops+AI multi-actor workflows DH's Service Efficiency tribe is likely building. Only featured case study with 4 real screenshots already staged on disk.",
       "ninox-ai-onboarding": "AI-integration leadership at organisational level — user-agency principles ('show output and allow users to edit') and vibe-coding philosophy that port as transferable AI best practice for the Service Efficiency tribe. Has 5 real screenshots staged. Strong but slightly off-domain for DH (no-code business platform vs CS-agent tooling); kept browseable behind Bibel TV CS Copilot which is the more on-target AI proof.",
       "spreadshirt-user-research-strategy": "Stakeholder management at executive level + the cleanest example of DH's exact 'efficiency-with-empathy' cultural-fit phrasing — changed product strategy from full automation to controlled automation preserving creator agency. Older era (2014-2016), so executive-format browseable rather than featured.",
@@ -93,7 +93,7 @@
       ],
       "blocks_publication": [
         "bibeltv-support-agent — hero image + 2 section diagrams; UI screenshots require Bibel TV approval per case-study confidentiality note. Stylised diagrams a viable fallback for the handbook-as-context and escalation-as-first-class-output sections.",
-        "leading-a-team-is-a-design-problem — hero + 1+ supporting diagram (system intervention before/after); fully written story but no visuals on disk.",
+        "ninox-org-building — hero + 1+ supporting diagram (system intervention before/after); fully written story but no visuals on disk.",
         "spreadshirt-user-research-strategy — at minimum one hero; executive-format limits the surface so a single visual unblocks the browseable view."
       ]
     },
@@ -104,5 +104,9 @@
       "apac_singapore_team_management": "No direct experience. Datameer NY↔Berlin distributed-team framework ports the methodology (same ~6-7h delta, opposite direction); lives in CV Datameer bullet block + cover-letter paragraph, not in portfolio surface.",
       "public_company_productline_band_tenure": "Adjacent only (Hypoport sibling-company proximity, Datameer regulated-industry bank clients). Frame as deliberate next-step move toward deeper organisational impact; cover-letter handles it."
     }
+  },
+  "cv": {
+    "href": "/cv/deliveryhero-senior-manager-ux-quick-commerce.pdf",
+    "label": "Download CV (PDF)"
   }
 }

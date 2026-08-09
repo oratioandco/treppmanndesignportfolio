@@ -1,0 +1,112 @@
+{
+  "slug": "pwc-senior-consultant-strategie-kirchen",
+  "title": "Ausgewählte Arbeiten",
+  "subtitle": "Kirchen-Domäne, Digitalisierung, Organisations- und Strategie-Beratung — kuratiert für PwC",
+  "theme": "default",
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden",
+      "order": 11
+    }
+  ],
+  "show_all_label": "Weitere Arbeiten anzeigen",
+  "_context": {
+    "application": {
+      "company": "PwC Deutschland",
+      "role": "(Senior) Consultant Strategie- und Organisationsberatung für Kirchen",
+      "date": "2026-06-21",
+      "positioning": "Kirchen-Domänentiefe · Digitalisierung kirchlicher Prozesse · Strategie- und Organisationsberatung · Team-/Practice-Aufbau"
+    },
+    "selection_rationale": {
+      "churchdesk-booking-system": "Primärer Anker. Direkte Multi-Stakeholder-Digitalisierung einer evangelischen Landeskirche (Evangelische Kirche von Kurhessen-Waldeck, Körperschaft des öffentlichen Rechts). 70 % Reduktion Koordinationszeit, 90 % Acceptance-Rate, 20+ Friedhöfe. Build-vs-Buy-Analyse + strategischer Scoping-Reframe (Insellösung → Plattformfähigkeit) — liest sich als abgeschlossenes Beratungs-Deliverable. Einzig vollständig bebilderte Case-Study mit allen Assets real.",
+      "ninox-org-building": "Direkter Match für 'Kirchenteam mit aufzubauen'. Leadership-as-design: Hiring (1+1) und Trennung (1+1) während der Tenure, Coaching eines Design-Leads durch eine schwierige Stakeholder-Beziehung, Redesign der Team-Normen zur Inklusion eines neurodivergenten Engineers. Belegt SLT-Mitgliedschaft und cross-funktionale Senior-Leadership-Fähigkeit, die PwC für das wachsende Kirchenteam sucht.",
+      "bibeltv-app-redesign": "Aktuelle Rolle als Beleg für Faith-Media-Domänentiefe und strategische Produktverantwortung in einer deutschen kirchlich-medialen Non-Profit. Brand-Strategie + Wettbewerbsanalyse (Pray.com, Hallow) + Behavioral Design — zeigt strategisches Denken am laufenden Produkt, nicht nur historisch.",
+      "bibeltv-support-agent": "KI/Copilot-Adoption im christlich-medialen Non-Profit-Kontext — direkter Beleg für 'innovative Technologien zur Prozessoptimierung'. Executive-Format bewusst gewählt: Rolle ist aktuell, quantitative Adoption-Metriken sind in Aufbau (per Rescope 2026-05-23), in-depth würde Metrik-Lücke sichtbar machen. Verantwortungs-Ethik-Framing (Mensch behält Sende-Entscheidung) passt zum Bistums-/Landeskirchen-Kontext.",
+      "datameer-data-dense-analytics": "Compliance-/Stakeholder-Adjacency zur Verwaltungsmodernisierung — Top-Banken und Versicherer in US/CA/UK sind eine plausible Analogie zu öffentlich-rechtlicher Compliance-Mechanik. CONFIDENTIAL-Flag → ausschließlich Executive-Format, kein in-depth. Belegt 5-jährige Director-Tenure als Skalen-Anker.",
+      "bibeltv-design-system-api": "Sekundärer Faith-Media-Beleg. Zeigt Plattform-Denken und Single-Source-of-Truth-Architektur — übertragbar auf Bistums-IT-Modernisierung als Operating-Model-Analogie. Executive-Format weil technisch-tief und für PwC-Kirchen-Audience weniger primär als die Kirchen-/Org-/Leadership-Stories.",
+      "bibeltv-color-api": "Hidden — Marken-Mechanik mit technischer Tiefe (OKLCH, k-means), aber für PwC-Kirchen-Audience zu schmal. Über ?all erreichbar.",
+      "bibeltv-agentic-engineering": "Hidden — AI-coded Prototyping ist ein Engineering-Methodik-Signal, weniger relevant für Strategie-/Organisations-Beratung. Über ?all erreichbar.",
+      "bibeltv-ai-prototyping": "Hidden — überlappt substanziell mit bibeltv-agentic-engineering; zusätzlich Status 'in-progress' mit bekannten Qualitätsfragen (vgl. n8n-Filter-Anmerkung). Aus dem PwC-Surface herausgehalten.",
+      "ninox-ai-onboarding": "Hidden — Vibe-Coding-AI-Onboarding für No-Code-/Datenbank-Audience ist für n8n stark, für PwC-Kirchen-Strategie kein primärer Hook. Ninox ist über ninox-org-building bereits featured. Über ?all erreichbar.",
+      "spreadshirt-user-research-strategy": "Hidden — älter (2014–2016), B2C-E-Commerce, nicht Kirchen-/Non-Profit-domänennah. Für PwC nicht surfacen."
+    },
+    "case_studies_not_created": {
+      "hypoport-hub-org-consulting": "NICHT erstellt. Per Verifikations-Log §92 ist die exakte Deliverable-Form (Strategiepapier? Operating-Model-Design? Org-Chart-Änderung?) eine dokumentierte Wissens-Lücke; eine Case-Study-Erstellung würde Fabrikation riskieren. Hypoport bleibt CV-Bullet + Cover-Letter-Anker für das PwC-Strategie-/Org-Beratungs-Deliverable.",
+      "oratio-co-kirchen-consulting": "NICHT erstellt. Per Verifikations-Log §288 ist die konkrete Klienten-Liste über Software AG + Bibel TV hinaus eine dokumentierte Wissens-Lücke; Tobias müsste zuerst weitere Kirchen-/Diakonie-/Caritas-Mandate dokumentieren. Oratio&Co bleibt ONGOING-Eintrag (linke Spalte) + Cover-Letter-Anker.",
+      "rationale_for_no_drafts": "Beide Lücken sind explizit als 'nicht-blockierend, aber dokumentationsbedürftig' im Verifikations-Log markiert. Eine Case-Study-Draft-Erstellung ohne neue Tobias-Inputs verletzt die Truthfulness-Disziplin. Die Stories laufen über CV-Bullets + Cover-Letter, wo Framing strikt auf verifiziertem Material aufsetzt."
+    },
+    "assets_status": {
+      "complete": ["churchdesk-booking-system"],
+      "missing_critical": [
+        "ninox-org-building (FEATURED — fehlt Hero + alle Section-Images)",
+        "bibeltv-app-redesign (FEATURED — alle Image-Referenzen sind Placeholder)",
+        "bibeltv-support-agent (BROWSEABLE — fehlt Hero, keine Section-Images)",
+        "datameer-data-dense-analytics (BROWSEABLE — alle Image-Referenzen sind Placeholder; CONFIDENTIAL)",
+        "bibeltv-design-system-api (BROWSEABLE — alle Image-Referenzen sind Placeholder)"
+      ],
+      "blocking_publication": true,
+      "details": "Siehe data/applications/pwc-senior-consultant-strategie-kirchen/portfolio-gap-analysis.md §'Assets Tobias must provide before submission'."
+    },
+    "application_specific_external_assets": {
+      "required_by_jd": [],
+      "note": "Die PwC-JD verlangt KEINE externe Deliverable jenseits CV + Cover-Letter (kein Design-Challenge, kein Workflow-Screenshot, kein Prototype-Recording). Der Portfolio-Link ist optional und unterstützt die Cover-Letter-Behauptungen — er ist nicht selbst eine Pflicht-Einreichung."
+    }
+  }
+}

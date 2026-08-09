@@ -1,158 +1,130 @@
 {
   "id": "spreadshirt-user-research-strategy",
   "title": "How do you change a company's direction with one prototype?",
-  "subtitle": "Using user research to overturn executive assumptions at a print-on-demand platform serving hundreds of thousands",
+  "subtitle": "User research that overturned an executive assumption at a print-on-demand platform",
   "type": "blog-post",
-  "tags": [
-    "user-research",
-    "strategy",
-    "prototyping",
-    "ecommerce",
-    "b2c",
-    "transformation",
-    "mobile",
-    "customer-collaboration"
-  ],
+  "tags": ["user-research", "strategy", "prototyping", "ecommerce", "b2c", "transformation", "mobile"],
   "company": "Spreadshirt",
   "role": "UX Strategy Lead",
-  "team": "3 → growing to larger implementation teams, Leipzig",
+  "team": "Team of 3, growing into implementation teams, Leipzig",
   "duration": "2014 – 2016",
   "status": "draft",
-  "last_updated": "2026-05-06",
+  "last_updated": "2026-05-22",
   "hero_image": {
-    "src": "/images/covers/generated/spreadshirt-user-research-strategy.svg",
-    "alt": "How do you change a company's direction with one prototype? — abstract resolution-field cover"
+    "src": "/images/spreadshirt/hero.png",
+    "alt": "The Spreadshirt t-shirt designer"
   },
-  "format_priority": [
-    "blog",
-    "executive",
-    "narrative"
-  ],
+  "format_priority": ["blog", "executive", "narrative"],
+
   "sections": [
     {
       "type": "hero",
       "headline": "How do you change a company's direction with one prototype?",
-      "subtext": "The management vision was a 60-second automated journey. User research said something completely different. Here's how data won."
+      "subtext": "The leadership vision was a 60-second automated journey. User research said the opposite. This is how the research won."
     },
     {
       "type": "narrative",
-      "headline": "The Starting Point",
-      "content": "Spreadshirt was running on a product assumption that felt right at the top: shop owners wanted speed. The leadership vision was a 60-second fully automated journey — pick a template, customize automatically, ship it. Efficient. Scalable. Clean.\n\nThe company had tried to redesign the seller experience twice before and failed both times. I was brought in to lead the third attempt.\n\nInitial question: what if the assumption was wrong?",
-      "images": [
-        {
-          "src": "/images/diagrams/spreadshirt-automation-agency.svg",
-          "alt": "Diagram: management wanted a fully automated 60-second journey, research found shop owners valued the design process itself, and the product shipped between the two, closer to user control.",
-          "caption": "Diagram — where management wanted the product, what research found, and where it shipped."
-        }
-      ]
+      "headline": "The starting point",
+      "content": "Spreadshirt was running on an assumption that felt obviously right at the top: shop owners want speed. The leadership vision was a 60-second journey — pick a template, let it customise itself, ship. Efficient, scalable, clean.\n\nThe company had tried to redesign the seller experience twice before, and failed both times. I was brought in to lead the third attempt. I started with one question: what if the assumption was wrong?"
     },
     {
       "type": "callout",
       "quote": "The t-shirt designer is the most uplifting experience I have all day.",
-      "attribution": "Shop owner during user interview",
-      "context": "This single sentence changed the product strategy"
+      "attribution": "A shop owner, during a user interview",
+      "context": "The sentence that changed the product strategy"
     },
     {
       "type": "narrative",
-      "headline": "The Discovery",
-      "content": "I went out and talked to actual shop owners. Not surveys, not analytics — conversations.\n\nWhat I found completely contradicted the leadership vision. Shop owners didn't want the design process automated away. For them, the t-shirt designer wasn't a friction point — it was the most joyful part of their day. They valued design control over speed. The creative process was the product.\n\nThis wasn't a small insight. It meant the entire 60-second automation strategy was headed in the wrong direction."
+      "headline": "What the research found",
+      "content": "I went and talked to shop owners. Not surveys, not analytics — conversations.\n\nWhat they told me contradicted the leadership vision outright. They did not want the design process automated away. The t-shirt designer was not friction for them; it was the best part of their day. They valued creative control over speed. The creative process was the product.\n\nThat was not a small note in the margins. It meant the entire 60-second automation strategy was pointed the wrong way."
     },
     {
       "type": "narrative",
-      "headline": "The Hard Part",
-      "content": "The data said one thing. The executive team's intuition said another. And this wasn't the first time the company had tried this redesign — two previous attempts had already failed.\n\nI needed to make the research undeniable. A presentation wouldn't work. I needed to show, not tell.\n\nSo I built a prototype — a mobile version of the t-shirt designer — and put it directly in users' hands. The goal wasn't to prove mobile was possible. It was to demonstrate that the design experience itself was worth preserving, even on a small screen."
+      "headline": "Making the research undeniable",
+      "content": "The data said one thing and executive intuition said another — and two earlier attempts had already failed. A presentation was not going to move that.\n\nSo I built a prototype: a mobile version of the t-shirt designer, put directly into users' hands. The point was not to prove mobile was technically possible. It was to show that the design experience itself was worth keeping — that it held up, and still felt good, even on a small screen.",
+      "images": [
+        {
+          "src": "/images/spreadshirt/mobile-prototype.png",
+          "alt": "The mobile t-shirt designer prototype",
+          "caption": "The one-week mobile prototype — built to show the design experience survives on a small screen."
+        }
+      ]
     },
     {
       "type": "process",
-      "headline": "The Approach",
+      "headline": "The approach",
       "steps": [
         {
-          "label": "User Interviews",
-          "description": "Conducted in-depth conversations with shop owners, revealing that the design process was the emotional core of their experience — not friction to be removed."
+          "label": "User interviews",
+          "description": "In-depth conversations with shop owners, which surfaced that the design process was the emotional core of their experience, not friction to remove."
         },
         {
-          "label": "Research Prototype",
-          "description": "Built a mobile t-shirt designer prototype in Axure RP, developed in collaboration with UI designers over one intensive week. Designed specifically to elicit user feedback, not for shipping."
+          "label": "A research prototype",
+          "description": "A mobile t-shirt designer built in Axure RP with the UI designers over one intensive week — made to provoke user feedback, not to ship."
         },
         {
-          "label": "Executive Workshops",
-          "description": "Facilitated workshops with the executive team and business unit leadership, presenting research findings that contradicted leadership assumptions about automation."
+          "label": "Executive workshops",
+          "description": "Workshops with the executive team and business-unit leadership, presenting findings that contradicted the leadership assumption about automation."
         },
         {
-          "label": "User Testing",
-          "description": "Tested the mobile prototype with real users. Feedback was overwhelmingly positive — demonstrating that the full desktop experience could be adapted for mobile."
+          "label": "User testing",
+          "description": "Tested the prototype with real users. The response was strongly positive, and showed the full desktop experience could work on mobile."
         }
       ]
     },
     {
       "type": "outcome",
-      "headline": "Results",
+      "headline": "What changed",
       "metrics": [
         {
-          "label": "Product Strategy",
-          "before": "60-second fully automated journey — eliminate design friction",
-          "after": "Controlled automation — preserve user agency and creative control"
+          "label": "Product strategy",
+          "before": "A 60-second fully automated journey — design friction removed",
+          "after": "Controlled automation — user agency and creative control kept"
         },
         {
-          "label": "Mobile Prototype",
-          "value": "\"Resoundingly positive\" user feedback → moved to production implementation"
-        },
-        {
-          "label": "Redesign Project",
+          "label": "The redesign project",
           "before": "Two previous attempts had failed",
-          "after": "9-month project completed successfully, team grew from 3 to full implementation"
+          "after": "Completed over nine months; the team grew from three into full implementation teams"
         },
         {
-          "label": "Executive Buy-in",
-          "value": "Secured leadership support for direction contradicting their original intuition"
+          "label": "Executive buy-in",
+          "value": "Leadership backed a direction that contradicted their own original intuition"
         }
       ],
-      "narrative": "The mobile prototype succeeded — it showed that the design experience could work beautifully on mobile. User testing feedback was \"resoundingly positive.\" But the bigger impact was strategic: leadership changed the fundamental product approach from full automation to controlled automation. The project that had failed twice before completed successfully over 9 months, eventually scaling from a 3-person team to larger implementation teams."
+      "narrative": "The mobile prototype tested well — it showed the design experience could work on a small screen. The larger result was strategic: leadership changed the product approach from full automation to controlled automation. The redesign that had failed twice was finished, over nine months, scaling from a team of three into larger implementation teams."
     },
     {
       "type": "reflection",
-      "headline": "What I Learned",
-      "content": "This experience taught me that data is not enough — you need to make it undeniable. When research contradicts leadership intuition, a presentation won't change minds. A prototype that puts users in control will.\n\nIt also reinforced that the best product strategy doesn't start with efficiency metrics — it starts with understanding what users actually value. Sometimes the thing you're trying to optimize away is the thing they love most."
-    },
-    {
-      "type": "key-takeaway",
-      "headline": "Why This Matters for Your Team",
-      "content": "If your team is headed in a direction that feels right but might be wrong, someone needs to talk to the users before more resources are committed. I can lead that conversation — and I can make the findings stick through research that speaks louder than any slide deck."
+      "headline": "What I took from it",
+      "content": "Data on its own does not change a decision — you have to make it undeniable. When research contradicts leadership intuition, a slide deck will not do it. A prototype that puts users in control will.\n\nIt also fixed something for me about strategy: the best product direction does not start from efficiency metrics. It starts from what users actually value. Sometimes the thing you are trying to optimise away is the thing they love most."
     }
   ],
+
   "variants": {
     "executive": {
-      "summary": "Changed a company's product strategy from full automation to controlled automation by conducting user research that revealed shop owners valued creative control above all else. Prototype succeeded, project completed after 2 prior failures.",
-      "angle": "How user research overturned executive intuition",
-      "sections": [
-        "hero",
-        "callout",
-        "outcome",
-        "key-takeaway"
-      ],
+      "summary": "Changed a company's product strategy from full automation to controlled automation, by running user research that showed shop owners valued creative control above speed. The prototype tested well; the redesign finished after two prior failures.",
+      "angle": "User research overturning executive intuition",
+      "sections": ["hero", "callout", "outcome", "reflection"],
       "max_read_time": "2 min"
     },
     "narrative": {
-      "summary": "What happens when user research contradicts leadership intuition? This is the story of how one shop owner's quote changed an entire company's product direction.",
-      "angle": "The most uplifting experience",
-      "sections": [
-        "hero",
-        "callout",
-        "discovery",
-        "reflection"
-      ],
+      "summary": "What happens when user research contradicts leadership intuition? The story of how one shop owner's sentence changed a company's product direction.",
+      "angle": "The most uplifting experience of the day",
+      "sections": ["hero", "callout", "narrative", "reflection"],
       "max_read_time": "5 min"
     }
   },
+
   "related": [
     "datameer-data-dense-analytics",
-    "leading-a-team-is-a-design-problem",
+    "ninox-org-building",
     "churchdesk-booking-system"
   ],
+
   "meta": {
-    "read_time_minutes": 7,
+    "read_time_minutes": 5,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "my-cv-tailor verification 2026-04-23 + experience data file"
+    "source": "spreadshirt experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22"
   }
 }
