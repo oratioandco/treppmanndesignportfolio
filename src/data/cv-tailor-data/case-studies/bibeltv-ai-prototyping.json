@@ -38,7 +38,7 @@
     {
       "type": "narrative",
       "headline": "The AI-First Approach",
-      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a React Native (or Swift, or Kotlin) prototype.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
+      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack \u2014 Kotlin for Android, SwiftUI for iOS, React for web and connected TV.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
     },
     {
       "type": "process",
@@ -50,7 +50,7 @@
         },
         {
           "label": "Prototype Generation",
-          "description": "I brief Claude Code: \"Here's what I designed. Build this as a functioning prototype.\" Claude generates working code (React, React Native, Swift, or Kotlin depending on target)."
+          "description": "I brief Claude Code: \"Here's what I designed. Build this as a functioning prototype.\" Claude generates working code (Kotlin, SwiftUI, or React depending on target)."
         },
         {
           "label": "Prototype Testing",
@@ -74,7 +74,7 @@
     {
       "type": "narrative",
       "headline": "Real Example: New Mobile App Redesign",
-      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build a React Native app with these screens, this navigation structure, these animations.\" Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
+      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\" \u2014 Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
     },
     {
       "type": "narrative",
