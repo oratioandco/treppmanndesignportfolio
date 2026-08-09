@@ -16,7 +16,7 @@
   ],
   "company": "Datameer",
   "role": "Director of Design",
-  "team": "3 designers, Berlin + NYC",
+  "team": "Led the UX team, reporting to the VP Design, in a design org spanning SF, Halle, and NYC",
   "duration": "2016 – 2021",
   "status": "draft",
   "last_updated": "2026-04-24",
@@ -71,7 +71,7 @@
         },
         {
           "label": "Design System",
-          "description": "Built the platform's design system from scratch — the first unified visual language for a product that had grown organically for years. Created shared components, patterns, and documentation."
+          "description": "Co-built the platform's design system — UX defined component behaviour and specs, UI executed the visual system. The first unified visual language for a product that had grown organically for years."
         },
         {
           "label": "Organizational Elevation",
@@ -116,7 +116,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Built the design system from scratch and solved a fundamental data-uncertainty UX problem.",
+      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system \u2014 UX-defined component behaviour and specs, UI-executed visual system \u2014 and solved a fundamental data-uncertainty UX problem.",
       "angle": "Organizational transformation through design",
       "sections": [
         "hero",
