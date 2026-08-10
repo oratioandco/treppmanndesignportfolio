@@ -72,5 +72,10 @@
       "order": 12
     }
   ],
-  "show_all_label": "Show more work"
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-fin-ai-design-leader.pdf",
+    "label": "Download CV (PDF)",
+    "note": ""
+  }
 }

@@ -1,0 +1,138 @@
+{
+  "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
+  "_source": "engine/policy/policy.yaml",
+  "_source_commit": "5abeb37",
+  "employers": [
+    "Bibel TV",
+    "ChurchDesk",
+    "Ninox",
+    "Hypoport",
+    "Datameer",
+    "Spreadshirt",
+    "HairDirect",
+    "andCulture",
+    "HOPE International",
+    "Bajaa",
+    "Westfalia",
+    "Oratio"
+  ],
+  "rules": [
+    {
+      "id": "BT-001",
+      "kind": "regex",
+      "pattern": "vibe[\\s\\-]?cod(?:e|ed|es|ing)",
+      "message": "\"vibe-coding\" is banned.",
+      "fix": "The practice is \"agentic engineering\". The Ninox interaction pattern is \"prompt-to-database\"."
+    },
+    {
+      "id": "BT-002",
+      "kind": "proximity",
+      "pattern": "React\\s?Native",
+      "near": "\\bskills?\\b|\\bproficien|\\bexpertise\\b|\\btoolkit\\b|\\bI (?:built|wrote|coded|developed|shipped|used)\\b|\\bmy (?:stack|skills|toolkit)\\b|\\b(?:his|own)\\s+stack\\b",
+      "window": 120,
+      "message": "React Native presented as Tobias's own skill or stack.",
+      "fix": "He wrote no React Native code. Attribute it: \"engineering built the mobile app in React Native\". His stack is React, Android/Kotlin, SwiftUI, web, connected TV."
+    },
+    {
+      "id": "BT-002b",
+      "kind": "absent_in_block",
+      "pattern": "React\\s?Native",
+      "requires": "engineering|they wrote|the team|built by|developers?\\b|not me",
+      "message": "React Native mentioned with no attribution in the same block.",
+      "fix": "Say who wrote it. Unattributed, a reader assumes it was him — and it was not."
+    },
+    {
+      "id": "BT-003",
+      "kind": "regex",
+      "pattern": "B\\.?\\s?A\\.?\\s?equiv",
+      "message": "\"B.A. equiv.\" is banned.",
+      "fix": "Write \"Theological Studies, Theologisches Seminar Rheinland\" with no degree title."
+    },
+    {
+      "id": "BT-004",
+      "kind": "regex",
+      "pattern": "faith[\\s\\-](?:media|tech|forward|based\\s+media)",
+      "message": "Faith-sector framing is banned for Bibel TV.",
+      "fix": "Bibel TV = \"broadcaster in linear-to-streaming transformation\"."
+    },
+    {
+      "id": "BT-005",
+      "kind": "proximity",
+      "pattern": "(?:led|leading|ran|headed|head\\s+of|ownership\\s+of)\\s+(?:the\\s+)?(?:entire\\s+|whole\\s+|full\\s+|complete\\s+|all\\s+(?:of\\s+)?)?design\\s+(?:org\\b|organisation|organization|function|department|practice)|(?:led|leading|ran|headed)\\s+(?:the\\s+)?(?:entire|whole|full|complete)\\s+design\\s+team",
+      "near": "Datameer",
+      "window": 400,
+      "message": "Claims leadership of the whole Datameer design organisation.",
+      "fix": "He led the UX team (2 reports) inside a 4-person design org (2 UX + 2 UI), reporting to the VP Design. \"Led the design team across Germany and NYC\" is fine; leading the design *org* is not."
+    },
+    {
+      "id": "BT-005b",
+      "kind": "attribution",
+      "pattern": "\\b(?:[3-9]|[1-9]\\d)\\s+(?:direct\\s+)?reports?\\b|\\b(?:[3-9]|[1-9]\\d)\\s+designers?\\s+report|team\\s+of\\s+(?:[3-9]|[1-9]\\d)\\b",
+      "near": "Datameer",
+      "message": "Inflated report count near Datameer.",
+      "fix": "Two UX reports. The 4-person figure is the whole design org, not his reports — do not present it as headcount he managed."
+    },
+    {
+      "id": "BT-006",
+      "kind": "proximity",
+      "pattern": "(?:built|created|designed|established)\\s+the\\s+design\\s+system(?!\\s+governance)",
+      "near": "Datameer",
+      "window": 400,
+      "message": "Claiming the Datameer design system was built solo is banned.",
+      "fix": "It was co-built: UX defined component behaviour and specs, UI executed the visual system."
+    },
+    {
+      "id": "BT-007",
+      "kind": "proximity",
+      "pattern": "(?:delivered|shipped|launched|built)\\s+(?:a\\s+|the\\s+)?(?:suite\\s+of\\s+|module\\s+suite|suite\\s+of\\s+modules)",
+      "near": "ChurchDesk",
+      "window": 400,
+      "message": "Claiming the ChurchDesk module suite was delivered is banned.",
+      "fix": "He designed and INITIATED the suite; only the booking module shipped."
+    },
+    {
+      "id": "BT-008",
+      "kind": "regex",
+      "pattern": "neurodiverg|neurodivers|on\\s+the\\s+spectrum",
+      "message": "A colleague's neurodivergence must never appear in output.",
+      "fix": "Remove. Describe the systems change, not the person."
+    },
+    {
+      "id": "BT-009",
+      "kind": "regex",
+      "pattern": "handbook[\\s\\-]as[\\s\\-]context\\s+method|seniority[\\s\\-]and[\\s\\-]scepticism\\s+spectrum|seniority[\\s\\-]and[\\s\\-]skepticism\\s+spectrum",
+      "message": "Coined compound phrase.",
+      "fix": "State the plain fact in a plain sentence — e.g. \"the handbook is loaded as context\", \"adopted across the team, including the most sceptical members\"."
+    },
+    {
+      "id": "SAL-001",
+      "kind": "regex",
+      "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]",
+      "message": "Never state or hint at current or past salary.",
+      "fix": "Only the forward-looking script is allowed, and only when asked: \"€125–135k base, depending on total package.\""
+    },
+    {
+      "id": "SAL-002",
+      "kind": "proximity",
+      "pattern": "[€$£]\\s?\\d[\\d.,]*\\s?(?:k|K|m|M)?|\\d[\\d.,]*\\s?(?:k|K)\\s?(?:€|EUR|EUR\\b)",
+      "near": "salary|compensation|Gehalt|remuneration|\\bpay\\b|\\bcomp\\b",
+      "window": 80,
+      "message": "A currency figure sits next to compensation language.",
+      "fix": "Remove it from the document. Comp is a conversation, not a CV line."
+    },
+    {
+      "id": "WQ-001",
+      "kind": "regex",
+      "pattern": "\\b(?:hunger|grit|scrappy|passionate|passion for)\\b|\\bdisrupt(?:ed|ing|ive)\\b|\\brevolutioni[sz]ed\\b|\\b10x'?d?\\b|moved\\s+the\\s+needle|level\\s+up|crushed\\s+it|leaning\\s+in",
+      "message": "American startup-bro language.",
+      "fix": "German/European professional tone: competent, specific, understated. Use \"initiative\", \"built\", \"established\", \"led\"."
+    },
+    {
+      "id": "WQ-002",
+      "kind": "regex",
+      "pattern": "\\b(?:deep|extensive|proven|demonstrated)\\s+(?:experience|track\\s+record|expertise|ability|history)\\b|\\bworld[\\s\\-]class\\b|\\bbest[\\s\\-]in[\\s\\-]class\\b|\\bcutting[\\s\\-]edge\\b|\\bseamlessl?y?\\b|\\bdelve\\b|\\bspearhead(?:ed|ing)?\\b|\\bsynerg",
+      "message": "AI slop / filler intensifier.",
+      "fix": "Replace with the concrete thing. \"Designed filter logic\" beats \"proven ability to leverage synergies\"."
+    }
+  ]
+}

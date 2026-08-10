@@ -155,17 +155,31 @@ if (filter.cv?.href) {
   let cvSrc = cvOverride ? resolve(cvOverride) : null;
 
   if (!cvSrc) {
-    const cvDir = join(SOURCE, 'outputs/cv');
-    if (existsSync(cvDir)) {
-      const candidates = readdirSync(cvDir)
-        .filter((f) => f.endsWith('-public.pdf') && f.toLowerCase().includes(slug.split('-')[0]))
-        .sort();
-      if (candidates.length) cvSrc = join(cvDir, candidates[candidates.length - 1]);
+    // Exact slug, not the first segment. `slug.split('-')[0]` matched "taxfix"
+    // for BOTH Taxfix applications and silently resolved the IC page to the
+    // Director CV. A wrong CV is worse than a missing one. Per-slug directory
+    // first (the current layout), then the legacy flat files.
+    const nested = join(SOURCE, 'outputs/cv', slug);
+    if (existsSync(nested)) {
+      const c = readdirSync(nested).filter((f) => f.endsWith('-public.pdf')).sort();
+      if (c.length) cvSrc = join(nested, c[c.length - 1]);
+    }
+    if (!cvSrc) {
+      const cvDir = join(SOURCE, 'outputs/cv');
+      if (existsSync(cvDir)) {
+        const c = readdirSync(cvDir)
+          .filter((f) => f.endsWith('-public.pdf') && f.startsWith(`${slug}-`))
+          .sort();
+        if (c.length) cvSrc = join(cvDir, c[c.length - 1]);
+      }
     }
   }
 
   if (!cvSrc) {
-    problems.push(`cv.href is set but no public CV found — pass --cv <path> (must end in -public.pdf)`);
+    die(`cv.href is "${filter.cv.href}" but no public CV was found for "${slug}".\n` +
+        `  Publishing this would put a Download CV button on the page pointing at a file\n` +
+        `  that does not exist. That is how 7 of 21 /for/ pages came to serve a 404.\n` +
+        `  Either pass --cv <path-to--public.pdf>, or remove cv.href from the filter.`);
   } else if (!basename(cvSrc).endsWith('-public.pdf')) {
     die(`refusing to publish "${basename(cvSrc)}" — only the -public.pdf variant may go into a public repo.\n  The application variant carries a phone number and street address.`);
   } else if (!existsSync(cvSrc)) {

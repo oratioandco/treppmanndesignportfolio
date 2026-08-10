@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Second layer. .github/workflows/deploy.yml runs `npm run build`, which ends
+# with the pre-deploy check — so CI already blocks a bad deploy. This catches it
+# ~90 seconds earlier, before the push, and works if CI is ever bypassed.
+#
+# Install once per clone:  git config core.hooksPath .githooks
+set -uo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+[ -f "$ROOT/scripts/check-public-output.mjs" ] || exit 0
+if [ ! -d "$ROOT/node_modules" ]; then
+  echo "[pre-deploy] node_modules absent — skipping local check; CI still enforces it." >&2
+  exit 0
+fi
+echo "[pre-deploy] building and checking public output…"
+( cd "$ROOT" && npm run build >/dev/null 2>&1 && node scripts/check-public-output.mjs )
+rc=$?
+[ $rc -ne 0 ] && cat >&2 <<'MSG'
+
+Push refused. The build's pre-deploy check failed — see above.
+Fix the content. Do not weaken the check; every class it tests for has
+already reached production once.
+MSG
+exit $rc
