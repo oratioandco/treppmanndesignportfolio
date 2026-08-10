@@ -22,6 +22,7 @@
  */
 
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { inflateSync } from 'node:zlib';
 import { join, dirname, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -150,6 +151,138 @@ for (const file of walk(DIST)) {
         }
       }
     }
+  }
+}
+
+// ---------------------------------------------------------------- 2b
+// PDFs. The first version of this gate scanned HTML/JSON/TXT and never opened a
+// PDF — so four CVs sat on the public site carrying banned terms in their text
+// layer, including a colleague's personal characteristic, while the gate
+// reported clean. A binary file is still published content.
+function pdfObjects(buf) {
+  const out = [];
+  const re = /(\d+)\s+0\s+obj\b/g;
+  let m;
+  while ((m = re.exec(buf.toString('latin1')))) {
+    const start = m.index;
+    const end = buf.toString('latin1').indexOf('endobj', start);
+    if (end > start) out.push(buf.subarray(start, end));
+  }
+  return out;
+}
+function inflateStreams(obj) {
+  const s = obj.toString('latin1');
+  const i = s.search(/stream\r?\n/);
+  if (i < 0) return null;
+  const from = i + s.slice(i).match(/stream\r?\n/)[0].length;
+  const to = s.indexOf('endstream', from);
+  if (to < 0) return null;
+  const body = obj.subarray(from, to);
+  try { return inflateSync(body); } catch { return body; }
+}
+// PDF CMap destinations are UTF-16BE hex. Node has no 'utf16be', and
+// reversing a utf16le decode is not the same thing — it decoded "Tobias" as
+// "吀ob椀as". Read code points directly.
+function hexToStr(h) {
+  let out = '';
+  if (h.length % 4) h = h.padEnd(Math.ceil(h.length / 4) * 4, '0');
+  for (let i = 0; i < h.length; i += 4) out += String.fromCharCode(parseInt(h.slice(i, i + 4), 16));
+  return out;
+}
+function parseCMap(buf) {
+  const s = buf.toString('latin1'), map = new Map();
+  for (const blk of s.match(/beginbfchar([\s\S]*?)endbfchar/g) || [])
+    for (const mm of blk.matchAll(/<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>/g))
+      map.set(parseInt(mm[1], 16), hexToStr(mm[2]));
+  for (const blk of s.match(/beginbfrange([\s\S]*?)endbfrange/g) || [])
+    for (const mm of blk.matchAll(/<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>/g)) {
+      const a = parseInt(mm[1], 16), b = parseInt(mm[2], 16), d = parseInt(mm[3], 16);
+      for (let i = a; i <= Math.min(b, a + 5000); i++) map.set(i, String.fromCharCode(d + (i - a)));
+    }
+  return map;
+}
+function pdfText(file) {
+  const buf = readFileSync(file);
+  const objs = pdfObjects(buf);
+  const cmaps = new Map();     // object index -> map
+  const byNum = new Map();
+  const whole = buf.toString('latin1');
+  for (const mm of whole.matchAll(/(\d+)\s+0\s+obj\b/g)) byNum.set(mm[1], mm.index);
+  const fontCmap = new Map();
+  objs.forEach((o) => {
+    const inf = inflateStreams(o);
+    if (inf && (inf.includes('beginbfchar') || inf.includes('beginbfrange'))) {
+      const num = (o.toString('latin1').match(/^(\d+)\s+0\s+obj/) || [])[1];
+      if (num) cmaps.set(num, parseCMap(inf));
+    }
+  });
+  objs.forEach((o) => {
+    const s = o.toString('latin1');
+    const num = (s.match(/^(\d+)\s+0\s+obj/) || [])[1];
+    const tu = s.match(/\/ToUnicode\s+(\d+)\s+0\s+R/);
+    if (num && tu && cmaps.has(tu[1])) fontCmap.set(num, cmaps.get(tu[1]));
+  });
+  const nameToFont = new Map();
+  for (const o of objs)
+    for (const fm of o.toString('latin1').matchAll(/\/Font\s*<<([\s\S]*?)>>/g))
+      for (const nm of fm[1].matchAll(/\/([A-Za-z0-9#+.\-]+)\s+(\d+)\s+0\s+R/g))
+        if (!nameToFont.has(nm[1])) nameToFont.set(nm[1], nm[2]);
+
+  let out = '';
+  for (const o of objs) {
+    const inf = inflateStreams(o);
+    if (!inf) continue;
+    const d = inf.toString('latin1');
+    if (!d.includes('Tj') && !d.includes('TJ')) continue;
+    let cm = null, width = 1;
+    for (const t of d.matchAll(/\/([A-Za-z0-9#+.\-]+)\s+[\d.]+\s+Tf|<([0-9A-Fa-f\s]*)>|\(((?:\\.|[^\\)])*)\)/g)) {
+      if (t[1]) {
+        cm = fontCmap.get(nameToFont.get(t[1])) || null;
+        width = cm && Math.max(...cm.keys()) > 0xff ? 2 : 1;
+      } else if (t[2] !== undefined) {
+        let h = t[2].replace(/\s/g, '');
+        if (h.length % 2) h += '0';
+        const step = width * 2;
+        for (let i = 0; i < h.length; i += step)
+          out += (cm && cm.get(parseInt(h.slice(i, i + step), 16))) || '';
+      } else if (t[3] !== undefined && cm) {
+        const lit = t[3];
+        for (let i = 0; i < lit.length; i++) {
+          let code = lit.charCodeAt(i);
+          if (lit[i] === '\\' && /[0-7]/.test(lit[i + 1] || '')) {
+            const oc = lit.slice(i + 1).match(/^[0-7]{1,3}/)[0];
+            code = parseInt(oc, 8); i += oc.length;
+          }
+          out += cm.get(code) || '';
+        }
+      }
+    }
+    out += ' ';
+  }
+  return out.replace(/\s+/g, ' ');
+}
+
+for (const file of walk(DIST).filter((f) => f.toLowerCase().endsWith('.pdf'))) {
+  const rel = relative(DIST, file);
+  scanned++;
+  let text = '';
+  try { text = pdfText(file); } catch { /* unreadable PDF is its own problem below */ }
+  if (text.length < 200) {
+    problems.push({ rule: 'PDF-UNREADABLE', file: rel,
+      msg: `only ${text.length} chars extractable — an ATS would read nothing`,
+      fix: 'Regenerate with engine/bin/build_cv.py --pdf, which verifies the text layer.' });
+    continue;
+  }
+  for (const r of policy.rules) {
+    if (r.kind !== 'regex' && r.kind !== 'proximity') continue;
+    const re = new RegExp(r.pattern, 'i');
+    const m = re.exec(text);
+    if (!m) continue;
+    if (r.kind === 'proximity') {
+      const i = text.search(re), win = r.window ?? 300;
+      if (!new RegExp(r.near, 'i').test(text.slice(Math.max(0, i - win), i + win))) continue;
+    }
+    problems.push({ rule: r.id, file: rel, msg: `${r.message} — "${m[0]}" (in the PDF text layer)`, fix: r.fix });
   }
 }
 

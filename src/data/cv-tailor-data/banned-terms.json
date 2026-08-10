@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "5abeb37",
+  "_source_commit": "d6cf0f8",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -119,20 +119,6 @@
       "window": 80,
       "message": "A currency figure sits next to compensation language.",
       "fix": "Remove it from the document. Comp is a conversation, not a CV line."
-    },
-    {
-      "id": "WQ-001",
-      "kind": "regex",
-      "pattern": "\\b(?:hunger|grit|scrappy|passionate|passion for)\\b|\\bdisrupt(?:ed|ing|ive)\\b|\\brevolutioni[sz]ed\\b|\\b10x'?d?\\b|moved\\s+the\\s+needle|level\\s+up|crushed\\s+it|leaning\\s+in",
-      "message": "American startup-bro language.",
-      "fix": "German/European professional tone: competent, specific, understated. Use \"initiative\", \"built\", \"established\", \"led\"."
-    },
-    {
-      "id": "WQ-002",
-      "kind": "regex",
-      "pattern": "\\b(?:deep|extensive|proven|demonstrated)\\s+(?:experience|track\\s+record|expertise|ability|history)\\b|\\bworld[\\s\\-]class\\b|\\bbest[\\s\\-]in[\\s\\-]class\\b|\\bcutting[\\s\\-]edge\\b|\\bseamlessl?y?\\b|\\bdelve\\b|\\bspearhead(?:ed|ing)?\\b|\\bsynerg",
-      "message": "AI slop / filler intensifier.",
-      "fix": "Replace with the concrete thing. \"Designed filter logic\" beats \"proven ability to leverage synergies\"."
     }
   ]
 }
