@@ -1,7 +1,7 @@
 {
   "slug": "goodmaven-ai-design-leader",
   "title": "Selected Work",
-  "subtitle": "AI copilot skill shipped, an AI fundraising ecosystem built end-to-end, vibe-coding onboarding co-defined with founders — selected for Fin",
+  "subtitle": "AI copilot skill shipped, an AI fundraising ecosystem built end-to-end, prompt-to-database onboarding co-defined with founders — selected for Fin",
   "theme": "default",
   "case_studies": [
     {
@@ -72,68 +72,5 @@
       "order": 12
     }
   ],
-  "show_all_label": "Show more work",
-  "_context": {
-    "application": {
-      "company": "Good Maven / Fin (Intercom AI Group)",
-      "role": "AI Design Leader",
-      "date": "2026-07-10",
-      "positioning": "Design leader moving closer to the system and the model — CS copilot shipped, AI fundraising ecosystem built end-to-end, vibe-coding onboarding co-defined with founders, functional-craft quality bar (agentic engineering + design-system-as-API)."
-    },
-    "selection_rationale": {
-      "bibeltv-support-agent": "THE most direct product-category match to Fin. Shipped MS Copilot skill for the Bibel TV CS team; single-step draft from CS handbook; escalation as a first-class output; human keeps the send decision. Different scale from Fin (internal-team tool, ~30 CS-team users, not a thousands-of-external-teams product) — but the acceptance-vs-override, handbook-as-context, and human-in-the-loop patterns are directly transferable. In-depth format to give the design decisions room and to model the MS-Copilot-platform disclosure honestly.",
-      "bibeltv-ai-fundraising": "The cleanest single demonstration of 'design leader moving closer to the model' — analysis → Claude Project with follow-up-question loops → web prototype → Claude skill producing multi-surface follow-up content (in-app notifications, web banners, video scripts). Built solo end-to-end at the prompt-and-context layer. Foregrounded at equal weight to the CS copilot per verification-log delta 2026-07-09 (Q2 upgrade from 'in build' to 'shipped ecosystem'). NEW draft created by this step from bibel-tv-head-of-product-design.md:62 + verification log Q2. Screenshots + performance-data confidentiality treatment still needed before published status.",
-      "ninox-ai-onboarding": "Second AI proof and the sharpest 'hold your own with engineers and scientists on model behaviour' signal. Vibe-coding split-screen direct manipulation co-defined with Ninox's CEO and technical co-founder in the founder-led stealth phase. Real multi-turn / dual-path agent workflow design decision (chat + direct manipulation coexist; first-schema-is-wrong handled as normal case; suggested-actions chips propose next moves; user-agency principle 'show output, allow users to edit' explicit). Featured, in-depth. Order 3 because Bibel TV work is current-role signal.",
-      "bibeltv-agentic-engineering": "Quality-bar craft anchor per Fin JD's 'how things work, not just how they look' — engineering consumes prototype code directly; iteration days → hours; ~70% of AI-generated code ships. Also proves comfort in messy, ambiguous spaces (agentic engineering as design practice, introduced from zero). Browseable + executive: the two in-depth headline slots are already spent on the AI-product stories; this reinforces the functional-craft signal without over-weighting Bibel TV in the surface.",
-      "bibeltv-design-system-api": "Second functional-craft anchor — 'system behaviour enforced by infrastructure, not documentation' matches Fin's 'raises the quality bar around them' framing at the infrastructure level. Git-based token repo + Style Dictionary + three-tier hierarchy + multi-platform sync + DTCG standard. Browseable + executive to keep the surface tight; in-depth format is available under ?all for readers who go deep on infrastructure work.",
-      "ninox-org-building": "Peer-in-craft management + SLT parity — the closest single precedent for Fin's 'raises the bar around them' pillar as it applies to a team of Staff / Principal ICs. Ninox: 5 direct reports + design lead + SLT member + coached the design lead through a difficult engineering-lead partnership + made performance calls in both directions. Executive format keeps the framing tight — Fin JD leans product / AI ahead of org-building, and the seniority composition of the Ninox 5 is not fully documented (Priority 2 Q5 open, non-blocking) so we do NOT claim all-Staff / Principal parity in the case-study surface.",
-      "churchdesk-booking-system": "Speed + measurable-impact proof + regulated multi-jurisdictional environment. Dual PM / Design mandate is a real 'high-agency builder' precedent. 2-month delivery, 70% coordination-time reduction, 90% booking acceptance. Executive format because multi-stakeholder coordination is secondary here (unlike Delivery Hero where it was central); Fin's JD does not emphasise that particular capability.",
-      "bibeltv-ai-prototyping": "Hidden — substantially overlaps with bibeltv-agentic-engineering. Kept behind ?all rather than surfaced twice. Also: status 'in-progress' with known AI-slop concerns from earlier reviews (per DAYONE precedent). Out of scope to fix here.",
-      "bibeltv-app-redesign": "Hidden — growth + retention + experimentation angle is good, but the JD does not emphasise B2C-media app growth. The agentic-engineering and design-system-API case studies already carry the Bibel TV technical depth signal.",
-      "bibeltv-color-api": "Hidden — narrower craft-depth proof (OKLCH, k-means brand-color extraction). Risks over-weighting Bibel TV in the surface. Design-system-as-API already anchors the infrastructure signal.",
-      "datameer-data-dense-analytics": "Hidden — the CV references the 5-year Datameer director tenure + regulated-industry banking customer base + cross-Atlantic distributed-team methodology as the reliability-under-uncertainty proxy and international-fluency credibility floor. Portfolio surface stays focused on AI / agentic / model-adjacent work. Available under ?all for any reader going deep on the enterprise / data-dense / regulated background.",
-      "spreadshirt-user-research-strategy": "Hidden — 2014–16, predates AI-era work entirely. Not directly aligned with an AI Design Leader role. Kept under ?all for any reader going deep on strategic-influence history."
-    },
-    "gaps_not_addressed_by_new_case_studies": {
-      "external_cs_product_scale": "Bibel TV CS copilot is an internal-team tool, not a thousands-of-external-teams product like Fin. Verification log (goodmaven-ai-design-leader-verification.md, Q1 answer) is explicit: describe truthfully at internal-team scale (~CS team), foreground the design decisions (handbook-as-context, escalation-as-first-class, human keeps send-decision, qualitative adoption across the seniority-and-scepticism spectrum). Do NOT invent adoption / acceptance / override / CSAT numbers — none exist. Cover-letter carries the gap explicitly per Q1 answer: same product category, different scale.",
-      "formal_evals_golden_set_regression_testing": "No formal evals exist at Bibel TV. Q3 answer 2026-07-09 verified: self-tested for a week, then introduced through 1:1 sessions with the CS team. Adjacent methods only — qualitative-observation practice + experimentation-framework work on the mobile app + workshop curriculum covering evaluation of AI design decisions. Cover-letter treats this as 'the area I'm closest to growing into' per JD's own 'very few people have done everything end-to-end' escape hatch. Portfolio does NOT surface an evals story we don't have.",
-      "model_layer_ownership": "Tobias has not been on a team that owns the underlying model. All AI product work is prompt engineering + skill design + context-provision + agentic engineering. Portfolio foregrounds the fundraising ecosystem case study because it IS the closest 'moving closer to the model' proof he has (source-material analysis → prompt-engineering → prototype → shipped skill end-to-end, solo). Cover-letter handles the residual gap with the JD's own acknowledgment.",
-      "multi_tool_autonomous_end_to_end_agent_at_fin_scale": "Bibel TV CS copilot is single-step draft with escalation-as-first-class-output. Ninox vibe-coding is dual-path split-screen with suggested-actions chips. Fundraising Claude Project has multi-turn follow-up-question clarification loops before generation and multi-surface cascade in the Claude skill. These are real workflow design decisions but not the same as multi-tool autonomous end-to-end resolution at Fin's scale. Portfolio + CV describe architectures precisely; do not overclaim.",
-      "all_staff_principal_team_management": "Ninox was 5 ICs + 1 design lead + SLT member; seniority composition of the 5 is not fully documented (Priority 2 Q5 non-blocking). Portfolio + case-study framing stays at 'peer-in-craft management + SLT parity + coached the design lead through stakeholder conflict + made performance calls in both directions' per verification-log Truthfulness Guardrails. Does not claim documented all-Staff / Principal parity."
-    },
-    "asset_gaps_blocking_publication": {
-      "bibeltv-support-agent": [
-        "hero image — NOT set in JSON (only cover_image /images/covers/ai.jpeg placeholder). Needed: a screenshot of the MS Copilot skill drafting a response with the CS handbook context visible, or a still that shows the human-in-the-loop send / edit / escalate decision surface. 1600x900. Screenshot spec file exists: data/case-studies/screenshots-bibeltv-support-agent.md (needs creation — none currently exists for this case study).",
-        "at least one narrative-section image — NOT set. Recommended: a schematic of the single-step-draft + escalation flow (message → drafted response OR escalation flag → human edit + send). Diagram, not a screenshot; low fidelity is fine.",
-        "confidentiality note in meta already flags 'operational metrics or UI screenshots require Bibel TV approval before publishing.' Any real UI shot needs approval before it goes live."
-      ],
-      "bibeltv-ai-fundraising": [
-        "hero image — NOT set (new case study; needs one). Recommended: a stylized diagram of the four-artefact ecosystem (analysis → Claude Project → web prototype → Claude skill → 3 downstream surfaces). 1600x900. Placeholder diagram is fine for draft status.",
-        "screenshot of the Claude Project asking a follow-up question before generation — supports the 'multi-turn clarification loop' claim visually. Needs Bibel TV approval given the source material is confidential.",
-        "screenshot of the web prototype UI — supports the 'proper surface for generation, not chat-only' claim.",
-        "screenshot of the Claude skill producing one of the three downstream surfaces (in-app notification / web banner / video-script preview).",
-        "screenshots spec file: data/case-studies/screenshots-bibeltv-ai-fundraising.md — needs creation.",
-        "performance / fundraising figures are confidential to Bibel TV per verification log — case study body deliberately says nothing about donation lift; keep it that way."
-      ],
-      "ninox-ai-onboarding": [
-        "hero image /images/ninox/ai-onboarding-hero.png — file missing (referenced in JSON).",
-        "section 2 image /images/ninox/prompt-input.png — file missing.",
-        "callout / narrative image /images/ninox/dual-paths.png — file missing.",
-        "narrative image /images/ninox/schema-in-builder.png — file missing.",
-        "reflection image /images/ninox/working-product.png — file missing.",
-        "Ninox stealth-phase context: screenshots may be OK now that the public AI beta is launching Feb 2026 per case study meta note; verify with Ninox before publishing."
-      ]
-    },
-    "browseable_asset_gaps_note": "Browseable case studies (bibeltv-agentic-engineering, bibeltv-design-system-api, ninox-org-building, churchdesk-booking-system) also carry missing / placeholder assets — see per-case-study screenshot spec files under data/case-studies/screenshots-*.md. Not repeated here because they are one visibility tier below the featured stories; if the featured trio is ready, the portfolio can ship even with browseable assets still placeholder.",
-    "application_specific_external_assets": {
-      "workflow_screenshot_required": "NO — Fin JD does not ask for an n8n / workflow screenshot the way n8n's own JD does.",
-      "design_challenge_or_take_home": "NO — Fin JD does not include a design-challenge deliverable. Standard ATS (Ashby) form + CV + cover letter + LinkedIn.",
-      "portfolio_link_required": "YES — Ashby form has a portfolio URL field. treppmann.design/work?goodmaven-ai-design-leader is what to paste."
-    },
-    "portfolio_url": "https://treppmann.design/work?goodmaven-ai-design-leader"
-  },
-  "cv": {
-    "href": "/cv/goodmaven-ai-design-leader.pdf",
-    "label": "Download CV (PDF)"
-  }
+  "show_all_label": "Show more work"
 }

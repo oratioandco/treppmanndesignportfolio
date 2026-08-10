@@ -66,51 +66,5 @@
       "order": 11
     }
   ],
-  "show_all_label": "Weitere Arbeiten anzeigen",
-  "_context": {
-    "application": {
-      "company": "Horváth & Partners",
-      "role": "(Senior) Consultant für Kirche und Non-Profit-Organisationen",
-      "practice": "Competence Center Public Sector & Health Care — Sub-Practice Kirche + Non-Profit",
-      "date": "2026-06-30",
-      "positioning": "Kirchen-Domänen-Tiefe · Digitalisierung organisatorischer Kernprozesse · 4-von-6 Horváth-Funktionalkompetenzen (Strategie, Organisation & Prozesse, Operations, IT) · KI-Innovations-Lane in Faith-Media-Non-Profit",
-      "horvath_specific_delta": "Vs. PwC sibling: stärkere Gewichtung auf 'neue Themenfelder oder innovative Tools' (Horváth's explizite Innovations-Invitation) und 'Schnittstelle Ökonomie zu Theologie und Wohlfahrt'-Framing. Selection-Mechanik bleibt aber identisch — der Substanz-Anker ist derselbe (Kirchen-/Non-Profit-Domäne)."
-    },
-    "selection_rationale": {
-      "churchdesk-booking-system": "Primärer Anker. Direkte Multi-Stakeholder-Digitalisierung einer evangelischen Landeskirche (Evangelische Kirche von Kurhessen-Waldeck, Körperschaft des öffentlichen Rechts). 70 % Reduktion Koordinationszeit, 90 % Acceptance-Rate, 20+ Friedhöfe, €20.000 / 2 Monate Budget. Build-vs-Buy-Analyse + strategischer Scoping-Reframe (Insellösung → Plattformfähigkeit) — liest sich als abgeschlossenes Beratungs-Deliverable mit Geschäftsleitungs-Entscheidung am Anfang. Einzig vollständig bebilderte Case-Study mit allen Assets real (Hero + 3 Section-Bilder). Deckt für Horváth: Strategie + Organisation & Prozesse + Digitalisierung organisatorischer Kernprozesse + Kö.d.ö.R.-Stakeholder-Topologie als zusammenhängendes Bündel.",
-      "ninox-org-building": "Direkter Match für 'Mitwirkung an der Weiterentwicklung der Beratungsleistungen' und cross-funktionale Senior-Leadership-Kapazität. Leadership-as-design: Hiring (1+1) und Trennung (1+1) während der Tenure, Coaching eines Design-Leads durch eine schwierige Engineering-Lead-Beziehung, Redesign der Team-Normen zur Inklusion eines neurodivergenten Engineers. Belegt SLT-Mitgliedschaft und Performance-Management-/Transformation-DNA in einer komplexen Org-Konstellation — exakt was Horváth's wachsende Kirchen-/Non-Profit-Practice für Team-Aufbau und Practice-Wachstum sucht.",
-      "bibeltv-app-redesign": "Aktuelle Rolle als Beleg für Faith-Media-Domänen-Tiefe und strategische Produkt­verantwortung in einer deutschen kirchlich-medialen Non-Profit-Organisation (Wohlfahrts-adjazent). Brand-Strategie + Wettbewerbsanalyse (Pray.com, Hallow) + Behavioral Design — zeigt strategisches Denken am laufenden Produkt, nicht nur historisch. Direkter Beleg für die JD-Phrasierung 'kirchliche Einrichtungen und Non-Profit-Organisationen bei strategischen … Fragestellungen'.",
-      "bibeltv-support-agent": "KI/Copilot-Adoption im christlich-medialen Non-Profit-Kontext — direkter Beleg für Horváth's 'neue Themenfelder oder innovative Tools'-Invitation. Mensch-im-Loop + Eskalation-als-Erstklass-Output + 'Good-Draft'-Definition mit dem CS-Team = verantwortungs-ethische KI-Einführung, die im Bistums-/Landeskirchen-Kontext gefordert ist. **Executive-Format strikt** gewählt: Rolle ist aktuell, Operations-Metriken (Response-Time, Draft-Acceptance, CSAT) sind per Rescope 2026-05-23 NICHT erfasst; ein in-depth Format würde den Metrik-Gap sichtbar machen und die Truthfulness-Disziplin gefährden.",
-      "datameer-data-dense-analytics": "Compliance-/Stakeholder-Adjacency zur Verwaltungs­modernisierung — Top-Banken und Versicherer in US/CA/UK sind eine plausible Analogie zu öffentlich-rechtlicher Compliance-Mechanik (Datenschutz, Audit, Multi-Persona-Authority). 5-Jahres-Director-Tenure als Skalen-Anker. **CONFIDENTIAL-Flag → ausschließlich Executive-Format, kein in-depth.**",
-      "bibeltv-design-system-api": "Sekundärer Faith-Media-Beleg. Zeigt Plattform-Denken und Single-Source-of-Truth-Architektur (DTCG-Standard, drei-stufige Token-Hierarchie, Multi-Plattform-Sync) — übertragbar auf Bistums-IT-Modernisierung als Operating-Model-Analogie. Direkter Beleg für Horváth's Funktionalkompetenz 'IT'. Executive-Format weil technisch-tief; für eine Strategie-/Org-Beratungs-Audience sekundär gegenüber den Kirchen-/Org-/Leadership-Stories.",
-      "bibeltv-color-api": "Hidden — Marken-Mechanik mit technischer Tiefe (OKLCH, k-means), aber für Horváth-Kirchen-/Non-Profit-Audience zu schmal. Über ?all erreichbar.",
-      "bibeltv-agentic-engineering": "Hidden — AI-coded Prototyping ist ein Engineering-Methodik-Signal, weniger relevant für eine Strategie-/Organisations-Beratungs-Audience trotz der Horváth-'innovative Tools'-Invitation. Die Innovations-Botschaft läuft besser über `bibeltv-support-agent` (browseable). Über ?all erreichbar.",
-      "bibeltv-ai-prototyping": "Hidden — überlappt substanziell mit `bibeltv-agentic-engineering`; zusätzlich Status 'in-progress' mit bekannten Qualitätsfragen. Aus dem Horváth-Surface herausgehalten.",
-      "ninox-ai-onboarding": "Hidden — Vibe-Coding-AI-Onboarding ist eine starke Geschichte, aber für eine Strategie-/Org-Beratungs-Audience im Kirchen-/Non-Profit-Sektor nicht primär. Ninox ist über `ninox-org-building` bereits featured. Über ?all erreichbar.",
-      "spreadshirt-user-research-strategy": "Hidden — älter (2014–2016), B2C-E-Commerce, nicht Kirchen-/Non-Profit-domänennah. Für Horváth nicht surfacen."
-    },
-    "case_studies_not_created": {
-      "hypoport-hub-org-consulting": "NICHT erstellt. Per `verification-log/horvath-senior-consultant-kirche-nonprofit-verification.md` (und PwC-Sibling-Entscheidung) ist die exakte Deliverable-Form des Hypoport-Hub-Mandats (Strategiepapier? Operating-Model-Design? Org-Chart-Änderung?) eine dokumentierte Wissens-Lücke. Eine Case-Study-Erstellung ohne neue Tobias-Inputs würde Fabrikation riskieren. Hypoport bleibt CV-Bullet (4-von-6-Funktionalkompetenzen-Anker — Strategie + Organisation & Prozesse + Operations + IT) + Cover-Letter-Bridge in die Beratungs-Welt.",
-      "oratio-co-kirchen-consulting": "NICHT erstellt. Konkrete Klienten-Liste über Software AG + Bibel TV hinaus ist eine dokumentierte Wissens-Lücke. Oratio&Co bleibt ONGOING-Eintrag (linke Spalte) + Cover-Letter-Anker für '9+ Jahre selbstständige Beratung kirchlicher/gemeinnütziger Organisationen'.",
-      "rationale_for_no_drafts": "Beide Lücken sind explizit als 'nicht-blockierend, aber dokumentationsbedürftig' im Verifikations-Log markiert. Eine Case-Study-Draft-Erstellung ohne neue Tobias-Inputs verletzt die Truthfulness-Disziplin. Die Stories laufen über CV-Bullets + Cover-Letter, wo Framing strikt auf verifiziertem Material aufsetzt."
-    },
-    "assets_status": {
-      "complete": [
-        "churchdesk-booking-system"
-      ],
-      "missing_critical": [
-        "ninox-org-building (FEATURED — fehlt Hero + alle Section-Images)",
-        "bibeltv-app-redesign (FEATURED — alle Image-Referenzen sind Placeholder)",
-        "bibeltv-support-agent (BROWSEABLE — Hero ist Cover-Placeholder, keine Section-Images)",
-        "datameer-data-dense-analytics (BROWSEABLE — alle Image-Referenzen sind Placeholder; CONFIDENTIAL → abstrahierte Visuals benötigt)",
-        "bibeltv-design-system-api (BROWSEABLE — alle Image-Referenzen sind Placeholder)"
-      ],
-      "blocking_publication": true,
-      "details": "Siehe `data/applications/horvath-senior-consultant-kirche-nonprofit/portfolio-gap-analysis.md` §'Assets Tobias must provide before submission'. 5 von 6 surfaced Case Studies haben Placeholder-Assets. Vor Submission entweder Assets liefern, oder die Surface-Liste reduzieren, oder den Portfolio-Link aus dem Cover-Letter weglassen."
-    },
-    "application_specific_external_assets": {
-      "required_by_jd": [],
-      "note": "Die Horváth-JD verlangt KEINE externe Deliverable jenseits CV + Cover-Letter (kein Design-Challenge, kein Workflow-Screenshot, kein Prototype-Recording). Der Portfolio-Link ist optional und unterstützt die Cover-Letter-Behauptungen — er ist nicht selbst eine Pflicht-Einreichung. Wenn Horváth im Erstgespräch nach einem konkreten Strategie-Deck-Beispiel fragt, ist Hypoport Hub der natürliche Anker, aber das Artefakt liegt nicht in einem teilbaren Format vor (per Verifikations-Log §92)."
-    }
-  }
+  "show_all_label": "Weitere Arbeiten anzeigen"
 }

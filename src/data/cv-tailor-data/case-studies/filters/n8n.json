@@ -65,31 +65,5 @@
       "order": 11
     }
   ],
-  "show_all_label": "Show more work",
-  "_context": {
-    "application": {
-      "company": "n8n",
-      "role": "Head of Product Design",
-      "date": "2026-06-05",
-      "positioning": "Audience Expansion · AI-Era Product Design · Design Engineering Credibility · Leadership as Design"
-    },
-    "selection_rationale": {
-      "ninox-ai-onboarding": "Primary positioning hook. The vibe-coding onboarding for non-database-savvy SMEs is a sentence-for-sentence parallel to n8n's central design challenge: 'extend Ninox's reach beyond the database-savvy without losing what made power users love it' maps directly to n8n's 'lower the floor without losing the ceiling'. Covers AI-era judgment + audience expansion + developer-facing UX + ambiguity in one story.",
-      "bibeltv-design-system-api": "Design Engineering credibility — Design Engineering reports under the n8n Head of Design per the JD. A deployed Git+Style-Dictionary+Figma-sync system answers the 'evolve the design system and QA practices so the bar rises' brief with a shipped artefact, not an opinion.",
-      "ninox-org-building": "The single best evidence for the JD's HIGH-priority leadership cluster: performance calls (hired 1+1, let go 1+1), coaching the design lead, designing team norms to include a sidelined neurodivergent engineer. Frames leadership as a design problem — direct match for n8n's standards-culture, plain-voice JD. (Note: literal 'manage-managers plural' gap is acknowledged honestly in the cover letter per open-question Q1; this case study is the substantive depth proof.)",
-      "bibeltv-agentic-engineering": "Second AI proof and second design-engineering proof. AI-coded prototypes consumed by engineering directly in production, with team evangelism — direct match for the JD's 'Champion practical AI adoption inside the design org'. Executive format keeps it complementary to the design-system-API anchor.",
-      "churchdesk-booking-system": "Strategic influence + measurable impact: scope reframe from 'funeral-booking feature' to 'booking capability deeply integrated into the platform', 70% coordination-time reduction, 90% acceptance, delivered in 2 months on €20k. Dual PM + design role evidence for cross-functional-partnership credibility. Executive format because the in-depth narrative is long.",
-      "bibeltv-color-api": "Hidden — craft-depth proof but narrower n8n fit; risks over-weighting Bibel TV in the featured surface.",
-      "datameer-data-dense-analytics": "Hidden — the CV references Datameer's 5-year director tenure as the scale anchor; the portfolio surface leans on Ninox + Bibel TV for n8n's specific AI / dev-tool / audience-expansion domain. Kept for those who go deep via ?all.",
-      "spreadshirt-user-research-strategy": "Hidden — the strategic-influence proof for those going deep; older (2014-16) and not n8n-domain-adjacent. ChurchDesk is the more current strategic-influence anchor for n8n.",
-      "bibeltv-app-redesign": "Hidden — growth + competitive-strategy angle is good but narrower n8n fit; kept for ?all readers.",
-      "bibeltv-support-agent": "Hidden — second/third AI story, narrower scope. The CS-handbook-as-context Copilot pattern is good but ninox-ai-onboarding + bibeltv-agentic-engineering already cover the AI dimension.",
-      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering. Hidden to avoid surfacing two near-duplicate stories in the n8n view. (Also flagged 'in-progress' status with known AI-slop issues from earlier reviews; out of scope to fix here.)"
-    },
-    "gaps_not_addressed_by_new_case_studies": {
-      "oss_community_product_leadership": "Per open-question Q2 (answered 2026-06-05): no direct experience, no fabricated case study. Cover letter acknowledges as growth area and leans on adjacent community-product instincts.",
-      "multi_manager_layer": "Per open-question Q1 (answered 2026-06-05): managed 1 design lead + 5 ICs at Ninox, not 2+ design managers in parallel. Cover letter acknowledges honestly; CV stays focused on depth, not headcount padding.",
-      "n8n_workflow_in_production": "Per open-question Q3 (answered 2026-06-05): the four Bibel TV n8n workflows are documentation-only today. Aperto Bible-translation n8n workflow is being built this week as builder-signal. Once shippable, surfaces as a cover-letter reference + screenshot, not as a portfolio case study."
-    }
-  }
+  "show_all_label": "Show more work"
 }

@@ -65,33 +65,5 @@
       "order": 11
     }
   ],
-  "show_all_label": "Show more work",
-  "_context": {
-    "application": {
-      "company": "Una Health",
-      "role": "Product Design Lead (m/f/x) — Digital Health",
-      "date": "2026-07-10",
-      "positioning": "AI-Trust Design in Regulated Context · End-to-End Ambiguity Shipping · Pragmatic Design System · Multi-Stakeholder Coordination"
-    },
-    "selection_rationale": {
-      "ninox-ai-onboarding": "PRIMARY ANCHOR. Una's rarest requirement is AI 'trust, safety, transparency, and clinical relevance'. The vibe-coding story shows the design principle Una is asking for: split-screen direct manipulation of AI-generated schemas, 'show output and let users edit', chat-alone is not viable for structured artefacts, user agency preserved as first-class. Also carries the end-to-end ambiguity arc (founder-led stealth → interaction model → Feb 2026 public beta). Single story that hits Una's #1 and #2 must-haves.",
-      "churchdesk-booking-system": "PRIMARY MULTI-STAKEHOLDER + REGULATED-CONTEXT ANCHOR. Five distinct user classes coordinated across one workflow (funeral homes + pastors + parish assistants + cemeteries + families) — pattern maps directly to patient + HCP + care-team coordination Una builds toward. Pragmatic V1 (€20k / 2 months / 70% coordination-time reduction / 90% acceptance) is Una's 'ship a pragmatic V1' brief in one paragraph. GDPR-plus Protestant + Catholic church data protection is the honest healthcare-domain bridge.",
-      "bibeltv-design-system-api": "PRIMARY DESIGN-SYSTEM ANCHOR. Una's phrase is 'pragmatic design system that improves speed and consistency without becoming process-heavy'. The Bibel TV DS-as-API is the exact answer: DTCG-standard token API, Style Dictionary + Git + Figma auto-sync, 'tunable by design, not by code'. Ships a system that increases delivery velocity — the opposite of bureaucratic governance Una explicitly rejects.",
-      "bibeltv-support-agent": "SECOND AI-TRUST PROOF. Handbook-grounded response drafts, human keeps send decision, escalation as first-class output. Structurally identical to 'AI drafts, human clinician reviews and sends' pattern inside a DiGA. Executive format keeps it as complementary evidence to the Ninox in-depth anchor.",
-      "datameer-data-dense-analytics": "REGULATED-INDUSTRY BRIDGE + DATA-DENSE UX. 5-year director tenure serving top US/CA/UK banks and insurers is the honest 'sensitive regulated data at scale' bridge; iterative usertesting.com screening for compliance-locked personas is the closest documented methodology to hard-to-reach patient recruitment; sample-based uncertainty UX (data-approximation status communication) is the closest existing pattern to biosensor / CGM stream design. Executive format because this is a bridge, not a claim.",
-      "ninox-org-building": "HIDDEN — leadership story is Tobias's strongest single hiring/team proof but Una's role is IC-shaped 'Lead' with a strategic discovery mandate, not a 'first design hire' brief (contrast with Jupus). The Ninox management story surfaces in the CV bullets (5 direct reports + 1 design lead, hired 1+1, let go 1+1); no need to elevate as a case study for Una's IC-Lead framing.",
-      "bibeltv-color-api": "HIDDEN — OKLCH color-engine craft depth is real but narrower Una fit than the DS-as-API story it complements. Kept for ?all readers who want technical depth.",
-      "bibeltv-agentic-engineering": "HIDDEN — the agentic-engineering practice is Tobias's design-engineering signal, but for Una the DS-as-API story carries the 'buildable / handover / velocity' brief more cleanly. Overlaps bibeltv-ai-prototyping; both hidden to avoid duplicate surfaces.",
-      "bibeltv-app-redesign": "HIDDEN — behavioural-design-for-retention is a genuine Una bridge (metabolic behaviour change ~ daily-engagement product), but the case study leans competitive-strategy and premium-brand angle rather than clinical-behaviour-change adjacency. Method transfer surfaces via CV bullets, not as a portfolio anchor.",
-      "bibeltv-ai-prototyping": "HIDDEN — overlaps with bibeltv-agentic-engineering; flagged 'in-progress' with earlier AI-slop review notes. Not surfaced for Una.",
-      "spreadshirt-user-research-strategy": "HIDDEN — strategic-influence proof but 2014–2016 vintage. ChurchDesk booking is the more current strategic-influence anchor; kept as ?all deep-read only."
-    },
-    "gaps_not_addressed_by_new_case_studies": {
-      "diga_or_medical_device_experience": "No direct DiGA / medical-device / clinical-workflow experience. Handled honestly in cover letter per verification log V10; bridge = ChurchDesk GDPR+ + Datameer banking/insurance + AI-trust philosophy (verification log V8). No fabricated case study.",
-      "patient_population_research": "No patient-recruitment or condition-specific research. Handled via Datameer regulated-persona screening methodology + ChurchDesk sensitive-context validation research as the method-transfer bridge. Cover letter must state the population gap.",
-      "biosensor_cgm_ux": "No biosensor / CGM time-series design. Handled via Datameer sample-based uncertainty UX as the closest documented data-dense-plus-uncertainty pattern. Not surfaced as a portfolio anchor.",
-      "clinical_regulatory_team_partnership": "No direct clinical-team or regulatory-affairs partnership. Bridged via ChurchDesk parish-data-law work and Datameer regulated-industry engagement. Cover letter names the gap.",
-      "churchdesk_ai_alt_text_case_study": "The ChurchDesk AI-alt-text-under-EU-accessibility-law story is a third pillar of the AI-trust-in-regulated-context anchor per the CV brief. Documented in data/experiences/churchdesk-head-of-product-design.md and surfaced via CV bullets + cover letter, but not a standalone case study. Not created here (matches Jupus/n8n precedent — no new case studies for this application); flagged as a future portfolio extension if the AI-in-regulated-context theme keeps recurring."
-    }
-  }
+  "show_all_label": "Show more work"
 }

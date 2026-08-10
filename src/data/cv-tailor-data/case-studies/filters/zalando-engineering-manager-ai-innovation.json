@@ -65,56 +65,5 @@
       "order": 11
     }
   ],
-  "show_all_label": "Show more work",
-  "_context": {
-    "application": {
-      "company": "Zalando SE / Lounge by Zalando",
-      "role": "Engineering Manager — AI Innovation // Lounge by Zalando (all genders)",
-      "date": "2026-07-09",
-      "pursuit_framing": "PATH 2 — complementary \"AI Product Design counterpart to the AI Innovation EM\" pitch with explicit disqualification of the Engineering-Manager profile in paragraph 1 of the cover letter",
-      "positioning": "AI product shipped in production (design/product side) · Prototype-vs-production discipline · B2C consumer-scale KPI history · Berlin + German + English · Responsible AI by design (GDPR+)",
-      "same_archetype_as": "xentral (founder-startup variant); zalando is the corporate-scale-up variant of the same \"hard-engineering role under leadership title\" pattern"
-    },
-    "selection_rationale": {
-      "bibeltv-support-agent": "Primary AI-agent-in-production anchor. Direct phrasal match for the JD's 'LLM-powered experiences,' 'assistant frameworks,' and 'responsible AI by design' vocabulary — from the design/product side, honestly scoped. Handbook-as-context (not vector-store RAG), escalation-as-first-class-output, human-keeps-the-send-decision. Carries the crystallised AI opinion required for the cover letter ('move the blank-page part, don't touch the judgment') and gives the recruiter a concrete production-AI-artifact to point to. In-depth format because the executive variant strips the design decisions that make this case study credible under Zalando's mature engineering culture.",
-      "churchdesk-booking-system": "The single strongest B2C measurable-outcome KPI story in the portfolio — 70% funeral coordination-time reduction, 90% booking acceptance rate, 20+ cemeteries. Sentence-for-sentence maps onto the JD's 'measurable business outcomes (conversion / CSAT / productivity / cost)' outcome frame. Also carries the GDPR+ regulated-context signal for the JD's 'responsible AI by design + privacy/safety/compliance' vocabulary (via the shipped-in-production AI alt-text at the same company). Reframed the scope from 'funeral-booking feature' to 'booking capability deeply integrated into the platform' — strategic-influence proof for the AI-Innovation-team stakeholder-alignment expectation. In-depth format because the scope-reframe + measurable-impact + multi-stakeholder + regulated-context story compresses badly.",
-      "bibeltv-agentic-engineering": "The concrete proof story for the JD's 'AI product engineering mindset — prototype vs production discipline' must-have. Designs in Figma → prototypes in real code against real Bibel TV APIs with real videos and real metadata; engineering consumes ~70% of the prototype code directly; design-to-prototype cycle 3–5 days → 1 day. The Android-gradient iteration is the referenceable story for interview and cover-letter paragraph 2. In-depth because the executive variant loses the concrete-proof anchor. Honestly framed at the design-engineering-bridge layer — NOT Staff/Principal-Engineer backend commits, NOT distributed-systems ownership.",
-      "ninox-ai-onboarding": "Second AI-product proof point + crystallises the 'show output, allow users to edit' user-agency principle the cover letter reuses. Founder-stealth engagement (CEO + technical co-founder before the product team) demonstrates close-to-engineering working style. B2B/SME context is adjacent (not identical) to Zalando/Lounge's B2C fashion — do NOT over-index on the SME angle for this application (that was Xentral's headline). Browseable/executive because ninox is the secondary AI story here; featured slots go to Bibel TV + ChurchDesk which map more cleanly to Zalando's B2C consumer-scale KPI outcome frame.",
-      "bibeltv-design-system-api": "The closest architectural-infrastructure adjacency in the portfolio, honestly framed at design-system-tooling scope. Signals 'Tobias thinks in APIs / architectures / three-tier hierarchies' without overclaiming distributed systems. Available for a Zalando engineer-interviewer who wants to see infrastructure-shaped thinking; kept out of Featured because the JD screens for distributed-systems-at-flash-sales-throughput, and surfacing this as a Featured anchor could be mistaken for that claim. Executive format keeps it complementary to the AI-product-anchor trio above.",
-      "spreadshirt-user-research-strategy": "Hidden — the closest apparel-vertical adjacency Tobias has (print-on-demand apparel, hundreds-of-thousands of consumers) and the cleanest research-to-executive-strategy-shift story. Kept in the earlier-career block on the CV. Hidden here because the AI-product cluster is the differentiator, and Spreadshirt (2014–2016) surfaces the older B2C KPI arc via ?all for readers going deep on consumer-scale credibility. Note: it is NOT fashion-native; the CV frames it as 'print-on-demand apparel e-commerce' — do NOT surface as 'fashion e-commerce' in the portfolio subtitle.",
-      "ninox-org-building": "Hidden — strong design-leadership story (performance calls, hiring/firing, SLT membership, coaching the design lead). Hidden because Zalando's JD screens explicitly for management of engineers on the EM ladder, and surfacing design-team org-building as Featured could invite the literal-manage-engineers question the path-2 pitch already concedes as a gap. Available via ?all for readers who want to verify people-leadership depth.",
-      "datameer-data-dense-analytics": "Hidden — 5-year director tenure + cross-Atlantic (Berlin ↔ NYC) + regulated-enterprise customer base is real credibility depth, but the confidential flag limits screenshot surface and the case study frames at the data-visualisation layer, not the AI-product layer. Kept for readers going deep via ?all; the CV references Datameer's tenure separately as the scale anchor.",
-      "bibeltv-app-redesign": "Hidden — B2C streaming-media growth-and-competitive-strategy case study is well-crafted but doesn't add to the AI-product-differentiator cluster for Zalando specifically. Kept for ?all readers.",
-      "bibeltv-color-api": "Hidden — craft-depth proof (OKLCH, k-means) but narrow fit for an AI-Innovation-EM screen; risks pulling the recruiter's attention away from the AI-product-practice anchors.",
-      "bibeltv-ai-prototyping": "Hidden — substantially overlaps bibeltv-agentic-engineering AND status=in-progress with known AI-slop issues flagged at the n8n review. Avoid surfacing two near-duplicate stories in the Zalando view, and avoid surfacing a story that has not passed the writing quality gate."
-    },
-    "gaps_not_addressed_by_new_case_studies": {
-      "engineering_manager_career_track": "Per cv-tailoring-brief Gap 1 (NO MATCH — Structural): the path-2 pitch acknowledges plainly in cover-letter paragraph 1 that Tobias has led designers and writers, not engineers on the EM ladder. NO new case study fabricated to paper over this. Truthfulness gates 13/14/15 forbid softening.",
-      "distributed_systems_at_scale": "Per cv-tailoring-brief Gap 2 (NO MATCH — Hard): bibeltv-design-system-api is the closest real adjacency (Git + Style Dictionary + three-tier tokens + Android live + Figma synced + iOS/web endpoints). Honestly framed at design-system-tooling scope, NOT distributed-systems at flash-sales throughput. No additional case study fabricated.",
-      "jvm_kotlin_scala_python_stack_plus_slo_on_call": "Per cv-tailoring-brief Gap 3 (NO MATCH — Hard): the code Tobias writes is HTML/CSS/JS + SwiftUI + AI-assisted Kotlin/Swift/TypeScript prototype code consumed by engineering. Not daily JVM production, not backend Python, no SLO ownership, no on-call rotation. Cover letter names plainly. NO case study fabricated.",
-      "vector_store_rag_architecture": "Per verification-log Pillar A: CS Copilot is a managed-platform SKILL using handbook-as-flat-context, NOT vector-store RAG. bibeltv-support-agent is honestly framed. No 'RAG system' or 'vector-store architecture' claim will be surfaced in the portfolio subtitle or any Featured case study framing.",
-      "custom_agent_orchestration_code": "Per verification log: Tobias did NOT personally write LLM-orchestration code for the CS Copilot SKILL or the Ninox vibe-coding engine. Both case studies frame the design/product-scoping work honestly. 'AI fundraising pipeline currently building' at Bibel TV is referenced only in the cv-tailoring brief as in-build status — no separate case study, no shipped/deployed framing, no metrics.",
-      "fashion_flash_sales_native_domain": "Spreadshirt is print-on-demand apparel; HairDirect is US retail; neither is fashion-flash-sales native. Portfolio subtitle deliberately says 'B2C consumer-scale KPI history' not 'fashion e-commerce.' No new case study fabricated for a domain Tobias hasn't worked in."
-    },
-    "asset_blocking_summary": {
-      "blocks_featured_publishing": [
-        "bibeltv-support-agent: hero image + all section images (hero_image.src empty; no images referenced in any section)",
-        "bibeltv-agentic-engineering: hero (/images/bibeltv/android-prototype.png — file not on disk) + section 3 (/images/bibeltv/web-prototype.png — not on disk)"
-      ],
-      "blocks_browseable_publishing": [
-        "bibeltv-design-system-api: hero (/images/bibeltv/design-system-hero.png — not on disk) + section 3 (/images/bibeltv/design-system-tokens.png — not on disk)"
-      ],
-      "not_blocking": [
-        "churchdesk-booking-system: hero + vision-sheet + priest-availability + booking-form all present on disk (4/4 real images) ✅",
-        "ninox-ai-onboarding: hero + all 4 section images present on disk (5/5 real images) ✅"
-      ],
-      "application_specific_external_assets": [
-        "None. Zalando JD does not require workflow screenshots, prototype recordings, or design-challenge submissions. Standard CV + cover-letter application only. (Compare n8n JD which required a workflow-screenshot deliverable — Zalando has no equivalent.)"
-      ]
-    }
-  },
-  "cv": {
-    "href": "/cv/zalando-engineering-manager-ai-innovation.pdf",
-    "label": "Download CV (PDF)"
-  }
+  "show_all_label": "Show more work"
 }

@@ -50,21 +50,5 @@
       "order": 8
     }
   ],
-  "show_all_label": "Show more work",
-  "_context": {
-    "application": {
-      "company": "Jupus",
-      "role": "Product Design Lead",
-      "date": "2026-05-22",
-      "positioning": "Design Function Builder · AI-Native Leader · Regulated Domain Translator"
-    },
-    "selection_rationale": {
-      "ninox-ai-onboarding": "Primary AI story: conversational prompt-to-output UX, model uncertainty handling, user agency. Directly maps to Jupus chatbot and AI phone product.",
-      "churchdesk-booking-system": "Primary workflow story: opaque regulated domain simplified to clean UX, measurable outcomes (70%/90%), multi-stakeholder coordination. Bridges to legal workflow complexity.",
-      "bibeltv-color-api": "Design system from scratch: cross-platform, token-first, built without prior infrastructure. Shows ability to set technical foundations as first design hire.",
-      "ninox-org-building": "Leadership story: org building, team design, hiring, culture. Shows the 'first design hire' pattern Jupus needs.",
-      "bibeltv-support-agent": "Second AI story: human-in-the-loop, AI tools for professional users, trust and control design.",
-      "datameer-data-dense-analytics": "DROPPED 2026-05-24 from Jupus filter. The regulated-industry-transfer argument (banks/insurers → legal compliance) is weaker than ChurchDesk's GDPR-plus angle, and Jupus is hiring a Product Design Lead for legal AI rather than a data-viz specialist. Kept as a case study file; not surfaced for Jupus."
-    }
-  }
+  "show_all_label": "Show more work"
 }
