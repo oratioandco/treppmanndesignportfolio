@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import BioRegenerator from '../../components/BioRegenerator.astro';
 import {
   getAllFilters,
+  getFilterPaths,
   getFilterWithStudies,
   type FilterConfig,
   type CaseStudy,
@@ -10,10 +11,11 @@ import {
 
 export function getStaticPaths() {
   const filters = getAllFilters();
-  return filters.map((filter) => ({
-    params: { slug: filter.slug },
-    props: { filter },
-  }));
+  return filters.flatMap((filter) =>
+    getFilterPaths(filter).map((slug) => ({
+      params: { slug },
+      props: { filter },
+    })));
 }
 
 const { filter } = Astro.props;

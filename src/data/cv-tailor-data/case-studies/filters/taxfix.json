@@ -1,5 +1,5 @@
 {
-  "slug": "taxfix-product-design-director-ai-tax-filing",
+  "slug": "taxfix",
   "title": "Selected Work",
   "subtitle": "AI shipped into production, and the judgement calls that kept it safe to ship",
   "theme": "default",
@@ -97,5 +97,8 @@
       "visibility": "hidden",
       "order": 14
     }
+  ],
+  "aliases": [
+    "taxfix-product-design-director-ai-tax-filing"
   ]
 }

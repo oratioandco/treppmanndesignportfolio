@@ -67,10 +67,5 @@
       "order": 11
     }
   ],
-  "show_all_label": "Show more work",
-  "cv": {
-    "href": "/documents/tobias-treppmann-cv-deliveryhero-quick-commerce.pdf",
-    "label": "Download CV (PDF)",
-    "note": ""
-  }
+  "show_all_label": "Show more work"
 }

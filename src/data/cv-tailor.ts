@@ -4,6 +4,13 @@ import type { GetStaticPaths } from 'astro';
 
 export interface FilterConfig {
   slug: string;
+  /** Previously-published paths for this page. Every one of them keeps
+   *  resolving, because a /for/ URL is printed on a CV and handed to a
+   *  stranger — once it is out, it is out. On 2026-08-11 the fin and lovehoney
+   *  slugs were shortened AFTER a CV carrying the long one had already been
+   *  submitted. Aliases mean that shortening is free instead of a broken link
+   *  in someone's inbox. Never remove an entry from this list. */
+  aliases?: string[];
   title: string;
   subtitle?: string;
   theme?: string;
@@ -93,7 +100,16 @@ export function getAllFilters(): FilterConfig[] {
 }
 
 export function getFilter(slug: string): FilterConfig | undefined {
-  return getAllFilters().find(f => f.slug === slug);
+  const filters = getAllFilters();
+  return filters.find(f => f.slug === slug)
+      ?? filters.find(f => (f.aliases ?? []).includes(slug));
+}
+
+/** Every path this filter must answer on: the canonical slug first, then any
+ *  alias. Route files map over this so an old URL renders the page rather than
+ *  404ing. */
+export function getFilterPaths(filter: FilterConfig): string[] {
+  return [filter.slug, ...(filter.aliases ?? [])];
 }
 
 function getCaseStudy(id: string): CaseStudy | undefined {

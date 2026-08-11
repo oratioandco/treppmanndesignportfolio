@@ -1,5 +1,5 @@
 {
-  "slug": "lovehoney-ai-innovation-enablement-specialist",
+  "slug": "lovehoney",
   "title": "Selected Work",
   "subtitle": "A Claude Project + Claude Skill shipped, a Copilot skill introduced team by team, and prompt-to-database onboarding co-defined with founders — selected for Lovehoney",
   "theme": "default",
@@ -81,5 +81,13 @@
       "visibility": "hidden",
       "order": 12
     }
-  ]
+  ],
+  "aliases": [
+    "lovehoney-ai-innovation-enablement-specialist"
+  ],
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-lovehoney.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the AI Innovation and Enablement Specialist role"
+  }
 }

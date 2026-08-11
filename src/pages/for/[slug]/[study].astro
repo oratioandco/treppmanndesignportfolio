@@ -4,6 +4,7 @@ import path from 'node:path';
 import Layout from '../../../layouts/Layout.astro';
 import {
   getAllFilters,
+  getFilterPaths,
   getFilterWithStudies,
   type CaseStudy,
   type CaseStudySection,
@@ -19,10 +20,14 @@ export function getStaticPaths() {
 
     for (const study of data.studies) {
       if (study.visibility === 'hidden') continue;
-      paths.push({
-        params: { slug: filter.slug, study: study.id },
-        props: { filter, study },
-      });
+      // One path per alias too, so a scoped case-study link inside an
+      // already-published /for/ page keeps resolving after a slug change.
+      for (const slug of getFilterPaths(filter)) {
+        paths.push({
+          params: { slug, study: study.id },
+          props: { filter, study },
+        });
+      }
     }
   }
   return paths;

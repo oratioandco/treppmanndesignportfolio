@@ -72,10 +72,5 @@
       "order": 12
     }
   ],
-  "show_all_label": "Show more work",
-  "cv": {
-    "href": "/documents/tobias-treppmann-cv-goodmaven-ai-design-leader.pdf",
-    "label": "Download CV (PDF)",
-    "note": ""
-  }
+  "show_all_label": "Show more work"
 }
