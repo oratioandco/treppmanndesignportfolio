@@ -72,14 +72,14 @@
         },
         {
           "label": "Designed in Figma with my designer; engineering built quickly",
-          "description": "My designer and I worked in Figma to develop and prototype the screens — across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). Engineering built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
+          "description": "I worked in Figma with the designer on my team to develop and prototype the screens — across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). Martin and Misgina built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
         }
       ]
     },
     {
       "type": "narrative",
       "headline": "Why it stays simple when the underneath is complex",
-      "content": "Three design decisions did the work of keeping the surface clean. None of them are visible to a funeral home — they're the reason the funeral home only ever sees green time slots.\n\n### On-call lives in the priest's calendar\n\nThis is the design choice that most distinguishes the system from Calendly-style booking tools. In Calendly, you set your availability inside a separate booking-page settings area. Here, a priest sets their on-call rotation as recurring events in the same ChurchDesk calendar where they already plan their week. The calendar is where priests live; we extended that surface instead of asking them to learn a new one. Recurring events handle the rota; vacation cover slots into the same view.\n\n### One event covers several cemeteries\n\nIn the pilot region, one priest's on-call shift covers multiple cemeteries at once. Setting each one separately would be six entries a week of friction. The availability model lets a single recurring event apply across the relevant cemeteries.\n\n### Booking form is a parish-built form\n\nChurchDesk's existing form builder is reused inside the booking flow. Funeral homes don't get a generic booking page with name/email/date fields — they answer the questions the parish actually needs (deceased details, funeral type, cemetery section, sterbeurkunde delivery). Calendly cannot do this; its booking form is fixed and the form-builder is a separate product. Reusing the form builder meant churches with idiosyncratic intake questions could ship without engineering work.",
+      "content": "Three design decisions did the work of keeping the surface clean. None of them are visible to a funeral home — they're the reason the funeral home only ever sees green time slots.\n\n### On-call lives in the priest's calendar\n\nThis is the design choice that most distinguishes the system from Calendly-style booking tools. In Calendly, you set your availability inside a separate booking-page settings area. Here, a priest sets their on-call rotation as recurring events in the same ChurchDesk calendar where they already plan their week. The calendar is where priests live, so I extended that surface instead of asking them to learn a new one. Recurring events handle the rota; vacation cover slots into the same view.\n\n### One event covers several cemeteries\n\nIn the pilot region, one priest's on-call shift covers multiple cemeteries at once. Setting each one separately would be six entries a week of friction. The availability model lets a single recurring event apply across the relevant cemeteries.\n\n### Booking form is a parish-built form\n\nChurchDesk's existing form builder is reused inside the booking flow. Funeral homes don't get a generic booking page with name/email/date fields — they answer the questions the parish actually needs (deceased details, funeral type, cemetery section, sterbeurkunde delivery). Calendly cannot do this; its booking form is fixed and the form-builder is a separate product. Reusing the form builder meant churches with idiosyncratic intake questions could ship without engineering work.",
       "images": [
         {
           "src": "/images/churchdesk/priest-availability.jpg",
@@ -89,7 +89,7 @@
         {
           "src": "/images/churchdesk/booking-form.jpg",
           "alt": "The funeral home's booking-form step — date and time slot at the top, a Select staff member radio list, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt",
-          "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. We just reused infrastructure that was already in the product."
+          "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. I reused infrastructure that was already in the product."
         }
       ]
     },
@@ -118,7 +118,7 @@
         },
         {
           "label": "Adoption",
-          "value": "Became a core ChurchDesk feature, used beyond the first region, across 20+ sites"
+          "value": "Became a core ChurchDesk feature. The launch customer needed funerals bookable for and by 20+ cemeteries, and the module then shipped to the whole customer base for room rentals, baptisms and weddings as well"
         }
       ],
       "narrative": "Coordination dropped from days to hours. The 90% acceptance rate came directly from the filtering: if a funeral home could see a time, the priest could take it. The longer-term outcome — the one that justified the investment to the business — was the availability model itself: built once for funeral booking, reusable across the platform without redesign. The funeral feature was the visible deliverable; the platform-wide capability behind it was the strategic one."

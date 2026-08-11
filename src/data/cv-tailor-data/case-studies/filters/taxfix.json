@@ -1,22 +1,25 @@
 {
   "slug": "taxfix",
+  "aliases": [
+    "taxfix-product-design-director-ai-tax-filing"
+  ],
   "title": "Selected Work",
-  "subtitle": "AI shipped into production, and the judgement calls that kept it safe to ship",
+  "subtitle": "AI shipped into production, the research behind it, and the judgement calls that kept it safe to ship",
   "theme": "default",
   "show_all_label": "Show more work",
   "cv": {
-    "href": "/documents/tobias-treppmann-cv-taxfix-director.pdf",
+    "href": "/documents/tobias-treppmann-cv-taxfix.pdf",
     "label": "Download CV (PDF)",
     "note": "Tailored for the Product Design Director, AI Tax Filing role"
   },
   "bio": {
     "short": "I've led design for fifteen years. The last one went into building AI that ships rather than demos. At Bibel TV that means a customer-support copilot live in production, and a fundraising system I built end to end. Before that: design leadership at Ninox and ChurchDesk, and five years at Datameer designing for banks and insurers, where being wrong was expensive.",
-    "long": "The work I'd look at first is the support copilot at Bibel TV. It drafts replies to viewer letters from the support handbook. Most of the design was deciding what it must not do. Restricted topics are enforced. Messages in crisis escalate to a person instead of being drafted. The send decision never leaves a human. It went out fully optional, so people use it because it earns its place.\n\nThe fundraising system is the one I built alone. Analysis of what separated letters that worked from letters that didn't, then the prompt architecture, then the prototype, then the production skill that generates follow-up content for in-app, web and video. At Ninox I designed the prompt-to-database onboarding with the CEO and technical co-founder. The generated schema renders into the real data-model editor rather than a chat preview, so people can see and correct what the model produced. It became the basis for the public AI beta.\n\nWhat connects that work to tax filing is the stakes. At Datameer the users were analysts inside banks and insurers, and I ran research inside institutions that make user access genuinely hard. At ChurchDesk I shipped AI into production under GDPR plus church data-protection law across six countries. Reframing one client's booking request into a platform capability produced a 70% cut in coordination time and 90% acceptance across 20+ sites. Consequential products are where I've spent most of my time.",
+    "long": "The work I'd look at first is the support copilot at Bibel TV. It drafts replies to viewer letters from the support handbook. Most of the design was deciding what it must not do. Restricted topics are enforced. Messages in crisis escalate to a person instead of being drafted. The send decision never leaves a human. It went out fully optional, so people use it because it earns its place.\n\nThe fundraising system is the one I built alone. Analysis of what separated letters that worked from letters that didn't, then the prompt architecture, then the prototype, then the production skill that generates follow-up content for in-app, web and video. At Ninox I designed the prompt-to-database onboarding with the CEO and technical co-founder. The generated schema renders into the real data-model editor rather than a chat preview, so people can see and correct what the model produced. It became the basis for the public AI beta.\n\nWhat connects that work to tax filing is the stakes. At Datameer the users were analysts inside banks and insurers, and I ran research inside institutions that make user access genuinely hard. At ChurchDesk I shipped AI into production under GDPR plus church data-protection law across six countries. Reframing one client's booking request into a platform capability produced a 70% cut in coordination time and 90% acceptance at the launch customer, where funerals had to be bookable across 20+ cemeteries. It then shipped to every customer as a general booking capability. Consequential products are where I've spent most of my time.",
     "context": {
       "company": "Taxfix Group — consumer tax filing across Germany, Spain and the UK, over 400 professionals. Moving from pure self-filing to an assisted service that connects people to human tax advisors.",
       "role": "Product Design Director, AI Tax Filing. Leadership, not IC. Manages senior Product Designers, UX Researchers and Content Designers, with performance ownership, reporting into product leadership.",
-      "emphasis": "AI actually in production, and the safety judgement that made it shippable: escalation as a first-class output, the human keeping the decision, an optional rollout. Then regulated and consequential-stakes product experience — banks and insurers at Datameer, GDPR-plus at ChurchDesk. Then people leadership with performance calls in both directions.",
-      "avoid": "Do not imply a longer run of formal people management than the record supports. Five direct reports at Ninox, one at ChurchDesk, and the Datameer years were team leadership without formal HR authority. Do not lead with consumer scale; the recent consumer work is small. Do not frame Bibel TV around its subject matter — it is a broadcaster in linear-to-streaming transformation, and that is the whole of it. Two case studies need rewriting before publication; see READY-TO-SHIP.md."
+      "emphasis": "Lead with AI shipped into production and the research practice underneath it — Claude over thousands of forum posts at Ninox, feedback and ticket mining at ChurchDesk, interview transcription and analysis at Bibel TV, and the threshold that governs when it is used at all. Then the judgement calls that made the AI safe to ship: escalation as an output, the send decision staying human, quality agreed with users before the prompt was tuned.",
+      "avoid": "Do not lead B2B and do not claim consumer depth — Q5, 2026-08-11. Do not imply current people management: Bibel TV has no direct reports. Do not identify anyone in the Ninox collaboration story; the publishable version is the systems change, never the person. Do not let GDPR stand in for tax or financial regulation."
     }
   },
   "case_studies": [
@@ -52,8 +55,8 @@
     },
     {
       "id": "ninox-org-building",
-      "visibility": "browseable",
-      "order": 6,
+      "visibility": "featured",
+      "order": 5,
       "format_override": "executive"
     },
     {
@@ -94,11 +97,8 @@
     },
     {
       "id": "leading-a-team-is-a-design-problem",
-      "visibility": "hidden",
-      "order": 14
+      "visibility": "browseable",
+      "order": 8
     }
-  ],
-  "aliases": [
-    "taxfix-product-design-director-ai-tax-filing"
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "slug": "secfix",
+  "aliases": [
+    "secfix-senior-product-designer"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Dense interfaces, prototypes engineering ships from, and the decisions I defended through the build",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-secfix.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
+  "bio": {
+    "short": "I design B2B software and run the product side too. The spec, the board, the customer call. Five years of that was data-dense analytics for banks and insurers at Datameer. More recently a vertical ERP at ChurchDesk, where I was one of two designers with no design org above me. I prototype in real code against real APIs, and engineering ships from it.",
+    "long": "Start with ChurchDesk. I held product management for the platform and all of its design at the same time. I wrote the specs, ran the ticket board Martin and Misgina worked from, and was the parish's main contact throughout. A client asked for a funeral-booking feature. I reframed it as a booking capability built into the platform and took €20k of their funding on the condition that it ship that way. Then I defended deep integration over the faster standalone module all the way to delivery. It cut coordination time by 70% and ran at 90% acceptance at the launch customer, where funerals had to be bookable across 20+ cemeteries. It then shipped to every customer as a general booking capability, for room rentals and weddings as much as funerals.\n\nThe interface craft comes from Datameer. Five years of big-data pivot tables, column charts, aggregated JSON views, result cards and filter logic. The users were analysts inside top US, Canadian and UK banks and insurers, on a platform operating under HIPAA compliance among other frameworks. The hardest surface was the query-builder preview. The result you are looking at is a sample, the interface has to be honest about that, and it still has to stay readable.\n\nNow at Bibel TV I prototype in real code against real APIs, web first and then Android, and engineering ships from that code. Around 70% of what the model writes lands. Iteration moved from days to hours. Engineering there is an external agency, so that handoff crosses a company boundary and still holds. I write the specs, run the board, and check the built feature in production and beta rather than calling it done at handoff. I don't review their pull requests.",
+    "context": {
+      "company": "Secfix — compliance automation for European SMBs, certifying against ISO 27001, GDPR, TISAX and SOC 2 by pulling evidence out of a company's tech stack. The posting states €17M in total (€12M Series A). Small: the engineering team recently doubled and this is the second designer.",
+      "role": "Senior Product Designer, in the Engineering department, reporting to the co-founder and CTO. An IC seat with full product ownership. No PMs, so the designer writes the specs, runs the ticketing workflow and decides what ships. Staff/Principal in scope by the posting's own words.",
+      "emphasis": "Lead with three things, in this order. One: prototypes in real code that engineering ships from, because the posting asks for exactly that and the version here crosses a company boundary. Two: designer and product manager at once, meaning the specs, the ticket board, the customer calls, and a scope decision defended through the build with a number attached. Three: dense interface craft from Datameer, the only place tables, filters and data density are evidenced. Name the engineers. Say 'I' throughout, never 'we'.",
+      "avoid": "Do not claim permissions, roles, access control or a settings page. He has never designed one, and the posting's own example of craft is a settings page at eleven permission tiers. Say so plainly if asked. Do not offer Ninox as the nearest thing: user-built data models are a different problem from an access matrix. Do not claim ISO 27001, SOC 2 or TISAX. GDPR plus church data-protection law is real and is one framework of four. Do not claim PR review. Do not mention Cursor, which is unverified; Claude Code is the tool. Do not lead with people management. This is an IC application, and while the Head-of titles are true and checkable, foregrounding headcount invites the stepping-stone question rather than answering it."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}
