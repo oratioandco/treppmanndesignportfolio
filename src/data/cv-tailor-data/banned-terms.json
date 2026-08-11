@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "d6cf0f8",
+  "_source_commit": "3c29e2f",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -83,10 +83,8 @@
     },
     {
       "id": "BT-007",
-      "kind": "proximity",
+      "kind": "regex",
       "pattern": "(?:delivered|shipped|launched|built)\\s+(?:a\\s+|the\\s+)?(?:suite\\s+of\\s+|module\\s+suite|suite\\s+of\\s+modules)",
-      "near": "ChurchDesk",
-      "window": 400,
       "message": "Claiming the ChurchDesk module suite was delivered is banned.",
       "fix": "He designed and INITIATED the suite; only the booking module shipped."
     },
