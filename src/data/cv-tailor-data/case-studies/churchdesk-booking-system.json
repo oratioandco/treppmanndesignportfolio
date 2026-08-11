@@ -72,7 +72,7 @@
         },
         {
           "label": "Designed in Figma with my designer; engineering built quickly",
-          "description": "I worked in Figma with the designer on my team to develop and prototype the screens — across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). Martin and Misgina built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
+          "description": "I worked in Figma with the designer on my team to develop and prototype the screens — across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). The two engineers on the project built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
         }
       ]
     },
