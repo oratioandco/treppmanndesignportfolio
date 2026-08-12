@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SummaryBand from '../../components/SummaryBand.astro';
 ---
 
 <Layout title="Accelerating Design with AI" description="AI-first design process and teaching teams to prototype with AI" showBackButton={true}>
@@ -15,6 +16,11 @@ import Layout from '../../layouts/Layout.astro';
       </p>
     </div>
   </section>
+
+  <SummaryBand
+    figures={[{ value: "~70%", label: "Of AI-generated code ships" }, { value: "Hours", label: "Iteration, down from days" }, { value: "4", label: "Platforms" }]}
+    meta="Head of Product Design · Bibel TV · agentic engineering practice"
+  />
 
   <section class="case-study-content">
     <div class="container content">

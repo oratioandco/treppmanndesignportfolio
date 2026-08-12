@@ -55,6 +55,12 @@ const variantsJson = JSON.stringify(mergedVariants);
     <p set:html={defaultHtml}></p>
   </div>
 
+  <details class="bio-regen__disclosure">
+    <summary class="bio-regen__summary">
+      <span class="bio-regen__summary-icon" aria-hidden="true">&#8635;</span>
+      <span>Regenerate this bio</span>
+    </summary>
+
   <div class="bio-regen__controls" role="group" aria-label="Choose how to read this bio">
     <div class="bio-regen__dial">
       <span class="bio-regen__dial-label">LENGTH</span>
@@ -124,6 +130,7 @@ const variantsJson = JSON.stringify(mergedVariants);
     <span class="bio-regen__caption-dot" aria-hidden="true">●</span>
     <span data-bio-caption-text>Pre-written bio. Set the dials, then hit Regenerate for a live AI version.</span>
   </p>
+  </details>
 </div>
 
 <script is:inline define:vars={{ variantsJson }}>
@@ -418,14 +425,57 @@ const variantsJson = JSON.stringify(mergedVariants);
   .bio-word {
     transition: opacity 0.28s ease, filter 0.28s ease, color 0.28s ease;
   }
+  /* Opacity raised 2026-08-11 from 0.5. At 0.5 the mid-sweep word composited
+     to roughly #a4bbb2 on cream — 1.84:1, unreadable, and it is the bio
+     paragraph itself for the ~2.2s of the sweep. At 0.85 with the darkened
+     accent it measures 4.59:1 and clears AA while the scramble still reads as
+     generation. prefers-reduced-motion skips the sweep entirely. */
   .bio-word--scrambling {
-    opacity: 0.5;
+    opacity: 0.85;
     filter: blur(1.4px);
     color: var(--color-accent);
   }
   .bio-word--resolved {
     opacity: 1;
     filter: none;
+  }
+
+  /* Disclosure — the dials are proof, not the first thing to read.
+     Collapsed by default so the bio itself owns the opening seconds. */
+  .bio-regen__disclosure {
+    margin-top: 1.5rem;
+  }
+
+  .bio-regen__summary {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    text-underline-offset: 3px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    padding: 0.15rem 0;
+  }
+
+  .bio-regen__summary::-webkit-details-marker { display: none; }
+
+  .bio-regen__summary:hover,
+  .bio-regen__summary:focus-visible {
+    color: var(--color-text);
+  }
+
+  .bio-regen__summary-icon {
+    display: inline-block;
+    font-size: 0.9em;
+  }
+
+  .bio-regen__disclosure[open] .bio-regen__summary {
+    margin-bottom: 1.25rem;
   }
 
   .bio-regen__controls {

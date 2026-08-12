@@ -96,7 +96,11 @@
     --color-surface: #ffffff;
     --color-text: #1a1a1a;
     --color-text-muted: #666666;
-    --color-accent: #4f8375;
+    /* Darkened 2026-08-11 from #4f8375. Against the cream ground that was
+       3.94:1 — below WCAG AA for body text, which the case-study design spec
+       names as a non-negotiable floor. #457468 measures 4.82:1 and is the
+       smallest change that clears it; the hue is unchanged. */
+    --color-accent: #457468;
     --color-accent-light: #e8f0ed;
     --color-border: #e5e0db;
     --color-rule: #c9c0b6;
@@ -230,11 +234,23 @@ a:hover {
 }
 
 /* Hero */
+/* Tightened 2026-08-12. The hero used 128px of padding on both sides plus a
+   70vh floor, and the section below it added another 128px — roughly 250px of
+   empty page between the bio and the first piece of work. On a laptop viewport
+   nothing but a claim was visible. The case-study design spec asks for uneven,
+   intentional vertical rhythm rather than one uniform gap everywhere, so this
+   is on-spec as well as necessary. */
 .hero {
-    padding: var(--space-2xl) 0;
-    min-height: 70vh;
+    padding: 4rem 0 2rem;
+    min-height: auto;
     display: flex;
     align-items: center;
+}
+
+/* Pull the work up into the fold. Deliberately tighter than the site's other
+   section gaps: the first case study should be visible, not discovered. */
+#case-studies {
+    padding-top: 1.5rem;
 }
 
 .hero-tagline {
@@ -437,7 +453,7 @@ a:hover {
 }
 
 .section-header {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
 }
 
 .case-studies-grid {
@@ -680,5 +696,262 @@ a.case-study-card:hover {
         height: 100%;
         max-height: none;
         border-radius: 0;
+    }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Portrait — added 2026-08-11 per the portfolio handover spec, item 6.
+   Small-to-medium, beside the bio, never hero-sized above the positioning
+   line and never on a case study page. Natural colour: no duotone, no tint,
+   no filter. Zero radius, matching the site's "warmth from paper and type,
+   not soft corners" rule in the case-study design spec §5.
+   --------------------------------------------------------------------------- */
+.hero-bio {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+.portrait {
+    margin: 0;
+}
+
+/* The portrait is an inline SVG with a frayed mask (see Portrait.astro), so it
+   deliberately carries no border, radius or inset rule — any of those would
+   reinstate the straight edge the fray exists to remove. */
+
+.hero-bio__text {
+    min-width: 0;
+}
+
+@media (max-width: 760px) {
+    .hero-bio {
+        grid-template-columns: 128px 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-bio {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .portrait img {
+        width: 140px;
+    }
+}
+
+
+/* The summary band brings its own full-bleed rule above it. Where a band
+   follows the hero, the hero's own border-bottom would sit ~85px above that
+   rule and read as a doubled hairline — which dilutes exactly the interruption
+   the band exists to make (case-study design spec §4). Suppress it there only. */
+.case-study-hero:has(+ .summary-band) {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+/* Practice / Also — deliberately quieter than the case-study grid. Small
+   items, not a fourth card. */
+.practice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: var(--content-width, 720px);
+}
+
+.practice-item h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+}
+
+.practice-item p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.practice-item a {
+    text-underline-offset: 3px;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Case-study reading layout — design spec §1-3, 2026-08-12.
+
+   Four changes, all typographic. The measure was ~80 characters, which the
+   spec calls out as reading like a blog template; it is now 64. The type scale
+   is a real 1.333 fourth rather than arbitrary sizes. The vertical rhythm is
+   deliberately uneven — 96 / 144 / 192 — because a uniform gap everywhere is
+   what separates CMS default from editorial. And the text column is placed
+   asymmetrically rather than centred, which the spec names as the single
+   decision that does most of the work.
+
+   NOT done here: hanging section headings in columns 1-2. That needs each
+   heading wrapped with its body in a section element, which is a DOM change
+   across four pages. Applied to shipping-ai below; the other three still
+   render headings above their text.
+   --------------------------------------------------------------------------- */
+
+.case-study-content .content {
+    /* 62-68 characters. Non-negotiable per the spec; this lands at ~64. */
+    max-width: 64ch;
+    /* Asymmetric: the column sits left of centre inside the container rather
+       than being centred in it. */
+    margin-left: max(0px, min(8vw, 9rem));
+    margin-right: auto;
+}
+
+.case-study-content p {
+    font-size: 1.125rem;
+    line-height: 1.667;
+}
+
+/* Standfirst: slightly larger and darker than body, per the type scale. */
+.case-study-hero .hero-description {
+    font-size: 1.375rem;
+    line-height: 1.5;
+    max-width: 44ch;
+}
+
+/* 1.333 perfect fourth, and one size step down from the old 2.5rem so that a
+   section heading cannot compete with the page title. */
+.case-study-content h2 {
+    font-size: 2.125rem;
+    line-height: 1.2;
+    /* Uneven rhythm: the gap above a section is larger than the gap below it,
+       so sections read as separated rather than evenly spaced. */
+    margin-top: 9rem;
+    padding-top: 0;
+    border-top: none;
+    margin-bottom: 1.5rem;
+}
+
+.case-study-content h2:first-child {
+    margin-top: 0;
+}
+
+.case-study-content h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+/* Images alternate full-bleed and inset per §3; captions sit tight under the
+   image and align to its left edge, not to the text column. */
+.case-study-content .case-study-image {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+.case-study-content .case-study-image figcaption {
+    font-size: 0.875rem;
+    line-height: 1.571;
+    text-align: left;
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+}
+
+/* Links in body copy: underline, no colour change. Restraint, per §5. */
+.case-study-content .content p a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+@media (max-width: 900px) {
+    .case-study-content .content {
+        margin-left: auto;
+        max-width: 62ch;
+    }
+    .case-study-content h2 {
+        margin-top: 5rem;
+        font-size: 1.875rem;
+    }
+    .case-study-content .case-study-image {
+        margin-top: 3.5rem;
+        margin-bottom: 3.5rem;
+    }
+}
+
+
+/* Hanging headings — design spec §1. The heading sits in the left gutter,
+   aligned to the first line of its body text, rather than stacked above it.
+   This is the Spiekermann move the spec names, and it is the structural half
+   of what makes a page read as editorial rather than as a template.
+
+   Only pages using .content--hanging get this, because it needs each heading
+   wrapped with its body in a .cs-section. */
+/* Specificity has to match `.case-study-content .content`, or that rule's
+   64ch cap applies to the whole two-column grid and squeezes the body column
+   to about 38 characters — narrower than the spec's floor, not wider. */
+.case-study-content .content--hanging {
+    max-width: none;
+    margin-left: max(0px, min(6vw, 7rem));
+}
+
+.cs-section {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 64ch);
+    column-gap: 4rem;
+    align-items: start;
+}
+
+.cs-section__heading {
+    grid-column: 1;
+    /* Optical alignment to the first body line rather than to its box. */
+    margin: 0;
+    padding-top: 0.35rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+.cs-section__body {
+    grid-column: 2;
+}
+
+.cs-section__body > :first-child {
+    margin-top: 0;
+}
+
+.cs-section + .cs-section {
+    margin-top: 9rem;
+}
+
+/* The pull statement breaks the measure deliberately, so it must not be
+   constrained by the body column. */
+.cs-section__body .pull-statement {
+    max-width: 24ch;
+}
+
+@media (max-width: 1100px) {
+    .content--hanging {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 64ch;
+    }
+    .cs-section {
+        grid-template-columns: 1fr;
+        row-gap: 1.25rem;
+    }
+    .cs-section__heading {
+        grid-column: 1;
+        font-size: 1.875rem;
+        padding-top: 0;
+    }
+    .cs-section__body {
+        grid-column: 1;
+    }
+    .cs-section + .cs-section {
+        margin-top: 5rem;
     }
 }

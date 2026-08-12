@@ -1,0 +1,203 @@
+---
+/**
+ * Shipping AI, Not Designing Around It — the flagship case study.
+ *
+ * Content from handover/PORTFOLIO-CONTENT-AND-PROMPT.md Part 1, using the
+ * FACT-CHECKED copy in that file rather than the earlier draft. Two claims
+ * differ between the two versions and the corrected ones are used here:
+ *   - "Over a year" at Bibel TV, not "over eighteen months" (mid-Aug 2025 to
+ *     now is ~12 months elapsed, ~15 over the full contract).
+ *   - The campaign generator's web prototype is INTERNAL. Only the skill's
+ *     outputs reach customer surfaces. Nothing here says otherwise.
+ *
+ * The /for/ VARIANT paragraph in the handover is deliberately NOT used: it is
+ * scoped to application pages, and this is treppmann.design.
+ */
+import Layout from '../../layouts/Layout.astro';
+import SummaryBand from '../../components/SummaryBand.astro';
+---
+
+<Layout
+  title="Shipping AI, Not Designing Around It"
+  description="A support copilot in daily use, a campaign generation tool built end to end, and a prototyping practice engineering builds from directly."
+  showBackButton={true}
+>
+  <section class="case-study-hero">
+    <div class="container">
+      <p class="case-study-meta">AI Product &amp; Practice</p>
+      <h1>Shipping AI, Not Designing Around It</h1>
+      <p class="hero-tagline">Bibel TV</p>
+      <p class="hero-description">
+        Most design leaders in 2026 can talk about AI. Over a year at a
+        broadcaster mid linear-to-streaming transformation, I moved from
+        designing <em>for</em> the model to shipping production AI myself &mdash;
+        a support copilot in daily use, a campaign generation tool built end to
+        end, and a prototyping practice engineering now builds from directly.
+      </p>
+    </div>
+  </section>
+
+  <SummaryBand
+    figures={[
+      { value: "~70%", label: "Of AI-generated code ships" },
+      { value: "Hours", label: "Iteration, down from days" },
+      { value: "4", label: "Platforms" }
+    ]}
+    meta="Head of Product Design · Bibel TV · agentic engineering practice"
+  />
+
+  <section class="case-study-content">
+    <div class="container content content--hanging">
+      <section class="cs-section">
+        <h2 class="cs-section__heading">The support copilot</h2>
+        <div class="cs-section__body">
+      <p>
+        The viewer-services team answers letters, emails, and social messages
+        &mdash; often long, often emotional, sometimes in crisis. I built them a
+        copilot: paste in the message, get a draft grounded in the service
+        handbook &mdash; its wording, its formatting, its standard phrases.
+      </p>
+      <p>
+        Three decisions defined it. Restricted-topic rules are enforced
+        <em>in the output</em>, not left to the agent to remember. Crisis
+        messages don't get drafted at all &mdash; they escalate to a person. And
+        every send decision stays human; the tool never sends.
+      </p>
+      <p>
+        Rollout was designed as carefully as the tool. I tested it on myself
+        first, then ran one-on-ones &mdash; no group demo, no mandate. It stayed
+        fully optional, with the team lead asking only that people try it and
+        share feedback. The tool then earned its place on the hard cases rather
+        than the easy ones: one of the most sceptical senior agents tried it on a
+        letter that would normally cost hours &mdash; multiple parallel topics,
+        strongly argued criticism &mdash; and shipped a good response in minutes.
+      </p>
+      <p>
+        <strong>Where it landed:</strong> complex multi-topic letters answered in
+        minutes instead of hours. Temporary staff write in the company's voice
+        from day one. The sceptics use it daily and told me so unprompted.
+      </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">The companion campaign generator</h2>
+        <div class="cs-section__body">
+      <p>
+        Bibel TV runs bi-monthly fundraising campaigns, and each one needs
+        supporting material across several formats &mdash; in-app notifications,
+        web banners, short video scripts &mdash; all carrying the same message in
+        the same voice, produced under time pressure by people who aren't
+        copywriters.
+      </p>
+      <p>
+        I built a web application that generates them. The interesting part isn't
+        the generation; it's what the generation reasons from. The organisation's
+        formatting guidelines, its accumulated fundraising knowledge &mdash; much
+        of it previously held in people's heads rather than written down &mdash;
+        and its house voice became the system's context. The interaction is a
+        multi-turn clarifying-question loop rather than single-shot prompting:
+        the tool asks what it needs to know about the campaign before producing
+        anything, which is what makes the output usable rather than merely fast.
+      </p>
+      <p>
+        Analysis, prompt architecture, prototype, production skill &mdash; no
+        engineering hand-off at any stage.
+      </p>
+      <blockquote class="pull-statement">
+        The institutional knowledge was always the asset. AI just made it
+        addressable.
+      </blockquote>
+      <p>
+        That's the pattern across both systems. Neither tool is clever on its
+        own. Each works because the organisation's own knowledge &mdash; the
+        service handbook, the fundraising guidelines, the things people knew but
+        had never written down &mdash; became the context the model reasons from.
+      </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">Agentic engineering as design practice</h2>
+        <div class="cs-section__body">
+      <p>
+        I stopped shipping specs. The new experience was designed first as a
+        working web prototype, then as an Android prototype, both built with
+        AI-assisted coding against real production APIs. Engineering now consumes
+        that prototype code directly &mdash; roughly 70% of it reaches production
+        with minor modification, and iteration collapsed from days through
+        spec-and-handoff to hours in working code.
+      </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">The design system as an API</h2>
+        <div class="cs-section__body">
+      <p>
+        One token repository &mdash; DTCG standard, three tiers from global
+        primitives through semantic to component, built with Style Dictionary,
+        synced live to Figma and Android with iOS and web ready, architected to
+        support server-driven UI. One commit propagates to every platform.
+        Consistency enforced by structure rather than coordination.
+      </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">What I'd note honestly</h2>
+        <div class="cs-section__body">
+      <p class="closing-note">
+        None of this was a mandate. It worked because adoption was voluntary and
+        the tools were introduced where they'd face the hardest case first. The
+        constraint lives in the tool; the choice stays with the person. That's
+        the model I'd bring to any organisation trying to become AI-native
+        &mdash; the technology is the easier half.
+      </p>
+        </div>
+      </section>
+</div>
+  </section>
+</Layout>
+
+<style>
+  /* Pull statement — Gambarino italic, breaking the measure deliberately
+     (case-study design spec §2). Hanging opening quote, per §5. */
+  .pull-statement {
+    font-family: "Gambarino", Georgia, serif;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1.28;
+    margin: 3.5rem 0 3.5rem -1.5rem;
+    padding: 0;
+    border: none;
+    color: var(--color-text);
+    max-width: 22ch;
+  }
+
+  .pull-statement::before {
+    content: "\\201C";
+    margin-left: -0.5em;
+  }
+
+  /* Closing note — the honest limitation, indented and italic per §3. */
+  .closing-note {
+    font-style: italic;
+    margin-left: 2rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 760px) {
+    .pull-statement {
+      font-size: 1.5rem;
+      margin-left: 0;
+      max-width: none;
+    }
+    .pull-statement::before {
+      margin-left: 0;
+    }
+    .closing-note {
+      margin-left: 0;
+    }
+  }
+</style>

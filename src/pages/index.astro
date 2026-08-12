@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BioRegenerator from '../components/BioRegenerator.astro';
+import Portrait from '../components/Portrait.astro';
 ---
 
 <Layout title="AI-Native Product & Design Leader">
@@ -42,7 +43,14 @@ import BioRegenerator from '../components/BioRegenerator.astro';
     setTimeout(animate, delay);
   });
 </script>
-      <BioRegenerator />
+      <div class="hero-bio">
+        <Portrait
+          alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
+        />
+        <div class="hero-bio__text">
+          <BioRegenerator />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -54,6 +62,18 @@ import BioRegenerator from '../components/BioRegenerator.astro';
       </div>
 
       <div class="case-studies-grid">
+        <a href="/case-studies/shipping-ai" class="case-study-card">
+          <img src="/images/covers/generated/bibeltv-agentic-engineering.svg" alt="Shipping AI, Not Designing Around It" class="case-study-cover" />
+          <h3>Shipping AI, Not Designing Around It</h3>
+          <p class="subtitle">AI Product &amp; Practice</p>
+          <p>A support copilot in daily use, a campaign generation tool built end to end, and a prototyping practice engineering builds from directly.</p>
+          <div style="margin-top: var(--space-md);">
+            <span class="tag">AI in Production</span>
+            <span class="tag">Agentic Engineering</span>
+            <span class="tag">Design System as API</span>
+          </div>
+        </a>
+
         <a href="/case-studies/churchdesk" class="case-study-card">
           <img src="/images/covers/generated/churchdesk-booking-system.svg" alt="ChurchDesk Booking System" class="case-study-cover" />
           <h3>When 'Simple Booking' Isn't Simple</h3>
@@ -93,5 +113,23 @@ import BioRegenerator from '../components/BioRegenerator.astro';
     </div>
   </section>
 
-
+  <section class="section" id="practice">
+    <div class="container">
+      <div class="section-header">
+        <h2>Also</h2>
+      </div>
+      <div class="practice-list">
+        <div class="practice-item">
+          <h3>Selah &mdash; shipped Mac App Store app</h3>
+          <p>
+            A leadership tool I designed and built: 60&ndash;90 second structured
+            transitions between meetings, so you arrive present rather than
+            carrying the last conversation into the next one. Born from my own
+            calendar hack, now a shipped product.
+            <a href="https://selah.guide" rel="noopener">selah.guide</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SummaryBand from '../../components/SummaryBand.astro';
 ---
 
 <Layout title="Redesigning How We Work Together" description="A leadership story about diagnosing when collaboration breaks down, and redesigning the system rather than managing the person" showBackButton={true}>
@@ -14,6 +15,11 @@ import Layout from '../../layouts/Layout.astro';
       </p>
     </div>
   </section>
+
+  <SummaryBand
+    figures={[{ value: "5", label: "Direct reports, incl. a design lead" }, { value: "2", label: "Promoted, 2 performance exits" }, { value: "SLT", label: "Senior Leadership Team" }]}
+    meta="Head of Product Design · Ninox · 2023–2024"
+  />
 
   <section class="case-study-content">
     <div class="container content">

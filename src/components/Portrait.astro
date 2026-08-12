@@ -1,0 +1,202 @@
+---
+/**
+ * Portrait — the photo dissolving into discrete squares at its edges.
+ *
+ * Not a pixelated image: the photo stays full resolution. What is pixelated is
+ * the MASK. A grid of square tiles is fully dense through the middle, and
+ * toward every edge tiles start dropping out — fewer and fewer, so the picture
+ * frays into the page instead of stopping at a rectangle. There is no straight
+ * edge on any side.
+ *
+ * This is deliberately the site's own language rather than a new idea: the
+ * case-study covers are dot matrices and Redaction's halftone texture is what
+ * the design spec calls the reason the site doesn't read as a template. Same
+ * grammar, applied to a photograph.
+ *
+ * Deterministic: the PRNG is seeded, so the same tiles drop out on every build
+ * and the mask never flickers between deploys.
+ */
+interface Props {
+  src?: string;
+  srcset?: string;
+  alt: string;
+  /** Tile size in image units. Smaller = finer fray. */
+  cell?: number;
+  /** How many tiles deep the dissolve reaches from each edge. */
+  band?: number;
+  seed?: number;
+  class?: string;
+}
+
+const {
+  src = '/images/portrait/tobias-treppmann.jpg',
+  alt,
+  cell = 12,
+  band = 6,
+  seed = 20260812,
+  class: className = '',
+} = Astro.props as Props;
+
+const W = 600;
+const H = 750;
+const cols = Math.ceil(W / cell);
+const rows = Math.ceil(H / cell);
+
+// Mulberry32 — small, fast, deterministic.
+function makeRng(s: number) {
+  let a = s >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rng = makeRng(seed);
+const hidden = new Set<number>();
+
+// smoothstep, so the fray eases in rather than stepping linearly.
+const smooth = (t: number) => {
+  const x = Math.min(1, Math.max(0, t));
+  return x * x * (3 - 2 * x);
+};
+
+type Tile = { x: number; y: number; edge: boolean; d: number };
+const tiles: Tile[] = [];
+
+for (let r = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
+    // Distance to the nearest edge, in tiles.
+    const d = Math.min(c, r, cols - 1 - c, rows - 1 - r);
+    if (d >= band) {
+      tiles.push({ x: c * cell, y: r * cell, edge: false, d });
+      continue;
+    }
+    // Keep-probability is 0 at the outermost ring and reaches 1 at the band's
+    // inner boundary. Starting at exactly 0 matters: it stops single detached
+    // tiles floating off into the page, which read as artefacts rather than as
+    // a deliberate edge. Corners fray hardest because d takes the min of both
+    // axes there, which is what stops the shape reading as a rectangle.
+    const p = smooth(d / band);
+    // Every tile in the band is emitted. Those the draw rejects start hidden;
+    // the animation swaps between the two sets, which is what lets the edge
+    // shimmer without the silhouette eroding.
+    tiles.push({ x: c * cell, y: r * cell, edge: true, d });
+    if (rng() >= p) hidden.add(tiles.length - 1);
+  }
+}
+
+const maskId = `portrait-fray-${seed}`;
+---
+
+<figure class={`portrait ${className}`.trim()}>
+  <svg
+    class="portrait__svg"
+    viewBox={`0 0 ${W} ${H}`}
+    role="img"
+    aria-label={alt}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
+        <rect x="0" y="0" width={W} height={H} fill="black" />
+        {tiles.map((t, i) => (
+          <rect
+            x={t.x}
+            y={t.y}
+            width={cell}
+            height={cell}
+            fill="white"
+            class={t.edge ? 'portrait__tile' : undefined}
+            data-edge={t.edge ? '1' : undefined}
+            opacity={hidden.has(i) ? '0' : '1'}
+          />
+        ))}
+      </mask>
+    </defs>
+    <image
+      href={src}
+      x="0"
+      y="0"
+      width={W}
+      height={H}
+      preserveAspectRatio="xMidYMid slice"
+      mask={`url(#${maskId})`}
+    />
+  </svg>
+</figure>
+
+<script is:inline>
+  (function () {
+    // The edge breathes. Same grammar as the headline: each element decides on
+    // its own slow, random interval rather than everything moving on one clock.
+    //
+    // Density is conserved — every tile switched off is paired with one
+    // switched on — so the silhouette holds its weight while the boundary
+    // shifts. Only band tiles ever move; the core is untouched.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll('.portrait__svg').forEach(function (svg) {
+      var tiles = Array.prototype.slice.call(
+        svg.querySelectorAll('rect[data-edge]')
+      );
+      if (tiles.length < 8) return;
+
+      function partition() {
+        var on = [], off = [];
+        tiles.forEach(function (t) {
+          (t.getAttribute('opacity') === '0' ? off : on).push(t);
+        });
+        return { on: on, off: off };
+      }
+
+      function pick(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function step() {
+        var p = partition();
+        if (p.on.length && p.off.length) {
+          // Swap a couple of tiles per tick. More than this and it reads as
+          // noise rather than as an edge that is alive.
+          var n = 1 + Math.floor(Math.random() * 2);
+          for (var i = 0; i < n; i++) {
+            var a = pick(p.on);
+            var b = pick(p.off);
+            if (a && b) {
+              a.setAttribute('opacity', '0');
+              b.setAttribute('opacity', '1');
+            }
+          }
+        }
+        setTimeout(step, 900 + Math.random() * 2200);
+      }
+
+      setTimeout(step, Math.random() * 1800);
+    });
+  })();
+</script>
+
+<style>
+  .portrait {
+    margin: 0;
+  }
+
+  .portrait__tile {
+    transition: opacity 0.9s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait__tile {
+      transition: none;
+    }
+  }
+
+  .portrait__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* No radius, no border, no inset shadow. The fray IS the edge treatment —
+       a rule around it would put back the straight line this removes. */
+  }
+</style>

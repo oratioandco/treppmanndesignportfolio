@@ -1,0 +1,113 @@
+---
+/**
+ * SummaryBand — the signature element from the case-study design spec §4.
+ *
+ * Sits after the intro paragraph and BEFORE the first section heading.
+ * Hairline rules above and below are full bleed: the band deliberately
+ * interrupts the page's column structure, and that interruption IS the
+ * emphasis. No cards, no boxes, no icons, no fills, no colour accents.
+ *
+ * Props:
+ *   figures — exactly three { value, label }. Value carries the numeral,
+ *             label the small letterspaced caps beneath it.
+ *   meta    — role · scope · duration, joined with middots by the caller.
+ */
+interface Figure {
+  value: string;
+  label: string;
+}
+const { figures, meta } = Astro.props as { figures: Figure[]; meta: string };
+---
+
+<div class="summary-band">
+  <div class="summary-band__inner">
+    <dl class="summary-band__figures">
+      {figures.map((f) => (
+        <div class="summary-band__figure">
+          <dd class="summary-band__value">{f.value}</dd>
+          <dt class="summary-band__label">{f.label}</dt>
+        </div>
+      ))}
+    </dl>
+    <p class="summary-band__meta">{meta}</p>
+  </div>
+</div>
+
+<style>
+  /* Full bleed out of whatever container encloses it. The rules run edge to
+     edge; the content inside stays on the page's measure. */
+  .summary-band {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid rgb(26 26 26 / 12%);
+    border-bottom: 1px solid rgb(26 26 26 / 12%);
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  .summary-band__inner {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    /* 112px of vertical padding — the spec asks for it to feel like a held
+       breath, so this is deliberately more than the page's normal rhythm. */
+    padding: 7rem 2rem;
+  }
+
+  .summary-band__figures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 0;
+  }
+
+  .summary-band__figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .summary-band__value {
+    font-family: "Gambarino", Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin: 0;
+    color: var(--color-text);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .summary-band__label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .summary-band__meta {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin: 3.5rem 0 0;
+  }
+
+  /* Mobile: stack rather than shrink the numerals. */
+  @media (max-width: 760px) {
+    .summary-band__inner {
+      padding: 4rem 1.5rem;
+    }
+    .summary-band__figures {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .summary-band__value {
+      font-size: 3rem;
+    }
+    .summary-band__meta {
+      margin-top: 2.5rem;
+    }
+  }
+</style>
