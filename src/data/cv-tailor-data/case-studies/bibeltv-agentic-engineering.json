@@ -3,19 +3,25 @@
   "title": "Prototyping in code, not in Figma specs",
   "subtitle": "At Bibel TV I stopped handing engineering static specs and started handing them working code",
   "type": "process-innovation",
-  "tags": ["prototyping", "design-engineering-collaboration", "ai-augmented", "process-innovation", "streaming-media", "cross-platform"],
+  "tags": [
+    "prototyping",
+    "design-engineering-collaboration",
+    "ai-augmented",
+    "process-innovation",
+    "streaming-media",
+    "cross-platform"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "draft",
   "last_updated": "2026-05-22",
-  "hero_image": {
-    "src": "/images/bibeltv/android-prototype.png",
-    "alt": "The Bibel TV Android prototype running with real content data"
-  },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -35,14 +41,7 @@
     {
       "type": "narrative",
       "headline": "What I do instead",
-      "content": "At Bibel TV I design the concept in Figma — layout, flow, hierarchy — and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata.\n\nEngineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in.",
-      "images": [
-        {
-          "src": "/images/bibeltv/web-prototype.png",
-          "alt": "The Bibel TV web prototype running with real API data",
-          "caption": "The web prototype runs on the real Bibel TV APIs — real videos, real metadata, not placeholder content."
-        }
-      ]
+      "content": "At Bibel TV I design the concept in Figma — layout, flow, hierarchy — and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata.\n\nEngineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
     },
     {
       "type": "process",
@@ -98,28 +97,34 @@
       "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not.\n\nThis way of working asks for a design leader who is comfortable in code — not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Closed the design-to-ship gap at Bibel TV by prototyping in real code with real APIs. Engineering builds on the prototype directly. Iteration dropped from days to hours.",
       "angle": "Design leadership through a faster design-engineering loop",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "Figma-spec-then-handoff has a faster alternative: prototype in code, iterate with engineering, and let the prototype become the product. Here is how it worked at Bibel TV.",
       "angle": "Making prototype code a real design artifact",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "6 min"
     }
   },
-
   "related": [
     "bibeltv-app-redesign",
     "bibeltv-design-system-api",
     "bibeltv-color-api"
   ],
-
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,

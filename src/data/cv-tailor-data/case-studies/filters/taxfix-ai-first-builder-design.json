@@ -1,7 +1,8 @@
 {
   "slug": "taxfix-ai-first-builder-design",
+  "aliases": [],
   "title": "Selected Work",
-  "subtitle": "Full-loop AI shipping — solo AI fundraising ecosystem, a Copilot skill live in production, prompt-to-database onboarding co-defined with founders. Selected for the Taxfix AI First Builder role.",
+  "subtitle": "The full loop, in one pair of hands — brief, design, prototype in code, ship",
   "theme": "default",
   "show_all_label": "Show more work",
   "cv": {
@@ -10,13 +11,13 @@
     "note": "Tailored for the AI First Builder (Design) role"
   },
   "bio": {
-    "short": "I'm Tobias Treppmann, a product designer in Berlin who ships full-loop — brief, design, prototype, in code. Currently at Bibel TV running what the industry now calls an \"AI-first builder\" pattern inside a Head-of-Product-Design title: a Claude-powered fundraising ecosystem I built solo end-to-end, a customer-support Copilot skill live in production, agentic engineering as shipped design practice, and a design-system-as-API that syncs Android, iOS, web, and Figma from one source. Fifteen-plus years, and the last twelve months are the sharpest evidence I have of the exact working model this role names.",
-    "long": "I'm Tobias Treppmann, a product designer based in Berlin. Fifteen-plus years across Bibel TV, ChurchDesk, Ninox, Datameer, and Hypoport — most of that time in Head or Director titles, and the last twelve months operating as the Builder pattern the industry is only now naming. Full-loop, model-adjacent, in code when code is faster.\n\nAt Bibel TV I built the AI fundraising ecosystem solo end-to-end: analysed past letters and their performance, encoded the seasonality and style patterns into a Claude Project with a multi-turn clarifying-question loop, built an internal web prototype the fundraising team uses to generate follow-up content, and shipped a Claude skill that produces that content across three customer-facing surfaces — in-app notifications, web banners, and video scripts. In parallel: a customer-support Copilot skill live in production against the CS handbook as context, with escalation as a first-class output and the human keeping every send decision; agentic engineering as design practice — Claude Code prototypes on real Bibel TV APIs whose component structures, API calls, and navigation patterns engineering copies and adapts into the production codebase; a DTCG-standard design-token API with three-tier hierarchy syncing Android (live), Figma (live via plugin), and iOS/web (endpoints ready). At Ninox I defined the prompt-to-database split-screen onboarding model with the CEO and technical co-founder in founder-led stealth — prompt-to-database with direct-manipulation surface alongside chat, first-schema-is-wrong handled as the normal case. At ChurchDesk I dual-owned PM and Design on a funeral-booking system that cut coordination time by 70% and hit 90% acceptance under GDPR + Protestant/Catholic data-protection law.\n\nWhat I bring to this role: full-loop shipping without handoffs; AI craft where the design decisions (what to load, what \"good\" looks like, where the human stays in charge) are more load-bearing than the model; agentic engineering that actually reaches production code paths; first-principles interaction design when the component library doesn't have the answer; and the honest posture the JD asks for — I know where my evidence is thick and where it isn't, and I can tell the difference.",
+    "short": "I'm Tobias Treppmann, a product designer in Berlin. The work I do best has no handoff in it — the brief, the flow, the prototype in real code, the thing that ships. The last year went into AI running in production rather than AI that demos.",
+    "long": "The clearest thing to look at is the support copilot at Bibel TV. It drafts replies to viewer letters from the service handbook. Most of the design was deciding what it must not do. Restricted topics are enforced in the output rather than left to the model to remember. Messages in crisis escalate to a person instead of being drafted. The send decision never leaves a human. It went out fully optional, so it had to earn its place on the hard cases.\n\nThe fundraising system I built alone, end to end: the performance analysis, the prompt architecture, an internal generation prototype, then the production skill whose output goes out across in-app notifications, web banners and video scripts. The practice underneath it is agentic engineering — I design in Figma, prototype in the target stack against real APIs, and engineering copies and adapts component structures, API calls and navigation patterns from that code into the production app. Around 70% of what the model writes lands, directly or with minor modifications, and iteration moved from days to hours. Engineering at Bibel TV is an external agency, so that handoff crosses a company boundary and holds anyway.\n\nBefore that: at Ninox, freelance in summer 2025, I designed the prompt-to-database onboarding model with the CEO and technical co-founder — the generated schema renders into the real data-model editor rather than a chat preview, so a person can see and correct what the model produced. It became the basis for the public AI beta. At ChurchDesk I held product management and design at the same time, reframed a client request into a platform capability and took €20k of client funding on that condition, and defended deep integration through the build: 70% less coordination time, 90% acceptance, then a rollout to the whole customer base. At Datameer, five years of data-dense interfaces for analysts inside banks and insurers, where the query-builder preview shows you a sample and the interface has to be honest about that without becoming unreadable.",
     "context": {
-      "company": "Taxfix Group — consumer tax filing across Germany (largest market), Spain, and the UK. Three brands: Taxfix, Steuerbot, TaxScouts. Berlin HQ. Consequential-stakes product — getting a tax filing wrong has real regulatory and financial consequences for real people.",
-      "role": "AI First Builder (Design) — IC 'Builder' role in a small pod (2–3 people), NOT design leadership. Full-loop ownership: brief → design → prototype → ship, few handoffs. Opinionated on AI craft, first-principles interaction design, and shipping in ambiguity.",
-      "emphasis": "Lead with builder posture and current-shipping AI craft, in that order. Foreground: (1) the Bibel TV AI cluster — solo AI fundraising ecosystem, customer-support Copilot skill in production, agentic engineering, design-system-as-API; (2) the Ninox prompt-to-database split-screen invention as the anti-templating / first-principles proof; (3) the ChurchDesk 70%/90% funeral-booking bullet as the JD's explicit 'metric that moved when you did' ask. Berlin base, German native, English C2 — cultural-fit signals for a German-largest market. Trajectory framing: 'operating as an AI-First Builder inside a Head title' — not a step down; a step into the exact working model Taxfix names.",
-      "avoid": "Do NOT frame as 'Head of Product Design with 15+ years leading design teams' — that reads as manager-track for this JD (see Q1 answer 2026-08-09 + personal-preferences-applied.md). Do NOT claim direct consumer-tax-filing experience — bridge via regulated financial services (Hypoport) + banking/insurance customer bases (Datameer) + regulated coordination (ChurchDesk), not fabrication. Do NOT claim the AI fundraising web prototype is customer-facing — it is internal to the fundraising team (Q4 answer 2026-08-09); the Claude skill outputs are what reach customers. Do NOT claim shipped/read-out A/B tests — Bibel TV framing is 'driver of the experimentation infrastructure, actively analysing conversion and usage data' (Q3 answer 2026-08-09). Do NOT claim 'shipped production code directly' — the truthful middle framing is 'engineering copies and adapts specific parts of the prototype code — components, API calls, navigation patterns — into the production codebase; parts land, edited by engineering, then ship' (Q2 answer 2026-08-09). Do NOT fabricate CS Copilot operational metrics (acceptance rate, override rate, CSAT, response-time reduction) — none verified. Do NOT drop 'Taxfix', 'Steuerbot', 'TaxScouts', 'AI First Builder' into the bio body — those are cover-letter cultural-fluency signals, not portfolio bio surface."
+      "company": "Taxfix Group — consumer tax filing across Germany, Spain and the UK, brands Taxfix, Steuerbot and TaxScouts, based in Berlin. A product where getting it wrong has real financial and regulatory consequences for the person filing.",
+      "role": "AI First Builder (Design) — full-loop ownership from user problem to shipped interface with as few handoffs as possible, working in a small pod alongside product and engineering. AI used to explore, prototype and accelerate, with taste as the editorial layer. First-principles interaction design rather than starting from the component library.",
+      "emphasis": "Voice: first person, plain, practitioner rather than executive. Order to lead in: the AI work running in production at Bibel TV (a support copilot, a fundraising system built solo end to end, agentic engineering); then the Ninox prompt-to-database onboarding model; then the ChurchDesk booking outcome with its numbers. Berlin-based, German native, English C2.",
+      "avoid": "Facts to hold exactly. Engineering copies and adapts parts of his prototype code, edits them, then ships — say that, not that his code ships unchanged. He built the experimentation framework; describe no completed test and no test result. The fundraising web prototype is internal; only the skill's outputs reach customers. The Ninox onboarding work was freelance, summer 2025, never a month range and never inside the 2023–2024 employment. At ChurchDesk the module suite was designed and initiated and the booking module is what shipped. Scale figures, verbatim: Spreadshirt hundreds of thousands of consumers, 2014–16; Bibel TV under 1M users. Datameer is two UX designers reporting to him inside a four-person design org under the VP Design, and the design system was co-built. Bibel TV has no direct reports and no other designers. Name no colleague. State no compensation figure, his or the role's."
     }
   },
   "case_studies": [
@@ -27,65 +28,38 @@
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-support-agent",
+      "id": "bibeltv-agentic-engineering",
       "visibility": "featured",
       "order": 2,
       "format_override": "in-depth"
     },
     {
-      "id": "ninox-ai-onboarding",
+      "id": "bibeltv-support-agent",
       "visibility": "featured",
       "order": 3,
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-agentic-engineering",
-      "visibility": "browseable",
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
       "order": 4,
-      "format_override": "executive"
+      "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-design-system-api",
-      "visibility": "browseable",
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
       "order": 5,
-      "format_override": "executive"
+      "format_override": "in-depth"
     },
     {
       "id": "churchdesk-booking-system",
       "visibility": "browseable",
-      "order": 6,
-      "format_override": "executive"
-    },
-    {
-      "id": "bibeltv-color-api",
-      "visibility": "browseable",
-      "order": 7,
-      "format_override": "executive"
-    },
-    {
-      "id": "bibeltv-app-redesign",
-      "visibility": "hidden",
-      "order": 8
-    },
-    {
-      "id": "bibeltv-ai-prototyping",
-      "visibility": "hidden",
-      "order": 9
-    },
-    {
-      "id": "ninox-org-building",
-      "visibility": "hidden",
-      "order": 10
+      "order": 6
     },
     {
       "id": "datameer-data-dense-analytics",
-      "visibility": "hidden",
-      "order": 11
-    },
-    {
-      "id": "spreadshirt-user-research-strategy",
-      "visibility": "hidden",
-      "order": 12
+      "visibility": "browseable",
+      "order": 7
     }
   ]
 }
