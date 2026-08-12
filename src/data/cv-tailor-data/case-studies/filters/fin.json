@@ -1,5 +1,8 @@
 {
   "slug": "fin",
+  "aliases": [
+    "fin-ai-design-leader"
+  ],
   "title": "Selected Work",
   "subtitle": "AI copilot skill shipped, an AI fundraising ecosystem built end-to-end, prompt-to-database onboarding co-defined with founders — selected for Fin",
   "theme": "default",
@@ -73,9 +76,6 @@
     }
   ],
   "show_all_label": "Show more work",
-  "aliases": [
-    "fin-ai-design-leader"
-  ],
   "cv": {
     "href": "/documents/tobias-treppmann-cv-fin.pdf",
     "label": "Download CV (PDF)",

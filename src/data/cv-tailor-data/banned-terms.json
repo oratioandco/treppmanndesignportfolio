@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "3c29e2f",
+  "_source_commit": "6d494d2",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -103,9 +103,16 @@
       "fix": "State the plain fact in a plain sentence — e.g. \"the handbook is loaded as context\", \"adopted across the team, including the most sceptical members\"."
     },
     {
+      "id": "BT-010",
+      "kind": "regex",
+      "pattern": "\\b(?:I|he)\\s+(?:took|accepted|won|negotiated|secured|landed)\\s+(?:the\\s+|their\\s+|its\\s+|his\\s+)?(?:money|work|funding|deal|budget)\\b|\\b(?:took|accepted|won|negotiated|secured|landed)\\s+(?:the\\s+)?(?:client(?:'s|’s)?\\s+)?[€$£]\\s?20|\\b(?:took|accepted|won|negotiated|secured)\\b[^.\\n]{0,60}?\\bon\\s+(?:the\\s+)?condition\\b|\\bon\\s+(?:the\\s+)?condition\\s+(?:that\\s+)?it\\s+(?:ship|become|be)\\b|platform[\\s\\-]capability\\s+condition|condition\\s+attached\\s+to\\s+the\\s+[€$£]?\\s?20",
+      "message": "Claiming the ChurchDesk €20k as his to accept, win or attach a condition to.",
+      "fix": "The deal closed before he joined; he was chosen to lead the delivery. Say what is his: the internal plan was a standalone add-on module and he delivered an embedded platform capability instead — general across the most-requested use cases, stronger on the funeral case than the add-on would have been."
+    },
+    {
       "id": "SAL-001",
       "kind": "regex",
-      "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]",
+      "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]|(?:Tobias(?:'s|’s|')?|\\bhis\\b)\\s+(?:[\\w-]+\\s+){0,3}?\\(?[€$£]\\s?\\d|(?:above|below|beyond|under|vs\\.?|versus|than|exceeds?|matches?)\\s+(?:his\\s+)?(?:current|previous|prior|former|peak)\\s+\\(?[€$£]\\s?\\d|(?:base\\s+band|salary\\s+floor|comp(?:ensation)?\\s+floor|personal\\s+floor)\\s*(?:of\\s+)?\\(?(?:[€$£]\\s?\\d|\\d[\\d.,]*\\s?[kK]\\+)",
       "message": "Never state or hint at current or past salary.",
       "fix": "Only the forward-looking script is allowed, and only when asked: \"€125–135k base, depending on total package.\""
     },
