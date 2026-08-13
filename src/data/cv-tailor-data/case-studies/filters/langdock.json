@@ -1,0 +1,62 @@
+{
+  "slug": "langdock",
+  "aliases": [
+    "langdock-design-engineer"
+  ],
+  "title": "Design Decided in Running Code",
+  "subtitle": "Fifteen years of dense B2B software, and a year of building it with agents",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-langdock.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Design Engineer role"
+  },
+  "bio": {
+    "short": "I build the design in real code against real APIs, and engineering ships from that code. Around 70% of it lands. I direct a model rather than typing the framework, and I would rather say so now than have you find it in week two.",
+    "long": "I do not hand a design over and hope. I build it in real code against real APIs, web first and then Android, and engineering ships from that code. At Bibel TV around 70% of it lands with minor modification, and iteration went from days to hours. The engineers there are an external agency, so that handoff crosses a company boundary and holds anyway.\n\nThe honest split, said first rather than discovered later. HTML, CSS and some JavaScript are mine by hand. Everything else is agentic engineering. I direct the model, review what comes back, and own every decision inside it, and that practice has been running in production for a year.\n\nThe colour engine is the clearest example of why this matters. Bibel TV has over ten thousand videos and no capacity to pick a theme colour for each one. The colour has to be computed from the artwork. The off-the-shelf extractor collapsed to beige in dark mode and rose in light, and it weighted cards unevenly across a grid, because RGB is not perceptually uniform. I built the engine in OKLCH instead. K-means finds the prominent colours and low-vibrance clusters are dropped, so a muddy beige cannot win by covering the most pixels. What is left maps to base, accent and text, and text is validated against base with the WCAG algorithm until the pair passes. There is no version of that decision I could have made in Figma. Whether a computed gradient holds contrast across ten thousand artworks nobody has looked at yet is only answerable in running code.\n\nHuman-agent interfaces are what the last year went into. The support copilot at Bibel TV drafts replies to viewer letters in the handbook's voice, and the person stays upstream of every send. Restricted topics are enforced in the output, and the draft is suppressed entirely when the input is not a viewer enquiry. At Ninox the AI-generated schema renders into the real data-model editor rather than a chat preview. People can inspect and correct what the model produced instead of accepting it blind.\n\nBefore that, five years of data-dense B2B interfaces at Datameer for analysts inside top US, Canadian and UK banks and insurers. Pivot tables, column charts, aggregated JSON views, filter logic. The hardest surface was the query-builder preview, where the result you see is a sample and the interface has to say so without becoming unreadable. Necessary complexity kept, weight kept off.\n\nMost of the people I design for never chose to be software users. Analysts inside banks, parish assistants, funeral directors.",
+    "context": {
+      "company": "Langdock",
+      "role": "Design Engineer",
+      "emphasis": "The practice rather than the seniority: design decided in running code, human-agent interfaces, dense enterprise workflows, and design systems as infrastructure. Leadership is present but not the pitch, because levels here are about the work you own.",
+      "avoid": "Rules to read before drafting, named rather than restated: BT-002 (ChurchDesk mobile stack), BT-011 (copilot safety claims), BT-006 (Datameer design system). Also: no production React shipped or owned by him, no change ownership in production, no PR review. No Node, no Prisma, and no backend or full-stack claim — PostgreSQL is agentic only (data/skills/technical-skills.md §Backend). The Bibel TV app redesign has not launched and no consumer metric may be claimed."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 1
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}
