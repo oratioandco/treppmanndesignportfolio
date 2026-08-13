@@ -145,14 +145,15 @@ import SummaryBand from '../../components/SummaryBand.astro';
       </section>
 
       <section class="cs-section">
-        <h2 class="cs-section__heading">What I'd note honestly</h2>
+        <h2 class="cs-section__heading">What made it work</h2>
         <div class="cs-section__body">
       <p class="closing-note">
-        None of this was a mandate. It worked because adoption was voluntary and
-        the tools were introduced where they'd face the hardest case first. The
-        constraint lives in the tool; the choice stays with the person. That's
-        the model I'd bring to any organisation trying to become AI-native
-        &mdash; the technology is the easier half.
+        Nobody was told to use any of this. The copilot went out optional, with
+        the team lead asking people to try it rather than requiring it. I tested
+        it on myself before anyone else saw it. It reached the team on hard cases
+        first: the most sceptical agent's worst letter, not a tidy demo. That
+        sequence is slower than a rollout plan, and it is the part I would
+        repeat.
       </p>
         </div>
       </section>
@@ -175,8 +176,12 @@ import SummaryBand from '../../components/SummaryBand.astro';
     max-width: 22ch;
   }
 
+  /* The literal glyph, not an escape. This was `"\\201C"`, which CSS reads as
+     an escaped backslash followed by the text 201C — so the page rendered a
+     visible \201C in front of the quote. `\201C` would also work; the character
+     itself cannot be got wrong. */
   .pull-statement::before {
-    content: "\\201C";
+    content: "“";
     margin-left: -0.5em;
   }
 

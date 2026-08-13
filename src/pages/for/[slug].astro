@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BioRegenerator from '../../components/BioRegenerator.astro';
+import Portrait from '../../components/Portrait.astro';
 import {
   getAllFilters,
   getFilterPaths,
@@ -68,10 +69,17 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
     });
   }
 </script>
-      <BioRegenerator bio={filter.bio} />
-      {filter.subtitle && (
-        <p class="context-note">{filter.subtitle}</p>
-      )}
+      <div class="hero-bio">
+        <Portrait
+          alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
+        />
+        <div class="hero-bio__text">
+          <BioRegenerator bio={filter.bio} />
+          {filter.subtitle && (
+            <p class="context-note">{filter.subtitle}</p>
+          )}
+        </div>
+      </div>
       {filter.cv?.href && (
         <p class="cv-link">
           <a href={filter.cv.href} download>{filter.cv.label || 'Download CV (PDF)'}</a>
@@ -143,6 +151,29 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
       </div>
     </section>
   )}
+
+  {/* Mirrors the home page. These pages are what a recruiter actually lands on
+      from an application, so anything worth showing on treppmann.design is
+      worth showing here — the portrait above and this below. */}
+  <section class="section" id="practice">
+    <div class="container">
+      <div class="section-header">
+        <h2>Also</h2>
+      </div>
+      <div class="practice-list">
+        <div class="practice-item">
+          <h3>Selah &mdash; shipped Mac App Store app</h3>
+          <p>
+            A leadership tool I designed and built: 60&ndash;90 second structured
+            transitions between meetings, so you arrive present rather than
+            carrying the last conversation into the next one. Born from my own
+            calendar hack, now a shipped product.
+            <a href="https://selah.guide" rel="noopener">selah.guide</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </Layout>
 
