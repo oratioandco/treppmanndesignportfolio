@@ -42,12 +42,22 @@ const PREVIEW_DIR = path.join(ROOT, 'dev-preview/covers');
 const W = 1200;
 const H = 800;
 
-// Card canvas matches the 330x200 slot's ratio exactly, so object-fit: cover
-// has nothing to crop.
-const W_CARD = 660;
-const H_CARD = 400;
+// The card rendition shares the hero's CANVAS, not just its seed, and its grid
+// is an exact 3x subdivision of the hero's. That makes the card's dot centres a
+// true subset of the hero's: 51, 153, 255 ... are all hero positions.
+//
+// Why it has to be a subset rather than merely "the same field, drawn smaller":
+// a first pass put the card on a 660x400 canvas, which normalises the field
+// over a different aspect and lands the clusters in different places. The two
+// then read as the same family but not the same image — so a shared-element
+// page transition between card and hero would scramble rather than sharpen.
+// On a shared canvas with a nested grid, going card -> hero is dots APPEARING
+// BETWEEN the ones already there. That is the coarse-to-fine metaphor the whole
+// site is built on, and it means the transition can be added later for free.
+const W_CARD = W;
+const H_CARD = H;
 const DOT_HERO = 34;
-const DOT_CARD = 40;
+const DOT_CARD = DOT_HERO * 3;
 
 // 6-step duotone ramps (bg → accent). Lifted from the Berlin footer palette
 // so covers, footer, and type all share one teal world.
