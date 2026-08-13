@@ -50,6 +50,11 @@ const COVER_FALLBACK = '/images/covers/generated/churchdesk-booking-system.svg';
 function coverFor(study: any): string {
   if (study.cover_image) return study.cover_image;
   if (study.hero_image?.src) return study.hero_image.src;
+  // Card rendition first: same seed and metaphor, drawn on a coarser grid so
+  // the structure survives at 330px instead of collapsing into texture. Falls
+  // back to the hero rendition, then to a file known to exist.
+  const card = `${study.id}-card.svg`;
+  if (GENERATED_COVERS.has(card)) return `${COVER_DIR}/${card}`;
   const own = `${study.id}.svg`;
   return GENERATED_COVERS.has(own) ? `${COVER_DIR}/${own}` : COVER_FALLBACK;
 }

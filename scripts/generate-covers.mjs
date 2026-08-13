@@ -22,10 +22,32 @@ import { pathToFileURL } from 'node:url';
 const ROOT = path.resolve(process.cwd());
 const CS_DIR = path.join(ROOT, 'src/data/cv-tailor-data/case-studies');
 const OUT_DIR = path.join(ROOT, 'public/images/covers/generated');
-const PREVIEW_DIR = path.join(ROOT, 'public/dev/covers');
+// Deliberately OUTSIDE public/. This is a review sheet, not a page: while it
+// lived at public/dev/covers it was built into dist and served at
+// treppmann.design/dev/covers/ with no noindex — an internal tool on a public
+// domain. Self-contained (the SVGs are inlined), so open it straight off disk.
+const PREVIEW_DIR = path.join(ROOT, 'dev-preview/covers');
 
+// TWO RENDITIONS, ONE SEED.
+//
+// The same field has to serve two sizes 3.6x apart: a full-width HERO on the
+// case-study detail page (three studies point hero_image at their generated
+// cover) and a ~330x200 CARD thumbnail on every /for/ and /work/ index.
+//
+// One file cannot do both. At hero scale the 34px grid is the point; scaled
+// into a card the dots land at 1-2px and the structure reads as texture. So
+// the card rendition uses a coarser grid on a shorter canvas, which keeps the
+// ON-SCREEN dot size roughly constant between the two. Same metaphor, same
+// seed, same palette — it is the same image, drawn for the size it is shown at.
 const W = 1200;
 const H = 800;
+
+// Card canvas matches the 330x200 slot's ratio exactly, so object-fit: cover
+// has nothing to crop.
+const W_CARD = 660;
+const H_CARD = 400;
+const DOT_HERO = 34;
+const DOT_CARD = 40;
 
 // 6-step duotone ramps (bg → accent). Lifted from the Berlin footer palette
 // so covers, footer, and type all share one teal world.
@@ -213,18 +235,18 @@ function structureField(kind, seed, focal) {
 // language as the Redaction typeface). Structure is sharpest near the
 // metaphor's focal point and dissolves outward into a quiet, faintly textured
 // field. Calm by design: most of the canvas is small/no dots.
-function buildDots(metaphor, seed) {
+function buildDots(metaphor, seed, { w = W, h = H, dot = DOT_HERO } = {}) {
   const noise = makeNoise(seed);
   const focal = getFocal(metaphor, seed);
   const field = structureField(metaphor, seed, focal);
-  const DOT = 34; // grid spacing (px) — bolder dots that hold up at card size
+  const DOT = dot; // grid spacing (px)
   const maxR = DOT * 0.6; // largest dot radius
   const maxRes = 0.85; // resolve falloff radius
   const dots = [];
-  for (let y = DOT / 2; y < H; y += DOT) {
-    for (let x = DOT / 2; x < W; x += DOT) {
-      const nx = x / W;
-      const ny = y / H;
+  for (let y = DOT / 2; y < h; y += DOT) {
+    for (let x = DOT / 2; x < w; x += DOT) {
+      const nx = x / w;
+      const ny = y / h;
       const resolve = 1 - smooth(0, 1, clamp01(Math.hypot(nx - focal[0], ny - focal[1]) / maxRes));
       // structure fades outward to an 18% floor; a faint noise texture fills
       // the periphery so the field never reads as empty.
@@ -240,7 +262,7 @@ function buildDots(metaphor, seed) {
 // Halftone: a single ink dot colour over the background. Theme-aware via an
 // internal prefers-color-scheme @media block, so the dots flip with the OS
 // theme whether the SVG is inlined or loaded as an <img>.
-function svgProduction(dots) {
+function svgProduction(dots, w = W, h = H) {
   const style =
     `svg{--bg:${LIGHT[0]};--dot:${LIGHT[5]}}` +
     `@media (prefers-color-scheme:dark){svg{--bg:${DARK[0]};--dot:${DARK[5]}}}` +
@@ -249,21 +271,21 @@ function svgProduction(dots) {
     .map((d) => `<circle class="dot" cx="${d.cx}" cy="${d.cy}" r="${d.r}"/>`)
     .join('');
   return (
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract teal halftone field">` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract teal halftone field">` +
     `<style>${style}</style>` +
-    `<rect x="0" y="0" width="${W}" height="${H}" fill="var(--bg)"/>` +
+    `<rect x="0" y="0" width="${w}" height="${h}" fill="var(--bg)"/>` +
     circles +
     `</svg>`
   );
 }
 
-function svgBaked(dots, palette) {
+function svgBaked(dots, palette, w = W, h = H) {
   const circles = dots
     .map((d) => `<circle cx="${d.cx}" cy="${d.cy}" r="${d.r}" fill="${palette[5]}"/>`)
     .join('');
   return (
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">` +
-    `<rect fill="${palette[0]}" x="0" y="0" width="${W}" height="${H}"/>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice">` +
+    `<rect fill="${palette[0]}" x="0" y="0" width="${w}" height="${h}"/>` +
     circles +
     `</svg>`
   );
@@ -288,7 +310,13 @@ export function listStudies() {
     .map((id) => {
       const metaphor = METAPHOR[id] || 'diffusion';
       const seed = hashStr(id);
-      return { id, metaphor, seed, cells: buildDots(metaphor, seed) };
+      return {
+        id,
+        metaphor,
+        seed,
+        cells: buildDots(metaphor, seed),
+        cardCells: buildDots(metaphor, seed, { w: W_CARD, h: H_CARD, dot: DOT_CARD }),
+      };
     });
 }
 
@@ -297,18 +325,28 @@ function main() {
   fs.mkdirSync(PREVIEW_DIR, { recursive: true });
   const studies = listStudies();
   const previewRows = [];
-  for (const { id, metaphor, cells } of studies) {
+  for (const { id, metaphor, cells, cardCells } of studies) {
     fs.writeFileSync(path.join(OUT_DIR, `${id}.svg`), svgProduction(cells));
+    fs.writeFileSync(
+      path.join(OUT_DIR, `${id}-card.svg`),
+      svgProduction(cardCells, W_CARD, H_CARD)
+    );
+    // Card rendition shown at its true display width, so the sheet answers the
+    // question that matters: does it hold up at 330px, not at 1200.
     previewRows.push(
       `<div class="row"><div class="meta"><b>${id}</b><span>${metaphor}</span></div>` +
         `<div class="pair"><div class="cell light">${svgBaked(cells, LIGHT)}</div>` +
-        `<div class="cell dark">${svgBaked(cells, DARK)}</div></div></div>`
+        `<div class="cell dark">${svgBaked(cells, DARK)}</div></div>` +
+        `<div class="cards">` +
+        `<div class="card light">${svgBaked(cardCells, LIGHT, W_CARD, H_CARD)}</div>` +
+        `<div class="card dark">${svgBaked(cardCells, DARK, W_CARD, H_CARD)}</div>` +
+        `</div></div>`
     );
   }
   const previewHtml = previewTemplate(studies.length, previewRows);
   fs.writeFileSync(path.join(PREVIEW_DIR, 'index.html'), previewHtml);
-  console.log(`Generated ${studies.length} covers → ${path.relative(ROOT, OUT_DIR)}`);
-  console.log(`Preview → /dev/covers/  (${path.relative(ROOT, PREVIEW_DIR)}/index.html)`);
+  console.log(`Generated ${studies.length} x2 (hero + card) → ${path.relative(ROOT, OUT_DIR)}`);
+  console.log(`Preview → ${path.relative(ROOT, PREVIEW_DIR)}/index.html (local only, not published)`);
 }
 
 function previewTemplate(count, previewRows) {
@@ -322,6 +360,10 @@ function previewTemplate(count, previewRows) {
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .cell{border-radius:10px;overflow:hidden;aspect-ratio:3/2}
   .cell.light{background:#f8f3ee}.cell.dark{background:#1a2520}
+  .cards{display:flex;gap:12px;margin-top:10px}
+  .card{width:330px;height:200px;border-radius:10px;overflow:hidden}
+  .card.light{background:#f8f3ee}.card.dark{background:#1a2520}
+  .card svg{display:block;width:100%;height:100%}
   .cell svg{display:block;width:100%;height:100%}
   .hdr{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 6px;color:#9a9;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 </style>
