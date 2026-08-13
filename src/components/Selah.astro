@@ -1,0 +1,75 @@
+---
+/**
+ * Selah — the "Also" block, shared by the home page and every /for/ page.
+ *
+ * It reads public/images/selah/ AT BUILD TIME and renders whatever is there.
+ * That is the point: Selah is the only artifact on this site that is public,
+ * shipped, and photographable without anyone's approval, and the brief at
+ * data/case-studies/screenshots-selah.md asks Tobias for two or three images.
+ * Dropping the files into that folder is the entire job — no code change, no
+ * markup to edit, no list to keep in step.
+ *
+ * With no images the section renders as a single text column. It does NOT
+ * render an empty frame or a placeholder graphic: one reads as unfinished and
+ * the other reads as dishonest.
+ *
+ * ALT TEXT is mapped from the filenames the brief asks for, because alt text
+ * describing an image nobody has seen would be invented. A file outside that
+ * set gets a deliberately plain fallback and should be given real alt text
+ * here once its content is known.
+ */
+import { readdirSync, existsSync } from 'node:fs';
+
+const DIR = 'public/images/selah';
+
+const ALT: Record<string, string> = {
+  'selah-session.png': 'Selah mid-transition, showing the countdown and the prompt for the next meeting',
+  'selah-setup.png': 'The Selah screen for configuring and starting a transition',
+  'selah-icon.png': 'The Selah app icon at large size',
+};
+
+const shots = existsSync(DIR)
+  ? readdirSync(DIR)
+      .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+      .sort()
+      .map((f) => ({
+        src: `/images/selah/${f}`,
+        alt: ALT[f] ?? 'The Selah interface',
+      }))
+  : [];
+
+/** Set once the Mac App Store URL is known — see the brief. */
+const APP_STORE_URL: string | null = null;
+---
+
+<section class="section" id="practice">
+  <div class="container">
+    <div class="section-header">
+      <h2>Also</h2>
+    </div>
+    <div class="selah">
+      <div class="selah__text">
+        <h3>Selah</h3>
+        <p class="selah__meta">Shipped on the Mac App Store &middot; designed and built solo</p>
+        <p>
+          A leadership tool: 60&ndash;90 second structured transitions between
+          meetings, so you arrive present rather than carrying the last
+          conversation into the next one. It started as my own calendar hack. I
+          did the product, the interface, the build, the icon and the store
+          listing.
+        </p>
+        <p class="selah__links">
+          <a class="btn" href="https://selah.guide" rel="noopener">selah.guide</a>
+          {APP_STORE_URL && (
+            <a class="btn btn--solid" href={APP_STORE_URL} rel="noopener">Mac App Store</a>
+          )}
+        </p>
+      </div>
+      {shots.length > 0 && (
+        <div class="selah__shots">
+          {shots.map((s) => <img src={s.src} alt={s.alt} loading="lazy" />)}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

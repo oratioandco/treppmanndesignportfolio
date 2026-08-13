@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import BioRegenerator from '../components/BioRegenerator.astro';
 import Portrait from '../components/Portrait.astro';
+import Selah from '../components/Selah.astro';
 import DotField from '../components/DotField.astro';
 ---
 
@@ -115,34 +116,5 @@ import DotField from '../components/DotField.astro';
     </div>
   </section>
 
-  <section class="section" id="practice">
-    <div class="container">
-      <div class="section-header">
-        <h2>Also</h2>
-      </div>
-      <div class="selah">
-        <div class="selah__text">
-          <h3>Selah</h3>
-          <p class="selah__meta">Shipped on the Mac App Store &middot; designed and built solo</p>
-          <p>
-            A leadership tool: 60&ndash;90 second structured transitions between
-            meetings, so you arrive present rather than carrying the last
-            conversation into the next one. It started as my own calendar hack.
-            I did the product, the interface, the build, the icon and the store
-            listing.
-          </p>
-          <p class="selah__links">
-            <a class="btn" href="https://selah.guide" rel="noopener">selah.guide</a>
-          </p>
-        </div>
-        <div class="selah__shots" aria-hidden="true">
-          <!-- Screenshot slots. Deliberately empty rather than filled with a
-               placeholder graphic: an empty frame reads as unfinished, a fake
-               one reads as dishonest, and this is the one artifact on the site
-               that needs nobody's approval to photograph. See
-               data/case-studies/screenshots-selah.md for what to capture. -->
-        </div>
-      </div>
-    </div>
-  </section>
+  <Selah />
 </Layout>
