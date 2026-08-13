@@ -101,6 +101,72 @@ const { title, description = "AI-Native Product & Design Leader — the design l
       <slot />
     </main>
 
+    <script is:inline>
+      // Scroll reveals. See the MOTION block in global.css for the three rules
+      // this implements; the important one is that `.js-motion` is added HERE,
+      // at runtime, so a parse error or a blocked script leaves the page
+      // visible rather than blank.
+      (function () {
+        function initReveals() {
+          var root = document.documentElement;
+          if (!('IntersectionObserver' in window)) return;
+          root.classList.add('js-motion');
+
+          // Grouped so stagger restarts per group — a single document-order
+          // index would give the last card on a long page a 2-second delay.
+          var groups = [
+            '.case-studies-grid > *',
+            '.section-header',
+            '.cs-section',
+            '.practice-item',
+            '.hero-bio',
+          ];
+
+          var targets = [];
+          groups.forEach(function (sel) {
+            var found = document.querySelectorAll(sel);
+            for (var i = 0; i < found.length; i++) {
+              var el = found[i];
+              if (el.hasAttribute('data-reveal')) continue;
+              el.setAttribute('data-reveal', '');
+              // Cap the stagger: past the fourth item a visitor reads it as lag.
+              el.style.setProperty('--reveal-delay', Math.min(i, 4) * 70 + 'ms');
+              targets.push(el);
+            }
+          });
+
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-revealed');
+                io.unobserve(entry.target); // reveal once, never re-hide
+              });
+            },
+            { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+          );
+
+          targets.forEach(function (el) {
+            // Anything already in view on load reveals immediately, so the
+            // first screen is never waiting on a scroll that may not come.
+            var box = el.getBoundingClientRect();
+            if (box.top < window.innerHeight * 0.92) {
+              el.classList.add('is-revealed');
+            } else {
+              io.observe(el);
+            }
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initReveals);
+        } else {
+          initReveals();
+        }
+        // Re-run after a client-side navigation (Astro ClientRouter).
+        document.addEventListener('astro:page-load', initReveals);
+      })();
+    </script>
   </body>
 </html>
 

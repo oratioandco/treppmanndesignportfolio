@@ -73,6 +73,5 @@
     "confidential": false,
     "confidentiality_note": "In production. Any operational metrics or UI screenshots require Bibel TV approval before publishing.",
     "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23"
-  },
-  "cover_image": "/images/covers/ai.jpeg"
+  }
 }

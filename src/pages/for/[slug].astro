@@ -1,4 +1,5 @@
 ---
+import { readdirSync } from 'node:fs';
 import Layout from '../../layouts/Layout.astro';
 import BioRegenerator from '../../components/BioRegenerator.astro';
 import Portrait from '../../components/Portrait.astro';
@@ -29,6 +30,29 @@ if (!data) {
 const { studies } = data;
 const featuredStudies = studies.filter(s => s.visibility === 'featured');
 const browseableStudies = studies.filter(s => s.visibility === 'browseable');
+
+// Cover resolution, done at build time against the real directory.
+//
+// Every study has a generated cover named after its id, and nothing was using
+// them: the old chain ended at a hardcoded ChurchDesk graphic, so two unrelated
+// Bibel TV studies rendered the same cemetery illustration side by side.
+//
+// Resolved here rather than inline because scripts/check-images.mjs matches
+// literal /images/… paths and cannot see through a template string. Reading the
+// directory keeps that guarantee: a study with no cover falls back to a file
+// that is known to exist, instead of emitting a path that 404s.
+const GENERATED_COVERS = new Set(
+  readdirSync('public/images/covers/generated').filter((f) => f.endsWith('.svg'))
+);
+const COVER_DIR = '/images/covers/generated';
+const COVER_FALLBACK = '/images/covers/generated/churchdesk-booking-system.svg';
+
+function coverFor(study: any): string {
+  if (study.cover_image) return study.cover_image;
+  if (study.hero_image?.src) return study.hero_image.src;
+  const own = `${study.id}.svg`;
+  return GENERATED_COVERS.has(own) ? `${COVER_DIR}/${own}` : COVER_FALLBACK;
+}
 
 // Scoped case study routes: /for/{slug}/{study-id}
 // No separate mapping needed — the scoped route IS the link
@@ -101,7 +125,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
           const heroSection = study.sections?.find((s: any) => s.type === 'hero');
           const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
           const link = `/for/${filter.slug}/${study.id}`;
-          const cover = study.cover_image || study.hero_image?.src || '/images/covers/generated/churchdesk-booking-system.svg';
+          const cover = coverFor(study);
 
           return (
             <a href={link} class="case-study-card">
@@ -130,7 +154,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
               const link = `/for/${filter.slug}/${study.id}`;
-              const cover = study.cover_image || study.hero_image?.src || '/images/covers/generated/churchdesk-booking-system.svg';
+              const cover = coverFor(study);
 
               return (
                 <a href={link} class="case-study-card">
