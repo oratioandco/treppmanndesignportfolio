@@ -3,7 +3,17 @@
   "title": "When booking a priest isn't simple",
   "subtitle": "A funeral booking system designed so the rest of the ChurchDesk platform could build on it. Three stakeholder groups with opposite needs; one foundation deeply integrated with the product they already use.",
   "type": "business-process",
-  "tags": ["measurable-impact", "customer-collaboration", "regulated", "b2b", "mobile", "cross-platform", "saas", "platform-thinking", "product-management"],
+  "tags": [
+    "measurable-impact",
+    "customer-collaboration",
+    "regulated",
+    "b2b",
+    "mobile",
+    "cross-platform",
+    "saas",
+    "platform-thinking",
+    "product-management"
+  ],
   "company": "ChurchDesk GmbH",
   "role": "Head of Platform and Design",
   "team": "1 designer + engineering team, Berlin",
@@ -12,25 +22,28 @@
   "last_updated": "2026-05-23",
   "hero_image": {
     "src": "/images/churchdesk/funeral-home-booking.jpg",
-    "alt": "The funeral home's booking screen — a full week of time slots for the Main Cemetery, with only the slots that resolve true against the priest's on-call rota, the cemetery's opening hours, and any standing commitments"
+    "alt": "The funeral home's booking screen: a full week of time slots for the Main Cemetery, with only the slots that resolve true against the priest's on-call rota, the cemetery's opening hours, and any standing commitments"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
       "headline": "When booking a priest isn't simple",
-      "subtext": "Booking a priest for a funeral looks like picking a date. Underneath sit rotating on-call rotas, cemetery opening hours, and a grieving family waiting for an answer. ChurchDesk asked me to run this in a dual PM and design role \u2014 owning the build-vs-buy and standalone-vs-integrated decisions \u2014 on a system that would keep the surface simple — and become something the rest of the platform could build on, not just funeral booking."
+      "subtext": "Booking a priest for a funeral looks like picking a date. Underneath sit rotating on-call rotas, cemetery opening hours, and a grieving family waiting for an answer. ChurchDesk asked me to run this in a dual PM and design role, owning the build-vs-buy and standalone-vs-integrated decisions, on a system that would keep the surface simple, and become something the rest of the platform could build on, not just funeral booking."
     },
     {
       "type": "narrative",
       "headline": "The problem was the phone",
-      "content": "Before this system, booking a priest meant a chain of phone calls. A funeral home called the parish office. The parish office checked who was on call, then called the priest. The priest checked the cemetery's hours and their own calendar, then called back. Every round of calls happened while a family waited.\n\nThe scheduling underneath is genuinely hard. Priests rotate on call, but many keep standing commitments to particular cemeteries. They plan availability about six weeks ahead. Each cemetery has its own opening hours. The first customer — the Evangelische Kirche von Kurhessen-Waldeck — ran the pilot in their Kurhessische Riviera cooperation region, where one priest's on-call rota touches several cemeteries at once.\n\nWhat the customer brought to us was rare and useful: they had already run their own design-thinking workshop and arrived with a vision sheet that named the three stakeholder groups and the goals for each. I started from their synthesis rather than running primary research from scratch.\n\nLayered on top was a ChurchDesk business goal that the customer didn't ask for and didn't need to: build this so the platform can reuse it. Funeral booking would be the launch use case; the underlying capability had to be general enough to carry room rentals, equipment, counseling appointments — anything resource-and-availability-shaped.\n\nThe constraints were tight: €20,000 of client funding and two months to development release. Both were already fixed — the deal was closed before I joined ChurchDesk, and I was brought in to lead the delivery. The internal expectation was a standalone add-on module. What I delivered instead was a booking capability embedded in the platform: general enough to carry the use cases customers asked for most, and a stronger answer on funerals specifically than the add-on would have been.",
+      "content": "Before this system, booking a priest meant a chain of phone calls. A funeral home called the parish office. The parish office checked who was on call, then called the priest. The priest checked the cemetery's hours and their own calendar, then called back. Every round of calls happened while a family waited.\n\nThe scheduling underneath is genuinely hard. Priests rotate on call, but many keep standing commitments to particular cemeteries. They plan availability about six weeks ahead. Each cemetery has its own opening hours. The first customer, the Evangelische Kirche von Kurhessen-Waldeck, ran the pilot in their Kurhessische Riviera cooperation region, where one priest's on-call rota touches several cemeteries at once.\n\nWhat the customer brought to us was rare and useful: they had already run their own design-thinking workshop and arrived with a vision sheet that named the three stakeholder groups and the goals for each. I started from their synthesis rather than running primary research from scratch.\n\nLayered on top was a ChurchDesk business goal that the customer didn't ask for and didn't need to: build this so the platform can reuse it. Funeral booking would be the launch use case; the underlying capability had to be general enough to carry room rentals, equipment, counseling appointments, anything resource-and-availability-shaped.\n\nThe constraints were tight: €20,000 of client funding and two months to development release. Both were already fixed, the deal was closed before I joined ChurchDesk, and I was brought in to lead the delivery. The internal expectation was a standalone add-on module. What I delivered instead was a booking capability embedded in the platform: general enough to carry the use cases customers asked for most, and a stronger answer on funerals specifically than the add-on would have been.",
       "images": [
         {
           "src": "/images/churchdesk/vision-sheet-design-thinking.jpg",
-          "alt": "A flipchart sheet from a design-thinking workshop with the church customer — handwritten goals per stakeholder: funeral directors, parish assistants, priests",
-          "caption": "The vision sheet from the church's own design-thinking session. The headline ‘Das Herumtelefonieren hat ein Ende’ — ‘no more phoning around’ — is the customer's phrase, not mine. So is the goal in red, ‘Damit Angehörige planen können’: so that bereaved families can plan."
+          "alt": "A flipchart sheet from a design-thinking workshop with the church customer, handwritten goals per stakeholder: funeral directors, parish assistants, priests",
+          "caption": "The vision sheet from the church's own design-thinking session. The headline ‘Das Herumtelefonieren hat ein Ende’, ‘no more phoning around’, is the customer's phrase, not mine. So is the goal in red, ‘Damit Angehörige planen können’: so that bereaved families can plan."
         }
       ]
     },
@@ -56,7 +69,7 @@
       "steps": [
         {
           "label": "Build-vs-buy was the first question, and a short one",
-          "description": "Competitive analysis ran in parallel with the first customer conversations, and the build-vs-buy question got dismissed quickly. What parishes actually needed — most decisively, a custom intake form per parish (deceased details, funeral type, cemetery section, sterbeurkunde delivery) — wasn't something a third-party booking vendor or library was set up to deliver. (Calendly, the obvious reference point, doesn't offer white-labeling at all; its booking form is fixed; the form-builder is a separate product.) The harder question was the next one: build a standalone booking module, or build into the existing platform? A standalone module was the faster path and was floated internally. But ChurchDesk's strategic value is in features that compose with each other, not in module count. So the brief was set: 'a booking capability built into the platform, shipped first as funeral booking.' Everything downstream came from that decision."
+          "description": "Competitive analysis ran in parallel with the first customer conversations, and the build-vs-buy question got dismissed quickly. What parishes actually needed, most decisively, a custom intake form per parish (deceased details, funeral type, cemetery section, sterbeurkunde delivery), wasn't something a third-party booking vendor or library was set up to deliver. (Calendly, the obvious reference point, doesn't offer white-labeling at all; its booking form is fixed; the form-builder is a separate product.) The harder question was the next one: build a standalone booking module, or build into the existing platform? A standalone module was the faster path and was floated internally. But ChurchDesk's strategic value is in features that compose with each other, not in module count. So the brief was set: 'a booking capability built into the platform, shipped first as funeral booking.' Everything downstream came from that decision."
         },
         {
           "label": "Started from the customer's synthesis, validated with stakeholders",
@@ -67,28 +80,28 @@
           "description": "Funeral homes get speed. Priests get control. I showed funeral homes only the times that were genuinely free. And I framed every booking as a request the priest confirms, so no one is scheduled without agreeing first."
         },
         {
-          "label": "Extended the existing platform — the right option, not the cheap one",
-          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been — and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product."
+          "label": "Extended the existing platform: the right option, not the cheap one",
+          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been, and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product."
         },
         {
           "label": "Designed in Figma with my designer; engineering built quickly",
-          "description": "I worked in Figma with the designer on my team to develop and prototype the screens — across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). The two engineers on the project built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
+          "description": "I worked in Figma with the designer on my team to develop and prototype the screens, across web (the parish-facing admin and the funeral home's booking pages) and mobile (the priest's calendar on the go). The two engineers on the project built the implementations in React for web and React Native for mobile; they wrote the code, not me. The collaboration was tight throughout the two-month build, with daily contact and frequent handoffs, but the division of labor was honest: design in Figma, build in code."
         }
       ]
     },
     {
       "type": "narrative",
       "headline": "Why it stays simple when the underneath is complex",
-      "content": "Three design decisions did the work of keeping the surface clean. None of them are visible to a funeral home — they're the reason the funeral home only ever sees green time slots.\n\n### On-call lives in the priest's calendar\n\nThis is the design choice that most distinguishes the system from Calendly-style booking tools. In Calendly, you set your availability inside a separate booking-page settings area. Here, a priest sets their on-call rotation as recurring events in the same ChurchDesk calendar where they already plan their week. The calendar is where priests live, so I extended that surface instead of asking them to learn a new one. Recurring events handle the rota; vacation cover slots into the same view.\n\n### One event covers several cemeteries\n\nIn the pilot region, one priest's on-call shift covers multiple cemeteries at once. Setting each one separately would be six entries a week of friction. The availability model lets a single recurring event apply across the relevant cemeteries.\n\n### Booking form is a parish-built form\n\nChurchDesk's existing form builder is reused inside the booking flow. Funeral homes don't get a generic booking page with name/email/date fields — they answer the questions the parish actually needs (deceased details, funeral type, cemetery section, sterbeurkunde delivery). Calendly cannot do this; its booking form is fixed and the form-builder is a separate product. Reusing the form builder meant churches with idiosyncratic intake questions could ship without engineering work.",
+      "content": "Three design decisions did the work of keeping the surface clean. None of them are visible to a funeral home, they're the reason the funeral home only ever sees green time slots.\n\n### On-call lives in the priest's calendar\n\nThis is the design choice that most distinguishes the system from Calendly-style booking tools. In Calendly, you set your availability inside a separate booking-page settings area. Here, a priest sets their on-call rotation as recurring events in the same ChurchDesk calendar where they already plan their week. The calendar is where priests live, so I extended that surface instead of asking them to learn a new one. Recurring events handle the rota; vacation cover slots into the same view.\n\n### One event covers several cemeteries\n\nIn the pilot region, one priest's on-call shift covers multiple cemeteries at once. Setting each one separately would be six entries a week of friction. The availability model lets a single recurring event apply across the relevant cemeteries.\n\n### Booking form is a parish-built form\n\nChurchDesk's existing form builder is reused inside the booking flow. Funeral homes don't get a generic booking page with name/email/date fields, they answer the questions the parish actually needs (deceased details, funeral type, cemetery section, sterbeurkunde delivery). Calendly cannot do this; its booking form is fixed and the form-builder is a separate product. Reusing the form builder meant churches with idiosyncratic intake questions could ship without engineering work.",
       "images": [
         {
           "src": "/images/churchdesk/priest-availability.jpg",
-          "alt": "The priest's ChurchDesk calendar with a Verfügbarkeit (availability) modal open — type ‘Bereitschaft Beerdigung’ (on-call for funerals), user Pfarrer Meissner, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown",
-          "caption": "The decision that distinguishes the system from Calendly, captured in one screen. The priest sets on-call rotation as a recurring event in the same calendar where they already plan their week — and a single event covers several cemeteries at once."
+          "alt": "The priest's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), user Pfarrer Meissner, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown",
+          "caption": "The decision that distinguishes the system from Calendly, captured in one screen. The priest sets on-call rotation as a recurring event in the same calendar where they already plan their week, and a single event covers several cemeteries at once."
         },
         {
           "src": "/images/churchdesk/booking-form.jpg",
-          "alt": "The funeral home's booking-form step — date and time slot at the top, a Select staff member radio list, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt",
+          "alt": "The funeral home's booking-form step: date and time slot at the top, a Select staff member radio list, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt",
           "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. I reused infrastructure that was already in the product."
         }
       ]
@@ -96,7 +109,7 @@
     {
       "type": "narrative",
       "headline": "How the system fits together",
-      "content": "The design rests on one composition: a priest sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nEvery booking is a request, not an automatic booking. The priest confirms or declines. That single decision is what kept the system from feeling like priests were being booked over their heads.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation — it was a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back."
+      "content": "The design rests on one composition: a priest sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nEvery booking is a request, not an automatic booking. The priest confirms or declines. That single decision is what kept the system from feeling like priests were being booked over their heads.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation but a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back."
     },
     {
       "type": "outcome",
@@ -105,7 +118,7 @@
         {
           "label": "Coordination time",
           "before": "Days of phone calls between three parties",
-          "after": "Hours to arrange a funeral booking — around 70% less time"
+          "after": "Hours to arrange a funeral booking: around 70% less time"
         },
         {
           "label": "Booking acceptance rate",
@@ -121,39 +134,45 @@
           "value": "Became a core ChurchDesk feature. The launch customer needed funerals bookable for and by 20+ cemeteries, and the module then shipped to the whole customer base for room rentals, baptisms and weddings as well"
         }
       ],
-      "narrative": "Coordination dropped from days to hours. The 90% acceptance rate came directly from the filtering: if a funeral home could see a time, the priest could take it. The longer-term outcome — the one that justified the investment to the business — was the availability model itself: built once for funeral booking, reusable across the platform without redesign. The funeral feature was the visible deliverable; the platform-wide capability behind it was the strategic one."
+      "narrative": "Coordination dropped from days to hours. The 90% acceptance rate came directly from the filtering: if a funeral home could see a time, the priest could take it. The longer-term outcome, the one that justified the investment to the business, was the availability model itself: built once for funeral booking, reusable across the platform without redesign. The funeral feature was the visible deliverable; the platform-wide capability behind it was the strategic one."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "The best multi-stakeholder design does not try to make everyone happy with one interface. It gives each group the right level of control and visibility. Funeral homes got speed. Priests got control. Parish assistants got oversight.\n\nThe tension between those needs is the actual design work — and on this project a lot of that translation was possible because the customer had already done the synthesis themselves. They knew their community: bereaved families, busy funeral directors, stretched parish offices. They handed us the goals. My job was the translation and the validation, not the discovery.\n\nThe other lesson is about leverage — and it's where the product role mattered as much as the design role. The most consequential move on this project wasn't a design choice; it was the scoping choice. Once build-vs-buy was off the table (the custom-form requirement ruled out third-party tools), the real fork was between a standalone module and an integrated platform feature. The standalone module would have shipped funeral booking on time, but it would have been one more thing for parishes to learn alongside the platform. The integrated path was deeper and harder: build the booking capability into the calendar and form builder that parishes already used, so it would compose with whatever came after. That choice cost more upfront and paid back across the rest of the product."
+      "content": "The best multi-stakeholder design does not try to make everyone happy with one interface. It gives each group the right level of control and visibility. Funeral homes got speed. Priests got control. Parish assistants got oversight.\n\nThe tension between those needs is the actual design work, and on this project a lot of that translation was possible because the customer had already done the synthesis themselves. They knew their community: bereaved families, busy funeral directors, stretched parish offices. They handed us the goals. My job was the translation and the validation, not the discovery.\n\nThe other lesson is about leverage, and it's where the product role mattered as much as the design role. The most consequential move on this project was the scoping choice rather than any design choice. Once build-vs-buy was off the table (the custom-form requirement ruled out third-party tools), the real fork was between a standalone module and an integrated platform feature. The standalone module would have shipped funeral booking on time, but it would have been one more thing for parishes to learn alongside the platform. The integrated path was deeper and harder: build the booking capability into the calendar and form builder that parishes already used, so it would compose with whatever came after. That choice cost more upfront and paid back across the rest of the product."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Owned product and design on ChurchDesk's funeral booking system, scoped so the rest of the platform could build on it. Delivered in two months on a €20,000 budget; 70% less coordination time, 90% booking acceptance. Started from the launch customer's own design-thinking output and validated with stakeholders rather than running upfront research; extended the existing calendar and form builder rather than building a standalone module (the faster path that was floated and rejected).",
       "angle": "A booking capability deeply integrated into the platform, launched as funeral booking",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
-      "summary": "Funeral planning is hard enough without phone-tag between funeral homes, churches, and cemeteries. Here is how the booking system made it simple for everyone involved — and why the right answer was to build deeper into the platform, not to buy a tool or build a standalone module.",
-      "angle": "Designing for stakeholders who want opposite things — and choosing platform integration over the fast path",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "summary": "Funeral planning is hard enough without phone-tag between funeral homes, churches, and cemeteries. Here is how the booking system made it simple for everyone involved, and why the right answer was to build deeper into the platform, not to buy a tool or build a standalone module.",
+      "angle": "Designing for stakeholders who want opposite things, and choosing platform integration over the fast path",
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "datameer-data-dense-analytics",
     "ninox-org-building"
   ],
-
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,
-    "confidentiality_note": "First customer (Evangelische Kirche von Kurhessen-Waldeck) is named with their consent — they are publicly identified in the ChurchDesk conference talk from 2025-02-26.",
-    "source": "churchdesk experience file + verification 2026-04-23 + ChurchDesk conference talk 2025-02-26 (Kooperationsraum Bestattungskalender) — see data/case-studies/images/churchdesk/source-conference-talk-2025-02-26.pdf — corrections 2026-05-24 (user confirmed: project was WEB and mobile, not mobile-only; tech stack was React (web) + React Native (mobile), NOT ShadCn; validation conversations with project lead, pastors, funeral directors are real; build-vs-buy was an early-and-quick decision dismissed via competitive analysis once custom-form requirement became clear; Calendly does not actually offer white-labeling, so build-vs-buy alternatives were a different vendor or a library; standalone module was the faster path and was floated internally; deep platform integration was chosen as the right option, not the cheap one; designs were Figma + my designer, engineering built the code)"
+    "confidentiality_note": "First customer (Evangelische Kirche von Kurhessen-Waldeck) is named with their consent; they are publicly identified in the ChurchDesk conference talk from 2025-02-26.",
+    "source": "churchdesk experience file + verification 2026-04-23 + ChurchDesk conference talk 2025-02-26 (Kooperationsraum Bestattungskalender), see data/case-studies/images/churchdesk/source-conference-talk-2025-02-26.pdf, corrections 2026-05-24 (user confirmed: project was WEB and mobile, not mobile-only; tech stack was React (web) + React Native (mobile), NOT ShadCn; validation conversations with project lead, pastors, funeral directors are real; build-vs-buy was an early-and-quick decision dismissed via competitive analysis once custom-form requirement became clear; Calendly does not actually offer white-labeling, so build-vs-buy alternatives were a different vendor or a library; standalone module was the faster path and was floated internally; deep platform integration was chosen as the right option, not the cheap one; designs were Figma + my designer, engineering built the code)"
   }
 }

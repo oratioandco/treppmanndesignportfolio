@@ -1,7 +1,7 @@
 {
   "id": "ninox-org-building",
   "title": "Leading a team is a design problem",
-  "subtitle": "Building the design function at Ninox — and what I did when the team called one engineer \"difficult\"",
+  "subtitle": "Building the design function at Ninox, and what I did when the team called one engineer \"difficult\"",
   "type": "leadership-story",
   "tags": [
     "org-building",
@@ -43,7 +43,7 @@
     {
       "type": "narrative",
       "headline": "The engineer the team worked around",
-      "content": "One engineer had been quietly labelled difficult. Meetings with him were tense. His points got cut off before he finished them, and the team had learned to route around him instead of working with him.\n\nIt did not add up. His code was excellent. His ideas, once I gave them room, were often the sharpest in the room. So I started watching the pattern instead of the person.\n\nHe struggled in fast, talk-over-each-other discussions, but he was precise in writing. He needed time to think before he answered. What the team read as interrupting was him returning to a point the meeting had already rushed past. This was not a diagnosis. It was a design constraint. Our collaboration ran on one default — fast, verbal, loudest-voice-first — and his mind did not fit it."
+      "content": "One engineer had been quietly labelled difficult. Meetings with him were tense. His points got cut off before he finished them, and the team had learned to route around him instead of working with him.\n\nIt did not add up. His code was excellent. His ideas, once I gave them room, were often the sharpest in the room. So I started watching the pattern instead of the person.\n\nHe struggled in fast, talk-over-each-other discussions, but he was precise in writing. He needed time to think before he answered. What the team read as interrupting was him returning to a point the meeting had already rushed past. This was not a diagnosis. It was a design constraint. Our collaboration ran on one default, fast, verbal, loudest-voice-first, and his mind did not fit it."
     },
     {
       "type": "process",
@@ -67,14 +67,14 @@
         },
         {
           "label": "Coaching the design lead",
-          "description": "I coached my design lead through the same relationship — how to work with a difficult engineering counterpart directly, rather than around them."
+          "description": "I coached my design lead through the same relationship: how to work with a difficult engineering counterpart directly, rather than around them."
         }
       ]
     },
     {
       "type": "narrative",
       "headline": "The pushback",
-      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\" — sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nIt became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. Different minds need different conditions, and that is accommodation, not special treatment.\n\nI also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question."
+      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\", sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nIt became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. Different minds need different conditions, and that is accommodation, not special treatment.\n\nI also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question."
     },
     {
       "type": "outcome",
@@ -83,7 +83,7 @@
         {
           "label": "The \"difficult\" engineer",
           "before": "Tension, dismissed ideas, the team working around him",
-          "after": "One of the strongest contributors — ideas got airtime, and he caught problems others missed"
+          "after": "One of the strongest contributors: ideas got airtime, and he caught problems others missed"
         },
         {
           "label": "Team norms",
@@ -95,7 +95,7 @@
           "value": "People started asking what was wrong with the process before deciding what was wrong with a person"
         }
       ],
-      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, the written decisions for themselves — they stopped being an accommodation and became the norm. The same attention I gave to one engineer's working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
+      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, the written decisions for themselves. They stopped being an accommodation and became the norm. The same attention I gave to one engineer's working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
     },
     {
       "type": "reflection",
@@ -105,7 +105,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built the design function at Ninox — a team of five, a design system, a seat at the leadership table. Defining example: redesigned how the team collaborated so a sidelined engineer became one of its strongest contributors.",
+      "summary": "Built the design function at Ninox: a team of five, a design system, a seat at the leadership table. Defining example: redesigned how the team collaborated so a sidelined engineer became one of its strongest contributors.",
       "angle": "Leadership as system design",
       "sections": [
         "hero",

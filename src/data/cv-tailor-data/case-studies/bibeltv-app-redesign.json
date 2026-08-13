@@ -3,7 +3,14 @@
   "title": "A premium faith app that doesn't default to dark mode",
   "subtitle": "Redesigning Bibel TV's streaming apps to hold the German market against a global competitor",
   "type": "streaming-media",
-  "tags": ["competitive-strategy", "user-research", "design-systems", "cross-platform", "behavioral-design", "brand-alignment"],
+  "tags": [
+    "competitive-strategy",
+    "user-research",
+    "design-systems",
+    "cross-platform",
+    "behavioral-design",
+    "brand-alignment"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
@@ -12,30 +19,33 @@
   "last_updated": "2026-05-22",
   "hero_image": {
     "src": "/images/bibeltv/app-redesign-hero.png",
-    "alt": "The redesigned Bibel TV app — Mediathek section, warm light-mode design"
+    "alt": "The redesigned Bibel TV app: Mediathek section, warm light-mode design"
   },
-  "format_priority": ["in-depth", "executive", "blog"],
-
+  "format_priority": [
+    "in-depth",
+    "executive",
+    "blog"
+  ],
   "sections": [
     {
       "type": "hero",
       "headline": "A premium faith app that doesn't default to dark mode",
-      "subtext": "Pray.com was coming to Germany — a polished, dark-mode faith app built by ex-Netflix and ex-Spotify people. Bibel TV had the deeper library and a 300-year archive, but an app that looked a few years behind. The redesign had to make that advantage visible."
+      "subtext": "Pray.com was coming to Germany, a polished, dark-mode faith app built by ex-Netflix and ex-Spotify people. Bibel TV had the deeper library and a 300-year archive, but an app that looked a few years behind. The redesign had to make that advantage visible."
     },
     {
       "type": "callout",
-      "quote": "Premium streaming means dark mode — that is the industry default. Our users want light. The question was not which trend to follow, but how to make a light interface feel genuinely premium.",
+      "quote": "Premium streaming means dark mode: that is the industry default. Our users want light. The question was not which trend to follow, but how to make a light interface feel genuinely premium.",
       "context": "The strategic design bet at the centre of the project"
     },
     {
       "type": "narrative",
       "headline": "The threat",
-      "content": "Bibel TV is a broadcaster in the middle of a linear-to-streaming transformation, with apps across iOS, Android, web, and connected TV, and a broadcast archive going back generations. The app did not show it. The patterns were dated, it had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThen Pray.com announced a German launch — well funded, built by people from Netflix and Spotify, with a polished dark-mode app aimed at a global market. Bibel TV's advantage is the opposite of global: German-market knowledge, cultural fit, and the archive. The redesign had to turn that advantage into something a user could feel in the first thirty seconds."
+      "content": "Bibel TV is a broadcaster in the middle of a linear-to-streaming transformation, with apps across iOS, Android, web, and connected TV, and a broadcast archive going back generations. The app did not show it. The patterns were dated. It had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThen Pray.com announced a German launch: well funded, built by people from Netflix and Spotify, with a polished dark-mode app aimed at a global market. Bibel TV's advantage is the opposite of global: German-market knowledge, cultural fit, and the archive. The redesign had to turn that advantage into something a user could feel in the first thirty seconds."
     },
     {
       "type": "narrative",
       "headline": "The light-mode bet",
-      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas — the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision — it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static.",
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision, it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static.",
       "images": [
         {
           "src": "/images/bibeltv/app-redesign-beforeafter.png",
@@ -47,7 +57,7 @@
     {
       "type": "narrative",
       "headline": "Research, and a lesson about platforms",
-      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast. Moving it to Android, the gradient rendering raised real quality concerns. Rather than bend the design to web assumptions, I prototyped directly on Android — and the direction held. Prototype on the target platform early, or the assumptions you carry will be the wrong ones."
+      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast. Moving it to Android, the gradient rendering raised real quality concerns. Rather than bend the design to web assumptions, I prototyped directly on Android, and the direction held. Prototype on the target platform early, or the assumptions you carry will be the wrong ones."
     },
     {
       "type": "outcome",
@@ -71,31 +81,37 @@
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision — it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
+      "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
     }
   ],
-
   "variants": {
     "executive": {
-      "summary": "Led the redesign of Bibel TV's streaming apps to defend the German market against Pray.com — a premium, warm, light-mode experience. 87% light-mode preference, 4.2/5 premium rating, validated and ready for development.",
+      "summary": "Led the redesign of Bibel TV's streaming apps to defend the German market against Pray.com, a premium, warm, light-mode experience. 87% light-mode preference, 4.2/5 premium rating, validated and ready for development.",
       "angle": "A redesign as competitive strategy",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "blog": {
       "summary": "A global competitor was launching a premium dark-mode faith app in Germany. Bibel TV chose light mode, because its users want warmth, not Hollywood. Here is how that bet was made.",
       "angle": "Choosing against the industry default, on purpose",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "6 min"
     }
   },
-
   "related": [
     "bibeltv-agentic-engineering",
     "bibeltv-color-api",
     "bibeltv-design-system-api"
   ],
-
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,

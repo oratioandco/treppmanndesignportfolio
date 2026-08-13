@@ -22,7 +22,7 @@
   "last_updated": "2026-04-24",
   "hero_image": {
     "src": "/images/covers/generated/datameer-data-dense-analytics.svg",
-    "alt": "How do you make big data feel simple? — abstract resolution-field cover"
+    "alt": "How do you make big data feel simple?: abstract resolution-field cover"
   },
   "format_priority": [
     "in-depth",
@@ -38,22 +38,22 @@
     {
       "type": "narrative",
       "headline": "The starting point",
-      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily — people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table."
+      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily, people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table."
     },
     {
       "type": "callout",
       "quote": "The query builder showed empty results. The full data existed. Users thought the system was broken.",
-      "context": "The sample-based uncertainty problem — the hardest UX challenge on the platform"
+      "context": "The sample-based uncertainty problem: the hardest UX challenge on the platform"
     },
     {
       "type": "narrative",
       "headline": "The core challenge",
-      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty — not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them — not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem — how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?",
+      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty, not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them, not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem: how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?",
       "images": [
         {
           "src": "/images/diagrams/datameer-sample-uncertainty.svg",
           "alt": "Diagram: the same query returns 4,812 matches against the full dataset and zero against a 1% sample, because the sample captured none of the matching rows.",
-          "caption": "Diagram — why a sampled preview can report nothing while the data is sitting there."
+          "caption": "Diagram: why a sampled preview can report nothing while the data is sitting there."
         }
       ]
     },
@@ -63,19 +63,19 @@
       "steps": [
         {
           "label": "Customer Research",
-          "description": "I secured exec-sponsored access to visit regulated enterprise environments — banks and insurers in the US — joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked."
+          "description": "I secured exec-sponsored access to visit regulated enterprise environments, banks and insurers in the US, joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked."
         },
         {
           "label": "Platform Redesign",
-          "description": "Complete overhaul of the analytics interface — from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system."
+          "description": "Complete overhaul of the analytics interface: from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system."
         },
         {
           "label": "Design System",
-          "description": "Co-built the platform's design system — UX defined component behaviour and specs, UI executed the visual system. The first unified visual language for a product that had grown organically for years."
+          "description": "Co-built the platform's design system: UX defined component behaviour and specs, UI executed the visual system. The first unified visual language for a product that had grown organically for years."
         },
         {
           "label": "Organizational Elevation",
-          "description": "Moved design from execution-only to strategic partner — earned a seat at the product table by demonstrating the business value of user-centered design in a deeply technical product."
+          "description": "Moved design from execution-only to strategic partner: earned a seat at the product table by demonstrating the business value of user-centered design in a deeply technical product."
         }
       ]
     },
@@ -85,7 +85,7 @@
       "metrics": [
         {
           "label": "UX Maturity",
-          "before": "Execution-only function — designers received specs",
+          "before": "Execution-only function: designers received specs",
           "after": "Strategic business partner with exec-sponsored research access"
         },
         {
@@ -94,29 +94,29 @@
         },
         {
           "label": "User Research",
-          "value": "Direct access to regulated enterprise environments — rare for a vendor"
+          "value": "Direct access to regulated enterprise environments: rare for a vendor"
         },
         {
           "label": "Sample Uncertainty UX",
           "value": "Designed honest feedback that maintained user trust in sampled previews"
         }
       ],
-      "narrative": "The biggest win wasn't a feature — it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap."
+      "narrative": "The biggest win wasn't a feature: it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap."
     },
     {
       "type": "reflection",
       "headline": "What I learned",
-      "content": "The hardest part wasn't the design — it was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products — because they actually talk to humans."
+      "content": "The hardest part wasn't the design: it was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products, because they actually talk to humans."
     },
     {
       "type": "key-takeaway",
       "headline": "Why this matters for your team",
-      "content": "If you're building data-dense tools for technically sophisticated users in regulated environments, the design challenges are fundamentally different from consumer products. I've spent five years learning those differences — from sample-uncertainty communication to compliance-aware user research. This is transferable to any domain where the data is complex, the users are expert, and the stakes are high."
+      "content": "If you're building data-dense tools for technically sophisticated users in regulated environments, the design challenges are fundamentally different from consumer products. I've spent five years learning those differences, from sample-uncertainty communication to compliance-aware user research. This is transferable to any domain where the data is complex, the users are expert, and the stakes are high."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system \u2014 UX-defined component behaviour and specs, UI-executed visual system \u2014 and solved a fundamental data-uncertainty UX problem.",
+      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system, UX-defined component behaviour and specs, UI-executed visual system, and solved a fundamental data-uncertainty UX problem.",
       "angle": "Organizational transformation through design",
       "sections": [
         "hero",

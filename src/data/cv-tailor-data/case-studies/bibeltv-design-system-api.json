@@ -3,7 +3,15 @@
   "title": "A design system that ships to production, not to Figma",
   "subtitle": "An API-first design token system that syncs across iOS, Android, web, and Figma from one source of truth",
   "type": "design-system",
-  "tags": ["design-systems", "token-architecture", "api-first", "multi-platform", "automation", "infrastructure", "technical-depth"],
+  "tags": [
+    "design-systems",
+    "token-architecture",
+    "api-first",
+    "multi-platform",
+    "automation",
+    "infrastructure",
+    "technical-depth"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
@@ -14,13 +22,15 @@
     "src": "/images/bibeltv/design-system-hero.png",
     "alt": "Design token architecture: a Git repo flowing to Android, iOS, web, and Figma"
   },
-  "format_priority": ["executive", "in-depth"],
-
+  "format_priority": [
+    "executive",
+    "in-depth"
+  ],
   "sections": [
     {
       "type": "hero",
       "headline": "A design system that ships to production, not to Figma",
-      "subtext": "Most design systems are Figma libraries — engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source."
+      "subtext": "Most design systems are Figma libraries, engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so one token change updates every platform in seconds. Figma is one consumer, not the source."
     },
     {
       "type": "callout",
@@ -30,7 +40,7 @@
     {
       "type": "narrative",
       "headline": "The problem",
-      "content": "Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography — Kotlin values, Swift constants, CSS variables, Figma styles.\n\nWhen one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.\n\nThere was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would."
+      "content": "Bibel TV was building across four platforms: iOS, Android, web, and connected TV. Each managed its own colors, spacing, and typography, Kotlin values, Swift constants, CSS variables, Figma styles.\n\nWhen one design decision changed a color, four teams had to update code. In practice, three fell behind, and the platforms drifted apart. The design system was a Figma library that people referenced, with nothing enforcing consistency.\n\nThere was also a budget reality: no platform-engineering team to own design infrastructure. If the Head of Design did not build it, no one would."
     },
     {
       "type": "narrative",
@@ -40,7 +50,7 @@
         {
           "src": "/images/bibeltv/design-system-tokens.png",
           "alt": "The token set, synced into the Figma plugin",
-          "caption": "The same tokens, in Figma — one consumer of the system, kept in sync automatically."
+          "caption": "The same tokens, in Figma: one consumer of the system, kept in sync automatically."
         }
       ]
     },
@@ -69,7 +79,7 @@
     {
       "type": "narrative",
       "headline": "The decisions that mattered",
-      "content": "### The repo is the source, not Figma\n\nThis flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer — so design can change without engineering retouching four platforms.\n\n### A standard token format\n\nI used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.\n\n### Design owned the architecture\n\nToken infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation — but it also meant learning style dictionaries, API endpoints, and automation workflows.\n\nBecause the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build."
+      "content": "### The repo is the source, not Figma\n\nThis flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer, so design can change without engineering retouching four platforms.\n\n### A standard token format\n\nI used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.\n\n### Design owned the architecture\n\nToken infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation, but it also meant learning style dictionaries, API endpoints, and automation workflows.\n\nBecause the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server and every app picks it up on next launch. Adjust a color for a campaign or fix a contrast issue without shipping a build."
     },
     {
       "type": "outcome",
@@ -86,7 +96,7 @@
         },
         {
           "label": "Structure",
-          "value": "Three-tier token hierarchy — consistency enforced by structure, not by coordination"
+          "value": "Three-tier token hierarchy: consistency enforced by structure, not by coordination"
         },
         {
           "label": "Future-ready",
@@ -97,30 +107,37 @@
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Infrastructure work is design leadership work. This design system is not a Figma file, it is a running service — so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it."
+      "content": "Infrastructure work is design leadership work. This design system is not a Figma file but a running service, so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it."
     }
   ],
-
   "variants": {
     "executive": {
-      "summary": "Built a deployed design-token system — Git repo, Style Dictionary, automated sync — that keeps Android, Figma, and planned iOS/web in step from one source of truth. Zero manual sync.",
+      "summary": "Built a deployed design-token system, Git repo, Style Dictionary, automated sync, that keeps Android, Figma, and planned iOS/web in step from one source of truth. Zero manual sync.",
       "angle": "Design infrastructure that outlasts the designer who built it",
-      "sections": ["hero", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "in-depth": {
-      "summary": "Most design systems are Figma libraries. This one is a deployed service. How it was built — token architecture, automation, a path to server-driven UI — without a platform-engineering team.",
+      "summary": "Most design systems are Figma libraries. This one is a deployed service. How it was built, token architecture, automation, a path to server-driven UI, without a platform-engineering team.",
       "angle": "A Head of Design building infrastructure: when to own the token API",
-      "sections": ["hero", "callout", "narrative", "process", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "process",
+        "reflection"
+      ],
       "max_read_time": "8 min"
     }
   },
-
   "related": [
     "bibeltv-color-api",
     "bibeltv-app-redesign"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": false,

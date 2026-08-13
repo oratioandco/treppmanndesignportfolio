@@ -41,7 +41,7 @@
     {
       "type": "narrative",
       "headline": "What I do instead",
-      "content": "At Bibel TV I design the concept in Figma — layout, flow, hierarchy — and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata.\n\nEngineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
+      "content": "At Bibel TV I design the concept in Figma, layout, flow, hierarchy, and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata.\n\nEngineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
     },
     {
       "type": "process",
@@ -49,7 +49,7 @@
       "steps": [
         {
           "label": "Concept in Figma",
-          "description": "I still start in Figma for layout, flow, and visual hierarchy. That defines the intent — the what."
+          "description": "I still start in Figma for layout, flow, and visual hierarchy. That defines the intent, the what."
         },
         {
           "label": "Prototype in real code",
@@ -57,7 +57,7 @@
         },
         {
           "label": "Real data, not placeholders",
-          "description": "The prototype runs on actual content — real videos, real metadata. That surfaces problems placeholder data never shows."
+          "description": "The prototype runs on actual content: real videos, real metadata. That surfaces problems placeholder data never shows."
         },
         {
           "label": "Engineering builds on it",
@@ -68,7 +68,7 @@
     {
       "type": "narrative",
       "headline": "A real example: the Android gradients",
-      "content": "I built the web prototype first, with gradients that looked good in the browser. Moving to Android, the gradient rendering raised real quality concerns — visible banding, and performance questions on lower-end devices.\n\nThe old way: file a ticket, explain the problem to engineering, wait for an assessment, maybe redesign. Instead, I iterated on the Android prototype in code, tested alternatives against real rendering, and found one that held up. Engineering got a working reference, not a problem report."
+      "content": "I built the web prototype first, with gradients that looked good in the browser. Moving to Android, the gradient rendering raised real quality concerns, visible banding, and performance questions on lower-end devices.\n\nThe old way: file a ticket, explain the problem to engineering, wait for an assessment, maybe redesign. Instead, I iterated on the Android prototype in code, tested alternatives against real rendering, and found one that held up. Engineering got a working reference, not a problem report."
     },
     {
       "type": "outcome",
@@ -77,7 +77,7 @@
         {
           "label": "Iteration speed",
           "before": "A design change took 3–5 days through the spec-and-handoff cycle",
-          "after": "Hours — change it, run it on real data, judge it in the same session"
+          "after": "Hours: change it, run it on real data, judge it in the same session"
         },
         {
           "label": "What engineering received",
@@ -94,7 +94,7 @@
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not.\n\nThis way of working asks for a design leader who is comfortable in code — not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
+      "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not.\n\nThis way of working asks for a design leader who is comfortable in code, not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
     }
   ],
   "variants": {

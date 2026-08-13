@@ -151,7 +151,7 @@
     {
       "id": "WQ-003",
       "kind": "regex",
-      "pattern": "\\bleverag(?:e|ed|ing)\\b",
+      "pattern": "(?<!the )(?<!its )(?<!more )(?<!less )(?<!about )\\bleverag(?:e|ed|ing)\\b",
       "message": "\"leverage\" as a verb reads as filler.",
       "fix": "Say what was actually done: used, built on, reused."
     },
@@ -165,7 +165,7 @@
     {
       "id": "WQ-008",
       "kind": "regex",
-      "pattern": "\\b(?:is|was|are|were)\\s?n[o'’]t\\s+[^.!?]{3,60}?(?:,|;|\\s—)\\s*it(?:'|’)?s\\b|\\bnot\\s+(?:the|a|an|about)\\s+[^.!?]{3,60}?\\s—\\s*it\\s+(?:is|was)\\b|\\bwhat\\s+if\\s+the\\s+(?:problem|answer|issue|question)\\b",
+      "pattern": "\\b(?:is|was|are|were)\\s?n[o'’]t\\s+[^.!?]{3,70}?(?:,|;|\\s—)\\s*it(?:(?:'|’)?s|\\s+(?:is|was))\\b|\\bnot\\s+(?:the|a|an|about)\\s+[^.!?]{3,70}?\\s—\\s*it\\s+(?:is|was)\\b|\\bwhat\\s+if\\s+the\\s+(?:problem|answer|issue|question)\\b",
       "message": "Negation-antithesis (\"not X, it's Y\") or a rhetorical question to the reader.",
       "fix": "Fine once. Count them on the page first — if this is the third, state the claim plainly instead."
     },

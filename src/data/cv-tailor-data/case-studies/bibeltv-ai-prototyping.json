@@ -3,15 +3,23 @@
   "title": "Agentic Design at Scale",
   "subtitle": "Using AI-coded prototypes to collapse the design-to-production pipeline",
   "type": "ai-product",
-  "tags": ["ai-native-design", "prototyping", "agentic-engineering", "code-generation", "multi-platform"],
+  "tags": [
+    "ai-native-design",
+    "prototyping",
+    "agentic-engineering",
+    "code-generation",
+    "multi-platform"
+  ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "1 designer + engineering team, Hamburg/Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
   "last_updated": "2026-05-06",
-  "format_priority": ["in-depth", "executive"],
-
+  "format_priority": [
+    "in-depth",
+    "executive"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -38,7 +46,7 @@
     {
       "type": "narrative",
       "headline": "The AI-First Approach",
-      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack \u2014 Kotlin for Android, SwiftUI for iOS, React for web and connected TV.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
+      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack, Kotlin for Android, SwiftUI for iOS, React for web and connected TV.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
     },
     {
       "type": "process",
@@ -74,12 +82,12 @@
     {
       "type": "narrative",
       "headline": "Real Example: New Mobile App Redesign",
-      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\" \u2014 Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
+      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\", Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
     },
     {
       "type": "narrative",
       "headline": "Key Insights",
-      "content": "### AI doesn't replace design thinking\n\nThe prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time.\n\n### Engineering makes the call\n\nI don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality.\n\n### Interaction fidelity matters\n\nWhere AI-generated code shines is capturing interactions — animations, gestures, state transitions — that specs typically under-specify. Shipping these interactions directly is a win.\n\n### Platform-specific code still gets rebuilt\n\nThe React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine — the prototype still saved time and validated the interaction model."
+      "content": "### AI doesn't replace design thinking\n\nThe prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time.\n\n### Engineering makes the call\n\nI don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality.\n\n### Interaction fidelity matters\n\nWhere AI-generated code shines is capturing interactions, animations, gestures, state transitions, that specs typically under-specify. Shipping these interactions directly is a win.\n\n### Platform-specific code still gets rebuilt\n\nThe React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine, the prototype still saved time and validated the interaction model."
     },
     {
       "type": "outcome",
@@ -101,7 +109,7 @@
         },
         {
           "label": "Engineering Team Satisfaction",
-          "value": "High — they prefer working from code prototypes vs. specs"
+          "value": "High: they prefer working from code prototypes vs. specs"
         }
       ],
       "narrative": "The biggest win is eliminated ambiguity. When engineering sees working code instead of a mockup, they ask better questions and make faster decisions.",
@@ -121,30 +129,42 @@
     {
       "type": "key-takeaway",
       "headline": "Why This Matters for Your Team",
-      "content": "If you're stuck in the traditional design-handoff-to-engineering loop, agentic prototyping is the escape route. I'm proving it works at Bibel TV with real products, real deadlines, and real engineering teams. The prototype doesn't have to be perfect — it just has to be better than a spec at communicating intent."
+      "content": "If you're stuck in the traditional design-handoff-to-engineering loop, agentic prototyping is the escape route. I'm proving it works at Bibel TV with real products, real deadlines, and real engineering teams. The prototype doesn't have to be perfect, it just has to be better than a spec at communicating intent."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes. Result: 2x faster design-to-prototype cycle, 70% of code ships directly.",
       "angle": "Collapsing the design-engineering loop with agentic code",
-      "sections": ["hero", "callout", "outcome", "key-takeaway"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "key-takeaway"
+      ],
       "max_read_time": "2 min"
     },
     "in-depth": {
       "summary": "Deep dive into agentic design: how we use Claude Code to generate prototypes, how engineering teams evaluate them, and what this means for the future of design handoff.",
       "angle": "Prototypes as specs: a working alternative to pixel-perfect mockups",
-      "sections": ["hero", "narrative", "callout", "process", "example", "insights", "outcome", "reflection", "key-takeaway"],
+      "sections": [
+        "hero",
+        "narrative",
+        "callout",
+        "process",
+        "example",
+        "insights",
+        "outcome",
+        "reflection",
+        "key-takeaway"
+      ],
       "max_read_time": "8 min"
     }
   },
-
   "related": [
     "bibeltv-color-api",
     "ninox-org-building"
   ],
-
   "meta": {
     "read_time_minutes": 8,
     "confidential": false,

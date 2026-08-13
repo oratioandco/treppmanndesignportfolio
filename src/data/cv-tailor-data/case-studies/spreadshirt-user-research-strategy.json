@@ -3,7 +3,15 @@
   "title": "How do you change a company's direction with one prototype?",
   "subtitle": "User research that overturned an executive assumption at a print-on-demand platform",
   "type": "blog-post",
-  "tags": ["user-research", "strategy", "prototyping", "ecommerce", "b2c", "transformation", "mobile"],
+  "tags": [
+    "user-research",
+    "strategy",
+    "prototyping",
+    "ecommerce",
+    "b2c",
+    "transformation",
+    "mobile"
+  ],
   "company": "Spreadshirt",
   "role": "UX Strategy Lead",
   "team": "Team of 3, growing into implementation teams, Leipzig",
@@ -14,8 +22,11 @@
     "src": "/images/spreadshirt/hero.png",
     "alt": "The Spreadshirt t-shirt designer"
   },
-  "format_priority": ["blog", "executive", "narrative"],
-
+  "format_priority": [
+    "blog",
+    "executive",
+    "narrative"
+  ],
   "sections": [
     {
       "type": "hero",
@@ -25,7 +36,7 @@
     {
       "type": "narrative",
       "headline": "The starting point",
-      "content": "Spreadshirt was running on an assumption that felt obviously right at the top: shop owners want speed. The leadership vision was a 60-second journey — pick a template, let it customise itself, ship. Efficient, scalable, clean.\n\nThe company had tried to redesign the seller experience twice before, and failed both times. I was brought in to lead the third attempt. I started with one question: what if the assumption was wrong?"
+      "content": "Spreadshirt was running on an assumption that felt obviously right at the top: shop owners want speed. The leadership vision was a 60-second journey, pick a template, let it customise itself, ship. Efficient, scalable, clean.\n\nThe company had tried to redesign the seller experience twice before, and failed both times. I was brought in to lead the third attempt. I started with one question: what if the assumption was wrong?"
     },
     {
       "type": "callout",
@@ -36,17 +47,17 @@
     {
       "type": "narrative",
       "headline": "What the research found",
-      "content": "I went and talked to shop owners. Not surveys, not analytics — conversations.\n\nWhat they told me contradicted the leadership vision outright. They did not want the design process automated away. The t-shirt designer was not friction for them; it was the best part of their day. They valued creative control over speed. The creative process was the product.\n\nThat was not a small note in the margins. It meant the entire 60-second automation strategy was pointed the wrong way."
+      "content": "I went and talked to shop owners. Not surveys, not analytics: conversations.\n\nWhat they told me contradicted the leadership vision outright. They did not want the design process automated away. For them the t-shirt designer was the best part of their day, not friction to get through. They valued creative control over speed. The creative process was the product.\n\nThat was not a small note in the margins. It meant the entire 60-second automation strategy was pointed the wrong way."
     },
     {
       "type": "narrative",
       "headline": "Making the research undeniable",
-      "content": "The data said one thing and executive intuition said another — and two earlier attempts had already failed. A presentation was not going to move that.\n\nSo I built a prototype: a mobile version of the t-shirt designer, put directly into users' hands. The point was not to prove mobile was technically possible. It was to show that the design experience itself was worth keeping — that it held up, and still felt good, even on a small screen.",
+      "content": "The data said one thing and executive intuition said another, and two earlier attempts had already failed. A presentation was not going to move that.\n\nSo I built a prototype: a mobile version of the t-shirt designer, put directly into users' hands. The point was not to prove mobile was technically possible. It was to show that the design experience itself was worth keeping, that it held up, and still felt good, even on a small screen.",
       "images": [
         {
           "src": "/images/spreadshirt/mobile-prototype.png",
           "alt": "The mobile t-shirt designer prototype",
-          "caption": "The one-week mobile prototype — built to show the design experience survives on a small screen."
+          "caption": "The one-week mobile prototype: built to show the design experience survives on a small screen."
         }
       ]
     },
@@ -60,7 +71,7 @@
         },
         {
           "label": "A research prototype",
-          "description": "A mobile t-shirt designer built in Axure RP with the UI designers over one intensive week — made to provoke user feedback, not to ship."
+          "description": "A mobile t-shirt designer built in Axure RP with the UI designers over one intensive week, made to provoke user feedback, not to ship."
         },
         {
           "label": "Executive workshops",
@@ -78,8 +89,8 @@
       "metrics": [
         {
           "label": "Product strategy",
-          "before": "A 60-second fully automated journey — design friction removed",
-          "after": "Controlled automation — user agency and creative control kept"
+          "before": "A 60-second fully automated journey: design friction removed",
+          "after": "Controlled automation: user agency and creative control kept"
         },
         {
           "label": "The redesign project",
@@ -91,36 +102,43 @@
           "value": "Leadership backed a direction that contradicted their own original intuition"
         }
       ],
-      "narrative": "The mobile prototype tested well — it showed the design experience could work on a small screen. The larger result was strategic: leadership changed the product approach from full automation to controlled automation. The redesign that had failed twice was finished, over nine months, scaling from a team of three into larger implementation teams."
+      "narrative": "The mobile prototype tested well: it showed the design experience could work on a small screen. The larger result was strategic: leadership changed the product approach from full automation to controlled automation. The redesign that had failed twice was finished, over nine months, scaling from a team of three into larger implementation teams."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Data on its own does not change a decision — you have to make it undeniable. When research contradicts leadership intuition, a slide deck will not do it. A prototype that puts users in control will.\n\nIt also fixed something for me about strategy: the best product direction does not start from efficiency metrics. It starts from what users actually value. Sometimes the thing you are trying to optimise away is the thing they love most."
+      "content": "Data on its own does not change a decision, you have to make it undeniable. When research contradicts leadership intuition, a slide deck will not do it. A prototype that puts users in control will.\n\nIt also fixed something for me about strategy: the best product direction does not start from efficiency metrics. It starts from what users actually value. Sometimes the thing you are trying to optimise away is the thing they love most."
     }
   ],
-
   "variants": {
     "executive": {
       "summary": "Changed a company's product strategy from full automation to controlled automation, by running user research that showed shop owners valued creative control above speed. The prototype tested well; the redesign finished after two prior failures.",
       "angle": "User research overturning executive intuition",
-      "sections": ["hero", "callout", "outcome", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "outcome",
+        "reflection"
+      ],
       "max_read_time": "2 min"
     },
     "narrative": {
       "summary": "What happens when user research contradicts leadership intuition? The story of how one shop owner's sentence changed a company's product direction.",
       "angle": "The most uplifting experience of the day",
-      "sections": ["hero", "callout", "narrative", "reflection"],
+      "sections": [
+        "hero",
+        "callout",
+        "narrative",
+        "reflection"
+      ],
       "max_read_time": "5 min"
     }
   },
-
   "related": [
     "datameer-data-dense-analytics",
     "ninox-org-building",
     "churchdesk-booking-system"
   ],
-
   "meta": {
     "read_time_minutes": 5,
     "confidential": false,

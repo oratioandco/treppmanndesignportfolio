@@ -1,7 +1,7 @@
 {
   "id": "leading-a-team-is-a-design-problem",
   "title": "Leading a team is a design problem",
-  "subtitle": "Building a design function — and what I changed when collaboration kept breaking down in one working relationship",
+  "subtitle": "Building a design function, and what I changed when collaboration kept breaking down in one working relationship",
   "type": "leadership-story",
   "tags": [
     "org-building",
@@ -43,7 +43,7 @@
     {
       "type": "narrative",
       "headline": "Where collaboration kept breaking down",
-      "content": "The work of one senior engineer was not landing with the rest of the team. Meetings were tense. Points got cut off before they were finished. Over time the team learned to route around the collaboration rather than work through it.\n\nIt did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room.\n\nI tried the conventional moves first. Feedback about how contributions were landing. Smaller meetings. Clearer expectations. None of it changed anything — and it should not have. Every one of those moves put the cost of the problem on one person and left the process that produced it completely untouched. That was my mistake, and I made it for longer than I would like.\n\nSo I stopped assessing a person and started recording conditions. When did this collaboration fail, and when did it work? The pattern was consistent. It failed in fast group discussion, on questions asked cold, and under time pressure. It worked one to one, in writing, and whenever the material had gone out in advance. Same person, same capability, opposite outcomes — the variable was the setting, not the individual.\n\nOur collaboration ran on a single default: fast, verbal, loudest voice first. Nobody had chosen that default on purpose, which is exactly why nobody was accountable for what it filtered out."
+      "content": "The work of one senior engineer was not landing with the rest of the team. Meetings were tense. Points got cut off before they were finished. Over time the team learned to route around the collaboration rather than work through it.\n\nIt did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room.\n\nI tried the conventional moves first. Feedback about how contributions were landing. Smaller meetings. Clearer expectations. None of it changed anything, and it should not have. Every one of those moves put the cost of the problem on one person and left the process that produced it completely untouched. That was my mistake, and I made it for longer than I would like.\n\nSo I stopped assessing a person and started recording conditions. When did this collaboration fail, and when did it work? The pattern was consistent. It failed in fast group discussion, on questions asked cold, and under time pressure. It worked one to one, in writing, and whenever the material had gone out in advance. Same person, same capability, opposite outcomes. The variable was the setting, not the individual.\n\nOur collaboration ran on a single default: fast, verbal, loudest voice first. Nobody had chosen that default on purpose, which is exactly why nobody was accountable for what it filtered out."
     },
     {
       "type": "process",
@@ -67,14 +67,14 @@
         },
         {
           "label": "Coaching the design lead",
-          "description": "I coached my design lead through the same shift — how to set up the conditions for a strained engineering relationship and work through it directly, rather than routing around it."
+          "description": "I coached my design lead through the same shift: how to set up the conditions for a strained engineering relationship and work through it directly, rather than routing around it."
         }
       ]
     },
     {
       "type": "narrative",
       "headline": "The pushback",
-      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\" — sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nMy answer was that we were not changing it for one person. We were changing it because the process had a bias we had never examined: it rewarded speed of response over quality of thinking, and we had no idea what that was costing us.\n\nI also made the plain business case. Good ideas were being filtered out before they were heard. That is a cost, not just a fairness question. And the changes were cheap — an agenda, material sent ahead, a decision written down."
+      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\", sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nMy answer was that we were not changing it for one person. We were changing it because the process had a bias we had never examined: it rewarded speed of response over quality of thinking, and we had no idea what that was costing us.\n\nI also made the plain business case. Good ideas were being filtered out before they were heard. That is a cost, not just a fairness question. And the changes were cheap, an agenda, material sent ahead, a decision written down."
     },
     {
       "type": "outcome",
@@ -95,17 +95,17 @@
           "value": "People started asking what was wrong with the process before deciding what was wrong with a person"
         }
       ],
-      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, and the written decisions for themselves — they stopped being a fix for one situation and became the norm. The same attention I gave to one set of working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
+      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, and the written decisions for themselves. They stopped being a fix for one situation and became the norm. The same attention I gave to one set of working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person — and notice how much more comfortable it is to do the reverse.\n\nAnd you cannot build inclusive software with an exclusive team process. Human-centred teams are what make human-centred products possible."
+      "content": "Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person, and notice how much more comfortable it is to do the reverse.\n\nAnd you cannot build inclusive software with an exclusive team process. Human-centred teams are what make human-centred products possible."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Built a design function from the ground up — a team of five, a design system, a seat at the leadership table. Defining example: diagnosed why one collaboration kept failing, redesigned how the team worked, and turned lost contribution into some of the team's strongest.",
+      "summary": "Built a design function from the ground up: a team of five, a design system, a seat at the leadership table. Defining example: diagnosed why one collaboration kept failing, redesigned how the team worked, and turned lost contribution into some of the team's strongest.",
       "angle": "Leadership as system design",
       "sections": [
         "hero",
@@ -134,11 +134,11 @@
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,
-    "confidentiality_note": "Anonymised on purpose. The employer is not named in this study, and no detail identifying the individual — role specifics, personality description, timeline, or outcome of their employment — appears anywhere in it. The story is about the collaboration system, not about a person. Do not reintroduce the company name, dates, or any characterisation of the individual.",
+    "confidentiality_note": "Anonymised on purpose. The employer is not named in this study, and no detail identifying the individual, role specifics, personality description, timeline, or outcome of their employment, appears anywhere in it. The story is about the collaboration system, not about a person. Do not reintroduce the company name, dates, or any characterisation of the individual.",
     "source": "leadership experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22 + anonymisation pass 2026-08-06"
   },
   "hero_image": {
     "src": "/images/covers/generated/leading-a-team-is-a-design-problem.svg",
-    "alt": "Leading a team is a design problem — abstract resolution-field cover"
+    "alt": "Leading a team is a design problem, abstract resolution-field cover"
   }
 }
