@@ -245,6 +245,15 @@ a:hover {
     min-height: auto;
     display: flex;
     align-items: center;
+    /* Anchors the interactive DotField, which is absolutely positioned to this
+       box. The container inside is lifted above it so text never competes with
+       the field for stacking order. */
+    position: relative;
+}
+
+.hero > .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* Pull the work up into the fold. Deliberately tighter than the site's other
