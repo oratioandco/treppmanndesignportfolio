@@ -13,8 +13,49 @@
  * The /for/ VARIANT paragraph in the handover is deliberately NOT used: it is
  * scoped to application pages, and this is treppmann.design.
  */
+import { readdirSync, existsSync } from 'node:fs';
 import Layout from '../../layouts/Layout.astro';
 import SummaryBand from '../../components/SummaryBand.astro';
+
+/**
+ * Copilot screenshots, read from disk at build time so dropping files into
+ * public/images/bibeltv/copilot/ is the whole job. Spec and the reasoning for
+ * which frames are used live in data/case-studies/screenshots-bibeltv-copilot.md
+ * over in my-cv-tailor.
+ *
+ * Alt text is mapped from the filenames that spec asks for. Anything else gets
+ * a plain fallback and should be given real alt text here once seen.
+ */
+const SHOT_DIR = 'public/images/bibeltv/copilot';
+const SHOT_META: Record<string, { alt: string; caption?: string }> = {
+  'copilot-home.png': {
+    alt: 'The Zuschauerservice Assistent start screen, created by Tobias Treppmann, with starter prompts for donation thanks, returns and magazine cancellations',
+    caption: 'The agent in Microsoft 365. The three starters are the everyday traffic of a viewer-services desk.',
+  },
+  'copilot-bereavement.png': {
+    alt: 'The copilot answering a request to cancel a programme magazine after a death, with condolence and the administrative action',
+    caption: 'A bereavement notice answered in house voice. Bereavement is not what the tool treats as crisis: crisis means acute risk to the person writing, and those are never drafted at all.',
+  },
+  'copilot-escalation.png': {
+    alt: 'The copilot declining to draft a reply and flagging the message for a person instead',
+    caption: 'The tool refusing to answer. Escalation is a first-class output, not an error state.',
+  },
+  'copilot-complex.png': {
+    alt: 'The copilot answering a viewer letter that raises several separate complaints at once',
+    caption: 'Four threads in one letter. This is the shape that used to cost an agent hours.',
+  },
+};
+
+const shots = existsSync(SHOT_DIR)
+  ? readdirSync(SHOT_DIR)
+      .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+      .sort()
+      .map((f) => ({
+        src: `/images/bibeltv/copilot/${f}`,
+        alt: SHOT_META[f]?.alt ?? 'The copilot interface',
+        caption: SHOT_META[f]?.caption,
+      }))
+  : [];
 ---
 
 <Layout
@@ -77,6 +118,16 @@ import SummaryBand from '../../components/SummaryBand.astro';
         minutes instead of hours. Temporary staff write in the company's voice
         from day one. The sceptics use it daily and told me so unprompted.
       </p>
+      {shots.length > 0 && (
+        <div class="cs-figures">
+          {shots.map((s) => (
+            <figure class="cs-figure">
+              <img src={s.src} alt={s.alt} loading="lazy" />
+              {s.caption && <figcaption>{s.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
         </div>
       </section>
 

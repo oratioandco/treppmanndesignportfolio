@@ -1171,3 +1171,33 @@ main {
     background: transparent;
     color: var(--color-accent);
 }
+
+/* Case-study figures. Rendered only when the image folder actually has files —
+   an empty frame reads as unfinished and a placeholder reads as dishonest.
+   Breaks the 64ch measure deliberately: the artifact is the evidence, and
+   shrinking it to text width wastes the only proof on the page. */
+.cs-figures {
+    display: grid;
+    gap: 3rem;
+    margin: 3.5rem 0;
+}
+
+.cs-figure {
+    margin: 0;
+}
+
+.cs-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+}
+
+.cs-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 58ch;
+}
