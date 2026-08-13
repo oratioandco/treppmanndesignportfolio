@@ -30,9 +30,9 @@ import SummaryBand from '../../components/SummaryBand.astro';
       <p class="hero-description">
         Most design leaders in 2026 can talk about AI. Over a year at a
         broadcaster mid linear-to-streaming transformation, I moved from
-        designing <em>for</em> the model to shipping production AI myself &mdash;
-        a support copilot in daily use, a campaign generation tool built end to
-        end, and a prototyping practice engineering now builds from directly.
+        designing <em>for</em> the model to shipping production AI myself: a support copilot in daily use, a
+        campaign generation tool built end to end, and a prototyping
+        practice engineering now builds from directly.
       </p>
     </div>
   </section>
@@ -52,25 +52,25 @@ import SummaryBand from '../../components/SummaryBand.astro';
         <h2 class="cs-section__heading">The support copilot</h2>
         <div class="cs-section__body">
       <p>
-        The viewer-services team answers letters, emails, and social messages
-        &mdash; often long, often emotional, sometimes in crisis. I built them a
-        copilot: paste in the message, get a draft grounded in the service
-        handbook &mdash; its wording, its formatting, its standard phrases.
+        The viewer-services team answers letters, emails and social
+        messages. They are often long, often emotional, sometimes in
+        crisis. I built them a copilot: paste in the message, get a draft
+        grounded in the service handbook, in its wording, its formatting
+        and its standard phrases.
       </p>
       <p>
         Three decisions defined it. Restricted-topic rules are enforced
-        <em>in the output</em>, not left to the agent to remember. Crisis
-        messages don't get drafted at all &mdash; they escalate to a person. And
-        every send decision stays human; the tool never sends.
+        <em>in the output</em>, not left to the agent to remember. Crisis messages never get drafted at all; they escalate to a
+        person. Every send decision stays human, and the tool never sends.
       </p>
       <p>
-        Rollout was designed as carefully as the tool. I tested it on myself
-        first, then ran one-on-ones &mdash; no group demo, no mandate. It stayed
-        fully optional, with the team lead asking only that people try it and
-        share feedback. The tool then earned its place on the hard cases rather
-        than the easy ones: one of the most sceptical senior agents tried it on a
-        letter that would normally cost hours &mdash; multiple parallel topics,
-        strongly argued criticism &mdash; and shipped a good response in minutes.
+        Rollout was designed as carefully as the tool. I tested it on myself first, then ran one-on-ones. No group demo,
+        no mandate. It stayed fully optional, with the team lead asking
+        only that people try it and share feedback. It then earned its
+        place on the hard cases rather than the easy ones. One of the most
+        sceptical senior agents tried it on a letter that would normally
+        cost hours, carrying multiple parallel topics and strongly argued
+        criticism, and shipped a good response in minutes.
       </p>
       <p>
         <strong>Where it landed:</strong> complex multi-topic letters answered in
@@ -84,24 +84,25 @@ import SummaryBand from '../../components/SummaryBand.astro';
         <h2 class="cs-section__heading">The companion campaign generator</h2>
         <div class="cs-section__body">
       <p>
-        Bibel TV runs bi-monthly fundraising campaigns, and each one needs
-        supporting material across several formats &mdash; in-app notifications,
-        web banners, short video scripts &mdash; all carrying the same message in
-        the same voice, produced under time pressure by people who aren't
-        copywriters.
+        Bibel TV runs bi-monthly fundraising campaigns. Each one needs
+        supporting material across several formats: in-app notifications,
+        web banners, short video scripts. All of it carries the same
+        message in the same voice, and it is produced under time pressure
+        by people who aren't copywriters.
       </p>
       <p>
-        I built a web application that generates them. The interesting part isn't
-        the generation; it's what the generation reasons from. The organisation's
-        formatting guidelines, its accumulated fundraising knowledge &mdash; much
-        of it previously held in people's heads rather than written down &mdash;
-        and its house voice became the system's context. The interaction is a
-        multi-turn clarifying-question loop rather than single-shot prompting:
-        the tool asks what it needs to know about the campaign before producing
-        anything, which is what makes the output usable rather than merely fast.
+        I built a web application that generates them. The generation
+        itself is straightforward. The work was in what it reasons from.
+        Three things became the system's context: the organisation's
+        formatting guidelines, its accumulated fundraising knowledge, much
+        of it previously held in people's heads rather than written down,
+        and its house voice. The interaction is a multi-turn clarifying-question loop rather
+        than single-shot prompting. The tool asks what it needs to know
+        about the campaign before producing anything, which is what makes
+        the output usable rather than merely fast.
       </p>
       <p>
-        Analysis, prompt architecture, prototype, production skill &mdash; no
+        Analysis, prompt architecture, prototype, production skill. No
         engineering hand-off at any stage.
       </p>
       <blockquote class="pull-statement">
@@ -110,9 +111,10 @@ import SummaryBand from '../../components/SummaryBand.astro';
       </blockquote>
       <p>
         That's the pattern across both systems. Neither tool is clever on its
-        own. Each works because the organisation's own knowledge &mdash; the
-        service handbook, the fundraising guidelines, the things people knew but
-        had never written down &mdash; became the context the model reasons from.
+        own. Each works because the organisation's own knowledge became the
+        context the model reasons from: the service handbook, the
+        fundraising guidelines, the things people knew but had never
+        written down.
       </p>
         </div>
       </section>
@@ -123,10 +125,9 @@ import SummaryBand from '../../components/SummaryBand.astro';
       <p>
         I stopped shipping specs. The new experience was designed first as a
         working web prototype, then as an Android prototype, both built with
-        AI-assisted coding against real production APIs. Engineering now consumes
-        that prototype code directly &mdash; roughly 70% of it reaches production
-        with minor modification, and iteration collapsed from days through
-        spec-and-handoff to hours in working code.
+        AI-assisted coding against real production APIs. Engineering now consumes that prototype code directly. Roughly 70%
+        of it reaches production with minor modification, and iteration
+        collapsed from days of spec-and-handoff to hours in working code.
       </p>
         </div>
       </section>
@@ -135,10 +136,10 @@ import SummaryBand from '../../components/SummaryBand.astro';
         <h2 class="cs-section__heading">The design system as an API</h2>
         <div class="cs-section__body">
       <p>
-        One token repository &mdash; DTCG standard, three tiers from global
-        primitives through semantic to component, built with Style Dictionary,
-        synced live to Figma and Android with iOS and web ready, architected to
-        support server-driven UI. One commit propagates to every platform.
+        One token repository on the DTCG standard, with three tiers
+        running from global primitives through semantic to component.
+        Built with Style Dictionary and synced live to Figma and Android,
+        with iOS and web ready, architected to support server-driven UI. One commit propagates to every platform.
         Consistency enforced by structure rather than coordination.
       </p>
         </div>
