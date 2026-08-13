@@ -1201,3 +1201,11 @@ main {
     color: var(--color-text-muted);
     max-width: 58ch;
 }
+
+.selah__tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    margin: -0.15rem 0 0.6rem;
+}
