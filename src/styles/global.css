@@ -465,10 +465,21 @@ a:hover {
     margin-bottom: var(--space-lg);
 }
 
+/* Two columns, not auto-fit. auto-fit gave three columns at desktop width, and
+   with four studies that leaves one card stranded on its own row beside two
+   empty cells — the single most visible flaw on the home page, and it reads as
+   unfinished rather than restrained. Two columns pair the cards evenly at any
+   even count and degrade to one column on narrow screens. */
 .case-studies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
+}
+
+@media (max-width: 720px) {
+    .case-studies-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .case-study-card {
@@ -1060,5 +1071,77 @@ main {
     .case-study-card:hover .case-study-cover {
         transition: none;
         transform: none;
+    }
+}
+
+/* ── Selah ────────────────────────────────────────────────────────────
+   Promoted from a stray paragraph on 2026-08-13. It is the only artifact
+   on this site that is public, shipped, and photographable without anyone
+   else's approval — every other product surface is either confidential
+   (Bibel TV), gone (ChurchDesk) or a decade old (Datameer). It was being
+   presented as a footnote. */
+/* Single column until screenshots exist, two once they do. Reserving an empty
+   half-width column today would put a visible hole next to the text, which is
+   the thing this section was promoted to stop doing. */
+.selah {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl, 3rem);
+    align-items: start;
+    max-width: 62ch;
+}
+
+.selah:has(.selah__shots:not(:empty)) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    max-width: none;
+}
+
+.selah h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 0.35rem;
+}
+
+.selah__meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+}
+
+.selah__links {
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 999px;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition:
+        background-color var(--motion-fast, 260ms) var(--ease-out-expo, ease),
+        color var(--motion-fast, 260ms) var(--ease-out-expo, ease);
+}
+
+.btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    opacity: 1;
+}
+
+/* Collapses to nothing until real screenshots exist, so the section reads as
+   finished-but-text rather than broken-with-a-hole. */
+.selah__shots:empty {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .selah {
+        grid-template-columns: 1fr;
     }
 }
