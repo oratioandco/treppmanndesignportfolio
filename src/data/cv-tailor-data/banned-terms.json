@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "e280810",
+  "_source_commit": "7353f82",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -101,6 +101,13 @@
       "pattern": "handbook[\\s\\-]as[\\s\\-]context\\s+method|seniority[\\s\\-]and[\\s\\-]scepticism\\s+spectrum|seniority[\\s\\-]and[\\s\\-]skepticism\\s+spectrum",
       "message": "Coined compound phrase.",
       "fix": "State the plain fact in a plain sentence — e.g. \"the handbook is loaded as context\", \"adopted across the team, including the most sceptical members\"."
+    },
+    {
+      "id": "BT-011",
+      "kind": "regex",
+      "pattern": "(?:crisis|krisen?)[\\s\\-]?(?:messages?|nachrichten|cases?)?[^.!?]{0,50}?(?:escalat|eskalier|hand(?:ed|s)?[\\s\\-]?off|never\\s+(?:get\\s+)?draft|not\\s+drafted|instead\\s+of\\s+being\\s+drafted)|escalat[a-z]*[^.!?]{0,40}?\\bcrisis\\b|crisis[^.!?]{0,30}\\bfirst[\\s\\-]class\\s+output",
+      "message": "Crisis-escalation claim about the Bibel TV copilot. There is no crisis rule in the agent config.",
+      "fix": "The agent drafts. Claim what is true: every send decision stays human, an explicit restricted-topic list in the system prompt, and a scope rule that suppresses the draft when the input is not a viewer enquiry."
     },
     {
       "id": "BT-010",

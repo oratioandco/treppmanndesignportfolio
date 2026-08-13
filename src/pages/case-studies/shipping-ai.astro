@@ -34,7 +34,7 @@ const SHOT_META: Record<string, { alt: string; caption?: string }> = {
   },
   'copilot-bereavement.png': {
     alt: 'The copilot answering a request to cancel a programme magazine after a death, with condolence and the administrative action',
-    caption: 'A bereavement notice answered in house voice. Bereavement is not what the tool treats as crisis: crisis means acute risk to the person writing, and those are never drafted at all.',
+    caption: 'A bereavement notice answered in house voice. A person had already opened and read this letter before the model saw a word of it.',
   },
   'copilot-escalation.png': {
     alt: 'The copilot declining to draft a reply and flagging the message for a person instead',
@@ -93,16 +93,19 @@ const shots = existsSync(SHOT_DIR)
         <h2 class="cs-section__heading">The support copilot</h2>
         <div class="cs-section__body">
       <p>
-        The viewer-services team answers letters, emails and social
-        messages. They are often long, often emotional, sometimes in
-        crisis. I built them a copilot: paste in the message, get a draft
-        grounded in the service handbook, in its wording, its formatting
-        and its standard phrases.
+        The viewer-services team answers letters, emails and social messages, a
+        lot of it paper post. I built them a copilot: enter the message,
+        get a draft grounded in the service handbook, in its wording, its
+        formatting and its standard phrases. Nobody is obliged to use it
+        and nothing is wired to an inbox. A person opens the letter,
+        decides the tool is worth reaching for, and edits what comes back.
       </p>
       <p>
-        Three decisions defined it. Restricted-topic rules are enforced
-        <em>in the output</em>, not left to the agent to remember. Crisis messages never get drafted at all; they escalate to a
-        person. Every send decision stays human, and the tool never sends.
+        Three decisions defined it. The system prompt carries an explicit
+        restricted-topic list: no medical, legal or financial advice, no
+        political or confessional judgements, no missionary language. It
+        refuses to draft at all when the input is not a viewer enquiry,
+        and asks for clarification instead. And it is embedded in nothing.
       </p>
       <p>
         Rollout was designed as carefully as the tool. I tested it on myself first, then ran one-on-ones. No group demo,
