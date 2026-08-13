@@ -29,7 +29,10 @@ const H = 800;
 
 // 6-step duotone ramps (bg → accent). Lifted from the Berlin footer palette
 // so covers, footer, and type all share one teal world.
-const LIGHT = ['#f8f3ee', '#d6ddd6', '#a4bbb2', '#779e93', '#5e8c7d', '#4f8375'];
+// Last stop tracks --color-accent in global.css. It was #4f8375 until the
+// accent was darkened on 2026-08-12 for contrast, which left every
+// light-mode cover a shade off the rest of the site.
+const LIGHT = ['#f8f3ee', '#d6ddd6', '#a4bbb2', '#779e93', '#5e8c7d', '#457468'];
 const DARK = ['#1a2520', '#2c3e38', '#456057', '#5e8278', '#7aa297', '#a4c6b9'];
 
 // Per-study metaphor. Default 'diffusion'.
@@ -45,6 +48,8 @@ const METAPHOR = {
   'datameer-data-dense-analytics': 'scatter',   // dense data resolving
   'leading-a-team-is-a-design-problem': 'constellation', // dots aligning into structure
   'ninox-ai-onboarding': 'diffusion',
+  'ninox-org-building': 'lattice',            // an org taking structure
+  'bibeltv-ai-fundraising': 'spectrum',       // one voice banding across surfaces
   'spreadshirt-user-research-strategy': 'converge', // research converging
 };
 
