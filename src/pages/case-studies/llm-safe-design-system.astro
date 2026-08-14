@@ -1,0 +1,396 @@
+---
+/**
+ * An LLM-Safe Design System — flagship case study.
+ *
+ * Content from data/case-studies/bibeltv-llm-safe-design-system.json in
+ * my-cv-tailor, which is the canonical source. Every number here traces to that
+ * file: 30 components, 6 checks, 32 off-system values, 16 exceptions of which 8
+ * are missing-token reports, 11 of 46 findings refuted.
+ *
+ * Prose written short on purpose. The corpus-wide pass in August 2026 took
+ * em-dash density from 1-per-3.9 sentences to 1-per-145; this page is written to
+ * that standard rather than edited down to it afterwards.
+ */
+import { existsSync } from 'node:fs';
+import Layout from '../../layouts/Layout.astro';
+import SummaryBand from '../../components/SummaryBand.astro';
+
+const figures = [
+  {
+    src: '/images/bibeltv/llm-safe-storybook.png',
+    alt: 'Storybook showing the Bibel TV component library: the component list in the sidebar, theme and device switches in the toolbar, a token inspector, and a frosted-glass card variant rendered against a striped backdrop',
+    caption:
+      'The shared surface. Thirty components, theme and device switching, and a per-component token report, so someone who did not build the system can still find and use the right part of it.',
+  },
+  {
+    src: '/images/bibeltv/llm-safe-token-vocabulary.png',
+    alt: 'The resolved design token set grouped by tier — primitives, semantic, component, views — showing named colour ramps with their hex values',
+    caption:
+      'The closed vocabulary, grouped by tier. An assistant enumerates from this instead of recalling a plausible name. That is the difference between choosing and inventing.',
+  },
+  {
+    src: '/images/bibeltv/llm-safe-frost-parity.png',
+    alt: 'Two identical donation cards over a striped backdrop: the upper card frosted so the stripes blur behind it, the lower card plain so the stripes show through sharply',
+    caption:
+      'Same component, two states. The web mirror had only ever rendered the lower one, the app fallback, because the frosted variant the app actually ships was never ported.',
+  },
+].filter((f) => existsSync(`public${f.src}`));
+---
+
+<Layout
+  title="An LLM-Safe Design System"
+  description="Tokens have always been a guideline. This is what changed when the build started enforcing them, and when the people prototyping were not designers."
+  showBackButton={true}
+>
+  <section class="case-study-hero">
+    <div class="container">
+      <p class="case-study-meta">Design Systems &amp; Governance</p>
+      <h1>An LLM-Safe Design System</h1>
+      <p class="hero-tagline">Bibel TV</p>
+      <p class="hero-description">
+        Tokens have always been a guideline. This is what changed when the build
+        started enforcing them, and when the people prototyping were not
+        designers.
+      </p>
+    </div>
+  </section>
+
+  <SummaryBand
+    figures={[
+      { value: "32", label: "Off-system values found in a library believed clean" },
+      { value: "6", label: "Checks, identical locally and in CI" },
+      { value: "8", label: "Token gaps the system reported on itself" }
+    ]}
+    meta="Head of Product Design · Bibel TV · design-led infrastructure"
+  />
+
+  <section class="case-study-content">
+    <div class="container content content--hanging">
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">The problem</h2>
+        <div class="cs-section__body">
+          <p>
+            Bibel TV has no in-house design team. That single fact determines the
+            shape of everything else.
+          </p>
+          <p>
+            There is no designer to ask when something is ambiguous. There is no
+            team maintaining a Figma library as the canonical reference. And most
+            consequentially, there is nobody whose job it is to catch drift in
+            review.
+          </p>
+          <p>
+            Every design system I have worked on has the same soft spot. The
+            tokens exist, the naming is thought through, the documentation is
+            written, and then enforcement is a person noticing. Tokens are a
+            convention held up by attention. When nobody is paid to pay that
+            attention, the convention is decorative.
+          </p>
+          <p>
+            So the direction was set before any of this tooling existed.
+            Storybook would become the source of truth rather than a Figma file:
+            one place where the components are real, runnable and inspectable,
+            with a prototyping layer on top. A new design language and thirty new
+            components were landing, and the people who needed to build with them
+            were product managers and engineers.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">What I had not accounted for</h2>
+        <div class="cs-section__body">
+          <p>
+            How fast that gets away from you once an AI assistant is in the loop.
+          </p>
+          <p>
+            Prototyping the Android redesign myself, I watched it confidently
+            reference tokens that did not exist, and quietly hardcode values
+            where a token did.
+          </p>
+
+          <p class="pull-statement">
+            Both mistakes compile. Both render.
+          </p>
+
+          <p>
+            A hallucinated token name falls back silently and looks approximately
+            right. A hardcoded value looks <em>exactly</em> right, and stays
+            invisible until someone changes the palette and one card does not
+            move. I know that system as well as anyone does, and I still could
+            not catch either of them by reading.
+          </p>
+          <p>
+            That is what turned a documentation problem into an enforcement
+            problem. The docs were already good. What was missing was a mechanism
+            that does not depend on anyone reading them. In an organisation
+            without a design team, the build is the only reviewer that always
+            shows up.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">Three layers, doing three different jobs</h2>
+        <div class="cs-section__body">
+          <p>
+            <strong>The build refuses off-system work.</strong> Six checks, one
+            command, identical locally and in CI. Two are new and cover exactly
+            the mistakes I had made myself. One rejects a reference to a token
+            that does not exist. The other rejects a colour, size or duration
+            written straight into a component. The rest guard the palette against
+            acquiring a second grey, and protect the token names our
+            implementation partner builds against.
+          </p>
+          <p>
+            <strong>The vocabulary is handed over, not remembered.</strong> An
+            assistant asked to recall a token name will produce something
+            plausible. Asked to choose from an enumerated list of the valid ones,
+            it cannot invent. The same closed vocabulary, the system's
+            conventions, and the checks themselves are exposed as tools it can
+            call, so the compliant path is also the fastest one.
+          </p>
+          <p>
+            <strong>Storybook is where the system becomes visible.</strong> You
+            cannot prototype with components you have never seen. Storybook is
+            the shared surface: every component, every state, in light and dark,
+            at phone through TV size, so a product person can find the right
+            thing before writing anything.
+          </p>
+          <p>
+            The three layers compound. Storybook makes the system legible, the
+            vocabulary makes the right answer reachable, and the build makes the
+            wrong answer visible before it ships. Any one of them alone would
+            have been a partial fix.
+          </p>
+
+          {figures.length > 0 && (
+            <div class="cs-figures">
+              {figures.slice(0, 2).map((f) => (
+                <figure class="cs-figure">
+                  <img src={f.src} alt={f.alt} loading="lazy" />
+                  <figcaption>{f.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">Twelve pixels is not twelve pixels</h2>
+        <div class="cs-section__body">
+          <p>
+            A check that only says <em>no</em> is useless to a product manager.
+            So failures name the token to use instead. The first version of that
+            was quietly dangerous.
+          </p>
+          <p>
+            It was looking at a font size of 12px. It found a token holding
+            exactly 12px and offered it as the fix. That token was a
+            <strong> spacing</strong> value. Taking the suggestion would have
+            compiled, rendered pixel-identical, passed review, and welded the
+            size of our body text to the gap between two cards. Months later,
+            tightening a layout would have changed the typography. I had written
+            that suggestion engine an hour earlier, and I had written it to be
+            helpful.
+          </p>
+          <p>
+            Two numbers matching is a coincidence, not a relationship.
+            Suggestions are now constrained to the property's own family, and a
+            component's token is only ever offered to that component. Where
+            nothing qualifies, the check says <strong>nothing at all</strong>.
+          </p>
+          <p>
+            That silence is the part I would defend hardest. It means the system
+            genuinely has no name for this decision yet, which is a finding worth
+            surfacing rather than a hole worth filling with the nearest number
+            that fits. For someone who does not know the catalogue, a confidently
+            wrong suggestion is worse than no suggestion.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">Catching what reading cannot</h2>
+        <div class="cs-section__body">
+          <p>
+            The same audit compared every web component against the native app it
+            mirrors. One of the things it surfaced: a card's fallback gradient
+            was aliased one layer too deep in light mode, so where the app
+            rendered a soft ramp, the web rendered flat white. Nobody had spotted
+            it, because there was nothing visibly <em>broken</em> to spot. Just a
+            gradient quietly not being a gradient.
+          </p>
+          <p>
+            That is the class of defect this work exists for. It is not a crash
+            and it is not ugly. It is the system slowly ceasing to mean what it
+            says.
+          </p>
+
+          {figures.length > 2 && (
+            <div class="cs-figures">
+              <figure class="cs-figure">
+                <img src={figures[2].src} alt={figures[2].alt} loading="lazy" />
+                <figcaption>{figures[2].caption}</figcaption>
+              </figure>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">The escape hatch became the roadmap</h2>
+        <div class="cs-section__body">
+          <p>
+            Some values genuinely are not design decisions. A black stop inside a
+            mask gradient is alpha arithmetic. An icon font's optical size is not
+            a brand token. A rule with no exit gets worked around, so there is a
+            documented one: annotate the line with a reason. Every annotation is
+            recorded, and adding one fails the build until that record is
+            updated, so an exception can never be taken quietly.
+          </p>
+          <p>
+            Then the register started telling me something I had not designed it
+            to say. Of the sixteen exceptions in the system, <strong>eight say
+            some version of "a token should exist here and does not."</strong>
+            Written by whoever hit the friction, at the moment they hit it, with
+            the reason attached.
+          </p>
+          <p>
+            That is a better backlog than I would have written from a workshop.
+            It is in priority order by definition: the gaps people actually walk
+            into, ranked by how often they walk into them.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">Trusting the tooling, carefully</h2>
+        <div class="cs-section__body">
+          <p>
+            All thirty components were audited against the native source. Then
+            every substantive finding was handed to an independent reviewer whose
+            instruction was to <em>refute</em> it.
+          </p>
+          <p>
+            <strong>Eleven of forty-six did not survive.</strong> Roughly a
+            quarter would have become confident, well-argued, wrong changes to a
+            client's design system. The same scepticism that motivated the checks
+            had to be applied to the tooling that found the problems. Otherwise I
+            would have automated the production of plausible mistakes instead of
+            the prevention of them.
+          </p>
+          <p>
+            The findings worth the whole exercise were the ones that changed the
+            question. More than once, something that looked like a missing token
+            name turned out to be a genuine difference in how two platforms
+            behaved. That needs a design decision, not a rename.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">What changed</h2>
+        <div class="cs-section__body">
+          <p>
+            Enforcement moved from a written convention checked by whoever
+            noticed in review, to six checks that fail the build before
+            off-system work lands. Prototyping moved from something only people
+            who already knew the token catalogue could do, to something anyone
+            can attempt: describe a change and get an on-system result, or a
+            named and actionable refusal.
+          </p>
+          <p>
+            Hidden drift moved from invisible to counted. A library believed
+            clean after two cleanup passes gave up thirty-two off-system values,
+            including a category nobody had thought to look at. And token gaps
+            moved from being discovered in review, or never, to the system
+            reporting its own.
+          </p>
+          <p>
+            Someone who has never opened the token file can now describe what
+            they want, <em>make the cards rounder</em>, and get either a change
+            that uses the real system or a refusal that names what is missing.
+            Never a silent off-system change that looks fine in a screenshot and
+            fails six months later when the palette moves.
+          </p>
+          <p>
+            Because the enforcement sits on the token source rather than on one
+            platform's components, the same guarantee reaches Android, iOS, web
+            and Figma. That includes the implementation partner building against
+            those names, who now gets a breaking change announced instead of
+            discovered.
+          </p>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2 class="cs-section__heading">What I took from it</h2>
+        <div class="cs-section__body">
+          <p>
+            I used to think design authority lived in the Figma library and the
+            review. It lives in whatever the build refuses. Everything else is
+            advice.
+          </p>
+          <p class="closing-note">
+            The strongest version of this makes off-system code impossible to
+            express at all: a constrained set of primitives where the wrong thing
+            simply will not compile. I scoped it and declined it, for now. It is
+            a large migration whose cost is certain and whose benefit is still
+            unmeasured, checks that fail the build may prove sufficient, and
+            every constraint has a cost at the edges while this system is still
+            gaining tokens weekly. The exception register is the instrument that
+            decides it. If it grows, the stricter version earns its migration. If
+            it stays small and every entry stays honest, it does not.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Pull statement — Gambarino italic, breaking the measure deliberately
+     (case-study design spec §2). Hanging opening quote, per §5. */
+  .pull-statement {
+    font-family: "Gambarino", Georgia, serif;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1.28;
+    margin: 3.5rem 0 3.5rem -1.5rem;
+    padding: 0;
+    border: none;
+    color: var(--color-text);
+    max-width: 22ch;
+  }
+
+  /* The literal glyph, not an escape. */
+  .pull-statement::before {
+    content: "“";
+    margin-left: -0.5em;
+  }
+
+  /* Closing note — the honest limitation, indented and italic per §3. */
+  .closing-note {
+    font-style: italic;
+    margin-left: 2rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 760px) {
+    .pull-statement {
+      font-size: 1.5rem;
+      margin-left: 0;
+      max-width: none;
+    }
+    .pull-statement::before {
+      margin-left: 0;
+    }
+    .closing-note {
+      margin-left: 0;
+    }
+  }
+</style>
