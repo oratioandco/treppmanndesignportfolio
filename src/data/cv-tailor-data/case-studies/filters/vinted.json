@@ -1,0 +1,63 @@
+{
+  "slug": "vinted",
+  "aliases": [
+    "vinted-director-product-design-frontend"
+  ],
+  "title": "Design Infrastructure That Holds Without Headcount",
+  "subtitle": "Design systems as APIs, and a build that refuses off-system work",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-vinted.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director of Product Design role"
+  },
+  "bio": {
+    "short": "I build the machinery that keeps UI quality from depending on whether anyone is watching. A design system that ships as an API, and a build that refuses off-system work — which found 32 off-system values in a library everyone believed was clean.",
+    "long": "I build the machinery that keeps UI quality from depending on whether anyone is watching.\n\nBibel TV has no in-house design team. That single fact determined everything else. There is no designer to ask when something is ambiguous, and nobody whose job it is to catch drift in review. Every design system I have worked on has the same soft spot: the tokens exist, the naming is thought through, the documentation is written, and then enforcement is a person noticing. When nobody is paid to pay that attention, the convention is decorative.\n\nThen an AI assistant entered the loop. Prototyping the Android redesign myself, I watched it confidently reference tokens that did not exist, and quietly hardcode values where a token did. Both mistakes compile. Both render. A hallucinated token name falls back silently and looks approximately right; a hardcoded value looks exactly right and stays invisible until someone changes the palette and one card does not move. I know that system as well as anyone does and I could not catch either by reading.\n\nSo the fix was infrastructure rather than vigilance. Six checks, one command, identical locally and in CI. The token vocabulary handed to the assistant as an enumerated list rather than recalled, so it cannot invent. Storybook as the shared surface, because you cannot prototype with components you have never seen. Run over a library believed clean after two cleanup passes, it surfaced 32 off-system values. The system now reports its own gaps: eight so far, in the order people actually hit them.\n\nAlongside it, the design system ships as an API rather than a Figma file. DTCG tokens in three tiers, built with Style Dictionary, synced live to Figma and Android, so one commit propagates everywhere. And the colour engine computes a theme from artwork in OKLCH, with WCAG contrast validated inside the algorithm so no theme can ship failing. I built all of it without a platform team.\n\nOn leading more than one thing at once: from July to October 2023 at Ninox I held Product Design and Product together. Nine people across four disciplines — product design, UX writing, product management and data science — while on the Senior Leadership Team.\n\nI have not run design for a company of Vinted's size. What I have done is build the infrastructure that makes quality structural rather than supervised, in the organisation least equipped to supervise it, at the moment AI assistants started writing the frontend.",
+    "context": {
+      "company": "Vinted",
+      "role": "Director of Product Design, Frontend Technologies",
+      "emphasis": "Design infrastructure and frontend technologies first. AI-enablement in frontend, which the posting lists as a bonus and is his central credential. Accessibility as delivered under regulation. Leadership shown as two functions held at once rather than as headcount.",
+      "avoid": "Rules to read before drafting, named rather than restated: BT-002 (ChurchDesk mobile stack), BT-006 (Datameer design system), BT-007 (ChurchDesk module suite), BT-011 (copilot safety claims), SAL-001 (compensation, including the band the posting publishes). Also: he has never managed or coached a manager, and the Ninox design lead was not one — confirmed 2026-08-13. Never print an exact design/UX-writing split at Ninox; he said 'half'. No production React written or owned by him."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}

@@ -16,8 +16,8 @@
   "role": "Head of Product Design",
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
   "duration": "2026",
-  "status": "review",
-  "last_updated": "2026-07-29",
+  "status": "published",
+  "last_updated": "2026-08-13",
   "hero_image": {
     "src": "/images/covers/generated/bibeltv-llm-safe-design-system.svg",
     "alt": "An LLM-safe design system for people who didn't build it: abstract resolution-field cover"
@@ -156,7 +156,8 @@
     "read_time_minutes": 8,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "ProtoBible spec 095 (LLM-safe token prototyping): implementation, CI gates, MCP/plugin surface, and the 30-component Android parity audit, July 2026. Inspired in part by Polar's Orbit write-up.",
-    "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication."
+    "source": "ProtoBible spec 095 (LLM-safe token prototyping): implementation, CI gates, MCP/plugin surface, and the 30-component Android parity audit, July 2026. Inspired in part by Polar's Orbit write-up. + flagship page published 2026-08-13",
+    "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication.",
+    "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   }
 }
