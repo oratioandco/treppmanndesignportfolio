@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-images.mjs && astro build && node scripts/check-public-output.mjs",
+    "build": "node scripts/check-images.mjs && astro build && node scripts/check-public-output.mjs && node scripts/check-freshness.mjs",
     "preview": "astro preview",
     "covers": "node scripts/generate-covers.mjs",
     "astro": "astro",
     "sync:cv-data": "node scripts/sync-cv-data.mjs",
-    "check:public": "node scripts/check-public-output.mjs"
+    "check:public": "node scripts/check-public-output.mjs",
+    "check:freshness": "node scripts/check-freshness.mjs"
   },
   "dependencies": {
     "astro": "^5.16.6"
