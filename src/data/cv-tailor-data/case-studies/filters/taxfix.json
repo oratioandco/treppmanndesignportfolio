@@ -4,7 +4,7 @@
     "taxfix-product-design-director-ai-tax-filing"
   ],
   "title": "Selected Work",
-  "subtitle": "AI shipped into production, the research behind it, and the judgement calls that kept it safe to ship",
+  "subtitle": "AI shipped into production, the research behind it, and the judgment calls that kept it safe to ship",
   "theme": "default",
   "show_all_label": "Show more work",
   "cv": {
@@ -18,8 +18,7 @@
     "context": {
       "company": "Taxfix Group — consumer tax filing across Germany, Spain and the UK, over 400 professionals. Moving from pure self-filing to an assisted service that connects people to human tax advisors.",
       "role": "Product Design Director, AI Tax Filing. Leadership, not IC. Manages senior Product Designers, UX Researchers and Content Designers, with performance ownership, reporting into product leadership.",
-      "emphasis": "Lead with AI shipped into production and the research practice underneath it — Claude over thousands of forum posts at Ninox, feedback and ticket mining at ChurchDesk, interview transcription and analysis at Bibel TV, and the threshold that governs when AI analysis is used at all. Then the judgement calls that made the AI safe to ship: manual operation so a person reads every message first, the send decision staying human, quality agreed with users before the prompt was tuned.",
-      "avoid": "Facts to hold exactly. Lead with consumer and AI work rather than B2B, and claim no consumer depth beyond what is documented: Spreadshirt at hundreds of thousands of consumers in 2014-16 and Bibel TV at under 1M users. Bibel TV has no direct reports and no other designers, so imply no current people management; leadership evidence is Ninox and Datameer. The publishable form of the Ninox collaboration story is the systems change, never the person — identify nobody. GDPR and church data-protection law are not tax or financial regulation and must not stand in for them. State no compensation figure."
+      "emphasis": "Lead with AI shipped into production and the research practice underneath it — Claude over thousands of forum posts at Ninox, feedback and ticket mining at ChurchDesk, interview transcription and analysis at Bibel TV, and the threshold that governs when AI analysis is used at all. Then the judgment calls that made the AI safe to ship: manual operation so a person reads every message first, the send decision staying human, quality agreed with users before the prompt was tuned."
     }
   },
   "case_studies": [
