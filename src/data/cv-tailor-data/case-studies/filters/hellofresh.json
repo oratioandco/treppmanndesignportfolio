@@ -1,0 +1,62 @@
+{
+  "slug": "hellofresh",
+  "aliases": [
+    "hellofresh-director-ux-design"
+  ],
+  "title": "The Last Stretch Is a Design-Technology Problem",
+  "subtitle": "What it takes to hold consumer craft when assistants are writing the first draft",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-hellofresh.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director UX Design role"
+  },
+  "bio": {
+    "short": "I lead design functions, and the last year went into the layer underneath the craft. UI quality across four platforms, held by a build that refuses work which has left the system.",
+    "long": "I lead design functions. The last year went into the layer underneath the craft rather than the craft itself, on purpose.\n\nAt Bibel TV I own UI quality across iOS, Android, web and connected TV. I prototype in real code against real production APIs rather than in specs, and engineering ships from that code. Around 70% of it reaches production directly or with minor modification. Iteration moved from days to hours. Engineering there is an external agency, so that workflow crosses a company boundary and holds anyway.\n\nHere is the thing I would want to argue about. The hard part of a consumer experience has always been the last stretch, and the last stretch has quietly changed hands. The first draft is written by an assistant now, and what it produces compiles, renders, and looks fine. It is also quietly off-system.\n\nSo I built the layer that refuses it. Six checks run identically on a laptop and in CI. Two were written against mistakes I watched an AI assistant make: a token reference that does not resolve, and a colour hardcoded into a component. I know that system as well as anyone and could not catch either by reading. Run over a library already cleaned twice, they identified 32 values that had drifted.\n\nUnderneath sits the token architecture. Three tiers, one commit reaching every platform. Alongside it, a colour engine where k-means clustering runs in OKLCH rather than RGB, so artwork-driven themes carry even perceptual weight. WCAG contrast is validated inside the algorithm rather than checked at the end.\n\nBefore that: design leadership at Ninox, with product held alongside it for four months. Five years leading design at Datameer, for a platform used inside regulated banks. One product delivered across six countries under GDPR and church data-protection law. And ten years reviewing designers' work as a mentor, alongside all of it.",
+    "context": {
+      "company": "HelloFresh",
+      "role": "Director UX Design",
+      "emphasis": "Design technology and AI-native practice first, because those are the posting's two most specific bullets and his most differentiated ground. The posting's own last-stretch framing is the hook, and he can answer it with an artifact rather than an opinion. Then craft, then team leadership and critique, then multi-market delivery. The posting explicitly asks for a point of view on scaling AI responsibly. A CV carries evidence, not a point of view, which is what the cover letter is for."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 4
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}

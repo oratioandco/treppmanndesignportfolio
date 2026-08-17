@@ -1,0 +1,62 @@
+{
+  "slug": "almedia",
+  "aliases": [
+    "almedia-head-of-product-design"
+  ],
+  "title": "A Design Leader Who Never Stopped Building",
+  "subtitle": "Prototypes that run against real APIs, a quality bar the build enforces, and research that has changed a product's direction",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-almedia.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of Product Design role"
+  },
+  "bio": {
+    "short": "I lead design functions and I still build. Prototypes in real code against real production APIs, and engineering ships from that code. The quality bar lives in the build rather than in the review.",
+    "long": "I lead design functions and I still build.\n\nAt Ninox I ran design and, for four months, product as well. Nine people across design, UX writing, product management and data science. I hired two, promoted two, and coached a design lead through a relationship with engineering that was going badly.\n\nThe last year has been deliberately hands-on. At Bibel TV I own UI quality across iOS, Android, web and connected TV. I prototype in real code against real production APIs rather than in specs, and engineering ships from that code. Around 70% of it reaches production directly or with minor modification. Iteration went from days to hours.\n\nThe part I would bring to a consumer product is where I put the quality bar. Not in review — in the build. Six checks run identically on a laptop and in CI, and they refuse work that has left the system. Two were written against mistakes I watched an AI assistant make: a token reference that does not resolve, and a colour hardcoded into a component. Both compile and both render. Over a library already cleaned twice, they identified 32 values that had drifted.\n\nThe colour engine is the craft half of the same instinct. K-means clustering in OKLCH rather than RGB, so artwork-driven themes carry even perceptual weight across a grid. WCAG contrast validated inside the algorithm, so nothing ships failing it.\n\nOn evidence: my measured outcomes are workflow efficiency rather than consumer conversion. At ChurchDesk a booking capability cut coordination time by 70% with 90% acceptance. What I have on the consumer side is craft, systems, and one occasion where research changed a company's direction. At Spreadshirt leadership wanted a 60-second automated journey. Interviews with shop owners found that the design step was the part they valued most, and the strategy moved.",
+    "context": {
+      "company": "Almedia",
+      "role": "Head of Product Design",
+      "emphasis": "Hands-on first, because the posting says 'highly hands-on' in its opening line and 'ready to dive into the details' in its closing one. Then craft as something implemented rather than asserted, then coaching a team, then the data-driven habit. The consumer-metric gap is met head on rather than dressed up. Spreadshirt is the honest consumer evidence and it is a strong one."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "ninox-org-building",
+      "visibility": "featured",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}
