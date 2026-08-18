@@ -23,24 +23,14 @@
   },
   "case_studies": [
     {
-      "id": "ninox-org-building",
+      "id": "churchdesk-booking-system",
       "visibility": "featured",
       "order": 1
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "ninox-org-building",
       "visibility": "featured",
       "order": 2
-    },
-    {
-      "id": "bibeltv-color-api",
-      "visibility": "featured",
-      "order": 3
-    },
-    {
-      "id": "churchdesk-booking-system",
-      "visibility": "featured",
-      "order": 4
     },
     {
       "id": "bibeltv-agentic-engineering",
@@ -56,6 +46,14 @@
       "id": "datameer-data-dense-analytics",
       "visibility": "browseable",
       "order": 7
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable"
     }
   ]
 }

@@ -26,21 +26,9 @@
       "order": 1
     },
     {
-      "id": "bibeltv-color-api",
-      "visibility": "featured",
-      "order": 2,
-      "format_override": "in-depth"
-    },
-    {
-      "id": "bibeltv-support-agent",
-      "visibility": "featured",
-      "order": 3,
-      "format_override": "in-depth"
-    },
-    {
       "id": "bibeltv-ai-fundraising",
       "visibility": "featured",
-      "order": 4,
+      "order": 2,
       "format_override": "in-depth"
     },
     {
@@ -64,6 +52,16 @@
       "id": "datameer-data-dense-analytics",
       "visibility": "browseable",
       "order": 8
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "format_override": "in-depth"
     }
   ]
 }

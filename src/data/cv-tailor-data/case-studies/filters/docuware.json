@@ -29,15 +29,9 @@
       "format_override": "in-depth"
     },
     {
-      "id": "ninox-ai-onboarding",
-      "visibility": "featured",
-      "order": 2,
-      "format_override": "in-depth"
-    },
-    {
       "id": "churchdesk-booking-system",
       "visibility": "featured",
-      "order": 3,
+      "order": 2,
       "format_override": "in-depth"
     },
     {
@@ -49,6 +43,11 @@
       "id": "ninox-org-building",
       "visibility": "browseable",
       "order": 5
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "format_override": "in-depth"
     }
   ]
 }

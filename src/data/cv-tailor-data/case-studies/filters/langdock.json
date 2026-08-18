@@ -23,24 +23,14 @@
   },
   "case_studies": [
     {
-      "id": "bibeltv-color-api",
+      "id": "bibeltv-agentic-engineering",
       "visibility": "featured",
       "order": 1
     },
     {
-      "id": "bibeltv-agentic-engineering",
+      "id": "ninox-ai-onboarding",
       "visibility": "featured",
       "order": 2
-    },
-    {
-      "id": "bibeltv-support-agent",
-      "visibility": "featured",
-      "order": 3
-    },
-    {
-      "id": "datameer-data-dense-analytics",
-      "visibility": "featured",
-      "order": 4
     },
     {
       "id": "bibeltv-design-system-api",
@@ -48,14 +38,21 @@
       "order": 5
     },
     {
-      "id": "ninox-ai-onboarding",
-      "visibility": "browseable",
-      "order": 6
-    },
-    {
       "id": "churchdesk-booking-system",
       "visibility": "browseable",
       "order": 7
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable"
     }
   ]
 }

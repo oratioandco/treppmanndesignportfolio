@@ -29,19 +29,9 @@
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-agentic-engineering",
+      "id": "churchdesk-booking-system",
       "visibility": "featured",
       "order": 2
-    },
-    {
-      "id": "bibeltv-color-api",
-      "visibility": "featured",
-      "order": 3
-    },
-    {
-      "id": "bibeltv-design-system-api",
-      "visibility": "featured",
-      "order": 4
     },
     {
       "id": "ninox-org-building",
@@ -49,14 +39,21 @@
       "order": 5
     },
     {
-      "id": "churchdesk-booking-system",
-      "visibility": "browseable",
-      "order": 6
-    },
-    {
       "id": "spreadshirt-user-research-strategy",
       "visibility": "browseable",
       "order": 7
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable"
     }
   ]
 }

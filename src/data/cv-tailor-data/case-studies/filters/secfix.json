@@ -29,20 +29,9 @@
       "format_override": "in-depth"
     },
     {
-      "id": "datameer-data-dense-analytics",
-      "visibility": "featured",
-      "order": 2,
-      "format_override": "in-depth"
-    },
-    {
       "id": "ninox-ai-onboarding",
       "visibility": "featured",
-      "order": 3
-    },
-    {
-      "id": "bibeltv-llm-safe-design-system",
-      "visibility": "featured",
-      "order": 4
+      "order": 2
     },
     {
       "id": "bibeltv-agentic-engineering",
@@ -58,6 +47,15 @@
       "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 7
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable"
     }
   ]
 }
