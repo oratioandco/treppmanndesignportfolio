@@ -119,11 +119,6 @@
           "after": "Anyone can describe a change and get an on-system result or a named, actionable refusal"
         },
         {
-          "label": "Hidden drift",
-          "before": "A library believed clean after two cleanup passes",
-          "after": "32 off-system values found and closed, including a category nobody had thought to look at"
-        },
-        {
           "label": "Token gaps",
           "before": "Discovered in review, or never",
           "after": "The system reports its own gaps: 8 so far, in the order people hit them"
@@ -143,7 +138,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Made a new design system self-serve for an organisation with no design team: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift can't accumulate unwatched. Found 32 off-system values in a library believed clean.",
+      "summary": "Made a new design system self-serve for an organisation with no design team: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift can't accumulate unwatched.",
       "angle": "Design governance as infrastructure. With no designers to review, the build has to be the reviewer, which is also what makes the system safe to hand to product people and AI assistants."
     }
   },
