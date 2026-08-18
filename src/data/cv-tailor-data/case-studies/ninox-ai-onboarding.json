@@ -155,5 +155,6 @@
     "confidential": false,
     "confidentiality_note": "Freelance consultation post-employment, in stealth phase with the CEO and technical co-founder. No confidential company data; platform is launching in public beta 2026.",
     "source": "data/experiences/ninox-head-of-product-design.md + user corrections 2026-05-24 (stealth-with-founders context; SME audience specifics; two UX constraints, long-chat-outputs infeasible + trial-users-won't-spec, that drove split-screen direct manipulation)"
-  }
+  },
+  "generation": 3
 }

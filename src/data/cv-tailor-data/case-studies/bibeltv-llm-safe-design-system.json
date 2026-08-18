@@ -159,5 +159,6 @@
     "source": "ProtoBible spec 095 (LLM-safe token prototyping): implementation, CI gates, MCP/plugin surface, and the 30-component Android parity audit, July 2026. Inspired in part by Polar's Orbit write-up. + flagship page published 2026-08-13",
     "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
-  }
+  },
+  "generation": 3
 }

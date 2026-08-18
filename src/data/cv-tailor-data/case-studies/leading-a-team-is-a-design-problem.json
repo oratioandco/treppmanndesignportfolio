@@ -43,7 +43,14 @@
     {
       "type": "narrative",
       "headline": "Where collaboration kept breaking down",
-      "content": "The work of one senior engineer was not landing with the rest of the team. Meetings were tense. Points got cut off before they were finished. Over time the team learned to route around the collaboration rather than work through it.\n\nIt did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room.\n\nI tried the conventional moves first. Feedback about how contributions were landing. Smaller meetings. Clearer expectations. None of it changed anything, and it should not have. Every one of those moves put the cost of the problem on one person and left the process that produced it completely untouched. That was my mistake, and I made it for longer than I would like.\n\nSo I stopped assessing a person and started recording conditions. When did this collaboration fail, and when did it work? The pattern was consistent. It failed in fast group discussion, on questions asked cold, and under time pressure. It worked one to one, in writing, and whenever the material had gone out in advance. Same person, same capability, opposite outcomes. The variable was the setting, not the individual.\n\nOur collaboration ran on a single default: fast, verbal, loudest voice first. Nobody had chosen that default on purpose, which is exactly why nobody was accountable for what it filtered out."
+      "content": "The work of one senior engineer was not landing with the rest of the team. Meetings were tense. Points got cut off before they were finished. Over time the team learned to route around the collaboration rather than work through it.\n\nIt did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room.\n\nI tried the conventional moves first. Feedback about how contributions were landing. Smaller meetings. Clearer expectations. None of it changed anything, and it should not have. Every one of those moves put the cost of the problem on one person and left the process that produced it completely untouched. That was my mistake, and I made it for longer than I would like.\n\nSo I stopped assessing a person and started recording conditions. When did this collaboration fail, and when did it work? The pattern was consistent. It failed in fast group discussion, on questions asked cold, and under time pressure. It worked one to one, in writing, and whenever the material had gone out in advance. Same person, same capability, opposite outcomes. The variable was the setting, not the individual.\n\nOur collaboration ran on a single default: fast, verbal, loudest voice first. Nobody had chosen that default on purpose, which is exactly why nobody was accountable for what it filtered out.",
+      "images": [
+        {
+          "src": "/images/diagrams/collaboration-before.svg",
+          "alt": "Two-part diagram. Above, the order input arrived in: fastest to speak, loudest to hold the floor, whoever remembered it after, then the decision — with no agenda, no prep time and nothing written down. Below, three boxes: the discussion, a senior engineer, the decision. The link into the engineer is marked cut off and the link out is marked rarely arrived, and a dashed arc runs beneath from the discussion straight to the decision, bypassing them.",
+          "caption": "The pattern I was actually looking at, once I stopped looking at the person."
+        }
+      ]
     },
     {
       "type": "process",
@@ -68,6 +75,13 @@
         {
           "label": "Coaching the design lead",
           "description": "I coached my design lead through the same shift: how to set up the conditions for a strained engineering relationship and work through it directly, rather than routing around it."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/diagrams/collaboration-conditions.svg",
+          "alt": "Five changed conditions across a band — agendas shared early, room to prepare, turn-taking on purpose, decisions in writing, coaching the design lead — and beneath each, the property it puts back: thinking time, processing before rather than under pressure, sequence instead of volume, one record instead of five recollections, and the same shift one level down.",
+          "caption": "Five changes to how the team worked. None of them about anyone in particular."
         }
       ]
     },
@@ -140,5 +154,6 @@
   "hero_image": {
     "src": "/images/covers/generated/leading-a-team-is-a-design-problem.svg",
     "alt": "Leading a team is a design problem, abstract resolution-field cover"
-  }
+  },
+  "generation": 3
 }

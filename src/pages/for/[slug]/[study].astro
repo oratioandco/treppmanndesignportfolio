@@ -143,6 +143,17 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
         });
         html += '</ol>';
       }
+      // A process section could carry `images` and they rendered nowhere: only
+      // per-step images were drawn, so a diagram attached to the section itself
+      // was a reference the reader never saw. Silent, and worse than a broken
+      // path, because a missing file at least fails a check. Placed after the
+      // steps, where a diagram summarising them belongs.
+      if (section.images) {
+        section.images.forEach((image) => {
+          figCounter.n += 1;
+          html += figure(image, figCounter.n);
+        });
+      }
       return html;
     }
 
@@ -804,6 +815,16 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     border-radius: 2px;
     border: 1px solid var(--color-rule);
     background: var(--color-surface);
+  }
+
+  /* Diagrams break out of the body column; screenshots stay inset.
+     Spec §3 asks for alternating full-bleed and inset imagery, and this is the
+     half that earns it: a wide diagram scaled into the 36rem measure renders
+     its labels at roughly half size, which is the 2026-07 review's §4.2
+     finding — "the images are present and functionally doing nothing".
+     Screenshots are unaffected: they are crops, and inset is right for them. */
+  .cs-figure img[src*="/images/diagrams/"] {
+    grid-column: 1 / -1;
   }
 
   @media (max-width: 50rem) {
