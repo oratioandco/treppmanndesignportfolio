@@ -36,7 +36,7 @@
     {
       "type": "narrative",
       "headline": "The Traditional Gap",
-      "content": "Most design workflows follow this pattern:\n\n1. Designer creates mockups in Figma\n2. Designer writes specs (pixel-perfect measurements, interaction states)\n3. Engineering team reads specs, estimates time\n4. Engineering rebuilds what's in the mockup\n5. QA tests, finds gaps (interactions not fully specified)\n6. Designer and engineer collaborate to close gaps\n7. Final code ships\n\nThis process has built-in delay and ambiguity. Even with the best specs, engineering has to make hundreds of micro-decisions about behavior that specs don't capture."
+      "content": "Most design workflows follow this pattern: 1. Designer creates mockups in Figma\n2. Designer writes specs (pixel-perfect measurements, interaction states)\n3. Engineering team reads specs, estimates time\n4. Engineering rebuilds what's in the mockup\n5. QA tests, finds gaps (interactions not fully specified)\n6. Designer and engineer collaborate to close gaps\n7. Final code ships This process has built-in delay and ambiguity. Even with the best specs, engineering has to make hundreds of micro-decisions about behavior that specs don't capture."
     },
     {
       "type": "callout",
@@ -46,7 +46,7 @@
     {
       "type": "narrative",
       "headline": "The AI-First Approach",
-      "content": "At Bibel TV, we're experimenting with a different workflow:\n\n### Step 1: Design first\n\nI design in Figma as usual, but think in interactions and behaviors, not static mockups.\n\n### Step 2: Prototype in code\n\nRather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack, Kotlin for Android, SwiftUI for iOS, React for web and connected TV.\n\n### Step 3: Engineer reviews and decides\n\nThe engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly?\n\nWhy this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated.\n\n### Step 4: Ship\n\nCode ships, user feedback guides iteration."
+      "content": "At Bibel TV, we're experimenting with a different workflow: ### Step 1: Design first I design in Figma as usual, but think in interactions and behaviors, not static mockups. ### Step 2: Prototype in code Rather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack, Kotlin for Android, SwiftUI for iOS, React for web and connected TV. ### Step 3: Engineer reviews and decides The engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly? Why this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated. ### Step 4: Ship Code ships, user feedback guides iteration."
     },
     {
       "type": "process",
@@ -82,12 +82,12 @@
     {
       "type": "narrative",
       "headline": "Real Example: New Mobile App Redesign",
-      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design:\n\n### The traditional approach\n\nDesign mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks.\n\n### Our approach\n\nDesign interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\", Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Engineering team ships ~70% of it as-is, rebuilds 30% for performance/architecture.\n\nResult: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured.\n\nThe win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
+      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design: ### The traditional approach Design mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks. ### Our approach Design interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\", Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Result: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured. The win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
     },
     {
       "type": "narrative",
       "headline": "Key Insights",
-      "content": "### AI doesn't replace design thinking\n\nThe prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time.\n\n### Engineering makes the call\n\nI don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality.\n\n### Interaction fidelity matters\n\nWhere AI-generated code shines is capturing interactions, animations, gestures, state transitions, that specs typically under-specify. Shipping these interactions directly is a win.\n\n### Platform-specific code still gets rebuilt\n\nThe React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine, the prototype still saved time and validated the interaction model."
+      "content": "### AI doesn't replace design thinking The prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time. ### Engineering makes the call I don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality. ### Interaction fidelity matters Where AI-generated code shines is capturing interactions, animations, gestures, state transitions, that specs typically under-specify. Shipping these interactions directly is a win. ### Platform-specific code still gets rebuilt The React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine, the prototype still saved time and validated the interaction model."
     },
     {
       "type": "outcome",
@@ -102,10 +102,6 @@
           "label": "Spec-to-Code Ambiguity",
           "before": "Typical: 30-50 back-and-forths during engineering",
           "after": "Typical: 5-10 clarifications (most questions answered by seeing working code)"
-        },
-        {
-          "label": "Prototype-to-Ship Rate",
-          "value": "~70% of AI-generated code ships directly or with minor modifications"
         },
         {
           "label": "Engineering Team Satisfaction",
@@ -124,7 +120,7 @@
     {
       "type": "reflection",
       "headline": "What I'm Learning",
-      "content": "Five years ago, I would've said \"designers don't code prototypes because spec communication is efficient.\" That was wrong. Specs are *lossy*. They can't capture all the micro-decisions a designer makes.\n\nWhat we're learning: AI-generated prototypes are efficient *and* high-fidelity. They preserve intent better than specs. They let engineering make informed decisions instead of guessing from drawings.\n\nThis might be the biggest shift in design-engineering collaboration since design systems."
+      "content": "Five years ago, I would've said \"designers don't code prototypes because spec communication is efficient.\" That was wrong. Specs are *lossy*. They can't capture all the micro-decisions a designer makes. What we're learning: AI-generated prototypes are efficient *and* high-fidelity. They preserve intent better than specs. They let engineering make informed decisions instead of guessing from drawings. This might be the biggest shift in design-engineering collaboration since design systems."
     },
     {
       "type": "key-takeaway",
@@ -134,7 +130,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes. Result: 2x faster design-to-prototype cycle, 70% of code ships directly.",
+      "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes.",
       "angle": "Collapsing the design-engineering loop with agentic code",
       "sections": [
         "hero",

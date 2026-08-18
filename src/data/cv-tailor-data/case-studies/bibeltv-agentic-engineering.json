@@ -36,12 +36,12 @@
     {
       "type": "narrative",
       "headline": "The handoff problem",
-      "content": "The standard process runs in sequence. A designer works in Figma, writes specs, redlines measurements and states. Engineering builds from the document. Design reviews the build, finds the gaps, and the two sides go back and forth for weeks.\n\nEvery handoff in that chain loses information. A spec can say a card should feel premium; it cannot say what that means in padding, contrast, and motion. And the code engineering writes from a spec has no connection to the thinking that produced the design."
+      "content": "The standard process runs in sequence. A designer works in Figma, writes specs, redlines measurements and states. Engineering builds from the document. Design reviews the build, finds the gaps, and the two sides go back and forth for weeks. Every handoff in that chain loses information. A spec can say a card should feel premium; it cannot say what that means in padding, contrast, and motion. And the code engineering writes from a spec has no connection to the thinking that produced the design."
     },
     {
       "type": "narrative",
       "headline": "What I do instead",
-      "content": "At Bibel TV I design the concept in Figma, layout, flow, hierarchy, and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata.\n\nEngineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
+      "content": "At Bibel TV I design the concept in Figma, layout, flow, hierarchy, and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata. Engineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
     },
     {
       "type": "process",
@@ -68,7 +68,7 @@
     {
       "type": "narrative",
       "headline": "A real example: the Android gradients",
-      "content": "I built the web prototype first, with gradients that looked good in the browser. Moving to Android, the gradient rendering raised real quality concerns, visible banding, and performance questions on lower-end devices.\n\nThe old way: file a ticket, explain the problem to engineering, wait for an assessment, maybe redesign. Instead, I iterated on the Android prototype in code, tested alternatives against real rendering, and found one that held up. Engineering got a working reference, not a problem report."
+      "content": "I built the web prototype first, with gradients that looked good in the browser. Moving to Android, the gradient rendering raised real quality concerns, visible banding, and performance questions on lower-end devices. The old way: file a ticket, explain the problem to engineering, wait for an assessment, maybe redesign. Instead, I iterated on the Android prototype in code, tested alternatives against real rendering, and found one that held up. Engineering got a working reference, not a problem report."
     },
     {
       "type": "outcome",
@@ -94,12 +94,12 @@
     {
       "type": "reflection",
       "headline": "What I took from it",
-      "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not.\n\nThis way of working asks for a design leader who is comfortable in code, not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
+      "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not. This way of working asks for a design leader who is comfortable in code, not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Closed the design-to-ship gap at Bibel TV by prototyping in real code with real APIs. Engineering builds on the prototype directly. Iteration dropped from days to hours.",
+      "summary": "Closed the design-to-ship gap at Bibel TV by prototyping in real code with real APIs. Engineering builds on the prototype directly.",
       "angle": "Design leadership through a faster design-engineering loop",
       "sections": [
         "hero",
