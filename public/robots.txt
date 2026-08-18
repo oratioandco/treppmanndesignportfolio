@@ -2,4 +2,16 @@ User-agent: *
 Disallow: /for/
 Disallow: /cv/
 
+# The tailored CVs. Each filename names the company it was written for, so an
+# indexed listing of this directory is a list of everywhere he has applied.
+# A PDF cannot carry a noindex meta tag, and GitHub Pages does not serve
+# X-Robots-Tag (public/_headers is a Netlify/Cloudflare convention and is inert
+# here), so robots.txt is the only control available for them.
+Disallow: /documents/
+
+# NOT disallowed on purpose: /work/. It carries a noindex meta tag instead.
+# Disallowing it would stop the recrawl that lets Google see that tag, and
+# anything already indexed would simply stay. Crawlable + noindex is what
+# actually removes a page. Disallow can follow once it is gone from search.
+
 Sitemap: https://treppmann.design/sitemap.xml
