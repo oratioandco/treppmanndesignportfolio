@@ -23,12 +23,12 @@
   },
   "case_studies": [
     {
-      "id": "bibeltv-agentic-engineering",
+      "id": "bibeltv-llm-safe-design-system",
       "visibility": "featured",
       "order": 1
     },
     {
-      "id": "ninox-ai-onboarding",
+      "id": "bibeltv-color-api",
       "visibility": "featured",
       "order": 2
     },
@@ -43,7 +43,11 @@
       "order": 7
     },
     {
-      "id": "bibeltv-color-api",
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable"
+    },
+    {
+      "id": "ninox-ai-onboarding",
       "visibility": "browseable"
     },
     {
