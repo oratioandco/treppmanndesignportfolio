@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from 'node:fs';
 // @ts-check
 import { defineConfig } from "astro/config";
 
@@ -14,15 +15,26 @@ const NEW_STUDY_ID = "leading-a-team-is-a-design-problem";
 
 // The tailored-audience routes are generated per filter, so the study moving
 // broke one URL per filter under each of /work/ and /for/.
-const TAILORED_FILTERS = [
-  "deliveryhero",
-  "gitlab",
-  "jupus",
-  "kleinanzeigen",
-  "liveeo",
-  "mobile-de",
-  "n8n",
-];
+// Read off disk, not hand-listed. The hand-listed version named seven filters
+// and went stale: by 2026-08-18 seventeen filters referenced the old study, so
+// twelve of those URLs would have 404'd instead of redirecting — and four pages
+// were still publishing the un-anonymised study outright, which is the failure
+// this redirect was created to finish cleaning up. A list that has to be
+// remembered is a list that drifts, and this one guards a real person's privacy.
+//
+// Aliases are included because a /for/ URL that has been printed on a CV is
+// served under every path it ever had.
+const TAILORED_FILTERS = (() => {
+  const dir = new URL("./src/data/cv-tailor-data/case-studies/filters/", import.meta.url);
+  const paths = new Set();
+  for (const name of readdirSync(dir)) {
+    if (!name.endsWith(".json") || name.endsWith(".citations.json")) continue;
+    const filter = JSON.parse(readFileSync(new URL(name, dir), "utf8"));
+    paths.add(filter.slug ?? name.replace(/\.json$/, ""));
+    for (const alias of filter.aliases ?? []) paths.add(alias);
+  }
+  return [...paths];
+})();
 
 const tailoredStudyRedirects = Object.fromEntries(
   TAILORED_FILTERS.flatMap((filter) =>

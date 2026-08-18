@@ -53,12 +53,6 @@
       "format_override": "executive"
     },
     {
-      "id": "ninox-org-building",
-      "visibility": "featured",
-      "order": 5,
-      "format_override": "executive"
-    },
-    {
       "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 7,
@@ -96,8 +90,8 @@
     },
     {
       "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 8
+      "visibility": "featured",
+      "order": 5
     }
   ]
 }

@@ -17,12 +17,6 @@
       "format_override": "in-depth"
     },
     {
-      "id": "ninox-org-building",
-      "visibility": "featured",
-      "order": 3,
-      "format_override": "in-depth"
-    },
-    {
       "id": "churchdesk-booking-system",
       "visibility": "featured",
       "order": 4,
