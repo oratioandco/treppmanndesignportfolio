@@ -16,9 +16,16 @@ import SummaryBand from '../../components/SummaryBand.astro';
     </div>
   </section>
 
+  {/* No employer and no years. The prose says "a B2B SaaS platform company" and
+      this band used to say "Ninox · 2023–2024" one line above it, which handed
+      back the employer and the exact window the anonymisation removes — on a
+      page that is public and indexed by design. The performance-exit figure is
+      gone for the same reason: beside a story about one engineer, it invites the
+      inference the study exists to refute. See CLAUDE.md, "Anonymised leadership
+      study — do not reverse". */}
   <SummaryBand
-    figures={[{ value: "5", label: "Direct reports, incl. a design lead" }, { value: "2", label: "Promoted, 2 performance exits" }, { value: "SLT", label: "Senior Leadership Team" }]}
-    meta="Head of Product Design · Ninox · 2023–2024"
+    figures={[{ value: "5", label: "Direct reports, incl. a design lead" }, { value: "2", label: "Promoted from within the team" }, { value: "SLT", label: "Senior Leadership Team" }]}
+    meta="Head of Product Design · A B2B SaaS platform company"
   />
 
   <section class="case-study-content">
