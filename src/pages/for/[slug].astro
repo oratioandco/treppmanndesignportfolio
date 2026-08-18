@@ -64,18 +64,47 @@ function coverFor(study: any): string {
 // Scoped case study routes: /for/{slug}/{study-id}
 // No separate mapping needed — the scoped route IS the link
 
+// The tailored title, which until now rendered nowhere.
+//
+// Every application writes a `title` into its filter, and it passes the gate
+// and gets published — but this page hardcoded the site headline, so all eight
+// live pages opened with the same sentence to eight different hiring managers.
+// The one line written specifically for the reader was the one line they never
+// saw.
+//
+// Rendering it means the scaffolder's default renders too, and 22 of the 29
+// filters still carry one. So a placeholder counts as no title: it falls back
+// to the site headline rather than greeting a hiring manager with the word
+// "Selected Work" set in 101px display serif.
+const SITE_TAGLINE = 'AI-Native Product & Design Leader';
+const SITE_HEADLINE = 'The design leader moving closer to the model';
+const PLACEHOLDER_TITLES = new Set([
+  'Selected Work',
+  'Ausgewählte Arbeiten',
+  // Not a placeholder by origin, but it repeats the tagline sitting directly
+  // above the headline, so as an <h1> it says the same thing twice.
+  SITE_TAGLINE,
+]);
+
+const tailoredTitle = (filter.title ?? '').trim();
+const hasTailoredTitle =
+  tailoredTitle !== '' && !PLACEHOLDER_TITLES.has(tailoredTitle);
+
+const headline = hasTailoredTitle ? tailoredTitle : SITE_HEADLINE;
+const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
+
 ---
 <Fragment slot="head">
   <meta name="robots" content="noindex, nofollow" />
 </Fragment>
 
 
-<Layout title="AI-Native Product & Design Leader">
+<Layout title={documentTitle}>
   <section class="hero">
     <DotField />
     <div class="container">
-      <p class="hero-tagline">AI-Native Product &amp; Design Leader</p>
-      <h1 class="animated-headline" id="animated-title">The design leader moving closer to the model</h1>
+      <p class="hero-tagline">{SITE_TAGLINE}</p>
+      <h1 class="animated-headline" id="animated-title">{headline}</h1>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
