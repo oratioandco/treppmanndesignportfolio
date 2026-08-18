@@ -277,6 +277,15 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
         <span class="cs-kicker">{kickerText}</span>
         <h1 class="cs-title">{pageTitle}</h1>
         <p class="cs-tagline">{study.role}</p>
+        {/* Scope. Every study carries `team` — "1 designer + engineering team,
+            Berlin", "Team of five, including a design lead" — and it rendered
+            nowhere, on either route. AUDIT.md's first finding against this
+            portfolio was exactly that: "no role framing — what was his title,
+            how big was the team, what was his scope? The reader has to infer
+            seniority from the quality of the thinking, which is a bet most
+            hiring managers won't make." The answer was in the data the whole
+            time. */}
+        {study.team && <p class="cs-scope">{study.team}</p>}
         {heroSection?.subtext && (
           <p class="cs-deck">{heroSection.subtext}</p>
         )}
@@ -468,6 +477,16 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     text-transform: uppercase;
     color: var(--color-text);
     margin: 0 0 var(--space-md);
+  }
+
+  /* Sits under the role in the same mono register, one step quieter — scope is
+     the qualifier on the title, not a second title. */
+  .cs-scope {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin: calc(-1 * var(--space-md) + 0.35rem) 0 var(--space-md);
   }
 
   .cs-deck {
