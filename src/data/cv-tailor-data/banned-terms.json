@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "7353f82",
+  "_source_commit": "331e76d",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -17,6 +17,20 @@
     "Oratio"
   ],
   "rules": [
+    {
+      "id": "BT-012",
+      "kind": "regex",
+      "pattern": "\\b70\\s?%\\s*(?:of\\s+(?:the\\s+|its\\s+)?(?:AI-)?(?:generated\\s+)?(?:code|output)|of\\s+it\\s+reach|reach(?:es|ing)?\\s+production)|(?:AI-generated|generated)\\s+(?:code|output)[^.!?]{0,50}?\\b70\\s?%",
+      "message": "The ~70%-of-AI-code-ships figure. Withdrawn 2026-08-17. Tobias: \"70% of code reaching production is also not necessarily true. we don't have exact numbers here.\" It was a recollection from 2026-07-09, recorded as though measured, and it propagated into roughly 197 files and one sent application. Does not narrow to a hedged form — the figure itself is the problem.",
+      "fix": "Say what is unarguable and needs no number. \"Engineering ships from my prototype code, and that engineering is an external agency\" claims more than a percentage and can be defended in any room."
+    },
+    {
+      "id": "BT-013",
+      "kind": "regex",
+      "pattern": "iteration[^.!?]{0,60}?(?:days?\\s*(?:→|->|to)\\s*hours?|from\\s+(?:3|three)[–\\-\\s]*(?:5|five)\\s+days)|(?:days?\\s*(?:→|->)\\s*hours?)|moved\\s+from\\s+days\\s+to\\s+hours",
+      "message": "The iteration timings are withdrawn. Same 2026-08-17 correction as BT-012, and this half was withdrawn entirely rather than hedged: it reads as a measured before-and-after and there is no measurement behind it.",
+      "fix": "Say what shipped and who consumed it. \"Engineering ships from my prototype code, and that engineering is an external agency\" claims nothing that cannot be defended."
+    },
     {
       "id": "BT-001",
       "kind": "regex",
@@ -91,7 +105,7 @@
     {
       "id": "BT-008",
       "kind": "regex",
-      "pattern": "neurodiverg|neurodivers|on\\s+the\\s+spectrum",
+      "pattern": "neurodiverg|neurodivers|on\\s+the\\s+spectrum|cognitive diversity|different minds",
       "message": "A colleague's neurodivergence must never appear in output.",
       "fix": "Remove. Describe the systems change, not the person."
     },
@@ -117,6 +131,13 @@
       "fix": "The deal closed before he joined; he was chosen to lead the delivery. Say what is his: the internal plan was a standalone add-on module and he delivered an embedded platform capability instead — general across the most-requested use cases, stronger on the funeral case than the add-on would have been."
     },
     {
+      "id": "BT-015",
+      "kind": "regex",
+      "pattern": "(?:labell?ed|called|considered|seen as|known as|written off as|dismissed as)\\s+(?:\\w+\\s+){0,3}\"?difficult\"?|\"difficult\"\\s+(?:engineer|colleague|designer|developer|report|person|employee)|\\bthe\\s+difficult\\s+(?:engineer|colleague|designer|developer|report|person|employee)",
+      "message": "A real colleague labelled with a personality judgement.",
+      "fix": "The person is \"a senior engineer\" and nothing more. The judgement was the team's and the study exists to refute it — do not restate it as fact."
+    },
+    {
       "id": "SAL-001",
       "kind": "regex",
       "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]|(?:Tobias(?:'s|’s|')?|\\bhis\\b)\\s+(?:[\\w-]+\\s+){0,3}?\\(?[€$£]\\s?\\d|(?:above|below|beyond|under|vs\\.?|versus|than|exceeds?|matches?)\\s+(?:his\\s+)?(?:current|previous|prior|former|peak)\\s+\\(?[€$£]\\s?\\d|(?:base\\s+band|salary\\s+floor|comp(?:ensation)?\\s+floor|personal\\s+floor)\\s*(?:of\\s+)?\\(?(?:[€$£]\\s?\\d|\\d[\\d.,]*\\s?[kK]\\+)",
@@ -131,6 +152,27 @@
       "window": 80,
       "message": "A currency figure sits next to compensation language.",
       "fix": "Remove it from the document. Comp is a conversation, not a CV line."
+    },
+    {
+      "id": "AD-001",
+      "kind": "regex",
+      "pattern": "\\b[Nn]o direct reports?\\b|\\brather than headcount\\b|\\bno design (?:org\\b|organisation|organization|team|function)\\s+(?:above|over)\\b|(?<![\\w-])1 direct report\\s*[.;]|\\bhas no direct reports\\b|\\bthe only designer\\b",
+      "message": "Headcount volunteered as a shortfall.",
+      "fix": "Say what he owned, not what he lacked. \"Head of Product Design at Bibel TV\" already tells a reader the shape of the role; \"No direct reports — function leadership rather than headcount\" argues against him for free."
+    },
+    {
+      "id": "AD-002",
+      "kind": "regex",
+      "pattern": "\\bwithout ever having\\b|\\b(?:has|have|he|I)\\s+never\\s+(?:managed|led|owned|run|built|shipped|worked with)\\b|\\bno experience (?:with|in|of)\\b|\\bnot something (?:he|I) (?:has|have)\\b|\\bwhat I (?:can't|cannot) claim\\b|\\byou'd find out anyway\\b",
+      "message": "A gap volunteered on an outward-facing document.",
+      "fix": "Gaps belong in fit-assessment.md, open-questions.md and interview prep, where they stop him being blindsided. On anything an employer reads they can only concede."
+    },
+    {
+      "id": "AD-003",
+      "kind": "regex",
+      "pattern": "\\bnot by (?:me|him)\\b|\\bwrote none of\\b|\\brather than by me\\b|\\bnone of (?:it|the code) was mine\\b|\\bI did not (?:write|build|code) (?:any|it|the)\\b",
+      "message": "Work disowned instead of attributed.",
+      "fix": "Attribution is a fact about who did it — \"engineering built the mobile app in React Native\". A negation about him is not attribution, and a reader who sees one starts discounting the rest."
     }
   ],
   "prose_rules": [
@@ -175,6 +217,13 @@
       "pattern": "\\b(?:is|was|are|were)\\s?n[o'’]t\\s+[^.!?]{3,70}?(?:,|;|\\s—)\\s*it(?:(?:'|’)?s|\\s+(?:is|was))\\b|\\bnot\\s+(?:the|a|an|about)\\s+[^.!?]{3,70}?\\s—\\s*it\\s+(?:is|was)\\b|\\bwhat\\s+if\\s+the\\s+(?:problem|answer|issue|question)\\b",
       "message": "Negation-antithesis (\"not X, it's Y\") or a rhetorical question to the reader.",
       "fix": "Fine once. Count them on the page first — if this is the third, state the claim plainly instead."
+    },
+    {
+      "id": "AD-004",
+      "kind": "regex",
+      "pattern": "\\bonly (?:a|an|one|two)\\s+(?:designer|person|people|report|engineer)|\\bjust (?:a|an|one)\\s+(?:designer|person|team)|\\bmerely\\b|\\ba small team of\\b|\\balbeit\\b|\\badmittedly\\b",
+      "message": "Diminisher next to his own work.",
+      "fix": "Drop the qualifier and let the fact stand. \"Two designers\" is not weaker than \"only two designers\" — it is the same fact without the apology."
     },
     {
       "id": "TR-005",
