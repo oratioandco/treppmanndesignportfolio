@@ -74,7 +74,7 @@
     {
       "type": "narrative",
       "headline": "The pushback",
-      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\", sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nIt became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. Different minds need different conditions, and that is accommodation, not special treatment.\n\nI also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question."
+      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\", sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nIt became a conversation about equity versus equality. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute. People need different conditions to do their best work, and that is accommodation, not special treatment.\n\nI also made the plain business case: our process was filtering out good ideas before they were heard. That is a cost, not just a fairness question."
     },
     {
       "type": "outcome",
@@ -117,7 +117,7 @@
     },
     "blog": {
       "summary": "When a team calls someone 'difficult,' the instinct is to manage the person. I redesigned how the team worked instead, and the friction went away.",
-      "angle": "Designing team collaboration for cognitive diversity",
+      "angle": "Designing team collaboration around how people actually work",
       "sections": [
         "hero",
         "narrative",
