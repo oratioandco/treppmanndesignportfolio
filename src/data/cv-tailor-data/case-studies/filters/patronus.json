@@ -1,0 +1,62 @@
+{
+  "slug": "patronus",
+  "aliases": [
+    "patronus-team-lead-product-management"
+  ],
+  "title": "Product and Design, Held Together",
+  "subtitle": "Two roles where product management and product design were one job, and a year of agentic working in production",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-patronus.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Team Lead Product Management role"
+  },
+  "bio": {
+    "short": "I lead product and design together. At ChurchDesk I held product management for the main platform alongside all of product design. At Ninox I ran Product Design and, for four months, Product as well. The last year has gone into working agentically in production, with engineering shipping from my prototype code.",
+    "long": "I lead product and design together, and I have done it twice. At ChurchDesk I held product management for the main platform alongside all of product design. I wrote the specs, prioritized the tickets engineering worked from, and I was the person the launch customer called. At Ninox I ran Product Design and, from July to October 2023, Product as well. Three product managers and a data scientist, alongside a design team of five. Nine people, two functions, on the Senior Leadership Team.\n\nThe work I would point at for a product like yours is the ChurchDesk booking capability. Coordinating a funeral means a funeral home, a parish and a cemetery agreeing on a time, and it ran on phone calls. The internal plan was a standalone add-on module. What I delivered instead was a booking capability embedded in the platform, extending the calendar and form builder that were already there. Coordination time fell by 70%, acceptance reached 90%, and the module then shipped to every customer for room rentals, baptisms and weddings.\n\nAt Bibel TV the last year has gone into working agentically, in production rather than in a pilot. I prototype in real code against real production APIs, and the external engineering agency ships from that code. That handoff crosses a company boundary and holds anyway. The quality standard works the same way. Checks run identically on a laptop and in CI, and they refuse work that has left the design system. I also taught a workshop series on AI for design and prototyping, to a web agency's own designers and developers. That is the part that transfers to a team rather than to one person.",
+    "context": {
+      "company": "Patronus Group",
+      "role": "Team Lead Product Management",
+      "emphasis": "This is a product management role. The argument is product first and design second. Lead with the two roles where he held both at once. ChurchDesk: product management for the main platform alongside all of product design. He wrote the specs, ran the ticket board, and was the launch customer's contact. Ninox: interim Head of Product from July to October 2023. That role carried three product managers and a data scientist, alongside a design team of five. Then the agentic mandate, P8 and P16, which the posting wrote an escape hatch for. A year of prototyping in real code against production APIs, with an external agency shipping from it. Plus one taught workshop series. Then P13, complex customer processes turned into workflows. The ChurchDesk booking capability answers that one with numbers. The full argument is in data/applications/patronus-team-lead-product-management/positioning.md."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 7
+    }
+  ]
+}
