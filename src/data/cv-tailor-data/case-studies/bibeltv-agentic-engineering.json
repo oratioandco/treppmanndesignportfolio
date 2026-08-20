@@ -75,9 +75,9 @@
       "headline": "What changed",
       "metrics": [
         {
-          "label": "Iteration speed",
-          "before": "A design change took 3–5 days through the spec-and-handoff cycle",
-          "after": "Hours: change it, run it on real data, judge it in the same session"
+          "label": "How a design change gets judged",
+          "before": "A spec and a redline, judged by reading them",
+          "after": "Running code on real data, judged in the same session"
         },
         {
           "label": "What engineering received",

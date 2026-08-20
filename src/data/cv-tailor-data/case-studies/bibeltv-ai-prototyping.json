@@ -94,14 +94,14 @@
       "headline": "Results So Far",
       "metrics": [
         {
-          "label": "Design-to-Prototype Cycle",
-          "before": "3-5 days (designing mockups + writing specs)",
-          "after": "1 day (design in Figma + generate prototype)"
+          "label": "Where the prototype comes from",
+          "before": "Mockups and a written spec",
+          "after": "A working prototype, generated from the design and run against real APIs"
         },
         {
-          "label": "Spec-to-Code Ambiguity",
-          "before": "Typical: 30-50 back-and-forths during engineering",
-          "after": "Typical: 5-10 clarifications (most questions answered by seeing working code)"
+          "label": "What engineering asks about",
+          "before": "Interpretation questions about the spec",
+          "after": "Fewer, because most are answered by seeing the thing run"
         },
         {
           "label": "Engineering Team Satisfaction",
