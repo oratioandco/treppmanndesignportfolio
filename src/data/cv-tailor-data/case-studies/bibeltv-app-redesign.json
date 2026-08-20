@@ -57,7 +57,7 @@
     {
       "type": "narrative",
       "headline": "Research, and a lesson about platforms",
-      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast. Moving it to Android, the gradient rendering raised real quality concerns. Rather than bend the design to web assumptions, I prototyped directly on Android, and the direction held. Prototype on the target platform early, or the assumptions you carry will be the wrong ones."
+      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast, then rebuilt it on Android, because Android is the largest part of our userbase. A stakeholder had raised a specific worry on the way in: old Android screens in our userbase render gradients badly. Testing it showed the worry was real and the diagnosis was not. The banding tracks old displays, not Android. So the fix generalised past the original concern, and we now build multi-step gradients even for monochrome ones, which is what actually addresses banding. Prototype where your users are, and be willing to find that the thing everyone named was not the variable."
     },
     {
       "type": "outcome",

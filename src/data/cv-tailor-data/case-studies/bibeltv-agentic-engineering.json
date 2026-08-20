@@ -67,8 +67,8 @@
     },
     {
       "type": "narrative",
-      "headline": "A real example: the Android gradients",
-      "content": "I built the web prototype first, with gradients that looked good in the browser. Moving to Android, the gradient rendering raised real quality concerns, visible banding, and performance questions on lower-end devices. The old way: file a ticket, explain the problem to engineering, wait for an assessment, maybe redesign. Instead, I iterated on the Android prototype in code, tested alternatives against real rendering, and found one that held up. Engineering got a working reference, not a problem report."
+      "headline": "A real example: the gradient worry that turned out not to be about Android",
+      "content": "I built the web prototype first, with gradients that looked good in the browser. Then I rebuilt it on Android, because Android is the largest part of our userbase, and because a stakeholder had named a specific risk: old Android screens in that userbase render gradients badly, with visible banding.\n\nThe old way: file a ticket, explain the concern to engineering, wait for an assessment, maybe redesign. Instead I iterated on the Android prototype in code and tested alternatives against real rendering. The banding was real. Android was not the reason for it. It tracks old displays, and the same displays band on any platform.\n\nThat changed the fix. Instead of an Android workaround, we build multi-step gradients, including for monochrome ones, where nobody had asked for it, because that is what addresses banding on an old display. Engineering got a working reference and a correct diagnosis, not a problem report."
     },
     {
       "type": "outcome",
