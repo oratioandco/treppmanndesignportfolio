@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "331e76d",
+  "_source_commit": "b4ce37c",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -20,7 +20,7 @@
     {
       "id": "BT-012",
       "kind": "regex",
-      "pattern": "\\b70\\s?%\\s*(?:of\\s+(?:the\\s+|its\\s+)?(?:AI-)?(?:generated\\s+)?(?:code|output)|of\\s+it\\s+reach|reach(?:es|ing)?\\s+production)|(?:AI-generated|generated)\\s+(?:code|output)[^.!?]{0,50}?\\b70\\s?%",
+      "pattern": "\\b70\\s?%\\s*(?:of\\s+(?:the\\s+|its\\s+)?(?:AI-)?(?:generated\\s+)?(?:code|output)|of\\s+it\\s+reach|reach(?:es|ing)?\\s+production)|(?:AI-generated|generated)\\s+(?:code|output)[^.!?]{0,50}?\\b70\\s?%|\\b70\\s?%\\s+of\\s+(?:what|the\\s+(?:code|work))[^.!?]{0,60}?\\b(?:lands?|ships?|reach\\w*)\\b|\\b70\\s?%[^.!?]{0,60}?\\b(?:model|assistant)\\s+(?:writes|generates|produces)\\b|\\b(?:model|assistant)\\s+(?:writes|generates|produces)[^.!?]{0,60}?\\b70\\s?%",
       "message": "The ~70%-of-AI-code-ships figure. Withdrawn 2026-08-17. Tobias: \"70% of code reaching production is also not necessarily true. we don't have exact numbers here.\" It was a recollection from 2026-07-09, recorded as though measured, and it propagated into roughly 197 files and one sent application. Does not narrow to a hedged form — the figure itself is the problem.",
       "fix": "Say what is unarguable and needs no number. \"Engineering ships from my prototype code, and that engineering is an external agency\" claims more than a percentage and can be defended in any room."
     },
@@ -105,9 +105,10 @@
     {
       "id": "BT-008",
       "kind": "regex",
-      "pattern": "neurodiverg|neurodivers|on\\s+the\\s+spectrum|cognitive diversity|different minds",
+      "pattern": "^(?:(?!\\b(?:bans?\\b|banned|forbid|never|must not|do not|don't|BT-008|CAREER-TRUTH)\\b).)*?(?:neurodiverg|neurodivers|on\\s+the\\s+spectrum|cognitive diversity|different minds)",
       "message": "A colleague's neurodivergence must never appear in output.",
-      "fix": "Remove. Describe the systems change, not the person."
+      "fix": "Remove. Describe the systems change, not the person.",
+      "flags": "m"
     },
     {
       "id": "BT-009",
@@ -138,6 +139,65 @@
       "fix": "The person is \"a senior engineer\" and nothing more. The judgement was the team's and the study exists to refute it — do not restate it as fact."
     },
     {
+      "id": "AD-005",
+      "kind": "regex",
+      "pattern": "\\bunder \\d+\\s*[Mm]?\\s*(?:users|people|employees)\\b|\\bfewer than \\d+\\s*(?:users|people)\\b|(?:~|roughly |about |around )\\d+\\s*(?:people|employees)\\b",
+      "message": "A ceiling on his own scale, volunteered.",
+      "fix": "\"under 1M users\" and \"~50 people\" are limits nobody asked for, and a reader takes them as the largest thing he has done. Name the countries, the platforms or the sector instead — facts about the work rather than bounds on it.",
+      "public_exclude": [
+        "case-study"
+      ]
+    },
+    {
+      "id": "AD-006",
+      "kind": "regex",
+      "pattern": "\\b(?:\\d+|two|three|four|five|six|seven|eight|nine|ten)\\s+(?:token |known )?gaps?\\b|\\b(?:token|known)\\s+gaps?\\b[^.;]{0,18}\\b(?:\\d+|two|three|four|five|six|seven|eight|nine|ten)\\b|\\b\\d+\\s+off-system\\b|\\b\\d+\\s+(?:values|violations|defects)\\s+(?:found|caught|surfaced|identified)\\b|\\b\\d+\\s+(?:caught|found|surfaced|flagged)\\b(?![^.;]{0,24}\\b(?:bugs?|issues?|customers?|users?|people)\\b)",
+      "message": "A defect count from his own system, used as evidence.",
+      "fix": "Intended as \"the system is instrumented\", read as \"his system has N holes\". The capability claim needs no count: six checks that refuse a token reference which does not resolve and a colour written into a component, both of which compile and render.",
+      "public_exclude": [
+        "case-study"
+      ]
+    },
+    {
+      "id": "AD-007",
+      "kind": "regex",
+      "pattern": "\\bUI designers executed\\b|\\bexecuted the visual system\\b|\\bthe visual system was (?:not|never) (?:mine|his)\\b",
+      "message": "The visual craft handed away unprompted.",
+      "fix": "CAREER-TRUTH §2 records Datameer's design system as co-built — UX defined component behaviour and specs, UI executed the visual system. Stating his half claims nothing extra and is fully accurate; stating both halves volunteers that the visual system was somebody else's, on a CV competing on craft.",
+      "public_exclude": [
+        "case-study"
+      ]
+    },
+    {
+      "id": "AD-008",
+      "kind": "regex",
+      "pattern": "\\blet (?:two|three|\\d+) go\\b|\\bmade the other call (?:twice|once|\\d+ times)\\b",
+      "message": "Headcount reduction offered as a credential.",
+      "fix": "True, recorded, and interview material. On a CV \"hired two, promoted two, let two go\" reads as a firing statistic, and the euphemism \"made the other call twice\" reads as discomfort with it. \"Hired two, promoted two\" is the same tenure without the sentence a reader stops on.",
+      "public_exclude": [
+        "case-study"
+      ]
+    },
+    {
+      "id": "AD-009",
+      "kind": "regex",
+      "pattern": "^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bsay it before they find it\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bbefore they find it\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bsay (?:that|this|it) plainly\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bname (?:it|the gap|the risk) (?:first|up ?front)\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bget ahead of (?:it|the gap|this)\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bflag (?:it|the gap) up ?front\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bvolunteer (?:the gap|the absence|the shortfall|the weakness|the limitation)\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\baddress it (?:head[- ]on|up ?front)\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bown the gap\\b|^(?:(?!\\b(?:never|not|don't|do not|no longer|were headed|was headed|headed|banned|forbid|instead of|rather than)\\b).)*?\\bpre-?empt(?:ively)? (?:disclose|raise|name)\\b",
+      "message": "An instruction to volunteer a gap to an employer.",
+      "fix": "CAREER-TRUTH §0: never volunteer an absence, on any outward-facing document including the application form. A runbook is internal but it instructs, and it is read with the form open, so it is governed the same way. State the risk and that it must NOT go in the application; put the candour in fit-assessment.md, open-questions.md or READY-TO-SHIP.md. Answering a direct question truthfully is not volunteering and is never blocked by this rule.",
+      "flags": "m"
+    },
+    {
+      "id": "AD-010",
+      "kind": "regex",
+      "pattern": "^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:both\\s+compile\\s+and\\s+render)|^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:both\\s+render,\\s+so\\s+review)|^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:review\\s+never\\s+(?:sees|catches)\\s+(?:them|it))|^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:could\\s+not\\s+catch\\s+(?:either|them|it)\\s+by\\s+reading)|^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:confidently\\s+referenc\\w+\\s+tokens\\s+that\\s+did\\s+not\\s+exist)|^(?:(?!\\b(?:never\\s+write|banned|forbidden|instead\\s+of\\s+saying)\\b).)*?\\b(?:quietly\\s+hardcode)",
+      "message": "The system failing, narrated as CV evidence.",
+      "fix": "Lead with what the system enables, not with the mistake that prompted it. Storybook as the source of truth rather than a Figma file, a prototyping layer on top, and six checks that refuse off-system work, so product managers and engineers build with the system self-serve and the standard holds without a designer reviewing it. The diagnostic story is interview material and it is already in the case study, which has the room to land it.",
+      "public_exclude": [
+        "case-study"
+      ],
+      "flags": "m"
+    },
+    {
       "id": "SAL-001",
       "kind": "regex",
       "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]|(?:Tobias(?:'s|’s|')?|\\bhis\\b)\\s+(?:[\\w-]+\\s+){0,3}?\\(?[€$£]\\s?\\d|(?:above|below|beyond|under|vs\\.?|versus|than|exceeds?|matches?)\\s+(?:his\\s+)?(?:current|previous|prior|former|peak)\\s+\\(?[€$£]\\s?\\d|(?:base\\s+band|salary\\s+floor|comp(?:ensation)?\\s+floor|personal\\s+floor)\\s*(?:of\\s+)?\\(?(?:[€$£]\\s?\\d|\\d[\\d.,]*\\s?[kK]\\+)",
@@ -156,23 +216,42 @@
     {
       "id": "AD-001",
       "kind": "regex",
-      "pattern": "\\b[Nn]o direct reports?\\b|\\brather than headcount\\b|\\bno design (?:org\\b|organisation|organization|team|function)\\s+(?:above|over)\\b|(?<![\\w-])1 direct report\\s*[.;]|\\bhas no direct reports\\b|\\bthe only designer\\b",
+      "pattern": "\\b[Nn]o direct reports?\\b|\\brather than headcount\\b|\\bno design (?:org\\b|organisation|organization|team|function)\\s+(?:above|over)\\b|(?<![\\w-])1 direct report\\s*[.;]|\\bhas no direct reports\\b|\\bthe only designer\\b|\\bno (?:in-house )?(?:design team|design org\\w*|in-house engineering|other designers|platform team)\\b(?![^.;]{0,70}\\b(?:so|which means|and I own|with nobody)\\b)",
       "message": "Headcount volunteered as a shortfall.",
-      "fix": "Say what he owned, not what he lacked. \"Head of Product Design at Bibel TV\" already tells a reader the shape of the role; \"No direct reports — function leadership rather than headcount\" argues against him for free."
+      "fix": "Say what he owned, not what he lacked. \"Head of Product Design at Bibel TV\" already tells a reader the shape of the role; \"No direct reports — function leadership rather than headcount\" argues against him for free.",
+      "public_exclude": [
+        "case-study"
+      ]
     },
     {
       "id": "AD-002",
       "kind": "regex",
       "pattern": "\\bwithout ever having\\b|\\b(?:has|have|he|I)\\s+never\\s+(?:managed|led|owned|run|built|shipped|worked with)\\b|\\bno experience (?:with|in|of)\\b|\\bnot something (?:he|I) (?:has|have)\\b|\\bwhat I (?:can't|cannot) claim\\b|\\byou'd find out anyway\\b",
       "message": "A gap volunteered on an outward-facing document.",
-      "fix": "Gaps belong in fit-assessment.md, open-questions.md and interview prep, where they stop him being blindsided. On anything an employer reads they can only concede."
+      "fix": "Gaps belong in fit-assessment.md, open-questions.md and interview prep, where they stop him being blindsided. On anything an employer reads they can only concede.",
+      "public_exclude": [
+        "case-study"
+      ]
     },
     {
       "id": "AD-003",
       "kind": "regex",
       "pattern": "\\bnot by (?:me|him)\\b|\\bwrote none of\\b|\\brather than by me\\b|\\bnone of (?:it|the code) was mine\\b|\\bI did not (?:write|build|code) (?:any|it|the)\\b",
       "message": "Work disowned instead of attributed.",
-      "fix": "Attribution is a fact about who did it — \"engineering built the mobile app in React Native\". A negation about him is not attribution, and a reader who sees one starts discounting the rest."
+      "fix": "Attribution is a fact about who did it — \"engineering built the mobile app in React Native\". A negation about him is not attribution, and a reader who sees one starts discounting the rest.",
+      "public_exclude": [
+        "case-study"
+      ]
+    },
+    {
+      "id": "AD-011",
+      "kind": "regex",
+      "pattern": "\\b(?:my|his)\\s+(?:\\w+\\s+){0,2}(?:outcomes?|evidence|numbers?|metrics?|results?|experience|background|exposure|track record)\\b[^.\\n]{0,30}?\\b(?:is|are|remain|stay|sit|sits)\\b[^.\\n]{0,70}?\\brather than\\b|\\bwhat (?:I have|he has)\\b[^.\\n]{0,45}?\\b(?:side|end|front|domain|space|sector)\\s+is\\b|\\bthe (?:closest|nearest) (?:thing|analogue|equivalent) (?:I have|he has)\\b",
+      "message": "Evidence scoped down against what the posting asks for.",
+      "fix": "State what the record holds and let the reader draw the boundary. \"At ChurchDesk a booking capability cut coordination time by 70% with 90% acceptance\" is the whole of what that sentence needed; \"my measured outcomes are workflow efficiency rather than consumer conversion\" argues the employer out of the interview for free. The shortfall goes in positioning.md and the fit assessment — CAREER-TRUTH §0b requires it to be stated there and nowhere else.",
+      "public_exclude": [
+        "case-study"
+      ]
     }
   ],
   "prose_rules": [
@@ -182,6 +261,13 @@
       "pattern": "\\b[a-z]+-[a-z]+-[a-z]+\\s+(?:method|methodology|spectrum|framework|approach|model|principle|pattern|technique|lens)\\b",
       "message": "Looks like a coined compound phrase.",
       "fix": "Say the plain fact in a plain sentence. If this one is genuinely standard usage, it is fine — that is why this warns rather than blocks."
+    },
+    {
+      "id": "WQ-009",
+      "kind": "regex",
+      "pattern": "\\bco-equal\\b|\\bby agreement rather than assertion\\b|\\bwith a named method\\b|\\beach with a named method\\b|\\bcollaborative (?:UX-)?maturity self-assessment\\b",
+      "message": "Abstraction where the concrete fact would fit.",
+      "fix": "Say what changed and how a reader would have noticed. \"Design in planning, not just delivery — we assessed our own UX maturity with product and engineering, and design went from receiving finished decisions to shaping them\" is the same fact, and a stranger can picture it. \"Co-equal\", \"with a named method\" and \"by agreement rather than assertion\" are written to be admired."
     },
     {
       "id": "WQ-001",
@@ -223,7 +309,10 @@
       "kind": "regex",
       "pattern": "\\bonly (?:a|an|one|two)\\s+(?:designer|person|people|report|engineer)|\\bjust (?:a|an|one)\\s+(?:designer|person|team)|\\bmerely\\b|\\ba small team of\\b|\\balbeit\\b|\\badmittedly\\b",
       "message": "Diminisher next to his own work.",
-      "fix": "Drop the qualifier and let the fact stand. \"Two designers\" is not weaker than \"only two designers\" — it is the same fact without the apology."
+      "fix": "Drop the qualifier and let the fact stand. \"Two designers\" is not weaker than \"only two designers\" — it is the same fact without the apology.",
+      "public_exclude": [
+        "case-study"
+      ]
     },
     {
       "id": "TR-005",

@@ -55,6 +55,39 @@ function textOf(html) {
     .replace(/\s+/g, ' ');
 }
 
+/**
+ * Prose that ships as DATA rather than as markup.
+ *
+ * textOf() strips <script> wholesale, which is right for code and wrong for the
+ * payloads this site embeds beside it. The bio component renders ONE variant as
+ * HTML and ships the rest as a JSON string inside a <script> block, where the
+ * length control swaps them in on click. Steering notes ride along in data-*
+ * attributes the same way.
+ *
+ * So a visitor could read a sentence the pre-deploy check could not. Found
+ * 2026-08-20: /for/kleinanzeigen had "At Bibel TV I'm the only designer" live in
+ * its long bio — a plain AD-001 hit, against a rule that was in the published
+ * policy and compiled fine — and the check reported the whole site clean, twice
+ * a week, for as long as that page has existed.
+ *
+ * Conservative on purpose: only quoted runs long enough and spaced enough to be
+ * prose, so minified identifiers and URLs do not become findings.
+ */
+function dataTextOf(html) {
+  const out = [];
+  for (const [, body] of html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)) {
+    for (const [, lit] of body.matchAll(/"((?:[^"\\]|\\.){40,})"/g)) {
+      if (!lit.includes(' ')) continue;
+      out.push(lit.replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+                  .replace(/\\n/g, ' ').replace(/\\"/g, '"').replace(/\\\\/g, '\\'));
+    }
+  }
+  for (const [, val] of html.matchAll(/\sdata-[\w-]+=(?:"([^"]{40,})"|'([^']{40,})')/g)) {
+    if (val && val.includes(' ')) out.push(val);
+  }
+  return out.join(' ').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ');
+}
+
 /** Block-ish chunks, for rules scoped to a paragraph rather than a document. */
 function blocksOf(html) {
   return html
@@ -79,6 +112,31 @@ if (!existsSync(POLICY)) {
 }
 
 const policy = JSON.parse(readFileSync(POLICY, 'utf8'));
+
+/**
+ * Is this built page a CASE STUDY rather than a bio, a landing page or a CV?
+ *
+ * The AD-* rules ban volunteering a shortfall on anything an employer reads as
+ * a pitch. Upstream they carry `source_data: off`, which makes them silent on
+ * `data/case-studies/**` — because a case study's whole job is to explain the
+ * constraint the work was done under. "Bibel TV has no in-house design team.
+ * That single fact determines the shape of everything else" is the premise of
+ * the LLM-safe design system study and is correct there.
+ *
+ * The export used to drop that scope, which is why refreshing the policy on
+ * 2026-08-20 produced 143 findings on studies where the constraint is the
+ * point. `public_exclude: ["case-study"]` carries it across. Landing pages,
+ * the site root and the CV PDFs are pitches on both sides and stay enforced.
+ *
+ * Study routes are two segments deep — for/<slug>/<study>/ and
+ * work/<slug>/<study>/ — plus everything under case-studies/.
+ */
+function isCaseStudy(rel) {
+  const parts = rel.split(/[\\/]/).filter(Boolean);
+  if (parts[0] === 'case-studies') return true;
+  if ((parts[0] === 'for' || parts[0] === 'work') && parts.length >= 3) return true;
+  return false;
+}
 const employers = policy.employers ?? [];
 
 // ---------------------------------------------------------------- 1 + 2
@@ -91,8 +149,9 @@ for (const file of walk(DIST)) {
   const rel = relative(DIST, file);
   scanned++;
 
-  const text = ext === '.html' || ext === '.htm' ? textOf(raw) : raw;
-  const blocks = ext === '.html' || ext === '.htm' ? blocksOf(raw) : [raw];
+  const isHtml = ext === '.html' || ext === '.htm';
+  const text = isHtml ? textOf(raw) + ' ' + dataTextOf(raw) : raw;
+  const blocks = isHtml ? blocksOf(raw).concat(dataTextOf(raw)) : [raw];
 
   // 1. private keys
   const pk = raw.match(PRIVATE_KEY);
@@ -105,8 +164,10 @@ for (const file of walk(DIST)) {
   }
 
   // 2. banned terms
+  const caseStudy = isCaseStudy(rel);
   for (const r of policy.rules) {
-    const re = new RegExp(r.pattern, 'gi');
+    if (caseStudy && (r.public_exclude || []).includes('case-study')) continue;
+    const re = new RegExp(r.pattern, 'gi' + (r.flags || '').replace(/[gi]/g, ''));
     if (r.kind === 'regex') {
       const m = re.exec(text);
       if (m) problems.push({ rule: r.id, file: rel, msg: `${r.message} — "${m[0]}"`, fix: r.fix });
@@ -351,7 +412,15 @@ function runProseCheck() {
     emDashes += (t.match(/—/g) || []).length;
     for (const rule of proseRules) {
       let re;
-      try { re = new RegExp(rule.pattern, 'gi'); } catch { continue; }
+      try { re = new RegExp(rule.pattern, 'gi' + (rule.flags || '').replace(/[gi]/g, '')); }
+      catch (e) {
+        // Never silent: an uncompilable rule is an unenforced rule, and this
+        // loop skipped them without a word until 2026-08-20.
+        problems.push({ rule: rule.id, file: '(policy)',
+          msg: `prose rule does not compile in JavaScript: ${e.message}`,
+          fix: 'Fix the pattern in engine/policy/policy.yaml and re-export.' });
+        continue;
+      }
       const hits = t.match(re);
       if (!hits) continue;
       if (!findings.has(rule.id)) findings.set(rule.id, { rule, hits: new Set() });
