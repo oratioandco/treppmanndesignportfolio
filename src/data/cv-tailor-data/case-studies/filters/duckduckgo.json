@@ -1,0 +1,64 @@
+{
+  "slug": "duckduckgo",
+  "aliases": [
+    "duckduckgo-senior-product-design-engineer"
+  ],
+  "title": "The Repository Is the Source",
+  "subtitle": "Token layering, parity held in code, and a practice built as well as worked in",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-duckduckgo.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Design Engineer role"
+  },
+  "bio": {
+    "short": "I build the design system and work in the repository it ships from. The tokens run four tiers, the repo is the source and Figma consumes it, and six checks refuse off-system work before anyone reviews it.",
+    "long": "I build the design system and I work in the repository it ships from. At Bibel TV the tokens run four tiers, primitives through page and view, in DTCG format, serving iOS, Android, web and connected TV from one source.\n\nPrimitive against semantic is the load-bearing decision in that architecture, and I made it as a control surface rather than a taxonomy. Primitives are fixed. Semantic carries the contract. The top two tiers alias downward and introduce no new values at all, which is what lets a product team change a component's spacing or type size without going through the agency that owns the code.\n\nParity between design source and code is held with the dependency inverted. The repository is the source and Figma consumes it, and Storybook is what engineers and product managers actually build against. What that costs is visible in an audit we ran of all thirty web components against the native app they mirror. A card's fallback gradient was aliased one layer too deep in light mode, so the app drew a soft ramp and the web drew flat white. Nobody had spotted it, because nothing looked broken.\n\nSo enforcement moved into the build. Six checks, one command, identical on a laptop and in CI. Two of them reject exactly what I had watched an assistant produce: a reference to a token that does not exist, and a colour, size or duration written straight into a component. Both compile. Both render. Neither is catchable by reading. The first version of the suggestion engine was quietly dangerous in the same way. It saw a font size of 12px, found a spacing token holding exactly 12px, and offered it as the fix. That would have rendered pixel-identical and welded body text to the gap between two cards. Suggestions are bounded to the property's own family now, and the check says nothing where no token qualifies, because a confidently wrong suggestion is worse than none for someone who does not know the catalogue.\n\nThe prototypes I write are in production code against real APIs, and the engineering agency ships from that code, so the handoff crosses a company boundary and holds anyway. I prototyped on Android because Android is the largest part of the userbase rather than because the tooling was fastest there.\n\nThe other half of what I would bring is that I have built the practice as well as worked in it. Agentic engineering at Bibel TV started from nothing, and I have taught it since to another company's designers and developers. Before this I led design at Ninox and ChurchDesk, and spent five years on enterprise interfaces under regulation at Datameer. I still review design-system pull requests.",
+    "context": {
+      "company": "DuckDuckGo",
+      "role": "Senior Product Design Engineer",
+      "emphasis": "The craft in the posting's own vocabulary — token layering, primitive versus semantic naming, parity between design source and code — plus the second-practitioner clause: someone who shapes the discipline, not only works in it. Leadership stays visible rather than downplayed, because it is the reason the D17 pairing lands and not an over-qualification to apologise for."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable"
+    }
+  ]
+}

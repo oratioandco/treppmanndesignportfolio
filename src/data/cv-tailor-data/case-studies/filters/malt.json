@@ -1,0 +1,64 @@
+{
+  "slug": "malt",
+  "aliases": [
+    "malt-head-of-experience-systems-ai"
+  ],
+  "title": "Brand as a Function",
+  "subtitle": "Design systems built for the moment nobody is left to review the output",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-malt.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for Head of Experience Systems & AI"
+  },
+  "bio": {
+    "short": "I build design systems for organisations that cannot review their own output, which turns out to be the same problem as generated code inheriting a brand. The clearest version is a colour engine that derives a theme per artwork, because a catalogue of ten thousand videos was never going to be hand-tuned.",
+    "long": "For the past year I have owned design end to end at Bibel TV — the system, the products, the standard — while the engineers who build it sit at an outside agency. The work leaves the building before it becomes software. That teaches you quickly that a standard has to travel with the work rather than wait for it at the end.\n\nSo it moved into the pipeline. Token references that do not resolve and colours written by hand fail before anyone sees them, on a laptop and in the build alike. Underneath sits a token architecture in four DTCG tiers, and the two upper tiers deliberately add no new values. They exist as a control surface: a product manager or an assistant can reach into a screen without waiting for an agency release, and still express nothing off-system. The vocabulary is enumerated for exactly that reason, so a model writing the first draft finds that the compliant path is also the short one.\n\nThe colour engine is where this gets literal. Bibel TV's catalogue runs past ten thousand videos, so choosing a theme colour per title was never going to happen by hand. The off-the-shelf extractor collapsed toward beige in dark mode and rose in light, and weighted cards unevenly across a grid, because RGB is not perceptually uniform. I built the engine in OKLCH instead. K-means finds the prominent colours, a hue-and-vibrance filter drops the dull clusters so a muddy beige cannot win by covering the most pixels, and what remains maps to base, accent and text. Text colours are validated against the base with the WCAG contrast algorithm and adjusted until they pass, inside the algorithm rather than after it. Brand stopped being something we drew and became something that resolves.\n\nNone of this is my first system. At Ninox I owned the design system and set up joint governance with engineering, so contribution and escalation had a route rather than a habit, and I led a function of five — roughly half product designers, half UX writers — on the senior leadership team. At Datameer I specified component behaviour across the library for teams in Germany and New York. At ChurchDesk I led all product design across the company. What the last year added is what happens to systems work once the consumer is a machine.",
+    "context": {
+      "company": "Malt",
+      "role": "Head of Experience Systems & AI",
+      "emphasis": "Brand codified into a technical system, and enforcement that holds when no reviewer is in the loop. Token architecture as a control surface rather than a taxonomy. Applied AI literacy held as a constraint he designed around rather than an understanding he can describe. Leadership is present but the seat is depth rather than span, so the pitch is the systems work and not the headcount."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-agentic-engineering",
+      "visibility": "browseable"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable"
+    }
+  ]
+}

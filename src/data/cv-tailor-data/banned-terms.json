@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "d0e020c",
+  "_source_commit": "6e8e555",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -118,6 +118,15 @@
       "fix": "State the plain fact in a plain sentence — e.g. \"the handbook is loaded as context\", \"adopted across the team, including the most sceptical members\"."
     },
     {
+      "id": "BT-016",
+      "kind": "proximity",
+      "pattern": "(?<!path to )(?<![\\w-])(?:my[\\s\\-])?cv[\\s\\-]tailor\\b",
+      "near": "\\bopen[\\s\\-]?source\\b|\\bI (?:use|used|built|run|wrote|maintain)\\b|\\bmy own\\b|\\btooling I\\b|\\bfor my own\\b|\\bmy (?:own )?(?:tool|system|pipeline)\\b",
+      "window": 160,
+      "message": "my-cv-tailor presented as open source, or as a tool he uses himself.",
+      "fix": "It is a component of the AI Product Design program, for the designers taking it. Never \"open source\", never his own tool, never a first-person usage claim. This exact phrasing shipped in a cover letter (\"my open-source my-cv-tailor tool\") and a CV entry (\"the application tooling I use for my own work\")."
+    },
+    {
       "id": "BT-011",
       "kind": "regex",
       "pattern": "(?:crisis|krisen?)[\\s\\-]?(?:messages?|nachrichten|cases?)?[^.!?]{0,50}?(?:escalat|eskalier|hand(?:ed|s)?[\\s\\-]?off|never\\s+(?:get\\s+)?draft|not\\s+drafted|instead\\s+of\\s+being\\s+drafted)|escalat[a-z]*[^.!?]{0,40}?\\bcrisis\\b|crisis[^.!?]{0,30}\\bfirst[\\s\\-]class\\s+output",
@@ -202,7 +211,7 @@
       "kind": "regex",
       "pattern": "(?:current|previous|past|last|former)\\s+(?:salary|compensation|package|pay)|salary\\s+(?:was|is|history)|I\\s+(?:earn|earned|make|made)\\s+[€$]|(?:Tobias(?:'s|’s|')?|\\bhis\\b)\\s+(?:[\\w-]+\\s+){0,3}?\\(?[€$£]\\s?\\d|(?:above|below|beyond|under|vs\\.?|versus|than|exceeds?|matches?)\\s+(?:his\\s+)?(?:current|previous|prior|former|peak)\\s+\\(?[€$£]\\s?\\d|(?:base\\s+band|salary\\s+floor|comp(?:ensation)?\\s+floor|personal\\s+floor)\\s*(?:of\\s+)?\\(?(?:[€$£]\\s?\\d|\\d[\\d.,]*\\s?[kK]\\+)",
       "message": "Never state or hint at current or past salary.",
-      "fix": "Only the forward-looking script is allowed, and only when asked: \"€125–135k base, depending on total package.\""
+      "fix": "Only a forward-looking figure is allowed, and only when asked. There is no single script as of 2026-08-22 — the engine estimates the market range for the seat and Tobias sets the number. NO personal floor or band is recorded anywhere in this repo: that is this rule's own subject matter, and writing one into policy is the same violation one level up. A published band wins. See CAREER-TRUTH.md §1."
     },
     {
       "id": "SAL-002",
