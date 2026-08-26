@@ -4,6 +4,7 @@ import BioRegenerator from '../components/BioRegenerator.astro';
 import Portrait from '../components/Portrait.astro';
 import Selah from '../components/Selah.astro';
 import DotField from '../components/DotField.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
 ---
 
 <Layout title="AI-Native Product & Design Leader">
@@ -65,65 +66,36 @@ import DotField from '../components/DotField.astro';
       </div>
 
       <div class="case-studies-grid">
-        <a href="/case-studies/llm-safe-design-system" class="case-study-card">
-          <img src="/images/covers/generated/bibeltv-llm-safe-design-system.svg" alt="An LLM-Safe Design System" class="case-study-cover" />
-          <h3>An LLM-Safe Design System</h3>
-          <p class="subtitle">Design Systems &amp; Governance</p>
-          <p>Tokens are a convention held up by attention. When an AI assistant writes the frontend and nobody is paid to pay that attention, the build has to become the reviewer.</p>
-          <div style="margin-top: var(--space-md);">
-            <span class="tag">Design Tokens</span>
-            <span class="tag">CI Enforcement</span>
-            <span class="tag">AI-Native Design</span>
-          </div>
-        </a>
-
-        <a href="/case-studies/shipping-ai" class="case-study-card">
-          <img src="/images/covers/generated/bibeltv-agentic-engineering.svg" alt="Shipping AI, Not Designing Around It" class="case-study-cover" />
-          <h3>Shipping AI, Not Designing Around It</h3>
-          <p class="subtitle">AI Product &amp; Practice</p>
-          <p>A support copilot in daily use, a campaign generation tool built end to end, and a prototyping practice engineering builds from directly.</p>
-          <div style="margin-top: var(--space-md);">
-            <span class="tag">AI in Production</span>
-            <span class="tag">Agentic Engineering</span>
-            <span class="tag">Design System as API</span>
-          </div>
-        </a>
-
-        <a href="/case-studies/churchdesk" class="case-study-card">
-          <img src="/images/covers/generated/churchdesk-booking-system.svg" alt="ChurchDesk Booking System" class="case-study-cover" />
-          <h3>When 'Simple Booking' Isn't Simple</h3>
-          <p class="subtitle">ChurchDesk Booking System</p>
-          <p>Designing a deceptively simple booking experience that masks extraordinary complexity—multi-stakeholder coordination for sensitive contexts.</p>
-          <div style="margin-top: var(--space-md);">
-            <span class="tag">Complex Systems</span>
-            <span class="tag">Multi-stakeholder</span>
-            <span class="tag">Platform Design</span>
-          </div>
-        </a>
-
-        <a href="/case-studies/collaboration-redesign" class="case-study-card">
-          <img src="/images/covers/generated/leading-a-team-is-a-design-problem.svg" alt="Leadership & Team Systems" class="case-study-cover" />
-          <h3>Redesigning How We Work Together</h3>
-          <p class="subtitle">Leadership & Team Systems</p>
-          <p>When collaboration keeps breaking down, the instinct is to manage the person. Usually the person is fine and the working conditions are the defect.</p>
-          <div style="margin-top: var(--space-md);">
-            <span class="tag">Leadership</span>
-            <span class="tag">Team Design</span>
-            <span class="tag">Systems</span>
-          </div>
-        </a>
-
-        <a href="/case-studies/modern-practice" class="case-study-card">
-          <img src="/images/covers/generated/bibeltv-ai-prototyping.svg" alt="AI-First Design Process" class="case-study-cover" />
-          <h3>Accelerating Design with AI</h3>
-          <p class="subtitle">AI-First Design Process</p>
-          <p>AI compresses the path from idea to testable prototype. Developing an AI-first design process at Bibel TV and teaching teams to do the same.</p>
-          <div style="margin-top: var(--space-md);">
-            <span class="tag">Claude Code</span>
-            <span class="tag">Zed/VSCode</span>
-            <span class="tag">AI Prototyping</span>
-          </div>
-        </a>
+        <CaseStudyCard
+          href="/case-studies/llm-safe-design-system"
+          headline="An LLM-Safe Design System"
+          caption="Design Systems & Governance"
+          studyId="bibeltv-llm-safe-design-system"
+        />
+        <CaseStudyCard
+          href="/case-studies/shipping-ai"
+          headline="Shipping AI, Not Designing Around It"
+          caption="AI Product & Practice"
+          studyId="shipping-ai"
+        />
+        <CaseStudyCard
+          href="/case-studies/churchdesk"
+          headline="When 'Simple Booking' Isn't Simple"
+          caption="ChurchDesk Booking System"
+          studyId="churchdesk-booking-system"
+        />
+        <CaseStudyCard
+          href="/case-studies/collaboration-redesign"
+          headline="Redesigning How We Work Together"
+          caption="Leadership & Team Systems"
+          studyId="leading-a-team-is-a-design-problem"
+        />
+        <CaseStudyCard
+          href="/case-studies/modern-practice"
+          headline="Accelerating Design with AI"
+          caption="AI-First Design Process"
+          studyId="bibeltv-ai-prototyping"
+        />
       </div>
     </div>
   </section>

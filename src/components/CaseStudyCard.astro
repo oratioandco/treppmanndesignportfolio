@@ -1,0 +1,176 @@
+---
+// Poster-style case-study card: a continuously-animating generative motif
+// (see src/scripts/poster-motifs.js) instead of a static cover image and
+// hover-invert. The motif never resets or interrupts on hover — hover only
+// resumes an animation that's paused (cost-free) while idle. See that
+// script for the mechanism catalog and per-slug assignments, and
+// .claude/skills/case-study-motif/SKILL.md for how to add a new one.
+
+interface Props {
+  href: string;
+  headline: string;
+  caption: string;
+  studyId: string;
+}
+
+const { href, headline, caption, studyId } = Astro.props;
+---
+
+<a href={href} class="cs-card">
+  <div class="cs-card-top">
+    <div class="cs-card-eyebrow">Case Study</div>
+    <h3>{headline}</h3>
+  </div>
+  <div class="cs-card-art">
+    <svg class="echo-svg" data-slug={studyId} viewBox="0 0 200 200" fill="none"></svg>
+  </div>
+  <div class="cs-card-caption">
+    <span>{caption}</span>
+  </div>
+</a>
+
+<script>
+  import "../scripts/poster-motifs.js";
+</script>
+
+<style>
+  .cs-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-decoration: none;
+    color: #f4f1ea;
+    /* always the dark ink tone, independent of the site's light/dark theme
+       — the card is intentionally a poster, not a themed surface */
+    background: #1a2520;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    aspect-ratio: 5 / 8;
+    padding: 22px 22px 16px;
+    transition:
+      transform 0.35s ease-out,
+      box-shadow 0.35s ease-out,
+      border-color 0.35s ease-out;
+  }
+
+  .cs-card-top {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+  }
+
+  .cs-card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b9cdc4;
+    margin-bottom: 6px;
+  }
+
+  .cs-card-top h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.12;
+    margin: 0;
+    color: #f4f1ea;
+  }
+
+  .cs-card-art {
+    flex: 1 1 auto;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    min-height: 0;
+    margin: 4px 0;
+    position: relative;
+  }
+
+  /* static shadow, completely outside the animating <svg> — rasterized
+     once and reused every frame, never recomputed */
+  .cs-card-art::before {
+    content: "";
+    position: absolute;
+    inset: 6% 10% 10% 10%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), transparent 72%);
+    filter: blur(7px);
+    z-index: 0;
+  }
+
+  .cs-card-art svg {
+    position: relative;
+    z-index: 1;
+    width: 92%;
+    height: 92%;
+    animation: cs-spin 70s linear infinite;
+    animation-play-state: paused;
+    transform-origin: 50% 50%;
+  }
+  @keyframes cs-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* the diagonal weave band shouldn't tumble as a rigid disc — it sways.
+     animation-play-state is set separately, not in the shorthand — the
+     shorthand resets it to "running". */
+  .cs-card-art svg.no-whole-spin {
+    animation: cs-sway 14s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  @keyframes cs-sway {
+    from { transform: rotate(-7deg) scale(1.02); }
+    to   { transform: rotate(7deg) scale(1.02); }
+  }
+
+  .cs-card-caption {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    display: flex;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: #cfd9d4;
+    border-top: 1px solid rgba(244, 241, 234, 0.2);
+    padding-top: 8px;
+  }
+
+  /* each particle "tumbles" around its own vertical axis — scaleX toward a
+     sliver simulates edge-on rotation in 3D. transform+opacity only (never
+     filter) — see poster-motifs.js header comment for why that matters at
+     this element count. Paused by default; hover resumes without reset. */
+  :global(.tumble-el) {
+    animation: cs-tumble 3.6s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  @keyframes cs-tumble {
+    0%, 100% { transform: scaleX(1); opacity: var(--base-opacity, 1); }
+    50%      { transform: scaleX(0.14); opacity: calc(var(--base-opacity, 1) * 0.55); }
+  }
+
+  .cs-card:hover .cs-card-art svg,
+  .cs-card:focus-visible .cs-card-art svg,
+  .cs-card:hover :global(.tumble-el),
+  .cs-card:focus-visible :global(.tumble-el) {
+    animation-play-state: running;
+  }
+
+  .cs-card:hover,
+  .cs-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    border-color: var(--color-accent);
+  }
+  .cs-card:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-card-art svg { animation: none; }
+    :global(.tumble-el) { animation: none !important; }
+  }
+</style>

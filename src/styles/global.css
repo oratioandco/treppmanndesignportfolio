@@ -482,95 +482,10 @@ a:hover {
     }
 }
 
-.case-study-card {
-    background: var(--color-surface);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    transition:
-        transform 0.3s ease-out,
-        box-shadow 0.3s ease-out,
-        background-color 0.5s ease-out,
-        color 0.5s ease-out,
-        border-color 0.5s ease-out;
-    color: var(--color-text);
-}
-
-.case-study-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    border-color: var(--color-accent);
-}
-
-.case-study-card h3,
-.case-study-card .subtitle,
-.case-study-card p,
-.case-study-card .tag {
-    transition:
-        color 0.5s ease-out,
-        background-color 0.5s ease-out;
-}
-
-.case-study-card:hover h3,
-.case-study-card:hover .subtitle,
-.case-study-card:hover p {
-    color: var(--color-bg);
-}
-
-.case-study-card:hover .tag {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--color-bg);
-}
-
-a.case-study-card:hover {
-    opacity: 1;
-}
-
-.case-study-cover {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-}
-
-.case-study-card h3 {
-    margin-bottom: var(--space-sm);
-    padding: 0 var(--space-lg);
-}
-
-.case-study-card h3:first-of-type {
-    padding-top: var(--space-lg);
-}
-
-.case-study-card .subtitle {
-    color: var(--color-accent);
-    font-size: 0.9rem;
-    margin-bottom: var(--space-md);
-    padding: 0 var(--space-lg);
-}
-
-.case-study-card p {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    padding: 0 var(--space-lg);
-}
-
-.case-study-card > div {
-    padding: 0 var(--space-lg) var(--space-lg);
-}
-
-.tag {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-sm);
-    background: var(--color-accent-light);
-    color: var(--color-accent);
-    border-radius: 4px;
-    font-size: 0.65rem;
-    margin-right: var(--space-xs);
-    margin-bottom: var(--space-xs);
-}
+/* The card itself (.cs-card) is now CaseStudyCard.astro, scoped there —
+   see src/components/CaseStudyCard.astro and src/scripts/poster-motifs.js.
+   Replaced the static-cover + hover-invert-to-accent treatment with a
+   continuously-animating generative motif per case study. */
 
 /* Case Study Page */
 .case-study-hero {
@@ -1043,35 +958,6 @@ main {
     letter-spacing: 0.14em;
     color: var(--color-text-muted);
     margin-bottom: 0.85rem;
-}
-
-/* Card craft. The accent flip on hover stays — it is the site's one loud
-   moment and it earns its place. What was missing is the slower second
-   layer underneath it: the cover drifts, so the card reads as a surface
-   with depth rather than a rectangle changing colour. */
-.case-study-cover {
-    transition: transform 900ms var(--ease-out-expo);
-}
-
-.case-study-card:hover .case-study-cover {
-    transform: scale(1.04);
-}
-
-.case-study-card {
-    transition:
-        transform var(--motion-fast) var(--ease-out-expo),
-        box-shadow var(--motion-fast) var(--ease-out-expo),
-        background-color 420ms var(--ease-out-expo),
-        color 420ms var(--ease-out-expo),
-        border-color 420ms var(--ease-out-expo);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .case-study-cover,
-    .case-study-card:hover .case-study-cover {
-        transition: none;
-        transform: none;
-    }
 }
 
 /* ── Selah ────────────────────────────────────────────────────────────

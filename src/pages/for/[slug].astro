@@ -1,10 +1,10 @@
 ---
-import { readdirSync } from 'node:fs';
 import Layout from '../../layouts/Layout.astro';
 import BioRegenerator from '../../components/BioRegenerator.astro';
 import Portrait from '../../components/Portrait.astro';
 import Selah from '../../components/Selah.astro';
 import DotField from '../../components/DotField.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import {
   getAllFilters,
   getFilterPaths,
@@ -33,33 +33,10 @@ const { studies } = data;
 const featuredStudies = studies.filter(s => s.visibility === 'featured');
 const browseableStudies = studies.filter(s => s.visibility === 'browseable');
 
-// Cover resolution, done at build time against the real directory.
-//
-// Every study has a generated cover named after its id, and nothing was using
-// them: the old chain ended at a hardcoded ChurchDesk graphic, so two unrelated
-// Bibel TV studies rendered the same cemetery illustration side by side.
-//
-// Resolved here rather than inline because scripts/check-images.mjs matches
-// literal /images/… paths and cannot see through a template string. Reading the
-// directory keeps that guarantee: a study with no cover falls back to a file
-// that is known to exist, instead of emitting a path that 404s.
-const GENERATED_COVERS = new Set(
-  readdirSync('public/images/covers/generated').filter((f) => f.endsWith('.svg'))
-);
-const COVER_DIR = '/images/covers/generated';
-const COVER_FALLBACK = '/images/covers/generated/churchdesk-booking-system.svg';
-
-function coverFor(study: any): string {
-  if (study.cover_image) return study.cover_image;
-  if (study.hero_image?.src) return study.hero_image.src;
-  // Card rendition first: same seed and metaphor, drawn on a coarser grid so
-  // the structure survives at 330px instead of collapsing into texture. Falls
-  // back to the hero rendition, then to a file known to exist.
-  const card = `${study.id}-card.svg`;
-  if (GENERATED_COVERS.has(card)) return `${COVER_DIR}/${card}`;
-  const own = `${study.id}.svg`;
-  return GENERATED_COVERS.has(own) ? `${COVER_DIR}/${own}` : COVER_FALLBACK;
-}
+// Cards no longer need a cover image — CaseStudyCard renders a generative
+// motif client-side instead (see src/scripts/poster-motifs.js). The old
+// coverFor() lookup against public/images/covers/generated/ is gone; those
+// static SVGs are still used as case-study page HEROES, just not here.
 
 // Scoped case study routes: /for/{slug}/{study-id}
 // No separate mapping needed — the scoped route IS the link
@@ -160,22 +137,15 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
       <div class="case-studies-grid">
         {featuredStudies.map((study: any) => {
           const heroSection = study.sections?.find((s: any) => s.type === 'hero');
-          const outcomeSection = study.sections?.find((s: any) => s.type === 'outcome');
           const link = `/for/${filter.slug}/${study.id}`;
-          const cover = coverFor(study);
 
           return (
-            <a href={link} class="case-study-card">
-              <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
-              <h3>{heroSection?.headline || study.title}</h3>
-              <p class="subtitle">{[study.company, study.duration].filter(Boolean).join(" · ")}</p>
-              <p>{heroSection?.subtext || study.subtitle}</p>
-              <div style="margin-top: var(--space-md);">
-                {study.tags.slice(0, 4).map((tag: string) => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </div>
-            </a>
+            <CaseStudyCard
+              href={link}
+              headline={heroSection?.headline || study.title}
+              caption={[study.company, study.duration].filter(Boolean).join(" · ")}
+              studyId={study.id}
+            />
           );
         })}
       </div>
@@ -191,20 +161,14 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
               const link = `/for/${filter.slug}/${study.id}`;
-              const cover = coverFor(study);
 
               return (
-                <a href={link} class="case-study-card">
-                  <img src={cover} alt={heroSection?.headline || study.title} class="case-study-cover" />
-                  <h3>{heroSection?.headline || study.title}</h3>
-                  <p class="subtitle">{[study.company, study.duration].filter(Boolean).join(" · ")}</p>
-                  <p>{heroSection?.subtext || study.subtitle}</p>
-                  <div style="margin-top: var(--space-md);">
-                    {study.tags.slice(0, 4).map((tag: string) => (
-                      <span class="tag">{tag}</span>
-                    ))}
-                  </div>
-                </a>
+                <CaseStudyCard
+                  href={link}
+                  headline={heroSection?.headline || study.title}
+                  caption={[study.company, study.duration].filter(Boolean).join(" · ")}
+                  studyId={study.id}
+                />
               );
             })}
           </div>
