@@ -164,13 +164,18 @@ function makeDoubleHelix(cfg) {
 // reconciled into one model — a Venn diagram of overlapping ring
 // "ribbons". Each ring is built from concentric hatched tracks at fixed
 // offsets/colors (a tube cross-section), not a lighting gradient.
+// `radius` and `ticksPerRing` may each be a single number (all rings equal)
+// or an array (one value per ring, by center index) — see the seed variation
+// below for why independent-per-ring values matter.
 function makeInterlockRings(cfg) {
   const nodes = [];
-  cfg.centers.forEach(([cx, cy]) => {
+  cfg.centers.forEach(([cx, cy], ringIndex) => {
+    const ringRadius = Array.isArray(cfg.radius) ? cfg.radius[ringIndex] : cfg.radius;
+    const ticksPerRing = Array.isArray(cfg.ticksPerRing) ? cfg.ticksPerRing[ringIndex] : cfg.ticksPerRing;
     cfg.bands.forEach((band, bandIndex) => {
-      const r = cfg.radius + band.offset;
-      for (let i = 0; i < cfg.ticksPerRing; i++) {
-        const angle = (360 / cfg.ticksPerRing) * i;
+      const r = ringRadius + band.offset;
+      for (let i = 0; i < ticksPerRing; i++) {
+        const angle = (360 / ticksPerRing) * i;
         const rad = (angle * Math.PI) / 180;
         const px = cx + Math.cos(rad) * r;
         const py = cy + Math.sin(rad) * r;
@@ -241,20 +246,28 @@ const MECHANISMS = {
     tumbleStride: 8,
     generate: (seed) => {
       const rand = mulberry32(seed);
-      // rotate where the 3 rings sit around the center, and vary their
-      // spacing/radius/density — same "3 overlapping cycles" story, a
-      // genuinely different Venn diagram per study
+      // Rotating a shape with 3-fold symmetry around its own center doesn't
+      // change its silhouette — only its instantaneous orientation, which
+      // the continuous spin animation already sweeps through anyway. So a
+      // shared radius for all 3 rings (the original version of this) meant
+      // every study rendered "three equal circles at 120°" regardless of
+      // seed — technically different numbers, perceptually the same image.
+      // Each ring now gets its OWN radius and tick density, which actually
+      // breaks the symmetry: one dominant ring with two small satellites
+      // reads as a genuinely different composition from three near-equal
+      // circles, not just a rotated copy of it.
       const rotation = rand() * Math.PI * 2;
-      const spacing = 20 + rand() * 10; // 20..30 — how far the 3 centers sit apart
-      const radius = 38 + rand() * 14; // 38..52 — how big each ring is
+      const spacing = 12 + rand() * 36; // 12..48 — near-merged to widely spread
       const centers = [0, 1, 2].map((i) => {
         const a = rotation + (i * Math.PI * 2) / 3;
         return [100 + Math.cos(a) * spacing, 100 + Math.sin(a) * spacing];
       });
+      const radius = [0, 1, 2].map(() => 26 + rand() * 32); // 26..58, independent per ring
+      const ticksPerRing = [0, 1, 2].map(() => 40 + Math.floor(rand() * 40)); // 40..79, independent per ring
       return makeInterlockRings({
         centers,
         radius,
-        ticksPerRing: 72,
+        ticksPerRing,
         tick: "M-1.1,-4.6 C-1.1,-5.5 1.1,-5.5 1.1,-4.6 L1.1,4.6 C1.1,5.5 -1.1,5.5 -1.1,4.6 Z",
         bands: [
           { offset: -9, color: "#4f8375" },
