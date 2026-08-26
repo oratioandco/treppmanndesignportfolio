@@ -54,7 +54,7 @@
       "metrics": [
         {
           "label": "User validation",
-          "value": "Bibel TV users showed a strong, research-confirmed preference for light mode, plus follow-up conversations on the redesign's premium feel (exact sample size being reconfirmed — see verification log 2026-08-25)"
+          "value": "A concept survey (n=264) tested three colour directions against the current dark-only app. Among respondents with a clear preference, 51% chose a light palette outright and 32% chose a mixed light/dark palette — only 17% preferred dark alone"
         },
         {
           "label": "Brand alignment",
@@ -79,7 +79,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. Research confirmed a strong user preference for light mode; design direction finalised and validated, moving into development.",
+      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. A concept survey found 83% of respondents with a preference chose light or mixed over dark-only; design direction finalised and validated, moving into development.",
       "angle": "A redesign as competitive strategy",
       "sections": [
         "hero",
