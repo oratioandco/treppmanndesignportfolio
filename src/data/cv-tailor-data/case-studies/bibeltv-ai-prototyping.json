@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-ai-prototyping",
   "title": "Agentic Design at Scale",
-  "subtitle": "Using AI-coded prototypes to collapse the design-to-production pipeline",
+  "subtitle": "Prototyping the Bibel TV app redesign in real code, so an external agency evaluates something that already runs",
   "type": "ai-product",
   "tags": [
     "ai-native-design",
@@ -12,10 +12,10 @@
   ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
-  "team": "1 designer + engineering team, Hamburg/Berlin",
+  "team": "Solo design function; engineering at an external agency. Hamburg / Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
-  "last_updated": "2026-05-06",
+  "last_updated": "2026-08-25",
   "format_priority": [
     "in-depth",
     "executive"
@@ -24,114 +24,85 @@
     {
       "type": "hero",
       "headline": "Agentic Design at Scale",
-      "subtext": "Designing in prototypes, not mockups. AI agents generate the code. Engineering teams ship the output directly.",
-      "images": [
-        {
-          "src": "/images/bibeltv/agentic-design-hero.png",
-          "alt": "Design to Code Pipeline",
-          "caption": "From design intent to shipped code in a single loop"
-        }
-      ]
+      "subtext": "Prototyping the Bibel TV app redesign in real code, against real and self-built APIs, so an external engineering agency evaluates something that already runs instead of a document that describes it."
     },
     {
       "type": "narrative",
-      "headline": "The Traditional Gap",
-      "content": "Most design workflows follow this pattern: 1. Designer creates mockups in Figma\n2. Designer writes specs (pixel-perfect measurements, interaction states)\n3. Engineering team reads specs, estimates time\n4. Engineering rebuilds what's in the mockup\n5. QA tests, finds gaps (interactions not fully specified)\n6. Designer and engineer collaborate to close gaps\n7. Final code ships This process has built-in delay and ambiguity. Even with the best specs, engineering has to make hundreds of micro-decisions about behavior that specs don't capture."
+      "headline": "The gap a spec can't close",
+      "content": "A spec can say a gradient should feel premium. It can't tell you whether that gradient bands on a three-year-old Android screen, and it can't tell you how much of a phone's display a mobile browser's own chrome will eat before your layout even starts — not until something is actually running on the device.\n\nFor the Bibel TV app redesign, iOS and Android, I'm also product manager and product owner alongside Head of Product Design — the redesign is the reason the current contract exists, which meant I didn't need anyone else's sign-off to change how we were building it. I still start in Figma: layout, flow, hierarchy, the concept work. Writing a spec after that would hand engineering, an external agency, a document instead of an answer, and leave the interaction states and the actual rendering as things to discover later, once a build finally exists to discover them in."
     },
     {
       "type": "callout",
-      "quote": "What if instead of writing specs, I just showed the prototype *code* and the engineering team decided whether to ship it as-is, modify, or rebuild it cleanly?",
-      "context": "The insight that changed our process"
+      "quote": "If I'm also the product owner, the only spec that matters is the one that already runs.",
+      "context": "Why I stopped writing specs for this project"
     },
     {
       "type": "narrative",
-      "headline": "The AI-First Approach",
-      "content": "At Bibel TV, we're experimenting with a different workflow: ### Step 1: Design first I design in Figma as usual, but think in interactions and behaviors, not static mockups. ### Step 2: Prototype in code Rather than writing specs, I describe the intent to Claude Code: \"Build a mobile app screen where users can browse spiritual content, filter by category, save to favorites, and see recently watched.\" Claude generates a working prototype in the target stack, Kotlin for Android, SwiftUI for iOS, React for web and connected TV. ### Step 3: Engineer reviews and decides The engineering team sees working code. They evaluate: ship as-is? Modify? Rebuild cleanly? Why this works: the prototype is often good enough for specific platforms. For shared logic, the team uses it as a reference. For UI-specific platforms, they rebuild with confidence that the interaction model is validated. ### Step 4: Ship Code ships, user feedback guides iteration."
+      "headline": "What I do instead",
+      "content": "So I prototype it myself, in Claude Code, against real data. That alone caught issues and edge cases Figma never would have shown me, the kind that only exist once content is actually rendering.\n\nThe web prototype ran first, and it ran into two real problems. Mobile browsers eat a chunk of the screen with their own chrome before a design even starts, and the visual language I was building leans on gradients — which someone had flagged a genuine worry about: older Android screens, which is where most of our users actually are, tend to band on that kind of gradient. So I kept building the same prototype, but continued it as a native Android app in Kotlin and Jetpack Compose, the only way to see the rendering the way those screens would actually show it.\n\nWhere the production API didn't have what I needed yet, I stood up a custom API myself rather than fall back on placeholder content. A prototype running on fake data isn't worth much. Both versions let me put a working app in front of users and stakeholders in a session, not walk them through static screens.\n\nEngineering, Jannis and Timo at appbase, the agency Bibel TV works with, doesn't get a spec from any of this. They get a build that already runs, and they decide what to keep, what to change, and what to rebuild native for performance. As implementation continues, about half of the prototype code has carried directly into what they're building. Engineering ships from code I wrote, and that engineering sits outside my own company entirely."
     },
     {
       "type": "process",
-      "headline": "Workflow in Practice",
+      "headline": "Workflow in practice",
       "steps": [
         {
-          "label": "Interaction Design",
-          "description": "I design interactions in Figma, annotate key behaviors (swipes, gestures, state changes). Focus on user intent, not pixel perfection."
+          "label": "Concept in Figma",
+          "description": "Layout, flow, hierarchy — the same starting point as always, before any code exists."
         },
         {
-          "label": "Prototype Generation",
-          "description": "I brief Claude Code: \"Here's what I designed. Build this as a functioning prototype.\" Claude generates working code (Kotlin, SwiftUI, or React depending on target)."
+          "label": "Prototype in Claude Code, against real data",
+          "description": "I brief Claude Code directly with the intent, and it generates a working build against the real Bibel TV API, or, where that API doesn't have what I need yet, an API I stand up myself."
         },
         {
-          "label": "Prototype Testing",
-          "description": "I test the prototype on device, verify interactions match intent. Iterate with Claude if behavior is off."
+          "label": "Test on the device that matters",
+          "description": "The web prototype ran into mobile browser chrome eating the interface, and a gradient-heavy visual language needed checking on the older Android screens most of our users are actually on. I continued the same prototype as a native Kotlin / Jetpack Compose app."
         },
         {
-          "label": "Engineering Review",
-          "description": "Engineering team reviews the prototype code. Evaluates architecture, performance, whether it's production-ready.",
-          "image": {
-            "src": "/images/bibeltv/prototype-to-code.png",
-            "alt": "Prototype Code Review",
-            "caption": "Code prototype ready for engineering evaluation"
-          }
+          "label": "Sessions on the real thing",
+          "description": "Both versions let people use a working app, not walk through static screens — with users and with stakeholders."
         },
         {
-          "label": "Ship or Rebuild Decision",
-          "description": "Team decides: Ship the prototype as-is (if good enough), modify it, or rebuild using the prototype as a spec."
+          "label": "Engineering decides",
+          "description": "Jannis and Timo, at appbase, review what runs and decide what to keep, change, or rebuild native. About half of the prototype code has carried directly into the build so far."
         }
       ]
     },
     {
       "type": "narrative",
-      "headline": "Real Example: New Mobile App Redesign",
-      "content": "Our current project is a complete Bibel TV app redesign for iOS and Android. Using agentic design: ### The traditional approach Design mockups, write a 50-page spec, engineer builds from scratch, QA finds gaps, iterate. Four to six weeks. ### Our approach Design interactions in Figma. I brief Claude: \"Build the app with these screens, this navigation structure, these animations\", Kotlin for Android, SwiftUI for iOS. Claude generates a 95%-complete prototype. Result: first version ships in 2 weeks, with higher fidelity interactions than specs could have captured. The win: engineering team is no longer blindfolded by incomplete specs. They see actual working behavior and make informed decisions about what to keep or rebuild."
-    },
-    {
-      "type": "narrative",
-      "headline": "Key Insights",
-      "content": "### AI doesn't replace design thinking The prototype code is only as good as the intent I give it. Bad brief, bad code. But a good brief plus AI beats specs-then-rebuild every time. ### Engineering makes the call I don't force-ship AI-generated code. The team evaluates, modifies, or rebuilds. This preserves engineering autonomy and code quality. ### Interaction fidelity matters Where AI-generated code shines is capturing interactions, animations, gestures, state transitions, that specs typically under-specify. Shipping these interactions directly is a win. ### Platform-specific code still gets rebuilt The React prototype works great as a reference for iOS and Android teams, but they often rebuild platform-native for better performance and UX consistency. That's fine, the prototype still saved time and validated the interaction model."
+      "headline": "What holds and what doesn't",
+      "content": "Engineering still makes the call. I don't force-ship what I build — the agency reviews it and decides to keep it, change it, or start over. That's not a formality; it's what keeps a designer's prototype from becoming an unreviewed dependency in someone else's codebase.\n\nWhat carries best is exactly what a spec is worst at: interaction and state, the parts of an app you can only really judge by using them. What doesn't automatically carry is platform-native polish. Some of what I build gets rebuilt native once engineering picks it up, for performance rather than correctness, and that's not a failure of the approach. It's engineering doing the part of the job that's actually theirs."
     },
     {
       "type": "outcome",
-      "headline": "Results So Far",
+      "headline": "Where this stands",
       "metrics": [
         {
-          "label": "Where the prototype comes from",
-          "before": "Mockups and a written spec",
-          "after": "A working prototype, generated from the design and run against real APIs"
+          "label": "What the agency evaluates",
+          "before": "A spec and redlines to interpret",
+          "after": "A working prototype, already running against real data"
         },
         {
-          "label": "What engineering asks about",
-          "before": "Interpretation questions about the spec",
-          "after": "Fewer, because most are answered by seeing the thing run"
-        },
-        {
-          "label": "Engineering Team Satisfaction",
-          "value": "High: they prefer working from code prototypes vs. specs"
+          "label": "Prototype code reused by engineering",
+          "value": "About half, as implementation continues"
         }
       ],
-      "narrative": "The biggest win is eliminated ambiguity. When engineering sees working code instead of a mockup, they ask better questions and make faster decisions.",
-      "images": [
-        {
-          "src": "/images/bibeltv/agentic-design-workflow.png",
-          "alt": "Agentic Design Workflow",
-          "caption": "From design intent to shipped code, collapsed timeline"
-        }
-      ]
+      "narrative": "The redesign itself hasn't launched, so this is about how it's getting built, not a consumer number yet. What's already true: about half the code engineering is shipping started as something I wrote and ran myself, and the other half exists because the agency looked at working software and made an informed call, rather than guessing from a document and finding out later."
     },
     {
       "type": "reflection",
-      "headline": "What I'm Learning",
-      "content": "Five years ago, I would've said \"designers don't code prototypes because spec communication is efficient.\" That was wrong. Specs are *lossy*. They can't capture all the micro-decisions a designer makes. What we're learning: AI-generated prototypes are efficient *and* high-fidelity. They preserve intent better than specs. They let engineering make informed decisions instead of guessing from drawings. This might be the biggest shift in design-engineering collaboration since design systems."
+      "headline": "What I'm taking from it",
+      "content": "Five years ago I'd have said prototyping in code doesn't scale, that writing specs is just more efficient. I don't think that's true anymore, at least not here. Specs are lossy. They can't hold the hundreds of small decisions a working interface actually needs, and no amount of redlining closes that gap.\n\nWhat I didn't expect is how much of that lossiness only shows up once real data is in the picture. What survived into the build isn't the interesting part. The interesting part is that what didn't survive got rebuilt because engineering could actually see what needed to change, instead of guessing from a document and finding out later."
     },
     {
       "type": "key-takeaway",
-      "headline": "Why This Matters for Your Team",
-      "content": "If you're stuck in the traditional design-handoff-to-engineering loop, agentic prototyping is the escape route. I'm proving it works at Bibel TV with real products, real deadlines, and real engineering teams. The prototype doesn't have to be perfect, it just has to be better than a spec at communicating intent."
+      "headline": "Want the specifics?",
+      "content": "Curious why a mobile browser's own chrome was reason enough to rebuild a prototype natively in Kotlin, or why engineering only kept about half of what I handed them? Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Redesigned the design-to-engineering workflow using AI-generated prototypes.",
-      "angle": "Collapsing the design-engineering loop with agentic code",
+      "summary": "Prototyped the Bibel TV app redesign in real code against real and self-built APIs, so an external engineering agency reviews something that already runs. About half of that prototype code has carried directly into the build.",
+      "angle": "Design leadership through a working prototype instead of a spec",
       "sections": [
         "hero",
         "callout",
@@ -141,30 +112,31 @@
       "max_read_time": "2 min"
     },
     "in-depth": {
-      "summary": "Deep dive into agentic design: how we use Claude Code to generate prototypes, how engineering teams evaluate them, and what this means for the future of design handoff.",
-      "angle": "Prototypes as specs: a working alternative to pixel-perfect mockups",
+      "summary": "How I prototype the Bibel TV app redesign in Claude Code against real and self-built APIs, why the prototype moved from web to a native Kotlin build, and how much of that code an external agency actually ships from.",
+      "angle": "The prototype as the spec, tested against a real technical constraint",
       "sections": [
         "hero",
         "narrative",
         "callout",
+        "narrative",
         "process",
-        "example",
-        "insights",
+        "narrative",
         "outcome",
         "reflection",
         "key-takeaway"
       ],
-      "max_read_time": "8 min"
+      "max_read_time": "7 min"
     }
   },
   "related": [
+    "bibeltv-agentic-engineering",
     "bibeltv-color-api",
     "leading-a-team-is-a-design-problem"
   ],
   "meta": {
-    "read_time_minutes": 8,
+    "read_time_minutes": 7,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23"
+    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23, redesign prototyping-practice verification 2026-08-23"
   }
 }

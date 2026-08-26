@@ -140,6 +140,10 @@
       "type": "reflection",
       "headline": "What I took from it",
       "content": "The best multi-stakeholder design does not try to make everyone happy with one interface. It gives each group the right level of control and visibility. Funeral homes got speed. Priests got control. Parish assistants got oversight.\n\nThe tension between those needs is the actual design work, and on this project a lot of that translation was possible because the customer had already done the synthesis themselves. They knew their community: bereaved families, busy funeral directors, stretched parish offices. They handed us the goals. My job was the translation and the validation, not the discovery.\n\nThe other lesson is about leverage, and it's where the product role mattered as much as the design role. The most consequential move on this project was the scoping choice rather than any design choice. Once build-vs-buy was off the table (the custom-form requirement ruled out third-party tools), the real fork was between a standalone module and an integrated platform feature. The standalone module would have shipped funeral booking on time, but it would have been one more thing for parishes to learn alongside the platform. The integrated path was deeper and harder: build the booking capability into the calendar and form builder that parishes already used, so it would compose with whatever came after. That choice cost more upfront and paid back across the rest of the product."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious why turning down the faster, standalone-module path was the right call, or how a funeral-booking tool built in two months ended up running weddings, baptisms and room rentals for ChurchDesk's whole customer base? Get in touch."
     }
   ],
   "variants": {

@@ -15,7 +15,7 @@
   "company": "Ninox Software GmbH",
   "role": "Design lead (freelance, founder-led stealth project)",
   "team": "Direct collaboration with Ninox CEO and technical co-founder, pre-product-team handoff, Berlin",
-  "duration": "2024",
+  "duration": "Summer 2025",
   "status": "draft",
   "last_updated": "2026-05-24",
   "hero_image": {
@@ -130,6 +130,10 @@
           "caption": "The proof: the AI-generated schema becomes a real working product. Records, relations, and field types behave like any hand-built Ninox app."
         }
       ]
+    },
+    {
+      "type": "narrative",
+      "content": "The AI's first guess at your schema is almost always a little off. Curious why the fix was never a smarter chatbot, but making sure a law-firm partner who's never thought about tables and relations doesn't have an 'AI mode' to escape from? Get in touch."
     }
   ],
   "variants": {

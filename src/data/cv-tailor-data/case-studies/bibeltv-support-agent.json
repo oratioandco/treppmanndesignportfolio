@@ -15,7 +15,7 @@
   "team": "Solo design lead in partnership with the CS team, Hamburg/Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
-  "last_updated": "2026-05-23",
+  "last_updated": "2026-08-25",
   "format_priority": [
     "in-depth"
   ],
@@ -43,12 +43,16 @@
     {
       "type": "narrative",
       "headline": "The design decisions",
-      "content": "### Handbook is the context, not the model\n\nThe skill loads the CS handbook, tone guidelines, common questions, response templates, escalation rules, as context with each draft. The model isn't trained on it; it just reads it alongside the incoming message. Handbook updates take effect the moment the document changes. No retraining, no pipeline.\n\n### Define 'good draft' before tuning the prompt\n\nWorked with the CS team to spell out what a good draft looks like for the most common message types: tone, length, structure, whether to reference a Bible verse, when to suggest a one-on-one call. That target gave the prompt-tuning something concrete to aim at instead of generic 'make it sound nice.'\n\n### Human keeps the send decision, always\n\nThe draft never goes out without a human edit-and-send. Efficiency was never what was being traded here. This is the design point. For sensitive communications, the human judgment is the product. The skill moves the blank-page problem; nothing more.\n\n### The human is upstream, not downstream\n\nThe copilot is embedded in nothing. Viewer services works largely from paper post, so a person opens the letter, reads it, decides whether the tool is worth reaching for, enters the content, and edits the draft before anything is sent. The judgement sits ahead of the model rather than behind it, which is the opposite of how most assistive AI is arranged.\n\nThe system prompt refuses in one case, and it is a useful one. If the input is not a viewer enquiry at all, an internal team note for instance, it declines to produce a reply and asks for clarification instead. A confident draft answering the wrong thing is worse than no draft."
+      "content": "### Handbook is the context, not the model\n\nThe skill loads the CS handbook, its wording, formatting and standard phrases, as context with each draft. The model isn't trained on it; it just reads it alongside the incoming message. Handbook updates take effect the moment the document changes. No retraining, no pipeline.\n\n### A fixed shape for a good reply, not a vibe\n\nThe system prompt doesn't stop at what to avoid. It specifies a fixed answer structure, a house-voice specification, and the channel links to close with. For emotional messages specifically it calls for high empathy and pastoral language, with scripture or a promise of prayer where it fits. That's a concrete target for what 'good' looks like, not a generic instruction to sound nice.\n\n### Human keeps the send decision, always\n\nThe draft never goes out without a human edit-and-send. Efficiency was never what was being traded here. This is the design point. For sensitive communications, the human judgment is the product. The skill moves the blank-page problem; nothing more.\n\n### The human is upstream, not downstream\n\nThe copilot is embedded in nothing. Viewer services works largely from paper post, so a person opens the letter, reads it, decides whether the tool is worth reaching for, enters the content, and edits the draft before anything is sent. The judgement sits ahead of the model rather than behind it, which is the opposite of how most assistive AI is arranged.\n\nThe system prompt refuses in one case, and it is a useful one. If the input is not a viewer enquiry at all, an internal team note for instance, it declines to produce a reply and asks for clarification instead. A confident draft answering the wrong thing is worse than no draft.\n\n### What changed\n\nLetters that touch several topics at once used to take hours to draft. Now they take minutes. Temporary support staff write in the company's voice from their first week instead of absorbing it slowly over months. And the sceptics on the team, the ones who doubted a drafting tool would hold up on anything real, came around only after they tried it on their hardest letter, not their easiest."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
       "content": "A Copilot skill is a small piece of design surface but a useful one to do well. The work sits in the scoping: what context to give the model, what counts as a good output, and where the human stays in charge. Those are design decisions, not engineering ones.\n\nThe principle that ports to other domains: AI augments judgment, it doesn't replace it. In customer support, in legal drafting, in any domain where the human is liable for the output, the design job is to compress drafting time while leaving the judgment surface untouched."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious how a copilot that never touches an inbox, no auto-read, no auto-send, still turned the team's sceptics around, each on their hardest letter? Get in touch."
     }
   ],
   "variants": {
@@ -72,6 +76,6 @@
     "read_time_minutes": 3,
     "confidential": false,
     "confidentiality_note": "In production. UI screenshots: Tobias's call, 2026-08-13 — he authored the agent, so he treats publishing its interface as his to decide and does not seek separate approval. Recorded rather than assumed, because the note previously said approval was required. TWO THINGS THAT DO NOT FOLLOW FROM AUTHORSHIP, and still bind: (a) the agent runs inside Bibel TV's M365 tenant, so tenant, agent and conversation GUIDs are cropped out of every frame — they are their infrastructure, not his work; (b) it drafts in Bibel TV's brand voice, so a published draft can read as their institutional position. Anything stating a position on a contested social topic stays off the site for that reason, whoever built the tool. Every message shown is invented for the purpose; no real viewer message is ever used.",
-    "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23"
+    "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23 + MVP case-study pass 2026-08-25 (teaser close added; handbook-content and 'good draft' claims tightened to what data/experiences/bibel-tv-head-of-product-design.md and data/verification-log/bibeltv-copilot-safety-claims-2026-08-13.md actually verify, dropping unsourced specifics such as 'escalation rules' in the handbook and the Bible-verse/one-on-one-call good-draft criteria; 'What changed' outcomes paragraph added from CAREER-TRUTH.md §2 / the experience file's Outcomes line; no images available, ships text-only, generation left undeclared)"
   }
 }

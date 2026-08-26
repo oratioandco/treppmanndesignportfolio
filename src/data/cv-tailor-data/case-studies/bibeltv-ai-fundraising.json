@@ -16,7 +16,7 @@
   "team": "Solo end-to-end (analysis, prompt engineering, prototype, Claude skill), Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "draft",
-  "last_updated": "2026-07-10",
+  "last_updated": "2026-08-25",
   "format_priority": [
     "in-depth",
     "executive"
@@ -25,7 +25,7 @@
     {
       "type": "hero",
       "headline": "An AI ecosystem for fundraising letters",
-      "subtext": "Bibel TV's fundraising is letter-driven, some letters land, some don't. I built the analysis, the prompt environment, the web prototype, and the Claude skill that carries the same voice into in-app notifications, web banners, and video scripts. All of it done solo, at the layer where prompt design meets product design."
+      "subtext": "Some Bibel TV fundraising letters raised noticeably more than others, and nobody had a record of why. I built the analysis that found the pattern, the Claude Project that turns it into a draft, the web prototype that puts someone in control of that draft, and the Claude skill that carries the same voice into in-app notifications, web banners, and video scripts. All of it done solo, at the layer where prompt design meets product design."
     },
     {
       "type": "callout",
@@ -35,12 +35,12 @@
     {
       "type": "narrative",
       "headline": "The problem",
-      "content": "Fundraising is a recurring, tone-sensitive job at Bibel TV: several campaigns a year, each with a letter that has to feel warm, specific, and unmistakably in Bibel TV's voice. Some letters historically outperform others by a wide margin, different seasonality, different framings, different rhythms.\n\nDrafting from scratch takes hours per campaign, and the follow-up content that has to reinforce the same message across the app, the web, and video scripts either gets copy-pasted (losing specificity) or written from a blank page again (losing time). The blank page keeps eating the calendar."
+      "content": "Some Bibel TV fundraising letters raised noticeably more than others, and nobody could say exactly why beyond a guess about the season. Every campaign still needed a letter that read warm, specific and unmistakably Bibel TV — drafted from scratch, several times a year.\n\nThe follow-up content built to carry the same message into the app, the web and video scripts had two options: get copy-pasted, and lose the specificity that made the original work, or get written from a blank page again, and lose the time. The blank page kept eating the calendar."
     },
     {
       "type": "narrative",
       "headline": "What I built",
-      "content": "### 1. A performance analysis of the source material\n\nI went back through the fundraising letters and their results, identifying what separates the over-performers from the under-performers. Seasonality was one axis. Style, sentence length, warmth, how directly the ask was framed, how much specific reference to Bibel TV programming was woven in, was the other. That analysis is the ground truth the whole ecosystem sits on.\n\n### 2. A Claude Project that guides the generation with follow-up questions\n\nThe analysis, together with the style guide, is encoded into a Claude Project. Crucially, the Project doesn't just take a prompt and produce a letter. It asks follow-up questions before generating, clarifying the campaign occasion, the audience segment, the specific programme or milestone the letter should reference. The interaction is a multi-turn clarification loop with a human, not a single-shot completion.\n\n### 3. A web prototype for the generation flow\n\nSo the flow isn't chat-only, I built a web prototype that gives the generation a proper surface, inputs for the context Claude needs, side-by-side view of the working draft, iteration in place. Prompt engineering shows up in the model's behaviour; the prototype shows up in the human's ability to drive it.\n\n### 4. A Claude skill for multi-surface follow-up content\n\nThe fundraising letter is only the first surface. The same message has to land as an in-app notification when a viewer opens the Bibel TV app, as a banner on the web, and as a video script for the on-air fundraising spots. I built a Claude skill that takes the letter's tone and message as its ground state and produces follow-up content across all three surfaces. One voice, three surfaces, one source of truth."
+      "content": "### 1. A performance analysis of the source material\n\nI went back through the fundraising letters and their results, identifying what separates the over-performers from the under-performers. Seasonality was one axis. Style, sentence length, warmth, how directly the ask was framed, and how much specific reference to Bibel TV programming was woven in — that was the other. That analysis is the ground truth the whole ecosystem sits on.\n\n### 2. A Claude Project that guides the generation with follow-up questions\n\nThe analysis, together with the style guide, is encoded into a Claude Project. Crucially, the Project doesn't just take a prompt and produce a letter. It asks follow-up questions before generating, clarifying the campaign occasion, the audience segment, the specific programme or milestone the letter should reference. The interaction is a multi-turn clarification loop with a human, not a single-shot completion.\n\n### 3. A web prototype for the generation flow\n\nThe flow isn't chat-only. I built a web prototype that gives the generation a proper surface: inputs for the context Claude needs, a side-by-side view of the working draft, iteration in place. Prompt engineering shows up in the model's behaviour; the prototype shows up in the human's ability to drive it.\n\n### 4. A Claude skill for multi-surface follow-up content\n\nThe fundraising letter is only the first surface. The same message has to land as an in-app notification when a viewer opens the Bibel TV app, as a banner on the web, and as a video script for the on-air fundraising spots. I built a Claude skill that takes the letter's tone and message as its ground state and produces follow-up content across all three surfaces. One voice, three surfaces, one source of truth."
     },
     {
       "type": "process",
@@ -67,12 +67,16 @@
     {
       "type": "narrative",
       "headline": "The design decisions that mattered",
-      "content": "### Ground the model in analysis, not in vibes\n\nThe Claude Project's job isn't to imitate a generic fundraising voice. It's to encode what actually works for Bibel TV, the seasonality patterns, the specific stylistic choices that separated the over-performers from the rest. Prompt engineering here is really source-material engineering: the leverage is in the analysis, not the phrasing.\n\n### Ask follow-up questions before generating\n\nThe most common AI-writing failure mode is a plausible-sounding first draft that misses the specifics only a human can supply. Building the follow-up questions into the Project structure turns that failure mode into a design choice, the AI won't generate until the operator has answered what campaign and what programme this is for.\n\n### Multi-surface cascade with one source of truth\n\nThe skill treats the letter as the source and the notification / banner / video script as derivatives. If the letter changes, the follow-up content stays in sync. If Bibel TV's tone shifts, we change it in one place. That's a design decision about where the source of truth lives, before it's a prompt decision.\n\n### Solo end-to-end at the model-adjacent layer\n\nI built all four artefacts: analysis, Claude Project, web prototype, Claude skill. That is the point of the story, not a team boast. This is the shape of the work when a design leader stops designing around AI and starts building at the prompt-and-context layer."
+      "content": "### Ground the model in analysis, not in vibes\n\nThe Claude Project's job isn't to imitate a generic fundraising voice. It's to encode what actually works for Bibel TV, the seasonality patterns, the specific stylistic choices that separated the over-performers from the rest. Prompt engineering here is really source-material engineering: the leverage is in the analysis, not the phrasing.\n\n### Ask follow-up questions before generating\n\nThe most common AI-writing failure mode is a plausible-sounding first draft that misses the specifics only a human can supply. Building the follow-up questions into the Project structure turns that failure mode into a design choice: the AI won't generate until the operator has answered what campaign and what programme this is for.\n\n### Multi-surface cascade with one source of truth\n\nThe skill treats the letter as the source and the notification / banner / video script as derivatives. If the letter changes, the follow-up content stays in sync. If Bibel TV's tone shifts, we change it in one place. That's a design decision about where the source of truth lives, before it's a prompt decision.\n\n### Solo end-to-end at the model-adjacent layer\n\nI built all four artefacts: analysis, Claude Project, web prototype, Claude skill. That is the point of the story, not a team boast. This is the shape of the work when a design leader stops designing around AI and starts building at the prompt-and-context layer."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
       "content": "The parts of this that feel like design and the parts that feel like prompt engineering aren't separable. Deciding what counts as good tone, what has to be asked before generating, where the source of truth lives, and how the cascade to other surfaces works, those are design decisions expressed in prompts, project structure, and skill scoping.\n\nThe closer I get to the model, the more the work looks like designing a system, and the less it looks like designing a screen. The screen is downstream of the system."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious why the fundraising AI won't generate until it knows what campaign and what programme this is for — and how one letter becomes an in-app notification, a web banner, and a video script without anyone rewriting it? Get in touch."
     }
   ],
   "variants": {
@@ -96,6 +100,6 @@
     "read_time_minutes": 5,
     "confidential": false,
     "confidentiality_note": "Fundraising performance data is internal to Bibel TV. Case study speaks to the design work and ecosystem shape, not to donation figures or campaign results.",
-    "source": "data/experiences/bibel-tv-head-of-product-design.md:62 + data/verification-log/goodmaven-ai-design-leader-verification.md Q2 (2026-07-09 answer)"
+    "source": "data/experiences/bibel-tv-head-of-product-design.md:155 + data/verification-log/goodmaven-ai-design-leader-verification.md Q2 (2026-07-09 answer). MVP text pass 2026-08-25 (write-case-study-mvp skill): re-voiced problem/solution, fixed two comma splices, added closing line. No new claims, no images added, no `generation` declared — engine/bin/generations.py --id bibeltv-ai-fundraising --explain reaches Gen 0 (no outcome section; confidentiality note is why: campaign performance data is internal, so no outcome metric can be shown)."
   }
 }

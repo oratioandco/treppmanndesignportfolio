@@ -16,11 +16,7 @@
   "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
   "duration": "2025 – Present",
   "status": "draft",
-  "last_updated": "2026-05-22",
-  "hero_image": {
-    "src": "/images/bibeltv/app-redesign-hero.png",
-    "alt": "The redesigned Bibel TV app: Mediathek section, warm light-mode design"
-  },
+  "last_updated": "2026-08-25",
   "format_priority": [
     "in-depth",
     "executive",
@@ -30,7 +26,7 @@
     {
       "type": "hero",
       "headline": "A premium faith app that doesn't default to dark mode",
-      "subtext": "Pray.com was coming to Germany, a polished, dark-mode faith app built by ex-Netflix and ex-Spotify people. Bibel TV had the deeper library and a 300-year archive, but an app that looked a few years behind. The redesign had to make that advantage visible."
+      "subtext": "Bibel TV's streaming app had the deeper archive and the cultural fit, but looked a few years behind its own 2025 broadcast rebrand. The redesign had to make what Bibel TV already had feel as premium as it actually was."
     },
     {
       "type": "callout",
@@ -39,20 +35,13 @@
     },
     {
       "type": "narrative",
-      "headline": "The threat",
-      "content": "Bibel TV is a broadcaster in the middle of a linear-to-streaming transformation, with apps across iOS, Android, web, and connected TV, and a broadcast archive going back generations. The app did not show it. The patterns were dated. It had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThen Pray.com announced a German launch: well funded, built by people from Netflix and Spotify, with a polished dark-mode app aimed at a global market. Bibel TV's advantage is the opposite of global: German-market knowledge, cultural fit, and the archive. The redesign had to turn that advantage into something a user could feel in the first thirty seconds."
+      "headline": "The gap",
+      "content": "Bibel TV is a broadcaster in the middle of a linear-to-streaming transformation, with apps across iOS, Android, web, and connected TV, and a broadcast archive going back generations. The app did not show it. The patterns were dated, it had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThe redesign had to close that gap: turn German-market knowledge, cultural fit, and the archive into something a user could feel in the first thirty seconds, instead of an app that looked older than the brand actually was."
     },
     {
       "type": "narrative",
       "headline": "The light-mode bet",
-      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision, it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static.",
-      "images": [
-        {
-          "src": "/images/bibeltv/app-redesign-beforeafter.png",
-          "alt": "The Bibel TV app before and after the redesign",
-          "caption": "Before and after: dated patterns and no brand link, to a warm light-mode experience aligned with the broadcast."
-        }
-      ]
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision, it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static."
     },
     {
       "type": "narrative",
@@ -65,7 +54,7 @@
       "metrics": [
         {
           "label": "User validation",
-          "value": "87% of survey users preferred light mode; 4.2 / 5 average \"premium feel\" rating (n=40, plus follow-up conversations)"
+          "value": "Bibel TV users showed a strong, research-confirmed preference for light mode, plus follow-up conversations on the redesign's premium feel (exact sample size being reconfirmed — see verification log 2026-08-25)"
         },
         {
           "label": "Brand alignment",
@@ -82,11 +71,15 @@
       "type": "reflection",
       "headline": "What I took from it",
       "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious how \"old Android phones render gradients badly\" turned out to be about the displays and not the platform, and how that fix ended up running in every gradient the app ships now, even the plain-looking ones? Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Led the redesign of Bibel TV's streaming apps to defend the German market against Pray.com, a premium, warm, light-mode experience. 87% light-mode preference, 4.2/5 premium rating, validated and ready for development.",
+      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. Research confirmed a strong user preference for light mode; design direction finalised and validated, moving into development.",
       "angle": "A redesign as competitive strategy",
       "sections": [
         "hero",
@@ -116,6 +109,6 @@
     "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Jupus case-study quality pass 2026-05-22"
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Jupus case-study quality pass 2026-05-22 + MVP truthfulness/teaser pass 2026-08-25 (dropped two unsourced specifics: Pray.com's team pedigree and a 300-year archive figure, neither traceable to data/experiences or data/verification-log; removed both dead image references, hero and before/after, per screenshots-bibeltv-app-redesign.md); removed Pray.com naming and internal competitive-threat framing 2026-08-25 (traced to bibel-tv-strategic-plan-2025-2026.md, Tobias's own internal strategic plan — not public information, same confidentiality class as bibeltv-ai-fundraising's performance-data wall); confirmed 300-year archive figure is FALSE per Tobias, not merely unsourced; flagged 4.2/5 'premium feel' metric as untraceable outside this file, pending Tobias confirmation"
   }
 }

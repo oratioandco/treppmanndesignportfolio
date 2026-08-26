@@ -1,7 +1,7 @@
 {
   "id": "datameer-data-dense-analytics",
   "title": "How do you make big data feel simple?",
-  "subtitle": "Redesigning a collaborative analytics platform for data analysts at the world's most regulated financial institutions",
+  "subtitle": "Redesigning a collaborative analytics platform for data analysts at top US, Canadian, and UK banks and insurers, inside a regulated financial-services environment",
   "type": "design-case-study",
   "tags": [
     "enterprise",
@@ -16,13 +16,14 @@
   ],
   "company": "Datameer",
   "role": "Director of Design",
-  "team": "Led the UX team, reporting to the VP Design, in a design org spanning SF, Halle, and NYC",
+  "team": "Led the UX side (two designers) while Datameer's UI lead ran the visual side, both reporting to the VP Design — a functional-head peer to product and engineering, across a team split between Germany and New York",
   "duration": "2016 – 2021",
   "status": "draft",
-  "last_updated": "2026-04-24",
+  "last_updated": "2026-08-25",
   "hero_image": {
-    "src": "/images/covers/generated/datameer-data-dense-analytics.svg",
-    "alt": "How do you make big data feel simple?: abstract resolution-field cover"
+    "src": "/images/diagrams/datameer-design-function-shift.svg",
+    "alt": "Two-panel diagram. Before: designers received specs and shipped screens, with no user research, no design strategy, and no seat at the product table. After: exec-sponsored site visits to banks and insurers gave direct access to the analysts who used the product, and those insights shaped the roadmap.",
+    "caption": "Five years of turning an execution-only design function into a research-backed strategic partner."
   },
   "format_priority": [
     "in-depth",
@@ -33,12 +34,12 @@
     {
       "type": "hero",
       "headline": "How do you make big data feel simple?",
-      "subtext": "A collaborative analytics platform. Top US, Canadian, and UK banks. Data so complex that the tools themselves created confusion."
+      "subtext": "A collaborative analytics platform built for data analysts at top US, Canadian, and UK banks and insurers. The data was already complex. The tools made it worse."
     },
     {
       "type": "narrative",
       "headline": "The starting point",
-      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful but impenetrable. Data analysts at top US, Canadian, and UK banks and insurers were using it daily, people who understood data deeply but needed the interface to get out of their way, not add cognitive load on top of already complex analytical work.\n\nThe design function existed but was purely execution-focused. Designers received specs and made them look good. There was no user research, no design strategy, no seat at the product table."
+      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful, but it fought the people using it. Data analysts at top US, Canadian, and UK banks and insurers used it daily — people who understood data deeply and needed the interface to get out of the way, not add cognitive load on top of already complex analytical work.\n\nDesign existed, but only as execution. Designers received specs and made them look good. No user research. No design strategy. No seat at the product table."
     },
     {
       "type": "callout",
@@ -52,8 +53,8 @@
       "images": [
         {
           "src": "/images/diagrams/datameer-sample-uncertainty.svg",
-          "alt": "Diagram: the same query returns 4,812 matches against the full dataset and zero against a 1% sample, because the sample captured none of the matching rows.",
-          "caption": "Diagram: why a sampled preview can report nothing while the data is sitting there."
+          "alt": "Diagram: a query against the full dataset returns real matches, but a preview built from a small sample can miss all of them and report zero — not a bug, a property of sampling itself.",
+          "caption": "Why a sampled preview can report nothing while the data is sitting there."
         }
       ]
     },
@@ -71,7 +72,7 @@
         },
         {
           "label": "Design System",
-          "description": "Co-built the platform's design system: UX defined component behaviour and specs, UI executed the visual system. The first unified visual language for a product that had grown organically for years."
+          "description": "Co-built the platform's design system — I owned component behaviour and interaction specs across the library. The first unified visual language for a product that had grown organically for years."
         },
         {
           "label": "Organizational Elevation",
@@ -101,22 +102,26 @@
           "value": "Designed honest feedback that maintained user trust in sampled previews"
         }
       ],
-      "narrative": "The biggest win wasn't a feature: it was organizational. Design moved from 'make it pretty' to 'help us understand our users.' That shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows. Those insights shaped the product roadmap."
+      "narrative": "The biggest win wasn't a feature. It was organizational. Design moved from \"make it pretty\" to \"help us understand our users,\" and that shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows before. Those insights shaped the product roadmap."
     },
     {
       "type": "reflection",
       "headline": "What I learned",
-      "content": "The hardest part wasn't the design: it was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products, because they actually talk to humans."
+      "content": "The hardest part wasn't the design. It was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products, because they actually talk to humans."
     },
     {
       "type": "key-takeaway",
       "headline": "Why this matters for your team",
       "content": "If you're building data-dense tools for technically sophisticated users in regulated environments, the design challenges are fundamentally different from consumer products. I've spent five years learning those differences, from sample-uncertainty communication to compliance-aware user research. This is transferable to any domain where the data is complex, the users are expert, and the stakes are high."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious how a bank that had never let a vendor's design team near its analysts ended up handing me exec-sponsored access to watch them work, or what it actually took to make an empty query preview stop reading as \"your data is missing\"? Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system, UX-defined component behaviour and specs, UI-executed visual system, and solved a fundamental data-uncertainty UX problem.",
+      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system, owned component behaviour and interaction specs, and solved a fundamental data-uncertainty UX problem.",
       "angle": "Organizational transformation through design",
       "sections": [
         "hero",
@@ -146,6 +151,6 @@
     "read_time_minutes": 8,
     "confidential": true,
     "confidentiality_note": "Screenshots may need to be anonymized or use demo data. Verify with Datameer before publishing.",
-    "source": "my-cv-tailor verification 2026-04-23 + experience data file"
+    "source": "data/experiences/datameer-director-of-design.md + verification log, 2026-04-23; diagram and voice pass 2026-08-25"
   }
 }

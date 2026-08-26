@@ -134,6 +134,10 @@
       "type": "reflection",
       "headline": "What I took from it",
       "content": "The strongest version of this makes off-system code impossible to express at all, a constrained set of primitives where the wrong thing simply won't compile. I scoped it and declined it, for now. It's a large migration whose cost is certain and whose benefit is still unmeasured; checks that fail the build may prove sufficient; and every constraint has a cost at the edges, while this system is still gaining tokens weekly.\n\nThe exception register is the instrument that decides it. If it grows, the stricter version earns its migration. If it stays small and every entry stays honest, it doesn't. I'd rather ship the cheaper mechanism with a way to measure whether it's enough than buy the expensive one on principle.\n\nThe broader lesson is about where design authority actually lives in an organisation without designers. I used to think it lived in the Figma library and the review. It lives in whatever the build refuses. Everything else is advice.\n\nWorth noting that others are arriving at the same conclusion from different directions, Polar's [Orbit](https://polar.sh/blog/orbit-llm-safe-design-system) makes the wrong thing fail to typecheck in a single web codebase, where this enforces across a token source feeding four platforms and hands the vocabulary to the assistant directly. Different mechanisms, same underlying bet: that a design decision only holds if something automatic is holding it."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious why the safest thing an automated suggestion can do turned out to be saying nothing at all, or why roughly a quarter of the audit's own findings didn't survive being handed to someone whose only job was to prove them wrong? Get in touch."
     }
   ],
   "variants": {

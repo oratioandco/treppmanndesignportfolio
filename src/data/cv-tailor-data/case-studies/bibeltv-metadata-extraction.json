@@ -1,0 +1,96 @@
+{
+  "id": "bibeltv-metadata-extraction",
+  "title": "The Metadata Nobody Sees",
+  "subtitle": "Every ingested video needed structure, graphics and references logged by hand. I did the job for a week, then designed the system that does most of it — and chose the part to leave alone",
+  "type": "ai-product",
+  "tags": [
+    "AI systems",
+    "media logging",
+    "content operations",
+    "information architecture",
+    "ingest pipeline"
+  ],
+  "company": "Bibel TV",
+  "role": "Head of Product Design",
+  "team": "Solo, with the logging team",
+  "duration": "2026 – Present",
+  "status": "in-progress",
+  "last_updated": "2026-08-25",
+  "format_priority": [
+    "in-depth"
+  ],
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "The Metadata Nobody Sees",
+      "subtext": "A media catalogue is only as navigable as the metadata someone typed in by hand. This is about the hand."
+    },
+    {
+      "type": "narrative",
+      "headline": "The shape of the problem, without the domain",
+      "content": "Every media company has metadata requirements that are specific to it, and specific enough that no off-the-shelf tool captures them.\n\nA cooking channel needs the ingredient list and the moment each technique is demonstrated. A conference organiser needs the speaker, the slide transitions, and the point where the Q&A starts. A sports broadcaster needs the goals. In every case there is a set of references inside the video that matter to that particular audience, and someone has to find them and write down where they are.\n\nAt Bibel TV the references are scripture. The catalogue is sermons, Bible studies and lectures, and the people watching want to know which passage is being discussed and when. Substitute your own domain and the problem is identical: **timecoded references, extracted by a person watching in real time, because the thing that makes them valuable is exactly the thing that makes them hard to automate — they require understanding what was said, not just hearing it.**\n\nThat is the general case. The rest of this is the specific one, and the specifics are where the design decisions live."
+    },
+    {
+      "type": "narrative",
+      "headline": "What the job actually was",
+      "content": "In broadcast and post-production this work has a name: **logging**. A logger reviews footage and records timecoded descriptions of what is in it. At Bibel TV, for every newly ingested video, a member of the logging team had to:\n\n- **watch it, completely** — not skim, not scrub\n- capture the **general timeline and structure**, identifying the distinct segments\n- **timestamp** each of them\n- **screenshot every graphic**: full-screen cards, lower thirds, logos\n- **extract and document the scripture references**\n- **capture a frame to use as the cover image**\n\nThat is the core of it rather than the whole of it, and it is one pass, per asset, forever. None of it is visible to a viewer. All of it determines whether the catalogue can be searched, browsed or recommended at all.\n\nNothing on that list is unique to a faith broadcaster. Any media organisation with a catalogue worth navigating employs loggers to do some version of it.\n\nI know the shape of that work because I did it. **I spent a week on the logging team as part of my onboarding**, doing the capture by hand on real videos. That week is the reason I have a number to quote and the reason I trust it: by my own count the scripture extraction alone took **three to five minutes per video, sometimes more.** I would call that a conservative estimate rather than a measured study, and I would rather say where it came from than dress it up as data."
+    },
+    {
+      "type": "callout",
+      "quote": "The fastest way to understand a workflow is to be bad at it for a week.",
+      "context": "Onboarding rotation through the logging team, before any of this was designed."
+    },
+    {
+      "type": "narrative",
+      "headline": "What the references are actually for",
+      "content": "The extracted references are not decoration on a video record. They run in two directions, and the second one is the product.\n\n**Video to scripture.** Watching a sermon, you can open the passage being discussed in the app's Bible feature, at the point it is discussed.\n\n**Scripture to video.** Reading a passage in the Bible feature, you can see every video in the catalogue that discusses it.\n\nThat second direction turns a verse into an index across the entire library. It is also what makes the timecode a **jump target rather than a note** — someone taps a result and lands inside a video. A technically correct timestamp that drops you mid-sentence, or after the point has been made, is a worse product than no timestamp at all.\n\nThis is the distinction the first version of the system got wrong, and the reason there is a second one."
+    },
+    {
+      "type": "narrative",
+      "headline": "Two iterations, and what changed between them",
+      "content": "**Iteration one worked from the transcript.** A transcript tells you reliably where a reference is *mentioned*. That is a different question from where the passage is *taken up*, and the gap between them is exactly the gap between a correct timestamp and a useful one.\n\n**Iteration two analyses the video itself.** It locates a more meaningful start point, because it can attend to more than the words — the structural signals a transcript flattens. The comparison I am making is against my own earlier version, not against a vendor or a human baseline. That is the only comparison I have earned.\n\nThe system now attempts the whole capture, not just the references: structure, segments, graphics, cover frame. My estimate is that the complete system removes **ten to fifteen minutes of work per video**. It is in progress, not finished."
+    },
+    {
+      "type": "narrative",
+      "headline": "The addition I am introducing: virtual clips",
+      "content": "The existing system records a **start** time for each reference. I am adding the **end** time — the span over which the video actually discusses that passage.\n\nA reference stops being a point and becomes a segment. A segment can be addressed. And an addressable segment can carry **its own metadata**, which is where this stops being a pipeline improvement and becomes a content-model change.\n\nHere is the concrete case. A sermon about Jesus also discusses the creation account. Today, someone reading the creation account in the Bible feature gets a result titled **\"Who is Jesus?\"** The passage genuinely is discussed in there. The title conceals it. **An inherited title describes the parent video, not the reason this result surfaced** — so a relevant hit reads as an irrelevant one, and a feature that is working correctly looks broken.\n\nGive the segment its own title — *\"What Jesus has to do with creation\"* — and it argues for its own relevance. That is the intent: better discovery, and visible relevance inside the Bible feature. **It is not shipped, and I have not measured it.** When it ships, that is the number worth having."
+    },
+    {
+      "type": "narrative",
+      "headline": "The decision I keep making",
+      "content": "The team still watches the video. That is deliberate, and it is the part of the design I would defend hardest.\n\nWhat the system removes is the **logging** — the transcription, the timestamping, the screenshotting, the typing. What it leaves is the watching and the judgment: the guidelines and editorial rules that are harder to automate and more consequential when they are wrong. A person arrives at a new video with the metadata already extracted and generated, and spends their attention on the part that needed a person.\n\nI have now made this same call three times without noticing I was repeating myself. The customer-care copilot at Bibel TV is arranged so a person reads the viewer's letter before the model ever sees it, and every send decision stays human. The AI onboarding model I designed at Ninox generates a database schema into the real data-model editor rather than a chat preview, so a person can see and correct what the model produced.\n\n**Automate the capture. Leave the judgment.** Three systems, one principle, arrived at separately each time."
+    },
+    {
+      "type": "reflection",
+      "headline": "What I took from it",
+      "content": "The week in the department is the part I would repeat anywhere. Not because it produced a number, though it did, but because it produced the right instinct about which minutes were worth removing. Sitting with the workflow told me that the tedium was in the logging and the value was in the watching — and that is not a conclusion I would have reached from a requirements document or a stakeholder interview.\n\nThe other thing I would carry forward is smaller and more specific. **A timestamp is an interface.** It looked like a data field for as long as I thought of it as a record of where something occurs. It became a design problem the moment I understood that a person taps it and arrives somewhere, and that arriving in the wrong place is a worse experience than not being offered the jump.\n\nMost of the metadata nobody sees is like that. It reads as plumbing until you find the surface where a person meets it."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious why the fix for a search result titled \"Who is Jesus?\" was to give the clip its own name rather than a smarter search, or what a week logging videos by hand taught me about which parts of the job were never meant to be automated? Get in touch."
+    }
+  ],
+  "variants": {
+    "executive": {
+      "summary": "Spent a week doing the logging team's capture work by hand during onboarding, then designed the AI system that removes an estimated 10–15 minutes of manual metadata capture per video — while deliberately keeping the human watching the video. Introduced a content-model change, timecoded segments carrying their own metadata, so that search results argue for their own relevance.",
+      "angle": "Grounded in the work before designing the replacement; automates capture and preserves judgment.",
+      "sections": [
+        "hero",
+        "What the job actually was",
+        "The decision I keep making"
+      ],
+      "max_read_time": 2
+    }
+  },
+  "related": [
+    "bibeltv-support-agent",
+    "ninox-ai-onboarding",
+    "bibeltv-ai-prototyping"
+  ],
+  "meta": {
+    "read_time_minutes": 6,
+    "confidential": false,
+    "confidentiality_note": "Cleared for publication by Tobias, 2026-08-25: the task list carries no proprietary information that other media organisations would not also have, and it is described as the core of the job rather than an exhaustive account. No internal tooling screenshots, no vendor stack, no colleague names, no ticket references, no internal URLs. Numbers are his own estimates and are labelled as such in the text — the 3–5 minute figure is scoped to scripture extraction alone and the 10–15 minute figure to the whole system, and the two must never be merged. Virtual clips are described as being introduced, never as shipped, and no discovery or relevance outcome is claimed.",
+    "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md"
+  }
+}

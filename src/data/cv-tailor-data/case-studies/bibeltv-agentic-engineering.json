@@ -16,7 +16,7 @@
   "team": "Design-led, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "draft",
-  "last_updated": "2026-05-22",
+  "last_updated": "2026-08-25",
   "format_priority": [
     "in-depth",
     "executive",
@@ -41,7 +41,7 @@
     {
       "type": "narrative",
       "headline": "What I do instead",
-      "content": "At Bibel TV I design the concept in Figma, layout, flow, hierarchy, and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata. Engineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
+      "content": "At Bibel TV I design the concept in Figma, layout, flow, hierarchy, and then prototype it in real code, using AI-assisted coding tools to move quickly. The prototype runs on the actual Bibel TV APIs, with real videos and real metadata. Engineering does not receive a spec. They receive a working prototype, and they build on its component structures, API calls, and navigation patterns. They refine; they do not re-implement. That engineering team sits at an external agency, not down the hall, so the prototype has to carry the decision across a company boundary rather than just across a desk. When a technical constraint shows up, I change the prototype in code, in the same medium as the product. There is no handoff step to lose anything in."
     },
     {
       "type": "process",
@@ -89,12 +89,16 @@
           "value": "Web-first assumptions were corrected on the Android prototype, before production work started"
         }
       ],
-      "narrative": "A web-first assumption got caught and corrected on the Android prototype before a line of production code was written. The cultural change was harder than the technical one: it took trust for engineering to treat prototype code as a real design artifact. Once the first prototype became production code, that trust came on its own."
+      "narrative": "A web-first assumption got caught and corrected on the Android prototype before a line of production code was written. The cultural change was harder than the technical one: it took trust for an outside agency, with no reporting line into Bibel TV, to treat prototype code as a real design artifact rather than a suggestion to reinterpret. Once the first prototype became production code, that trust came on its own."
     },
     {
       "type": "reflection",
       "headline": "What I took from it",
       "content": "Working code is the clearest design spec because it removes ambiguity. When engineering reviews a running prototype, they see exactly what works and exactly what does not. This way of working asks for a design leader who is comfortable in code, not writing production systems, but building prototypes that carry intent. It is worth the stretch. When the prototype is working code, the design-to-ship gap mostly disappears."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious how a working prototype becomes an outside agency's own reference code instead of a spec they have to reinterpret, or how a gradient bug that looked like an Android problem turned out to be about old screens instead? Get in touch."
     }
   ],
   "variants": {
@@ -129,6 +133,6 @@
     "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Jupus case-study quality pass 2026-05-22"
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; external-agency detail added, verified against data/experiences/bibel-tv-head-of-product-design.md and data/verification-log/2026-08-20-the-gradient-problem-was-not-android.md; no images available, ships text-only, generation left undeclared)"
   }
 }
