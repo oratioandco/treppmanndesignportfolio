@@ -212,6 +212,44 @@ const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'he
 const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
 const pageTitle = heroSection?.headline || study.title;
 
+// Every case study carries a `variants.executive` entry — a curated,
+// shorter reading (the MVP-length version: 2-4 sections, ~2 min) alongside
+// the full `in-depth` one. Neither this route nor /for/ ever read it before
+// this — every page always rendered the complete section list regardless,
+// which is why case studies kept reading as long after the MVP content pass
+// even though the shorter cut existed in the data the whole time.
+//
+// `variant.sections` isn't consistent across the corpus: most studies list
+// section `type`s ("callout", "outcome"), but at least one lists section
+// `headline` text instead. Match on type first, falling back to headline,
+// walking the variant's list in document order so a repeatable type
+// (multiple "narrative" sections) resolves to the right occurrence rather
+// than an arbitrary one.
+function resolveVariantSections(
+  all: CaseStudySection[],
+  keys: string[] | undefined
+): CaseStudySection[] | null {
+  if (!keys || keys.length === 0) return null;
+  const remaining = [...all];
+  const picked: CaseStudySection[] = [];
+  for (const key of keys) {
+    if (key === 'hero') continue;
+    const idx = remaining.findIndex((s) => s.type === key || s.headline === key);
+    if (idx !== -1) picked.push(...remaining.splice(idx, 1));
+  }
+  return picked.length > 0 ? picked : null;
+}
+
+const executiveSections = resolveVariantSections(
+  contentSections,
+  study.variants?.executive?.sections
+);
+// Falls back to showing everything if a study has no usable executive
+// variant (missing entirely, or its `sections` list didn't resolve to
+// anything) — better to show the full case study than an empty one.
+const shortSections = executiveSections ?? contentSections;
+const shortKeySet = new Set(shortSections);
+
 // Inline SVG hero images so they inherit the page's CSS variables (the
 // diagram colors track the light/dark theme) and the site fonts. Raster
 // heroes still render as a plain <img>.
@@ -229,13 +267,18 @@ if (study.hero_image?.src?.endsWith('.svg')) {
 
 // Number only the section types that carry an opener (narrative, process, outcome,
 // reflection, comparison, gallery, default). Skip callouts and key-takeaways.
+// Numbered sequentially across the FULL section list (not per-bucket) so the
+// numbering still reads correctly once "Read the full case study" is opened.
 const figCounter = { n: 0 };
 let sectionNum = 0;
-const renderedSections = contentSections.map((s) => {
+const allRendered = contentSections.map((s) => {
   const isNumbered = !['callout', 'key-takeaway'].includes(s.type);
   if (isNumbered) sectionNum += 1;
-  return { section: s, html: renderSection(s, sectionNum, figCounter) };
+  return { section: s, html: renderSection(s, sectionNum, figCounter), short: shortKeySet.has(s) };
 }).filter((s) => s.html);
+const renderedSections = allRendered.filter((s) => s.short);
+const renderedExtraSections = allRendered.filter((s) => !s.short);
+const hasMore = renderedExtraSections.length > 0;
 
 // Hero kicker text. Falls back gracefully if fields are missing.
 const kickerParts = ['Case Study'];
@@ -286,6 +329,22 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   {renderedSections.map(({ html }) => (
     <Fragment set:html={html} />
   ))}
+
+  {hasMore && (
+    <details class="cs-read-more">
+      <summary>
+        Read the full case study
+        {study.variants?.['in-depth']?.max_read_time && (
+          <span class="cs-read-more-time">({study.variants['in-depth'].max_read_time})</span>
+        )}
+      </summary>
+      <div class="cs-read-more-body">
+        {renderedExtraSections.map(({ html }) => (
+          <Fragment set:html={html} />
+        ))}
+      </div>
+    </details>
+  )}
 
   <p class="cs-endmark" aria-hidden="true">■</p>
 </article>
@@ -996,6 +1055,64 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     letter-spacing: 0.08em;
     color: var(--color-text);
     margin-bottom: var(--space-md);
+  }
+
+  /* ----- Read the full case study (executive → in-depth expand) ---------- */
+
+  .cs-read-more {
+    grid-column: 1 / -1;
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-read-more {
+      grid-column: 1;
+    }
+  }
+
+  .cs-read-more summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .cs-read-more summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .cs-read-more summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .cs-read-more[open] summary::before {
+    content: '−';
+  }
+
+  .cs-read-more-time {
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .cs-read-more-body {
+    margin-top: var(--space-lg);
   }
 
   /* ----- End mark -------------------------------------------------------- */
