@@ -1,0 +1,27 @@
+---
+// The canonical, untailored case-study route — indexable, not scoped to any
+// employer filter. This is what the homepage links to and what a shared or
+// bookmarked case-study URL should be. Renders via the same CaseStudyArticle
+// component as /for/[slug]/[study], so this page and a tailored view of the
+// same study can never drift apart the way the old hand-authored
+// src/pages/case-studies/*.astro pages did from the data.
+import Layout from '../../layouts/Layout.astro';
+import CaseStudyArticle from '../../components/CaseStudyArticle.astro';
+import { getAllPublicCaseStudies, type CaseStudy, type CaseStudySection } from '../../data/cv-tailor';
+
+export function getStaticPaths() {
+  return getAllPublicCaseStudies().map((study) => ({
+    params: { study: study.id },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props as { study: CaseStudy };
+const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
+const pageTitle = heroSection?.headline || study.title;
+const pageDescription = study.subtitle || '';
+---
+
+<Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl="/" backLabel={`← Back to portfolio`}>
+  <CaseStudyArticle study={study} />
+</Layout>

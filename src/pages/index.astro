@@ -5,6 +5,36 @@ import Portrait from '../components/Portrait.astro';
 import Selah from '../components/Selah.astro';
 import DotField from '../components/DotField.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { getAllPublicCaseStudies, type CaseStudy, type CaseStudySection } from '../data/cv-tailor';
+
+// Editorial curation: which real case studies lead on first load — the same
+// featured/browseable split /for/[slug].astro uses, just without a specific
+// employer's filter behind it. Everything else real and non-confidential is
+// one click away under "Show more work," sourced live from the data rather
+// than a hand-typed list that silently goes stale as studies are added —
+// exactly what happened to the five cards this replaced.
+const FEATURED_IDS = [
+  'bibeltv-llm-safe-design-system',
+  'churchdesk-booking-system',
+  'leading-a-team-is-a-design-problem',
+  'bibeltv-ai-prototyping',
+];
+
+const allStudies = getAllPublicCaseStudies();
+const featuredStudies = FEATURED_IDS
+  .map((id) => allStudies.find((s) => s.id === id))
+  .filter((s): s is CaseStudy => !!s);
+const browseableStudies = allStudies.filter((s) => !FEATURED_IDS.includes(s.id));
+
+function cardProps(study: CaseStudy) {
+  const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
+  return {
+    href: `/case-studies/${study.id}`,
+    headline: heroSection?.headline || study.title,
+    caption: [study.company, study.duration].filter(Boolean).join(' · '),
+    studyId: study.id,
+  };
+}
 ---
 
 <Layout title="AI-Native Product & Design Leader">
@@ -66,39 +96,63 @@ import CaseStudyCard from '../components/CaseStudyCard.astro';
       </div>
 
       <div class="case-studies-grid">
-        <CaseStudyCard
-          href="/case-studies/llm-safe-design-system"
-          headline="An LLM-Safe Design System"
-          caption="Design Systems & Governance"
-          studyId="bibeltv-llm-safe-design-system"
-        />
-        <CaseStudyCard
-          href="/case-studies/shipping-ai"
-          headline="Shipping AI, Not Designing Around It"
-          caption="AI Product & Practice"
-          studyId="shipping-ai"
-        />
-        <CaseStudyCard
-          href="/case-studies/churchdesk"
-          headline="When 'Simple Booking' Isn't Simple"
-          caption="ChurchDesk Booking System"
-          studyId="churchdesk-booking-system"
-        />
-        <CaseStudyCard
-          href="/case-studies/collaboration-redesign"
-          headline="Redesigning How We Work Together"
-          caption="Leadership & Team Systems"
-          studyId="leading-a-team-is-a-design-problem"
-        />
-        <CaseStudyCard
-          href="/case-studies/modern-practice"
-          headline="Accelerating Design with AI"
-          caption="AI-First Design Process"
-          studyId="bibeltv-ai-prototyping"
-        />
+        {featuredStudies.map((study) => {
+          const c = cardProps(study);
+          return <CaseStudyCard href={c.href} headline={c.headline} caption={c.caption} studyId={c.studyId} />;
+        })}
       </div>
     </div>
   </section>
 
+  {browseableStudies.length > 0 && (
+    <section class="section" id="more-work">
+      <div class="container">
+        <details class="show-more">
+          <summary>Show more work</summary>
+          <div class="case-studies-grid" style="margin-top: var(--space-lg);">
+            {browseableStudies.map((study) => {
+              const c = cardProps(study);
+              return <CaseStudyCard href={c.href} headline={c.headline} caption={c.caption} studyId={c.studyId} />;
+            })}
+          </div>
+        </details>
+      </div>
+    </section>
+  )}
+
   <Selah />
 </Layout>
+
+<style>
+  .show-more {
+    border: none;
+    cursor: pointer;
+  }
+
+  .show-more summary {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: var(--space-md) 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .show-more summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    font-weight: 600;
+  }
+
+  .show-more[open] summary::before {
+    content: '−';
+  }
+</style>

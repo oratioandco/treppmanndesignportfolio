@@ -30,9 +30,14 @@ const PREVIEW_DIR = path.join(ROOT, 'dev-preview/covers');
 
 // TWO RENDITIONS, ONE SEED.
 //
-// The same field has to serve two sizes 3.6x apart: a full-width HERO on the
-// case-study detail page (three studies point hero_image at their generated
-// cover) and a ~330x200 CARD thumbnail on every /for/ and /work/ index.
+// Not currently consumed by any page. Cards render the live generative motif
+// (src/scripts/poster-motifs.js) instead of a static cover, and the three
+// case studies that used to point hero_image at a generated cover (the
+// halftone SVGs this script produces) now render the same motif as their
+// page-hero backdrop instead — see CaseStudyArticle.astro. Kept as a manual
+// tool (`npm run covers`) in case a future need for a static cover returns;
+// the generated files under public/images/covers/generated/ are otherwise
+// unreferenced.
 //
 // One file cannot do both. At hero scale the 34px grid is the point; scaled
 // into a card the dots land at 1-2px and the structure reads as texture. So

@@ -18,10 +18,6 @@
   "duration": "2026",
   "status": "published",
   "last_updated": "2026-08-13",
-  "hero_image": {
-    "src": "/images/covers/generated/bibeltv-llm-safe-design-system.svg",
-    "alt": "An LLM-safe design system for people who didn't build it: abstract resolution-field cover"
-  },
   "format_priority": [
     "in-depth",
     "executive"

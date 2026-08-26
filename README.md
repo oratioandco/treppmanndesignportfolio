@@ -8,11 +8,11 @@ A personal portfolio website with AI-powered chat functionality, built with Astr
 - **AI Chat**: Ask questions about experience, projects, and philosophy
 - **Server-Side Rendering**: Runs on Node.js for API functionality
 - **Privacy-First**: No tracking, analytics, or cookies
-- **Dynamic Portfolio Routing**: Custom `/work/[slug]` pages per application
+- **Dynamic Portfolio Routing**: Custom `/for/[slug]` pages per application
 
-## Dynamic Portfolio Routing (`/work/[slug]`)
+## Dynamic Portfolio Routing (`/for/[slug]`)
 
-Each job application gets a custom portfolio URL (e.g., `treppmann.design/work/liveeo`). The page shows curated case studies pulled directly from **my-cv-tailor**'s data store — no duplication.
+Each job application gets a custom portfolio URL (e.g., `treppmann.design/for/liveeo`). The page shows curated case studies pulled directly from **my-cv-tailor**'s data store — no duplication. (`/work/[slug]` was retired — `/for/` is the only tailored-audience route now.)
 
 ### Architecture
 
@@ -24,7 +24,7 @@ my-cv-tailor/data/
 │   ├── schema.json              # Case study validation schema
 │   ├── filter-schema.json       # Filter config schema
 │   ├── filters/                 # Per-application portfolio configs
-│   │   └── liveeo.json           # ← creates /work/liveeo
+│   │   └── liveeo.json           # ← creates /for/liveeo
 │   ├── datameer-data-dense-analytics.json
 │   └── ...                      # More case study JSONs
 ├── jobs/                        # Job analysis files
@@ -33,14 +33,15 @@ my-cv-tailor/data/
 ```
 
 - `src/data/cv-tailor.ts` — Reads filter configs + case study JSONs from my-cv-tailor at build time
-- `src/pages/work/[slug].astro` — Dynamic page that renders based on filter config
+- `src/pages/for/[slug].astro` — Dynamic page that renders based on filter config
+- `src/pages/case-studies/[study].astro` — Canonical, untailored case-study route (what the homepage links to)
 - Filter configs reference case studies by ID; studies are loaded from my-cv-tailor's `data/case-studies/`
 
 ### How to add a new application
 
 1. In my-cv-tailor, run `@analyze-job-posting.mdc` for the new role
 2. Run `@prepare-portfolio.mdc` to create a filter config in `data/case-studies/filters/`
-3. Rebuild the portfolio — the new `/work/{slug}` page appears automatically
+3. Rebuild the portfolio — the new `/for/{slug}` page appears automatically
 
 ### Visibility levels
 
@@ -54,7 +55,7 @@ my-cv-tailor/data/
 
 | URL | Company | Role |
 |-----|---------|------|
-| `/work/liveeo` | LiveEO | Head of Product Design |
+| `/for/liveeo` | LiveEO | Head of Product Design |
 
 ---
 

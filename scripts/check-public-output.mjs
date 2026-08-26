@@ -128,13 +128,14 @@ const policy = JSON.parse(readFileSync(POLICY, 'utf8'));
  * point. `public_exclude: ["case-study"]` carries it across. Landing pages,
  * the site root and the CV PDFs are pitches on both sides and stay enforced.
  *
- * Study routes are two segments deep — for/<slug>/<study>/ and
- * work/<slug>/<study>/ — plus everything under case-studies/.
+ * Study routes are two segments deep — for/<slug>/<study>/ — plus everything
+ * under case-studies/. (/work/ was retired — /for/ is the only
+ * tailored-audience route now.)
  */
 function isCaseStudy(rel) {
   const parts = rel.split(/[\\/]/).filter(Boolean);
   if (parts[0] === 'case-studies') return true;
-  if ((parts[0] === 'for' || parts[0] === 'work') && parts.length >= 3) return true;
+  if (parts[0] === 'for' && parts.length >= 3) return true;
   return false;
 }
 const employers = policy.employers ?? [];
@@ -385,7 +386,7 @@ function runProseCheck() {
   const proseRules = policy.prose_rules || [];
 
   // DEDUPE BY PARAGRAPH, not by page. Every case-study body renders once per
-  // filter, so /for/ and /work/ multiply the same sentence ~29 times. Counting
+  // filter, so /for/ multiplies the same sentence ~29 times. Counting
   // pages would report one tic as 29 findings and drown the signal; excluding
   // those routes would miss the case-study prose entirely, which is most of the
   // writing on the site. Collecting unique paragraphs gets both: full coverage,

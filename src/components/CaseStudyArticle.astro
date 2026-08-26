@@ -1,35 +1,19 @@
 ---
+// Shared case-study renderer. Single source of truth for turning a CaseStudy
+// record (data/case-studies/*.json in my-cv-tailor, synced into
+// src/data/cv-tailor-data/case-studies/) into the editorial article layout.
+// Used by both the canonical public route (src/pages/case-studies/[study].astro)
+// and the tailored-audience route (src/pages/work/[slug]/[study].astro) so the
+// two can never drift the way the old hand-authored homepage pages did.
 import fs from 'node:fs';
 import path from 'node:path';
-import Layout from '../../../layouts/Layout.astro';
-import {
-  getAllFilters,
-  getFilterWithStudies,
-  type CaseStudy,
-  type CaseStudySection,
-} from '../../../data/cv-tailor';
+import type { CaseStudy, CaseStudySection } from '../data/cv-tailor';
 
-export function getStaticPaths() {
-  const filters = getAllFilters();
-  const paths = [];
-
-  for (const filter of filters) {
-    const data = getFilterWithStudies(filter.slug);
-    if (!data) continue;
-
-    for (const study of data.studies) {
-      if (study.visibility === 'hidden') continue;
-      paths.push({
-        params: { slug: filter.slug, study: study.id },
-        props: { filter, study },
-      });
-    }
-  }
-  return paths;
+interface Props {
+  study: CaseStudy;
 }
 
-const { filter, study } = Astro.props;
-const backUrl = `/work/${filter.slug}`;
+const { study } = Astro.props;
 
 // Format paragraphs from a content string with \n\n separators.
 // Supports two pieces of markdown that survive in our content:
@@ -138,6 +122,17 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
         });
         html += '</ol>';
       }
+      // A process section could carry `images` and they rendered nowhere: only
+      // per-step images were drawn, so a diagram attached to the section itself
+      // was a reference the reader never saw. Silent, and worse than a broken
+      // path, because a missing file at least fails a check. Placed after the
+      // steps, where a diagram summarising them belongs.
+      if (section.images) {
+        section.images.forEach((image) => {
+          figCounter.n += 1;
+          html += figure(image, figCounter.n);
+        });
+      }
       return html;
     }
 
@@ -216,7 +211,6 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
 const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
 const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
 const pageTitle = heroSection?.headline || study.title;
-const pageDescription = study.subtitle || '';
 
 // Inline SVG hero images so they inherit the page's CSS variables (the
 // diagram colors track the light/dark theme) and the site fonts. Raster
@@ -250,42 +244,51 @@ if (study.duration) kickerParts.push(study.duration);
 const kickerText = kickerParts.join(' · ').toUpperCase();
 ---
 
-<Fragment slot="head">
-  <meta name="robots" content="noindex, nofollow" />
-</Fragment>
-
-
-<Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl={backUrl} backLabel={`← Back to portfolio`}>
-  <header class="cs-hero-wrap">
-    <div class="cs-hero">
-      <div class="cs-hero-text">
-        <span class="cs-kicker">{kickerText}</span>
-        <h1 class="cs-title">{pageTitle}</h1>
-        <p class="cs-tagline">{study.role}</p>
-        {heroSection?.subtext && (
-          <p class="cs-deck">{heroSection.subtext}</p>
-        )}
-        {!heroSection?.subtext && study.subtitle && (
-          <p class="cs-deck">{study.subtitle}</p>
-        )}
-      </div>
-      {study.hero_image && (
-        <figure class="cs-hero-figure">
-          {heroInlineSvg
-            ? <Fragment set:html={heroInlineSvg} />
-            : <img src={study.hero_image.src} alt={study.hero_image.alt} />}
-        </figure>
+<header class="cs-hero-wrap">
+  <div class="cs-hero-motif" aria-hidden="true">
+    <svg class="echo-svg" data-slug={study.id} viewBox="0 0 200 200" fill="none"></svg>
+  </div>
+  <div class="cs-hero">
+    <div class="cs-hero-text">
+      <span class="cs-kicker">{kickerText}</span>
+      <h1 class="cs-title">{pageTitle}</h1>
+      <p class="cs-tagline">{study.role}</p>
+      {/* Scope. Every study carries `team` — "1 designer + engineering team,
+          Berlin", "Team of five, including a design lead" — and it rendered
+          nowhere, on either route. AUDIT.md's first finding against this
+          portfolio was exactly that: "no role framing — what was his title,
+          how big was the team, what was his scope? The reader has to infer
+          seniority from the quality of the thinking, which is a bet most
+          hiring managers won't make." The answer was in the data the whole
+          time. */}
+      {study.team && <p class="cs-scope">{study.team}</p>}
+      {heroSection?.subtext && (
+        <p class="cs-deck">{heroSection.subtext}</p>
+      )}
+      {!heroSection?.subtext && study.subtitle && (
+        <p class="cs-deck">{study.subtitle}</p>
       )}
     </div>
-  </header>
+    {study.hero_image && (
+      <figure class="cs-hero-figure">
+        {heroInlineSvg
+          ? <Fragment set:html={heroInlineSvg} />
+          : <img src={study.hero_image.src} alt={study.hero_image.alt} />}
+      </figure>
+    )}
+  </div>
+</header>
+<script>
+  import "../scripts/poster-motifs.js";
+</script>
 
-  <article class="cs-article">
-    {renderedSections.map(({ html }) => (
-      <Fragment set:html={html} />
-    ))}
+<article class="cs-article">
+  {renderedSections.map(({ html }) => (
+    <Fragment set:html={html} />
+  ))}
 
-    <p class="cs-endmark" aria-hidden="true">■</p>
-  </article>
+  <p class="cs-endmark" aria-hidden="true">■</p>
+</article>
 <script>
   // Per-letter Redaction shimmer on the case-study title — same treatment as
   // the homepage hero headline: each letter perpetually shuffles between
@@ -312,7 +315,6 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     }
   }
 </script>
-</Layout>
 
 <style is:global>
   /* =========================================================================
@@ -395,13 +397,79 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
      cover scale. Uses its own centered 80rem container with edge padding,
      and gives the image a larger share than the text column. */
 
+  /* The hero is an intentional poster, not a themed surface — same rule
+     CaseStudyCard.astro follows for the listing cards. Hardcoded ink/cream,
+     independent of the site's light/dark theme, so a case study's identity
+     (its motif, its dark backdrop) carries unbroken from card to detail
+     page instead of the motif suddenly sitting on a plain white or black
+     page background depending on the visitor's theme. */
   .cs-hero-wrap {
-    border-bottom: 1px solid var(--color-rule);
+    position: relative;
+    overflow: hidden;
+    background: #1a2520;
     margin-bottom: var(--space-xl);
     padding: var(--space-2xl) 1.5rem var(--space-xl);
   }
 
+  .cs-hero-motif {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    /* Solid on the left where the text sits, fading out toward the right
+       where the motif is free to read at full strength — guarantees text
+       contrast regardless of what the generated shape looks like at any
+       given point, without flattening the motif itself. */
+    -webkit-mask-image: linear-gradient(100deg, transparent 0%, transparent 30%, black 62%);
+    mask-image: linear-gradient(100deg, transparent 0%, transparent 30%, black 62%);
+  }
+
+  .cs-hero-motif .echo-svg {
+    position: absolute;
+    top: 50%;
+    right: -8%;
+    width: min(64vw, 52rem);
+    height: min(64vw, 52rem);
+    transform: translateY(-50%);
+    animation: cs-hero-spin 140s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .cs-hero-motif .echo-svg.no-whole-spin {
+    animation: cs-hero-sway 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes cs-hero-spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  @keyframes cs-hero-sway {
+    from { transform: translateY(-50%) rotate(-5deg) scale(1.02); }
+    to   { transform: translateY(-50%) rotate(5deg) scale(1.02); }
+  }
+
+  /* The hero isn't a hover target like the card — it's ambient, so its
+     tumble animation runs continuously rather than pausing until hover. */
+  .cs-hero-motif :global(.tumble-el) {
+    animation-play-state: running !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-hero-motif .echo-svg { animation: none; }
+    .cs-hero-motif :global(.tumble-el) { animation: none !important; }
+  }
+
+  @media (max-width: 40rem) {
+    /* Small viewports stack text above the image; a full-bleed motif behind
+       both reads as noise rather than atmosphere at that width. Fade it
+       down instead of trying to mask around two stacked columns. */
+    .cs-hero-motif { opacity: 0.35; }
+    .cs-hero-motif { -webkit-mask-image: none; mask-image: none; }
+  }
+
   .cs-hero {
+    position: relative;
+    z-index: 1;
     max-width: 80rem;
     margin: 0 auto;
     display: grid;
@@ -430,7 +498,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     font-size: 0.78rem;
     line-height: 1.4;
     letter-spacing: 0.08em;
-    color: var(--color-text-muted);
+    color: #b9cdc4;
     margin-bottom: var(--space-lg);
   }
 
@@ -441,7 +509,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     /* Bigger, more magazine-cover scale. */
     font-size: clamp(2.8rem, 7vw, 5.6rem);
     line-height: 0.92;
-    color: var(--color-accent);
+    color: #f4f1ea;
     margin: 0 0 var(--space-lg);
     letter-spacing: -0.015em;
   }
@@ -451,21 +519,39 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     font-size: 0.78rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--color-text);
+    color: #f4f1ea;
     margin: 0 0 var(--space-md);
+  }
+
+  /* Sits under the role in the same mono register, one step quieter — scope is
+     the qualifier on the title, not a second title. */
+  .cs-scope {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: #b9cdc4;
+    margin: calc(-1 * var(--space-md) + 0.35rem) 0 var(--space-md);
   }
 
   .cs-deck {
     font-family: var(--font-body);
     font-size: 1.1rem;
     line-height: 1.55;
-    color: var(--color-text-muted);
+    color: #cfd9d4;
     max-width: 38ch;
     margin: 0;
   }
 
+  /* The real evidence photo/diagram sits as a light card floating on the
+     dark motif backdrop — a print mounted on a gallery wall — rather than
+     letting the motif crowd out actual proof of the work. Never removed
+     when a study has one; the motif only fills space where there is none. */
   .cs-hero-figure {
     margin: 0;
+    background: #f4f1ea;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
   }
 
   .cs-hero-figure img {
@@ -473,7 +559,6 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     height: auto;
     display: block;
     border-radius: 2px;
-    box-shadow: 0 1px 0 var(--color-rule), 0 24px 60px -24px rgba(26, 26, 26, 0.25);
   }
 
   /* ----- Section opener (§ NN · LABEL + H2) ------------------------------- */
@@ -800,6 +885,16 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     border-radius: 2px;
     border: 1px solid var(--color-rule);
     background: var(--color-surface);
+  }
+
+  /* Diagrams break out of the body column; screenshots stay inset.
+     Spec §3 asks for alternating full-bleed and inset imagery, and this is the
+     half that earns it: a wide diagram scaled into the 36rem measure renders
+     its labels at roughly half size, which is the 2026-07 review's §4.2
+     finding — "the images are present and functionally doing nothing".
+     Screenshots are unaffected: they are crops, and inset is right for them. */
+  .cs-figure img[src*="/images/diagrams/"] {
+    grid-column: 1 / -1;
   }
 
   @media (max-width: 50rem) {

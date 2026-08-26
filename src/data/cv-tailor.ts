@@ -112,11 +112,25 @@ export function getFilterPaths(filter: FilterConfig): string[] {
   return [filter.slug, ...(filter.aliases ?? [])];
 }
 
-function getCaseStudy(id: string): CaseStudy | undefined {
+export function getCaseStudy(id: string): CaseStudy | undefined {
   const entry = Object.values(caseStudyModules).find(
     mod => mod.default && (mod.default as CaseStudy).id === id
   );
   return entry ? (entry.default as CaseStudy) : undefined;
+}
+
+/** Every real case study eligible for the canonical, untailored public route
+ *  (src/pages/case-studies/[study].astro) and the homepage. Filters out the
+ *  two schema definition files (schema.json, filter-schema.json — not case
+ *  studies, just shapes) and anything explicitly marked confidential. Does
+ *  NOT filter by `status` — draft/review/in-progress already render fine on
+ *  /for/ pages today, and excluding them here would just create a second,
+ *  inconsistent gate. */
+export function getAllPublicCaseStudies(): CaseStudy[] {
+  return Object.values(caseStudyModules)
+    .map(mod => mod?.default as CaseStudy | undefined)
+    .filter((cs): cs is CaseStudy => !!cs?.id && Array.isArray(cs.sections))
+    .filter(cs => !cs.meta?.confidential);
 }
 
 export function getFilterWithStudies(slug: string): {

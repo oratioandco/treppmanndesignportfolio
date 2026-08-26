@@ -14,7 +14,7 @@ const OLD_STUDY_ID = "ninox-org-building";
 const NEW_STUDY_ID = "leading-a-team-is-a-design-problem";
 
 // The tailored-audience routes are generated per filter, so the study moving
-// broke one URL per filter under each of /work/ and /for/.
+// broke one URL per filter under /for/.
 // Read off disk, not hand-listed. The hand-listed version named seven filters
 // and went stale: by 2026-08-18 seventeen filters referenced the old study, so
 // twelve of those URLs would have 404'd instead of redirecting — and four pages
@@ -36,25 +36,41 @@ const TAILORED_FILTERS = (() => {
   return [...paths];
 })();
 
+// /work/ is retired — /for/ is the only tailored-audience route going
+// forward. It never carried a real 301 of its own (both routes always set
+// noindex, nofollow), so no redirect is owed to it; only /for/ needs the
+// per-filter old-study-id redirect.
 const tailoredStudyRedirects = Object.fromEntries(
-  TAILORED_FILTERS.flatMap((filter) =>
-    ["work", "for"].map((prefix) => [
-      `/${prefix}/${filter}/${OLD_STUDY_ID}`,
-      `/${prefix}/${filter}/${NEW_STUDY_ID}`,
-    ]),
-  ),
+  TAILORED_FILTERS.map((filter) => [
+    `/for/${filter}/${OLD_STUDY_ID}`,
+    `/for/${filter}/${NEW_STUDY_ID}`,
+  ]),
 );
 
 // https://astro.build/config
 // Site is fully static — deployed via GitHub Pages. The bio API runs
 // as a separate Coolify-hosted Hono service (see ../treppmann-bio-api).
 // The static site fetches it cross-origin from the BioRegenerator component.
+//
+// The five hand-authored src/pages/case-studies/*.astro pages (2026-08-14 to
+// -20) predated the data-driven /case-studies/[study] route and drifted
+// stale — three were 6-12 days behind the real case-study content, and
+// "shipping-ai" was never backed by a real case-study record at all. Old
+// links (this ran live long enough to plausibly be indexed or shared) still
+// resolve, just to the real thing now instead of the fork that drifted.
 export default defineConfig({
   output: "static",
   site: "https://treppmann.design",
   base: "/",
   redirects: {
-    "/case-studies/ninox": "/case-studies/collaboration-redesign",
+    "/case-studies/ninox": `/case-studies/${NEW_STUDY_ID}`,
+    "/case-studies/collaboration-redesign": `/case-studies/${NEW_STUDY_ID}`,
+    "/case-studies/churchdesk": "/case-studies/churchdesk-booking-system",
+    "/case-studies/llm-safe-design-system": "/case-studies/bibeltv-llm-safe-design-system",
+    "/case-studies/modern-practice": "/case-studies/bibeltv-ai-prototyping",
+    // No single real case study replaces this hand-typed placeholder — send
+    // visitors to the homepage to pick a real one rather than fake a 1:1 map.
+    "/case-studies/shipping-ai": "/",
     ...tailoredStudyRedirects,
   },
 });

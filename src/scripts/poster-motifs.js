@@ -291,9 +291,6 @@ const MOTIF_ASSIGNMENTS = {
   "bibeltv-design-system-api": "sunburst", // one token source radiating out to iOS, Android, web, and Figma
   "spreadshirt-user-research-strategy": "sunburst", // one prototype's insight radiating out to redirect company strategy
   "bibeltv-metadata-extraction": "sunburst", // one system radiating out to handle most fields, deliberately leaving one out
-
-  // route slugs that aren't case-study data ids (hand-authored /case-studies/ pages)
-  "shipping-ai": "interlock-rings", // a support copilot, a campaign generator, and a prototyping practice — 3 initiatives converging into one flagship practice (was sunburst, but that duplicated bibeltv-ai-prototyping's shape on the same homepage grid)
 };
 
 const MECHANISM_KEYS = Object.keys(MECHANISMS);
