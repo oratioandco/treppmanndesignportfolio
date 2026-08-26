@@ -30,7 +30,7 @@
     },
     {
       "type": "callout",
-      "quote": "Premium streaming means dark mode: that is the industry default. Our users want light. The question was not which trend to follow, but how to make a light interface feel genuinely premium.",
+      "quote": "Dark mode is the streaming default for a considered reason, not just habit: a near-black frame recedes, the way a theater dims its walls, so the content reads as the whole picture instead of competing with the interface around it. Our research kept surfacing something else. Users associate Bibel TV with hope, and felt that belonged in the interface, not just the content. We had to take that seriously against a convention that exists for good reason.",
       "context": "The strategic design bet at the centre of the project"
     },
     {
@@ -41,7 +41,7 @@
     {
       "type": "narrative",
       "headline": "The light-mode bet",
-      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. Bibel TV's users associate darkness with something impersonal; warmth is the brand. Making a light interface feel premium is genuinely unsolved, which is why it could not stay a surface decision, it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static."
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. That default exists for a considered reason: a dark frame recedes into the background — the same principle a theater uses when it dims the room — so artwork and video carry the screen instead of competing with the chrome around them. Our research said something different was true here — users associate Bibel TV with hope, and expected that to show up in the interface itself, not only in the content. That is a real, specific research insight, and it argued directly against an industry convention that is not arbitrary, so it had to be taken seriously rather than simply preferred.\n\nTaking it seriously created the actual design problem: the new branding runs on image-based, dynamically extracted colour themes, built the way the rest of the industry builds them — for dark backgrounds first. Making that same system hold a premium, on-brand feel in light mode was genuinely unsolved going in. It could not stay a surface decision; it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies), built in parallel so the redesign would be dynamic, not static — and light mode ended up the direction the colour engine was tuned for first, the reverse of the usual order."
     },
     {
       "type": "narrative",
