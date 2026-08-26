@@ -92,6 +92,32 @@ one arrangement principle** — keep both separate:
   instead, see the CSS — for a directional shape like the diagonal weave
   band where a full rotation would look wrong).
 
+## Every mechanism MUST use its seed to vary real parameters
+
+`buildEchoField` always passes a per-slug seed into `generate(seed)`. It is
+not optional to use it. Two studies sharing a mechanism must render
+**visibly different works**, not the same geometry in the same colors —
+if you can't tell them apart at a glance, that's a bug, not an acceptable
+side-effect of sharing a mechanism.
+
+This was caught for real: `double-helix` and `interlock-rings` originally
+ignored `seed` entirely, so all 5 studies on each mechanism rendered
+pixel-identical. Fixed by using `mulberry32(seed)` inside `generate()` to
+vary the mechanism's own shape parameters — not just jitter within a fixed
+structure:
+
+- `interlock-rings`: rotation of the 3 centers around the card, their
+  spacing, and the ring radius.
+- `double-helix`: the diagonal angle the strands travel, amplitude,
+  cycle count, and kite size.
+- `sunburst`: copy count, length range, and the burst's own center
+  position (not fixed at the card's middle).
+
+When adding a mechanism, ask: *if I render this with 5 different seeds,
+do I get 5 different-looking studies, or 5 copies with different spike
+lengths?* If the latter, vary something structural, not just per-node
+jitter.
+
 ## Step 3 — performance guardrails (measured, not theoretical)
 
 This was profiled directly in the browser during development — see the

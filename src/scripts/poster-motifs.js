@@ -77,18 +77,39 @@ function hashStr(s) {
 // jittered so the outer edge reads as a burst, not a ring.
 function makeSunburst(cfg) {
   const rand = mulberry32(cfg.seed);
+  // vary copies/radius/center per seed too, not just per-spike jitter —
+  // otherwise every sunburst is "the same star" with different noise
+  const copies = cfg.copies + Math.floor(rand() * 24) - 12; // ±12
+  const lenMin = cfg.lenMin * (0.7 + rand() * 0.5);
+  const lenMax = cfg.lenMax * (0.85 + rand() * 0.35);
+  const centerOffset = 10; // how far the burst's origin can drift from dead-center
+  const cx = 100 + (rand() - 0.5) * 2 * centerOffset;
+  const cy = 100 + (rand() - 0.5) * 2 * centerOffset;
+  const startAngle = rand() * 360;
+
   const nodes = [];
-  for (let i = 0; i < cfg.copies; i++) {
-    const angle = (360 / cfg.copies) * i;
-    const len = cfg.lenMin + rand() * (cfg.lenMax - cfg.lenMin);
+  for (let i = 0; i < copies; i++) {
+    const angle = startAngle + (360 / copies) * i;
+    const rad = (angle * Math.PI) / 180;
+    const len = lenMin + rand() * (lenMax - lenMin);
     const width = 1.4 + rand() * 1.8;
-    const tipY = 100 - len;
+    const ux = Math.cos(rad), uy = Math.sin(rad);
+    const px = -uy, py = ux; // perpendicular, for the spike's base width
+    const tipX = cx + ux * len, tipY = cy + uy * len;
+    const d =
+      `M${(cx - px * width).toFixed(1)},${(cy - py * width).toFixed(1)} ` +
+      `L${tipX.toFixed(1)},${tipY.toFixed(1)} ` +
+      `L${(cx + px * width).toFixed(1)},${(cy + py * width).toFixed(1)} Z`;
     nodes.push({
-      d: `M${100 - width},100 L100,${tipY.toFixed(1)} L${100 + width},100 Z`,
-      angle,
+      d,
+      // the angle is already baked into the path's absolute coordinates
+      // above (unlike the other mechanisms' spikes), so this must NOT also
+      // go through buildEchoField's rotate(angle,100,100) fallback —
+      // "rotate(0)" (not "", which is falsy and would fall through to it)
+      transform: "rotate(0)",
       lightAngle: angle,
-      origin: [100, 100],
-      t: i / (cfg.copies - 1),
+      origin: [cx, cy],
+      t: i / (copies - 1),
     });
   }
   return nodes;
@@ -181,30 +202,58 @@ const MECHANISMS = {
     opacity: [0.95, 0.2],
     rotateWhole: true,
   },
+  // NOTE: every generate() here takes `seed` and uses it to vary the
+  // mechanism's own parameters (not just jitter within a fixed shape) —
+  // otherwise every case study sharing a mechanism renders pixel-identical
+  // geometry, which is exactly what happened before this comment existed:
+  // double-helix and interlock-rings both ignored the seed entirely, so
+  // all 5 studies on each mechanism were the same image. Vary enough that
+  // two studies on the same mechanism are visibly different works, not
+  // just different colors of the same one.
   "double-helix": {
-    generate: () =>
-      makeDoubleHelix({
+    generate: (seed) => {
+      const rand = mulberry32(seed);
+      // rotate the diagonal the strands travel around the card's center,
+      // and vary amplitude/cycles/kite size — same "two strands" story,
+      // a genuinely different weave per study
+      const angle = rand() * Math.PI * 2;
+      const cx = 100, cy = 100, reach = 80;
+      const from = [cx - Math.cos(angle) * reach, cy - Math.sin(angle) * reach];
+      const to = [cx + Math.cos(angle) * reach, cy + Math.sin(angle) * reach];
+      const amplitude = 15 + rand() * 14; // 15..29
+      const cycles = 2 + Math.floor(rand() * 3); // 2..4, integer for a clean loop
+      const kiteW = 6 + rand() * 4; // 6..10
+      const kiteL = kiteW * (1.3 + rand() * 0.5);
+      return makeDoubleHelix({
         copies: 34,
-        from: [22, 172],
-        to: [178, 28],
-        amplitude: 20,
-        cycles: 3,
-        shape: "M-8,0 L0,-11 L8,0 L0,11 Z",
-      }),
+        from,
+        to,
+        amplitude,
+        cycles,
+        shape: `M-${kiteW.toFixed(1)},0 L0,-${kiteL.toFixed(1)} L${kiteW.toFixed(1)},0 L0,${kiteL.toFixed(1)} Z`,
+      });
+    },
     colors: BRAND_COLORS,
     opacity: [0.95, 0.3],
     rotateWhole: false,
   },
   "interlock-rings": {
     tumbleStride: 8,
-    generate: () =>
-      makeInterlockRings({
-        centers: [
-          [100, 76],
-          [100 - 24 * 0.866, 76 + 24 * 1.5],
-          [100 + 24 * 0.866, 76 + 24 * 1.5],
-        ],
-        radius: 44,
+    generate: (seed) => {
+      const rand = mulberry32(seed);
+      // rotate where the 3 rings sit around the center, and vary their
+      // spacing/radius/density — same "3 overlapping cycles" story, a
+      // genuinely different Venn diagram per study
+      const rotation = rand() * Math.PI * 2;
+      const spacing = 20 + rand() * 10; // 20..30 — how far the 3 centers sit apart
+      const radius = 38 + rand() * 14; // 38..52 — how big each ring is
+      const centers = [0, 1, 2].map((i) => {
+        const a = rotation + (i * Math.PI * 2) / 3;
+        return [100 + Math.cos(a) * spacing, 100 + Math.sin(a) * spacing];
+      });
+      return makeInterlockRings({
+        centers,
+        radius,
         ticksPerRing: 72,
         tick: "M-1.1,-4.6 C-1.1,-5.5 1.1,-5.5 1.1,-4.6 L1.1,4.6 C1.1,5.5 -1.1,5.5 -1.1,4.6 Z",
         bands: [
@@ -212,7 +261,8 @@ const MECHANISMS = {
           { offset: 0, color: "#1a2520" },
           { offset: 9, color: "#f4f1ea" },
         ],
-      }),
+      });
+    },
     colors: BRAND_COLORS,
     opacity: [0.98, 0.3],
     rotateWhole: true,
