@@ -59,11 +59,6 @@
       "format_override": "executive"
     },
     {
-      "id": "ninox-org-building",
-      "visibility": "hidden",
-      "order": 7
-    },
-    {
       "id": "bibeltv-app-redesign",
       "visibility": "hidden",
       "order": 8

@@ -38,12 +38,6 @@
       "format_override": "executive"
     },
     {
-      "id": "ninox-org-building",
-      "visibility": "browseable",
-      "order": 6,
-      "format_override": "executive"
-    },
-    {
       "id": "churchdesk-booking-system",
       "visibility": "browseable",
       "order": 7,
