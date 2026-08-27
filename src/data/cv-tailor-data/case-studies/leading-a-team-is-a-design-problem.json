@@ -155,5 +155,9 @@
     "confidentiality_note": "Anonymised on purpose. The employer is not named in this study, and no detail identifying the individual, role specifics, personality description, timeline, or outcome of their employment, appears anywhere in it. The story is about the collaboration system, not about a person. Do not reintroduce the company name, dates, or any characterisation of the individual.",
     "source": "leadership experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22 + anonymisation pass 2026-08-06"
   },
-  "generation": 3
+  "generation": 3,
+  "hero_image": {
+    "src": "/images/covers/generated/leading-a-team-is-a-design-problem.svg",
+    "alt": "Leading a team is a design problem, abstract resolution-field cover"
+  }
 }

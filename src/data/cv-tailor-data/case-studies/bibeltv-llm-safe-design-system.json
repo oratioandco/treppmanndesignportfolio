@@ -140,7 +140,13 @@
     "executive": {
       "summary": "Made a new design system self-serve for an organisation with no design team: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift can't accumulate unwatched.",
       "angle": "Design governance as infrastructure. With no designers to review, the build has to be the reviewer, which is also what makes the system safe to hand to product people and AI assistants.",
-      "sections": ["callout", "The problem", "process", "outcome", "reflection"]
+      "sections": [
+        "callout",
+        "The problem",
+        "process",
+        "outcome",
+        "reflection"
+      ]
     }
   },
   "related": [
@@ -156,5 +162,9 @@
     "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   },
-  "generation": 3
+  "generation": 3,
+  "hero_image": {
+    "src": "/images/covers/generated/bibeltv-llm-safe-design-system.svg",
+    "alt": "An LLM-safe design system for people who didn't build it: abstract resolution-field cover"
+  }
 }
