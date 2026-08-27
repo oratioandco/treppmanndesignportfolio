@@ -139,7 +139,8 @@
   "variants": {
     "executive": {
       "summary": "Made a new design system self-serve for an organisation with no design team: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift can't accumulate unwatched.",
-      "angle": "Design governance as infrastructure. With no designers to review, the build has to be the reviewer, which is also what makes the system safe to hand to product people and AI assistants."
+      "angle": "Design governance as infrastructure. With no designers to review, the build has to be the reviewer, which is also what makes the system safe to hand to product people and AI assistants.",
+      "sections": ["callout", "The problem", "process", "outcome", "reflection"]
     }
   },
   "related": [

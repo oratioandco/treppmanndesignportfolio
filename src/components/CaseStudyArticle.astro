@@ -209,7 +209,28 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
 }
 
 const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
-const contentSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
+const nonHeroSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
+
+// Every case study ends with a plain, headline-less `narrative` section
+// whose sole job is a "Get in touch" prompt — a consistent, deliberate
+// closer across all 13 studies, not content to be trimmed by the
+// executive/in-depth split below. Pulling it out here means (a) it always
+// renders regardless of which variant is showing, and (b) it can get its
+// own distinct treatment (spacing + a real contact action) instead of
+// rendering as indistinguishable inert body prose, which is what it was
+// doing before — no separation from the prose above it, and the words
+// "Get in touch" were plain text with no link or button behind them at all.
+const isCloser = (s: CaseStudySection) =>
+  s.type === 'narrative' && !s.headline && !!s.content?.trim().endsWith('Get in touch.');
+const closerSection = [...nonHeroSections].reverse().find(isCloser) ?? null;
+const contentSections = closerSection
+  ? nonHeroSections.filter((s) => s !== closerSection)
+  : nonHeroSections;
+// Strip the trailing CTA sentence itself — it becomes the button, not prose.
+const closerLeadIn = closerSection?.content
+  ? closerSection.content.replace(/\s*Get in touch\.\s*$/, '').trim()
+  : '';
+
 const pageTitle = heroSection?.headline || study.title;
 
 // Every case study carries a `variants.executive` entry — a curated,
@@ -346,8 +367,37 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     </details>
   )}
 
+  {closerSection && (
+    <section class="cs-contact">
+      {closerLeadIn && <p class="cs-contact-lead">{closerLeadIn}</p>}
+      {/* No mailto: in the markup — the address is assembled client-side
+          from two data attributes so it never appears as a plain string
+          in the page source for scrapers to lift. There was no prior
+          contact/email pattern anywhere else on this site to match —
+          checked before writing this, found none — so this is a new
+          convention, not a reused one. */}
+      <button
+        type="button"
+        class="cs-contact-button"
+        data-user="hello"
+        data-domain="treppmann.design"
+      >
+        Get in touch
+      </button>
+    </section>
+  )}
+
   <p class="cs-endmark" aria-hidden="true">■</p>
 </article>
+<script>
+  document.querySelectorAll('.cs-contact-button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const user = btn.getAttribute('data-user');
+      const domain = btn.getAttribute('data-domain');
+      window.location.href = `mailto:${user}@${domain}`;
+    });
+  });
+</script>
 <script>
   // Per-letter Redaction shimmer on the case-study title — same treatment as
   // the homepage hero headline: each letter perpetually shuffles between
@@ -1113,6 +1163,52 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
 
   .cs-read-more-body {
     margin-top: var(--space-lg);
+  }
+
+  /* ----- Contact closer --------------------------------------------------
+     Previously: the "Get in touch" sentence was the tail end of the last
+     narrative section's prose — no visual break from the paragraph above
+     it, and the words themselves were inert text, not a link or button.
+     Now: its own block, set off with real space and a rule, ending in an
+     actual action. */
+
+  .cs-contact {
+    grid-column: 1 / -1;
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (max-width: 50rem) {
+    .cs-contact {
+      grid-column: 1;
+    }
+  }
+
+  .cs-contact-lead {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    max-width: 46ch;
+    margin: 0 0 var(--space-lg);
+  }
+
+  .cs-contact-button {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--color-bg);
+    background: var(--color-accent);
+    border: none;
+    border-radius: 4px;
+    padding: 0.85rem 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cs-contact-button:hover {
+    opacity: 0.85;
   }
 
   /* ----- End mark -------------------------------------------------------- */
