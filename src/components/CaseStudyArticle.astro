@@ -211,25 +211,26 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
 const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
 const nonHeroSections = study.sections?.filter((s: CaseStudySection) => s.type !== 'hero') || [];
 
-// Every case study ends with a plain, headline-less `narrative` section
-// whose sole job is a "Get in touch" prompt — a consistent, deliberate
-// closer across all 13 studies, not content to be trimmed by the
-// executive/in-depth split below. Pulling it out here means (a) it always
-// renders regardless of which variant is showing, and (b) it can get its
-// own distinct treatment (spacing + a real contact action) instead of
-// rendering as indistinguishable inert body prose, which is what it was
-// doing before — no separation from the prose above it, and the words
-// "Get in touch" were plain text with no link or button behind them at all.
-const isCloser = (s: CaseStudySection) =>
-  s.type === 'narrative' && !s.headline && !!s.content?.trim().endsWith('Get in touch.');
+// Nearly every case study ends with a section whose content closes on a
+// "Get in touch" prompt — a consistent, deliberate closer, not content to
+// be trimmed by the executive/in-depth split below. Matched on the content
+// ending, not on type/headline: most are headline-less `narrative`
+// sections, but at least one (bibeltv-ai-prototyping) is a `key-takeaway`
+// with its own headline ("Want the specifics?") — matching narrower would
+// have silently missed that one and left its "Get in touch" as inert text
+// with no button, the exact bug this is fixing for the others.
+// (spreadshirt-user-research-strategy has no closer at all currently.)
+const isCloser = (s: CaseStudySection) => !!s.content?.trim().endsWith('Get in touch.');
 const closerSection = [...nonHeroSections].reverse().find(isCloser) ?? null;
 const contentSections = closerSection
   ? nonHeroSections.filter((s) => s !== closerSection)
   : nonHeroSections;
 // Strip the trailing CTA sentence itself — it becomes the button, not prose.
+// Keep the section's own headline (if it has one) as a lead-in label.
 const closerLeadIn = closerSection?.content
   ? closerSection.content.replace(/\s*Get in touch\.\s*$/, '').trim()
   : '';
+const closerHeadline = closerSection?.headline ?? '';
 
 const pageTitle = heroSection?.headline || study.title;
 
@@ -351,24 +352,14 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     <Fragment set:html={html} />
   ))}
 
-  {hasMore && (
-    <details class="cs-read-more">
-      <summary>
-        Read the full case study
-        {study.variants?.['in-depth']?.max_read_time && (
-          <span class="cs-read-more-time">({study.variants['in-depth'].max_read_time})</span>
-        )}
-      </summary>
-      <div class="cs-read-more-body">
-        {renderedExtraSections.map(({ html }) => (
-          <Fragment set:html={html} />
-        ))}
-      </div>
-    </details>
-  )}
+  {/* MVP: no "read the full case study" expansion. The in-depth sections
+      exist in the data (renderedExtraSections/hasMore above, deliberately
+      unused here) for when the site is ready to go longer — until then,
+      only the executive cut ever reaches the reader. */}
 
   {closerSection && (
     <section class="cs-contact">
+      {closerHeadline && <p class="cs-contact-headline">{closerHeadline}</p>}
       {closerLeadIn && <p class="cs-contact-lead">{closerLeadIn}</p>}
       {/* No mailto: in the markup — the address is assembled client-side
           from two data attributes so it never appears as a plain string
@@ -1107,7 +1098,9 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     margin-bottom: var(--space-md);
   }
 
-  /* ----- Read the full case study (executive → in-depth expand) ---------- */
+  /* ----- Read the full case study (executive → in-depth expand) ----------
+     Not rendered for the MVP (see the component's template) — CSS kept so
+     it's a one-line revert away from coming back rather than a rebuild. */
 
   .cs-read-more {
     grid-column: 1 / -1;
@@ -1183,6 +1176,17 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     .cs-contact {
       grid-column: 1;
     }
+  }
+
+  .cs-contact-headline {
+    font-family: var(--font-display-35);
+    font-style: italic;
+    font-weight: normal;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    line-height: 1.2;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md);
+    max-width: 28ch;
   }
 
   .cs-contact-lead {
