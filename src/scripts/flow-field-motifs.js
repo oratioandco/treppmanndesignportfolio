@@ -426,7 +426,7 @@ const SHAPE_ASSIGNMENTS = {
   "bibeltv-support-agent": ["double-helix"], // AI draft and human decision, paired, never fully merging
   "bibeltv-app-redesign": ["double-helix", { converge: true }], // old direction and new direction, resolving into one by the end
   "ninox-ai-onboarding": ["balance"], // AI capability and user control held in deliberate tension, not merged and not just paired
-  "bibeltv-ai-fundraising": ["funnel", { chutes: 4 }], // many AI-generated drafts narrowing to the one a human sends
+  "bibeltv-ai-fundraising": ["funnel"], // many AI-generated drafts narrowing to the one a human sends — default (odd, 5) chute count deliberately, see the swastika-risk comment on the funnel shape itself
 
   "bibeltv-ai-prototyping": ["sunburst"], // rapid iteration, generative variation, one idea branching outward
   "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // handles most fields, deliberately leaves one out — the gap is the point
@@ -482,7 +482,7 @@ function initCanvas(canvas) {
     pointer.target = 1;
   }
 
-  function frame() {
+  function step() {
     time += 0.016;
     ctx.fillStyle = "rgba(26,37,32,0.05)";
     ctx.fillRect(0, 0, SIZE, SIZE);
@@ -534,12 +534,15 @@ function initCanvas(canvas) {
       ctx.lineTo(p.x + hx, p.y + hy);
       ctx.stroke();
     }
+  }
 
+  function frame() {
+    step();
     if (active) rafId = requestAnimationFrame(frame);
   }
 
   function start() {
-    if (active) return;
+    if (active || reducedMotion) return;
     active = true;
     rafId = requestAnimationFrame(frame);
   }
@@ -572,12 +575,39 @@ function initCanvas(canvas) {
     card.addEventListener("blur", stop, true);
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    // draw exactly one static frame so the card isn't blank, then never again
-    active = true;
-    frame();
-    active = false;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Warm-up: run the simulation forward synchronously, unrendered-to-the-
+  // user, so the shape is already legible at rest instead of a blank canvas
+  // waiting for a first hover. ~130 steps is enough for the trail-fade to
+  // build a clear shape at this density/channel strength (checked visually).
+  // Measured at ~40ms per canvas for the production particle count — doing
+  // this for every card on the page synchronously at load (most of them
+  // below the fold, several inside a closed <details>) blocked the main
+  // thread for ~500ms with 13 cards, a real page-load stall for work most
+  // visitors never scroll to see. IntersectionObserver defers it to the
+  // moment each card actually enters the viewport instead, so the cost is
+  // spread out and cards nobody scrolls to never pay it at all. Hovering
+  // afterward calls start(), which continues the same particle state
+  // forward rather than resetting.
+  const warmUp = () => { for (let i = 0; i < 130; i++) step(); };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          warmUp();
+          obs.disconnect();
+        }
+      }
+    });
+    io.observe(canvas);
+  } else {
+    warmUp(); // no IO support — fall back to doing it immediately
   }
+
+  // For reduced-motion, the warm-up above IS the final state — start() is
+  // gated to a no-op so hovering never sets the field in motion, but the
+  // shape itself is still visible at rest instead of a blank card.
 }
 
 document.querySelectorAll("canvas.flow-canvas[data-slug]").forEach(initCanvas);
