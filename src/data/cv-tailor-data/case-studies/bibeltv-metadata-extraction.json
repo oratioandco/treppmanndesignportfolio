@@ -62,7 +62,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "A timestamp is an interface",
       "content": "The week in the department is the part I would repeat anywhere. Not because it produced a number, though it did, but because it produced the right instinct about which minutes were worth removing. Sitting with the workflow told me that the tedium was in the logging and the value was in the watching — and that is not a conclusion I would have reached from a requirements document or a stakeholder interview.\n\nThe other thing I would carry forward is smaller and more specific. **A timestamp is an interface.** It looked like a data field for as long as I thought of it as a record of where something occurs. It became a design problem the moment I understood that a person taps it and arrives somewhere, and that arriving in the wrong place is a worse experience than not being offered the jump.\n\nMost of the metadata nobody sees is like that. It reads as plumbing until you find the surface where a person meets it."
     },
     {

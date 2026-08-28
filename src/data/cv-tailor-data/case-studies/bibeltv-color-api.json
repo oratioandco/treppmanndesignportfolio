@@ -106,7 +106,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "Built two colors, shipped one",
       "content": "Infrastructure work is design work. The thresholds and filters inside the extraction algorithm are design decisions, and when you hand them to a generic library you hand over brand quality with them.\n\nThe other lesson was restraint. The engine can produce complex multi-tone looks. On a phone, the simpler output was the better one. Sometimes the design decision is to not use what you built."
     },
     {
@@ -141,7 +141,7 @@
   "related": [
     "bibeltv-design-system-api",
     "bibeltv-app-redesign",
-    "bibeltv-agentic-engineering"
+    "bibeltv-ai-prototyping"
   ],
   "meta": {
     "read_time_minutes": 7,

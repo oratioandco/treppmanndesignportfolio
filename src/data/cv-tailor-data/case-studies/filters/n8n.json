@@ -23,12 +23,6 @@
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-agentic-engineering",
-      "visibility": "browseable",
-      "order": 4,
-      "format_override": "executive"
-    },
-    {
       "id": "churchdesk-booking-system",
       "visibility": "browseable",
       "order": 5,

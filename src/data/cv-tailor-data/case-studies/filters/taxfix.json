@@ -59,11 +59,6 @@
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-agentic-engineering",
-      "visibility": "hidden",
-      "order": 8
-    },
-    {
       "id": "bibeltv-app-redesign",
       "visibility": "hidden",
       "order": 9

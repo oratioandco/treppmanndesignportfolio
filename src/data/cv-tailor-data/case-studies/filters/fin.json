@@ -26,12 +26,6 @@
       "format_override": "in-depth"
     },
     {
-      "id": "bibeltv-agentic-engineering",
-      "visibility": "browseable",
-      "order": 4,
-      "format_override": "executive"
-    },
-    {
       "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 5,

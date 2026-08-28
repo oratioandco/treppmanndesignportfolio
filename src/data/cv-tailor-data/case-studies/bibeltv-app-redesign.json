@@ -69,7 +69,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "Underneath the light-mode bet",
       "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
     },
     {
@@ -101,7 +101,7 @@
     }
   },
   "related": [
-    "bibeltv-agentic-engineering",
+    "bibeltv-ai-prototyping",
     "bibeltv-color-api",
     "bibeltv-design-system-api"
   ],

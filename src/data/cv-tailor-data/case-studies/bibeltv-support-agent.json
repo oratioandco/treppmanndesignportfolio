@@ -47,7 +47,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "Compress drafting time, not judgment",
       "content": "A Copilot skill is a small piece of design surface but a useful one to do well. The work sits in the scoping: what context to give the model, what counts as a good output, and where the human stays in charge. Those are design decisions, not engineering ones.\n\nThe principle that ports to other domains: AI augments judgment, it doesn't replace it. In customer support, in legal drafting, in any domain where the human is liable for the output, the design job is to compress drafting time while leaving the judgment surface untouched."
     },
     {

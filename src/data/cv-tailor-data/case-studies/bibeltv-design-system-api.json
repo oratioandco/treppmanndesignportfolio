@@ -96,7 +96,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "What doesn't travel",
       "content": "Infrastructure work is design leadership work. This design system is not a Figma file but a running service, so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it.\n\nI would not hand this architecture to another company as a template. It answers one organisation: no design team, engineering outside the company, product managers and product owners setting direction. Somewhere with its own platform team would be right to build something simpler. What travels is the question rather than the answer, which is what this organisation can actually hold."
     },
     {

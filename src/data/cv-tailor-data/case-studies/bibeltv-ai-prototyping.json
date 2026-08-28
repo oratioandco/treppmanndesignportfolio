@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-ai-prototyping",
-  "title": "Agentic Design at Scale",
-  "subtitle": "Prototyping the Bibel TV app redesign in real code, so an external agency evaluates something that already runs",
+  "title": "Prototyping in code, not in Figma specs",
+  "subtitle": "At Bibel TV I stopped handing engineering specs and started handing them prototypes that already run, reviewed by an external agency rather than reinterpreted from a document",
   "type": "ai-product",
   "tags": [
     "ai-native-design",
@@ -13,7 +13,7 @@
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Solo design function; engineering at an external agency. Hamburg / Berlin",
-  "duration": "2025 \u2013 Present",
+  "duration": "2025 – Present",
   "status": "in-progress",
   "last_updated": "2026-08-26",
   "format_priority": [
@@ -23,23 +23,23 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "Agentic Design at Scale",
-      "subtext": "Prototyping the Bibel TV app redesign in real code, against real and self-built APIs, so an external engineering agency evaluates something that already runs instead of a document that describes it."
+      "headline": "Prototyping in code, not in Figma specs",
+      "subtext": "Prototyping the Bibel TV app redesign in real code, against real and self-built APIs, so an external engineering agency — not down the hall, outside the company entirely — evaluates something that already runs instead of a document that describes it."
     },
     {
       "type": "narrative",
       "headline": "The gap a spec can't close",
-      "content": "A spec can say a gradient should feel premium. It can't tell you whether that gradient bands on a three-year-old Android screen, and it can't tell you how much of a phone's display a mobile browser's own chrome will eat before your layout even starts \u2014 not until something is actually running on the device.\n\nFor the Bibel TV app redesign, iOS and Android, I'm also product manager and product owner alongside Head of Product Design \u2014 the redesign is the reason the current contract exists, which meant I didn't need anyone else's sign-off to change how we were building it. I still start in Figma: layout, flow, hierarchy, the concept work. Writing a spec after that would hand engineering, an external agency, a document instead of an answer, and leave the interaction states and the actual rendering as things to discover later, once a build finally exists to discover them in."
+      "content": "A spec can say a gradient should feel premium. It can't tell you whether that gradient bands on a three-year-old Android screen, and it can't tell you how much of a phone's display a mobile browser's own chrome will eat before your layout even starts — not until something is actually running on the device.\n\nFor the Bibel TV app redesign, iOS and Android, I'm also product manager and product owner alongside Head of Product Design — the redesign is the reason the current contract exists, which meant I didn't need anyone else's sign-off to change how we were building it. I still start in Figma: layout, flow, hierarchy, the concept work. Writing a spec after that would hand engineering, an external agency, a document instead of an answer, and leave the interaction states and the actual rendering as things to discover later, once a build finally exists to discover them in."
     },
     {
       "type": "callout",
-      "quote": "If I'm also the product owner, the only spec that matters is the one that already runs.",
-      "context": "Why I stopped writing specs for this project"
+      "quote": "Being the product owner didn't make the spec unnecessary. It meant nobody could stop me from finding out that it was.",
+      "context": "On holding both roles for the Bibel TV redesign"
     },
     {
       "type": "narrative",
       "headline": "What I do instead",
-      "content": "So I prototype it myself, in Claude Code, against real data. That alone caught issues and edge cases Figma never would have shown me, the kind that only exist once content is actually rendering.\n\nThe web prototype ran first, and it ran into two real problems. Mobile browsers eat a chunk of the screen with their own chrome before a design even starts, and the visual language I was building leans on gradients \u2014 which someone had flagged a genuine worry about: older Android screens, which is where most of our users actually are, tend to band on that kind of gradient. So I kept building the same prototype, but continued it as a native Android app in Kotlin and Jetpack Compose, the only way to see the rendering the way those screens would actually show it.\n\nWhere the production API didn't have what I needed yet, I stood up a custom API myself rather than fall back on placeholder content. A prototype running on fake data isn't worth much. Both versions let me put a working app in front of users and stakeholders in a session, not walk them through static screens.\n\nEngineering, Jannis and Timo at appbase, the agency Bibel TV works with, doesn't get a spec from any of this. They get a build that already runs, and they decide what to keep, what to change, and what to rebuild native for performance. As implementation continues, a teardown of the shipped Android build measured how much of the token and data-model layer survived \u2014 91.8% of the design-token fields and 94% of the core Kotlin data model, verified field by field. Separately, Jannis at appbase has told me directly that engineering is able to reuse a lot, if not the majority, of the code overall \u2014 his own estimate, not something I've measured myself. Engineering ships from code I wrote, and that engineering sits outside my own company entirely."
+      "content": "So I prototype it myself, in Claude Code, against real data. That alone caught issues and edge cases Figma never would have shown me, the kind that only exist once content is actually rendering.\n\nThe web prototype ran first, and it ran into two real problems. Mobile browsers eat a chunk of the screen with their own chrome before a design even starts, and the visual language I was building leans on gradients — which someone had flagged a genuine worry about: older Android screens, which is where most of our users actually are, tend to band on that kind of gradient. So I kept building the same prototype, but continued it as a native Android app in Kotlin and Jetpack Compose, the only way to see the rendering the way those screens would actually show it.\n\nWhere the production API didn't have what I needed yet, I stood up a custom API myself rather than fall back on placeholder content. A prototype running on fake data isn't worth much. Both versions let me put a working app in front of users and stakeholders in a session, not walk them through static screens.\n\nEngineering, Jannis and Timo at appbase, the agency Bibel TV works with, doesn't get a spec from any of this. They get a build that already runs, and they decide what to keep, what to change, and what to rebuild native for performance. As implementation continues, a teardown of the shipped Android build measured how much of the token and data-model layer survived — 91.8% of the design-token fields and 94% of the core Kotlin data model, verified field by field. Separately, Jannis at appbase has told me directly that engineering is able to reuse a lot, if not the majority, of the code overall — his own estimate, not something I've measured myself. Engineering ships from code I wrote, and that engineering sits outside my own company entirely."
     },
     {
       "type": "process",
@@ -47,7 +47,7 @@
       "steps": [
         {
           "label": "Concept in Figma",
-          "description": "Layout, flow, hierarchy \u2014 the same starting point as always, before any code exists."
+          "description": "Layout, flow, hierarchy — the same starting point as always, before any code exists."
         },
         {
           "label": "Prototype in Claude Code, against real data",
@@ -59,7 +59,7 @@
         },
         {
           "label": "Sessions on the real thing",
-          "description": "Both versions let people use a working app, not walk through static screens \u2014 with users and with stakeholders."
+          "description": "Both versions let people use a working app, not walk through static screens — with users and with stakeholders."
         },
         {
           "label": "Engineering decides",
@@ -70,7 +70,7 @@
     {
       "type": "narrative",
       "headline": "What holds and what doesn't",
-      "content": "Engineering still makes the call. I don't force-ship what I build \u2014 the agency reviews it and decides to keep it, change it, or start over. That's not a formality; it's what keeps a designer's prototype from becoming an unreviewed dependency in someone else's codebase.\n\nWhat carries best is exactly what a spec is worst at: interaction and state, the parts of an app you can only really judge by using them. What doesn't automatically carry is platform-native polish. Some of what I build gets rebuilt native once engineering picks it up, for performance rather than correctness, and that's not a failure of the approach. It's engineering doing the part of the job that's actually theirs."
+      "content": "Engineering still makes the call. I don't force-ship what I build — the agency reviews it and decides to keep it, change it, or start over. That's not a formality; it's what keeps a designer's prototype from becoming an unreviewed dependency in someone else's codebase.\n\nWhat carries best is exactly what a spec is worst at: interaction and state, the parts of an app you can only really judge by using them. What doesn't automatically carry is platform-native polish. Some of what I build gets rebuilt native once engineering picks it up, for performance rather than correctness, and that's not a failure of the approach. It's engineering doing the part of the job that's actually theirs."
     },
     {
       "type": "outcome",
@@ -83,18 +83,18 @@
         },
         {
           "label": "Design-token and data-model fields verified in the shipped app",
-          "value": "91.8% of token fields, 94% of the core Kotlin data model \u2014 confirmed via a teardown of the production build"
+          "value": "91.8% of token fields, 94% of the core Kotlin data model — confirmed via a teardown of the production build"
         },
         {
           "label": "Broader code reuse, per engineering",
-          "value": "\"A lot, if not the majority,\" per Jannis at appbase \u2014 his estimate, not a measured figure"
+          "value": "\"A lot, if not the majority,\" per Jannis at appbase — his estimate, not a measured figure"
         }
       ],
-      "narrative": "The redesign itself hasn't launched, so this is about how it's getting built, not a consumer number yet. What's already verified: the design tokens and data contracts I prototyped are the ones running in production, confirmed by tearing down the shipped build field by field. Beyond that layer, engineering's own read, from Jannis directly, is that they're able to carry over a lot of what I hand them, if not the majority of it \u2014 his estimate, not something I've measured myself. Either way, what ships started as something I wrote and ran, reviewed and decided on by the agency rather than guessed from a document."
+      "narrative": "The redesign itself hasn't launched, so this is about how it's getting built, not a consumer number yet. What's already verified: the design tokens and data contracts I prototyped are the ones running in production, confirmed by tearing down the shipped build field by field. Beyond that layer, engineering's own read, from Jannis directly, is that they're able to carry over a lot of what I hand them, if not the majority of it — his estimate, not something I've measured myself. Either way, what ships started as something I wrote and ran, reviewed and decided on by the agency rather than guessed from a document."
     },
     {
       "type": "reflection",
-      "headline": "What I'm taking from it",
+      "headline": "What changed my mind",
       "content": "Five years ago I'd have said prototyping in code doesn't scale, that writing specs is just more efficient. I don't think that's true anymore, at least not here. Specs are lossy. They can't hold the hundreds of small decisions a working interface actually needs, and no amount of redlining closes that gap.\n\nWhat I didn't expect is how much of that lossiness only shows up once real data is in the picture. What survived into the build isn't the interesting part. The interesting part is that what didn't survive got rebuilt because engineering could actually see what needed to change, instead of guessing from a document and finding out later."
     },
     {
@@ -105,7 +105,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Prototyped the Bibel TV app redesign in real code against real and self-built APIs, so an external engineering agency reviews something that already runs. A teardown of the shipped app confirmed 91.8%\u201394% of the design tokens and data model carried straight through; engineering's own estimate is that a lot, if not the majority, of the rest carries too.",
+      "summary": "Prototyped the Bibel TV app redesign in real code against real and self-built APIs, so an external engineering agency reviews something that already runs. A teardown of the shipped app confirmed 91.8%–94% of the design tokens and data model carried straight through; engineering's own estimate is that a lot, if not the majority, of the rest carries too.",
       "angle": "Design leadership through a working prototype instead of a spec",
       "sections": [
         "hero",
@@ -133,14 +133,14 @@
     }
   },
   "related": [
-    "bibeltv-agentic-engineering",
     "bibeltv-color-api",
-    "leading-a-team-is-a-design-problem"
+    "leading-a-team-is-a-design-problem",
+    "bibeltv-app-redesign"
   ],
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23, redesign prototyping-practice verification 2026-08-23, APK teardown 2026-08-26"
+    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23, redesign prototyping-practice verification 2026-08-23, APK teardown 2026-08-26 + merged 2026-08-28 with bibeltv-agentic-engineering (retired: same underlying story under a separate title, told the reader two case studies existed where there was one; title, callout causality, and reflection headline corrected per Tobias's direct feedback)"
   }
 }

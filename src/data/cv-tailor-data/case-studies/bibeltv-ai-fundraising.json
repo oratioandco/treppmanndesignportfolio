@@ -71,7 +71,7 @@
     },
     {
       "type": "reflection",
-      "headline": "What I took from it",
+      "headline": "The screen is downstream of the system",
       "content": "The parts of this that feel like design and the parts that feel like prompt engineering aren't separable. Deciding what counts as good tone, what has to be asked before generating, where the source of truth lives, and how the cascade to other surfaces works, those are design decisions expressed in prompts, project structure, and skill scoping.\n\nThe closer I get to the model, the more the work looks like designing a system, and the less it looks like designing a screen. The screen is downstream of the system."
     },
     {
@@ -94,7 +94,7 @@
   "related": [
     "bibeltv-support-agent",
     "ninox-ai-onboarding",
-    "bibeltv-agentic-engineering"
+    "bibeltv-ai-prototyping"
   ],
   "meta": {
     "read_time_minutes": 5,
