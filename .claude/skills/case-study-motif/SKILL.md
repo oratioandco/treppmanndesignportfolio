@@ -36,6 +36,18 @@ differentiate two motifs, that's a sign you need a new shape instead.
 | `bibeltv-agentic-engineering` | Collapsing the design-to-ship pipeline into one accelerated loop | `spiral` | An inward-tightening spiral — cycles visibly accelerate as the radius shrinks |
 | `bibeltv-metadata-extraction` | One system that handles most fields and deliberately, knowingly leaves one out | `sunburst` + `{ skipOne: true }` | Same radiating shape, minus one spike — the gap in the structure is the point, not an accident |
 | `bibeltv-app-redesign` | Old direction and new direction, resolving into one by the end — not two things staying separate | `double-helix` + `{ converge: true }` | Two strands that start out of phase and taper into the same phase, instead of staying parallel forever |
+| `bibeltv-color-api` | Many sampled pixels reduced to a few stable extracted colors — k-means | `cluster` | A scatter of small samples pulled toward whichever of a few larger attractor centers is nearest |
+| `bibeltv-design-system-api` | One token source, exactly 4 named consumers (iOS, Android, web, Figma) | `hub` + `{ count: 4 }` | One dominant center, 4 satellites each on its own direct spoke — a star, not a mesh |
+| `ninox-ai-onboarding` | AI capability and user control held in deliberate tension | `balance` | A beam with a pivot at center and one larger node at each end — a scale, not a pairing |
+| `spreadshirt-user-research-strategy` | One prototype's insight that bent the company's whole direction | `pivot` | A single path that travels straight, meets a hinge, and bends sharply into a new direction |
+
+**Current policy: every case study gets its own unique family+variant
+combination — no two studies render the same geometry, not even loosely.**
+Two studies both being "a pairing" or "a convergence" isn't enough to share
+a shape if the *specific* mechanism differs (see `balance` vs `double-helix`,
+or `hub` vs `network`, above) — that's usually the sign a new shape or
+variant is needed rather than reaching for an existing family because it's
+roughly in the right category.
 
 Notice none of these are "the industry the company is in" or "a generic
 design icon," and notice the last three aren't even a *different* shape from
@@ -91,6 +103,36 @@ re-read the narrative/process sections.
   the radius shrinks (the sample points bunch up near the center). Fits: a
   process collapsing into a tighter loop, compounding iteration, something
   that speeds up as it converges.
+- `concentric-rings` — N circles sharing ONE center (nested, not offset).
+  Fits: layers, each catching what the one before it missed — a hierarchy,
+  not peers converging side by side (that's `interlock-rings`). `variant.count`
+  for the number of layers (default 3).
+- `cluster` — a scatter of small "sample" obstacles, each near one of a
+  few larger "attractor" obstacles — k-means made visible. Fits: many raw
+  inputs reduced to a small number of stable outputs, where the *reduction*
+  is the story, not a single source (`sunburst`) or named peers
+  (`interlock-rings`). `variant.attractors`, `variant.samples`.
+- `grid` — a literal lattice of short segments in rows and columns. Fits:
+  a story whose subject is density/structure itself, not a relationship
+  between named things. `variant.cols`, `variant.rows`.
+- `balance` — a beam with a pivot at center and one larger node at each
+  end. Fits: two forces held in deliberate, ongoing tension — NOT
+  `double-helix` (paired-and-parallel) or `interlock-rings`
+  (reconciled-into-one); a balance is two things that stay opposed.
+- `funnel` — a few wide, curved chutes narrowing from a rim down to nearly
+  one point (curved, not `sunburst`'s straight spikes — don't build this as
+  "sunburst with fewer spikes," the curve is what makes it read as
+  convergent rather than radiant). Fits: many generated options narrowing
+  to the one that ships. `variant.chutes` (default 4).
+- `hub` — one larger center node + N smaller satellites, each on its OWN
+  direct spoke back to the hub (a star topology — not `network`'s
+  peer-to-peer mesh, which has no dominant center). Fits: one source with a
+  small, SPECIFIC, named number of consumers — set `variant.count` to that
+  exact number when it's known (e.g. 4 platforms), don't leave it generic.
+- `pivot` — one path that travels straight, meets a hinge, and bends
+  sharply into a new direction for the rest of its length. Fits: one piece
+  of evidence or one decision that redirected something larger — a single
+  redirect, not a gradual curve (`spiral`) or a symmetric shape.
 
 If the theme genuinely doesn't fit any of these, invent a new shape rather
 than force one. A shape is a function `(seed, variant) => field`, where
