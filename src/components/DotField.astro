@@ -1,20 +1,17 @@
 ---
 /**
- * DotField — an interactive halftone field for the hero background.
+ * DotField — a static halftone texture for the hero background.
  *
- * The interaction is the site's own thesis rather than a generic effect: the
- * field sits almost invisible at rest and RESOLVES under the pointer. Coarse to
- * fine, the same move the Redaction type makes and the same move the case-study
- * covers make from card to hero. The cursor is a lens, not a spotlight.
+ * Previously the field resolved under the pointer (dots grew near the
+ * cursor). That pointer-reactive behaviour was removed per feedback — the
+ * dot grid now paints once as a static background texture and never
+ * animates in response to the mouse.
  *
- * Canvas, not SVG. A 1440px hero holds ~600 dots and every one of them changes
- * radius per frame; that is fine for a canvas and 600 DOM nodes being restyled
- * at 60fps is not.
+ * Canvas, not SVG. A 1440px hero holds ~600 dots; drawing them once on a
+ * canvas is cheap and avoids 600 DOM nodes.
  *
- * Fails safe in three ways:
- *   - no canvas support, or a thrown script → nothing renders, hero is plain
- *   - prefers-reduced-motion → field paints ONCE, at rest, and never animates
- *   - offscreen or backgrounded tab → the loop stops, not just the drawing
+ * Fails safe: no canvas support, or a thrown script → nothing renders, hero
+ * is plain.
  *
  * aria-hidden and pointer-events:none throughout. It is decoration and must
  * never take a click meant for the text above it.
@@ -22,13 +19,11 @@
 interface Props {
   /** Grid spacing in CSS px. 34 matches the case-study cover system. */
   spacing?: number;
-  /** Radius of pointer influence, CSS px. */
-  reach?: number;
 }
-const { spacing = 34, reach = 230 } = Astro.props;
+const { spacing = 34 } = Astro.props;
 ---
 
-<div class="dotfield" aria-hidden="true" data-spacing={spacing} data-reach={reach}>
+<div class="dotfield" aria-hidden="true" data-spacing={spacing}>
   <canvas></canvas>
 </div>
 
@@ -59,21 +54,10 @@ const { spacing = 34, reach = 230 } = Astro.props;
     root.dataset.dfReady = '1';
 
     const spacing = Number(root.dataset.spacing) || 34;
-    const reach = Number(root.dataset.reach) || 230;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let dots: Dot[] = [];
     let w = 0, h = 0, dpr = 1;
     let ink = '#457468';
-    let raf = 0;
-    let running = false;
-    let visible = true;
-
-    // Pointer state. `tx/ty` is where the pointer actually is; `px/py` chases it,
-    // so the bloom trails slightly instead of feeling glued to the cursor.
-    let tx = -9999, ty = -9999, px = -9999, py = -9999;
-    let strength = 0, targetStrength = 0;
-    let press = 0; // tap/click swell, decays on its own
 
     function readInk() {
       const s = getComputedStyle(document.documentElement)
@@ -90,13 +74,6 @@ const { spacing = 34, reach = 230 } = Astro.props;
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Carry current radii across a rebuild. ResizeObserver fires once on
-      // observe() and again on every resize, and a naive rebuild resets every
-      // dot to its base — which wipes the bloom mid-interaction and, on a real
-      // window drag, erases the field under the user's cursor while they move.
-      const prev = new Map<string, number>();
-      for (const d of dots) prev.set(d.x + ':' + d.y, d.cur);
-
       dots = [];
       const cols = Math.ceil(w / spacing);
       const rows = Math.ceil(h / spacing);
@@ -104,35 +81,25 @@ const { spacing = 34, reach = 230 } = Astro.props;
         for (let i = 0; i <= cols; i++) {
           const x = i * spacing + spacing / 2;
           const y = j * spacing + spacing / 2;
-          // A faint, stable variation so the resting field is textured rather
-          // than a perfect lattice. Deterministic in position — no RNG, so it
-          // does not reshuffle on resize.
+          // A faint, stable variation so the field is textured rather than a
+          // perfect lattice. Deterministic in position — no RNG, so it does
+          // not reshuffle on resize.
           const n = (Math.sin(x * 0.021) + Math.cos(y * 0.027) + Math.sin((x + y) * 0.011)) / 3;
           const base = 0.5 + n * 0.35;
-          dots.push({ x, y, base, cur: prev.get(x + ':' + y) ?? base });
+          dots.push({ x, y, base, cur: base });
         }
       }
     }
 
-    const smooth = (t: number) => { const x = t < 0 ? 0 : t > 1 ? 1 : t; return x * x * (3 - 2 * x); };
     const maxR = spacing * 0.42;
 
+    // Static paint: every dot renders at its resting radius. No pointer
+    // tracking, no animation loop.
     function draw() {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = ink;
-      const reachNow = reach * (1 + press * 0.45);
       for (let k = 0; k < dots.length; k++) {
         const d = dots[k];
-        let want = d.base;
-        if (strength > 0.001) {
-          const dx = d.x - px, dy = d.y - py;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < reachNow) {
-            want = d.base + smooth(1 - dist / reachNow) * strength * (1 + press * 0.6) * 3.4;
-          }
-        }
-        // Ease toward the target so the field settles rather than snapping.
-        d.cur += (want - d.cur) * 0.16;
         if (d.cur > 0.35) {
           ctx.globalAlpha = Math.min(0.5, 0.06 + d.cur * 0.16);
           ctx.beginPath();
@@ -143,57 +110,6 @@ const { spacing = 34, reach = 230 } = Astro.props;
       ctx.globalAlpha = 1;
     }
 
-    function frame() {
-      px += (tx - px) * 0.14;
-      py += (ty - py) * 0.14;
-      strength += (targetStrength - strength) * 0.09;
-      press *= 0.92;
-
-      draw();
-
-      // Stop when there is nothing left to animate. A permanently-running rAF on
-      // a portfolio hero is a battery cost with no payoff.
-      const settled = strength < 0.004 && press < 0.004
-        && Math.abs(tx - px) < 0.6 && Math.abs(ty - py) < 0.6;
-      if (settled && targetStrength === 0) { running = false; draw(); return; }
-      raf = requestAnimationFrame(frame);
-    }
-
-    function kick() {
-      if (reduced || !visible || running) return;
-      running = true;
-      raf = requestAnimationFrame(frame);
-    }
-
-    function onMove(e: PointerEvent) {
-      const r = root.getBoundingClientRect();
-      tx = e.clientX - r.left;
-      ty = e.clientY - r.top;
-      if (px < -9000) { px = tx; py = ty; } // first sight: no swoop in from the corner
-      targetStrength = 1;
-      kick();
-    }
-    function onLeave() { targetStrength = 0; kick(); }
-    function onDown(e: PointerEvent) { onMove(e); press = 1; kick(); }
-
-    // Pointer Events cover mouse, pen and touch in one path, so tap and drag
-    // work without a separate touch branch.
-    const host = root.parentElement || root;
-    host.addEventListener('pointermove', onMove, { passive: true });
-    host.addEventListener('pointerdown', onDown, { passive: true });
-    host.addEventListener('pointerleave', onLeave, { passive: true });
-    host.addEventListener('pointercancel', onLeave, { passive: true });
-
-    const io = new IntersectionObserver((entries) => {
-      visible = entries[0].isIntersecting;
-      if (!visible) { cancelAnimationFrame(raf); running = false; } else kick();
-    }, { threshold: 0 });
-    io.observe(root);
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) { cancelAnimationFrame(raf); running = false; } else kick();
-    });
-
     const ro = new ResizeObserver(() => { build(); draw(); });
     ro.observe(root);
 
@@ -203,7 +119,7 @@ const { spacing = 34, reach = 230 } = Astro.props;
 
     readInk();
     build();
-    draw(); // paint the resting field immediately, including under reduced-motion
+    draw();
   }
 
   function initAll() {
