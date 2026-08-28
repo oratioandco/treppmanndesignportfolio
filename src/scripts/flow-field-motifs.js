@@ -114,15 +114,23 @@ function nearestObstacle(field, x, y) {
 }
 
 // ---------------------------------------------------------------------
-// Shape families — the flow-field equivalent of poster-motifs.js's three
+// Shape families — the flow-field equivalent of poster-motifs.js's
 // mechanisms. Each returns an obstacle field, seed-varied structurally
 // (not just palette) so every case study sharing a family still reads as
-// a distinct shape.
+// a distinct shape. Several accept a `variant` for a study whose story
+// needs a real structural difference from its siblings, not just a
+// different seed — see .claude/skills/case-study-motif/SKILL.md for the
+// judgment behind each one; this is that judgment applied to obstacle
+// fields instead of SVG paths.
 // ---------------------------------------------------------------------
 const SHAPES = {
-  "interlock-rings": (seed) => {
+  // Several distinct, named things reconciled into one system. Each ring
+  // is one of the things being reconciled — the point is convergence, not
+  // decoration, so ring count should generally match what's actually being
+  // reconciled where that's known (see per-study comments below).
+  "interlock-rings": (seed, variant) => {
     const rand = mulberry32(seed);
-    const count = 3;
+    const count = variant?.count ?? 3;
     const baseR = 30 + rand() * 12;
     const centerX = 100 + (rand() - 0.5) * 16;
     const centerY = 100 + (rand() - 0.5) * 16;
@@ -138,29 +146,44 @@ const SHAPES = {
     return field;
   },
 
-  "double-helix": (seed) => {
+  // Two strands. Plain: parallel forever, never touching — for a pairing
+  // that stays a pairing (AI drafts, a human decides; never merges).
+  // `variant.converge: true`: the two strands start out of phase and taper
+  // toward the same phase by the end — for a pairing that RESOLVES into
+  // one direction, not two permanently distinct things.
+  "double-helix": (seed, variant) => {
     const rand = mulberry32(seed);
     const amplitude = 34 + rand() * 18;
     const cycles = 1.4 + rand() * 1.1;
     const xStart = 24 + rand() * 10;
     const xEnd = 176 - rand() * 10;
     const phase0 = rand() * Math.PI * 2;
+    const converge = !!variant?.converge;
     const strand = (offset) =>
-      pathObstacles((t) => ({
-        x: xStart + (xEnd - xStart) * t,
-        y: 100 + Math.sin(t * Math.PI * 2 * cycles + phase0 + offset) * amplitude,
-      }), 26);
+      pathObstacles((t) => {
+        const offsetT = converge ? offset * (1 - t) : offset; // tapers to 0 by t=1 when converging
+        return {
+          x: xStart + (xEnd - xStart) * t,
+          y: 100 + Math.sin(t * Math.PI * 2 * cycles + phase0 + offsetT) * amplitude,
+        };
+      }, 26);
     return [...strand(0), ...strand(Math.PI)];
   },
 
-  sunburst: (seed) => {
+  // One center, many things radiating out. `variant.skipFraction`: leaves
+  // a deliberate gap among the spikes — for a story where the shape's
+  // completeness is itself part of the point (a system that handles most
+  // things and knowingly leaves one out).
+  sunburst: (seed, variant) => {
     const rand = mulberry32(seed);
     const cx = 100 + (rand() - 0.5) * 10;
     const cy = 100 + (rand() - 0.5) * 10;
     const spikes = 7 + Math.floor(rand() * 5);
+    const skipIndex = variant?.skipOne ? Math.floor(rand() * spikes) : -1;
     const innerR = 14 + rand() * 8;
     const field = [];
     for (let i = 0; i < spikes; i++) {
+      if (i === skipIndex) continue;
       const angle = (i / spikes) * Math.PI * 2 + rand() * 0.3;
       const len = 46 + rand() * 30;
       const x1 = cx + Math.cos(angle) * innerR;
@@ -171,37 +194,84 @@ const SHAPES = {
     }
     return field;
   },
+
+  // Several gravity points (people), connected by streams (communication)
+  // rather than sitting in fixed formation. Every node connects to its
+  // nearest neighbor plus one further one, so the graph reads as a loose
+  // working group, not a rigid ring or a fully-meshed web. For a team
+  // rebuilt into rhythm: the nodes are who's in it, the streams are the
+  // channel the flow field's particles actually travel along.
+  network: (seed, variant) => {
+    const rand = mulberry32(seed);
+    const count = variant?.count ?? 4;
+    const nodeR = 9 + rand() * 5;
+    const nodes = Array.from({ length: count }, () => ({
+      x: 60 + rand() * 80,
+      y: 60 + rand() * 80,
+    }));
+    const field = nodes.map((n) => circleObstacle(n.x, n.y, nodeR));
+    for (let i = 0; i < nodes.length; i++) {
+      // distance-sorted neighbors, connect to the nearest one and one
+      // further one — a loose working group, not a full mesh or a ring
+      const others = nodes
+        .map((n, j) => ({ j, d: Math.hypot(n.x - nodes[i].x, n.y - nodes[i].y) }))
+        .filter((o) => o.j !== i)
+        .sort((a, b) => a.d - b.d);
+      const links = [others[0], others[Math.min(2, others.length - 1)]];
+      for (const { j } of links) {
+        field.push(segmentObstacle(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y));
+      }
+    }
+    return field;
+  },
+
+  // An inward-tightening spiral — cycles accelerate as the radius shrinks,
+  // same way the path samples get closer together near the center. For a
+  // pipeline collapsing into one accelerated loop, not a static shape.
+  spiral: (seed) => {
+    const rand = mulberry32(seed);
+    const cx = 100 + (rand() - 0.5) * 8;
+    const cy = 100 + (rand() - 0.5) * 8;
+    const turns = 2.4 + rand() * 1.2;
+    const outerR = 68 + rand() * 14;
+    return pathObstacles((t) => {
+      const r = outerR * (1 - t) ** 1.3; // faster radius falloff near the center = the "accelerating" read
+      const angle = t * Math.PI * 2 * turns;
+      return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+    }, 46);
+  },
+};
+
+// Per-slug curation — same judgment as poster-motifs.js's MOTIF_ASSIGNMENTS,
+// re-applied to obstacle fields. One clause each: what the shape says about
+// the work. A slug not listed falls back to a deterministic hash pick.
+const SHAPE_ASSIGNMENTS = {
+  "churchdesk-booking-system": ["interlock-rings"], // 3 stakeholders' schedules reconciled into one model
+  "bibeltv-color-api": ["interlock-rings"], // light-mode, dark-mode, and brand-warmth constraints reconciled into one extracted palette
+  "bibeltv-llm-safe-design-system": ["interlock-rings"], // three enforcement layers, doing three different jobs, converging into one system
+  "datameer-data-dense-analytics": ["interlock-rings"], // pivots, filters, and sample-uncertainty reconciled into one legible view
+
+  "bibeltv-support-agent": ["double-helix"], // AI draft and human decision, paired, never fully merging
+  "ninox-ai-onboarding": ["double-helix"], // AI capability and user control, balanced together
+  "bibeltv-ai-fundraising": ["double-helix"], // AI generation and a human deciding what actually goes out, paired
+  "bibeltv-app-redesign": ["double-helix", { converge: true }], // old direction and new direction, resolving into one by the end — not two things staying separate
+
+  "bibeltv-ai-prototyping": ["sunburst"], // rapid iteration, generative variation
+  "bibeltv-design-system-api": ["sunburst"], // one token source radiating out to iOS, Android, web, and Figma
+  "spreadshirt-user-research-strategy": ["sunburst"], // one prototype's insight radiating out to redirect company strategy
+  "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // one system radiating out to handle most fields, deliberately leaving one out — the gap is the point
+
+  "leading-a-team-is-a-design-problem": ["network", { count: 4 }], // the team as gravity points, rebuilt into a working rhythm — not two things paired, several people in relationship
+  "bibeltv-agentic-engineering": ["spiral"], // collapsing the design-to-ship pipeline into one accelerating loop
 };
 
 const SHAPE_KEYS = Object.keys(SHAPES);
 
-// Same per-slug curation as poster-motifs.js's MOTIF_ASSIGNMENTS — kept in
-// sync deliberately; see that file's table for the one-clause reasoning
-// behind each assignment. A slug not listed here falls back to a
-// deterministic hash pick, same as before.
-const SHAPE_ASSIGNMENTS = {
-  "churchdesk-booking-system": "interlock-rings",
-  "bibeltv-color-api": "interlock-rings",
-  "bibeltv-llm-safe-design-system": "interlock-rings",
-  "datameer-data-dense-analytics": "interlock-rings",
-
-  "leading-a-team-is-a-design-problem": "double-helix",
-  "bibeltv-app-redesign": "double-helix",
-  "bibeltv-support-agent": "double-helix",
-  "ninox-ai-onboarding": "double-helix",
-  "bibeltv-ai-fundraising": "double-helix",
-
-  "bibeltv-ai-prototyping": "sunburst",
-  "bibeltv-agentic-engineering": "sunburst",
-  "bibeltv-design-system-api": "sunburst",
-  "spreadshirt-user-research-strategy": "sunburst",
-  "bibeltv-metadata-extraction": "sunburst",
-};
-
 function resolveShape(slug) {
-  const key = SHAPE_ASSIGNMENTS[slug] || SHAPE_KEYS[hashStr(slug || "default") % SHAPE_KEYS.length];
+  const assignment = SHAPE_ASSIGNMENTS[slug];
+  const [key, variant] = assignment || [SHAPE_KEYS[hashStr(slug || "default") % SHAPE_KEYS.length]];
   const seed = hashStr(slug || key);
-  return { field: SHAPES[key](seed), seed };
+  return { field: SHAPES[key](seed, variant), seed };
 }
 
 // ---------------------------------------------------------------------
