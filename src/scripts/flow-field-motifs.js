@@ -334,21 +334,33 @@ const SHAPES = {
   // Fewer, wider, and curved rather than many thin straight lines, so it
   // doesn't collapse into "sunburst with fewer spikes." For many
   // generated options narrowing to the one that ships.
+  // IMPORTANT: every chute curves the SAME direction it started with — never
+  // alternate or mirror handedness per chute, and never let 4 evenly-spaced
+  // hooked arms share one rotational sense. That combination (N-fold
+  // rotational symmetry + same-handed hooked arms) is a swastika, and an
+  // earlier version of this shape produced exactly that by accident with the
+  // default 4-chute case. Kept deliberately asymmetric instead: an odd
+  // default count, uneven angular spacing (no fixed 360/N step), and a mild,
+  // inconsistent curve amount per chute — structurally incapable of reading
+  // as a rotationally-symmetric pinwheel.
   funnel: (seed, variant) => {
     const rand = mulberry32(seed);
     const cx = 100 + (rand() - 0.5) * 8;
     const cy = 100 + (rand() - 0.5) * 8;
-    const chutes = variant?.chutes ?? 4;
-    const outerR = 70 + rand() * 14;
+    const chutes = variant?.chutes ?? 5;
+    const outerR = 62 + rand() * 16;
+    const innerR = 8 + rand() * 6; // chutes end near the center, not AT it — no shared vertex to read as a hub/hook point
     const field = [];
+    let angle = rand() * Math.PI * 2;
     for (let i = 0; i < chutes; i++) {
-      const baseAngle = (i / chutes) * Math.PI * 2 + rand() * 0.4;
-      const spread = 0.5 + rand() * 0.25;
+      angle += (Math.PI * 2) / chutes + (rand() - 0.5) * 0.9; // irregular step, not a fixed 360/N — breaks rotational symmetry outright
+      const curve = (rand() - 0.5) * 0.5; // signed per-chute, so neighboring chutes routinely bend opposite ways
+      const endAngle = angle + (rand() - 0.5) * 0.6; // the end point isn't on the same ray as the start — no straight radial spoke either
       field.push(...pathObstacles((t) => {
-        const r = outerR * (1 - t) ** 0.8;
-        const angle = baseAngle + spread * (1 - t) ** 1.6; // spread collapses toward the center, curving the chute inward
-        return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
-      }, 16));
+        const r = innerR + (outerR - innerR) * (1 - t);
+        const a = angle * (1 - t) + endAngle * t + curve * Math.sin(t * Math.PI);
+        return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r };
+      }, 14));
     }
     return field;
   },
