@@ -205,10 +205,21 @@ const SHAPES = {
     const rand = mulberry32(seed);
     const count = variant?.count ?? 4;
     const nodeR = 9 + rand() * 5;
-    const nodes = Array.from({ length: count }, () => ({
-      x: 60 + rand() * 80,
-      y: 60 + rand() * 80,
-    }));
+    const cx = 100 + (rand() - 0.5) * 12;
+    const cy = 100 + (rand() - 0.5) * 12;
+    const baseRadius = 42 + rand() * 16;
+    // Spread around a loose circle (angle = i/count + jitter, radius varies
+    // per node) rather than pure-random x/y — fully random placement in a
+    // small box let nodes clump into one corner on some seeds (checked: 3 of
+    // 4 nodes within ~30px of each other on one real seed), which read as an
+    // odd blob instead of a legible multi-point network. This keeps the
+    // organic irregularity (jittered angle and radius, not a rigid ring)
+    // while guaranteeing the nodes are actually spread across the card.
+    const nodes = Array.from({ length: count }, (_, i) => {
+      const angle = (i / count) * Math.PI * 2 + (rand() - 0.5) * 1.1;
+      const r = baseRadius * (0.55 + rand() * 0.7);
+      return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+    });
     const field = nodes.map((n) => circleObstacle(n.x, n.y, nodeR));
     for (let i = 0; i < nodes.length; i++) {
       // distance-sorted neighbors, connect to the nearest one and one
