@@ -116,9 +116,19 @@ const { href, headline, caption, studyId } = Astro.props;
   .cs-card-art canvas.flow-canvas {
     position: relative;
     z-index: 1;
-    width: 92%;
-    height: 92%;
-    /* internal resolution is fixed at 200x200 (see flow-field-motifs.js) and
+    width: 100%;
+    height: 100%;
+    /* full-bleed within .cs-card-art, not inset — the trail-fade in
+       flow-field-motifs.js repaints the canvas's own full rectangle every
+       frame (unlike the old SVG, which only ever drew thin strokes over a
+       transparent background). At any inset less than 100%, that rectangle
+       becomes a visible solid-color edge against the card once particles
+       fill it in, even though the fade color matches the card background —
+       the SEAM is the bug, not the color. Full-bleed removes the seam by
+       removing the boundary. (This also fully covers the ::before shadow
+       blob below whenever the canvas is active, same as the 92% version
+       did — the blob was already only ever visible at rest.)
+       Internal resolution is fixed at 200x200 (see flow-field-motifs.js) and
        scaled via CSS, same tradeoff the SVG version made — the canvas draws
        fine strokes, not large flat fills, so upscaling reads as texture
        rather than blur. */
