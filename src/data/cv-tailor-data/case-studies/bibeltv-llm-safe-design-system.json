@@ -162,9 +162,5 @@
     "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   },
-  "generation": 3,
-  "hero_image": {
-    "src": "/images/covers/generated/bibeltv-llm-safe-design-system.svg",
-    "alt": "An LLM-safe design system for people who didn't build it: abstract resolution-field cover"
-  }
+  "generation": 3
 }

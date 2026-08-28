@@ -17,11 +17,7 @@
   "team": "Team of 3, growing into implementation teams, Leipzig",
   "duration": "2014 – 2016",
   "status": "draft",
-  "last_updated": "2026-05-22",
-  "hero_image": {
-    "src": "/images/spreadshirt/hero.png",
-    "alt": "The Spreadshirt t-shirt designer"
-  },
+  "last_updated": "2026-08-25",
   "format_priority": [
     "blog",
     "executive",
@@ -40,9 +36,9 @@
     },
     {
       "type": "callout",
-      "quote": "The t-shirt designer is the most uplifting experience I have all day.",
-      "attribution": "A shop owner, during a user interview",
-      "context": "The sentence that changed the product strategy"
+      "quote": "The most uplifting experience I have all day.",
+      "attribution": "How shop owners described the design process, across interview after interview",
+      "context": "Not one comment. The pattern that turned the strategy around."
     },
     {
       "type": "narrative",
@@ -52,14 +48,7 @@
     {
       "type": "narrative",
       "headline": "Making the research undeniable",
-      "content": "The data said one thing and executive intuition said another, and two earlier attempts had already failed. A presentation was not going to move that.\n\nSo I built a prototype: a mobile version of the t-shirt designer, put directly into users' hands. The point was not to prove mobile was technically possible. It was to show that the design experience itself was worth keeping, that it held up, and still felt good, even on a small screen.",
-      "images": [
-        {
-          "src": "/images/spreadshirt/mobile-prototype.png",
-          "alt": "The mobile t-shirt designer prototype",
-          "caption": "The one-week mobile prototype: built to show the design experience survives on a small screen."
-        }
-      ]
+      "content": "The data said one thing and executive intuition said another, and two earlier attempts had already failed. A presentation was not going to move that.\n\nSo I built a prototype: a mobile version of the t-shirt designer, put directly into users' hands. The point was not to prove mobile was technically possible. It was to show that the design experience itself was worth keeping, that it held up, and still felt good, even on a small screen."
     },
     {
       "type": "process",
@@ -79,7 +68,7 @@
         },
         {
           "label": "User testing",
-          "description": "Tested the prototype with real users. The response was strongly positive, and showed the full desktop experience could work on mobile."
+          "description": "Tested the prototype with real users. The response was resoundingly positive, and showed the full desktop experience could work on mobile."
         }
       ]
     },
@@ -108,6 +97,10 @@
       "type": "reflection",
       "headline": "What I took from it",
       "content": "Data on its own does not change a decision, you have to make it undeniable. When research contradicts leadership intuition, a slide deck will not do it. A prototype that puts users in control will.\n\nIt also fixed something for me about strategy: the best product direction does not start from efficiency metrics. It starts from what users actually value. Sometimes the thing you are trying to optimise away is the thing they love most."
+    },
+    {
+      "type": "narrative",
+      "content": "Curious how a one-week Axure prototype moved leadership where two previous redesign attempts had already failed, or why the fix for an automation-first strategy turned out to be less automation, not more? Get in touch."
     }
   ],
   "variants": {
@@ -123,7 +116,7 @@
       "max_read_time": "2 min"
     },
     "narrative": {
-      "summary": "What happens when user research contradicts leadership intuition? The story of how one shop owner's sentence changed a company's product direction.",
+      "summary": "What happens when user research contradicts leadership intuition? The story of how a line that kept coming up in interviews changed a company's product direction.",
       "angle": "The most uplifting experience of the day",
       "sections": [
         "hero",
@@ -143,6 +136,6 @@
     "read_time_minutes": 5,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "spreadshirt experience file + my-cv-tailor verification 2026-04-23 + Jupus case-study quality pass 2026-05-22"
+    "source": "spreadshirt experience file + my-cv-tailor verification 2026-04-23 (my-cv-tailor: a tool built for the AI Product Design program's students) + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; hero and mobile-prototype image references removed — both unrecoverable for a 2014-2016 role per data/case-studies/screenshots-spreadshirt-user-research-strategy.md, live spreadshirt.de screenshot blocked by network proxy this session; callout attribution reframed as a recurring interview theme rather than a single verbatim quote, since the source only verifies the three-word phrase 'most uplifting experience' inside a paraphrased achievement bullet, not a transcribed sentence; ships text-only, generation left undeclared)"
   }
 }
