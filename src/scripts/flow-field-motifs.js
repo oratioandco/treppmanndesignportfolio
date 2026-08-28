@@ -240,28 +240,188 @@ const SHAPES = {
       return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
     }, 46);
   },
+
+  // Nested rings sharing ONE center, not offset ones overlapping like a
+  // Venn diagram. Interlock-rings says "several separate things reconciled
+  // side by side"; concentric-rings says "several LAYERS, each catching
+  // what the one before it missed" — a hierarchy, not a convergence of
+  // peers. Ring count generally matches the number of layers.
+  "concentric-rings": (seed, variant) => {
+    const rand = mulberry32(seed);
+    const count = variant?.count ?? 3;
+    const cx = 100 + (rand() - 0.5) * 14;
+    const cy = 100 + (rand() - 0.5) * 14;
+    const innerR = 20 + rand() * 10;
+    const step = 16 + rand() * 8;
+    const field = [];
+    for (let i = 0; i < count; i++) {
+      field.push(circleObstacle(cx, cy, innerR + i * step * (0.85 + rand() * 0.3)));
+    }
+    return field;
+  },
+
+  // A scatter of small "sample" points, each pulled toward whichever of a
+  // few larger "attractor" centers it's nearest — k-means made visible.
+  // For a system that reduces many raw inputs to a small number of stable
+  // outputs, where the reduction itself (not a single source, not several
+  // named peers) is the story.
+  cluster: (seed, variant) => {
+    const rand = mulberry32(seed);
+    const attractorCount = variant?.attractors ?? 3;
+    const sampleCount = variant?.samples ?? 11;
+    const attractors = Array.from({ length: attractorCount }, () => ({
+      x: 60 + rand() * 80,
+      y: 60 + rand() * 80,
+      r: 12 + rand() * 6,
+    }));
+    const field = attractors.map((a) => circleObstacle(a.x, a.y, a.r));
+    for (let i = 0; i < sampleCount; i++) {
+      const a = attractors[Math.floor(rand() * attractors.length)];
+      const angle = rand() * Math.PI * 2;
+      const dist = a.r + 10 + rand() * 24;
+      field.push(circleObstacle(a.x + Math.cos(angle) * dist, a.y + Math.sin(angle) * dist, 3 + rand() * 2));
+    }
+    return field;
+  },
+
+  // A literal lattice — rows and columns of short segments. For a story
+  // whose subject is density and structure itself (a data-dense grid),
+  // not a relationship between named things.
+  grid: (seed, variant) => {
+    const rand = mulberry32(seed);
+    const cols = variant?.cols ?? 4;
+    const rows = variant?.rows ?? 4;
+    const marginX = 34 + rand() * 10;
+    const marginY = 34 + rand() * 10;
+    const cellW = (200 - marginX * 2) / (cols - 1);
+    const cellH = (200 - marginY * 2) / (rows - 1);
+    const field = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = marginX + c * cellW + (rand() - 0.5) * 6;
+        const y = marginY + r * cellH + (rand() - 0.5) * 6;
+        const len = 8 + rand() * 6;
+        if (c < cols - 1) field.push(segmentObstacle(x, y, x + cellW - (cellW - len), y));
+        if (r < rows - 1) field.push(segmentObstacle(x, y, x, y + cellH - (cellH - len)));
+      }
+    }
+    return field;
+  },
+
+  // A beam with a pivot at its center and one larger node at each end — a
+  // scale. For two forces held in deliberate balance against each other,
+  // not paired-and-parallel (double-helix) or reconciled-into-one
+  // (interlock-rings): a balance is two things that stay in tension.
+  balance: (seed) => {
+    const rand = mulberry32(seed);
+    const cx = 100 + (rand() - 0.5) * 10;
+    const cy = 100 + (rand() - 0.5) * 6;
+    const halfSpan = 46 + rand() * 18;
+    const tilt = (rand() - 0.5) * 0.5;
+    const leftX = cx - halfSpan, leftY = cy - halfSpan * tilt;
+    const rightX = cx + halfSpan, rightY = cy + halfSpan * tilt;
+    const endR = 14 + rand() * 6;
+    return [
+      segmentObstacle(leftX, leftY, rightX, rightY),
+      circleObstacle(cx, cy, 6 + rand() * 3),
+      circleObstacle(leftX, leftY, endR),
+      circleObstacle(rightX, rightY, endR),
+    ];
+  },
+
+  // Several curved chutes narrowing from a wide rim down to nearly one
+  // point — the inverse read of sunburst's straight spikes radiating OUT.
+  // Fewer, wider, and curved rather than many thin straight lines, so it
+  // doesn't collapse into "sunburst with fewer spikes." For many
+  // generated options narrowing to the one that ships.
+  funnel: (seed, variant) => {
+    const rand = mulberry32(seed);
+    const cx = 100 + (rand() - 0.5) * 8;
+    const cy = 100 + (rand() - 0.5) * 8;
+    const chutes = variant?.chutes ?? 4;
+    const outerR = 70 + rand() * 14;
+    const field = [];
+    for (let i = 0; i < chutes; i++) {
+      const baseAngle = (i / chutes) * Math.PI * 2 + rand() * 0.4;
+      const spread = 0.5 + rand() * 0.25;
+      field.push(...pathObstacles((t) => {
+        const r = outerR * (1 - t) ** 0.8;
+        const angle = baseAngle + spread * (1 - t) ** 1.6; // spread collapses toward the center, curving the chute inward
+        return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+      }, 16));
+    }
+    return field;
+  },
+
+  // One larger hub node, N smaller satellite nodes, each connected DIRECTLY
+  // to the hub only — a star topology, not network's peer-to-peer mesh
+  // (no dominant center there) and not sunburst's plain radiating lines
+  // (no nodes at all). For one source with a small, specific, NAMED number
+  // of consumers — `variant.count` should match that number exactly where
+  // it's known.
+  hub: (seed, variant) => {
+    const rand = mulberry32(seed);
+    const count = variant?.count ?? 4;
+    const cx = 100 + (rand() - 0.5) * 8;
+    const cy = 100 + (rand() - 0.5) * 8;
+    const hubR = 14 + rand() * 4;
+    const spokeLen = 52 + rand() * 20;
+    const field = [circleObstacle(cx, cy, hubR)];
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2 + rand() * 0.3;
+      const sx = cx + Math.cos(angle) * spokeLen;
+      const sy = cy + Math.sin(angle) * spokeLen;
+      field.push(segmentObstacle(cx, cy, sx, sy), circleObstacle(sx, sy, 8 + rand() * 3));
+    }
+    return field;
+  },
+
+  // One path that travels straight, meets a hinge, and bends sharply into
+  // a new direction for the rest of its length — a single redirect, not a
+  // gradual curve (spiral) or a symmetric shape. For one piece of evidence
+  // that changed the direction of something larger.
+  pivot: (seed) => {
+    const rand = mulberry32(seed);
+    const hingeX = 80 + rand() * 40;
+    const hingeY = 80 + rand() * 40;
+    const inAngle = rand() * Math.PI * 2;
+    const turn = (0.6 + rand() * 0.7) * (rand() < 0.5 ? 1 : -1);
+    const outAngle = inAngle + Math.PI + turn; // arriving direction, reversed, then bent — reads as a redirect, not a straight pass-through
+    const inLen = 50 + rand() * 20;
+    const outLen = 60 + rand() * 24;
+    const inStart = { x: hingeX - Math.cos(inAngle) * inLen, y: hingeY - Math.sin(inAngle) * inLen };
+    const outEnd = { x: hingeX + Math.cos(outAngle) * outLen, y: hingeY + Math.sin(outAngle) * outLen };
+    return [
+      segmentObstacle(inStart.x, inStart.y, hingeX, hingeY),
+      segmentObstacle(hingeX, hingeY, outEnd.x, outEnd.y),
+      circleObstacle(hingeX, hingeY, 5 + rand() * 3),
+    ];
+  },
 };
 
-// Per-slug curation — same judgment as poster-motifs.js's MOTIF_ASSIGNMENTS,
-// re-applied to obstacle fields. One clause each: what the shape says about
-// the work. A slug not listed falls back to a deterministic hash pick.
+// Per-slug curation — same judgment as poster-motifs.js's old MOTIF_ASSIGNMENTS,
+// re-applied to obstacle fields, one clause each: what the shape says about
+// the work. Every study gets its OWN family+variant combination — no two
+// studies share a rendered geometry, even loosely (see SKILL.md for the
+// full worked reasoning). A slug not listed falls back to a deterministic
+// hash pick.
 const SHAPE_ASSIGNMENTS = {
-  "churchdesk-booking-system": ["interlock-rings"], // 3 stakeholders' schedules reconciled into one model
-  "bibeltv-color-api": ["interlock-rings"], // light-mode, dark-mode, and brand-warmth constraints reconciled into one extracted palette
-  "bibeltv-llm-safe-design-system": ["interlock-rings"], // three enforcement layers, doing three different jobs, converging into one system
-  "datameer-data-dense-analytics": ["interlock-rings"], // pivots, filters, and sample-uncertainty reconciled into one legible view
+  "churchdesk-booking-system": ["interlock-rings"], // 3 stakeholders' schedules reconciled side by side into one model
+  "bibeltv-llm-safe-design-system": ["concentric-rings"], // three enforcement LAYERS, each catching what the one before it missed — hierarchy, not peers
+  "bibeltv-color-api": ["cluster", { attractors: 3 }], // k-means made visible: many sampled pixels pulled into a few stable extracted colors
+  "datameer-data-dense-analytics": ["grid"], // the subject is density and structure itself — pivots, filters, a data-dense grid
 
   "bibeltv-support-agent": ["double-helix"], // AI draft and human decision, paired, never fully merging
-  "ninox-ai-onboarding": ["double-helix"], // AI capability and user control, balanced together
-  "bibeltv-ai-fundraising": ["double-helix"], // AI generation and a human deciding what actually goes out, paired
-  "bibeltv-app-redesign": ["double-helix", { converge: true }], // old direction and new direction, resolving into one by the end — not two things staying separate
+  "bibeltv-app-redesign": ["double-helix", { converge: true }], // old direction and new direction, resolving into one by the end
+  "ninox-ai-onboarding": ["balance"], // AI capability and user control held in deliberate tension, not merged and not just paired
+  "bibeltv-ai-fundraising": ["funnel", { chutes: 4 }], // many AI-generated drafts narrowing to the one a human sends
 
-  "bibeltv-ai-prototyping": ["sunburst"], // rapid iteration, generative variation
-  "bibeltv-design-system-api": ["sunburst"], // one token source radiating out to iOS, Android, web, and Figma
-  "spreadshirt-user-research-strategy": ["sunburst"], // one prototype's insight radiating out to redirect company strategy
-  "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // one system radiating out to handle most fields, deliberately leaving one out — the gap is the point
+  "bibeltv-ai-prototyping": ["sunburst"], // rapid iteration, generative variation, one idea branching outward
+  "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // handles most fields, deliberately leaves one out — the gap is the point
+  "bibeltv-design-system-api": ["hub", { count: 4 }], // one token source, exactly 4 named consumers: iOS, Android, web, Figma
+  "spreadshirt-user-research-strategy": ["pivot"], // one prototype's insight that bent the company's whole direction
 
-  "leading-a-team-is-a-design-problem": ["network", { count: 4 }], // the team as gravity points, rebuilt into a working rhythm — not two things paired, several people in relationship
+  "leading-a-team-is-a-design-problem": ["network", { count: 4 }], // the team as gravity points in relationship, not two things paired
   "bibeltv-agentic-engineering": ["spiral"], // collapsing the design-to-ship pipeline into one accelerating loop
 };
 
