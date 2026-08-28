@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-color-api",
-  "title": "A color engine built for the brand, not the industry default",
-  "subtitle": "Perceptual color extraction from content artwork: dynamic theming that stays warm, meets WCAG contrast, and works in light and dark mode",
+  "title": "A color engine tuned for light mode first, against the streaming default",
+  "subtitle": "Perceptual color extraction from content artwork, built because generic extraction couldn't get the brand right — then tuned for light mode before dark, the reverse of how streaming theming usually gets built",
   "type": "design-system",
   "tags": [
     "color-science",
@@ -32,8 +32,8 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "A color engine built for the brand, not the industry default",
-      "subtext": "Bibel TV has over 10,000 videos in its catalog and a team too small to hand-pick a theme color for each one. A larger operation might do that as part of its artwork pipeline; at Bibel TV's size, it isn't on the table. So the colors have to come from the artwork itself, computed. I built the engine that does it, in OKLCH so every card carries an evenly-weighted theme and the grid reads as a coherent collection in both light and dark mode."
+      "headline": "A color engine tuned for light mode first, against the streaming default",
+      "subtext": "Bibel TV has over 10,000 videos in its catalog and a team too small to hand-pick a theme color for each one, so the colors have to come from the artwork itself, computed — I built the engine that does it, in OKLCH. Then it had to prove itself in light mode first, the reverse of how a streaming product's theming normally gets tuned."
     },
     {
       "type": "callout",

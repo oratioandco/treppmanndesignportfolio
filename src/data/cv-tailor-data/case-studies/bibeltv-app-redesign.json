@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-app-redesign",
-  "title": "A premium faith app that doesn't default to dark mode",
-  "subtitle": "Redesigning Bibel TV's streaming apps to hold the German market against a global competitor",
+  "title": "Going light where every streaming app goes dark",
+  "subtitle": "A research insight, not a hunch, decided Bibel TV's streaming app should defy the industry's near-universal dark-mode default",
   "type": "streaming-media",
   "tags": [
     "competitive-strategy",
@@ -25,8 +25,8 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "A premium faith app that doesn't default to dark mode",
-      "subtext": "Bibel TV's streaming app had the deeper archive and the cultural fit, but looked a few years behind its own 2025 broadcast rebrand. The redesign had to make what Bibel TV already had feel as premium as it actually was."
+      "headline": "Going light where every streaming app goes dark",
+      "subtext": "Dark mode is the streaming industry's near-universal default, for a real reason: a dark frame recedes so content carries the screen. Research said something different was true for Bibel TV's users — so the redesign bet on light instead."
     },
     {
       "type": "callout",
