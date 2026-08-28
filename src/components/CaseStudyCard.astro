@@ -1,10 +1,15 @@
 ---
 // Poster-style case-study card: a continuously-animating generative motif
-// (see src/scripts/poster-motifs.js) instead of a static cover image and
-// hover-invert. The motif never resets or interrupts on hover — hover only
-// resumes an animation that's paused (cost-free) while idle. See that
-// script for the mechanism catalog and per-slug assignments, and
-// .claude/skills/case-study-motif/SKILL.md for how to add a new one.
+// (see src/scripts/flow-field-motifs.js) instead of a static cover image and
+// hover-invert. Particles roam a noise-driven flow field across the card;
+// the case study's shape acts as an obstacle they channel along / bounce off
+// of, with pointer/touch displacement on top. The rAF loop only ever runs
+// while the card is hovered/focused — zero cost while idle, stricter than
+// the earlier SVG version's CSS animation-pause since no frame is even
+// scheduled. See that script for the shape catalog and per-slug
+// assignments, and .claude/skills/case-study-motif/SKILL.md for how to
+// choose one (same judgment, now producing an obstacle field instead of an
+// SVG generator).
 
 interface Props {
   href: string;
@@ -22,7 +27,7 @@ const { href, headline, caption, studyId } = Astro.props;
     <h3>{headline}</h3>
   </div>
   <div class="cs-card-art">
-    <svg class="echo-svg" data-slug={studyId} viewBox="0 0 200 200" fill="none"></svg>
+    <canvas class="flow-canvas" data-slug={studyId} width="200" height="200"></canvas>
   </div>
   <div class="cs-card-caption">
     <span>{caption}</span>
@@ -30,7 +35,7 @@ const { href, headline, caption, studyId } = Astro.props;
 </a>
 
 <script>
-  import "../scripts/poster-motifs.js";
+  import "../scripts/flow-field-motifs.js";
 </script>
 
 <style>
@@ -47,6 +52,14 @@ const { href, headline, caption, studyId } = Astro.props;
     overflow: hidden;
     border: 1px solid var(--color-border);
     aspect-ratio: 5 / 8;
+    /* the grid gives each card a fluid column width (see .case-studies-grid
+       in global.css); uncapped, a 5:8 aspect ratio scales the card's HEIGHT
+       right along with it, so past mobile widths the card balloons to fill
+       most of the viewport. Capping width keeps the poster proportions
+       intact at a size that actually reads as a card, not a full page. */
+    max-width: 340px;
+    margin: 0 auto;
+    width: 100%;
     padding: 22px 22px 16px;
     transition:
       transform 0.35s ease-out,
@@ -100,29 +113,15 @@ const { href, headline, caption, studyId } = Astro.props;
     z-index: 0;
   }
 
-  .cs-card-art svg {
+  .cs-card-art canvas.flow-canvas {
     position: relative;
     z-index: 1;
     width: 92%;
     height: 92%;
-    animation: cs-spin 70s linear infinite;
-    animation-play-state: paused;
-    transform-origin: 50% 50%;
-  }
-  @keyframes cs-spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* the diagonal weave band shouldn't tumble as a rigid disc — it sways.
-     animation-play-state is set separately, not in the shorthand — the
-     shorthand resets it to "running". */
-  .cs-card-art svg.no-whole-spin {
-    animation: cs-sway 14s ease-in-out infinite alternate;
-    animation-play-state: paused;
-  }
-  @keyframes cs-sway {
-    from { transform: rotate(-7deg) scale(1.02); }
-    to   { transform: rotate(7deg) scale(1.02); }
+    /* internal resolution is fixed at 200x200 (see flow-field-motifs.js) and
+       scaled via CSS, same tradeoff the SVG version made — the canvas draws
+       fine strokes, not large flat fills, so upscaling reads as texture
+       rather than blur. */
   }
 
   .cs-card-caption {
@@ -138,26 +137,6 @@ const { href, headline, caption, studyId } = Astro.props;
     padding-top: 8px;
   }
 
-  /* each particle "tumbles" around its own vertical axis — scaleX toward a
-     sliver simulates edge-on rotation in 3D. transform+opacity only (never
-     filter) — see poster-motifs.js header comment for why that matters at
-     this element count. Paused by default; hover resumes without reset. */
-  :global(.tumble-el) {
-    animation: cs-tumble 3.6s ease-in-out infinite;
-    animation-play-state: paused;
-  }
-  @keyframes cs-tumble {
-    0%, 100% { transform: scaleX(1); opacity: var(--base-opacity, 1); }
-    50%      { transform: scaleX(0.14); opacity: calc(var(--base-opacity, 1) * 0.55); }
-  }
-
-  .cs-card:hover .cs-card-art svg,
-  .cs-card:focus-visible .cs-card-art svg,
-  .cs-card:hover :global(.tumble-el),
-  .cs-card:focus-visible :global(.tumble-el) {
-    animation-play-state: running;
-  }
-
   .cs-card:hover,
   .cs-card:focus-visible {
     transform: translateY(-6px);
@@ -169,8 +148,7 @@ const { href, headline, caption, studyId } = Astro.props;
     outline-offset: 2px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .cs-card-art svg { animation: none; }
-    :global(.tumble-el) { animation: none !important; }
-  }
+  /* prefers-reduced-motion is handled in flow-field-motifs.js (draws one
+     static frame, never schedules a second) rather than here — there's no
+     CSS animation left on the canvas itself to disable. */
 </style>
