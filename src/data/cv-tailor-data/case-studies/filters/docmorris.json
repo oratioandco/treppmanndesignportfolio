@@ -1,0 +1,51 @@
+{
+  "slug": "docmorris",
+  "aliases": [
+    "docmorris-agentic-ai-specialist"
+  ],
+  "title": "The Panel That Judges the Output",
+  "subtitle": "An evaluation apparatus with no golden set, and a support agent in production",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-docmorris.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Agentic AI Specialist role"
+  },
+  "bio": {
+    "short": "I designed the panel that decides whether generated text is good enough to keep — nine criteria, isolated calls, any failure rejects the draft. There is no golden set because I removed my own after it hid failures.",
+    "long": "On my own project, Aperto, I designed the panel that decides whether generated text is good enough to keep. Nine criteria, each judged in its own model call with no shared context, binary yes or no, and any single failure rejects the draft. The judge's reasons go back to the generator verbatim, inside a loop that revises the failing span rather than re-rolling the whole thing.\n\nThere is no golden set, and that is the decision I would most want to talk about. I built one, then removed it in July after finding it had hidden eight of eleven failures on a chapter it had passed. A reference key that agrees with you is worse than no reference key. Beside the model judges sit deterministic ones: statistical style-distance against a reference corpus, documented as a floor rather than a verdict, and drift detection against published translations where agreeing with all of them is as interesting as agreeing with none. A judge-drift control re-judges flagged criteria against a calibration anchor.\n\nRetrieval is deliberately not RAG. No vector store, no embeddings: commentaries are extracted from PDF, EPUB and text into chapter-keyed JSON, chunked by pericope, so an exegesis step pulls exactly the scholarship indexed to its passage. Sentence-transformers were evaluated and rejected for determinism, and the reasoning sits in the code.\n\nI designed and directed it. The implementation was done with AI coding agents.\n\nSeparately, and closer to your job description: I shipped an AI support agent into production for a customer-service team. I wrote its system prompt, its restricted-topic list and the rule that makes it refuse, and I author the knowledge source it is grounded on. What goes into that document decides what the agent can say. Before tuning anything we defined with the support team what a good reply looks like per message type, because you cannot optimize an output against a standard nobody has written down.",
+    "context": {
+      "company": "DocMorris",
+      "role": "Agentic AI Specialist (m/w/d)",
+      "emphasis": "The evaluation panel FIRST — it is the department's stated reason for existing and it is the rarer half. Then the production agent and its knowledge source. Lead with the design decisions, not the throughput: his own instruction, and the scale numbers are modest."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5
+    }
+  ]
+}

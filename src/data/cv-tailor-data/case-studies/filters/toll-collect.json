@@ -1,0 +1,31 @@
+{
+  "slug": "toll-collect",
+  "aliases": [
+    "toll-collect-people-lead"
+  ],
+  "title": "The Second Track",
+  "subtitle": "Ten years developing people who were under no obligation to listen",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-toll-collect.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Für die Rolle People Lead"
+  },
+  "bio": {
+    "short": "For ten years I have developed people who did not report to me and could have stopped listening at any point. An M.A. in Leadership, a coaching practice, and the instruments built rather than improvised.",
+    "long": "For ten years I have been developing people who were under no obligation to listen to me. At CareerFoundry and the Interaction Design Foundation none of them reported to me. There was no review cycle behind the conversation and no lever if it went badly. What was left was whether the person trusted that I was working on their behalf. I took an M.A. in Leadership while doing it, and I run a leadership coaching practice alongside my main role.\n\nWhen I did have a team, I built the instruments rather than improvising them. At Ninox I developed a levelling framework covering designers and UX writers — two disciplines, which is the part most teams with writers on them never solve. It set out what each level required, and I used it for growth plans so a junior designer and a junior writer could see what reaching the next one actually meant. I ran performance reviews. I designed a lean 360 as a workshop rather than a survey, so the feedback happened in a room, between the people it was about.\n\nOne example, because it says more than a list. An engineer was being talked over in meetings. I could have coached him on speaking up, and that would have made it his problem to solve. Instead I changed how the meetings ran: preparation beforehand, written agendas, structured turn-taking. He became one of the strongest contributors in the team. The conditions were the problem, not the person.\n\nOn shared leadership I am not starting from a description. Hypoport hub SE runs on Holacracy, and I held the Secretary and Facilitator roles there and ran governance meetings — the sessions where the organization revises its own structure and resolves who decides what. Personnel authority and process authority sat with different roles by constitutional design. I know what that arrangement is good at and where it produces friction, because I facilitated the meetings where the friction surfaced.",
+    "context": {
+      "company": "Toll Collect",
+      "role": "People Lead (d/m/w)",
+      "emphasis": "The leadership track is the spine and the design career is the context. M.A. Leadership, a decade mentoring without authority, the Holacracy roles held and served, and the Ninox instruments. This is the ONLY application in the corpus where design leadership is not the argument."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1
+    }
+  ]
+}

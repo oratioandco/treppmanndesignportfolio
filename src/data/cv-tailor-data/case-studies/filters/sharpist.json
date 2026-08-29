@@ -1,0 +1,59 @@
+{
+  "slug": "sharpist",
+  "aliases": [
+    "sharpist-product-lead-ai-learning"
+  ],
+  "title": "Built for People Who Never Chose It",
+  "subtitle": "Fifteen years of software for reluctant users, and a decade coaching adults",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-sharpist.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Lead role"
+  },
+  "bio": {
+    "short": "Most of the people I have built software for did not choose it — funeral directors, parish assistants, analysts inside regulated banks. Alongside that, a decade coaching designers. I am the product manager and product owner for a live redesign today.",
+    "long": "Most of the people I have built software for did not choose it. Funeral directors arranging a burial through a church platform. Parish assistants who wanted a telephone. Analysts inside banks and insurers who would let no vendor watch them work, so I built an iterative screening method to reach them, because the standard panels could not.\n\nAlongside that I have spent a decade mentoring and coaching designers, at CareerFoundry and the Interaction Design Foundation, and took an M.A. in Leadership while doing it. My own practice is leadership coaching. It is not an interest I would be bringing to a coaching product; it is what I have been doing beside every job I have held.\n\nRight now I am the product manager and product owner for the Bibel TV redesign, which is what the engagement exists for, while also running design there. At ChurchDesk I held product management for the main platform, wrote the specs and ran the board two engineers built from, and reframed a customer's feature request into a platform capability that shipped to every customer. At Ninox I ran product and design at once for four months across nine people and four disciplines. The titles say design. The work has been owning what gets built.\n\nOn retention I am precise rather than confident. A licensed series brought Bibel TV a large audience; when the license expired, usage fell and never came back, which told us retention was being carried by the content rather than by anything we could design. First-session bounce is the question now, read against the paid-ad funnel and what people do in their first minutes.\n\nThe AI I have shipped is narrower than a demo and more useful. The support copilot at Bibel TV drafts replies to viewer letters in the service handbook's wording, and the design work was the boundaries: a restricted-topic list, and a scope rule that refuses to draft when the input is not a viewer enquiry. Adoption was voluntary — encouraged by team leads, a self-test week, then one-to-ones — and the skeptics came round after their hardest case rather than after the demo. Every send is still a person's decision.",
+    "context": {
+      "company": "Sharpist",
+      "role": "Product Lead — AI-Powered Learning & CultureOS",
+      "emphasis": "Users who never chose the software, and coaching as a dated decade rather than a claimed interest — the two the posting's own mission depends on. Product ownership shown as fact in the role lines rather than argued. AI third, supporting rather than competing: Sharpist will see stronger AI-product CVs and leading there loses a comparison he does not need to enter."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable"
+    }
+  ]
+}
