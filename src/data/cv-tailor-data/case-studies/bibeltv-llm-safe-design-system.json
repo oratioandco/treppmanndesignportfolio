@@ -65,11 +65,6 @@
           "src": "/images/bibeltv/llm-safe-storybook.png",
           "alt": "Storybook showing the BibelTV component library: the component list in the sidebar, theme and device switches in the toolbar, a token inspector, and a frosted-glass card variant rendered against a striped backdrop",
           "caption": "The shared surface. Thirty components, theme and device switching, and a per-component token report, so someone who didn't build the system can still find and use the right part of it."
-        },
-        {
-          "src": "/images/bibeltv/llm-safe-token-vocabulary.png",
-          "alt": "The resolved design token set grouped by tier, primitives, semantic, component, views, showing named colour ramps with their hex values",
-          "caption": "The closed vocabulary, grouped by tier. An assistant enumerates from this instead of recalling a plausible name, which is the difference between choosing and inventing."
         }
       ]
     },
@@ -158,7 +153,7 @@
     "confidential": false,
     "confidentiality_note": null,
     "source": "ProtoBible spec 095 (LLM-safe token prototyping): implementation, CI gates, MCP/plugin surface, and the 30-component Android parity audit, July 2026. Inspired in part by Polar's Orbit write-up. + flagship page published 2026-08-13",
-    "screenshots_pending": "Two optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. Neither blocks publication.",
+    "screenshots_pending": "Removed 2026-08-29: the raw token-vocabulary palette dump (llm-safe-token-vocabulary.png) read as a meaningless wall of unlabeled color swatches with no context, contradicting its own caption about 'enumerate instead of recall.' A real replacement would show the enumerate-vs-invent point directly — e.g. an AI assistant's tool-call UI picking from a closed list — rather than the full resolved palette. Not urgent; the Storybook screenshot alone carries the section. Two other optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. None block publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   },
   "generation": 3
