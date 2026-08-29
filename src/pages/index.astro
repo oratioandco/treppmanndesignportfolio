@@ -41,8 +41,16 @@ function cardProps(study: CaseStudy) {
   <section class="hero">
     <DotField />
     <div class="container">
-      <p class="hero-tagline">AI-Native Product &amp; Design Leader</p>
-      <h1 class="animated-headline" id="animated-title">The design leader moving closer to the model</h1>
+      <div class="hero-bio">
+        <Portrait
+          alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
+        />
+        <div class="hero-bio__text">
+          <p class="hero-tagline">AI-Native Product &amp; Design Leader</p>
+          <h1 class="animated-headline" id="animated-title">The design leader moving closer to the model</h1>
+          <BioRegenerator />
+        </div>
+      </div>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
@@ -77,14 +85,6 @@ function cardProps(study: CaseStudy) {
     setTimeout(animate, delay);
   });
 </script>
-      <div class="hero-bio">
-        <Portrait
-          alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
-        />
-        <div class="hero-bio__text">
-          <BioRegenerator />
-        </div>
-      </div>
     </div>
   </section>
 
@@ -105,7 +105,7 @@ function cardProps(study: CaseStudy) {
   </section>
 
   {browseableStudies.length > 0 && (
-    <section class="section" id="more-work">
+    <section class="section more-work-section" id="more-work">
       <div class="container">
         <details class="show-more">
           <summary>Show more work</summary>
@@ -124,6 +124,15 @@ function cardProps(study: CaseStudy) {
 </Layout>
 
 <style>
+  /* This section is just a one-line toggle when collapsed, not a full section
+     with its own heading — the generic .section padding (8rem top and bottom)
+     stacked with the sections on either side to a ~256px gap that read as
+     broken rather than restrained. */
+  .more-work-section {
+    padding-top: 0;
+    padding-bottom: var(--space-lg);
+  }
+
   .show-more {
     border: none;
     cursor: pointer;
@@ -148,7 +157,8 @@ function cardProps(study: CaseStudy) {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: var(--color-accent-light);
+    background: var(--color-accent);
+    color: var(--color-bg);
     font-weight: 600;
   }
 

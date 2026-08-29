@@ -19,7 +19,7 @@
   "default": { "length": "short", "model": "claude", "vibe": "standard" },
   "api_url": "https://yt4kwr004s5eesq6ituyhbi8.167.235.138.184.sslip.io/bio",
   "variants": {
-    "short": "I'm Tobias Treppmann, an AI-native product and design leader in Berlin. Fifteen years across complex B2B SaaS and, now, a broadcaster mid linear-to-streaming transformation — currently Head of Product Design at Bibel TV — redesigning the app, shifting the team toward user-centric thinking, and doing it hands-on with AI in the loop.",
+    "short": "I'm Tobias Treppmann, an AI-native product and design leader in Berlin. Fifteen years across complex B2B SaaS, and now Head of Product Design at Bibel TV, a broadcaster mid linear-to-streaming transformation — redesigning the app, shifting the team toward user-centric thinking, and doing it hands-on with AI in the loop.",
     "long": "I'm Tobias Treppmann, an AI-native product and design leader in Berlin. Fifteen years across complex B2B SaaS and a broadcaster mid linear-to-streaming transformation — Datameer, Ninox, ChurchDesk, Bibel TV — all of it senior design leadership: shaping practice, hiring, design systems, governance with engineering. Currently at Bibel TV I'm redesigning the mobile app and bringing more user-centric thinking to the existing team (research cadence, A/B testing, behavioral design), alongside a cross-platform design-token API and an in-house Color Lab. Hands-on with AI too — prompt-to-database onboarding at Ninox with the founders, a Copilot skill at Bibel TV, and agentic prototyping where Figma plus Claude Code becomes a working prototype the same week engineering needs it."
   }
 }
