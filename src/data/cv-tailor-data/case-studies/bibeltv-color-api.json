@@ -120,9 +120,9 @@
       "angle": "Design-led infrastructure, when industry defaults don't fit the brand",
       "sections": [
         "hero",
-        "narrative",
-        "outcome",
-        "reflection"
+        "Why a custom engine, and how it works",
+        "What changed",
+        "Built two colors, shipped one"
       ],
       "max_read_time": "2 min"
     },

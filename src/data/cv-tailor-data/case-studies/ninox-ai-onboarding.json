@@ -142,9 +142,10 @@
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
       "sections": [
         "hero",
-        "callout",
-        "outcome",
-        "reflection"
+        "The Context",
+        "Why chat alone wouldn't work",
+        "Design decisions",
+        "Outcome"
       ],
       "max_read_time": "2 min"
     }

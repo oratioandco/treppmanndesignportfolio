@@ -26,7 +26,7 @@
     {
       "type": "hero",
       "headline": "An LLM-safe design system for people who didn't build it",
-      "subtext": "Bibel TV has no in-house design team. A new design language was landing, and the people who needed to build with it were product managers and engineers. So the design system had to become self-serve, for prototyping and as the engineering reference, without quietly drifting out of spec the moment nobody was watching."
+      "subtext": "As Bibel TV's Head of Product Design, I was establishing a new design language that product managers and engineers needed to use directly. I made the system self-serve for prototyping and engineering reference, with automated enforcement that catches drift before it ships."
     },
     {
       "type": "callout",
@@ -36,7 +36,7 @@
     {
       "type": "narrative",
       "headline": "The problem",
-      "content": "Bibel TV has no in-house design team. That single fact determines the shape of everything else.\n\nIt means there is no designer to ask when something is ambiguous, no team maintaining a Figma library as the canonical reference, and, most consequentially, nobody whose job it is to catch drift in review. Every design system I've worked on has the same soft spot: the tokens exist, the naming is thought through, the documentation is written, and then enforcement is a person noticing. Tokens are a convention held up by attention. When nobody is paid to pay that attention, the convention is decorative.\n\nSo the direction was set before any of this tooling existed. Storybook would become the source of truth rather than a Figma file, one place where the components are real, runnable and inspectable, with a prototyping layer on top of it, so that both **prototyping and engineering reference** are transparent and self-serve. A new design language was landing, and the people who needed to build with it were product managers and engineers, not designers.\n\nWhat I hadn't accounted for was how fast that gets away from you once an AI assistant is in the loop. Prototyping the Android redesign myself, I watched it confidently reference tokens that did not exist, and quietly hardcode values where a token did.\n\nBoth mistakes compile. Both render. A hallucinated token name falls back silently and looks approximately right; a hardcoded value looks *exactly* right and is invisible until someone changes the palette and one card doesn't move. I know this system as well as anyone does, and I still couldn't catch these by reading.\n\nThat's what turned a documentation problem into an enforcement problem. The docs were already good. What was missing was a mechanism that doesn't depend on anyone reading them, because in an organisation without a design team, the build is the only reviewer that always shows up."
+      "content": "I owned UI quality and consistency across Bibel TV's iOS, Android, web and connected-TV products, while product managers and engineers needed to build with the new design language directly. That made self-service and reliable enforcement part of the design problem, not follow-up documentation work.\n\nEvery design system I've worked on has the same soft spot: the tokens exist, the naming is thought through, the documentation is written, and then enforcement depends on someone noticing. Tokens are a convention held up by attention. A system that lets drift pass silently does not protect the decision it records.\n\nSo the direction was set before any of this tooling existed. Storybook would become the source of truth rather than a Figma file, one place where the components are real, runnable and inspectable, with a prototyping layer on top of it, so that both **prototyping and engineering reference** are transparent and self-serve.\n\nWhat I hadn't accounted for was how fast that gets away from you once an AI assistant is in the loop. Prototyping the Android redesign myself, I watched it confidently reference tokens that did not exist, and quietly hardcode values where a token did.\n\nBoth mistakes compile. Both render. A hallucinated token name falls back silently and looks approximately right; a hardcoded value looks *exactly* right and is invisible until someone changes the palette and one card doesn't move. I know this system as well as anyone does, and I still couldn't catch these by reading.\n\nThat's what turned a documentation problem into an enforcement problem. The docs were already good. What was missing was a mechanism that doesn't depend on anyone reading them. The build had to become the reviewer that always shows up."
     },
     {
       "type": "process",
@@ -133,13 +133,14 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Made a new design system self-serve for an organisation with no design team: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift can't accumulate unwatched.",
-      "angle": "Design governance as infrastructure. With no designers to review, the build has to be the reviewer, which is also what makes the system safe to hand to product people and AI assistants.",
+      "summary": "Made a new design system self-serve across iOS, Android, web and connected TV: Storybook as the source of truth, a prototyping layer on top, and CI that refuses off-system work so drift cannot accumulate unwatched.",
+      "angle": "Design governance as infrastructure: the build becomes the reliable reviewer, making the system safe to hand to product managers, engineers and AI assistants.",
       "sections": [
+        "hero",
         "callout",
         "The problem",
-        "outcome",
-        "reflection"
+        "Three layers, doing three different jobs",
+        "What changed"
       ]
     }
   },

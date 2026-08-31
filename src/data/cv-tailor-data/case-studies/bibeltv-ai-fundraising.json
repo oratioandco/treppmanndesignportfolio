@@ -85,8 +85,8 @@
       "angle": "Designing at the prompt-and-context layer, not around it",
       "sections": [
         "hero",
-        "callout",
-        "reflection"
+        "The problem",
+        "What I built"
       ],
       "max_read_time": "2 min"
     }

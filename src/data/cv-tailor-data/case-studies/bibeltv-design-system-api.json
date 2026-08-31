@@ -110,8 +110,9 @@
       "angle": "Design infrastructure that outlasts the designer who built it",
       "sections": [
         "hero",
-        "outcome",
-        "reflection"
+        "The problem",
+        "The architecture",
+        "What changed"
       ],
       "max_read_time": "2 min"
     },
