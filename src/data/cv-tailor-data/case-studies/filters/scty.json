@@ -1,0 +1,92 @@
+{
+  "slug": "scty",
+  "aliases": [
+    "scty-senior-consultant-strategy-digitalization"
+  ],
+  "title": "The Recommendation, Built and Shipped",
+  "subtitle": "Consulting where the deliverable is the running thing, not the deck describing it",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-scty.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the (Junior/Senior) Consultant role"
+  },
+  "bio": {
+    "short": "I'm Tobias Treppmann, a Berlin-based consultant and design leader. Fifteen years turning research and stakeholder conversations into things that ship: a booking capability built into ChurchDesk's platform instead of a standalone module, an AI system running in production at Bibel TV, and Hypoport's shift to a productised service catalogue, run through workshops with department heads rather than a slide deck.",
+    "long": "The clearest example is ChurchDesk. The team's internal expectation was a standalone add-on module for funeral booking — the faster path. I built it into the existing calendar and form builder instead, so the same work carried room rentals, baptisms and weddings once it rolled out to the whole customer base: 70% less coordination time, 90% acceptance at the launch customer. I wrote the specs, ran the ticket board, and was the client's main contact, presenting to executives and internal client teams. At Bibel TV, engineering sits at an external agency, and I prototype in real code against real and self-built APIs, so what they evaluate already runs rather than being reinterpreted from a document. On that foundation I built a customer-support AI copilot, live in production, and an AI fundraising system — performance analysis, prompt architecture, prototype, then a production Claude skill — solo, end to end. At Hypoport hub SE, I partnered with the executive team on a service-to-product transformation delivered through recurring workshops and reviews with department heads, not a written strategy document, moving individualised support toward a standardised service catalogue; I also held the Holacracy Facilitator and Secretary constitutional roles, running the meetings where the organisation edits its own structure. Earlier, at Ninox, I led a design function of five while carrying a second interim function of four at once, and returned the following year as an independent consultant through Oratio&Co to design the prompt-to-database AI onboarding model that became the basis for the public beta. Berlin-based, German native, English C2.",
+    "context": {
+      "company": "scty (societec GmbH) — a Berlin management and technology consultancy working with federal ministries, public IT service providers and education-sector organisations, combining strategy consulting with in-house software delivery.",
+      "role": "(Junior/Senior) Consultant, an all-levels seat on a 3-to-5-person team, split between client engagements and internal building. The posting frames it as a place to develop consulting and programme-management skills through case-style project work.",
+      "emphasis": "Voice: first person, plain, practitioner rather than executive. Lead with the three things this application leads with, in order: (1) the ChurchDesk booking process rebuilt into the platform and measured — not just advised on; (2) Bibel TV — he builds the software an external agency ships from, not just the recommendation; (3) Hypoport — organisational change with an executive team, delivered through recurring workshops with department heads, in German. Berlin-based, German native, English C2, open to client-site travel short of a weekly cadence."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 2
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 3
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "hidden",
+      "order": 11
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 12
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "hidden",
+      "order": 13
+    }
+  ]
+}

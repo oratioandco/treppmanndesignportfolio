@@ -1,0 +1,93 @@
+{
+  "slug": "hellofresh-operations",
+  "aliases": [
+    "hellofresh-director-ux-operations"
+  ],
+  "title": "Design Leadership For The Systems Operators Can't Walk Away From",
+  "subtitle": "Five years inside regulated enterprise systems, a year building a design system for AI-assisted workflows",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-hellofresh-operations.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the (Senior) Director UX, Operations role"
+  },
+  "bio": {
+    "short": "I'm Tobias Treppmann, a Berlin-based design leader. Five years directing design for a data-analytics platform inside regulated banks and insurers taught me how to design for people who can't choose a simpler tool. The last year went into building a design system from zero for AI-assisted workflows.",
+    "long": "The clearest example is Datameer, where I directed design for five years on a data-analytics platform serving regulated banks and insurers under HIPAA and other compliance frameworks — data-dense pivot tables, aggregated JSON views, and the sample-based uncertainty problem: designing how a system tells an analyst a result is a sample, not the whole answer. I moved design from an execution function to a strategic partner there, securing executive backing for research built on an iterative screening process to reach hard-to-access personas inside regulated institutions. At Bibel TV, I built a design system as an API — DTCG tokens in four tiers, one source serving iOS, Android, web and connected TV, with the token vocabulary handed to an AI assistant as an enumerated list it cannot invent past. I prototype in real code against real and self-built APIs, so an external engineering agency ships from code that already runs. At ChurchDesk, the internal plan for a client-funded booking project was a standalone add-on module; I built it into the existing calendar and form builder instead, so one build carried the use cases customers asked for most — 70% less coordination time, 90% acceptance, rolled out to every customer. At Ninox, I owned the design system and established joint governance with engineering, while holding Product Design and Product simultaneously for four months with nine reports across four disciplines. At Hypoport, I partnered with the executive team on a service-to-product transformation delivered through recurring workshops with department heads, not a written deliverable. My whole career has been backoffice software for people who didn't choose the tool: parish coordinators and funeral directors, bank analysts, an internal service organisation turned into a product. Berlin-based, German native, English C2.",
+    "context": {
+      "company": "HelloFresh — global digital-native FMCG and mealkit company, eight brands, reorganising UX to work AI-native.",
+      "role": "(Senior) Director UX, Operations — UX strategy across menu planning, fulfilment, an operations-research platform, and warehouse/production technology, reporting to the VP of UX. Inherits an in-flight AI-native design-function transformation, not a finished product.",
+      "emphasis": "Voice: first person, plain, practitioner rather than executive. Lead with the pairing per positioning.md §4: five years of enterprise/regulated-systems design leadership (Datameer) plus a from-scratch AI-native design system (Bibel TV), with design-system ownership at Ninox as a third proof point. Close with the internal-operator throughline (ChurchDesk, Hypoport, Ninox) as the M8 answer. Berlin-based, German native, English C2, open to client-site travel."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "in-depth"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 3
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "hidden",
+      "order": 8
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "hidden",
+      "order": 9
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "hidden",
+      "order": 10
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "hidden",
+      "order": 12
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "hidden",
+      "order": 13
+    }
+  ]
+}
