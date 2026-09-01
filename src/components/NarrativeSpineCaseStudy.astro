@@ -1,0 +1,734 @@
+---
+import type { CaseStudy, CaseStudySection } from '../data/cv-tailor';
+
+interface Props {
+  study: CaseStudy;
+  backUrl: string;
+}
+
+const { study, backUrl } = Astro.props;
+
+const hero = study.sections?.find((section: CaseStudySection) => section.type === 'hero');
+const callout = study.sections?.find((section: CaseStudySection) => section.type === 'callout');
+const problem = study.sections?.find((section: CaseStudySection) => section.headline === 'The problem');
+const solution = study.sections?.find(
+  (section: CaseStudySection) => section.headline === 'Three layers, doing three different jobs'
+);
+const outcome = study.sections?.find((section: CaseStudySection) => section.headline === 'What changed');
+const closer = [...(study.sections ?? [])]
+  .reverse()
+  .find((section: CaseStudySection) => section.content?.trim().endsWith('Get in touch.'));
+
+const title = hero?.headline || study.title;
+const projectArgument = hero?.subtext || study.subtitle;
+const kicker = ['Case Study', study.company, study.duration].filter(Boolean).join(' · ').toUpperCase();
+const closerLead = closer?.content?.replace(/\s*Get in touch\.\s*$/, '').trim() ?? '';
+
+function inlineStrong(text: string): string {
+  return text.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>');
+}
+
+function splitParagraphs(content: string | undefined): string[] {
+  return (content ?? '')
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+}
+
+const problemParagraphs = splitParagraphs(problem?.content);
+const problemLead = problemParagraphs[0] ?? '';
+const problemRemainder = problemParagraphs.slice(1);
+---
+
+<div class="cs-spine-page">
+  <nav class="cs-spine-topbar" aria-label="Case study navigation">
+    <a href={backUrl} class="cs-spine-back">← Back to portfolio</a>
+    <span class="cs-spine-kicker">{kicker}</span>
+    <button
+      type="button"
+      class="cs-spine-contact-link"
+      data-contact-trigger
+      data-user="hello"
+      data-domain="treppmann.design"
+    >
+      Get in touch
+    </button>
+  </nav>
+
+  <article class="cs-spine-article">
+    <section class="cs-spine-row cs-spine-context" aria-labelledby="cs-spine-title">
+      <div class="cs-spine-marker" aria-hidden="true">
+        <span class="cs-spine-number">01</span>
+        <span>Context</span>
+      </div>
+      <div class="cs-spine-main">
+        <h1 id="cs-spine-title" class="cs-spine-title">{title}</h1>
+
+        <div class="cs-spine-intro-grid">
+          <div class="cs-spine-meta">
+            <p class="cs-spine-role">{study.role}</p>
+            {study.team && <p class="cs-spine-team">{study.team}</p>}
+          </div>
+          {projectArgument && (
+            <div class="cs-spine-argument">
+              <span class="cs-spine-eyebrow">Project argument</span>
+              <p>{projectArgument}</p>
+            </div>
+          )}
+        </div>
+
+        {callout?.quote && (
+          <blockquote class="cs-spine-principle">
+            <p>{callout.quote}</p>
+            {callout.context && <footer>{callout.context}</footer>}
+          </blockquote>
+        )}
+      </div>
+    </section>
+
+    {problem && (
+      <section class="cs-spine-row" aria-labelledby="cs-spine-problem">
+        <div class="cs-spine-marker" aria-hidden="true">
+          <span class="cs-spine-number">02</span>
+          <span>Problem</span>
+        </div>
+        <div class="cs-spine-main">
+          <h2 id="cs-spine-problem" class="cs-spine-heading">{problem.headline}</h2>
+          {problemLead && <p class="cs-spine-lead" set:html={inlineStrong(problemLead)} />}
+
+          <div class="cs-spine-problem-grid">
+            <div class="cs-spine-copy">
+              {problemRemainder.map((paragraph) => (
+                <p set:html={inlineStrong(paragraph)} />
+              ))}
+            </div>
+            <figure class="cs-spine-evidence-figure">
+              <a
+                href="/images/bibeltv/design-system-tokens.png"
+                class="cs-spine-evidence-link"
+                aria-label="Open the design-system token screenshot at full size"
+              >
+                <img
+                  src="/images/bibeltv/design-system-tokens.png"
+                  alt="BibelTV Design Tools in Figma beside the design system's primitive colour-token collections"
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+            </figure>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {solution && (
+      <section class="cs-spine-row" aria-labelledby="cs-spine-solution">
+        <div class="cs-spine-marker" aria-hidden="true">
+          <span class="cs-spine-number">03</span>
+          <span>Solution</span>
+        </div>
+        <div class="cs-spine-main">
+          <h2 id="cs-spine-solution" class="cs-spine-heading">{solution.headline}</h2>
+          {solution.content && (
+            <div class="cs-spine-copy">
+              {splitParagraphs(solution.content).map((paragraph) => (
+                <p set:html={inlineStrong(paragraph)} />
+              ))}
+            </div>
+          )}
+          {solution.steps && (
+            <ol class="cs-spine-steps">
+              {solution.steps.map((step, index) => (
+                <li>
+                  <span class="cs-spine-step-number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{step.label}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      </section>
+    )}
+
+    {outcome && (
+      <section class="cs-spine-row" aria-labelledby="cs-spine-evidence">
+        <div class="cs-spine-marker" aria-hidden="true">
+          <span class="cs-spine-number">04</span>
+          <span>Evidence</span>
+        </div>
+        <div class="cs-spine-main">
+          <h2 id="cs-spine-evidence" class="cs-spine-heading">{outcome.headline}</h2>
+          {outcome.metrics && (
+            <dl class="cs-spine-metrics">
+              {outcome.metrics.map((metric) => (
+                <div class="cs-spine-metric">
+                  <dt>{metric.label}</dt>
+                  {metric.value && <dd class="cs-spine-metric-value">{metric.value}</dd>}
+                  {metric.before && metric.after && (
+                    <dd class="cs-spine-metric-change">
+                      <span>{metric.before}</span>
+                      <span class="cs-spine-arrow" aria-hidden="true">→</span>
+                      <strong>{metric.after}</strong>
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </section>
+    )}
+
+    {closer && (
+      <section class="cs-spine-row cs-spine-contact" aria-label="Contact">
+        <div class="cs-spine-marker" aria-hidden="true">
+          <span class="cs-spine-number">05</span>
+          <span>Contact</span>
+        </div>
+        <div class="cs-spine-main">
+          {closerLead && <p class="cs-spine-contact-lead">{closerLead}</p>}
+          <button
+            type="button"
+            class="cs-spine-contact-button"
+            data-contact-trigger
+            data-user="hello"
+            data-domain="treppmann.design"
+          >
+            Get in touch
+          </button>
+        </div>
+      </section>
+    )}
+  </article>
+</div>
+
+<script>
+  document.querySelectorAll('[data-contact-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const user = trigger.getAttribute('data-user');
+      const domain = trigger.getAttribute('data-domain');
+      window.location.href = `mailto:${user}@${domain}`;
+    });
+  });
+</script>
+
+<style is:global>
+  .cs-spine-page {
+    --spine-signal: #b84432;
+    --spine-signal-soft: #d66a56;
+    max-width: 86rem;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  [data-theme="dark"] .cs-spine-page {
+    --spine-signal: #ff7e68;
+    --spine-signal-soft: #e5a295;
+  }
+
+  .cs-spine-topbar {
+    min-height: 4.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-back,
+  .cs-spine-contact-link {
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .cs-spine-contact-link {
+    justify-self: end;
+    appearance: none;
+    padding: 0.25rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--spine-signal);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .cs-spine-back:hover,
+  .cs-spine-contact-link:hover {
+    color: var(--spine-signal);
+    opacity: 1;
+  }
+
+  .cs-spine-back:focus-visible,
+  .cs-spine-contact-link:focus-visible,
+  .cs-spine-contact-button:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  .cs-spine-kicker,
+  .cs-spine-marker,
+  .cs-spine-eyebrow,
+  .cs-spine-step-number,
+  .cs-spine-metric dt {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.065em;
+  }
+
+  .cs-spine-kicker {
+    color: var(--color-text-muted);
+    font-size: 0.67rem;
+    text-align: center;
+  }
+
+  .cs-spine-article {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-row {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 3.5rem 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-context {
+    padding-top: 2.25rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .cs-spine-row:first-child {
+    border-top: 0;
+  }
+
+  .cs-spine-marker {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-left: 1px solid var(--color-rule);
+    padding-left: 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.64rem;
+    line-height: 1.3;
+  }
+
+  .cs-spine-number {
+    color: var(--spine-signal);
+    font-size: 0.78rem;
+  }
+
+  .cs-spine-main {
+    min-width: 0;
+  }
+
+  .cs-spine-title {
+    max-width: none;
+    margin: 0 0 1.75rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: clamp(3rem, 5.2vw, 4.75rem);
+    font-style: normal;
+    font-weight: 430;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+
+  .cs-spine-intro-grid {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.65fr) minmax(22rem, 1.35fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .cs-spine-role {
+    margin: 0 0 0.35rem;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 560;
+  }
+
+  .cs-spine-team {
+    max-width: 36ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.015em;
+    line-height: 1.5;
+  }
+
+  .cs-spine-eyebrow {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--spine-signal);
+    font-size: 0.66rem;
+  }
+
+  .cs-spine-argument p,
+  .cs-spine-lead,
+  .cs-spine-copy,
+  .cs-spine-step-number + div p,
+  .cs-spine-metric-change,
+  .cs-spine-contact-lead {
+    color: var(--color-text);
+    font-family: var(--font-body);
+  }
+
+  .cs-spine-argument p {
+    max-width: 49ch;
+    margin: 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    line-height: 1.48;
+  }
+
+  .cs-spine-principle {
+    max-width: 44rem;
+    margin: 2rem 0 0 auto;
+    padding: 1.15rem 0 0 1.5rem;
+    border-top: 1px solid var(--color-rule);
+    border-left: 1px solid var(--spine-signal-soft);
+  }
+
+  .cs-spine-principle p {
+    margin: 0;
+    color: var(--color-accent);
+    font-family: "Gambarino", Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+    font-style: italic;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .cs-spine-principle footer {
+    max-width: 54ch;
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .cs-spine-heading {
+    max-width: 20ch;
+    margin: 0 0 1.5rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-style: normal;
+    font-weight: 430;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .cs-spine-lead {
+    max-width: 62ch;
+    margin: 0 0 2rem;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.45;
+  }
+
+  .cs-spine-problem-grid {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.8fr) minmax(28rem, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .cs-spine-copy {
+    max-width: 62ch;
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .cs-spine-copy p {
+    margin: 0 0 1rem;
+  }
+
+  .cs-spine-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cs-spine-evidence-figure {
+    margin: 0;
+    border: 1px solid var(--color-rule);
+    background: var(--color-surface);
+  }
+
+  .cs-spine-evidence-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cs-spine-evidence-link {
+    display: block;
+  }
+
+  .cs-spine-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-steps li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-step-number {
+    padding-top: 0.2rem;
+    color: var(--spine-signal);
+    font-size: 0.7rem;
+  }
+
+  .cs-spine-steps h3 {
+    margin: 0 0 0.4rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-style: normal;
+    font-weight: 620;
+    line-height: 1.35;
+  }
+
+  .cs-spine-steps p {
+    max-width: 72ch;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.62;
+  }
+
+  .cs-spine-metrics {
+    margin: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-metric {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1.65fr);
+    column-gap: 2rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-metric dt {
+    grid-row: 1 / span 2;
+    color: var(--spine-signal);
+    font-size: 0.68rem;
+  }
+
+  .cs-spine-metric dd {
+    margin: 0;
+  }
+
+  .cs-spine-metric-value {
+    color: var(--color-accent);
+    font-family: var(--font-display-35);
+    font-size: 1.5rem;
+    font-style: italic;
+  }
+
+  .cs-spine-metric-change {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .cs-spine-metric-change > span:first-child {
+    color: var(--color-text-muted);
+  }
+
+  .cs-spine-arrow {
+    color: var(--spine-signal);
+  }
+
+  .cs-spine-contact-title {
+    margin: 0 0 1rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-style: normal;
+    font-weight: 430;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .cs-spine-contact-lead {
+    max-width: 58ch;
+    margin: 0 0 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .cs-spine-contact-button {
+    appearance: none;
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    padding: 0.75rem 1.1rem;
+    color: var(--color-bg);
+    background: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+
+  .cs-spine-contact-button:hover {
+    border-color: var(--spine-signal);
+    background: var(--spine-signal);
+  }
+
+  @media (max-width: 68rem) {
+    .cs-spine-title {
+      max-width: 20ch;
+    }
+
+    .cs-spine-problem-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-spine-evidence-figure {
+      max-width: 48rem;
+    }
+  }
+
+  @media (max-width: 58rem) {
+    .cs-spine-page {
+      padding: 0 2rem 4rem;
+    }
+
+    .cs-spine-topbar {
+      min-height: 4.5rem;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+    }
+
+    .cs-spine-kicker {
+      display: none;
+    }
+
+    .cs-spine-row {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 2.5rem 0;
+    }
+
+    .cs-spine-marker {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.75rem;
+      border-left: 0;
+      border-top: 1px solid var(--color-rule);
+      padding: 0.65rem 0 0;
+    }
+
+    .cs-spine-context .cs-spine-marker {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .cs-spine-title {
+      margin-bottom: 1.75rem;
+      font-size: clamp(2.7rem, 13vw, 4.8rem);
+      letter-spacing: -0.05em;
+      line-height: 0.96;
+    }
+
+    .cs-spine-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .cs-spine-argument p,
+    .cs-spine-lead,
+    .cs-spine-contact-lead {
+      font-size: 1rem;
+    }
+
+    .cs-spine-principle {
+      margin-top: 2rem;
+      padding: 1.25rem 0 0 1rem;
+    }
+
+    .cs-spine-heading,
+    .cs-spine-contact-title {
+      font-size: clamp(1.85rem, 9vw, 2.8rem);
+    }
+
+    .cs-spine-problem-grid {
+      gap: 1.75rem;
+    }
+
+    .cs-spine-evidence-figure {
+      order: -1;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-left: 0;
+      border-right: 0;
+      overflow-x: auto;
+    }
+
+    .cs-spine-evidence-figure img {
+      min-width: 42rem;
+      max-width: none;
+    }
+
+    .cs-spine-steps li {
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.75rem;
+    }
+
+    .cs-spine-metric {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .cs-spine-metric dt {
+      grid-row: auto;
+    }
+
+    .cs-spine-metric-change {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+
+    .cs-spine-arrow {
+      transform: rotate(90deg);
+      transform-origin: left center;
+      width: fit-content;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .cs-spine-page {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-spine-page *,
+    .cs-spine-page *::before,
+    .cs-spine-page *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>

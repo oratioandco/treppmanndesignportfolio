@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CaseStudyArticle from '../../../components/CaseStudyArticle.astro';
+import NarrativeSpineCaseStudy from '../../../components/NarrativeSpineCaseStudy.astro';
 import {
   getAllFilters,
   getFilterPaths,
@@ -36,12 +37,15 @@ const backUrl = `/for/${filter.slug}`;
 const heroSection = study.sections?.find((s: any) => s.type === 'hero');
 const pageTitle = heroSection?.headline || study.title;
 const pageDescription = study.subtitle || '';
+const useNarrativeSpine = study.id === 'bibeltv-llm-safe-design-system';
 ---
 <Fragment slot="head">
   <meta name="robots" content="noindex, nofollow" />
 </Fragment>
 
 
-<Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl={backUrl} backLabel={`← Back to portfolio`}>
-  <CaseStudyArticle study={study} />
+<Layout title={pageTitle} description={pageDescription} showBackButton={!useNarrativeSpine} backUrl={backUrl} backLabel={`← Back to portfolio`}>
+  {useNarrativeSpine
+    ? <NarrativeSpineCaseStudy study={study} backUrl={backUrl} />
+    : <CaseStudyArticle study={study} />}
 </Layout>

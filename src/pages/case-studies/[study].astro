@@ -7,6 +7,7 @@
 // src/pages/case-studies/*.astro pages did from the data.
 import Layout from '../../layouts/Layout.astro';
 import CaseStudyArticle from '../../components/CaseStudyArticle.astro';
+import NarrativeSpineCaseStudy from '../../components/NarrativeSpineCaseStudy.astro';
 import { getAllPublicCaseStudies, type CaseStudy, type CaseStudySection } from '../../data/cv-tailor';
 
 export function getStaticPaths() {
@@ -20,8 +21,11 @@ const { study } = Astro.props as { study: CaseStudy };
 const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
 const pageTitle = heroSection?.headline || study.title;
 const pageDescription = study.subtitle || '';
+const useNarrativeSpine = study.id === 'bibeltv-llm-safe-design-system';
 ---
 
-<Layout title={pageTitle} description={pageDescription} showBackButton={true} backUrl="/" backLabel={`← Back to portfolio`}>
-  <CaseStudyArticle study={study} />
+<Layout title={pageTitle} description={pageDescription} showBackButton={!useNarrativeSpine} backUrl="/" backLabel={`← Back to portfolio`}>
+  {useNarrativeSpine
+    ? <NarrativeSpineCaseStudy study={study} backUrl="/" />
+    : <CaseStudyArticle study={study} />}
 </Layout>
