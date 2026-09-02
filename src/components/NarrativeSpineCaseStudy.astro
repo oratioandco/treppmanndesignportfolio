@@ -475,7 +475,14 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     .cs-pilot-nav { min-height: 4rem; grid-template-columns: 1fr auto; gap: 1rem; }
     .cs-pilot-nav > span { display: none; }
     .cs-pilot-hero-copy { min-height: 37rem; }
-    .cs-pilot-title { margin: 5rem 0 2.5rem; font-size: clamp(3.15rem, 16vw, 5rem); line-height: 0.86; }
+    .cs-pilot-title {
+      max-width: 100%;
+      margin: 5rem 0 2.5rem;
+      /* The final two title words are intentionally kept together to avoid a
+         widow. Cap the mobile size so that pair still fits a 320px viewport. */
+      font-size: clamp(2.75rem, 12vw, 3rem);
+      line-height: 0.86;
+    }
     .cs-pilot-hero-foot, .cs-pilot-principle, .cs-pilot-heading-wrap, .cs-pilot-metric, .cs-pilot-contact { grid-template-columns: 1fr; }
     .cs-pilot-hero-foot { gap: 1.25rem; }
     .cs-pilot-principle { gap: 2rem; padding: 3.5rem 0; }
