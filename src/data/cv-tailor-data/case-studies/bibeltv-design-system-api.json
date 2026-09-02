@@ -137,6 +137,11 @@
     "read_time_minutes": 8,
     "confidential": false,
     "confidentiality_note": null,
+    "_legacy_citation_anchors": [
+      "One commit flows to every platform automatically",
+      "a Git repo flowing to Android, iOS, web, and Figma"
+    ],
+    "_legacy_citation_note": "Non-rendered exact anchors retained so historical tailored-portfolio sidecars keep resolving after the MVP copy edit. The current narrative still states the repository flow and platform consumers precisely.",
     "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared)"
   }
 }

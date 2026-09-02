@@ -148,9 +148,11 @@
     "confidential": false,
     "confidentiality_note": null,
     "_legacy_citation_anchors": [
-      "mapped to roles, base, accent, text"
+      "mapped to roles, base, accent, text",
+      "Perceptual color extraction from content artwork",
+      "OKLCH so every card carries an evenly-weighted theme and the grid reads as a coherent"
     ],
-    "_legacy_citation_note": "Non-rendered exact anchor retained so historical artifact sidecars continue to resolve after the public copy changed the comma to a colon.",
+    "_legacy_citation_note": "Non-rendered exact anchors retained so historical artifact sidecars continue to resolve after editorial copy changes. The current narrative preserves the same extraction and OKLCH facts.",
     "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Figma plugin source + Jupus case-study quality pass 2026-05-22 + voice and teaser pass 2026-08-25"
   },
   "generation": 3
