@@ -1,4 +1,5 @@
 ---
+import EvidenceFigure from './EvidenceFigure.astro';
 import type { CaseStudy, CaseStudySection } from '../data/cv-tailor';
 
 interface Props {
@@ -6,48 +7,7 @@ interface Props {
   backUrl: string;
 }
 
-const { study, backUrl } = Astro.props;
-
-const executiveSectionKeys = new Set(study.variants?.executive?.sections ?? []);
-const hasExecutiveSelection = executiveSectionKeys.size > 0;
-const isInExecutiveSelection = (section: CaseStudySection | undefined) => {
-  if (!section) return false;
-  if (!hasExecutiveSelection) return true;
-  return executiveSectionKeys.has(section.type)
-    || (!!section.headline && executiveSectionKeys.has(section.headline));
-};
-
-const hero = study.sections?.find((section: CaseStudySection) => section.type === 'hero');
-const callout = study.sections?.find(
-  (section: CaseStudySection) => section.type === 'callout' && isInExecutiveSelection(section)
-);
-const problem = study.sections?.find(
-  (section: CaseStudySection) => section.type === 'narrative' && isInExecutiveSelection(section)
-);
-const solution = study.sections?.find(
-  (section: CaseStudySection) => section.type === 'process' && isInExecutiveSelection(section)
-);
-const outcome = study.sections?.find(
-  (section: CaseStudySection) => section.type === 'outcome' && isInExecutiveSelection(section)
-);
-const closer = [...(study.sections ?? [])]
-  .reverse()
-  .find((section: CaseStudySection) => section.content?.trim().endsWith('Get in touch.'));
-
-const title = hero?.headline || study.title;
-const titleAccent = 'LLM-safe';
-const titleAccentIndex = title.toLowerCase().indexOf(titleAccent.toLowerCase());
-const titleBefore = titleAccentIndex >= 0 ? title.slice(0, titleAccentIndex) : title;
-const titleFocus = titleAccentIndex >= 0 ? title.slice(titleAccentIndex, titleAccentIndex + titleAccent.length) : '';
-const titleAfter = titleAccentIndex >= 0 ? title.slice(titleAccentIndex + titleAccent.length) : '';
-const projectArgument = hero?.subtext || study.subtitle;
-const kicker = ['Case Study', study.company, study.duration].filter(Boolean).join(' · ').toUpperCase();
-const closerLead = closer?.content?.replace(/\s*Get in touch\.\s*$/, '').trim() ?? '';
-const closerHooks = splitParagraphs(closerLead);
-
-function inlineStrong(text: string): string {
-  return text.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>');
-}
+const { study, backUrl } = Astro.props as Props;
 
 function splitParagraphs(content: string | undefined): string[] {
   return (content ?? '')
@@ -56,12 +16,26 @@ function splitParagraphs(content: string | undefined): string[] {
     .filter(Boolean);
 }
 
-// CSS balance improves the overall rag, but it does not guarantee that a
-// display line will not end with one stranded word. Glue the final two words
-// at render time so hero titles and pull quotes keep a deliberate closing line
-// at every responsive width. The non-breaking spaces remain ordinary spaces to
-// screen readers and do not change the source content.
-function preventDisplayWidow(text: string, keepWords = 2): string {
+function inlineStrong(text: string): string {
+  return text.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>');
+}
+
+function paragraphsHtml(content: string | undefined): string {
+  return splitParagraphs(content)
+    .map((paragraph) => {
+      if (paragraph.startsWith('### ')) {
+        return `<h3>${inlineStrong(paragraph.slice(4).trim())}</h3>`;
+      }
+      return `<p>${inlineStrong(paragraph)}</p>`;
+    })
+    .join('');
+}
+
+// CSS balance improves the rag, but it does not guarantee that a display line
+// will not end with one stranded word. Keeping the last two words together is
+// deterministic at every route and viewport, and leaves the source copy alone.
+function preventDisplayWidow(text: string | undefined, keepWords = 2): string {
+  if (!text) return '';
   const words = text.trim().split(/\s+/).filter(Boolean);
   if (words.length <= 1) return text;
   const keep = Math.min(keepWords, words.length);
@@ -70,183 +44,225 @@ function preventDisplayWidow(text: string, keepWords = 2): string {
   return head ? `${head} ${tail}` : tail;
 }
 
-const problemParagraphs = splitParagraphs(problem?.content);
-const problemLead = problemParagraphs[0] ?? '';
-const problemRemainder = problemParagraphs.slice(1);
-const problemConclusion = problemRemainder.at(-1) ?? '';
-const problemDepth = problemRemainder.slice(0, -1);
-const titleAfterDisplay = preventDisplayWidow(titleAfter);
+function resolveVariantSections(
+  all: CaseStudySection[],
+  keys: string[] | undefined,
+): CaseStudySection[] | null {
+  if (!keys?.length) return null;
+  const remaining = [...all];
+  const picked: CaseStudySection[] = [];
+
+  for (const key of keys) {
+    if (key === 'hero') continue;
+    const index = remaining.findIndex((section) => section.type === key || section.headline === key);
+    if (index !== -1) picked.push(...remaining.splice(index, 1));
+  }
+
+  return picked.length ? picked : null;
+}
+
+function sectionLabel(section: CaseStudySection, index: number): string {
+  if (section.type === 'outcome') return 'Evidence';
+  if (section.type === 'process') return 'The mechanism';
+  if (section.type === 'reflection') return 'The implication';
+  if (section.type === 'key-takeaway') return 'The point';
+  return index === 0 ? 'The condition' : 'The decision';
+}
+
+const sections = study.sections ?? [];
+const hero = sections.find((section) => section.type === 'hero');
+const nonHeroSections = sections.filter((section) => section.type !== 'hero');
+const isCloser = (section: CaseStudySection) => !!section.content?.trim().endsWith('Get in touch.');
+const closer = [...nonHeroSections].reverse().find(isCloser) ?? null;
+const contentSections = closer ? nonHeroSections.filter((section) => section !== closer) : nonHeroSections;
+const selectedSections = resolveVariantSections(
+  contentSections,
+  study.variants?.executive?.sections,
+) ?? contentSections;
+
+const visibleSections = selectedSections.filter((section) => (
+  section.headline
+  || section.content
+  || section.quote
+  || section.steps?.length
+  || section.metrics?.length
+  || section.images?.length
+));
+const selectedHasImage = visibleSections.some((section) => !!section.images?.length || !!section.steps?.some((step) => step.image));
+// The accepted LLM-safe pilot deliberately showed one concrete system image
+// even though its executive cut kept the supporting section out of the prose.
+// Preserve that evidence rule generically: only borrow the first real image
+// when the concise selection would otherwise show none.
+const supportingEvidence = selectedHasImage
+  ? null
+  : contentSections.flatMap((section) => section.images ?? [])[0] ?? null;
+
+const title = hero?.headline || study.title;
+const projectArgument = hero?.subtext || study.subtitle;
+const kicker = ['Case Study', study.company, study.duration].filter(Boolean).join(' · ').toUpperCase();
+const closerLead = closer?.content?.replace(/\s*Get in touch\.\s*$/, '').trim() ?? '';
+const closerHooks = splitParagraphs(closerLead);
+let figureIndex = 0;
 ---
 
-<div class="cs-pilot-page">
-  <header class="cs-pilot-hero cs-card">
+<article class="cs-spine-page">
+  <header class="cs-spine-hero cs-card">
     <canvas
-      class="flow-canvas cs-pilot-field"
+      class="flow-canvas cs-spine-field"
       data-slug={study.id}
       width="200"
       height="200"
       aria-hidden="true"
     ></canvas>
 
-    <nav class="cs-pilot-nav" aria-label="Case study navigation">
+    <nav class="cs-spine-nav" aria-label="Case study navigation">
       <a href={backUrl}>← Back to portfolio</a>
       <span>{kicker}</span>
       <a href="mailto:hello@treppmann.design">Get in touch</a>
     </nav>
 
-    <div class="cs-pilot-hero-copy">
-      <h1 id="cs-pilot-title" class="cs-pilot-title">
-        {titleBefore}{titleFocus && <em>{titleFocus}</em>}{titleFocus && ' '}{titleAfterDisplay}
-      </h1>
-      <div class="cs-pilot-hero-foot">
-        <div class="cs-pilot-meta">
+    <div class="cs-spine-hero-copy">
+      <p class="cs-spine-hero-index" aria-hidden="true">{study.type}</p>
+      <h1 id="cs-spine-title" class="cs-spine-title">{preventDisplayWidow(title)}</h1>
+      <div class="cs-spine-hero-foot">
+        <div class="cs-spine-meta">
           <p>{study.role}</p>
           {study.team && <span>{study.team}</span>}
         </div>
-        {projectArgument && <p class="cs-pilot-argument">{projectArgument}</p>}
+        {projectArgument && <p class="cs-spine-argument">{projectArgument}</p>}
       </div>
     </div>
   </header>
 
-  <main class="cs-pilot-article" aria-labelledby="cs-pilot-title">
-    {callout?.quote && (
-      <blockquote class="cs-pilot-principle">
-        <p>{preventDisplayWidow(callout.quote)}</p>
-        {callout.context && <footer>{callout.context}</footer>}
-      </blockquote>
-    )}
+  <main class="cs-spine-article" aria-labelledby="cs-spine-title">
+    {visibleSections.map((section, sectionIndex) => {
+      const content = section.content || (section as CaseStudySection & { narrative?: string }).narrative;
+      const contentParagraphs = splitParagraphs(content);
+      const lead = contentParagraphs[0] ?? '';
+      const hasOptionalDepth = section.type === 'narrative' && contentParagraphs.length > 3;
+      const optionalDepth = hasOptionalDepth ? contentParagraphs.slice(1, -1).join('\n\n') : '';
+      const remainder = hasOptionalDepth
+        ? contentParagraphs.slice(-1).join('\n\n')
+        : contentParagraphs.slice(1).join('\n\n');
+      const hasHeading = !!section.headline;
 
-    {problem && (
-      <section class="cs-pilot-section cs-pilot-problem" aria-labelledby="cs-pilot-problem">
-        <div class="cs-pilot-heading-wrap">
-          <span class="cs-pilot-section-mark" aria-hidden="true">The condition</span>
-          <h2 id="cs-pilot-problem">{preventDisplayWidow(problem.headline)}</h2>
-        </div>
-        {problemLead && <p class="cs-pilot-lead" set:html={inlineStrong(problemLead)} />}
-
-        <figure class="cs-pilot-evidence-figure">
-          <a
-            href="/images/bibeltv/llm-safe-storybook.png"
-            class="cs-pilot-evidence-link"
-            aria-label="Open the Storybook component-system screenshot at full size"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="/images/bibeltv/llm-safe-storybook.png"
-              alt="Bibel TV Storybook showing the component library, theme and device controls, and a token inspector"
-              loading="eager"
-              decoding="async"
-            />
-            <span>View full size ↗</span>
-          </a>
-          <figcaption>The live system is the reference, not a handoff file.</figcaption>
-        </figure>
-
-        {problemDepth.length > 0 && (
-          <details class="cs-pilot-depth">
-            <summary>Why documentation was not enough</summary>
-            <div class="cs-pilot-copy">
-              {problemDepth.map((paragraph) => <p set:html={inlineStrong(paragraph)} />)}
+      return (
+        <section
+          class:list={[
+            'cs-spine-section',
+            `cs-spine-section--${section.type}`,
+            sectionIndex % 2 === 1 && 'cs-spine-section--offset',
+          ]}
+          aria-labelledby={hasHeading ? `cs-spine-section-${sectionIndex}` : undefined}
+        >
+          {hasHeading && (
+            <div class="cs-spine-heading-wrap">
+              <span class="cs-spine-section-mark" aria-hidden="true">
+                {String(sectionIndex + 1).padStart(2, '0')} / {sectionLabel(section, sectionIndex)}
+              </span>
+              <h2 id={`cs-spine-section-${sectionIndex}`}>{preventDisplayWidow(section.headline)}</h2>
             </div>
-          </details>
-        )}
+          )}
 
-        {problemConclusion && (
-          <div class="cs-pilot-copy cs-pilot-problem-copy">
-            <p set:html={inlineStrong(problemConclusion)} />
-          </div>
-        )}
-      </section>
-    )}
+          {section.quote && (
+            <blockquote class="cs-spine-principle">
+              <p>{preventDisplayWidow(section.quote)}</p>
+              {section.context && <footer>{section.context}</footer>}
+            </blockquote>
+          )}
 
-    {solution && (
-      <section class="cs-pilot-section cs-pilot-solution" aria-labelledby="cs-pilot-solution">
-        <div class="cs-pilot-heading-wrap">
-          <span class="cs-pilot-section-mark" aria-hidden="true">The mechanism</span>
-          <h2 id="cs-pilot-solution">{preventDisplayWidow(solution.headline)}</h2>
-        </div>
-        {solution.content && (
-          <div class="cs-pilot-copy cs-pilot-solution-copy">
-            {splitParagraphs(solution.content).map((paragraph) => <p set:html={inlineStrong(paragraph)} />)}
-          </div>
-        )}
-        {solution.steps && (
-          <ol class="cs-pilot-steps">
-            {solution.steps.map((step, index) => (
-              <li>
-                <span class="cs-pilot-step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{step.label}</h3>
-                <p>{step.description}</p>
-              </li>
-            ))}
-          </ol>
-        )}
-      </section>
-    )}
+          {lead && <p class="cs-spine-lead" set:html={inlineStrong(lead)} />}
 
-    {outcome && (
-      <section class="cs-pilot-section cs-pilot-outcome" aria-labelledby="cs-pilot-outcome">
-        <div class="cs-pilot-heading-wrap">
-          <span class="cs-pilot-section-mark" aria-hidden="true">The proof</span>
-          <h2 id="cs-pilot-outcome">{preventDisplayWidow(outcome.headline)}</h2>
-        </div>
-        {outcome.metrics && (
-          <dl class="cs-pilot-metrics">
-            {outcome.metrics.map((metric) => (
-              <div class="cs-pilot-metric">
-                <dt>{metric.label}</dt>
-                {metric.value && <dd class="cs-pilot-metric-value">{metric.value}</dd>}
-                {metric.before && metric.after && (
-                  <dd class="cs-pilot-metric-change">
-                    <span>{metric.before}</span>
-                    <strong>{metric.after}</strong>
-                  </dd>
-                )}
-              </div>
-            ))}
-          </dl>
-        )}
-      </section>
-    )}
+          {sectionIndex === 0 && supportingEvidence && (() => {
+            figureIndex += 1;
+            return <EvidenceFigure image={supportingEvidence} index={figureIndex} eager />;
+          })()}
 
-    {closer && (
-      <section class="cs-pilot-contact" aria-labelledby="cs-pilot-contact-title">
-        {closer.headline && <h2 id="cs-pilot-contact-title">{preventDisplayWidow(closer.headline)}</h2>}
-        {closerHooks.length > 0 && (
-          <ul class="cs-pilot-contact-hooks">
-            {closerHooks.map((hook) => <li>{preventDisplayWidow(hook)}</li>)}
-          </ul>
-        )}
-        <a href="mailto:hello@treppmann.design">Get in touch <span aria-hidden="true">↗</span></a>
-      </section>
-    )}
+          {section.images?.map((image) => {
+            figureIndex += 1;
+            return <EvidenceFigure image={image} index={figureIndex} eager={sectionIndex === 0} />;
+          })}
+
+          {optionalDepth && (
+            <details class="cs-spine-depth">
+              <summary>Read the reasoning behind this decision</summary>
+              <div class="cs-spine-copy" set:html={paragraphsHtml(optionalDepth)} />
+            </details>
+          )}
+
+          {remainder && <div class="cs-spine-copy" set:html={paragraphsHtml(remainder)} />}
+
+          {section.steps?.length && (
+            <ol class="cs-spine-steps">
+              {section.steps.map((step, stepIndex) => (
+                <li>
+                  <span class="cs-spine-step-number" aria-hidden="true">{String(stepIndex + 1).padStart(2, '0')}</span>
+                  <h3>{step.label}</h3>
+                  <p>{step.description}</p>
+                  {step.image && (() => {
+                    figureIndex += 1;
+                    return <EvidenceFigure image={step.image} index={figureIndex} />;
+                  })()}
+                </li>
+              ))}
+            </ol>
+          )}
+
+          {section.metrics?.length && (
+            <dl class="cs-spine-metrics">
+              {section.metrics.map((metric) => (
+                <div class="cs-spine-metric">
+                  <dt>{metric.label}</dt>
+                  {metric.value && <dd class="cs-spine-metric-value">{metric.value}</dd>}
+                  {metric.before && metric.after && (
+                    <dd class="cs-spine-metric-change">
+                      <span>{metric.before}</span>
+                      <strong>{metric.after}</strong>
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
+          )}
+        </section>
+      );
+    })}
+
+    <section class="cs-spine-contact" aria-labelledby="cs-spine-contact-title">
+      <h2 id="cs-spine-contact-title">{preventDisplayWidow(closer?.headline || 'Want to hear more?')}</h2>
+      {closerHooks.length > 0 && (
+        <ul class="cs-spine-contact-hooks">
+          {closerHooks.map((hook) => <li>{preventDisplayWidow(hook)}</li>)}
+        </ul>
+      )}
+      <a href="mailto:hello@treppmann.design">Get in touch <span aria-hidden="true">↗</span></a>
+    </section>
   </main>
-</div>
+</article>
 
 <script>
   import '../scripts/flow-field-motifs.js';
 </script>
 
 <style is:global>
-  .cs-pilot-page {
-    --pilot-ink: #1a2520;
-    --pilot-paper: #f4f1ea;
-    --pilot-mint: #b9cdc4;
+  .cs-spine-page {
+    --spine-ink: #1a2520;
+    --spine-paper: #f4f1ea;
+    --spine-green: #a4c6b9;
     padding-bottom: 3rem;
   }
 
-  .cs-pilot-hero {
+  .cs-spine-hero {
     position: relative;
-    min-height: min(45rem, 80vh);
+    min-height: min(44rem, 80vh);
     overflow: hidden;
-    padding: 0 clamp(1rem, 4vw, 4rem) clamp(2.5rem, 6vw, 5.5rem);
-    color: var(--pilot-paper);
-    background: var(--pilot-ink);
+    padding: 0 clamp(1rem, 4vw, 4rem) clamp(2.5rem, 6vw, 5rem);
+    color: var(--spine-paper);
+    background: var(--spine-ink);
     isolation: isolate;
   }
 
-  .cs-pilot-field {
+  .cs-spine-field {
     position: absolute;
     z-index: -2;
     top: 50%;
@@ -256,23 +272,20 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     aspect-ratio: 1;
     transform: translateY(-50%);
     opacity: 0.9;
-    /* The motif is deliberately simulated on a 200×200 logical field.
-       Nearest-neighbour scaling exposes that grid as a crisp material choice
-       instead of letting the browser blur it into a low-resolution image. */
     image-rendering: crisp-edges;
     image-rendering: pixelated;
   }
 
-  .cs-pilot-hero::after {
+  .cs-spine-hero::after {
     content: '';
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(92deg, var(--pilot-ink) 0%, var(--pilot-ink) 35%, rgba(26, 37, 32, 0.88) 50%, rgba(26, 37, 32, 0.12) 100%);
+    background: linear-gradient(92deg, var(--spine-ink) 0%, var(--spine-ink) 38%, rgba(26, 37, 32, 0.88) 53%, rgba(26, 37, 32, 0.08) 100%);
     pointer-events: none;
   }
 
-  .cs-pilot-nav {
+  .cs-spine-nav {
     min-height: 4.5rem;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -285,40 +298,41 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     text-transform: uppercase;
   }
 
-  .cs-pilot-nav a { color: var(--pilot-paper); text-decoration: none; }
-  .cs-pilot-nav a:last-child { justify-self: end; border-bottom: 1px solid var(--pilot-mint); }
-  .cs-pilot-nav span { color: var(--pilot-mint); text-align: center; }
-  .cs-pilot-nav a:hover, .cs-pilot-nav a:focus-visible { color: var(--pilot-mint); }
+  .cs-spine-nav a { color: var(--spine-paper); text-decoration: none; }
+  .cs-spine-nav a:last-child { justify-self: end; border-bottom: 1px solid var(--spine-green); }
+  .cs-spine-nav span { color: var(--spine-green); text-align: center; }
+  .cs-spine-nav a:hover, .cs-spine-nav a:focus-visible { color: var(--spine-green); opacity: 1; }
 
-  .cs-pilot-hero-copy {
-    min-height: calc(min(45rem, 80vh) - 4.5rem);
+  .cs-spine-hero-copy {
+    min-height: calc(min(44rem, 80vh) - 4.5rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
 
-  .cs-pilot-title {
-    max-width: 12.8ch;
-    margin: clamp(3rem, 7vh, 5.5rem) 0 clamp(2rem, 4vh, 3rem);
-    color: var(--pilot-paper);
+  .cs-spine-hero-index {
+    margin: 0 0 0.9rem;
+    color: var(--spine-green);
+    font-family: var(--font-display-20);
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .cs-spine-title {
+    max-width: 13.5ch;
+    margin: 0 0 clamp(2rem, 4vh, 3rem);
+    color: var(--spine-paper);
     font-family: var(--font-body);
-    font-size: clamp(3.6rem, 7.4vw, 7.4rem);
+    font-size: clamp(3.35rem, 7vw, 7rem);
     font-style: normal;
     font-weight: 610;
-    letter-spacing: -0.075em;
-    line-height: 0.82;
+    letter-spacing: -0.073em;
+    line-height: 0.84;
     text-wrap: balance;
   }
 
-  .cs-pilot-title em {
-    color: var(--pilot-mint);
-    font-family: var(--font-display-20);
-    font-style: italic;
-    font-weight: normal;
-    letter-spacing: -0.035em;
-  }
-
-  .cs-pilot-hero-foot {
+  .cs-spine-hero-foot {
     display: grid;
     grid-template-columns: minmax(13rem, 0.7fr) minmax(25rem, 1.3fr);
     gap: clamp(2rem, 8vw, 9rem);
@@ -327,7 +341,8 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     padding-top: 1.2rem;
   }
 
-  .cs-pilot-meta p, .cs-pilot-meta span {
+  .cs-spine-meta p,
+  .cs-spine-meta span {
     margin: 0;
     font-family: var(--font-mono);
     font-size: 0.69rem;
@@ -336,39 +351,44 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     text-transform: uppercase;
   }
 
-  .cs-pilot-meta span { display: block; max-width: 46ch; margin-top: 0.35rem; color: var(--pilot-mint); }
-  .cs-pilot-argument { max-width: 53ch; margin: 0; color: #d7dfdb; font-size: clamp(1rem, 1.45vw, 1.25rem); line-height: 1.5; }
-
-  .cs-pilot-article { max-width: 86rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 4rem); }
-
-  .cs-pilot-principle {
-    display: grid;
-    grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, 0.85fr);
-    gap: clamp(2rem, 7vw, 8rem);
-    align-items: end;
-    margin: 0;
-    padding: clamp(3rem, 6vw, 5rem) 0;
+  .cs-spine-meta span {
+    display: block;
+    max-width: 50ch;
+    margin-top: 0.35rem;
+    color: var(--spine-green);
   }
 
-  .cs-pilot-principle p {
-    max-width: 15ch;
+  .cs-spine-argument {
+    max-width: 54ch;
     margin: 0;
-    color: var(--color-accent);
-    font-family: var(--font-display-20);
-    font-size: clamp(2.8rem, 5.4vw, 5.25rem);
-    font-style: italic;
-    line-height: 0.82;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
-    orphans: 2;
-    widows: 2;
+    color: #d7dfdb;
+    font-size: clamp(1rem, 1.45vw, 1.25rem);
+    line-height: 1.5;
   }
 
-  .cs-pilot-principle footer { max-width: 40ch; padding-bottom: 0.55rem; color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.55; }
+  .cs-spine-article {
+    max-width: 86rem;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 4rem);
+  }
 
-  .cs-pilot-section { padding: clamp(3.5rem, 6vw, 5.5rem) 0; border-top: 1px solid var(--color-rule); }
+  .cs-spine-section {
+    position: relative;
+    padding: clamp(3.8rem, 7vw, 6.5rem) 0;
+    border-top: 1px solid var(--color-rule);
+  }
 
-  .cs-pilot-heading-wrap {
+  .cs-spine-section:first-child { border-top: none; }
+
+  .cs-spine-section--offset::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0 calc(50% - 50vw);
+    background: color-mix(in srgb, var(--color-accent-light) 62%, transparent);
+  }
+
+  .cs-spine-heading-wrap {
     display: grid;
     grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1.68fr);
     gap: clamp(2rem, 5vw, 5rem);
@@ -376,7 +396,9 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
   }
 
-  .cs-pilot-section-mark, .cs-pilot-step-number, .cs-pilot-metric dt, .cs-pilot-evidence-figure figcaption {
+  .cs-spine-section-mark,
+  .cs-spine-step-number,
+  .cs-spine-metric dt {
     font-family: var(--font-mono);
     font-size: 0.66rem;
     letter-spacing: 0.065em;
@@ -384,43 +406,111 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     text-transform: uppercase;
   }
 
-  .cs-pilot-section-mark { padding-top: 0.7rem; color: var(--color-accent); }
+  .cs-spine-section-mark { padding-top: 0.7rem; color: var(--color-accent); }
 
-  .cs-pilot-heading-wrap h2 {
+  .cs-spine-heading-wrap h2 {
     max-width: 18ch;
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-body);
-    font-size: clamp(2.7rem, 5.4vw, 5.4rem);
+    font-size: clamp(2.6rem, 5.2vw, 5.2rem);
     font-style: normal;
     font-weight: 570;
-    letter-spacing: -0.065em;
-    line-height: 0.9;
+    letter-spacing: -0.063em;
+    line-height: 0.91;
     text-wrap: balance;
+    orphans: 2;
+    widows: 2;
   }
 
-  .cs-pilot-lead { max-width: 37ch; margin: 0 0 clamp(2.5rem, 5vw, 4rem) auto; color: var(--color-text); font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.35; }
-  .cs-pilot-evidence-figure { width: min(88%, 66rem); margin: 0 0 clamp(2.5rem, 5vw, 4rem) auto; }
-  .cs-pilot-evidence-link { position: relative; display: block; overflow: hidden; border: 1px solid var(--color-rule); background: var(--color-surface); }
-  .cs-pilot-evidence-link span { position: absolute; right: 0.75rem; bottom: 0.75rem; padding: 0.45rem 0.6rem; color: var(--pilot-paper); background: rgba(26, 37, 32, 0.9); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; }
-  .cs-pilot-evidence-figure img { display: block; width: 100%; height: auto; }
-  .cs-pilot-evidence-figure figcaption { margin-top: 0.65rem; color: var(--color-text-muted); }
+  .cs-spine-lead {
+    max-width: 39ch;
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem) auto;
+    color: var(--color-text);
+    font-size: clamp(1.24rem, 2vw, 1.72rem);
+    line-height: 1.38;
+    text-wrap: pretty;
+  }
 
-  .cs-pilot-copy { max-width: 39rem; color: var(--color-text); font-size: 1.02rem; line-height: 1.7; }
-  .cs-pilot-copy p { margin: 0 0 1.25rem; }
-  .cs-pilot-copy p:last-child { margin-bottom: 0; }
-  .cs-pilot-problem-copy { margin-left: calc(32% + 2rem); }
-  .cs-pilot-depth { max-width: 39rem; margin: 0 0 2rem calc(32% + 2rem); border-top: 1px solid var(--color-rule); border-bottom: 1px solid var(--color-rule); }
-  .cs-pilot-depth summary { padding: 0.9rem 0; color: var(--color-accent); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
-  .cs-pilot-depth[open] summary { border-bottom: 1px solid var(--color-rule); }
-  .cs-pilot-depth .cs-pilot-copy { padding: 1.25rem 0 1.5rem; }
-  .cs-pilot-depth summary:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
-  .cs-pilot-solution { position: relative; }
-  .cs-pilot-solution::before { content: ''; position: absolute; z-index: -1; inset: 0 50% 0 calc(50% - 50vw); background: var(--color-accent-light); }
-  .cs-pilot-solution-copy { margin: 0 0 3.5rem calc(32% + 2rem); }
+  .cs-spine-copy {
+    max-width: 40rem;
+    margin-left: calc(32% + 2rem);
+    color: var(--color-text);
+    font-size: 1.02rem;
+    line-height: 1.72;
+  }
 
-  .cs-pilot-steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-rule); }
-  .cs-pilot-steps li {
+  .cs-spine-copy p { margin: 0 0 1.3rem; }
+  .cs-spine-copy p:last-child { margin-bottom: 0; }
+  .cs-spine-copy h3 {
+    margin: 2.5rem 0 0.8rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  .cs-spine-depth {
+    max-width: 40rem;
+    margin: 0 0 2rem calc(32% + 2rem);
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .cs-spine-depth summary {
+    padding: 0.9rem 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    line-height: 1.45;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .cs-spine-depth[open] summary { border-bottom: 1px solid var(--color-rule); }
+  .cs-spine-depth .cs-spine-copy { margin-left: 0; padding: 1.25rem 0 1.5rem; }
+  .cs-spine-depth summary:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+
+  .cs-spine-principle {
+    display: grid;
+    grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, 0.85fr);
+    gap: clamp(2rem, 7vw, 8rem);
+    align-items: end;
+    margin: 0 0 4rem;
+  }
+
+  .cs-spine-principle p {
+    max-width: 15ch;
+    margin: 0;
+    color: var(--color-accent);
+    font-family: var(--font-display-20);
+    font-size: clamp(2.7rem, 5.2vw, 5rem);
+    font-style: italic;
+    line-height: 0.84;
+    letter-spacing: -0.033em;
+    text-wrap: balance;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .cs-spine-principle footer {
+    max-width: 40ch;
+    padding-bottom: 0.55rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .cs-spine-steps {
+    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-spine-steps li {
     display: grid;
     grid-template-columns: 4rem minmax(12rem, 0.55fr) minmax(18rem, 1.45fr);
     gap: clamp(1.25rem, 4vw, 4rem);
@@ -428,84 +518,154 @@ const titleAfterDisplay = preventDisplayWidow(titleAfter);
     padding: 1.8rem 0 2rem;
     border-bottom: 1px solid var(--color-rule);
   }
-  .cs-pilot-step-number { color: var(--color-accent); }
-  .cs-pilot-steps h3 { margin: 0; color: var(--color-text); font-family: var(--font-body); font-size: 1.08rem; font-style: normal; font-weight: 650; line-height: 1.35; }
-  .cs-pilot-steps p { max-width: 58ch; margin: 0; color: var(--color-text); font-size: 0.95rem; line-height: 1.62; }
 
-  .cs-pilot-metrics { margin: 0; }
-  .cs-pilot-metric { display: grid; grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1.68fr); gap: clamp(2rem, 5vw, 5rem); padding: 1.7rem 0 2rem; border-top: 1px solid var(--color-rule); }
-  .cs-pilot-metric dt { color: var(--color-accent); }
-  .cs-pilot-metric dd { margin: 0; }
-  .cs-pilot-metric-value { color: var(--color-accent); font-family: var(--font-display-20); font-size: 2rem; font-style: italic; }
-  .cs-pilot-metric-change { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); line-height: 1.5; }
-  .cs-pilot-metric-change span { color: var(--color-text-muted); font-weight: 430; }
-  .cs-pilot-metric-change strong { position: relative; color: var(--color-text); font-weight: 560; }
-  .cs-pilot-metric-change strong::before { content: '↳'; position: absolute; left: -1.5rem; color: var(--color-accent); font-family: var(--font-mono); font-weight: normal; }
+  .cs-spine-step-number { color: var(--color-accent); }
+  .cs-spine-steps h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    font-style: normal;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+  .cs-spine-steps p { max-width: 58ch; margin: 0; color: var(--color-text); font-size: 0.95rem; line-height: 1.62; }
+  .cs-spine-steps .cs-spine-figure { grid-column: 2 / -1; width: 100%; margin: 1rem 0 0; }
 
-  .cs-pilot-contact {
+  .cs-spine-metrics { margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
+  .cs-spine-metric {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1.68fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: 1.7rem 0 2rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .cs-spine-metric dt { color: var(--color-accent); }
+  .cs-spine-metric dd { margin: 0; }
+  .cs-spine-metric-value {
+    color: var(--color-accent);
+    font-family: var(--font-display-20);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-style: italic;
+    line-height: 1.1;
+  }
+  .cs-spine-metric-change {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    line-height: 1.5;
+  }
+  .cs-spine-metric-change span { color: var(--color-text-muted); font-weight: 430; }
+  .cs-spine-metric-change strong { position: relative; color: var(--color-text); font-weight: 560; }
+  .cs-spine-metric-change strong::before {
+    content: '↳';
+    position: absolute;
+    left: -1.5rem;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-weight: normal;
+  }
+
+  .cs-spine-contact {
     display: grid;
     grid-template-columns: minmax(10rem, 0.42fr) minmax(0, 1.58fr);
     gap: clamp(2rem, 8vw, 8rem);
     align-items: start;
-    padding: clamp(3.5rem, 6vw, 6rem) 0 1rem;
+    padding: clamp(4rem, 7vw, 7rem) 0 1rem;
     border-top: 1px solid var(--color-rule);
   }
-  .cs-pilot-contact h2 { margin: 0; color: var(--color-text); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 560; letter-spacing: 0.08em; line-height: 1.2; text-transform: uppercase; }
-  .cs-pilot-contact-hooks { margin: 0; padding: 0; list-style: none; }
-  .cs-pilot-contact-hooks li { max-width: 54ch; padding: 1rem 0 1.25rem; border-top: 1px solid var(--color-rule); color: var(--color-text); font-family: var(--font-display-20); font-size: clamp(1.45rem, 2.4vw, 2.35rem); font-style: italic; letter-spacing: -0.02em; line-height: 1.08; text-wrap: pretty; orphans: 2; widows: 2; }
-  .cs-pilot-contact-hooks li:last-child { border-bottom: 1px solid var(--color-rule); }
-  .cs-pilot-contact a { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 2rem; padding: 0.8rem 0; border-top: 1px solid var(--color-accent); border-bottom: 1px solid var(--color-accent); color: var(--color-text); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
-  .cs-pilot-contact a:hover { color: var(--color-accent); }
-
-  .cs-pilot-nav a:focus-visible, .cs-pilot-evidence-link:focus-visible, .cs-pilot-contact a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+  .cs-spine-contact h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 560;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .cs-spine-contact-hooks { margin: 0; padding: 0; list-style: none; }
+  .cs-spine-contact-hooks li {
+    max-width: 55ch;
+    padding: 1rem 0 1.25rem;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-text);
+    font-family: var(--font-display-20);
+    font-size: clamp(1.4rem, 2.3vw, 2.25rem);
+    font-style: italic;
+    letter-spacing: -0.019em;
+    line-height: 1.09;
+    text-wrap: pretty;
+    orphans: 2;
+    widows: 2;
+  }
+  .cs-spine-contact-hooks li:last-child { border-bottom: 1px solid var(--color-rule); }
+  .cs-spine-contact > a {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .cs-spine-contact > a:hover { color: var(--color-accent); opacity: 1; }
+  .cs-spine-nav a:focus-visible,
+  .cs-spine-contact > a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 
   @media (max-width: 64rem) {
-    .cs-pilot-hero { min-height: 44rem; }
-    .cs-pilot-title { max-width: 13ch; }
-    .cs-pilot-field { right: -26%; width: 80vw; }
-    .cs-pilot-problem-copy, .cs-pilot-solution-copy, .cs-pilot-depth { margin-left: 0; }
-    .cs-pilot-steps li { grid-template-columns: 3rem minmax(10rem, 0.6fr) minmax(16rem, 1.4fr); gap: 1.5rem; }
+    .cs-spine-hero { min-height: 43rem; }
+    .cs-spine-field { right: -26%; width: 80vw; }
+    .cs-spine-copy,
+    .cs-spine-depth { margin-left: 0; }
+    .cs-spine-steps li { grid-template-columns: 3rem minmax(10rem, 0.6fr) minmax(16rem, 1.4fr); gap: 1.5rem; }
   }
 
   @media (max-width: 48rem) {
-    .cs-pilot-page { padding-bottom: 3rem; }
-    .cs-pilot-hero { min-height: 41rem; padding: 0 1rem 2rem; }
-    .cs-pilot-field { top: 6rem; right: -55%; width: 150vw; height: auto; transform: none; opacity: 0.7; }
-    .cs-pilot-hero::after { background: linear-gradient(180deg, rgba(26, 37, 32, 0.16) 0%, rgba(26, 37, 32, 0.7) 42%, var(--pilot-ink) 72%); }
-    .cs-pilot-nav { min-height: 4rem; grid-template-columns: 1fr auto; gap: 1rem; }
-    .cs-pilot-nav > span { display: none; }
-    .cs-pilot-hero-copy { min-height: 37rem; }
-    .cs-pilot-title {
-      max-width: 100%;
-      margin: 5rem 0 2.5rem;
-      /* The final two title words are intentionally kept together to avoid a
-         widow. Cap the mobile size so that pair still fits a 320px viewport. */
-      font-size: clamp(2.75rem, 12vw, 3rem);
-      line-height: 0.86;
-    }
-    .cs-pilot-hero-foot, .cs-pilot-principle, .cs-pilot-heading-wrap, .cs-pilot-metric, .cs-pilot-contact { grid-template-columns: 1fr; }
-    .cs-pilot-hero-foot { gap: 1.25rem; }
-    .cs-pilot-principle { gap: 2rem; padding: 3.5rem 0; }
-    .cs-pilot-principle p { font-size: clamp(2.8rem, 13vw, 4.2rem); }
-    .cs-pilot-section { padding: 3.5rem 0; }
-    .cs-pilot-heading-wrap { gap: 1rem; margin-bottom: 2.5rem; }
-    .cs-pilot-section-mark { padding-top: 0; }
-    .cs-pilot-heading-wrap h2 { font-size: clamp(2.7rem, 13vw, 4.2rem); }
-    .cs-pilot-lead { margin: 0 0 3rem; font-size: 1.25rem; }
-    .cs-pilot-evidence-figure { width: calc(100% + 2rem); margin: 0 -1rem 3rem; overflow-x: auto; }
-    .cs-pilot-evidence-link { width: 42rem; }
-    .cs-pilot-evidence-figure figcaption { padding-left: 1rem; }
-    .cs-pilot-steps li { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.75rem 1rem; }
-    .cs-pilot-steps h3, .cs-pilot-steps p { grid-column: 2; }
-    .cs-pilot-metric { gap: 1rem; }
-    .cs-pilot-metric-change { grid-template-columns: 1fr; gap: 1rem; }
-    .cs-pilot-metric-change strong { padding-left: 1.5rem; }
-    .cs-pilot-metric-change strong::before { left: 0; }
-    .cs-pilot-contact { gap: 2.5rem; padding-top: 4rem; }
+    .cs-spine-hero { min-height: 40rem; padding: 0 1rem 2rem; }
+    .cs-spine-field { top: 5rem; right: -55%; width: 150vw; transform: none; opacity: 0.7; }
+    .cs-spine-hero::after { background: linear-gradient(180deg, rgba(26, 37, 32, 0.12) 0%, rgba(26, 37, 32, 0.72) 43%, var(--spine-ink) 73%); }
+    .cs-spine-nav { min-height: 4rem; grid-template-columns: 1fr auto; gap: 1rem; }
+    .cs-spine-nav > span { display: none; }
+    .cs-spine-hero-copy { min-height: 36rem; }
+    .cs-spine-hero-index { margin-bottom: 0.7rem; }
+    .cs-spine-title { max-width: 100%; font-size: clamp(2.65rem, 11.5vw, 3.15rem); line-height: 0.88; }
+    .cs-spine-hero-foot,
+    .cs-spine-heading-wrap,
+    .cs-spine-principle,
+    .cs-spine-metric,
+    .cs-spine-contact { grid-template-columns: 1fr; }
+    .cs-spine-hero-foot { gap: 1.25rem; }
+    .cs-spine-section { padding: 3.7rem 0; }
+    .cs-spine-heading-wrap { gap: 1rem; margin-bottom: 2.5rem; }
+    .cs-spine-section-mark { padding-top: 0; }
+    .cs-spine-heading-wrap h2 { font-size: clamp(2.55rem, 12.5vw, 4rem); }
+    .cs-spine-lead { margin: 0 0 2.75rem; font-size: 1.2rem; }
+    .cs-spine-copy { font-size: 1rem; }
+    .cs-spine-principle { gap: 2rem; margin-bottom: 3rem; }
+    .cs-spine-principle p { font-size: clamp(2.7rem, 12vw, 4rem); }
+    .cs-spine-steps li { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.75rem 1rem; }
+    .cs-spine-steps h3,
+    .cs-spine-steps p { grid-column: 2; }
+    .cs-spine-steps .cs-spine-figure { grid-column: 1 / -1; }
+    .cs-spine-metric { gap: 1rem; }
+    .cs-spine-metric-change { grid-template-columns: 1fr; gap: 1rem; }
+    .cs-spine-metric-change strong { padding-left: 1.5rem; }
+    .cs-spine-metric-change strong::before { left: 0; }
+    .cs-spine-contact { gap: 2.5rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cs-pilot-page *, .cs-pilot-page *::before, .cs-pilot-page *::after {
+    .cs-spine-page *,
+    .cs-spine-page *::before,
+    .cs-spine-page *::after {
       scroll-behavior: auto !important;
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;

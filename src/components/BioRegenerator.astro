@@ -137,10 +137,10 @@ const variantsJson = JSON.stringify(mergedVariants);
   (function () {
     const variants = JSON.parse(variantsJson);
 
-    // "Resolve sweep": the bio first appears as low-fidelity Redaction noise,
-    // then resolves word-by-word into the clean body font, left-to-right —
-    // reading as text being generated. Runs on first paint and after every
-    // regenerate. Honours prefers-reduced-motion (text shown clean, no anim).
+    // "Resolve sweep": after an explicit regeneration, the new bio resolves
+    // word-by-word from Redaction into the clean body font. First paint stays
+    // fully readable; a recruiter should never meet an intentionally degraded
+    // bio before choosing the interaction. Honours prefers-reduced-motion.
     const REDACT = ['"Redaction 20"', '"Redaction 35"', '"Redaction 50"', '"Redaction 70"'];
     const prefersReduced =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -175,9 +175,9 @@ const variantsJson = JSON.stringify(mergedVariants);
       if (prefersReduced) return;
       const words = wrapWords(el);
       if (!words.length) return;
-      // Deliberate, perceptible left-to-right resolve (~2.2s sweep), so it
-      // reads as the bio being generated rather than a quick flicker.
-      const stagger = Math.max(20, Math.min(60, Math.round(2200 / words.length)));
+      // Brief enough to read as feedback after a requested generation, without
+      // turning the paragraph into an unreadable loading state.
+      const stagger = Math.max(10, Math.min(28, Math.round(650 / words.length)));
       words.forEach((w, i) => {
         w.classList.add('bio-word--scrambling');
         w.style.fontFamily = REDACT[0] + ', Georgia, serif';
@@ -186,7 +186,7 @@ const variantsJson = JSON.stringify(mergedVariants);
           step += 1;
           if (step < REDACT.length) {
             w.style.fontFamily = REDACT[step] + ', Georgia, serif';
-            setTimeout(tick, 95);
+            setTimeout(tick, 45);
           } else {
             w.style.fontFamily = '';
             w.classList.remove('bio-word--scrambling');
@@ -365,15 +365,7 @@ const variantsJson = JSON.stringify(mergedVariants);
         });
       }
 
-      // First paint: resolve the pre-rendered fallback bio in. Wait for the
-      // Redaction faces so the scramble actually shows (else it flashes the
-      // serif fallback). document.fonts.ready resolves immediately if cached.
-      const startSweep = () => resolveSweep(textEl);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(startSweep);
-      } else {
-        startSweep();
-      }
+      // First paint deliberately remains the clean server-rendered fallback.
     });
   })();
 </script>
@@ -419,11 +411,10 @@ const variantsJson = JSON.stringify(mergedVariants);
     opacity: 0.4;
   }
 
-  /* Resolve-sweep word states. Words start as faint, blurred, accent-tinted
-     Redaction "noise" and settle into the clean body font + text colour,
-     left-to-right, so the bio reads as being generated. */
+  /* Resolve-sweep word states. The font swap is the pixel signal; blur would
+     look like accidental image scaling and reduces readability. */
   .bio-word {
-    transition: opacity 0.28s ease, filter 0.28s ease, color 0.28s ease;
+    transition: opacity 0.18s ease, color 0.18s ease;
   }
   /* Opacity raised 2026-08-11 from 0.5. At 0.5 the mid-sweep word composited
      to roughly #a4bbb2 on cream — 1.84:1, unreadable, and it is the bio
@@ -432,7 +423,7 @@ const variantsJson = JSON.stringify(mergedVariants);
      generation. prefers-reduced-motion skips the sweep entirely. */
   .bio-word--scrambling {
     opacity: 0.85;
-    filter: blur(1.4px);
+    filter: none;
     color: var(--color-accent);
   }
   .bio-word--resolved {

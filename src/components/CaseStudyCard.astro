@@ -19,12 +19,16 @@ interface Props {
 }
 
 const { href, headline, caption, studyId } = Astro.props;
+const headlineWords = headline.trim().split(/\s+/).filter(Boolean);
+const headlineDisplay = headlineWords.length > 2
+  ? `${headlineWords.slice(0, -2).join(' ')} ${headlineWords.slice(-2).join('\u00A0')}`
+  : headlineWords.join('\u00A0');
 ---
 
 <a href={href} class="cs-card">
   <div class="cs-card-top">
     <div class="cs-card-eyebrow">Case Study</div>
-    <h3>{headline}</h3>
+    <h3>{headlineDisplay}</h3>
   </div>
   <div class="cs-card-art">
     <canvas class="flow-canvas" data-slug={studyId} width="200" height="200"></canvas>
@@ -48,22 +52,19 @@ const { href, headline, caption, studyId } = Astro.props;
     /* always the dark ink tone, independent of the site's light/dark theme
        — the card is intentionally a poster, not a themed surface */
     background: #1a2520;
-    border-radius: 6px;
+    border-radius: 0;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    aspect-ratio: 5 / 8;
-    /* the grid gives each card a fluid column width (see .case-studies-grid
-       in global.css); uncapped, a 5:8 aspect ratio scales the card's HEIGHT
-       right along with it, so past mobile widths the card balloons to fill
-       most of the viewport. Capping width keeps the poster proportions
-       intact at a size that actually reads as a card, not a full page. */
-    max-width: 340px;
-    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+    /* The surrounding publication grid gives each cover a fluid width. The
+       cap preserves the 4:5 poster proportion at an intentional cover scale
+       instead of letting it become a full-page panel on wide screens. */
+    max-width: 31rem;
+    margin: 0;
     width: 100%;
     padding: 22px 22px 16px;
     transition:
       transform 0.35s ease-out,
-      box-shadow 0.35s ease-out,
       border-color 0.35s ease-out;
   }
 
@@ -83,10 +84,14 @@ const { href, headline, caption, studyId } = Astro.props;
   }
 
   .cs-card-top h3 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 1.3rem;
-    line-height: 1.12;
+    max-width: 18ch;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-weight: 570;
+    font-size: clamp(1.2rem, 2.3vw, 1.75rem);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
     margin: 0;
     color: #f4f1ea;
   }
@@ -99,18 +104,6 @@ const { href, headline, caption, studyId } = Astro.props;
     min-height: 0;
     margin: 4px 0;
     position: relative;
-  }
-
-  /* static shadow, completely outside the animating <svg> — rasterized
-     once and reused every frame, never recomputed */
-  .cs-card-art::before {
-    content: "";
-    position: absolute;
-    inset: 6% 10% 10% 10%;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), transparent 72%);
-    filter: blur(7px);
-    z-index: 0;
   }
 
   .cs-card-art canvas.flow-canvas {
@@ -129,9 +122,10 @@ const { href, headline, caption, studyId } = Astro.props;
        blob below whenever the canvas is active, same as the 92% version
        did — the blob was already only ever visible at rest.)
        Internal resolution is fixed at 200x200 (see flow-field-motifs.js) and
-       scaled via CSS, same tradeoff the SVG version made — the canvas draws
-       fine strokes, not large flat fills, so upscaling reads as texture
-       rather than blur. */
+       scaled via CSS. Nearest-neighbour scaling exposes that resolution as an
+       intentional crisp grid instead of browser-soft interpolation. */
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 
   .cs-card-caption {
@@ -150,7 +144,6 @@ const { href, headline, caption, studyId } = Astro.props;
   .cs-card:hover,
   .cs-card:focus-visible {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
     border-color: var(--color-accent);
   }
   .cs-card:focus-visible {

@@ -35,27 +35,50 @@ function cardProps(study: CaseStudy) {
     studyId: study.id,
   };
 }
+
+function preventDisplayWidow(text: string, keepWords = 2): string {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const keep = Math.min(keepWords, words.length);
+  if (words.length <= keep) return words.join('\u00A0');
+  return `${words.slice(0, -keep).join(' ')} ${words.slice(-keep).join('\u00A0')}`;
+}
+
+const homepageHeadline = preventDisplayWidow('The design leader moving closer to the model');
 ---
 
 <Layout title="AI-Native Product & Design Leader">
-  <section class="hero">
-    <DotField />
+  <section class="hero hero--editorial">
+    <DotField spacing={24} />
     <div class="container">
-      <div class="hero-bio">
+      <nav class="site-rail" aria-label="Portfolio navigation">
+        <a href="/">Tobias Treppmann</a>
+        <span>Berlin · Product &amp; Design</span>
+        <a href="mailto:hello@treppmann.design">Get in touch</a>
+      </nav>
+
+      <div class="editorial-hero__mast">
+        <p class="hero-tagline">AI-Native Product &amp; Design Leader</p>
+        <h1 class="animated-headline" id="animated-title">{homepageHeadline}</h1>
+      </div>
+
+      <div class="editorial-hero__profile">
         <Portrait
           alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
         />
-        <div class="hero-bio__text">
-          <p class="hero-tagline">AI-Native Product &amp; Design Leader</p>
-          <h1 class="animated-headline" id="animated-title">The design leader moving closer to the model</h1>
+        <div class="editorial-hero__bio">
           <BioRegenerator />
         </div>
+      </div>
+
+      <div class="editorial-hero__actions">
+        <a href="#case-studies">View selected work <span aria-hidden="true">↓</span></a>
+        <a href="mailto:hello@treppmann.design">Start a conversation <span aria-hidden="true">↗</span></a>
       </div>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
   const title = document.getElementById('animated-title');
-  const text = title.textContent;
+  const text = title.textContent || '';
 
   // Wrap each letter in a span
   title.innerHTML = text.split('').map((char, i) =>
@@ -139,30 +162,14 @@ function cardProps(study: CaseStudy) {
   }
 
   .show-more summary {
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--color-accent);
     font-weight: 500;
     padding: var(--space-md) 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .show-more summary::before {
-    content: '+';
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    color: var(--color-bg);
-    font-weight: 600;
-  }
-
-  .show-more[open] summary::before {
-    content: '−';
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
   }
 </style>

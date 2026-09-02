@@ -70,6 +70,15 @@ const hasTailoredTitle =
 const headline = hasTailoredTitle ? tailoredTitle : SITE_HEADLINE;
 const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
 
+function preventDisplayWidow(text: string, keepWords = 2): string {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const keep = Math.min(keepWords, words.length);
+  if (words.length <= keep) return words.join('\u00A0');
+  return `${words.slice(0, -keep).join(' ')} ${words.slice(-keep).join('\u00A0')}`;
+}
+
+const headlineDisplay = preventDisplayWidow(headline);
+
 ---
 <Fragment slot="head">
   <meta name="robots" content="noindex, nofollow" />
@@ -77,11 +86,19 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
 
 
 <Layout title={documentTitle}>
-  <section class="hero">
-    <DotField />
+  <section class="hero hero--editorial hero--tailored">
+    <DotField spacing={24} />
     <div class="container">
-      <p class="hero-tagline">{SITE_TAGLINE}</p>
-      <h1 class="animated-headline" id="animated-title">{headline}</h1>
+      <nav class="site-rail" aria-label="Portfolio navigation">
+        <a href="/">Tobias Treppmann</a>
+        <span>Selected for this role</span>
+        <a href="mailto:hello@treppmann.design">Get in touch</a>
+      </nav>
+
+      <div class="editorial-hero__mast">
+        <p class="hero-tagline">{SITE_TAGLINE}</p>
+        <h1 class="animated-headline" id="animated-title">{headlineDisplay}</h1>
+      </div>
 
 <script>
   const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
@@ -107,11 +124,11 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
     });
   }
 </script>
-      <div class="hero-bio">
+      <div class="editorial-hero__profile">
         <Portrait
           alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
         />
-        <div class="hero-bio__text">
+        <div class="editorial-hero__bio">
           <BioRegenerator bio={filter.bio} />
           {filter.subtitle && (
             <p class="context-note">{filter.subtitle}</p>
@@ -119,10 +136,17 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
         </div>
       </div>
       {filter.cv?.href && (
-        <p class="cv-link">
-          <a href={filter.cv.href} download>{filter.cv.label || 'Download CV (PDF)'}</a>
+        <div class="editorial-hero__actions">
+          <a href="#case-studies">View selected work <span aria-hidden="true">↓</span></a>
+          <a href={filter.cv.href} download>{filter.cv.label || 'Download CV (PDF)'} <span aria-hidden="true">↓</span></a>
           {filter.cv.note && <span class="cv-note">{filter.cv.note}</span>}
-        </p>
+        </div>
+      )}
+      {!filter.cv?.href && (
+        <div class="editorial-hero__actions">
+          <a href="#case-studies">View selected work <span aria-hidden="true">↓</span></a>
+          <a href="mailto:hello@treppmann.design">Start a conversation <span aria-hidden="true">↗</span></a>
+        </div>
       )}
     </div>
   </section>
@@ -198,46 +222,20 @@ const documentTitle = hasTailoredTitle ? tailoredTitle : SITE_TAGLINE;
   }
 
   .show-more summary {
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--color-accent);
     font-weight: 500;
     padding: var(--space-md) 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
   }
 
-  .show-more summary::before {
-    content: '+';
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--color-accent-light);
-    font-weight: 600;
-  }
-
-  .show-more[open] summary::before {
-    content: '−';
-  }
-
-  .cv-link {
-    margin-top: var(--space-md);
-    font-size: 0.95rem;
-  }
-  .cv-link a {
-    color: var(--color-accent);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-accent);
-    padding-bottom: 1px;
-  }
-  .cv-link a:hover { opacity: 0.75; }
   .cv-note {
-    margin-left: 0.6rem;
-    color: var(--color-text-muted);
+    grid-column: 1 / -1;
+    color: #cfd9d4;
     font-size: 0.85rem;
   }
 </style>

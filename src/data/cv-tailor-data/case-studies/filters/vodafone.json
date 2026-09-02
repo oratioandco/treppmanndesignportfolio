@@ -1,0 +1,62 @@
+{
+  "slug": "vodafone",
+  "aliases": [
+    "vodafone-senior-user-experience-manager-b2b"
+  ],
+  "title": "UX, die bis in die Umsetzung hält",
+  "subtitle": "Solution Design, Design-System-Governance und B2B-Self-Service zwischen Business, UX und technischer Architektur",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-vodafone.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Zugeschnitten auf die Position Senior User Experience Manager B2B"
+  },
+  "bio": {
+    "short": "Ich verbinde 15+ Jahre UX und Produktführung mit technischer Solution-Design-Tiefe. Bei Bibel TV verantworte ich die finale Designabnahme gegenüber externen Entwicklungspartnern und habe Token-API, Storybook und automatische Prüfungen aufgebaut. Bei ChurchDesk führte ich Nutzerbedarf, Architektur, Budget und Termin in einer B2B-Plattformfunktion zusammen.",
+    "long": "Bei Bibel TV gibt es kein internes Designteam, und Engineering sitzt bei externen Partnern. Ich verantworte die finale Freigabe von UI und Lösungen aus Designsicht. Damit Qualität nicht von meiner Anwesenheit in jeder Übergabe abhängt, habe ich den Standard in eine plattformunabhängige Token-API, Storybook und automatische Prüfungen übersetzt. Product Manager und Product Owner prototypisieren damit neue Features gegen reale Komponenten. Der anschließende Produktionsweg macht fehlende Komponenten, Views und Token-Anforderungen explizit und reviewbar.\n\nBei ChurchDesk lagen Produktmanagement für die Hauptplattform und das gesamte Produktdesign gemeinsam bei mir. Für eine neue B2B-Buchungsfunktion musste ich Kundenbedarf, bestehende Kalender- und Formulararchitektur, Budget und einen Zwei-Monats-Termin in eine belastbare Entscheidung bringen. Die integrierte Lösung reduzierte die Abstimmungszeit beim Launch-Kunden um 70 Prozent und erreichte eine Annahmequote von 90 Prozent. Bei Ninox verantwortete ich Lifecycle und Roadmap einer Self-Service-No-Code-Plattform sowie die gemeinsame Design-System-Governance mit Engineering.\n\nBei Spreadshirt sammelte ich zwei Jahre E-Commerce-Domänenerfahrung. Nach zwei gescheiterten Anläufen führten Nutzerinterviews und getestete Prototypen zu einer neuen Richtung für die Verkäufererfahrung. Ich arbeite auf Deutsch muttersprachlich und auf Englisch C2. Berlin bleibt meine Basis; für Düsseldorf sind regelmäßige, dafür längere Office-Aufenthalte praktikabler als Tagesreisen.",
+    "context": {
+      "company": "Vodafone GmbH",
+      "role": "Senior User Experience Manager B2B",
+      "emphasis": "Lead with design-side approval across an external-engineering boundary and design-system adoption through an enforceable workflow. Then show B2B solution decisions across user need, architecture, cost and delivery. Support this with self-service lifecycle ownership at Ninox and two years of e-commerce at Spreadshirt."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
