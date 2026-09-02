@@ -36,6 +36,19 @@ function paragraphs(content: string): string {
     .join('');
 }
 
+// Browser text balancing improves a display block's rag but cannot guarantee
+// that the final line will not contain one orphaned word. Joining the final
+// three words with non-breaking spaces gives large titles and pull quotes a
+// deterministic closing line without changing what assistive technology reads.
+function preventDisplayWidow(text: string, keepWords = 2): string {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (words.length <= 1) return text;
+  const keep = Math.min(keepWords, words.length);
+  const head = words.slice(0, -keep).join(' ');
+  const tail = words.slice(-keep).join('\u00A0');
+  return head ? `${head} ${tail}` : tail;
+}
+
 // HTML for a figure with a marginalia caption.
 // The figure is a subgrid item so its caption can sit in the rail column on desktop.
 function figure(img: { src: string; alt: string; caption?: string }, figNum: number): string {
@@ -57,7 +70,7 @@ function figure(img: { src: string; alt: string; caption?: string }, figNum: num
 function sectionOpener(num: string, title: string): string {
   return `<header class="cs-section-head">
     <span class="cs-section-label">§&nbsp;${num}</span>
-    <h2 class="cs-section-title">${title}</h2>
+    <h2 class="cs-section-title">${preventDisplayWidow(title)}</h2>
   </header>`;
 }
 
@@ -90,7 +103,7 @@ function renderSection(section: CaseStudySection, sectionNum: number, figCounter
       // Pure pull quote — breakout, ornament, byline-style context.
       let html = '<aside class="cs-pullquote">';
       html += '<span class="cs-pullquote-mark" aria-hidden="true">✱</span>';
-      if (section.quote) html += `<blockquote class="cs-pullquote-text">${section.quote}</blockquote>`;
+      if (section.quote) html += `<blockquote class="cs-pullquote-text">${preventDisplayWidow(section.quote)}</blockquote>`;
       if (section.headline) html += `<p class="cs-pullquote-byline">${section.headline}</p>`;
       if (section.context) html += `<p class="cs-pullquote-context">${section.context}</p>`;
       if (section.content) html += `<div class="cs-body">${paragraphs(section.content)}</div>`;
@@ -230,6 +243,10 @@ const contentSections = closerSection
 const closerLeadIn = closerSection?.content
   ? closerSection.content.replace(/\s*Get in touch\.\s*$/, '').trim()
   : '';
+const closerHooks = closerLeadIn
+  .split(/\n{2,}/)
+  .map((hook) => hook.trim())
+  .filter(Boolean);
 const closerHeadline = closerSection?.headline ?? '';
 
 const pageTitle = heroSection?.headline || study.title;
@@ -316,7 +333,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   <div class="cs-hero">
     <div class="cs-hero-text">
       <span class="cs-kicker">{kickerText}</span>
-      <h1 class="cs-title">{pageTitle}</h1>
+      <h1 class="cs-title">{preventDisplayWidow(pageTitle)}</h1>
       <p class="cs-tagline">{study.role}</p>
       {/* Scope. Every study carries `team` — "1 designer + engineering team,
           Berlin", "Team of five, including a design lead" — and it rendered
@@ -359,8 +376,12 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
 
   {closerSection && (
     <section class="cs-contact">
-      {closerHeadline && <p class="cs-contact-headline">{closerHeadline}</p>}
-      {closerLeadIn && <p class="cs-contact-lead">{closerLeadIn}</p>}
+      {closerHeadline && <p class="cs-contact-headline">{preventDisplayWidow(closerHeadline)}</p>}
+      {closerHooks.length > 0 && (
+        <ul class="cs-contact-hooks">
+          {closerHooks.map((hook) => <li>{preventDisplayWidow(hook)}</li>)}
+        </ul>
+      )}
       {/* No mailto: in the markup — the address is assembled client-side
           from two data attributes so it never appears as a plain string
           in the page source for scrapers to lift. There was no prior
@@ -399,7 +420,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     const text = title.textContent;
     title.innerHTML = text
       .split('')
-      .map((char) => (char === ' ' ? ' ' : `<span class="letter">${char}</span>`))
+      .map((char) => (/\s/.test(char) ? char : `<span class="letter">${char}</span>`))
       .join('');
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       title.querySelectorAll('.letter').forEach((letter) => {
@@ -603,7 +624,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   }
 
   .cs-title {
-    font-family: var(--font-display-70);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-weight: normal;
     /* Bigger, more magazine-cover scale. */
@@ -612,6 +633,9 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     color: #f4f1ea;
     margin: 0 0 var(--space-lg);
     letter-spacing: -0.015em;
+    text-wrap: balance;
+    orphans: 2;
+    widows: 2;
   }
 
   .cs-tagline {
@@ -692,7 +716,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   }
 
   .cs-section-title {
-    font-family: var(--font-display-50);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-weight: normal;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
@@ -700,6 +724,9 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     color: var(--color-text);
     margin: 0;
     max-width: 22ch;
+    text-wrap: balance;
+    orphans: 2;
+    widows: 2;
   }
 
   /* ----- Body prose ------------------------------------------------------- */
@@ -728,7 +755,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
      A real sub-heading with a hairline above. Replaces the AI-looking
      "**Lead phrase.** body" pattern. */
   .cs-body h3.cs-sublabel {
-    font-family: var(--font-display-35);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-weight: normal;
     font-size: clamp(1.25rem, 2vw, 1.55rem);
@@ -750,7 +777,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
 
   /* Drop cap on the first paragraph after a section head. */
   .cs-body--dropcap p:first-child::first-letter {
-    font-family: var(--font-display-50);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-size: 5.8rem;
     line-height: 0.82;
@@ -802,7 +829,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   }
 
   .cs-pullquote-text {
-    font-family: var(--font-display-50);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-weight: normal;
     /* Louder than H2s, slightly less stretched than the hero title. The
@@ -812,6 +839,9 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     color: var(--color-text);
     margin: 0 0 var(--space-md);
     max-width: 22ch;
+    text-wrap: pretty;
+    orphans: 2;
+    widows: 2;
   }
 
   .cs-pullquote-byline {
@@ -926,7 +956,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   }
 
   .cs-metric-value {
-    font-family: var(--font-display-50);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-size: clamp(1.3rem, 2.2vw, 1.7rem);
     line-height: 1.1;
@@ -1179,7 +1209,7 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
   }
 
   .cs-contact-headline {
-    font-family: var(--font-display-35);
+    font-family: var(--font-display-20);
     font-style: italic;
     font-weight: normal;
     font-size: clamp(1.25rem, 2vw, 1.55rem);
@@ -1187,15 +1217,30 @@ const kickerText = kickerParts.join(' · ').toUpperCase();
     color: var(--color-text);
     margin: 0 0 var(--space-md);
     max-width: 28ch;
+    text-wrap: pretty;
+    orphans: 2;
+    widows: 2;
   }
 
-  .cs-contact-lead {
+  .cs-contact-hooks {
+    margin: 0 0 var(--space-lg);
+    padding: 0;
+    list-style: none;
+  }
+
+  .cs-contact-hooks li {
     font-family: var(--font-body);
     font-size: 1.05rem;
     line-height: 1.7;
     color: var(--color-text);
     max-width: 46ch;
-    margin: 0 0 var(--space-lg);
+    margin: 0;
+    padding: 0.65rem 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .cs-contact-hooks li:last-child {
+    border-bottom: 1px solid var(--color-rule);
   }
 
   .cs-contact-button {

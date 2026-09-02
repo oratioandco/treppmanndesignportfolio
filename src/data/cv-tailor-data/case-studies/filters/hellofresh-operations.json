@@ -35,19 +35,25 @@
       "format_override": "in-depth"
     },
     {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 3
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
     },
     {
-      "id": "spreadshirt-user-research-strategy",
+      "id": "leading-a-team-is-a-design-problem",
       "visibility": "browseable",
       "order": 4
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "spreadshirt-user-research-strategy",
       "visibility": "browseable",
       "order": 5
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 6
     },
     {
       "id": "bibeltv-app-redesign",
@@ -58,11 +64,6 @@
       "id": "bibeltv-color-api",
       "visibility": "hidden",
       "order": 7
-    },
-    {
-      "id": "bibeltv-llm-safe-design-system",
-      "visibility": "hidden",
-      "order": 8
     },
     {
       "id": "bibeltv-support-agent",

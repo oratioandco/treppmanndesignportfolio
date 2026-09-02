@@ -860,6 +860,9 @@ a:hover {
    constrained by the body column. */
 .cs-section__body .pull-statement {
     max-width: 24ch;
+    text-wrap: pretty;
+    orphans: 2;
+    widows: 2;
 }
 
 @media (max-width: 1100px) {

@@ -439,13 +439,12 @@ const SHAPE_ASSIGNMENTS = {
   "ninox-ai-onboarding": ["balance"], // AI capability and user control held in deliberate tension, not merged and not just paired
   "bibeltv-ai-fundraising": ["funnel"], // many AI-generated drafts narrowing to the one a human sends — default (odd, 5) chute count deliberately, see the swastika-risk comment on the funnel shape itself
 
-  "bibeltv-ai-prototyping": ["sunburst"], // rapid iteration, generative variation, one idea branching outward
+  "bibeltv-ai-prototyping": ["spiral"], // the design-to-ship pipeline collapsing into one accelerating loop (merged in from the retired bibeltv-agentic-engineering, which told the same story)
   "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // handles most fields, deliberately leaves one out — the gap is the point
   "bibeltv-design-system-api": ["hub", { count: 4 }], // one token source, exactly 4 named consumers: iOS, Android, web, Figma
   "spreadshirt-user-research-strategy": ["pivot"], // one prototype's insight that bent the company's whole direction
 
   "leading-a-team-is-a-design-problem": ["network", { count: 4 }], // the team as gravity points in relationship, not two things paired
-  "bibeltv-agentic-engineering": ["spiral"], // collapsing the design-to-ship pipeline into one accelerating loop
 };
 
 const SHAPE_KEYS = Object.keys(SHAPES);
