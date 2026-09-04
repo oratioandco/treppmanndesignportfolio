@@ -1,0 +1,56 @@
+{
+  "slug": "claas",
+  "aliases": [
+    "claas-head-user-interface-design"
+  ],
+  "title": "Komplexe Interfaces brauchen gemeinsame Richtung",
+  "subtitle": "Designführung über Standorte, technische Produkte und unterschiedliche Plattformen hinweg",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-claas.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Zugeschnitten auf die Position Head of User Interface Design"
+  },
+  "bio": {
+    "short": "Ich verbinde fünfzehn Jahre Arbeit an komplexen Interfaces mit disziplinarischer Führung und standortübergreifender Zusammenarbeit. Bei Ninox führte ich bis zu neun Mitarbeitende aus vier Disziplinen; bei Datameer fünf Jahre lang verteilte UX-Arbeit zwischen Deutschland und New York. Heute verantworte ich die Interaktions- und visuelle Richtung über iOS, Android, Web und Connected TV.",
+    "long": "Bei Ninox führte ich eine fünfköpfige Designfunktion und zeitweise zusätzlich Product Management und Data Science — neun direkte Mitarbeitende aus vier Disziplinen. Neben Einstellungen, Beförderungen und Entwicklungsplänen verantwortete ich das Designsystem und etablierte eine gemeinsame Governance mit Engineering. Der ausgewählte Leadership-Fall zeigt, wie ich Zusammenarbeit als gestaltbares System behandle, nicht als Persönlichkeitsproblem.\n\nBei Datameer führte ich fünf Jahre lang verteilte UX-Arbeit zwischen Deutschland und New York. Die Produktoberflächen reichten von Query Buildern und Filterlogik bis zu Pivot-Tabellen, Diagrammen und aggregierten JSON-Ansichten für Banken und Versicherer. Der Fall zeigt nicht nur technische Interface-Komplexität, sondern auch, wie direkte Research-Zugänge in regulierten Organisationen aufgebaut wurden.\n\nHeute verantworte ich bei Bibel TV die Interaktions- und visuelle Richtung über iOS, Android, Web und Connected TV. Die aktuelle Neugestaltung verbindet Research, eine plattformübergreifende Designsprache, Light und Dark Mode sowie funktionierende Prototypen. Ich arbeite auf Deutsch muttersprachlich und auf Englisch C2. Fahrzeug-, Maschinen- und Embedded-UI wären für mich neue Domänen; die übertragbare Grundlage ist bewusst in Führung, technischen Interfaces und Multi-Plattform-Konsistenz belegt.",
+    "context": {
+      "company": "CLAAS E-Systems GmbH",
+      "role": "Head of User Interface Design",
+      "emphasis": "Lead with functional and disciplinary leadership, then prove complex technical UI and current cross-platform visual direction. Treat machinery workflows, onboard context and engineering constraints as a domain-learning agenda, not as experience already held."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
