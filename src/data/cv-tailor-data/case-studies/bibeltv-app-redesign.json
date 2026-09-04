@@ -74,7 +74,7 @@
     },
     {
       "type": "narrative",
-      "content": "Curious how \"old Android phones render gradients badly\" turned out to be about the displays and not the platform, and how that fix ended up running in every gradient the app ships now, even the plain-looking ones? Get in touch."
+      "content": "Curious how \"old Android phones render gradients badly\" turned out to be about the displays and not the platform, and why the resulting fix uses multiple stops even when the gradient looks monochrome? Get in touch."
     }
   ],
   "variants": {
