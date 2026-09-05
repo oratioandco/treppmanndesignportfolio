@@ -1,0 +1,56 @@
+{
+  "slug": "vgh",
+  "aliases": [
+    "vgh-ux-conversion-manager"
+  ],
+  "title": "Komplexe Strecken, die Menschen zu Ende bringen",
+  "subtitle": "Checkout, Self-Service und datenbasierte Journey-Optimierung zwischen Kundensicht, Fachlichkeit und Technik",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-vgh.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Zugeschnitten auf die Position UX und Conversion Manager"
+  },
+  "bio": {
+    "short": "Ich verbinde 15+ Jahre UX mit hands-on Conversion- und Journey-Optimierung. Bei HairDirect gestaltete ich den mobilen Checkout, der die ersten mobilen Bestellungen ermöglichte. Bei ChurchDesk entstand aus einem telefonischen Prozess eine integrierte Self-Service-Buchung mit 70 Prozent weniger Abstimmungszeit und 90 Prozent Annahme beim Launchkunden.",
+    "long": "Bei HairDirect zeigte die Nutzungsanalyse, dass eine wachsende mobile Lücke zur Geschäftsgefahr werden würde. Ich gestaltete den mobilen Checkout für ein konfigurationsintensives Produkt; er ermöglichte die ersten mobilen Bestellungen des Unternehmens. Heute nutze ich bei Bibel TV Google Analytics, Looker Studio und HubSpot, um Conversion- und Nutzungsdaten in Produktentscheidungen zu übersetzen.\n\nBei ChurchDesk führte ich Produktmanagement und gesamtes Produktdesign für eine Buchungsfunktion zusammen. Aus einer Kette von Telefonaten zwischen Bestattungsunternehmen, Pfarrbüro und Pfarrperson wurde eine integrierte Self-Service-Strecke. Sie zeigte nur Termine, die gegen Kalender, Bereitschaft, Friedhofszeiten und weitere Regeln auflösbar waren. Das reduzierte die Abstimmungszeit beim Launchkunden um 70 Prozent und erreichte 90 Prozent Buchungsakzeptanz; anschließend wurde die Funktion für die gesamte Kundenbasis ausgerollt.\n\nBei Spreadshirt führte Research nach zwei gescheiterten Redesign-Anläufen zu einer neuen Richtung für die E-Commerce-Verkäufererfahrung, die gegen die bestehende Anwendung getestet wurde. Bei Datameer leitete ich UX für komplexe Datenprodukte von Banken und Versicherern. Über diese Rollen hinweg ist mein Beitrag derselbe: Fachlogik, technisches System und reales Nutzerverhalten so zusammenzuführen, dass eine digitale Journey verständlicher und wirksamer wird.",
+    "context": {
+      "company": "VGH Versicherungen",
+      "role": "UX und Conversion Manager",
+      "emphasis": "Lead with the direct transaction and self-service evidence: HairDirect first mobile orders, ChurchDesk's measurable completion outcome, and current hands-on conversion and usage analytics. Support with tested ecommerce direction at Spreadshirt, regulated-enterprise proximity at Datameer, and cross-touchpoint delivery at Bibel TV."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
