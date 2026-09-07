@@ -87,18 +87,27 @@ for (const f of fs.readdirSync(FILTERS)) {
         .readdirSync(cvDir)
         .filter((n) => n.endsWith('-public.pdf'))
         .sort();
-      const source = candidates.length ? path.join(cvDir, candidates[candidates.length - 1]) : null;
+      const dated = candidates
+        .map((name) => ({ name, date: name.match(/-(\d{4}-\d{2}-\d{2})(?:-[a-z]{2})?-public\.pdf$/)?.[1] }))
+        .filter((entry) => entry.date);
+      const latestDate = dated.map((entry) => entry.date).sort().at(-1);
+      const sources = dated
+        .filter((entry) => entry.date === latestDate)
+        .map((entry) => path.join(cvDir, entry.name));
       if (!fs.existsSync(local)) {
         missing.push(`${pub}: page offers ${href} and the file is not in public/documents`);
-      } else if (source) {
+      } else if (sources.length) {
         // PDFs embed a creation timestamp, so byte-comparing them reports STALE on
         // every rebuild even when nothing changed. Verified 2026-08-13: identical
         // HTML, two different PDF hashes. Compare sizes as a coarse signal instead,
-        // and let the bio check below carry the real content comparison.
+        // and let the bio check below carry the real content comparison. A dated
+        // package may contain both the gated English source and a translated public
+        // variant; the live file is current when it matches either variant from the
+        // latest date.
         const a = fs.statSync(local).size;
-        const b = fs.statSync(source).size;
-        if (Math.abs(a - b) > 512)
-          stale.push(`${pub}: published CV size differs materially from ${path.relative(SRC, source)}`);
+        const matched = sources.some((source) => Math.abs(a - fs.statSync(source).size) <= 512);
+        if (!matched)
+          stale.push(`${pub}: published CV size differs materially from all current public variants in ${path.relative(SRC, cvDir)}`);
       }
     }
   }
