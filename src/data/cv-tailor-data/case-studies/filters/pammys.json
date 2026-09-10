@@ -1,0 +1,38 @@
+{
+  "slug": "pammys",
+  "aliases": [
+    "pammys-head-of-ux-ui"
+  ],
+  "title": "One system held for speed and quality at once",
+  "subtitle": "A cross-platform design system enforced by CI. Disciplinary team leadership with a levelling framework. A commercial-systems decision with the numbers to show it was right.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-pammys.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of UX/UI role"
+  },
+  "bio": {
+    "short": "I lead design systems and design teams so quality and speed stop being a trade-off. My current system for a four-platform product is enforced by CI, not review. At Ninox I led five designers and writers with my own levelling framework, two hires and two promotions. Earlier I led e-commerce UX at Spreadshirt and HairDirect.",
+    "long": "At Bibel TV there is no in-house design team, so I hold UI and UX quality across iOS, Android, web and connected TV myself. The standard lives in a platform-agnostic token API in four tiers, with Storybook as the source of truth. Six CI checks reject a nonexistent token reference or a raw value written into a component. The compliant path is the fast one, mechanically, not by review. A teardown of the shipped Android build verified 91.8% of my design-token fields and 94% of the core Kotlin token model.\n\nAt Ninox Software GmbH I was Head of Product Design, and for four months also interim Head of Product. Five direct reports including a design lead sat on the Senior Leadership Team, half product design and half UX writing. That grew to nine people across two functions during the interim stretch. I wrote the levelling framework both disciplines still use for growth plans, hired two and promoted two against it. I also owned the design system, with joint governance established alongside engineering.\n\nAt ChurchDesk I inherited a booking capability scoped as a standalone add-on. I built it into the existing calendar and form builder instead. One two-month build served room rentals, baptisms and funerals and shipped to the whole customer base: 70% coordination-time reduction, 90% booking acceptance. Earlier, I led e-commerce UX directly. A nine-month seller-experience redesign at Spreadshirt followed two earlier failed attempts, and the mobile checkout redesign at HairDirect opened the company's first mobile revenue stream. I am based in Berlin.",
+    "context": {
+      "company": "Pammys (dieseo GmbH)",
+      "role": "Head of UX/UI",
+      "emphasis": "Lead with the design-system-as-speed pairing: quality and speed held mechanically by CI, not by review. It answers the posting's own 'design quality, speed, and business impact' phrase directly. Then disciplinary team leadership with instruments (levelling framework, hires, promotions). Then the ChurchDesk commercial-systems decision with its measured numbers, as the closest evidence of design driving business impact. Name Spreadshirt and HairDirect as the direct e-commerce record without attaching any conversion figure to either."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    }
+  ]
+}

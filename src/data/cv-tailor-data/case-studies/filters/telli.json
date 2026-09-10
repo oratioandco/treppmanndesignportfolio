@@ -1,0 +1,62 @@
+{
+  "slug": "telli",
+  "aliases": [
+    "telli-design-lead"
+  ],
+  "title": "Designed, then built, then shipped",
+  "subtitle": "AI products in production, prototypes in real code, and a design system that lives as an API",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-telli.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Design Lead role"
+  },
+  "bio": {
+    "short": "I design software and I build it. At Bibel TV an AI support copilot, an AI fundraising system, a token API and a color engine are live. An engineering agency outside the company ships from my prototype code. With Ninox's founders I designed the prompt-to-database onboarding that became their public AI beta.",
+    "long": "The last year at Bibel TV went into AI that runs in production. The support copilot drafts replies to viewer letters in the handbook's own wording. A restricted-topic list sits in the system prompt, and every send decision stays with a person. The fundraising ecosystem I built solo: a performance analysis of past letters, a Claude Project that asks clarifying questions before it writes, a web prototype, and a production Claude skill. Its output spans in-app notifications, web banners and video scripts.\n\nI prototype the app redesign in real code. Web first, then a native Android app in Kotlin and Jetpack Compose against real and self-built APIs. The agency that builds the app sits outside the company, and a teardown of the shipped build found 91.8% of my token fields in it. The design system behind that lives as an API in four tiers, with Storybook as the source of truth. A color engine in OKLCH holds contrast in light and dark. Product managers and product owners shape features there without a design team beside them. So I also hold product management and product ownership for the redesign.\n\nIn summer 2025, as a consultant, I designed Ninox's prompt-to-database onboarding with the CEO and technical co-founder. The generated schema renders into the real data-model editor beside the chat, because chat alone could not carry a real schema and the user had to be able to own it. Before all that I led design at Head and Director level for a decade. On my own time I build aperto.bible, open-source Bible translation tooling with an AI content pipeline and an evaluation harness I designed and directed. And Selah, a Mac app on the Mac App Store. I live in Berlin, German native, English C2.",
+    "context": {
+      "company": "telli",
+      "role": "Design Lead",
+      "emphasis": "Lead with AI products he built that are live in production, and with prototypes in real code that an external agency ships from, using the measured 91.8% teardown figure. Show the Ninox prompt-to-database pattern as the novel UX pattern: direct manipulation beside chat. Pair the builder evidence with the decade of design leadership. Berlin, on site, no relocation."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}

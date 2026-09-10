@@ -1,0 +1,90 @@
+{
+  "slug": "puffy",
+  "aliases": [],
+  "title": "Design that holds when the model does part of the work",
+  "subtitle": "An AI-first design system enforced in the build, GenAI shipped with the guardrails in the config, and a design function led with the people decisions in it",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-puffy.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of Design, AI-First role"
+  },
+  "bio": {
+    "short": "I build design systems and AI pipelines that stay on-brand when a model does part of the work. At Bibel TV the design system refuses off-system output in the build, a production copilot drafts in house voice with every send decision human, and an external engineering agency ships from my prototype code. Before that I led a five-person product-design and UX-writing team on Ninox's Senior Leadership Team.",
+    "long": "Bibel TV has no on-staff designers, so product managers and product owners shape features with an AI assistant beside them. I built the design system for that: Storybook as the source of truth rather than a Figma file, an enumerated token vocabulary the assistant chooses from instead of recalling names, six checks that run locally and in CI and refuse a token that does not resolve or a value written straight into a component, and an exception register that fails the build until a documented reason is recorded. All thirty components were audited against the native app, and every finding went to an independent reviewer instructed to refute it.\n\nThe same discipline runs through the GenAI work. The viewer-services copilot drafts letters and emails from the support handbook's wording and standard phrases, carries an explicit restricted-topic list, suppresses the draft when the input is not a viewer enquiry, and leaves every send decision with a person; multi-topic letters take minutes rather than hours, and skeptics converted after their hardest case. The fundraising ecosystem I built solo starts with an analysis of which letters over-performed, encodes it into a Claude Project that asks follow-up questions before it generates, and cascades one message into in-app notifications, web banners and video scripts through a Claude skill. And I prototype in real code against production APIs, web first and then Android, so the external engineering agency builds from something that already runs.\n\nAt Ninox I led five people across product design and UX writing on the Senior Leadership Team, wrote the levelling framework for both disciplines, promoted two and hired two, and for four months held Product Design and Product together across nine reports. I have taught an agency's designers and developers to use AI for design and prototyping. My e-commerce roots are older but real: at Spreadshirt, research overturned an executive assumption for a platform serving hundreds of thousands of consumers and the redesign was A/B-tested against the existing app; at HairDirect, the mobile checkout produced the company's first mobile orders.",
+    "context": {
+      "company": "Puffy",
+      "role": "Head of Design, AI-First",
+      "emphasis": "Lead with the pairing in positioning.md §4: a design system that stays on-brand under AI-generated variants (enumerated vocabulary, six CI checks, exception register, Storybook as source of truth), GenAI shipped with brand governance (support copilot, fundraising pipeline), engineering shipping from prototype code, and the Ninox leadership record. Spreadshirt and HairDirect are supporting consumer e-commerce evidence, not the lead."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 7,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 8,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 9,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "hidden",
+      "order": 10,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden",
+      "order": 11,
+      "format_override": "executive"
+    }
+  ]
+}

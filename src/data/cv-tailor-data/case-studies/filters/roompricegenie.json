@@ -1,0 +1,104 @@
+{
+  "slug": "roompricegenie",
+  "aliases": [
+    "roompricegenie-head-of-ux"
+  ],
+  "title": "Building the function, and deciding where AI belongs in it",
+  "subtitle": "Design leadership with a record of building teams and standing, and a year of AI guardrails shipped in production",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-roompricegenie.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of UX role"
+  },
+  "bio": {
+    "short": "I build design functions and give them standing, and I spent the last year putting AI guardrails into production rather than into a memo. At Ninox I led a team across product design and UX writing from a seat on the Senior Leadership Team, wrote the levelling framework both promotions were made against, and owned the design system with joint governance I established with engineering. At Bibel TV a support copilot with every send decision human and an LLM-safe design system are live.",
+    "long": "At Ninox I joined to make design a real function. I led five people across product design and UX writing, including a design lead, from a seat on the Senior Leadership Team, and was responsible for capacity, allocation, prioritization, team structure and processes. I wrote the team's levelling framework myself and used it for growth plans; both promotions on the team, a designer to Design Lead and a senior designer to Principal, were made against it. I owned the design system and established joint governance with engineering. For four months in 2023 I also held Product as interim Head of Product, nine reports across four disciplines, and brought in the consultant who then took the role.\n\nThe last year at Bibel TV went into the AI half of the job, in production. A support copilot drafts replies to viewer letters in the handbook's wording, carries an explicit restricted-topic list, and leaves every send decision human; it was rolled out fully optional and skeptics converted after their hardest case. The design system is built to hold under AI-assisted work: Storybook is the source of truth, and checks reject a token that does not exist or a value written straight into a component, so product managers prototype against real components and the standard holds. I introduced agentic engineering as a practice, and the external engineering agency ships from my prototype code. I also taught sessions on using AI for design and prototyping to another company's team leads.\n\nResearch runs through all of it. At Datameer I took design from an execution function to a strategic partner with executive backing for user research, and reached analysts inside regulated banks through iterative screening on usertesting.com. At Ninox I put Claude over thousands of forum posts with Dovetail as the shared repository; at Bibel TV interviews are transcribed in Teams and analyzed with Claude. And for a decade I mentored and coached designers at CareerFoundry. Berlin-based, German native, English C2.",
+    "context": {
+      "company": "RoomPriceGenie",
+      "role": "Head of UX",
+      "emphasis": "Lead with building and maturing a design function: Ninox SLT seat, five reports across two disciplines, the self-written levelling framework and the two promotions made against it, design-system ownership with joint governance, coaching the design lead. Then the AI-with-guardrails half: the copilot with restricted topics and human send decisions, the LLM-safe design system, agentic engineering as a practice, teaching another company's team leads. Research leadership at Datameer and Ninox third."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "hidden",
+      "order": 7,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden",
+      "order": 8,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "hidden",
+      "order": 9,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 10,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "hidden",
+      "order": 11,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden",
+      "order": 12,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "hidden",
+      "order": 13,
+      "format_override": "executive"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "pickem",
+  "aliases": [
+    "pickem-founding-designer"
+  ],
+  "title": "One Brand, Every Surface",
+  "subtitle": "Selected work on visual systems that keep an identity consistent, a brand decision made on research, and the web and print that carry it",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-pickem.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Founding Designer role"
+  },
+  "bio": {
+    "short": "I design the visual systems that keep a brand consistent across every surface, and I build the digital ones myself. At Bibel TV I built the color engine that themes 10,000+ videos from their own artwork, contrast guaranteed. When every streaming app goes dark, I took ours light, on research. I've done print since 2009, work in Figma and Affinity, and prototype in real code with AI tools.",
+    "long": "At Bibel TV the catalog runs past 10,000 videos, and nobody can hand-pick a theme color for each one. So I built the engine that computes it from the artwork. It clusters in OKLCH, validates every theme for WCAG contrast, and runs live in production. A configuration tool keeps the thresholds a design decision rather than a code decision. The same work carried the 2025 broadcast rebrand into the apps across iOS, Android, web and connected TV.\n\nThe redesign's biggest call was going light when every streaming app goes dark. Research showed users associated the brand with hope and expected it in the interface. A concept survey backed it: 83% of respondents with a preference chose light or a mixed palette over dark-only. I prototype the result in real code against production APIs, and an external engineering agency ships from that code. Storybook exposes the real components, and Claude Code is part of the daily workflow.\n\nBefore that, Spreadshirt: a print-on-demand merchandise platform serving hundreds of thousands of consumers. Interviews with shop owners showed the design tool was the best part of their day, which reversed a 60-second automation strategy. The mobile designer prototype I led reached production. At HairDirect, the mobile checkout redesign produced the company's first mobile orders. I've done print since 2009: substantial work at HOPE International, and flyers and posters through Oratio&Co, in the Affinity suite today. Selah, on the Mac App Store, is an app I designed and built solo, visual identity included.",
+    "context": {
+      "company": "pick'em",
+      "role": "Founding Designer",
+      "emphasis": "Lead with visual craft and the built system that keeps a brand consistent where hand-checking is impossible. Then the research-backed light-mode brand decision. Then consumer e-commerce, merchandise and print. Show that he builds the web side himself with AI tools."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

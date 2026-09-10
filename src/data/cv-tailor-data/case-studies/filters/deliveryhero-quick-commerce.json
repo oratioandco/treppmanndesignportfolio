@@ -1,65 +1,66 @@
 {
   "slug": "deliveryhero-quick-commerce",
-  "title": "Selected Work",
-  "subtitle": "Marketplace UX, multi-stakeholder coordination, AI in product and practice, design systems as engineering infrastructure — selected for Delivery Hero Quick Commerce",
+  "aliases": [
+    "deliveryhero-senior-manager-ux-quick-commerce"
+  ],
+  "title": "Design teams that still ship",
+  "subtitle": "User research that changes direction, a design system product managers can build with, and AI in product and practice",
   "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-deliveryhero-quick-commerce.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Manager, User Experience (Quick Commerce) role"
+  },
+  "bio": {
+    "short": "I've led design teams since 2016 and I still ship. At Ninox I led five designers and UX writers from the Senior Leadership Team, and for four months two functions with nine reports. Today I prototype a consumer streaming app in real code that external engineering ships from, and I helped drive Bibel TV's AI transformation.",
+    "long": "At Ninox I led five product designers and UX writers, including a design lead, as a member of the Senior Leadership Team. I hired two and promoted two. I wrote the team's levelling framework and ran performance reviews, growth plans and a lean 360 workshop. For four months I also ran product: three product managers and a data scientist reported to me alongside the design team. Before that I led the UX team at Datameer across Germany and New York for five years. There I opened research access inside regulated banks and insurers.\n\nAt Bibel TV I lead product design for a consumer streaming app across iOS, Android, web and connected TV. There are no staff designers, so product managers and product owners shape features themselves. I built a platform-agnostic design-token API with Storybook and automated checks. They build with the real system, and the standard holds without me reviewing every change. I prototype in real code against production APIs, and external engineering ships from that code. I introduced agentic prototyping across the team and shipped a human-operated support copilot and an end-to-end AI fundraising workflow.\n\nThe habit that runs through all of it is carrying user evidence into rooms where intuition points the other way. Spreadshirt was a marketplace with about 5,000 business sellers and hundreds of thousands of consumers. Shop-owner interviews and one mobile prototype moved leadership off a 60-second automated journey after two earlier redesigns had failed. The prototype went to production. At ChurchDesk I held product management and all product design. Recurring validation with the client lead, pastors and funeral directors produced a booking capability that cut coordination time 70% and reached 90% acceptance. It shipped to the whole customer base. German native, English C2.",
+    "context": {
+      "company": "Delivery Hero SE",
+      "role": "Senior Manager, User Experience - (Quick Commerce)",
+      "emphasis": "Lead with the people-leadership record (five reports, nine across two functions, hiring, promotions, levelling framework) paired with hands-on AI work in both product and practice. Make research-into-decisions the through-line, with Spreadshirt as the consumer evidence. Show design-system implementation as capability that lets non-designers build within the standard."
+    }
+  },
   "case_studies": [
     {
       "id": "spreadshirt-user-research-strategy",
       "visibility": "featured",
       "order": 1,
-      "format_override": "in-depth"
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
     },
     {
       "id": "churchdesk-booking-system",
       "visibility": "featured",
-      "order": 2,
-      "format_override": "in-depth"
+      "order": 3,
+      "format_override": "executive"
     },
     {
       "id": "ninox-ai-onboarding",
-      "visibility": "featured",
-      "order": 3,
-      "format_override": "in-depth"
-    },
-    {
-      "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 4,
-      "format_override": "in-depth"
+      "format_override": "executive"
     },
     {
       "id": "leading-a-team-is-a-design-problem",
       "visibility": "browseable",
-      "order": 6,
+      "order": 5,
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-support-agent",
-      "visibility": "browseable",
-      "order": 7,
-      "format_override": "executive"
-    },
-    {
-      "id": "bibeltv-app-redesign",
+      "id": "bibeltv-design-system-api",
       "visibility": "hidden",
-      "order": 8
-    },
-    {
-      "id": "bibeltv-ai-prototyping",
-      "visibility": "hidden",
-      "order": 9
-    },
-    {
-      "id": "bibeltv-color-api",
-      "visibility": "hidden",
-      "order": 10
+      "order": 6
     },
     {
       "id": "datameer-data-dense-analytics",
       "visibility": "hidden",
-      "order": 11
+      "order": 7
     }
-  ],
-  "show_all_label": "Show more work"
+  ]
 }

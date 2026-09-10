@@ -1,0 +1,50 @@
+{
+  "slug": "deloitte",
+  "aliases": [
+    "deloitte-greenhouse-lab-workshop-facilitator"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Runs the room with executives, and has shipped the AI the room is about.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-deloitte.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Lab & Workshop Facilitator role"
+  },
+  "bio": {
+    "short": "I design and run the rooms where leadership teams work through transformation. At Hypoport hub SE the executive team's shift to a productised service catalogue was delivered through the workshops and design-thinking training I ran with department heads. At Bibel TV I put an AI copilot into production and built a fundraising ecosystem end to end. German native, English C2.",
+    "long": "At Hypoport hub SE, the shared services arm of listed Hypoport SE, I partnered with the executive team on a service-to-product transformation. It was delivered through recurring workshops and reviews with department heads. Case-by-case support moved toward a standardised, scalable service catalogue, with design-thinking training for executive leadership and service teams alongside. I held the Holacracy Facilitator and Secretary roles there and ran the governance meetings where the organisation edited its own structure.\n\nAt Bibel TV, a broadcaster in a linear-to-streaming transformation, I put a customer-support AI copilot into production. I also built an AI fundraising ecosystem solo, from performance analysis through prompt architecture to a production Claude skill shipping across three surfaces. Engineering at an external agency ships from my prototype code. I introduced agentic-engineering prototyping as a practice across the team.\n\nWhen a working relationship at Ninox kept breaking down, I stopped assessing the person and started recording the conditions under which it worked and when it did not. Then I redesigned the defaults: agendas ahead, material in advance, turn-taking on purpose, decisions written. That systemic reading of a room is mine, not borrowed. German native, English C2, five years working in the USA, teams across Germany, New York and Copenhagen.",
+    "context": {
+      "company": "Deloitte",
+      "role": "Lab & Workshop Facilitator (Greenhouse)",
+      "emphasis": "The pairing: facilitation with executives on transformation (Hypoport), and AI shipped into production (Bibel TV). Lead with Hypoport as the facilitation evidence, Bibel TV as the substance, Ninox for the systemic read of a room."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    }
+  ]
+}

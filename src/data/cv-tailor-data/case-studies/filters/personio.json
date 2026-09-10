@@ -1,0 +1,88 @@
+{
+  "slug": "personio",
+  "aliases": [
+    "personio-senior-staff-product-designer"
+  ],
+  "title": "Prototypes That Ship, Systems That Hold",
+  "subtitle": "Real-code prototypes an external agency ships from, and a token architecture built to keep a growing product from diverging",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-personio.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Designer (Senior/Staff) role"
+  },
+  "bio": {
+    "short": "I prototype in real code against production APIs, and the external engineering agency at Bibel TV ships from that code. Underneath sits a four-tier token architecture built to serve iOS, Android, web and connected TV from one source, so the standard holds without a designer reviewing every change. Alongside, a decade mentoring and coaching designers.",
+    "long": "At Bibel TV I hold product management, product ownership and design for the app redesign, and I prototype it in real code against production APIs, web first and then as a native Android app in Kotlin and Jetpack Compose. Engineering sits at an external agency and ships from that code, so the handoff has to survive a company boundary. A teardown of the shipped Android build found 91.8% of the design-token fields and 94% of the core data model carried straight through.\n\nThe token architecture underneath has four tiers: primitives, semantic, component, page and view. The upper tiers alias downward, so one change propagates to every consuming platform. Storybook is the source of truth, and checks that run locally and in CI refuse a token that does not resolve or a hardcoded value. Bibel TV has no in-house design team, so product managers shape features, and I am building the path that lets them prototype with Claude against real Storybook components.\n\nBefore that, ChurchDesk: product management for the main platform alongside all product design. I built booking into the platform's calendar and form builder rather than bolting on a module, so one build carried funerals, room rentals, baptisms and weddings. 70% less coordination time and 90% booking acceptance at the launch customer, then rolled out to the whole customer base. In parallel with all of it, a decade mentoring and coaching designers at CareerFoundry, and at Ninox a levelling framework for design and UX writing that two promotions were made against.",
+    "context": {
+      "company": "Personio",
+      "role": "Product Designer (Senior/Staff)",
+      "emphasis": "The pairing the posting is asking for: hand-coded and AI-assisted prototypes that an external agency actually ships from, plus reusable and extensible abstractions (the four-tier token architecture, Storybook rails, CI checks) built to reconcile divergence across a multi-platform product. Second: a decade mentoring and coaching designers, the Ninox levelling framework and 360 format. Supporting: the ChurchDesk booking architecture call as raising quality under constraint. Written for a senior/staff IC reader, so the practice leads and titles stay secondary."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 4
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 6
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 7
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "hidden"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "hidden"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "hidden"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "hidden"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "hidden"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "hidden"
+    }
+  ]
+}

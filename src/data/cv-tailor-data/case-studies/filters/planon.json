@@ -1,0 +1,56 @@
+{
+  "slug": "planon",
+  "aliases": [
+    "planon-principal-product-strategist-ux-ui"
+  ],
+  "title": "Coherent where it counts",
+  "subtitle": "Design direction across legacy and modern front ends, a design system built as an API, and a leadership record behind both",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-planon.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Principal Product Strategist - UX/UI role"
+  },
+  "bio": {
+    "short": "I design for organizations where an older interface and a new one have to live side by side. At Ninox we redesigned the editor and the core interface and left the admin back-end alone. At Bibel TV the redesign is scoped to the streaming journeys; the existing UI got color alignment and unified buttons. The principle under both: consistency is spent on the key journeys. I've led nine people across four disciplines on a senior leadership team. And I build the design system as an API. The standard holds without a designer in every room.",
+    "long": "Consistency is not an end in itself. Redesigning everything at once is too costly, and it cannot happen simultaneously. So I spend consistency where it orients users and carries the brand: the key journeys. At Ninox that meant redesigning the editor and the core interface. The account and admin back-end that mostly admins see stayed as it was. At Bibel TV the redesign is scoped to the streaming portion of the app. In parallel the existing UI received color-scheme alignment and a start on unified buttons. People get a coherent experience on the core journeys, with minimal visual breaks as they move through the app.\n\nUnder that sits a design system built as an API rather than as a Figma file. Four token tiers from one source, built to serve iOS, Android, web and connected TV. Storybook is the source of truth. Checks that run identically locally and in CI refuse a token reference that does not resolve, or a value written straight into a component. The token vocabulary reaches an AI assistant as an enumerated list. The compliant path is the fast one for a product manager and for the assistant alike. Engineering sits at an external agency. It ships from prototypes I build in real code against production APIs. I also shipped a support copilot for viewer services, operated by the team by hand.\n\nThe people side is where the record is longest. At Ninox I led five designers and UX writers, including a design lead, on the Senior Leadership Team. For four months that grew to nine people across product design, UX writing, product management and data science. I wrote the leveling framework for design and UX writing, then hired two and promoted two against it. At Datameer I led the UX team across Germany and New York for five years. I've spent a decade mentoring and coaching designers at CareerFoundry. Berlin-based, with full right to work across the EU.",
+    "context": {
+      "company": "Planon",
+      "role": "Principal Product Strategist - UX/UI",
+      "emphasis": "Lead with the stated principle for legacy and modern interfaces coexisting and the two products where it was applied. Then the design system as a scalable framework with governance and AI-enabled workflow. Then leadership and mentoring scope: nine reports across four disciplines, hiring, promotions, a leveling framework, a decade of mentoring."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

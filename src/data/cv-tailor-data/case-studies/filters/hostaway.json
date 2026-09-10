@@ -1,0 +1,62 @@
+{
+  "slug": "hostaway",
+  "aliases": [
+    "hostaway-senior-product-designer"
+  ],
+  "title": "From a problem to something real and testable",
+  "subtitle": "Working prototypes in real code, AI that runs in production, and the dense B2B interfaces people run a business inside",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-hostaway.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
+  "bio": {
+    "short": "I take a problem to a working prototype fast. The Bibel TV app redesign went from Claude Code against real data to a native Kotlin app, and users tested the running app rather than a presentation. Engineering ships from that code, and a teardown of the shipped Android build found 91.8% of my design-token fields in it. Nine-plus years of B2B SaaS on data-dense interfaces sit underneath.",
+    "long": "The Bibel TV redesign is how I work now. Direction came first, by hand: market research and design exploration in Figma and FigJam, until I had a view the brand and the market could stand on. Then Claude Code, prototyping the interfaces against real data, and a native Kotlin and Jetpack Compose app after that, with custom APIs standing in for data the production API did not yet carry. Users and stakeholders gave feedback inside the running app. The engineering agency that builds the app sits outside the company and ships from my prototype code; a teardown of the shipped Android build found 91.8% of my token fields and 94% of the core Kotlin token model, field by field. I am product manager and product owner for the redesign as well as its designer, so I write and prioritise the tickets engineering works from and check features in beta and production.\n\nAI runs in production in my work. A support copilot drafts replies in the handbook's wording and every send decision stays with a person. An AI fundraising ecosystem I built solo, end to end. With Ninox's CEO and technical co-founder, as a consultant in summer 2025, I designed the prompt-to-database onboarding where the generated schema renders into the real data-model editor beside the chat, so users edit directly or keep prompting; it was adopted as the primary onboarding pattern for their public AI beta. I also know where AI stops earning its place: synthesis over thousands of forum posts, yes; a small batch of interviews, I read myself.\n\nThe interfaces I have spent longest on are the dense ones. Five years at Datameer on analytics for banks and insurers, pivot tables over big data and a query-builder preview that had to be honest about showing a sample. A no-code platform at Ninox where SMEs build their own data models. At ChurchDesk I held product management for the main platform alongside all design, and a booking capability that the internal plan had as a standalone add-on went into the existing calendar and form builder instead, in two months, then out to every customer for room rentals, baptisms and weddings. Figma, auto-layout and Dev Mode are where my work ends, for documentation and handover. I live in Berlin, work remotely across EMEA, German native, English C2.",
+    "context": {
+      "company": "Hostaway — AI-powered vacation-rental management platform for professional short-term-rental operators; 20,000+ property managers, profitable, the first short-term-rental PMS unicorn, fully remote with team members in over 40 countries.",
+      "role": "Senior Product Designer, 100% remote within EMEA, Product department. Owns projects end to end from discovery through delivery and post-launch data, works AI-first across research synthesis, ideation and prototyping, builds interactive working prototypes for real users, contributes to and maintains the design system, facilitates workshops and alignment.",
+      "emphasis": "Lead with the practice the posting describes as its own: working prototypes in real code put in front of users, engineering shipping from that code with the 91.8% teardown figure, and AI in production. Then dense B2B interface craft and genuine product ownership. State Figma, auto-layout and Dev Mode plainly as skills; the code-first workflow is the story. Write 'I' throughout."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}

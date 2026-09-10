@@ -1,0 +1,62 @@
+{
+  "slug": "proalpha",
+  "aliases": [
+    "proalpha-group-ux-ui-lead"
+  ],
+  "title": "UX, die sich über Teams hinweg tragen lässt",
+  "subtitle": "Design-System-Governance, Research Enablement und komplexe Geschäftssoftware für den Mittelstand",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-proalpha.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Zugeschnitten auf die Position Group UX/UI Lead"
+  },
+  "bio": {
+    "short": "Ich verbinde 15+ Jahre UX- und Produktarbeit mit Design-System-Governance und nachhaltigem Kompetenzaufbau. Bei Ninox führte ich Design für eine No-Code-ERP-Plattform; heute mache ich bei Bibel TV Designstandards ohne internes Designteam nutzbar. Enterprise Research bei Datameer und organisationsweite Beratung bei Hypoport ergänzen dieses Profil.",
+    "long": "Bei Ninox führte ich Design aus dem Senior Leadership Team für eine No-Code-Plattform, mit der mittelständische Unternehmen eigene Datenmodelle, Anwendungen und operative Prozesse aufbauen. Ich verantwortete das Design System und etablierte die gemeinsame Governance mit Engineering. Research-Wissen wurde über Dovetail, das Kundenforum und Produktdaten für die Teams zugänglich.\n\nBei Bibel TV arbeite ich heute in einem Modell ohne internes Designteam: Product Manager und Product Owner gestalten Features, Engineering sitzt bei externen Partnern. Deshalb entwickle ich den Standard als nutzbare Infrastruktur. Dazu gehören eine live betriebene Token-API, reale Storybook-Komponenten und Prüfungen, die ungültige Referenzen und fest eingetragene Werte früh sichtbar machen. Der nächste Schritt führt Prototypen in überprüfbare Komponenten-, View- und Token-Änderungen.\n\nBei Hypoport begleitete ich Bereichsleitungen und Geschäftsführung durch wiederkehrende Workshops und Reviews von individueller Betreuung zu standardisierten, skalierbaren Angeboten. Bei Datameer schuf ich über iteratives Screening Zugang zu schwer erreichbaren Fachrollen in Banken und Versicherungen und machte Research zur Grundlage für Produktentscheidungen. Ich arbeite auf Deutsch muttersprachlich und auf Englisch C2.",
+    "context": {
+      "company": "Proalpha Group",
+      "role": "Group UX/UI Lead m/w/d",
+      "emphasis": "Lead with the combination of no-code ERP product understanding, design-system ownership, organisational UX enablement and research access. Show a system that Product Leads and teams can use without making central design the bottleneck."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}

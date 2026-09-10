@@ -1,0 +1,56 @@
+{
+  "slug": "genesis",
+  "aliases": [
+    "hyundai-website-digital-experience-manager"
+  ],
+  "title": "Websites and apps, run as products",
+  "subtitle": "Delivery through external agencies, customer journeys set from evidence, and capabilities that reach every market at once",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-genesis.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Website & Digital Experience Manager role"
+  },
+  "bio": {
+    "short": "I run websites and apps the way a product is run. At Bibel TV I deliver a cross-platform redesign through external agencies: I write the tickets, sign off the solutions and check every release in production. At ChurchDesk I shipped an accessibility capability across six countries and took a booking capability from one launch customer to the whole customer base.",
+    "long": "At Bibel TV, engineering sits at external agencies. I am product manager, product owner and Head of Product Design for the redesign across iOS, Android, web and connected TV: I write and prioritize the tickets the agencies work from, hold design-side sign-off on UI and solutions, and check every release in beta and in production. Direction came from user research and competitor benchmarking against Pray.com and Hallow, and I read Google Analytics, Looker Studio and HubSpot myself. I also prototype in real code against the production APIs, and the agency ships from that code.\n\nAt ChurchDesk I held product management for the main platform alongside all product design, for a platform serving churches in six countries. Customers host their websites on it, and the European Accessibility Act gave them a legal obligation; we shipped the capability that met it for them automatically. The booking capability was built into the platform's calendar and form builder rather than bolted on, and I sequenced its rollout from the launch customer to every customer, where it now carries room rentals, baptisms and weddings. At the launch customer it cut coordination time by 70% with 90% booking acceptance.\n\nEarlier I led the design team across Germany and New York for five years at Datameer, and at Spreadshirt research and a tested prototype changed an e-commerce company's direction after two failed redesigns. Across all of it the job is the same: run the delivery and own the customer journey at the same time.",
+    "context": {
+      "company": "Genesis Motor Europe",
+      "role": "Website & Digital Experience Manager",
+      "emphasis": "Lead with agency delivery held together with product ownership at Bibel TV, then the six-country accessibility capability and the launch-customer-to-base rollout at ChurchDesk, then evidence-led journey work and hands-on analytics. Cross-market coordination is a record: six countries, Germany/New York, a 200+ matrix organization."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

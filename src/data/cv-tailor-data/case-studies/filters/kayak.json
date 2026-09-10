@@ -1,0 +1,62 @@
+{
+  "slug": "kayak",
+  "aliases": [
+    "kayak-staff-product-designer-mobile"
+  ],
+  "title": "One pattern system, held in the build",
+  "subtitle": "Mobile design direction across teams and platforms, native prototypes engineering ships from, and AI designed as a native part of the product",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-kayak.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Staff Product Designer, Mobile focus role"
+  },
+  "bio": {
+    "short": "I hold design direction for Bibel TV's iOS, Android, web and connected-TV app. There is no in-house design team and engineering sits at external agencies, so the standard lives in a token API and Storybook rather than in review, and a teardown of the shipped Android build found 91.8% of my design-token fields in it. I prototype natively in Claude Code and Kotlin. Before this I led five designers and writers at Ninox.",
+    "long": "Bibel TV has no in-house design team and its engineering sits at external agencies, so I hold design direction for the app across iOS, Android, web and connected TV as designer, product manager and product owner for the redesign. To make the standard hold without me in every review, I built the design system as a platform-agnostic token API in four tiers, put Storybook in as the source of truth, and added checks that reject anything off-system. A teardown of the shipped Android build found 91.8% of my design-token fields and 94% of the core Kotlin token model in it, field by field.\n\nI prototyped the redesign in Claude Code against real data, then continued it as a native Kotlin and Jetpack Compose app because Android is the largest part of the userbase. Engineering ships from that code. One stakeholder worry, that old Android screens band on gradients, turned out to be about old displays rather than Android, so multi-step gradients shipped everywhere. I work hands-on across phone, tablet including iPad, desktop web and connected TV, and I have a point of view on Liquid Glass and Material 3 Expressive.\n\nAt Ninox I led five designers and writers from the Senior Leadership Team, owned the design system, and established joint governance with engineering; the system and components ship in the app, including its redesign. I wrote the levelling framework the team grew on and promoted two people against it. Later, as a consultant, I designed Ninox's prompt-to-database onboarding with the founders so the generated schema renders into the real editor beside the chat. Earlier, at Spreadshirt, a mobile prototype I led went to production on a platform serving hundreds of thousands of consumers. I am based in Berlin.",
+    "context": {
+      "company": "KAYAK",
+      "role": "Staff Product Designer, Mobile focus",
+      "emphasis": "Lead with manager-level scope held without reports across a company boundary and a pattern system enforced in the build, with the APK teardown as the shipped proof. Then native prototyping in Claude Code and Kotlin, then AI designed as a native part of a product, then the Ninox leadership record as the plus the posting names."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}

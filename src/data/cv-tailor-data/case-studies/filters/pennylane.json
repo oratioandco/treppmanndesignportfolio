@@ -1,0 +1,62 @@
+{
+  "slug": "pennylane",
+  "aliases": [
+    "pennylane-product-design-manager"
+  ],
+  "title": "A manager who has done the people work, and still builds",
+  "subtitle": "Leading product design teams in B2B software for people who are trying to get work done",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-pennylane.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Design Manager role"
+  },
+  "bio": {
+    "short": "I lead product design teams in B2B software built for people who are trying to get work done, and I still build. At Ninox I ran five designers and UX writers from the senior leadership team, wrote the levelling framework they grew against, and for four months held Product as well. At Bibel TV I own a design system that holds speed, quality and consistency by architecture rather than by review, and engineers ship from my prototype code.",
+    "long": "Ninox is a no-code platform on which SMEs build their own ERP and document-based processes. There I led five direct reports across product design and UX writing, including a design lead, from a seat on the Senior Leadership Team. I wrote the levelling framework for both crafts and used it for growth plans; the two promotions on record were made against it. I ran performance reviews, designed a lean 360 as a workshop format, and hired two. From July to October 2023 I held Product as well: three product managers and a data scientist alongside the design team, nine people across four disciplines. I owned the design system and established joint governance with engineering.\n\nI have worked directly with founders on what a product should become. In summer 2025, as a freelance consultant, I designed Ninox's prompt-to-database AI onboarding with the CEO and technical co-founder. At Hypoport hub SE I partnered with the executive team and delivered design-thinking training to executive leadership. At Datameer, iterative usertesting.com screening reached analysts working inside top US, Canadian and UK banks and insurers, and research got executive backing. At Spreadshirt, user interviews reversed an executive product assumption and secured buy-in for the opposite direction.\n\nAt Bibel TV I am product manager, product owner and Head of Product Design for a multi-platform redesign. There are no staff designers there, so the design system had to work for product managers and product owners. A four-tier token architecture is built to serve iOS, Android, web and connected TV from one source. Storybook is the shared surface, and checks refuse off-system work locally and in CI. I prototype in real code against production APIs, and engineers ship from that code across a company boundary. I work in German natively and in English at C2.",
+    "context": {
+      "company": "Pennylane",
+      "role": "Product Design Manager",
+      "emphasis": "Lead with the pairing from positioning.md §4: the people work done at Ninox in the posting's own vocabulary (five reports, levelling framework, performance reviews, hiring and promotion, nine reports across two functions), and current system-level craft including AI that keeps speed, quality and consistency without review. Founder-level and executive communication second; research with hard-to-reach professional users third. Users who are trying to get work done: SMEs, analysts inside banks, parish staff."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
