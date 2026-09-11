@@ -1,0 +1,44 @@
+{
+  "slug": "kleinanzeigen-advertising",
+  "aliases": [
+    "kleinanzeigen-senior-product-manager-advertising"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Product management and product design, held as one job",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-kleinanzeigen-advertising.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Manager, Advertising role"
+  },
+  "bio": {
+    "short": "I hold product management and product design as one job, doing it today at Bibel TV. I have done the same at ChurchDesk and, briefly, as interim Head of Product at Ninox. I ship AI work rather than talk about it, and I bring marketplace and e-commerce experience from Spreadshirt.",
+    "long": "At Bibel TV I am product manager and product owner for the app redesign, alongside leading product design across iOS, Android, web and connected TV &mdash; the redesign is the purpose of the engagement, not a duty attached to it. I redesigned the entry point to an AI feature and usage rose 153% on iOS and 85% on Android, four-week averages before and after. I also shipped a production support copilot and an end-to-end AI fundraising pipeline, analysis through prompt engineering to a working prototype, solo.\n\nAt ChurchDesk I held product management for the main platform alongside all product design, across six European markets. When a single church asked for a funeral-booking feature, I reframed it into a platform capability serving both the parishes and the funeral homes booking through it &mdash; the closest analogue in my record to a two-sided product decision, though not an advertising or monetisation one. It shipped in two months, cut coordination time 70%, reached 90% acceptance, and rolled out to the whole customer base.\n\nEarlier, at Ninox, I led two functions at once for four months as interim Head of Product &mdash; product design and UX writing, plus three product managers and one data scientist &mdash; and at Spreadshirt I led the nine-month redesign of a dual-sided marketplace serving ~5,000 business sellers and hundreds of thousands of consumers. I work in German natively and English at C2.",
+    "context": {
+      "company": "Kleinanzeigen DE GmbH",
+      "role": "Senior Product Manager, Advertising (fixed-term, maternity cover)",
+      "emphasis": "Lead with product management and product design held together as one job, three times, including today. Show Discovery-to-Delivery ownership (ChurchDesk booking capability) and shipped AI work with a measured result (Bibelaufschlag lift, support copilot, fundraising pipeline). Marketplace/e-commerce exposure at Spreadshirt supports the commerce-experience plus in the posting. Never claim advertising or monetisation-product experience directly; the ChurchDesk analogue is named once, clearly scoped as an analogue."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    }
+  ]
+}
