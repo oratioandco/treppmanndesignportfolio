@@ -1,0 +1,56 @@
+{
+  "slug": "pincamp",
+  "aliases": [
+    "pincamp-ai-driven-senior-product-manager-web"
+  ],
+  "title": "One seat: product strategy, AI, design",
+  "subtitle": "A consumer app run end to end — AI features in production, engineering shipping from prototype code, and the numbers that moved",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-pincamp.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the AI-Driven Senior Product Manager Web role"
+  },
+  "bio": {
+    "short": "I am product manager, product owner and design lead for the Bibel TV app redesign — one seat holding strategy, the AI roadmap and UI quality for a consumer product. The AI features I built are in production: a support copilot, a fundraising ecosystem built solo, and an AI feature whose redesign more than doubled weekly starts. I prototype in real code, engineering ships from it, and I camp.",
+    "long": "At Bibel TV I hold product management, product ownership and design for a consumer app redesign across iOS, Android, web and connected TV. The AI features are in production, not on slides. A support copilot drafts viewer letters in the company's voice from the support handbook, with an explicit restricted-topic list and every send decision human. An end-to-end AI fundraising ecosystem I built solo runs from the analysis of which letters over-performed to a Claude skill carrying one message into in-app, web and video. The KI Bibelaufschlag feature I designed full scope: its redesign took weekly starts up +153% on iOS and +85% on Android (GA4, four-week averages). AI search and chat are on my roadmap now in the Video Study Bible project, in development.\n\nThe same seat holds the design system. A four-tier token architecture, Storybook as the source of truth, and checks in CI that refuse off-system work let product managers and the external engineering partner build self-serve. I prototype in real code against production APIs, and engineering ships from that code. Before Bibel TV I led five designers and writers at Ninox, and ran product with three PMs and a data scientist as interim Head of Product. At ChurchDesk I embedded a booking capability into the platform: 70% less coordination time, 90% acceptance. E-commerce shipped at Spreadshirt (seller-experience redesign after two failed attempts, A/B-tested) and HairDirect (the first mobile orders). German native, English C2, Berlin. And I camp.",
+    "context": {
+      "company": "PiNCAMP (ADAC)",
+      "role": "AI-Driven Senior Product Manager Web (m/f/d)",
+      "emphasis": "Lead with the pairing: the person who owns the product decisions is the same person who builds the AI and leads the designers. Name the production AI artifacts and the one measured lift. Show the consumer funnel evidence (booking capability, checkout, A/B-tested e-commerce) as named outcomes. The posting screens out process managers — show builder verbs, real code, measured results."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
