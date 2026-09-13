@@ -62,8 +62,8 @@
           "after": "A shared visual language across app and broadcast"
         },
         {
-          "label": "Readiness",
-          "value": "Design direction finalised and validated; moving into development with working prototype code"
+          "label": "Shipped",
+          "value": "In production on iOS and Android. The AI feature the redesign carried went from 205 to 518 weekly starts on iOS (+153%) and 655 to 1,213 on Android (+85%), each an average of the four full weeks before and after its own release (GA4). Engineering built from working prototype code."
         }
       ]
     },
@@ -79,7 +79,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. A concept survey found 83% of respondents with a preference chose light or mixed over dark-only; design direction finalised and validated, moving into development.",
+      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. A concept survey found 83% of respondents with a preference chose light or mixed over dark-only. Shipped across the platforms, the redesign more than doubled weekly starts of the AI feature it carried: +153% on iOS, +85% on Android (GA4, four-week averages).",
       "angle": "A redesign as competitive strategy",
       "sections": [
         "hero",
