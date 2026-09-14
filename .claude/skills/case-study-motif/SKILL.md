@@ -32,8 +32,7 @@ differentiate two motifs, that's a sign you need a new shape instead.
 |---|---|---|---|
 | `churchdesk-booking-system` | Reconciling 3 stakeholders' (funeral homes, priests, parish offices) conflicting schedules into one data model | `interlock-rings` | 3 circle obstacles, offset centers, overlapping like a Venn diagram — several distinct cycles converging into one |
 | `leading-a-team-is-a-design-problem` | The team as people in relationship, rebuilt into a working rhythm | `network` | Several gravity-point obstacles (the people), connected by segment "streams" (communication) that particles visibly travel along |
-| `bibeltv-ai-prototyping` | Rapid iteration, generative variation, an accelerated idea→prototype loop | `sunburst` | Spikes radiating outward from one center |
-| `bibeltv-agentic-engineering` | Collapsing the design-to-ship pipeline into one accelerated loop | `spiral` | An inward-tightening spiral — cycles visibly accelerate as the radius shrinks |
+| `bibeltv-ai-prototyping` | Collapsing the design-to-ship pipeline into one accelerated loop | `spiral` | An inward-tightening spiral — cycles visibly accelerate as the radius shrinks |
 | `bibeltv-metadata-extraction` | One system that handles most fields and deliberately, knowingly leaves one out | `sunburst` + `{ skipOne: true }` | Same radiating shape, minus one spike — the gap in the structure is the point, not an accident |
 | `bibeltv-app-redesign` | Old direction and new direction, resolving into one by the end — not two things staying separate | `double-helix` + `{ converge: true }` | Two strands that start out of phase and taper into the same phase, instead of staying parallel forever |
 | `bibeltv-color-api` | Many sampled pixels reduced to a few stable extracted colors — k-means | `cluster` | A scatter of small samples pulled toward whichever of a few larger attractor centers is nearest |
