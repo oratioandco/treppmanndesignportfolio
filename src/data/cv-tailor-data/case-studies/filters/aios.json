@@ -1,0 +1,62 @@
+{
+  "slug": "aios",
+  "aliases": [
+    "aios-medical-product-designer"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Consumer mobile shipped with measurement, internal tools shipped without ceremony, and design owned end to end — problem to production code.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-aios.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Designer role"
+  },
+  "bio": {
+    "short": "I own problems end to end — PM, PO and designer in one seat for a consumer app redesign across iOS, Android, web and connected TV. The AI feature whose entry point I redesigned is in production, and its weekly starts more than doubled on iOS. I prototype in real code against production APIs, and engineering ships from that code.",
+    "long": "At Bibel TV I am the product manager, product owner and designer for the app redesign in one seat — the purpose of the contract. The KI Bibelaufschlag AI feature I carried is live on iOS and Android: redesigning its entry point from an unclear button to a self-explaining input more than doubled weekly starts, +153% on iOS and +85% on Android, GA4 four-week averages around each release. Alongside it I ship internal AI products: a support copilot for the viewer-services team where every send decision stays human, and design infrastructure — a four-tier token API and a colour engine — that keeps four platforms in step.\n\nAt ChurchDesk I delivered a booking capability in two months on a €20k client budget — the deal closed before I joined; I led the delivery — embedded in the platform's existing calendar and form builder instead of the standalone module that was floated. 70% less coordination time and 90% acceptance at the launch customer, then rolled out to the whole base. The product ran under GDPR plus church data-protection law across six countries, and customers met the European Accessibility Act deadline automatically on the sites they host. Earlier, the mobile checkout I designed at HairDirect produced the company's first mobile orders.\n\nI don't hand engineering a spec — I hand them something that already runs. I prototype in Claude Code against production APIs, web first, then continued natively in Kotlin and Jetpack Compose because Android is where most users are. Engineering at an external agency — outside my company entirely — reviews and ships from that code; a teardown of the shipped build verified 91.8% of the design-token fields and 94% of the core data model carried through. Before that, at Ninox, I designed the prompt-to-database AI onboarding with the CEO and technical co-founder: chat beside direct manipulation, so people edit what the model built.",
+    "context": {
+      "company": "AIOS Medical",
+      "role": "Product Designer",
+      "emphasis": "End-to-end ownership of loosely defined problems — discovery through shipped, run independently (PM, PO and design in one seat). Consumer mobile work that is live and measured, with the measurement method named (GA4, four-week averages around each release, feature-level). Design that survives contact with engineering: prototypes in real code that an external agency evaluates and ships from. Internal AI products shipped small and honestly scoped — a copilot that is one tool for one team, every send human. Rule-bound design under real constraints: a European Accessibility Act deadline met across six countries, GDPR plus church data-protection law, a two-month commercial envelope met. Process adapted to the risk and reversibility of each decision."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
