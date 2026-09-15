@@ -1,0 +1,62 @@
+{
+  "slug": "jetbrains",
+  "aliases": [
+    "jetbrains-senior-product-designer-air"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Complex tools for expert users — an AI interaction model already shipped to public beta, and prototypes in real code that engineering ships from.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-jetbrains.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer (AIR) role"
+  },
+  "bio": {
+    "short": "I design complex tools for people more expert than me at the thing the tool does — data analysts at Datameer, SME owners building their own systems at Ninox. At Ninox I designed the onboarding for prompt-to-database: chat beside a direct-manipulation editor, so what the AI generates lands somewhere the user can inspect and fix. It shipped as the public beta. I prototype in real code, engineering ships from it, and one AI feature I designed full scope moved weekly starts +153% on iOS, GA4.",
+    "long": "Five years at Datameer taught me what complex functional interfaces mean at depth: column charts, big-data pivot tables, aggregated JSON views, filter logic, and the sample-based-uncertainty problem, where a query preview could show empty results even when the full data existed — for users from business users through analysts to code-writing data engineers, inside banks and insurers. At Ninox the same problem appeared one level up: building blocks that let users create their own data-dense interfaces on a no-code platform. The constant is designing for someone who knows the domain better than I do, and needs the interface to get out of the way without taking the controls with it.\n\nThe interaction problem this role is built on is one I have already designed and shipped. At Ninox, consulting directly with the CEO and technical co-founder in summer 2025, I designed the prompt-to-database onboarding: the AI generates a schema into the real data-model editor, not a chat preview — chat and direct manipulation sit side by side, user edits are preserved over AI suggestions, and there is no separate AI mode to escape from. It shipped as the public AI beta in February 2026. At Bibel TV the same principle runs through a production support copilot: the human is upstream of the model, reads the letter first, and every send decision stays human. Different products, one design position — AI output has to land somewhere the user owns.\n\nI prototype in real code and engineering ships from it. The Bibel TV app redesign was prototyped in Claude Code against real and self-built APIs, web first, then continued natively in Kotlin and Jetpack Compose; the external engineering agency builds from that code, and a teardown of the shipped Android build verified 91.8% of the design-token fields and 94% of the core data model intact. Around it sit a four-tier token architecture serving four platforms from one source and a colour engine that themes the catalogue from its own artwork. And the AI features are in production with numbers attached: the feature I designed full scope went from 205 to 518 weekly starts on iOS and 655 to 1,213 on Android — +153% and +85%, GA4 four-week averages, feature-level.",
+    "context": {
+      "company": "JetBrains",
+      "role": "Senior Product Designer (AIR)",
+      "emphasis": "Designing interaction models that keep the human in control of AI output — shipped, not theorised: the prompt-to-database onboarding that became Ninox's public AI beta, a copilot where every send decision stays human. Complex, data-dense functional interfaces at analytics depth, including feedback design for sample-based uncertainty. Prototyping in real code against production APIs, with engineering shipping from the code and features verified in production and beta under design-side sign-off. Design documentation in English at every company, and peer and engineering review of his own work as standing practice."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
