@@ -1,0 +1,62 @@
+{
+  "slug": "stackgini",
+  "aliases": [
+    "stackgini-founding-product-designer"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Research that changed what got built, AI interaction that shipped, and a designer who already works the way a founding seat works.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-stackgini.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Founding Product Designer & Researcher role"
+  },
+  "bio": {
+    "short": "I'm the only in-house designer at Bibel TV: product manager, product owner and designer for a consumer app redesign, prototyping in real code that an external engineering agency ships from. My research has reversed an executive strategy, and my AI interaction work has shipped twice, once more than doubling weekly use of the feature. Native German, English C2, Berlin.",
+    "long": "The interviews that changed the most were in person. At Spreadshirt, shop owners' accounts of their own design process overturned an executive assumption about automation after two earlier company attempts had failed, and the research prototype I led went to production and shifted the company's mobile strategy. At Datameer, access was the research problem: in person with US banking customers, and iterative usertesting.com screening that reached hard-to-reach personas in regulated industries. At ChurchDesk, discovery with the launch customer, pastors and funeral directors became a booking capability embedded in the platform rather than a standalone add-on, with 70% less coordination time and 90% acceptance at the launch customer, then every customer.\n\nOn AI interaction I have one position, and it has shipped twice: the AI generates into the surface the user already owns, so they can inspect it and fix it. At Ninox I designed the prompt-to-database onboarding with the CEO and technical co-founder, chat beside the real data-model editor, and it became the public AI beta in February 2026. At Bibel TV, the AI feature I designed full scope more than doubled its weekly starts after I redesigned its entry point from an unclear button into a self-explaining input: +153% on iOS, +85% on Android, GA4 four-week averages.\n\nI prototype in Claude Code against production APIs, web first and then native Android, and an external engineering agency ships from that code. I record interviews in Teams and analyse them with Claude, which is where AI earns its place in research: from roughly 200 data points up. The design system I built from scratch at Bibel TV is a four-tier token architecture serving four platforms from one source; the one at Ninox existed before me, and I owned it, grew it and established joint governance with engineering.",
+    "context": {
+      "company": "Stackgini",
+      "role": "Founding Product Designer & Researcher",
+      "emphasis": "Research he ran himself, with customers, in person where the record supports it (Spreadshirt shop owners, Datameer US customers, ChurchDesk pastors and funeral directors), turned into decisions that shipped. A stated point of view on AI interaction with two shipped instances and one measured number (feature-level, GA4). The founding shape he already works in at Bibel TV: only in-house designer, PM and PO, ticket board, prototypes in code an external agency ships from. Design systems: owned and grown at Ninox, built from scratch at Bibel TV. Native German for enterprise customer conversations."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
