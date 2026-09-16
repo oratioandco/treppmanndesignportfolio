@@ -57,6 +57,7 @@ export interface CaseStudy {
   status: string;
   last_updated?: string;
   hero_image?: { src: string; alt: string; caption?: string };
+  video?: { src: string; poster: string; caption?: string; duration_s?: number; variant?: string };
   format_priority?: string[];
   sections: CaseStudySection[];
   variants?: Record<string, {

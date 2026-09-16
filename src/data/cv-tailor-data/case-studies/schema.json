@@ -97,6 +97,17 @@
     "hero_image": {
       "$ref": "#/$defs/image"
     },
+    "video": {
+      "type": "object",
+      "description": "Optional short promo clip (see video/README.md). Rendered under the hero as a click-to-play figure.",
+      "properties": {
+        "src": { "type": "string" },
+        "poster": { "type": "string" },
+        "caption": { "type": "string" },
+        "duration_s": { "type": "number" }
+      },
+      "required": ["src", "poster"]
+    },
     "format_priority": {
       "type": "array",
       "items": {

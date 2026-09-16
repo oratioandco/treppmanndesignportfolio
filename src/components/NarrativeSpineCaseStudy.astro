@@ -134,6 +134,27 @@ let figureIndex = 0;
     </div>
   </header>
 
+  {study.video && (
+    <section class="cs-spine-article cs-spine-video" aria-label="Short video version">
+      <figure class="cs-spine-video-figure">
+        <video
+          class="cs-spine-video-player"
+          controls
+          preload="metadata"
+          playsinline
+          poster={study.video.poster}
+          src={study.video.src}
+        ></video>
+        <figcaption>
+          <span class="cs-spine-video-kicker">
+            Watch{study.video.duration_s ? ` · ${study.video.duration_s}s` : ''}
+          </span>
+          {study.video.caption && <span>{study.video.caption}</span>}
+        </figcaption>
+      </figure>
+    </section>
+  )}
+
   <main class="cs-spine-article" aria-labelledby="cs-spine-title">
     {visibleSections.map((section, sectionIndex) => {
       const content = section.content || (section as CaseStudySection & { narrative?: string }).narrative;
@@ -370,6 +391,34 @@ let figureIndex = 0;
     max-width: 86rem;
     margin: 0 auto;
     padding: 0 clamp(1rem, 4vw, 4rem);
+  }
+
+  .cs-spine-video { padding-top: clamp(2.5rem, 5vw, 4rem); }
+  .cs-spine-video-figure { margin: 0; }
+  .cs-spine-video-player {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg);
+    border: 1px solid var(--color-rule);
+    border-radius: 0.75rem;
+  }
+  .cs-spine-video-figure figcaption {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1.68fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+  }
+  .cs-spine-video-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  @media (max-width: 48rem) {
+    .cs-spine-video-figure figcaption { grid-template-columns: 1fr; gap: 0.5rem; }
   }
 
   .cs-spine-section {

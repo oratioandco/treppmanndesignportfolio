@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Who Controls the AI? — Ninox AI onboarding</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #s1 { z-index: 1; perspective: 1900px; perspective-origin: 72% 50%; }
+      #s2 { z-index: 2; opacity: 0; perspective: 1900px; perspective-origin: 72% 50%; }
+      #s3 { z-index: 3; opacity: 0; perspective: 2200px; }
+      #s4 { z-index: 4; opacity: 0; perspective: 1700px; }
+      #s5 { z-index: 5; opacity: 0; }
+
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+      .wash { position: absolute; inset: 0; pointer-events: none; }
+      #wash1 { background: linear-gradient(90deg, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.92) 40%, rgba(248,243,238,0.35) 70%, rgba(248,243,238,0) 100%); }
+      #wash2 { background: radial-gradient(ellipse 760px 420px at 50% 50%, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.9) 55%, rgba(248,243,238,0) 100%); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.02; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); }
+
+      .device { position: absolute; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+      .device .ht { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .device .ht circle { fill: var(--teal); }
+
+      /* S1: product on frame one, title beside it */
+      #s1-col { position: absolute; left: 140px; top: 0; height: 100%; width: 780px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s1-kick { display: flex; align-items: center; gap: 18px; }
+      #s1-title { font-family: "Redaction 70", serif; font-size: 124px; line-height: 0.98; letter-spacing: -0.02em; color: var(--ink); }
+      #s1-sub { font-size: 32px; max-width: 700px; line-height: 1.3; }
+      #dev0 { left: 940px; top: 250px; width: 900px; height: 523px; }
+
+      /* S2 */
+      #s2-col { position: absolute; left: 140px; top: 0; height: 100%; width: 720px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s2-h1, #s2-h2 { font-size: 78px; }
+      .em { position: relative; display: inline-block; white-space: nowrap; }
+      .em svg { position: absolute; left: -7%; top: -22%; width: 114%; height: 150%; overflow: visible; }
+      .em svg path { fill: none; stroke: var(--teal); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: 0.9; }
+      .em .t { position: relative; }
+      #dev { left: 940px; top: 250px; width: 900px; height: 523px; }
+      #dev-hero { opacity: 0; }
+      #s2-cap { position: absolute; left: 260px; right: 260px; bottom: 76px; display: flex; flex-direction: column; gap: 14px; }
+      #s2-type { font-family: "Switzer", serif; font-weight: 400; font-size: 38px; line-height: 1.3; color: var(--ink); min-height: 100px; }
+      #s2-cur { display: inline-block; width: 4px; height: 40px; background: var(--teal); vertical-align: -6px; margin-left: 4px; }
+
+      /* S3: the editor fills the frame; headline on a paper plate */
+      #s3-col { position: absolute; left: 110px; top: 44px; width: 1500px; display: flex; flex-direction: column; gap: 14px; z-index: 5; }
+      #s3-plate { position: absolute; left: 80px; top: 24px; width: 1200px; height: 150px; background: rgba(248,243,238,0.88); border-radius: 12px; z-index: 4; }
+      #s3-h1, #s3-h2 { position: absolute; left: 0; top: 40px; font-size: 62px; width: 1400px; white-space: nowrap; }
+      #s3-h2 { opacity: 0; }
+      .hl { position: relative; display: inline-block; white-space: nowrap; }
+      .hl .bg { position: absolute; left: -2%; right: -2%; top: 12%; bottom: 4%; background: var(--teal-light); z-index: 0; }
+      .hl .t { position: relative; z-index: 1; }
+      #ex { position: absolute; left: 110px; top: 46px; width: 1699px; height: 988px; transform-style: preserve-3d; will-change: transform; }
+      .layer { position: absolute; transform-style: preserve-3d; backface-visibility: hidden; will-change: transform, opacity; display: block; }
+      .layer img { width: 100%; height: 100%; display: block; }
+      #l-canvas { left: 471px; top: 63px; width: 1228px; height: 925px; }
+      #l-chat { left: 0; top: 0; width: 471px; height: 988px; box-shadow: 18px 0 40px rgba(26,37,32,0.10); }
+      #l-toolbar { left: 471px; top: 0; width: 1228px; height: 63px; }
+      .card { width: 200px; height: 192px; border-radius: 6px; box-shadow: 0 14px 30px rgba(26,37,32,0.16); overflow: hidden; }
+      #c-ta { left: 600px; top: 135px; } #c-ag { left: 820px; top: 95px; } #c-sh { left: 600px; top: 435px; }
+      #c-tk { left: 820px; top: 435px; } #c-cu { left: 1040px; top: 435px; } #c-ms { left: 600px; top: 735px; }
+
+      /* S4: the edited schema, punched in on the direct-edit affordance */
+      #dev2 { left: 60px; top: 200px; width: 1180px; height: 686px; }
+      #dev2-b { opacity: 0; }
+      #s4-col { position: absolute; left: 1380px; top: 0; height: 100%; width: 440px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s4-h { font-size: 66px; }
+      .metric { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 2px solid var(--rule); }
+      .metric .k { font-family: "Departure Mono", monospace; font-size: 18px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .metric .v { font-family: "Switzer", serif; font-weight: 500; font-size: 28px; line-height: 1.25; color: var(--ink); }
+
+      /* S5 */
+      #s5-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+      #s5-title { font-size: 120px; }
+      #s5-url { font-family: "Switzer", serif; font-weight: 500; font-size: 40px; color: var(--ink); }
+
+      #grain { position: absolute; inset: 0; z-index: 20; opacity: 0.07; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.4" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="s1" class="scene">
+        <svg id="dots1" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash1" class="wash"></div>
+        <div id="dev0" class="device"><img src="assets/ui/prompt-input-win-s1.png" alt="" /></div>
+        <div id="s1-col">
+          <div id="s1-kick"><span class="kicker">Ninox · AI onboarding · 2025</span><span class="rule" id="s1-rule"></span></div>
+          <h1 id="s1-title">Who Controls the AI?</h1>
+          <p id="s1-sub" class="body">Low-code apps, built from a schema.</p>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div id="s2-col">
+          <span class="kicker" id="s2-kick">The problem</span>
+          <h2 id="s2-h1" class="display">Powerful once a schema exists.</h2>
+          <h2 id="s2-h2" class="display">Defining it was the <span class="em" id="em-gate"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path id="em-gate-p" d="M 52 6 C 78 4, 97 14, 96 30 C 95 48, 70 57, 46 55 C 20 53, 4 44, 5 29 C 6 12, 30 4, 58 6"/></svg><span class="t">gate</span></span>.</h2>
+        </div>
+        <div id="dev" class="device">
+          <img id="dev-prompt" src="assets/ui/prompt-input-win.png" alt="" />
+          <img id="dev-hero" src="assets/ui/ai-onboarding-hero-win.png" alt="" />
+          <svg id="ht1" class="ht" viewBox="0 0 900 523" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+        <div id="s2-cap">
+          <span class="kicker" id="s2-capk">One sentence in</span>
+          <div id="s2-type"><span id="s2-txt"></span><span id="s2-cur"></span></div>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div id="ex">
+          <div id="l-canvas" class="layer"><img src="assets/layers/canvas-bg.png" alt="" /></div>
+          <div id="l-toolbar" class="layer"><img src="assets/layers/toolbar.png" alt="" /></div>
+          <div id="c-ta" class="layer card"><img src="assets/layers/card-ticket-assignments.png" alt="" /></div>
+          <div id="c-ag" class="layer card"><img src="assets/layers/card-agents.png" alt="" /></div>
+          <div id="c-sh" class="layer card"><img src="assets/layers/card-status-history.png" alt="" /></div>
+          <div id="c-tk" class="layer card"><img src="assets/layers/card-tickets.png" alt="" /></div>
+          <div id="c-cu" class="layer card"><img src="assets/layers/card-customers.png" alt="" /></div>
+          <div id="c-ms" class="layer card"><img src="assets/layers/card-messages.png" alt="" /></div>
+          <div id="l-chat" class="layer"><img src="assets/layers/chat-panel.png" alt="" /></div>
+        </div>
+        <div id="s3-plate"></div>
+        <div id="s3-col">
+          <span class="kicker" id="s3-kick">The decision</span>
+          <h2 id="s3-h1" class="display">Chat alone wouldn't work.</h2>
+          <h2 id="s3-h2" class="display">Show the output. Let them <span class="hl" id="hl-edit"><span class="bg" id="hl-edit-bg"></span><span class="t">edit it</span></span>.</h2>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div id="dev2" class="device">
+          <img id="dev2-a" src="assets/ui/ai-onboarding-hero-win-s4.png" alt="" />
+          <img id="dev2-b" src="assets/ui/dual-paths-win.png" alt="" />
+          <svg id="ht2" class="ht" viewBox="0 0 1180 686" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+        <div id="s4-col">
+          <span class="kicker" id="s4-kick">The outcome</span>
+          <h2 id="s4-h" class="display">No AI mode to leave.</h2>
+          <div class="metric" id="m1"><span class="k">Shipped</span><span class="v">Ninox AI public beta, 2026.</span></div>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <svg id="dots2" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash2" class="wash"></div>
+        <div id="s5-col">
+          <span class="kicker" id="s5-kick">Case study</span>
+          <h2 id="s5-title" class="display">Who Controls the AI?</h2>
+          <span id="s5-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <audio id="bgm" data-start="0" data-duration="62.4" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
+      <audio id="vo-m1" data-start="0.8" data-duration="8.06" data-track-index="20" src="assets/vo4/m1-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m2" data-start="9.8" data-duration="7.98" data-track-index="20" src="assets/vo4/m2-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m3" data-start="18.2" data-duration="5.40" data-track-index="20" src="assets/vo4/m3-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m4" data-start="25.8" data-duration="3.68" data-track-index="20" src="assets/vo4/m4-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m5" data-start="30.8" data-duration="2.56" data-track-index="20" src="assets/vo4/m5-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m6" data-start="35.4" data-duration="3.85" data-track-index="20" src="assets/vo4/m6-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m7" data-start="39.8" data-duration="6.17" data-track-index="20" src="assets/vo4/m7-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m8" data-start="48.8" data-duration="7.30" data-track-index="20" src="assets/vo4/m8-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m9" data-start="57.8" data-duration="3.08" data-track-index="20" src="assets/vo4/m9-slow.mp3" data-volume="1"></audio>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      var dots1 = buildField(document.getElementById("dots1"), 1920, 1080, 38, [0.72, 0.48], 15, 11, 0.6);
+      var dots2 = buildField(document.getElementById("dots2"), 1920, 1080, 38, [0.5, 0.5], 14, 23, 0.7);
+      var ht1 = buildScreen(document.getElementById("ht1"), 900, 523, 26, [0.68, 0.42]);
+      var ht2 = buildScreen(document.getElementById("ht2"), 1180, 686, 32, [0.55, 0.3]);
+
+      var tl = gsap.timeline({ paused: true });
+      var DEV_REST = { x: 0, rotationY: -11, rotationX: 3, transformOrigin: "50% 50%" };
+
+      // ===== S1 cold open (0 – 6.8). Product on frame 1. VO n1 0.8–6.6 =====
+      gsap.set(dots1, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set("#dev0", Object.assign({ y: 26, scale: 0.985, opacity: 1 }, DEV_REST));
+      tl.to("#dev0", { y: 0, scale: 1, duration: 1.2, ease: "power3.out" }, 0);
+      tl.to(dots1, { scale: 1, duration: 0.8, ease: "back.out(1.6)", stagger: { each: 0.0016 } }, 0.1);
+      tl.fromTo("#dots1", { x: 24 }, { x: -24, duration: 9.2, ease: "sine.inOut" }, 0);
+      tl.fromTo("#s1-kick", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.3);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.6);
+      tl.fromTo("#s1-title", { y: 40, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 0.6);
+      tl.set("#s1-title", { fontFamily: '"Redaction 50", serif' }, 1.7);
+      tl.set("#s1-title", { fontFamily: '"Redaction 35", serif' }, 2.5);
+      tl.set("#s1-title", { fontFamily: '"Redaction 20", serif' }, 3.3);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 3.8);
+      tl.fromTo("#dev0", { y: 0 }, { y: -10, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.6);
+
+      // T1 blur crossfade (6.8): the device stays where it is, the text changes around it
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 9.2);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 9.3);
+
+      // ===== S2 problem (6.8 – 13.4). VO n2 7.4–11.1, then the circle plays under music =====
+      gsap.set("#dev", Object.assign({ opacity: 1 }, DEV_REST));
+      gsap.set("#s2-cap", { opacity: 0, y: 24 });
+      gsap.set(ht1, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set("#em-gate-p", { opacity: 0 });
+      tl.fromTo("#dev", { y: 0 }, { y: -12, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 6 }, 9.4);
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 9.6);
+      tl.fromTo("#s2-h1", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 9.8);
+      tl.fromTo("#s2-h2", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 12.4);
+      var gateP = document.getElementById("em-gate-p"), gateLen = gateP.getTotalLength();
+      gateP.style.strokeDasharray = gateLen; gsap.set(gateP, { strokeDashoffset: gateLen });
+      tl.set("#em-gate-p", { opacity: 0.9 }, 15.4);
+      tl.fromTo("#em-gate-p", { strokeDashoffset: gateLen }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 15.4);
+      tl.fromTo("#em-gate", { scale: 1 }, { scale: 1.04, duration: 0.16, ease: "power1.out", yoyo: true, repeat: 1 }, 15.9);
+
+      // ===== S2 prompt (13.4 – 23.8). VO n3 14.8–17.2, n4 19.6–22.2 =====
+      tl.to("#s2-col", { x: -60, opacity: 0, duration: 0.5, ease: "power2.in" }, 24.20);
+      tl.to("#dev", { x: -430, y: -30, rotationY: 0, rotationX: 0, scale: 1.3, duration: 1.2, ease: "expo.inOut" }, 24.40);
+      tl.to("#s2-cap", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 25.40);
+      var prompt = "Create a solution for logging tickets, assigning them to agents, tracking status, and storing messages.";
+      var T0 = 26.20, CH = 0.034;
+      for (var i = 1; i <= prompt.length; i++) tl.set("#s2-txt", { textContent: prompt.slice(0, i) }, T0 + i * CH);
+      for (var b = 0; b < 14; b++) tl.set("#s2-cur", { opacity: b % 2 === 0 ? 1 : 0 }, 25.40 + b * 0.42);
+      tl.to(ht1, { scale: 1.12, duration: 0.5, ease: "power2.in", stagger: { each: 0.0011 } }, 30.50);
+      tl.set("#dev-hero", { opacity: 1 }, 31.75);
+      tl.set("#dev-prompt", { opacity: 0 }, 31.75);
+      tl.to(ht1, { scale: 0, duration: 0.45, ease: "power3.out", stagger: { each: 0.0011 } }, 31.80);
+      tl.set("#s2-cur", { opacity: 0 }, 31.80);
+      tl.to("#s2-cap", { opacity: 0, duration: 0.3, ease: "power2.in" }, 31.80);
+      tl.set("#s2-capk", { textContent: "Schema generated" }, 32.15);
+      tl.set("#s2-txt", { textContent: "Six tables. A first guess." }, 32.15);
+      tl.to("#s2-cap", { opacity: 1, duration: 0.5, ease: "power2.out" }, 32.20);
+
+      // T2 zoom through into the editor (23.8)
+      tl.to("#s2", { scale: 1.2, opacity: 0, duration: 0.6, ease: "power2.in" }, 34.60);
+      tl.fromTo("#s3", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.7, ease: "expo.out" }, 34.80);
+
+      // ===== S3 the editor fills the frame (23.8 – 37.2). VO n5 24.6–28.5, n6 29.2–36.4 =====
+      gsap.set("#ex", { transformOrigin: "50% 50%", scale: 0.9, x: 0, y: 58, rotationX: 6, rotationY: -7 });
+      var frags = ["#c-ta", "#c-ag", "#c-sh", "#c-tk", "#c-cu", "#c-ms"];
+      var GOLDEN = Math.PI * (3 - Math.sqrt(5)), RADIUS = 420, ZN = 560, ZF = -340, TUMBLE = 70;
+      frags.forEach(function (sel, i) { var a = i * GOLDEN, t = i / (frags.length - 1);
+        gsap.set(sel, { x: Math.cos(a) * RADIUS, y: Math.sin(a) * RADIUS, z: ZN - t * (ZN - ZF), rotationX: Math.sin(a) * TUMBLE, rotationY: Math.cos(a) * TUMBLE, opacity: 0, transformOrigin: "50% 50%" }); });
+      gsap.set("#l-canvas", { z: -420, opacity: 0, transformOrigin: "50% 50%" });
+      gsap.set("#l-toolbar", { y: -160, z: 120, opacity: 0 });
+      gsap.set("#l-chat", { x: -320, z: 200, rotationY: 28, opacity: 0, transformOrigin: "100% 50%" });
+      gsap.set("#s3-h2", { opacity: 0 });
+      gsap.set("#s3-plate", { opacity: 0 });
+      gsap.set("#hl-edit-bg", { scaleX: 0, transformOrigin: "0% 50%" });
+      tl.to("#l-canvas", { z: 0, opacity: 1, duration: 1.1, ease: "expo.out" }, 35.00);
+      tl.to("#l-toolbar", { y: 0, z: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 35.30);
+      frags.forEach(function (sel, i) { tl.to(sel, { x: 0, y: 0, z: 0, rotationX: 0, rotationY: 0, opacity: 1, duration: 1.1, ease: "back.out(1.2)" }, 24.6 + i * 0.07); });
+      tl.to("#l-chat", { x: 0, z: 0, rotationY: 0, opacity: 1, duration: 1.0, ease: "expo.out" }, 36.00);
+      tl.to("#ex", { rotationY: -3, rotationX: 4, duration: 13, ease: "sine.inOut" }, 34.80);
+      tl.to("#s3-plate", { opacity: 1, duration: 0.5, ease: "power2.out" }, 35.30);
+      tl.fromTo("#s3-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 35.40);
+      tl.fromTo("#s3-h1", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 35.50);
+      tl.to("#s3-h1", { opacity: 0, y: -18, duration: 0.4, ease: "power2.in" }, 39.40);
+      tl.fromTo("#s3-h2", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 39.70);
+      tl.to("#hl-edit-bg", { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 40.60);
+      // "touch it" lands ~2.2s into n6 (29.2) → 31.4: chat recedes, the cards step forward
+      tl.to("#l-chat", { opacity: 0.32, duration: 0.5, ease: "power2.inOut" }, 44.00);
+      tl.to(frags, { z: 80, scale: 1.05, boxShadow: "0 0 0 3px #457468, 0 22px 40px rgba(26,37,32,0.22)", duration: 0.45, ease: "back.out(1.4)", stagger: 0.05 }, 44.10);
+      // "Chat stays beside it" ~5.6s in → 34.8: chat returns
+      tl.to("#l-chat", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 47.00);
+
+      // T3 blur crossfade (37.2)
+      tl.to("#s3", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 48.20);
+      tl.fromTo("#s4", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 48.30);
+
+      // ===== S4 outcome (37.2 – 45.0). VO n7 37.8–41.1. First guess → edited schema, punch in on "Create field" =====
+      gsap.set("#dev2", { rotationY: 14, rotationX: 3, x: -30, opacity: 0, transformOrigin: "50% 50%" });
+      gsap.set(ht2, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to("#dev2", { x: 0, opacity: 1, duration: 1.0, ease: "expo.out" }, 48.50);
+      tl.fromTo("#s4-kick", { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 48.80);
+      tl.fromTo("#s4-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 49.00);
+      tl.to(ht2, { scale: 1.12, duration: 0.45, ease: "power2.in", stagger: { each: 0.0009 } }, 50.20);
+      tl.set("#dev2-b", { opacity: 1 }, 51.25);
+      tl.set("#dev2-a", { opacity: 0 }, 51.25);
+      tl.to(ht2, { scale: 0, duration: 0.4, ease: "power3.out", stagger: { each: 0.0009 } }, 51.30);
+      tl.to("#dev2", { rotationY: 0, rotationX: 0, scale: 1.14, x: 10, y: 70, duration: 1.4, ease: "power3.inOut" }, 51.80);
+      tl.fromTo("#m1", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 52.60);
+
+      // T4 dots take over (45.0)
+      tl.to("#s4", { opacity: 0, filter: "blur(10px)", duration: 0.7, ease: "power2.inOut" }, 57.00);
+      tl.fromTo("#s5", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 57.10);
+
+      // ===== S5 close (45.0 – 50). VO n8 45.8–48.4 =====
+      gsap.set(dots2, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots2, { scale: 1, duration: 0.7, ease: "back.out(1.5)", stagger: { each: 0.0012 } }, 57.20);
+      tl.fromTo("#s5-title", { opacity: 0, filter: "blur(12px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 57.60);
+      tl.fromTo("#s5-kick", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 58.00);
+      tl.fromTo("#s5-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 58.60);
+      tl.to("#s5-col", { opacity: 0, duration: 0.5, ease: "power2.in" }, 61.30);
+      tl.to(dots2, { scale: 0, duration: 0.45, ease: "power2.in", stagger: { each: 0.0004 } }, 61.20);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
