@@ -24,6 +24,13 @@
     "src": "/images/bibeltv/color-lab.png",
     "alt": "The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right, one in dark mode, one in light mode, both themed from the same extracted palette"
   },
+  "video": {
+    "src": "/video/bibeltv-color-api.mp4",
+    "poster": "/video/bibeltv-color-api-poster.jpg",
+    "caption": "The short version: an obvious tool wasn't enough, so design kept the thresholds — and the same engine that ships live also knows when to hold back.",
+    "duration_s": 59,
+    "variant": "master"
+  },
   "format_priority": [
     "executive",
     "in-depth",

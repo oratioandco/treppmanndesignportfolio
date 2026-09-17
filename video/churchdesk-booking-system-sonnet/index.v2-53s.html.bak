@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>When Booking A Priest Isn't Simple — ChurchDesk booking system</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #s1 { z-index: 1; perspective: 1900px; perspective-origin: 72% 50%; }
+      #s2 { z-index: 2; opacity: 0; }
+      #s3 { z-index: 3; opacity: 0; perspective: 1900px; perspective-origin: 32% 50%; }
+      #s4 { z-index: 4; opacity: 0; perspective: 1900px; perspective-origin: 50% 50%; }
+      #s5 { z-index: 5; opacity: 0; }
+      #s6 { z-index: 6; opacity: 0; }
+
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+      .wash { position: absolute; inset: 0; pointer-events: none; }
+      #wash1 { background: linear-gradient(90deg, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.92) 42%, rgba(248,243,238,0.3) 72%, rgba(248,243,238,0) 100%); }
+      #wash3 { background: linear-gradient(-90deg, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.9) 40%, rgba(248,243,238,0.25) 70%, rgba(248,243,238,0) 100%); }
+      #wash6 { background: radial-gradient(ellipse 760px 420px at 50% 50%, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.9) 55%, rgba(248,243,238,0) 100%); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.04; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); }
+
+      .device { position: absolute; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+      .snap { position: absolute; border-radius: 6px; overflow: hidden; background: var(--surface); border: 8px solid var(--surface); box-shadow: 0 34px 70px rgba(26,37,32,0.20), 0 4px 14px rgba(26,37,32,0.10); will-change: transform; }
+      .snap img { width: 100%; height: auto; display: block; }
+
+      /* S1 — hook. Product on frame one, title beside it. */
+      #s1-col { position: absolute; left: 140px; top: 0; height: 100%; width: 760px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+      #s1-kick { display: flex; align-items: center; gap: 18px; }
+      #s1-title { font-family: "Redaction 70", serif; font-size: 98px; line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); }
+      #s1-sub { font-size: 30px; max-width: 660px; line-height: 1.35; color: var(--muted); font-weight: 300; }
+      #dev1 { left: 1080px; top: 148px; width: 700px; height: 672px; }
+
+      /* S2 — tension. Typographic + a plain line diagram, no product chrome. */
+      #s2-col { position: absolute; left: 140px; top: 118px; width: 900px; display: flex; flex-direction: column; gap: 22px; }
+      #s2-h1, #s2-h2 { font-size: 66px; }
+      #diagram { position: absolute; left: 300px; top: 560px; width: 1320px; height: 300px; }
+      .node { position: absolute; top: 90px; width: 300px; display: flex; flex-direction: column; align-items: center; gap: 14px; opacity: 0; }
+      .node .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--teal); }
+      .node .label { font-family: "Departure Mono", monospace; font-size: 20px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-align: center; }
+      #node-a { left: 0; } #node-b { left: 510px; } #node-c { left: 1020px; }
+      #diagram svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+      #diagram path { fill: none; stroke: var(--rule); stroke-width: 2.5; stroke-linecap: round; }
+      #s2-cap { position: absolute; left: 300px; top: 900px; width: 1320px; text-align: center; }
+
+      /* S3 — turn. The customer's own vision-sheet artefact. */
+      #s3-col { position: absolute; left: 1120px; top: 0; height: 100%; width: 660px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s3-h1 { font-size: 60px; }
+      #s3-quote { font-family: "Redaction 35", serif; font-size: 46px; color: var(--ink); line-height: 1.2; }
+      #s3-quote-en { font-size: 26px; color: var(--muted); font-weight: 300; }
+      #groups { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+      .grp { display: flex; align-items: center; gap: 14px; opacity: 0; }
+      .grp .sq { width: 10px; height: 10px; background: var(--teal); }
+      .grp span.t { font-family: "Switzer", serif; font-weight: 500; font-size: 30px; color: var(--ink); }
+      #snap3 { left: 120px; top: 190px; width: 860px; height: 540px; transform-origin: 50% 50%; }
+
+      /* S4 — proof. The money shot: on-call in the priest's calendar. */
+      #snap4 { left: 230px; top: 232px; width: 1460px; height: 812px; transform-origin: 50% 50%; }
+      #s4-plate { position: absolute; left: 140px; top: 48px; width: 1000px; height: 178px; background: rgba(248,243,238,0.9); border-radius: 12px; z-index: 3; }
+      #s4-col { position: absolute; left: 176px; top: 64px; display: flex; flex-direction: column; gap: 12px; z-index: 4; }
+      #s4-h { font-size: 58px; }
+      #s4-sub { font-size: 30px; color: var(--muted); font-weight: 300; }
+
+      /* S5 — outcome. The scoping decision, not a metric. */
+      #s5-col { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; }
+      #s5-kick { }
+      #s5-h { font-size: 76px; max-width: 1300px; }
+      #s5-sub { font-family: "Switzer", serif; font-weight: 400; font-size: 30px; color: var(--muted); max-width: 900px; }
+
+      /* S6 — close */
+      #s6-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; }
+      #s6-title { font-size: 100px; max-width: 1500px; }
+      #s6-url { font-family: "Switzer", serif; font-weight: 500; font-size: 38px; color: var(--ink); }
+
+      #grain { position: absolute; inset: 0; z-index: 30; opacity: 0.06; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="53.0" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="s1" class="scene">
+        <svg id="dots1" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash1" class="wash"></div>
+        <div id="dev1" class="device"><img src="assets/ui/funeral-home-booking.jpg" alt="" /></div>
+        <div id="s1-col">
+          <div id="s1-kick"><span class="kicker">ChurchDesk · Funeral Booking · 2025</span><span class="rule" id="s1-rule"></span></div>
+          <h1 id="s1-title" class="display">When Booking A Priest Isn't Simple</h1>
+          <p id="s1-sub" class="body">Three groups. One booking flow.</p>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div id="s2-col">
+          <span class="kicker" id="s2-kick">The problem</span>
+          <h2 id="s2-h1" class="display">Before this: days of phone calls.</h2>
+          <h2 id="s2-h2" class="display">A family waited through every round.</h2>
+        </div>
+        <div id="diagram">
+          <svg viewBox="0 0 1320 90" preserveAspectRatio="none">
+            <path id="line-ab" d="M 150 45 L 510 45" />
+            <path id="line-bc" d="M 660 45 L 1020 45" />
+          </svg>
+          <div class="node" id="node-a"><div class="dot"></div><div class="label">Funeral home</div></div>
+          <div class="node" id="node-b"><div class="dot"></div><div class="label">Parish</div></div>
+          <div class="node" id="node-c"><div class="dot"></div><div class="label">Priest</div></div>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div id="snap3" class="snap"><img src="assets/ui/vision-sheet-design-thinking.jpg" alt="" /></div>
+        <div id="s3-col">
+          <span class="kicker" id="s3-kick">The customer's own workshop</span>
+          <p id="s3-quote">"Verbindlich und&nbsp;unkompliziert."</p>
+          <p id="s3-quote-en">Binding and uncomplicated.</p>
+          <h2 id="s3-h1" class="display">Three groups.</h2>
+          <div id="groups">
+            <div class="grp" id="g1"><div class="sq"></div><span class="t">Funeral homes</span></div>
+            <div class="grp" id="g2"><div class="sq"></div><span class="t">Parish staff</span></div>
+            <div class="grp" id="g3"><div class="sq"></div><span class="t">Priests</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div id="snap4" class="snap"><img src="assets/ui/priest-availability.jpg" alt="" /></div>
+        <div id="s4-plate"></div>
+        <div id="s4-col">
+          <span class="kicker" id="s4-kick">The decision</span>
+          <h2 id="s4-h" class="display">On-call lives in the calendar.</h2>
+          <p id="s4-sub">Every booking is a request.</p>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div id="s5-col">
+          <span class="kicker" id="s5-kick">The harder path</span>
+          <h2 id="s5-h" class="display">Not a module. Platform behavior.</h2>
+          <p id="s5-sub">Every future booking type — rooms, baptisms, counseling — reuses it.</p>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <svg id="dots6" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash6" class="wash"></div>
+        <div id="s6-col">
+          <span class="kicker" id="s6-kick">Case study</span>
+          <h2 id="s6-title" class="display">When Booking A Priest Isn't Simple</h2>
+          <span id="s6-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <audio id="bgm" data-start="0" data-duration="53.0" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
+      <audio id="vo-n1" data-start="0.8" data-duration="3.19" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n2" data-start="7.8" data-duration="7.54" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n3" data-start="17.3" data-duration="7.98" data-track-index="20" src="assets/vo/n3-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n4" data-start="27.5" data-duration="7.03" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n5" data-start="38.5" data-duration="7.29" data-track-index="20" src="assets/vo/n5-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n6" data-start="48.0" data-duration="2.95" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      var dots1 = buildField(document.getElementById("dots1"), 1920, 1080, 40, [0.74, 0.5], 13, 9, 0.62);
+      var dots6 = buildField(document.getElementById("dots6"), 1920, 1080, 40, [0.5, 0.5], 12, 27, 0.68);
+
+      var tl = gsap.timeline({ paused: true });
+      var DEV_REST = { x: 0, rotationY: -9, rotationX: 3, transformOrigin: "50% 50%" };
+
+      // ===== S1 hook (0 – 7.2). Product on frame 1. VO n1 0.8–3.99 =====
+      gsap.set(dots1, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set("#dev1", Object.assign({ y: 24, scale: 0.985, opacity: 1 }, DEV_REST));
+      tl.to("#dev1", { y: 0, scale: 1, duration: 1.2, ease: "power3.out" }, 0);
+      tl.to(dots1, { scale: 1, duration: 0.9, ease: "back.out(1.3)", stagger: { each: 0.0018 } }, 0.1);
+      tl.fromTo("#dots1", { x: 20 }, { x: -20, duration: 7.2, ease: "sine.inOut" }, 0);
+      tl.fromTo("#s1-kick", { x: -28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.3);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.6);
+      tl.fromTo("#s1-title", { y: 36, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 0.6);
+      tl.set("#s1-title", { fontFamily: '"Redaction 50", serif' }, 1.8);
+      tl.set("#s1-title", { fontFamily: '"Redaction 35", serif' }, 2.6);
+      tl.set("#s1-title", { fontFamily: '"Redaction 20", serif' }, 3.4);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 3.9);
+      tl.fromTo("#dev1", { y: 0 }, { y: -8, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 2 }, 1.8);
+
+      // T1 blur crossfade (7.2)
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 7.2);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 7.3);
+
+      // ===== S2 tension (7.2 – 16.8). Plain diagram, no UI chrome. VO n2 7.8–15.34 =====
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 7.5);
+      tl.fromTo("#s2-h1", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 7.7);
+      tl.fromTo("#s2-h2", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 10.6);
+      var lineAB = document.getElementById("line-ab"), lineBC = document.getElementById("line-bc");
+      [lineAB, lineBC].forEach(function (p) { var len = p.getTotalLength(); p.style.strokeDasharray = len; gsap.set(p, { strokeDashoffset: len }); });
+      tl.fromTo("#node-a", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 8.6);
+      tl.to(lineAB, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 9.1);
+      tl.fromTo("#node-b", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 10.0);
+      tl.to(lineBC, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 10.5);
+      tl.fromTo("#node-c", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 11.4);
+      tl.fromTo("#diagram", { y: 0 }, { y: -10, duration: 2.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 12.0);
+
+      // T2 blur crossfade (16.8)
+      tl.to("#s2", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 16.8);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 16.9);
+
+      // ===== S3 turn (16.8 – 27.0). The customer's own artefact. VO n3 17.3–25.28 =====
+      gsap.set("#snap3", Object.assign({ y: 16, scale: 0.98, opacity: 1, rotationZ: -1.1 }, {}));
+      tl.to("#snap3", { y: 0, scale: 1, duration: 1.1, ease: "power3.out" }, 17.0);
+      tl.fromTo("#snap3", { y: 0 }, { y: -8, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 3 }, 18.2);
+      tl.fromTo("#s3-kick", { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 17.3);
+      tl.fromTo("#s3-quote", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 17.7);
+      tl.fromTo("#s3-quote-en", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 18.5);
+      tl.fromTo("#s3-h1", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 20.6);
+      tl.fromTo("#g1", { opacity: 0, x: 12 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 21.4);
+      tl.fromTo("#g2", { opacity: 0, x: 12 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 22.0);
+      tl.fromTo("#g3", { opacity: 0, x: 12 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 22.6);
+
+      // T3 zoom-through into the editor (27.0): going into the product
+      tl.to("#s3", { scale: 1.15, opacity: 0, duration: 0.6, ease: "power2.in" }, 27.0);
+      tl.fromTo("#s4", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "expo.out" }, 27.15);
+
+      // ===== S4 proof (27.0 – 38.0). Money shot ≥70% of frame width. VO n4 27.5–34.53 =====
+      gsap.set("#snap4", { y: 20, scale: 0.97, opacity: 1, rotationZ: 0.6 });
+      tl.to("#snap4", { y: 0, scale: 1, duration: 1.1, ease: "power3.out" }, 27.3);
+      tl.fromTo("#snap4", { y: 0 }, { y: -10, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 3 }, 28.6);
+      tl.fromTo("#s4-plate", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 27.5);
+      tl.fromTo("#s4-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 27.6);
+      tl.fromTo("#s4-h", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 27.8);
+      tl.fromTo("#s4-sub", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 31.4);
+
+      // T4 dots take over (38.0)
+      tl.to("#s4", { opacity: 0, filter: "blur(10px)", duration: 0.6, ease: "power2.inOut" }, 38.0);
+      tl.fromTo("#s5", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 38.1);
+
+      // ===== S5 outcome (38.0 – 47.5). VO n5 38.5–45.80 =====
+      tl.fromTo("#s5-kick", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 38.4);
+      tl.fromTo("#s5-h", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 38.9);
+      tl.fromTo("#s5-sub", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 41.8);
+
+      // T5 dot takeover (47.5)
+      tl.to("#s5", { opacity: 0, filter: "blur(10px)", duration: 0.6, ease: "power2.inOut" }, 47.5);
+      tl.fromTo("#s6", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 47.6);
+
+      // ===== S6 close (47.5 – 53.0). VO n6 48.0–50.70 =====
+      gsap.set(dots6, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots6, { scale: 1, duration: 0.7, ease: "back.out(1.4)", stagger: { each: 0.0013 } }, 47.7);
+      tl.fromTo("#s6-title", { opacity: 0, filter: "blur(12px)", scale: 1.03 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 48.1);
+      tl.fromTo("#s6-kick", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 48.5);
+      tl.fromTo("#s6-url", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 49.1);
+      tl.to("#s6-col", { opacity: 0, duration: 0.6, ease: "power2.in" }, 51.9);
+      tl.to(dots6, { scale: 0, duration: 0.5, ease: "power2.in", stagger: { each: 0.0004 } }, 51.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -87,3 +87,49 @@ Gate 2: snapshots at 21, 27.5, 33.5, 44.5 checked after the +2.0s retime from 22
 Gate 3: stem rebuilt at the new starts, bed re-ducked, all clips padded +0.25s.
 Gate 4: from the v8 render (see below).
 Gate 4 (v8): 62.4s, integrated -14.8 LUFS, peak -1.9 dBFS. Not measured: sound, pronunciation, cue timing by ear.
+
+## Round 7 (2026-09-16) — added proof shots, 64.6s
+
+Tobias's request: add the two "landing" screenshots (schema-in-builder.png, working-product.png)
+towards the end, showing where the user ends up after the flow, using the halftone-resolve
+transition already established elsewhere in the film.
+
+Gate 2: inserted two more halftone resolves inside the existing silent hold of the outcome beat
+(52.6s onward), extending the beat from 3.8s of static hold to 6.0s of active proof (dual-paths →
+schema-in-builder → working-product), landing on working-product (the real record, detail panel
+open) as the final held frame before the close. This pushed total length 62.4s → 64.6s (+2.2s),
+still inside the 65s hard ceiling. `check_video.py`: 0 FAIL, 7 WARN (same accepted set as round 6).
+`hyperframes lint`: 0 errors, 0 warnings. Snapshots at 53.5/54.5/56.2/58s confirm both resolves fire
+and the sequence lands correctly.
+
+Note: the long-form Lyria source track (`bed-drone-b.mp3`) had been deleted during repo pruning
+before this round. Regenerated with the identical prompt used originally, windowed from the same
+64s mark — same brief and character, but generative regeneration is not bit-identical to the take
+Tobias heard in rounds 5-6. Flagged for his ear specifically on this re-listen.
+
+Gate 4 measurements (v9 render): filled in after render — see the render summary.
+Gate 4 (v9): 64.6s, integrated -14.8 LUFS, peak -1.8 dBFS. Poster refreshed at 5.0s, web copy 32.0 MB pre-encode / re-encoded for the site. Not measured: sound, whether the regenerated bed still reads as the same character, pronunciation, cue timing by ear.
+
+## Round 8 (2026-09-16) — cover title card added
+
+Tobias's note: every video needs a genuinely meaningful cover image up front — roughly half a
+second, held static, then dissolving into the film — not a kinetic build from nothing. He wants
+this as a house standard, not a one-off.
+
+Implementation: a new `#cover` scene (z-index above everything), the fully-resolved title card
+(kicker, Redaction 20 title — not the coarse 70 grade the grade-morph starts from elsewhere —
+subtitle), held static 0–0.25s, blur-crossfade dissolve 0.25–0.4s into the existing S1 kinetic
+open (unchanged internally, just uniformly shifted +0.4s). Root duration 64.6s → 65.0s, landing
+exactly at the hard ceiling — chose a tight 0.4s cover specifically so no other beat needed
+trimming. The rendered poster is now grabbed from the cover hold (0.2s) instead of a mid-film
+action frame, so the site's `<video poster>` and the film's own first frame are now the same
+image — this also answers "how do we get a cover image" for the site, not just the clip.
+
+`check_video.py`: 0 FAIL, 7 WARN (same accepted set, length WARN now reads "over the 60s target"
+at exactly 65.0). `hyperframes lint`: 0 errors. `hyperframes check`: 0 layout issues, only the
+known benign AudioContext console warning (present since before any audio existed; environmental).
+Frames pulled directly from the rendered MP4 at 0.15/0.3/0.45s confirm the cover holds cleanly,
+dissolves, and the kinetic S1 build begins fresh underneath — no double-flash, no jump.
+
+Gate 4: see the render summary appended below.
+Gate 4 (v10): 65.0s, integrated -14.8 LUFS, peak -1.8 dBFS. Poster now grabbed from the cover hold (0.2s). Not measured: sound, whether the cover-to-opening dissolve reads as intentional in motion (only checked as still frames).

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>When booking a priest isn't simple — ChurchDesk funeral booking</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #cover { z-index: 60; }
+      #s1 { z-index: 1; opacity: 0; }
+      #s3 { z-index: 3; opacity: 0; }
+      #s4 { z-index: 4; opacity: 0; }
+      #s5 { z-index: 5; opacity: 0; }
+      #s6 { z-index: 6; opacity: 0; perspective: 1900px; perspective-origin: 40% 50%; }
+      #s7 { z-index: 7; opacity: 0; }
+      #s8 { z-index: 8; opacity: 0; }
+
+      /* Cover: a brief, fully-settled title card before the film begins */
+      #cover-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; background: var(--paper); }
+      #cover-title { font-size: 92px; max-width: 1500px; font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.04; }
+      #cover-sub { font-family: "Switzer", serif; font-weight: 300; font-size: 30px; color: var(--muted); }
+
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+      .wash { position: absolute; inset: 0; pointer-events: none; }
+      #wash8 { background: radial-gradient(ellipse 760px 420px at 50% 50%, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.9) 55%, rgba(248,243,238,0) 100%); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.02; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); }
+
+      .device { position: absolute; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.20), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device .wrap { position: absolute; left: 0; top: 0; width: 100%; }
+      .device img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
+      .device .ht { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .device .ht circle { fill: var(--teal); }
+
+      /* S1: cold open — the phone chain, felt. Round 13: four real people, one grid, no labels —
+         the chain plays across the four videos as the narration names each one, back and forth. */
+      #s1-stage { position: absolute; inset: 0; }
+      #s1-kick { position: absolute; left: 0; right: 0; top: 40px; text-align: center; opacity: 0; z-index: 5; }
+      .gcell { position: absolute; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(26,37,32,0.24); transform-origin: 50% 50%; }
+      .gcell video { width: 100%; height: 100%; display: block; object-fit: cover; }
+      #gc-family { left: 20px; top: 20px; width: 932px; height: 512px; }
+      #gc-funeralhome { left: 968px; top: 20px; width: 932px; height: 512px; }
+      #gc-parish { left: 20px; top: 548px; width: 932px; height: 512px; }
+      #gc-priest { left: 968px; top: 548px; width: 932px; height: 512px; }
+
+      /* S3: the tension the customer already named */
+      #s3-col { position: absolute; left: 140px; right: 140px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+      #s3-l1, #s3-l2 { font-family: "Redaction 20", serif; font-size: 62px; line-height: 1.15; color: var(--ink); letter-spacing: -0.02em; }
+      .gw { position: relative; display: inline-block; white-space: nowrap; }
+      .gw .bg { position: absolute; left: -2%; right: -2%; top: 10%; bottom: 6%; background: var(--teal-light); z-index: 0; }
+      .gw .t { position: relative; z-index: 1; }
+
+      /* S4: the customer's own words */
+      #s4-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 56px; }
+      #photo-strip { width: 1380px; transform: rotate(-1.2deg); box-shadow: 0 40px 80px rgba(26,37,32,0.22); border: 1px solid var(--rule); background: var(--surface); padding: 14px; }
+      #photo-strip img { display: block; width: 100%; }
+
+      /* S5: money shot — the week view, full bleed */
+      #dev5 { left: 210px; top: 0; width: 1500px; height: 1080px; border-left: none; border-right: none; }
+      #dev5 .wrap img { top: -312px; }
+      #s5-card { position: absolute; left: 250px; bottom: 64px; z-index: 5; display: flex; flex-direction: column; gap: 14px; opacity: 0; }
+      #s5-plate { position: absolute; left: 216px; bottom: 48px; width: 620px; height: 130px; background: rgba(248,243,238,0.92); border-radius: 12px; z-index: 4; opacity: 0; }
+      #s5-h { font-size: 58px; }
+      #marker5 { position: absolute; left: 600px; top: 382px; width: 170px; height: 96px; overflow: visible; z-index: 6; }
+      #marker5 path { fill: none; stroke: var(--teal); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0.9; }
+
+      /* S6: the priest's calendar */
+      #dev6 { left: 90px; top: 175px; width: 1150px; height: 730px; }
+      #s6-video { position: absolute; inset: 0; opacity: 0; z-index: 3; }
+      #s6-video video { width: 100%; height: 100%; display: block; object-fit: cover; }
+      #s6-scrim { position: absolute; inset: 0; opacity: 0; z-index: 4; background: linear-gradient(180deg, rgba(248,243,238,0) 0%, rgba(248,243,238,0) 52%, rgba(248,243,238,0.96) 78%, rgba(248,243,238,0.98) 100%); }
+      #ht6 { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: 10; }
+      #ht6 circle { fill: var(--teal); }
+      #s6-col { position: absolute; left: 1330px; top: 0; height: 100%; width: 470px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s6-h { font-size: 60px; }
+      #s6-caption { position: absolute; left: 0; right: 0; bottom: 90px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; opacity: 0; z-index: 5; }
+      #s6-caption .display { font-size: 56px; }
+
+      /* S7: the harder path — now with a diagram, not just a claim */
+      #s7-col { position: absolute; left: 140px; right: 980px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+      #s7-h { font-size: 66px; }
+      #s7-sub { font-family: "Switzer", serif; font-weight: 400; font-size: 28px; color: var(--muted); }
+      #s7-diagram { position: absolute; left: 1180px; top: 260px; width: 600px; height: 560px; }
+      .node-sm { position: absolute; font-family: "Redaction 20", serif; font-size: 26px; color: var(--ink); white-space: nowrap; opacity: 0; display: flex; align-items: center; gap: 12px; }
+      .node-sm .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); flex: none; }
+      #s7-shift { left: 0; top: 260px; flex-direction: column; align-items: flex-start; gap: 8px; }
+      #s7-shift .lbl { font-size: 30px; }
+      #s7-cem1 { left: 380px; top: 40px; } #s7-cem2 { left: 380px; top: 260px; } #s7-cem3 { left: 380px; top: 480px; }
+      #s7-links { position: absolute; inset: 0; width: 600px; height: 560px; }
+      #s7-links line { stroke: var(--teal); stroke-width: 4; stroke-dasharray: 3 11; stroke-linecap: round; opacity: 0.55; }
+
+      /* S8 */
+      #s8-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+      #s8-title { font-size: 96px; }
+      #s8-url { font-family: "Switzer", serif; font-weight: 500; font-size: 40px; color: var(--ink); }
+
+      #grain { position: absolute; inset: 0; z-index: 20; opacity: 0.07; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65.0" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="cover" class="scene">
+        <div id="cover-col">
+          <span class="kicker" id="cover-kick">ChurchDesk · Funeral Booking · 2024–25</span>
+          <h1 id="cover-title">When booking a priest isn't simple</h1>
+          <p id="cover-sub">Three stakeholders. One booking flow.</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <div id="s1-stage">
+          <span class="kicker" id="s1-kick">Before</span>
+          <div class="gcell" id="gc-family"><video id="gv-family" data-start="0.40" data-duration="19.4" data-media-start="0" data-track-index="30" src="assets/ui/grid-family.mp4" muted playsinline></video></div>
+          <div class="gcell" id="gc-funeralhome"><video id="gv-funeralhome" data-start="0.40" data-duration="19.4" data-media-start="0" data-track-index="31" src="assets/ui/grid-funeralhome.mp4" muted playsinline></video></div>
+          <div class="gcell" id="gc-parish"><video id="gv-parish" data-start="0.40" data-duration="19.4" data-media-start="0" data-track-index="32" src="assets/ui/grid-parish.mp4" muted playsinline></video></div>
+          <div class="gcell" id="gc-priest"><video id="gv-priest" data-start="0.40" data-duration="19.4" data-media-start="0" data-track-index="33" src="assets/ui/grid-priest.mp4" muted playsinline></video></div>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div id="s3-col">
+          <p id="s3-l1">Fast for the family.</p>
+          <p id="s3-l2">Never a <span class="gw"><span class="bg" id="bg1"></span><span class="t">burden</span></span> on the priest.</p>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div id="s4-col">
+          <span class="kicker" id="s4-kick">The customer's own words</span>
+          <div id="photo-strip"><img src="assets/ui/vision-quote.jpg" alt="" /></div>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div id="dev5" class="device"><div class="wrap"><img src="assets/ui/funeral-home-booking-s5.jpg" alt="" /></div><svg id="ht5" class="ht" viewBox="0 0 1500 1080" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <svg id="marker5" viewBox="0 0 170 96" preserveAspectRatio="none" aria-hidden="true"><path id="marker5-p" d="M 88 8 C 128 6, 162 22, 160 48 C 158 76, 122 90, 82 88 C 40 86, 8 72, 10 46 C 12 20, 48 8, 96 10"/></svg>
+        </div>
+        <div id="s5-plate"></div>
+        <div id="s5-card">
+          <span class="kicker" id="s5-kick">What changed</span>
+          <h2 id="s5-h" class="display">What the funeral home sees.</h2>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <div id="dev6" class="device"><div class="wrap"><img src="assets/ui/priest-availability.jpg" alt="" /></div></div>
+        <div id="s6-video"><video id="reel6" data-start="37.40" data-duration="4.0" data-media-start="3.2" data-track-index="31" src="assets/ui/reel-notification-accept.mp4" muted playsinline></video></div>
+        <div id="s6-scrim"></div>
+        <div id="s6-col">
+          <span class="kicker" id="s6-kick">Their calendar, their say</span>
+          <h2 id="s6-h" class="display">A request, not an assignment.</h2>
+        </div>
+        <div id="s6-caption">
+          <span class="kicker" id="s6-capk">Never automatic</span>
+          <h2 id="s6-capline" class="display">Accept — or decline.</h2>
+        </div>
+        <svg id="ht6" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+      </section>
+
+      <section id="s7" class="scene">
+        <div id="s7-col">
+          <span class="kicker" id="s7-kick">The harder path</span>
+          <h2 id="s7-h" class="display">Not a module. Platform behavior.</h2>
+          <p id="s7-sub">One shift, several cemeteries — one calendar entry.</p>
+        </div>
+        <div id="s7-diagram">
+          <span class="node-sm" id="s7-shift"><span class="dot"></span><span class="lbl">One on-call shift</span></span>
+          <span class="node-sm" id="s7-cem1"><span class="dot"></span><span>Hauptfriedhof</span></span>
+          <span class="node-sm" id="s7-cem2"><span class="dot"></span><span>Waldfriedhof</span></span>
+          <span class="node-sm" id="s7-cem3"><span class="dot"></span><span>Bestattungswald</span></span>
+          <svg id="s7-links" viewBox="0 0 600 560" aria-hidden="true">
+            <line id="s7lk1" x1="130" y1="270" x2="380" y2="55" />
+            <line id="s7lk2" x1="130" y1="270" x2="380" y2="275" />
+            <line id="s7lk3" x1="130" y1="270" x2="380" y2="495" />
+          </svg>
+        </div>
+      </section>
+
+      <section id="s8" class="scene">
+        <svg id="dots8" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash8" class="wash"></div>
+        <div id="s8-col">
+          <span class="kicker" id="s8-kick">Portfolio</span>
+          <h2 id="s8-title" class="display">When booking a priest<br />isn't simple</h2>
+          <span id="s8-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <audio id="bgm" data-start="0.40" data-duration="64.6" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
+      <audio id="vo-n1" data-start="0.60" data-duration="4.28" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n2" data-start="4.95" data-duration="2.90" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n3" data-start="10.50" data-duration="3.85" data-track-index="20" src="assets/vo/n3-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n4" data-start="14.40" data-duration="2.73" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n5" data-start="20.20" data-duration="2.46" data-track-index="20" src="assets/vo/n5-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n6" data-start="22.70" data-duration="3.25" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n7" data-start="26.50" data-duration="2.82" data-track-index="20" src="assets/vo/n7-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n8" data-start="29.40" data-duration="1.79" data-track-index="20" src="assets/vo/n8-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n9" data-start="32.20" data-duration="2.91" data-track-index="20" src="assets/vo/n9-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n10" data-start="36.90" data-duration="6.34" data-track-index="20" src="assets/vo/n10-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n11" data-start="43.90" data-duration="9.69" data-track-index="20" src="assets/vo/n11-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n13" data-start="54.20" data-duration="8.68" data-track-index="20" src="assets/vo/n13-fit.mp3" data-volume="1"></audio>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      var dots8 = buildField(document.getElementById("dots8"), 1920, 1080, 40, [0.5, 0.5], 13, 23, 1.10);
+      var ht5 = buildScreen(document.getElementById("ht5"), 1500, 1080, 30, [0.45, 0.4]);
+      var ht6 = buildScreen(document.getElementById("ht6"), 1920, 1080, 60, [0.5, 0.5]);
+
+      var tl = gsap.timeline({ paused: true });
+      var DEV_REST = { x: 0, rotationY: -9, rotationX: 3, transformOrigin: "50% 50%" };
+
+      // ===== Cover (0 – 0.4). A settled title card, held, then dissolved. =====
+      tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 0.25);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.25);
+
+      // ===== S1 cold open — the phone chain, felt (0.4 – 19.8). VO n1 0.6–4.88, n2 4.95–7.85,
+      // n3 10.5–14.35, n4 14.4–17.13. Round 13 (2026-09-17): four real people, one grid, no text
+      // labels — the chain plays across the four videos as the narration names each one, the
+      // spotlight moving cell to cell, back and forth, family held for the emotional close. This
+      // replaces both the diagram (round 12) and the standalone human-moment beat that followed
+      // it — one coherent idea for the whole beat instead of two different visual languages. =====
+      // Word-accurate timing from `hyperframes transcribe` on the actual fitted clips (round 14
+      // fix — the previous spot times were paced by assumption, not measured, and drifted out of
+      // sync with the words; measured timestamps below, absolute = clip data-start + word offset).
+      var GCELLS = ["#gc-family", "#gc-funeralhome", "#gc-parish", "#gc-priest"];
+      gsap.set(GCELLS, { scale: 0.92, opacity: 0 });
+      tl.to("#gc-funeralhome", { scale: 1.035, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.50);
+      tl.to("#gc-parish", { scale: 0.965, opacity: 0.45, duration: 0.6, ease: "power2.out" }, 0.58);
+      tl.to("#gc-priest", { scale: 0.965, opacity: 0.45, duration: 0.6, ease: "power2.out" }, 0.66);
+      tl.to("#gc-family", { scale: 0.965, opacity: 0.45, duration: 0.6, ease: "power2.out" }, 0.74);
+      tl.fromTo("#s1-kick", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.55);
+
+      function spot(sel, t, dur) {
+        GCELLS.forEach(function (s) {
+          tl.to(s, { scale: s === sel ? 1.035 : 0.965, opacity: s === sel ? 1 : 0.45, duration: dur, ease: "power2.inOut" }, t);
+        });
+      }
+      // "A funeral home" (0.67) already active from entrance. "calls the parish." (word "calls"
+      // at 1.54) — the parish takes the call.
+      spot("#gc-parish", 1.55, 0.4);
+      // "The parish calls the priest on call." (word "calls" at 3.36) — the priest takes it.
+      spot("#gc-priest", 3.55, 0.4);
+      // "The priest checks the cemetery," (5.03–6.01) — an internal action, not a call; there is
+      // no cemetery party to cut to, so the priest just stays highlighted through this phrase.
+      // "then calls back." (word "calls" at 6.92, absolute 6.85) — back to the parish, not the
+      // funeral home directly; that's the actual shape of the chain (round 14 fix).
+      spot("#gc-parish", 6.85, 0.4);
+      // "Back and forth, call after call, until a time is found." (n3, measured words 10.60–13.53)
+      // — the spotlight itself does the back-and-forth now, cycling the three institutional
+      // parties (never family — family isn't part of the calling, they're who's waiting).
+      spot("#gc-funeralhome", 10.60, 0.35);
+      spot("#gc-priest", 11.60, 0.35);
+      spot("#gc-parish", 12.30, 0.35);
+      spot("#gc-funeralhome", 13.00, 0.35);
+      // "A grieving family waits through every round." (word "family" at 15.05) — the payoff, held
+      // through the beat's trailing silence too.
+      spot("#gc-family", 14.45, 0.6);
+
+      // T1 blur crossfade (19.8). No product yet — the customer's own goal (S3/S4) and the proof
+      // (S5) still have to come first (round 10 feedback holds).
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 19.80);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 19.90);
+
+      // ===== S3 fast for the family (19.9 – 26.1). VO n5 20.2–22.66, n6 22.7–25.95 =====
+      gsap.set("#bg1", { scaleX: 0, transformOrigin: "0% 50%" });
+      tl.fromTo("#s3-l1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 20.40);
+      tl.fromTo("#s3-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 23.00);
+      tl.to("#bg1", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 24.10);
+
+      // T3 blur crossfade (26.1)
+      tl.to("#s3", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 26.10);
+      tl.fromTo("#s4", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 26.20);
+
+      // ===== S4 the customer's own words (26.1 – 31.8). VO n7 26.5–29.07, n8 29.4–30.94 =====
+      gsap.set("#photo-strip", { opacity: 0, scale: 1.04, filter: "blur(14px)" });
+      tl.fromTo("#s4-kick", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 26.40);
+      tl.to("#photo-strip", { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.4, ease: "power2.out" }, 26.70);
+      tl.to("#photo-strip", { scale: 0.995, rotation: -1.2, duration: 5.0, ease: "sine.inOut" }, 28.10);
+
+      // T4 blur crossfade (34.3)
+      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 34.30);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 34.40);
+
+      // ===== S5 money shot (31.8 – 36.5). VO n9 32.2–34.86. Held past its own speech =====
+      gsap.set(ht5, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(ht5, { scale: 1.12, duration: 0.55, ease: "power2.in", stagger: { each: 0.0012 } }, 32.30);
+      tl.to(ht5, { scale: 0, duration: 0.55, ease: "power3.out", stagger: { each: 0.0012 } }, 32.85);
+      tl.fromTo("#dev5", { scale: 1 }, { scale: 1.06, transformOrigin: "42% 40%", duration: 4.6, ease: "sine.inOut" }, 32.20);
+      var m5 = document.getElementById("marker5-p"), m5len = m5.getTotalLength();
+      m5.style.strokeDasharray = m5len; gsap.set(m5, { strokeDashoffset: m5len });
+      gsap.set("#marker5", { opacity: 0 });
+      tl.set("#marker5", { opacity: 1 }, 33.80);
+      tl.set(m5, { opacity: 0.9 }, 33.80);
+      tl.fromTo(m5, { strokeDashoffset: m5len }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 33.80);
+      tl.fromTo("#s5-plate", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 34.10);
+      tl.fromTo("#s5-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 34.20);
+
+      // T5 blur crossfade (36.5)
+      tl.to("#s5", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 36.50);
+      tl.fromTo("#s6", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 36.60);
+
+      // ===== S6 the priest's calendar, notified (36.5 – 43.5). VO n10 36.9–42.99 =====
+      gsap.set("#dev6", Object.assign({ y: 30, opacity: 0, scale: 1.0 }, DEV_REST, { rotationY: 9 }));
+      tl.to("#dev6", { y: 0, opacity: 1, duration: 1.2, ease: "expo.out" }, 37.00);
+      tl.to("#dev6", { scale: 1.05, rotationY: 6, duration: 5.4, ease: "sine.inOut" }, 37.50);
+      tl.fromTo("#s6-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 37.40);
+      tl.fromTo("#s6-h", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 37.60);
+
+      // Hard cut: dot takeover swaps the calendar for full-bleed footage of the priest being notified
+      gsap.set(ht6, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(ht6, { scale: 1.15, duration: 0.45, ease: "power2.in", stagger: { each: 0.0005 } }, 40.00);
+      tl.set("#dev6, #s6-col", { opacity: 0 }, 40.75);
+      tl.set("#s6-video, #s6-scrim", { opacity: 1 }, 40.75);
+      tl.to(ht6, { scale: 0, duration: 0.45, ease: "power3.out", stagger: { each: 0.0005 } }, 40.75);
+      tl.fromTo("#s6-caption", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 41.55);
+
+      // T6 blur crossfade (43.5)
+      tl.to("#s6", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 43.50);
+      tl.fromTo("#s7", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 43.60);
+
+      // ===== S7 the harder path — cemetery complexity, now with a diagram (43.5 – 53.8).
+      // VO n11 43.9–53.59: "One on-call shift can cover several cemeteries at once. Entering
+      // that by hand was the wrong fight. So we extended the calendar they already used." =====
+      tl.fromTo("#s7-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 44.10);
+      tl.fromTo("#s7-h", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 44.30);
+      tl.fromTo("#s7-sub", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 48.10);
+      gsap.set("#s7lk1, #s7lk2, #s7lk3", { attr: { "stroke-dasharray": "2 9" }, opacity: 0 });
+      tl.fromTo("#s7-shift", { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 44.60);
+      [["#s7lk1", 45.30, "#s7-cem1"], ["#s7lk2", 45.90, "#s7-cem2"], ["#s7lk3", 46.50, "#s7-cem3"]].forEach(function (p) {
+        tl.to(p[0], { opacity: 1, duration: 0.45, ease: "power1.inOut" }, p[1]);
+        tl.fromTo(p[2], { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, p[1] + 0.15);
+      });
+
+      // T7 dots take over (53.8)
+      tl.to("#s7", { opacity: 0, filter: "blur(10px)", duration: 0.7, ease: "power2.inOut" }, 53.80);
+      tl.fromTo("#s8", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 53.90);
+
+      // ===== S8 close (53.8 – 65.0). VO n13 54.2–62.88 — the case study's own closing tease.
+      // Closing tweens stay pinned to their absolute end times rather than shifting with the rest
+      // of the beat — that's what keeps total runtime at 65.0s despite S1b adding 2.5s upstream. =====
+      gsap.set(dots8, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots8, { scale: 1, duration: 0.8, ease: "back.out(1.4)", stagger: { each: 0.0014 } }, 54.00);
+      tl.fromTo("#s8-title", { opacity: 0, filter: "blur(12px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 1.0, ease: "power3.out" }, 54.40);
+      tl.fromTo("#s8-kick", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 54.80);
+      tl.fromTo("#s8-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 55.40);
+      tl.to("#s8-col", { opacity: 0, duration: 0.5, ease: "power2.in" }, 64.30);
+      tl.to(dots8, { scale: 0, duration: 0.45, ease: "power2.in", stagger: { each: 0.0004 } }, 64.25);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

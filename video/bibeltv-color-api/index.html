@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>A color engine that automates what bigger streamers do by hand — BibelTV</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #cover { z-index: 60; }
+      #s1 { z-index: 1; opacity: 0; perspective: 1900px; perspective-origin: 72% 50%; }
+      #s2 { z-index: 2; opacity: 0; perspective: 1900px; perspective-origin: 72% 50%; }
+      #s3 { z-index: 3; opacity: 0; perspective: 1900px; perspective-origin: 30% 50%; }
+      #s4 { z-index: 4; opacity: 0; }
+      #s5 { z-index: 5; opacity: 0; }
+      #s6 { z-index: 6; opacity: 0; }
+      #s7 { z-index: 7; opacity: 0; }
+
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+      .ht { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .ht circle { fill: var(--teal); }
+      .wash { position: absolute; inset: 0; pointer-events: none; }
+      #wash1 { background: linear-gradient(90deg, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.92) 40%, rgba(248,243,238,0.3) 70%, rgba(248,243,238,0) 100%); }
+      #wash7 { background: radial-gradient(ellipse 760px 420px at 50% 50%, rgba(248,243,238,0.97) 0%, rgba(248,243,238,0.9) 55%, rgba(248,243,238,0) 100%); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.04; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); }
+
+      .device { position: absolute; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device img { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+
+      /* Cover */
+      #cover-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; background: var(--paper); padding: 0 200px; }
+      #cover-title { font-size: 84px; max-width: 1500px; font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.06; }
+      #cover-sub { font-family: "Switzer", serif; font-weight: 300; font-size: 30px; color: var(--muted); }
+
+      /* S1: hook — the dials panel on frame 1 */
+      #s1-col { position: absolute; left: 140px; top: 0; height: 100%; width: 760px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      #s1-title { font-family: "Redaction 70", serif; font-size: 66px; line-height: 1.06; letter-spacing: -0.02em; color: var(--ink); max-width: 720px; }
+      #s1-sub { font-size: 28px; max-width: 660px; line-height: 1.35; }
+      #dev1 { left: 990px; top: 260px; width: 860px; height: 536px; }
+
+      /* S2: the obvious tool wasn't enough */
+      #s2-col { position: absolute; left: 140px; top: 0; height: 100%; width: 780px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+      #s2-h1 { font-size: 66px; }
+      #s2-quote { font-family: "Redaction 35", serif; font-size: 40px; color: var(--ink); line-height: 1.3; margin-top: 6px; }
+      #dev2 { left: 990px; top: 260px; width: 860px; height: 536px; opacity: 0.55; }
+
+      /* S3: the decision — zoom into the dials */
+      #s3-col { position: absolute; left: 1120px; top: 0; height: 100%; width: 640px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+      #s3-h { font-size: 58px; }
+      #s3-sub { font-size: 28px; color: var(--muted); font-weight: 300; }
+      #dev3 { left: 210px; top: 90px; width: 520px; height: 1320px; }
+      #marker3 { position: absolute; left: 250px; top: 570px; width: 460px; height: 90px; overflow: visible; z-index: 6; }
+      #marker3 path { fill: none; stroke: var(--teal); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0.9; }
+
+      /* S4: money shot — both modes, full width */
+      #dev4 { left: 210px; top: 130px; width: 1500px; height: 820px; }
+      #dev4 img { top: 0; left: 0; width: 1500px; height: auto; }
+      #s4-plate { position: absolute; left: 0; right: 0; top: 40px; display: flex; justify-content: center; z-index: 5; }
+      #s4-kick { background: rgba(248,243,238,0.9); padding: 10px 22px; border-radius: 999px; }
+
+      /* S5: outcome */
+      #dev5 { left: 210px; top: 190px; width: 1500px; height: 700px; }
+      #dev5 img { top: -120px; left: 0; width: 1500px; height: auto; }
+      #s5-col { position: absolute; left: 0; right: 0; bottom: 70px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+      #s5-h { font-size: 40px; }
+      #s5-sub { font-size: 26px; color: var(--muted); font-weight: 300; }
+
+      /* S6: restraint close — typographic only */
+      #s6-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; }
+      #s6-l1, #s6-l2 { font-size: 64px; max-width: 1300px; }
+
+      /* S7: close */
+      #s7-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; padding: 0 200px; }
+      #s7-title { font-size: 68px; max-width: 1500px; }
+      #s7-url { font-family: "Switzer", serif; font-weight: 500; font-size: 38px; color: var(--ink); }
+
+      #grain { position: absolute; inset: 0; z-index: 70; opacity: 0.06; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="58.5" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="cover" class="scene">
+        <div id="cover-col">
+          <span class="kicker" id="cover-kick">Bibel TV · Color API · 2025</span>
+          <h1 id="cover-title">A color engine that automates what bigger streamers do by hand</h1>
+          <p id="cover-sub">Ten thousand videos. One color engine.</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <svg id="dots1" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash1" class="wash"></div>
+        <div id="dev1" class="device"><img src="assets/ui/color-lab-clean.png" alt="" /></div>
+        <div id="s1-col">
+          <div id="s1-kick"><span class="kicker">Bibel TV · Color API · 2025</span><span class="rule" id="s1-rule"></span></div>
+          <h1 id="s1-title">A color engine that automates what bigger streamers do by hand.</h1>
+          <p id="s1-sub" class="body">Ten thousand videos. One color engine.</p>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div id="dev2" class="device"><img src="assets/ui/color-lab-clean-s2.png" alt="" /></div>
+        <div id="s2-col">
+          <span class="kicker" id="s2-kick">The obvious answer</span>
+          <h2 id="s2-h1" class="display">Automated wasn't the same as right.</h2>
+          <p id="s2-quote">"Some cards demanded the page. Others almost disappeared. The artwork didn't decide which — the&nbsp;RGB&nbsp;math did."</p>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div id="dev3" class="device"><img src="assets/ui/dials-panel.png" alt="" /></div>
+        <svg id="marker3" aria-hidden="true"><path id="marker3-p" d="M 8 44 C 8 14, 60 4, 230 6 C 400 8, 452 20, 452 46 C 452 74, 388 86, 228 84 C 66 82, 8 72, 8 46" /></svg>
+        <div id="s3-col">
+          <span class="kicker" id="s3-kick">The decision</span>
+          <h2 id="s3-h" class="display">Design kept the thresholds.</h2>
+          <p id="s3-sub">Brand calls, not code commits.</p>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div id="s4-plate"><span class="kicker" id="s4-kick">Both modes, one artwork</span></div>
+        <div id="dev4" class="device"><img src="assets/ui/color-lab-applied.png" alt="" />
+          <svg id="ht4" class="ht" viewBox="0 0 1500 820" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div id="dev5" class="device"><img src="assets/ui/color-lab-applied-s5.png" alt="" /></div>
+        <div id="s5-col">
+          <span class="kicker" id="s5-kick">The outcome</span>
+          <h2 id="s5-h" class="display">Live, on every video.</h2>
+          <p id="s5-sub">Every theme clears contrast — nobody checks by hand.</p>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <svg id="dots6" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="s6-col">
+          <p id="s6-l1" class="display">On phones, it goes quiet.</p>
+          <p id="s6-l2" class="display">One color, not two.</p>
+        </div>
+      </section>
+
+      <section id="s7" class="scene">
+        <svg id="dots7" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="wash7" class="wash"></div>
+        <div id="s7-col">
+          <span class="kicker" id="s7-kick">Case study</span>
+          <h2 id="s7-title" class="display">A color engine that automates what bigger streamers do by hand</h2>
+          <span id="s7-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <audio id="bgm" data-start="0.40" data-duration="58.1" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
+      <audio id="vo-n1" data-start="1.20" data-duration="7.92" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n2" data-start="9.70" data-duration="7.47" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n3" data-start="20.00" data-duration="7.20" data-track-index="20" src="assets/vo/n3-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n4" data-start="27.50" data-duration="4.62" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n5" data-start="34.00" data-duration="7.64" data-track-index="20" src="assets/vo/n5-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n6" data-start="42.90" data-duration="7.98" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n7" data-start="51.40" data-duration="3.08" data-track-index="20" src="assets/vo/n7-fit.mp3" data-volume="1"></audio>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      var dots1 = buildField(document.getElementById("dots1"), 1920, 1080, 40, [0.74, 0.5], 13, 9, 0.62);
+      var dots7 = buildField(document.getElementById("dots7"), 1920, 1080, 40, [0.5, 0.5], 12, 27, 0.68);
+      var dots6 = buildField(document.getElementById("dots6"), 1920, 1080, 40, [0.5, 0.5], 11, 41, 0.7);
+      var ht4 = buildScreen(document.getElementById("ht4"), 1500, 820, 34, [0.4, 0.5]);
+
+      var tl = gsap.timeline({ paused: true });
+      var DEV_REST = { x: 0, rotationY: -9, rotationX: 3, transformOrigin: "50% 50%" };
+
+      // ===== Cover (0 – 0.4) =====
+      tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 0.25);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.25);
+
+      // ===== S1 hook (0.4 – 9.0). Product on frame 1. VO n1 1.2–8.5 =====
+      gsap.set(dots1, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set("#dev1", Object.assign({ y: 24, scale: 0.985, opacity: 1 }, DEV_REST));
+      tl.to("#dev1", { y: 0, scale: 1, duration: 1.2, ease: "power3.out" }, 0.4);
+      tl.to(dots1, { scale: 1, duration: 0.9, ease: "back.out(1.3)", stagger: { each: 0.0018 } }, 0.5);
+      tl.fromTo("#dots1", { x: 20 }, { x: -20, duration: 8.6, ease: "sine.inOut" }, 0.4);
+      tl.fromTo("#s1-kick", { x: -28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.7);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 1.0);
+      tl.fromTo("#s1-title", { y: 36, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 1.0);
+      tl.set("#s1-title", { fontFamily: '"Redaction 50", serif' }, 2.2);
+      tl.set("#s1-title", { fontFamily: '"Redaction 35", serif' }, 3.0);
+      tl.set("#s1-title", { fontFamily: '"Redaction 20", serif' }, 3.8);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 4.2);
+      tl.fromTo("#dev1", { y: 0 }, { y: -12, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.6);
+
+      // T1 blur crossfade (9.3)
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 9.30);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 9.40);
+
+      // ===== S2 the obvious answer (9.3 – 19.7). VO n2 9.7–19.41 =====
+      gsap.set("#dev2", Object.assign({ opacity: 0.5 }, DEV_REST));
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 9.60);
+      tl.fromTo("#s2-h1", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 9.80);
+      tl.fromTo("#s2-quote", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 12.60);
+      tl.fromTo("#dev2", { y: 0 }, { y: -10, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 5 }, 9.60);
+
+      // T2 blur crossfade (19.7)
+      tl.to("#s2", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 19.70);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 19.80);
+
+      // ===== S3 the decision (19.7 – 27.1). VO n3 20.0–27.2 =====
+      gsap.set("#dev3", { scale: 1.3, x: -60, opacity: 0, transformOrigin: "50% 50%" });
+      tl.to("#dev3", { scale: 1, x: 0, opacity: 1, duration: 1.1, ease: "power3.out" }, 19.90);
+      tl.fromTo("#s3-kick", { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 20.20);
+      tl.fromTo("#s3-h", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 20.40);
+      tl.fromTo("#s3-sub", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 23.20);
+      var m3 = document.getElementById("marker3-p"), m3len = m3.getTotalLength();
+      m3.style.strokeDasharray = m3len; gsap.set(m3, { strokeDashoffset: m3len, opacity: 0 });
+      tl.set(m3, { opacity: 0.9 }, 24.40);
+      tl.fromTo(m3, { strokeDashoffset: m3len }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 24.40);
+
+      // T3 zoom-through (27.1)
+      tl.to("#s3", { scale: 1.15, opacity: 0, duration: 0.6, ease: "power2.in" }, 27.10);
+      tl.fromTo("#s4", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.7, ease: "expo.out" }, 27.30);
+
+      // ===== S4 money shot (27.1 – 33.5). VO n4 27.5–33.5 =====
+      gsap.set("#dev4", { y: 24, scale: 0.98, opacity: 1 });
+      gsap.set("#s4-kick", { opacity: 0, y: -14 });
+      gsap.set(ht4, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to("#dev4", { y: 0, scale: 1, duration: 1.1, ease: "power3.out" }, 27.50);
+      tl.to(ht4, { scale: 1.12, duration: 0.55, ease: "power2.in", stagger: { each: 0.001 } }, 27.60);
+      tl.to(ht4, { scale: 0, duration: 0.55, ease: "power3.out", stagger: { each: 0.001 } }, 28.15);
+      tl.fromTo("#s4-kick", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 27.80);
+      tl.fromTo("#dev4", { y: 0 }, { y: -10, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 2 }, 28.60);
+
+      // T4 blur crossfade (33.5)
+      tl.to("#s4", { filter: "blur(10px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 33.50);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 33.60);
+
+      // ===== S5 outcome (33.5 – 42.5). VO n5 34.0–42.24 =====
+      gsap.set("#dev5", { opacity: 1 });
+      tl.fromTo("#dev5", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" }, 33.90);
+      tl.fromTo("#s5-kick", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 34.60);
+      tl.fromTo("#s5-h", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 34.80);
+      tl.fromTo("#s5-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 38.00);
+      tl.to("#dev5", { y: -8, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 4 }, 35.20);
+
+      // T5 blur crossfade (42.5)
+      tl.to("#s5", { filter: "blur(12px)", opacity: 0, duration: 0.6, ease: "power2.inOut" }, 42.50);
+      tl.fromTo("#s6", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.inOut" }, 42.60);
+
+      // ===== S6 restraint close (42.5 – 50.9). VO n6 42.9–50.63 =====
+      gsap.set(dots6, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots6, { scale: 1, duration: 1.0, ease: "power2.out", stagger: { each: 0.0022 } }, 42.60);
+      tl.to("#dots6", { opacity: 0.4, duration: 6.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 42.60);
+      tl.fromTo("#s6-l1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 43.10);
+      tl.fromTo("#s6-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 46.50);
+
+      // T6 dots take over (50.9)
+      tl.to("#s6", { opacity: 0, filter: "blur(10px)", duration: 0.7, ease: "power2.inOut" }, 50.90);
+      tl.fromTo("#s7", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 51.00);
+
+      // ===== S7 close (50.9 – 58.5). VO n7 51.4–54.23 =====
+      gsap.set(dots7, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots7, { scale: 1, duration: 0.7, ease: "back.out(1.4)", stagger: { each: 0.0013 } }, 51.10);
+      tl.fromTo("#s7-kick", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 51.30);
+      tl.fromTo("#s7-title", { opacity: 0, filter: "blur(12px)", scale: 1.03 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 51.50);
+      tl.fromTo("#s7-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 53.20);
+      tl.to("#s7-col", { opacity: 0, duration: 0.5, ease: "power2.in" }, 57.80);
+      tl.to(dots7, { scale: 0, duration: 0.45, ease: "power2.in", stagger: { each: 0.0004 } }, 57.70);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "text": "A",
+    "start": 0.05,
+    "end": 0.06,
+    "id": "w0"
+  },
+  {
+    "text": "grieving",
+    "start": 0.06,
+    "end": 0.54,
+    "id": "w1"
+  },
+  {
+    "text": "family",
+    "start": 0.65,
+    "end": 0.97,
+    "id": "w2"
+  },
+  {
+    "text": "waits",
+    "start": 0.97,
+    "end": 1.25,
+    "id": "w3"
+  },
+  {
+    "text": "through",
+    "start": 1.31,
+    "end": 1.75,
+    "id": "w4"
+  },
+  {
+    "text": "every",
+    "start": 1.75,
+    "end": 2.07,
+    "id": "w5"
+  },
+  {
+    "text": "round.",
+    "start": 2.07,
+    "end": 2.48,
+    "id": "w6"
+  }
+]

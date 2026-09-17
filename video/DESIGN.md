@@ -50,3 +50,34 @@ One house sound across studies, varied by mood per study: warm sustained bed wit
 soft electronic pulse instead of drums, subtle chiptune / digital accents low in the mix; narration
 in "we"/"you", sidechain-ducked bed. Mood lines per study and the brief template:
 `my-cv-tailor/.claude/skills/generate-case-study-video/references/music-direction.md`.
+
+## Cover title card (every video)
+Every video opens with a brief, fully-resolved title card — kicker, title at its final Redaction 20
+grade, subtitle — held static ~0.25s, then a blur-crossfade dissolve (~0.15s) into the film's own
+kinetic opening. Not a kinetic build from nothing: the viewer's first frame is already legible and
+complete. House duration: 0.4s total. This frame also becomes the `<video poster>` — the site's
+still and the film's true first frame are the same image.
+
+## Real footage (added 2026-09-17)
+Realistic video (AI-generated or captured) is a deliberate second register, not a style violation —
+the site mixes real product screenshots with flat graphic elements already, and Apple/Anthropic/OpenAI
+all mix illustration with real footage the same way. Do not force the halftone/dot treatment onto
+real footage; a graphic dot-screen laid over a photorealistic shot reads as a mismatched overlay, not
+the house style. Instead, real footage gets an analog film grade: lifted/faded blacks, a gentle
+warm-highlight / cool-shadow split tone, mild desaturation (~0.8–0.85), fine film grain, a soft
+vignette. Confirmed on the first test (`ffmpeg`: soft S-curve per channel, `eq=saturation=0.82`,
+`noise=alls=6:allf=t+u`, `vignette=PI/4`). This keeps real footage feeling like *this site's* film,
+not stock footage, without borrowing a graphic language built for illustrations and UI.
+
+Note: duotone is not a site motif — that was an overreach in an earlier illustration prompt,
+caught and corrected 2026-09-17. The site's actual graphic identity is halftone dot-resolve plus a
+pixelated/chunky low-res treatment (`image-rendering: pixelated`, the homepage dot fields), not a
+flat two-color duotone wash. Keep future illustration prompts to halftone + pixel-edge language, not
+"duotone."
+
+## Motion vocabulary is a constant, mood is not
+Every film uses the same core techniques — halftone resolve, marker-circle/highlight draw, device
+tilt in perspective, grade-morph type, depth/exploded assembly where content supports it — at least
+one resolve and one marker draw per film, minimum. A calmer mood (BibelTV, ChurchDesk) changes
+tempo, palette warmth and how *often* each technique fires; it never means dropping them. A film
+with zero of these reads as thin, not restrained. See LEARNINGS.md #33 for how this went wrong once.

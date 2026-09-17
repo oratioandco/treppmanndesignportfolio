@@ -1,4 +1,4 @@
-# Ninox AI onboarding — clip script (round 6, 62s, master)
+# Ninox AI onboarding — clip script (round 7, 64.6s, master — added schema-in-builder + working-product proof shots)
 
 ## Brief
 - Audience: master cut (all role families). Variants planned: craft/IC, leadership, AI-first.
@@ -17,10 +17,10 @@
 | 4 | 30.8–34.6 | SCHEMA GENERATED · Six tables. A first guess. | So the first draft is always a little wrong. | Halftone resolve prompt → generated schema |
 | 5 | 34.6–39.7 | Chat alone wouldn't work. | Fixing that in a chat means editing twelve tables in prose. | Zoom-through; editor fills the frame, assembles from 3D scatter |
 | 6 | 39.7–48.2 | Show the output. Let them **edit it**. | Instead, the AI generates into the real editor. Every table is a card you can change. | Chat dims + cards outline on "card you can change" (44.0); chat returns 47.0 |
-| 7 | 48.2–57.0 | No AI mode to leave. · Shipped: Ninox AI public beta, 2026. | The AI starts the database. The user owns it. Now the onboarding for Ninox AI's public beta. | First guess → edited schema via halftone; punch-in 1.14× |
-| 8 | 57.0–62.4 | Case study · Who Controls the AI? · treppmann.design | Read the full case study on treppmann dot design. | Dot takeover, title, fade |
+| 7 | 48.3–59.2 | No AI mode to leave. · Pattern: Direct editing beside chat. | The AI starts the database. The user owns it. Now the onboarding for Ninox AI's public beta. | First guess → edited schema (punch-in 1.14×) → schema-in-builder → working product, each via halftone resolve |
+| 8 | 59.2–64.6 | Case study · Who Controls the AI? · treppmann.design | Read the full case study on treppmann dot design. | Dot takeover, title, fade |
 
-Speech 45.8s of 62.4s (27% without voice). Lines slowed 7% (atempo 0.93): the clone reads at ~3.0 wps raw.
+Speech 42.6s of 64.6s (34% without voice). Lines slowed 7% (atempo 0.93): the clone reads at ~3.0 wps raw.
 Narrator says "we"/"you", never "I". Title paid off in beat 7: "The user owns it."
 
 ## Sources
