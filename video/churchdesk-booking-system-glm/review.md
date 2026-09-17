@@ -651,3 +651,37 @@ render`: 65.0s. Gate 4 (v16): integrated -15.0 LUFS, true peak -1.54 dBTP, audio
 the ship encode, 1920x1080, 65.0s, full decode clean. Shipped as
 public/video/churchdesk-booking-system.mp4 + regenerated poster (money-shot frame, 33.5s).
 **v16 is deployed live as a working cut for review — not approved.**
+
+## Round 17 (2026-09-17) — v17, spoken narrative pivot after the grid
+
+Tobias, on v16: after the 2×2 grid montage, should there be a "but" — his draft: "the diocese
+wanted to serve the grieving families better and make this process much more service oriented" —
+so viewers understand the pivot in the narrative. Agreed: the film jumped from "a grieving family
+waits through every round" straight into "Fast for the family" with no hinge.
+
+- **Line**: "But the church wanted this to feel different." (n4b, ElevenLabs same voice, fitted at
+  the house 0.93 atempo → 2.22s), placed 17.35–19.6 over the family settle at the end of beat 1,
+  in the 2.7s of silence between n4 and n5 — no downstream re-timing. The specifics still land in
+  beat 2's own lines ("The customer had already named the goal. Fast for the family…").
+- **"Church", not "diocese"**: the pilot customer is the Evangelische Kirche von Kurhessen-Waldeck,
+  Protestant — "diocese" is a Catholic term and would mis-code the story.
+- **Compression, disclosed**: Tobias's fuller wording (~17 words ≈ 7s) does not fit the gap; it
+  would force a re-timing of the whole film. The implemented line carries the pivot as aspiration
+  ("wanted this to feel different") rather than as a process claim — the study never uses
+  "service-oriented" framing, so the stronger claim is also the less defensible one. If Tobias
+  wants the fuller sentence, that is a timing-table round, not a patch.
+- Bed re-ducked: vo-stem rebuilt with n4b at 17350ms, sidechain re-run against bed-fit-65.
+- **n5 removed ("The customer had already named the goal.")**: adding the pivot line pushed the
+  voice-free share to 21.7% (FAIL floor is 22%) — the checker has been saying since v15 that the
+  film is narrated to its ceiling. The pivot line makes n5 redundant three ways (pivot → beat 2
+  card → beat 3's own "The customer's own workshop had named the goal"), so n5 came out rather
+  than jiggling silence padding to squeak under a threshold. Voice-free back to 25% — the same
+  WARN profile v15/v16 shipped with. **Tobias: if you want n5 back, it re-breaks the gate — the
+  next narration addition must be paired with another cut.**
+- Gate after changes: 0 FAIL / 7 WARN (the known v15/v16 warns), rate 2.96 wps, voice-free 25%,
+  beat-fit all PASS. n4b data-duration 2.40 to clear the +0.15s padding floor.
+Round 17 Gate 4 (v17 render): 65.0s, integrated -15.2 LUFS (target -15.0, within 0.2 LU; left
+un-normalized because a +0.2 dB makeup gain would push true peak to -1.31 dBTP, further off the
+-1.5 spec than the loudness is), true peak -1.51 dBTP, audio 48000 Hz pinned on the ship encode.
+Shipped to public/video/churchdesk-booking-system.mp4. **v17 is a working cut for review — not
+approved, and not pushed/deployed until Tobias has watched it.**
