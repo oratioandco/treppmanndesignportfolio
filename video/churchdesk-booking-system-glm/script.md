@@ -65,12 +65,12 @@ later in the 10s clip) to sustain a longer opening. This treatment fixes *what* 
 | # | t (s) | On screen | Narration | Visual |
 |---|---|---|---|---|
 | 0 | 0.0–0.4 | Cover | — | Settled title card, held, dissolves into S1. The title lives only here — S1 no longer repeats it beside a device. |
-| 1 | 0.4–19.8 | Before (kicker only — no other text) | A funeral home calls the parish. The parish calls the priest on call. The priest checks the cemetery, then calls back — then calls back. Back and forth, call after call, until a time is found. A grieving family waits through every round. | Round 13 (2026-09-17, direction change after Tobias watched round 12's diagram-then-separate-clip and asked "does this make sense?" about a grid): 2×2 grid of four real video clips (family, funeral home, parish office, priest), no text labels. A spotlight (scale + opacity) moves cell to cell as the narration names each party, then oscillates funeral-home/parish/priest for "back and forth", then settles on family for the close. Replaces both the diagram (round 12) and the standalone human-moment beat — one visual idea for the whole beat instead of two. |
+| 1 | 0.4–19.8 | Before (kicker only — no other text) | A funeral home calls the parish. The parish calls the priest on call. The priest checks the cemetery, then calls back — then calls back. Back and forth, call after call, until a time is found. A grieving family waits through every round. | Round 13 (2026-09-17, direction change after Tobias watched round 12's diagram-then-separate-clip and asked "does this make sense?" about a grid): 2×2 grid of four real video clips (family, funeral home, parish office, priest), no text labels. A spotlight (scale + opacity) moves cell to cell as the narration names each party, then oscillates funeral-home/parish/priest for "back and forth", then settles on family for the close. Replaces both the diagram (round 12) and the standalone human-moment beat — one visual idea for the whole beat instead of two. Round 16: the four cell clips are 22s ping-pong xfade loops, so motion runs the full beat (v15 froze at ~8.4s). |
 | 2 | 19.8–26.1 | Fast for the family. Never a burden on the priest. | The customer had already named the goal. Fast for the family. Never a burden on the priest. | Two typographic lines, teal sweep under "burden". |
 | 3 | 26.1–31.8 | The customer's own words / handwritten quote | The customer's own workshop had named the goal. No more phoning around. | Vision-sheet photo strip, blur-resolves in. |
 | 4 | 31.8–36.5 | What the funeral home sees. | So the calendar shows what is genuinely free. | Money shot: the week view, full width, held past its own speech. Still the film's first look at the product (round 10 decision holds). |
 | 5 | 36.5–43.5 | Their calendar, their say / A request, not an assignment. / Never automatic. Accept — or decline. | The priest is notified — in the app, and by email. One button: accept, or say no. | Priest's calendar device establishes, dot takeover cuts to real footage of the priest checking and accepting. |
-| 6 | 43.5–53.8 | The harder path / Not a module. Platform behavior. / One shift, several cemeteries — one calendar entry. | One on-call shift can cover several cemeteries at once. Entering that by hand was the wrong fight. So we extended the calendar they already used. | Typographic claim, paired with a small diagram: one "on-call shift" node branching to three named cemeteries. **Narration flagged for a future revision** (verification-log 2026-09-17 round 10): the real point is adoption risk — a bespoke digital entry method for 5+ cemeteries with wildly different hours could cost hundreds of clicks, which is what would have actually stopped priests and parishes from adopting it. Not re-recorded yet. |
+| 6 | 43.5–53.8 | The harder path / Not a module. Platform behavior. / One shift, several cemeteries — one calendar entry. | One on-call shift can cover several cemeteries at once. Entering that by hand was the wrong fight. So we extended the calendar they already used. | Typographic claim, paired with a small diagram: one "on-call shift" node branching to five named cemeteries, each with its funeral hours (round 16, per Tobias — the v15 build showed three and no hours; endpoint hours verified, intermediates illustrative, see Round 16 below). **Narration flagged for a future revision** (verification-log 2026-09-17 round 10): the real point is adoption risk — a bespoke digital entry method for 5+ cemeteries with wildly different hours could cost hundreds of clicks, which is what would have actually stopped priests and parishes from adopting it. Not re-recorded yet. |
 | 7 | 53.8–65.0 | Portfolio · title · treppmann.design | Curious how a two-month tool ended up running weddings and rentals for ChurchDesk's whole customer base? More at treppmann dot design. | Dot takeover, title, fade — close now teases a real, specific fact from the case study's own closing hook, not a generic "read more" line. |
 
 **Round 12 (2026-09-17) — direction change, not a patch.** Tobias: the diagram+footage hybrid in
@@ -177,3 +177,41 @@ stagger-math bug caught along the way: `review.md` round 7, `LEARNINGS.md` #35.
   through the shot. Priest: prompt describes a Romanesque church facade, phone held to the ear for
   the whole static shot. All four clips graded with the same film-grade filter; priest's exterior
   daylight additionally darkened/desaturated to match the three interior shots.
+
+## Round 16 (2026-09-17) — the four v15 review fixes
+
+Tobias watched the deployed v15 and named four defects. Deployment is not approval (see
+`review.md`); v16 is another working cut for review, not a sign-off.
+
+1. **Grid freeze** — "at some point the clips stop playing and then it's 4 static cards": the four
+   cell assets were 8.0s inside a 19.4s beat, so every cell froze at ~8.4s and the remaining 11s
+   played over stills. Fixed at the asset level, not with composition tricks: each `grid-*.mp4` is
+   now a 22s ping-pong loop built with an ffmpeg xfade chain (forward 0–7, 1s dissolve to the
+   reversed clip, 1s dissolve back to forward; crf 16, 24fps, muted). The composition wiring
+   (`data-start=0.40, data-duration=19.4, data-media-start=0`) is unchanged — the assets are simply
+   longer than the beat now, so motion never stops. Reverse-on-ambient-footage reads as gentle
+   oscillation under the 1s dissolves.
+2. **"The 4 clip grid is odd"** — treated per lesson 37 as a second-round signal on the same beat:
+   the freeze plausibly accounts for most of the oddness (dead cells read as broken, not calm), so
+   the spotlight design itself is kept this round and the freeze fixed first. If the grid still
+   reads odd on v16, the structural options for the next round are: (a) drop to 3 cells with a
+   dominant family cell, (b) sequential full-frame cuts per party instead of a simultaneous grid,
+   (c) captions per cell. Logged, not guessed at.
+3. **Priest accept cut off** — "the priest accepting the request on their phone is cut off still
+   after less than a second when it should be visible throughout that moment": root cause was
+   wiring, not footage. `#reel6` had `data-start=37.40, data-duration=4.0, data-media-start=3.2`,
+   so the clip played hidden underneath `#dev6` from 37.4; at the 40.75 full-bleed reveal the media
+   head was already at 6.55 and the clip ended at 7.4 — 0.65s visible. Rewired to
+   `data-start=40.75, data-duration=2.75, data-media-start=4.5`. In-point chosen from a 0.6s-step
+   frame scan of the source (lesson 38): 4.5 = reading the screen, ~5.6 = the tap on accept,
+   6.8 = lowered phone + nod, so the visible window 40.75–43.5 covers read → tap → nod, exactly
+   under "One button: accept, or say no" (n10 ends 42.99).
+4. **Five cemeteries with different funeral hours** — the S7 diagram (the beat-6 node diagram
+   showing one on-call shift branching to cemeteries) showed 3 cemeteries and no hours. Rebuilt
+   with 5 named cemetery nodes, each carrying an hour sub-label, links restaggered 45.10–47.50.
+   The study verifies the range endpoints ("Thursdays at 9am only" / "every day 10am–4pm, and
+   everything between") but names no cemetery-to-hours mapping: `Bestattungswald — Thu 9:00 only`
+   and `Hauptfriedhof — Daily 10:00–16:00` carry the two verified endpoints as illustrative
+   instances within the verified range, and `Waldfriedhof`, `Stadtfriedhof`, `Lindenfriedhof`
+   carry invented intermediate hours inside that same range. All five are logged as illustrative
+   in `review.md` round 16 — no hour on this diagram is asserted as a fact about a real cemetery.

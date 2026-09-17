@@ -103,9 +103,12 @@
       #s7-diagram { position: absolute; left: 1180px; top: 260px; width: 600px; height: 560px; }
       .node-sm { position: absolute; font-family: "Redaction 20", serif; font-size: 26px; color: var(--ink); white-space: nowrap; opacity: 0; display: flex; align-items: center; gap: 12px; }
       .node-sm .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); flex: none; }
+      .node-sm .ncol { display: flex; flex-direction: column; gap: 2px; }
+      .node-sm .ncol em { font-family: "Switzer", serif; font-style: normal; font-size: 18px; color: var(--muted); }
       #s7-shift { left: 0; top: 260px; flex-direction: column; align-items: flex-start; gap: 8px; }
       #s7-shift .lbl { font-size: 30px; }
-      #s7-cem1 { left: 380px; top: 40px; } #s7-cem2 { left: 380px; top: 260px; } #s7-cem3 { left: 380px; top: 480px; }
+      #s7-cem1 { left: 380px; top: 20px; } #s7-cem2 { left: 380px; top: 140px; } #s7-cem3 { left: 380px; top: 260px; }
+      #s7-cem4 { left: 380px; top: 380px; } #s7-cem5 { left: 380px; top: 500px; }
       #s7-links { position: absolute; inset: 0; width: 600px; height: 560px; }
       #s7-links line { stroke: var(--teal); stroke-width: 4; stroke-dasharray: 3 11; stroke-linecap: round; opacity: 0.55; }
 
@@ -165,7 +168,7 @@
 
       <section id="s6" class="scene">
         <div id="dev6" class="device"><div class="wrap"><img src="assets/ui/priest-availability.jpg" alt="" /></div></div>
-        <div id="s6-video"><video id="reel6" data-start="37.40" data-duration="4.0" data-media-start="3.2" data-track-index="31" src="assets/ui/reel-notification-accept.mp4" muted playsinline></video></div>
+        <div id="s6-video"><video id="reel6" data-start="40.75" data-duration="2.75" data-media-start="4.5" data-track-index="31" src="assets/ui/reel-notification-accept.mp4" muted playsinline></video></div>
         <div id="s6-scrim"></div>
         <div id="s6-col">
           <span class="kicker" id="s6-kick">Their calendar, their say</span>
@@ -186,13 +189,17 @@
         </div>
         <div id="s7-diagram">
           <span class="node-sm" id="s7-shift"><span class="dot"></span><span class="lbl">One on-call shift</span></span>
-          <span class="node-sm" id="s7-cem1"><span class="dot"></span><span>Hauptfriedhof</span></span>
-          <span class="node-sm" id="s7-cem2"><span class="dot"></span><span>Waldfriedhof</span></span>
-          <span class="node-sm" id="s7-cem3"><span class="dot"></span><span>Bestattungswald</span></span>
+          <span class="node-sm" id="s7-cem1"><span class="dot"></span><span class="ncol"><span>Hauptfriedhof</span><em>Daily 10:00–16:00</em></span></span>
+          <span class="node-sm" id="s7-cem2"><span class="dot"></span><span class="ncol"><span>Waldfriedhof</span><em>Mon–Sat 9:00–12:00</em></span></span>
+          <span class="node-sm" id="s7-cem3"><span class="dot"></span><span class="ncol"><span>Bestattungswald</span><em>Thu 9:00 only</em></span></span>
+          <span class="node-sm" id="s7-cem4"><span class="dot"></span><span class="ncol"><span>Stadtfriedhof</span><em>Wed &amp; Fri 14:00–16:00</em></span></span>
+          <span class="node-sm" id="s7-cem5"><span class="dot"></span><span class="ncol"><span>Lindenfriedhof</span><em>Tue 10:00–12:00</em></span></span>
           <svg id="s7-links" viewBox="0 0 600 560" aria-hidden="true">
-            <line id="s7lk1" x1="130" y1="270" x2="380" y2="55" />
-            <line id="s7lk2" x1="130" y1="270" x2="380" y2="275" />
-            <line id="s7lk3" x1="130" y1="270" x2="380" y2="495" />
+            <line id="s7lk1" x1="130" y1="270" x2="380" y2="45" />
+            <line id="s7lk2" x1="130" y1="270" x2="380" y2="165" />
+            <line id="s7lk3" x1="130" y1="270" x2="380" y2="285" />
+            <line id="s7lk4" x1="130" y1="270" x2="380" y2="405" />
+            <line id="s7lk5" x1="130" y1="270" x2="380" y2="525" />
           </svg>
         </div>
       </section>
@@ -371,9 +378,9 @@
       tl.fromTo("#s7-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 44.10);
       tl.fromTo("#s7-h", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 44.30);
       tl.fromTo("#s7-sub", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 48.10);
-      gsap.set("#s7lk1, #s7lk2, #s7lk3", { attr: { "stroke-dasharray": "2 9" }, opacity: 0 });
+      gsap.set("#s7lk1, #s7lk2, #s7lk3, #s7lk4, #s7lk5", { attr: { "stroke-dasharray": "2 9" }, opacity: 0 });
       tl.fromTo("#s7-shift", { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 44.60);
-      [["#s7lk1", 45.30, "#s7-cem1"], ["#s7lk2", 45.90, "#s7-cem2"], ["#s7lk3", 46.50, "#s7-cem3"]].forEach(function (p) {
+      [["#s7lk1", 45.10, "#s7-cem1"], ["#s7lk2", 45.70, "#s7-cem2"], ["#s7lk3", 46.30, "#s7-cem3"], ["#s7lk4", 46.90, "#s7-cem4"], ["#s7lk5", 47.50, "#s7-cem5"]].forEach(function (p) {
         tl.to(p[0], { opacity: 1, duration: 0.45, ease: "power1.inOut" }, p[1]);
         tl.fromTo(p[2], { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, p[1] + 0.15);
       });

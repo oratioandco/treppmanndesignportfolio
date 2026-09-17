@@ -607,3 +607,47 @@ public/video/churchdesk-booking-system.mp4.
 Status correction (2026-09-17, from Tobias): v15 is deployed live but **not approved**. It is a
 working cut published for review; the film still needs work and v15 will be overwritten by the
 next round. Do not treat deployment as approval, and do not treat this cut as final anywhere.
+
+## Round 16 (2026-09-17) — v16, the four v15 review fixes
+
+Tobias, on v15: the 4-clip grid is odd; the clips stop playing and become 4 static cards; the
+priest accepting on their phone is cut off after less than a second when it should be visible
+throughout that moment; and he had asked for 5 cemeteries with different funeral hours (the
+diagram showed 3, with no hours). v16 addresses all four. Deployment of v16 is again a working
+cut for review, not approval.
+
+- **Grid freeze**: cell assets were 8.0s in a 19.4s beat. All four rebuilt as 22s ping-pong xfade
+  loops (forward → 1s dissolve → reversed → 1s dissolve → forward; crf 16, 24fps). Wiring
+  unchanged. Full detail in `script.md` Round 16.
+- **"Grid is odd"**: freeze fixed first; spotlight design kept (lesson 37 — second-round signal on
+  the same beat re-opens the structural decision, but the freeze plausibly *was* the oddness, and
+  restructuring while a known defect was also live would confound the read). Structural options
+  logged in `script.md` for round 17 if the grid still reads odd.
+- **Priest accept**: rewired `#reel6` from `start 37.40 / duration 4.0 / media-start 3.2` (played
+  hidden under `#dev6`; only 0.65s visible after the reveal) to `start 40.75 / duration 2.75 /
+  media-start 4.5`. In-point from a 0.6s-step frame scan: read → tap (~5.6 in source) → nod, under
+  the "accept, or say no" narration line.
+- **Five cemeteries with hours**: S7 diagram rebuilt, 5 named nodes with hour sub-labels, links
+  restaggered 45.10–47.50 inside n11 (43.9–53.59).
+
+**Illustrative-content disclosure (the diagram's hours).** The study verifies only the *range*:
+"cemetery opening hours ranged from Thursdays at 9am only to every day 10am–4pm, and everything
+between." It does not name which cemetery had which hours, nor any of the cemeteries' names beyond
+Hauptfriedhof and Waldfriedhof appearing in the availability screenshot's selection. On the
+diagram: `Bestattungswald — Thu 9:00 only` and `Hauptfriedhof — Daily 10:00–16:00` are the two
+verified *endpoints* attached to named cemeteries as illustrative instances; `Waldfriedhof —
+Mon–Sat 9:00–12:00`, `Stadtfriedhof — Wed & Fri 14:00–16:00`, `Lindenfriedhof — Tue 10:00–12:00`
+are invented names with invented intermediate hours inside the verified range. Every hour label on
+this diagram is therefore illustrative of the verified range, none is asserted as a fact about a
+real cemetery, and the diagram sits under narration ("can cover several cemeteries at once") that
+is itself study-sourced. The names Stadtfriedhof and Lindenfriedhof are new this round;
+Bestattungswald was already in the v15 diagram.
+
+Round 16 verification: snapshots at 9.0/17.5 (grid holds, spotlight intact), 41.3/41.9/42.6/43.2
+(the tap on accept is visible across the full-bleed window under the caption), 46.0/47.9/50.0 (five
+cemetery nodes with hour sub-labels, readable at full size). `check_video.py --strict`: 0 FAIL /
+7 WARN (same known warns as v15: rate, one long sentence in beat 7, voice-free share). `hyperframes
+render`: 65.0s. Gate 4 (v16): integrated -15.0 LUFS, true peak -1.54 dBTP, audio 48000 Hz pinned on
+the ship encode, 1920x1080, 65.0s, full decode clean. Shipped as
+public/video/churchdesk-booking-system.mp4 + regenerated poster (money-shot frame, 33.5s).
+**v16 is deployed live as a working cut for review — not approved.**
