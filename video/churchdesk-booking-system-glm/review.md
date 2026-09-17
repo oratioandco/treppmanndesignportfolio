@@ -603,3 +603,7 @@ Gate 4 (v15 render): pending.
 Gate 4 (v15 render): 65.0s (65.1s encoded), integrated -15.0 LUFS, true peak -1.5 dBTP, audio
 48000 Hz, full decode clean. This is the current shipping cut in
 public/video/churchdesk-booking-system.mp4.
+
+Status correction (2026-09-17, from Tobias): v15 is deployed live but **not approved**. It is a
+working cut published for review; the film still needs work and v15 will be overwritten by the
+next round. Do not treat deployment as approval, and do not treat this cut as final anywhere.
