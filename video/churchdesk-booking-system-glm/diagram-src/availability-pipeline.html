@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Switzer";
+    src: url("file:///Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/public/fonts/Switzer-Variable.woff") format("woff");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "Departure Mono";
+    src: url("file:///Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/public/fonts/DepartureMono-Regular.woff2") format("woff2"),
+         url("file:///Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/public/fonts/DepartureMono-Regular.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Redaction 20";
+    src: url("file:///Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/public/fonts/Redaction_20-Regular.woff2") format("woff2");
+  }
+
+  :root {
+    --bg: #f8f3ee;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --accent: #457468;
+    --accent-light: #e8f0ed;
+    --rule: #c9c0b6;
+    --grey: #b3aca3;
+    --grey-light: #ded8d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Switzer", -apple-system, sans-serif;
+    width: 1360px;
+    padding: 56px 56px 44px;
+  }
+
+  .pipeline { display: flex; flex-direction: column; }
+
+  .stage {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 30px 0;
+  }
+  .stage + .stage { border-top: 1px solid var(--rule); }
+
+  .stage-label { text-align: right; }
+  .stage-num {
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .stage-name { font-size: 25px; font-weight: 600; line-height: 1.25; }
+  .stage-name .op { color: var(--accent); font-weight: 700; }
+  .stage-sub { margin-top: 10px; font-size: 16.5px; line-height: 1.5; color: var(--muted); }
+
+  /* the calendar strip */
+  .day {
+    position: relative;
+    height: 118px;
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .hours {
+    position: relative;
+    height: 22px;
+    margin-bottom: 6px;
+  }
+  .hours span {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .track-wrap { position: relative; }
+  .tick {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 1px;
+    background: color-mix(in srgb, var(--rule) 55%, transparent);
+    z-index: 0;
+  }
+  .avail {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: var(--accent);
+    border-radius: 4px;
+    z-index: 1;
+  }
+  .avail.tagged {
+    display: flex; align-items: center; justify-content: center;
+    color: #f8f3ee;
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .other-event {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: var(--grey);
+    border-radius: 4px;
+    z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    color: #f8f3ee;
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .outside {
+    position: absolute;
+    top: 0; bottom: 0;
+    z-index: 3;
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--rule) 42%, transparent) 0 5px,
+      transparent 5px 11px
+    );
+  }
+  .window-edge {
+    position: absolute;
+    top: -6px; bottom: -6px;
+    width: 2px;
+    background: var(--ink);
+    z-index: 4;
+  }
+  .window-note {
+    position: absolute;
+    top: -34px;
+    transform: translateX(-50%);
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+    white-space: nowrap;
+    z-index: 4;
+  }
+  .buffer-cut {
+    position: absolute;
+    top: -4px; bottom: -4px;
+    width: 0;
+    border-left: 2px dashed var(--accent);
+    z-index: 4;
+  }
+  .buffer-label {
+    position: absolute;
+    top: -32px;
+    transform: translateX(-50%);
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .avail.dim {
+    background: color-mix(in srgb, var(--accent) 100%, transparent);
+  }
+  .slot {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: var(--accent);
+    border-radius: 4px;
+    z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    color: #f8f3ee;
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 13.5px;
+  }
+  .slot-final {
+    position: absolute;
+    top: 22px; bottom: 22px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #f8f3ee;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 14px;
+    z-index: 1;
+    box-shadow: 0 1px 4px color-mix(in srgb, var(--ink) 18%, transparent);
+  }
+  .ghost {
+    position: absolute;
+    top: 2px; bottom: 2px;
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 75%, transparent);
+    border-radius: 8px;
+    z-index: 1;
+  }
+
+  .connector {
+    grid-column: 2;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    padding-left: 56px;
+    margin-top: -26px;
+    margin-bottom: -14px;
+  }
+  .connector .line { display: none; }
+</style>
+</head>
+<body>
+
+<div class="pipeline">
+
+  <!-- 01 input -->
+  <div class="stage">
+    <div class="stage-label">
+      <div class="stage-num">01 — WHAT THE PASTOR ENTERS</div>
+      <div class="stage-name">One availability event,<br>in the calendar they already use</div>
+      <div class="stage-sub">A full day, or a repeat/series for a standing rotation. The entry chooses which booking pages it applies to — and can cover several cemeteries at once.</div>
+    </div>
+    <div>
+      <div class="hours">
+        <span style="left:0%">08:00</span><span style="left:20%">10:00</span><span style="left:40%">12:00</span><span style="left:60%">14:00</span><span style="left:80%">16:00</span><span style="left:100%">18:00</span>
+      </div>
+      <div class="track-wrap">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
+        <div class="day">
+          <div class="avail tagged" style="left:0%; width:100%">Verfügbarkeit — full day · Bereitschaft Beerdigung</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 minus other events -->
+  <div class="stage">
+    <div class="stage-label">
+      <div class="stage-num">02 — MINUS THE REST OF THE CALENDAR</div>
+      <div class="stage-name">Everything else already<br>in the day cuts itself out</div>
+      <div class="stage-sub">Availability is an event type on the same calendar as the pastor's week — a home visit, a service, a meeting. No second calendar to keep in sync.</div>
+    </div>
+    <div>
+      <div class="hours">
+        <span style="left:0%">08:00</span><span style="left:20%">10:00</span><span style="left:40%">12:00</span><span style="left:60%">14:00</span><span style="left:80%">16:00</span><span style="left:100%">18:00</span>
+      </div>
+      <div class="track-wrap">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
+        <div class="day">
+          <div class="avail" style="left:0%; width:100%"></div>
+          <div class="other-event" style="left:5%; width:10%">Home visit</div>
+          <div class="other-event" style="left:45%; width:10%">Service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 minus cemetery hours -->
+  <div class="stage">
+    <div class="stage-label">
+      <div class="stage-num">03 — MINUS THE CEMETERY'S FUNERAL HOURS</div>
+      <div class="stage-name">Per cemetery, set once,<br>never re-entered</div>
+      <div class="stage-sub">From Thursdays at 09:00 only to every day 10:00–16:00 — the pilot region had the full range. The window applies to whichever cemeteries the entry covers.</div>
+    </div>
+    <div>
+      <div class="hours">
+        <span style="left:0%">08:00</span><span style="left:20%">10:00</span><span style="left:40%">12:00</span><span style="left:60%">14:00</span><span style="left:80%">16:00</span><span style="left:100%">18:00</span>
+      </div>
+      <div class="track-wrap">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
+        <div class="day">
+          <div class="avail" style="left:0%; width:100%"></div>
+          <div class="other-event" style="left:5%; width:10%">Home visit</div>
+          <div class="other-event" style="left:45%; width:10%">Service</div>
+          <div class="outside" style="left:0%; width:20%"></div>
+          <div class="outside" style="left:80%; width:20%"></div>
+          <div class="window-edge" style="left:20%"></div>
+          <div class="window-edge" style="left:80%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 minus prep & follow-up -->
+  <div class="stage">
+    <div class="stage-label">
+      <div class="stage-num">04 — MINUS PREP AND FOLLOW-UP TIME</div>
+      <div class="stage-name">Buffers configured on<br>the booking option itself</div>
+      <div class="stage-sub">Time to travel, prepare and close out is carved off each surviving slot, per booking option — so a slot is never shown that would have to run over.</div>
+    </div>
+    <div>
+      <div class="hours">
+        <span style="left:0%">08:00</span><span style="left:20%">10:00</span><span style="left:40%">12:00</span><span style="left:60%">14:00</span><span style="left:80%">16:00</span><span style="left:100%">18:00</span>
+      </div>
+      <div class="track-wrap">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
+        <div class="day">
+          <div class="ghost" style="left:20%; width:25%"></div>
+          <div class="ghost" style="left:55%; width:25%"></div>
+          <div class="slot-final" style="left:25%; width:15%">10:30</div>
+          <div class="slot-final" style="left:60%; width:15%">14:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 booking page -->
+  <div class="stage">
+    <div class="stage-label">
+      <div class="stage-num">05 — WHAT THE FUNERAL HOME SEES</div>
+      <div class="stage-name">Only times that are<br>genuinely free</div>
+      <div class="stage-sub">A slot only reaches the booking page if every constraint resolves true. Every booking is still a request the pastor confirms — 90% of them accepted.</div>
+    </div>
+    <div>
+      <div class="hours">
+        <span style="left:0%">08:00</span><span style="left:20%">10:00</span><span style="left:40%">12:00</span><span style="left:60%">14:00</span><span style="left:80%">16:00</span><span style="left:100%">18:00</span>
+      </div>
+      <div class="track-wrap">
+        <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
+        <div class="day">
+          <div class="slot-final" style="left:25%; width:15%">10:30</div>
+          <div class="slot-final" style="left:60%; width:15%">14:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
