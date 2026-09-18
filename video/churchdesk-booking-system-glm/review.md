@@ -880,3 +880,8 @@ FAIL, 6 WARN, 21 PASS.
 **Status: working cut. Not approved — Tobias has not yet watched v22. Not pushed** — the
 portfolio repo's unpushed commits (v16→v22, voice swap) deploy on push, and deployment is not
 approval.
+
+**Deployment (2026-09-18):** Tobias said "push" — the held batch (v16-v22, voice swap,
+filtering-pipeline diagram, study-JSON sync) deployed to treppmann.design. v22-ship.mp4 was
+in QuickTime in front of him when he said it. Approval status of v22 as a cut: deploy
+authorized; he has not separately stated a verdict on the cut itself.
