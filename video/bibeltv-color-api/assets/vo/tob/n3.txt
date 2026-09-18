@@ -1,0 +1,1 @@
+So design kept the thresholds — hue ranges, vibrance filters. Brand calls, not code commits.

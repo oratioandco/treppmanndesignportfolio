@@ -13,7 +13,8 @@
   multi-tone, shipped one color on phones, on purpose).
 - Length target: 50–55s + 0.4s cover. Mood: bright, precise, quietly confident — a craft story
   about taste with math underneath, not a spectacle piece.
-- Voice: ElevenLabs eleven_v3, voice `FLj50PrMa40MhGHappOt`, fitted at atempo 0.93.
+- Voice (round 2, 2026-09-18): Tobias Treppmann's own ElevenLabs clone `kMS8f1BmXMghbv2jguJo`
+  (eleven_v3), replacing voice `FLj50PrMa40MhGHappOt`, at natural pace (trim + loudnorm only).
 - Music: Lyria 3.5, house family, BibelTV mood line per music-direction.md: bright, precise,
   playful-technical, ~108–112 BPM, crisper digital blips a little more present than the Ninox bed.
 
@@ -23,15 +24,15 @@
 |---|---|---|---|---|
 | 0 | 0.0–0.4 | Cover: kicker / A color engine that automates what bigger streamers do by hand / Ten thousand videos. One color engine. | — | Settled title card, held, dissolves into S1. |
 | 1 | 0.4–9.3 | Kicker: Bibel TV · Color API · 2025 / title / Ten thousand videos. One color engine. | Bibel TV publishes ten thousand videos. Each one needs its own color theme. There's no one to pick them by hand. | Product on frame 1: `color-lab.png` (the dials panel) in a tilted device beside the title. |
-| 2 | 9.3–19.7 | The obvious answer / "Some cards demanded the page. Others almost disappeared. The artwork didn't decide which — the RGB math did." | The obvious tool already existed. It extracted palettes automatically. But automated wasn't the same as right. | Device holds, dimmed; the study's own callout quote resolves in as a card — the quoted artefact, exempt from the card-length rule per gate 2. |
+| 2 | 9.3–19.7 | The obvious answer / quote: "Some cards demanded the page. Others almost disappeared. The artwork didn't decide which — the RGB math did." | The obvious tool already existed. It extracted palettes automatically. But automated wasn't the same as right. | Device holds, dimmed; the study's own callout quote resolves in as a card — the quoted artefact, exempt from the card-length rule per gate 2; labelled `quote:` so the checker sees the exemption). |
 | 3 | 19.7–27.1 | The decision / Design kept the thresholds. / Brand calls, not code commits. | So design kept the thresholds — hue ranges, vibrance filters. Brand calls, not code commits. | Zoom into `color-lab.png`'s dial panel (visible sliders) — the claim made concrete. |
 | 4 | 27.1–33.5 | Both modes, one artwork. | Every theme is checked against the artwork, then validated for contrast. | Money shot: `color-lab-applied.png`, dark and light mode side by side, full width, held longest. |
 | 5 | 33.5–42.5 | The outcome / Live, on every video. / Every theme clears contrast — nobody checks by hand. | It ships live, on every video in the library. Every theme clears contrast. Nobody checks by hand. | Device: the applied comparison holds, one line of outcome text. |
 | 6 | 42.5–50.9 | On phones, it goes quiet. / One color, not two. | On phones, the engine goes quiet — one color, not two. Sometimes the decision is not to use what you built. | Typographic beat, no screenshot — the reflection line stands alone, the film's real closing thought. |
 | 7 | 50.9–58.5 | Case study · A color engine that automates what bigger streamers do by hand · treppmann.design | Read the full case study on treppmann dot design. | Dot takeover, title, fade. |
 
-Speech (real, measured): n1 7.67s + n2 7.22s + n3 6.95s + n4 4.37s + n5 7.39s + n6 7.73s + n7 2.83s
-= 44.16s of 58.5s (24.5% voice-free — WARN band, same accepted precedent as all three other films).
+Speech (real, measured, round 18 voice): n1 7.04 + n2 6.48 + n3 6.40 + n4 4.40 + n5 7.68 + n6 8.16 + n7 3.17
+= 43.33s of 58.5s (25.9% voice-free — WARN band; rate 108 words / 43.3s = 2.49 wps, in band).
 
 ## Voice-safe checks (Gate 1)
 - No sentence depends on stress/irony/one short load-bearing word; every line reads flat and lands.

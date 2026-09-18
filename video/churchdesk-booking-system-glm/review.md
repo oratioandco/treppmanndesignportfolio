@@ -685,3 +685,26 @@ un-normalized because a +0.2 dB makeup gain would push true peak to -1.31 dBTP, 
 -1.5 spec than the loudness is), true peak -1.51 dBTP, audio 48000 Hz pinned on the ship encode.
 Shipped to public/video/churchdesk-booking-system.mp4. **v17 is a working cut for review — not
 approved, and not pushed/deployed until Tobias has watched it.**
+
+## Round 18 — voice swap to Tobias's own clone (2026-09-18)
+
+Tobias chose his ElevenLabs clone `kMS8f1BmXMghbv2jguJo` as the narrator (his words: "yes go
+with my voice and re-render the existing videos with it"), which makes the first-person pivot
+line in beat 6 literally his perspective. All 11 narration lines re-generated and fitted
+(n5/n12 placeholders unreferenced). Raw pace ~2.8–2.9 wps; every take fit its existing window
+at natural pace — **no atempo anywhere**, one 0.3s start shift (n8 29.40 → 29.70 after n7's new
+tail at 29.54 overlapped). Fitted: n1 4.16 / n2 2.96 / n3 3.68 / n4 2.72 / n4b 2.08 / n6 3.52 /
+n7 3.04 / n8 1.20 / n9 2.72 / n10 6.40 / n11 9.60 / n13 8.00 — 50.08s speech, voice-free 23.0%
+(WARN, same band as shipped v17), rate 2.82 wps (WARN, under the 3.0 ceiling).
+
+Word timings re-measured via `hyperframes transcribe` on the new takes (round-14 discipline);
+absolute times = clip data-start + word offset. Spotlight cues re-anchored: gc-parish 1.60 /
+gc-priest 3.46 / gc-parish 7.09, oscillation 10.56–13.00, gc-family 14.43. Beat-table beat 1
+corrected to the actually-spoken text ("then calls back" once — the second occurrence was never
+in the audio). vo-stem + bed rebuilt (12 inputs, sidechain unchanged). Gate: **0 FAIL, 7 WARN,
+21 PASS** (first pronoun PASS now active under the author-voice rule).
+
+Gate 4 (v18 render): 65.0s, integrated −16.5 LUFS, true peak −1.46 dBTP. Ship-encoded
+(-c:v copy, aac 192k @48k) to `public/video/churchdesk-booking-system.mp4`, poster at −ss 32.2.
+**v18 is a working cut for review — not approved, and not pushed/deployed until Tobias has
+watched it.**

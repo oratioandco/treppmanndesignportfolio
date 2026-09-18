@@ -190,15 +190,15 @@
       </section>
 
       <audio id="bgm" data-start="0.40" data-duration="64.6" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
-      <audio id="vo-m1" data-start="1.20" data-duration="8.06" data-track-index="20" src="assets/vo4/m1-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m2" data-start="10.20" data-duration="7.98" data-track-index="20" src="assets/vo4/m2-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m3" data-start="18.60" data-duration="5.40" data-track-index="20" src="assets/vo4/m3-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m4" data-start="26.20" data-duration="3.68" data-track-index="20" src="assets/vo4/m4-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m5" data-start="31.20" data-duration="2.56" data-track-index="20" src="assets/vo4/m5-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m6" data-start="35.80" data-duration="3.85" data-track-index="20" src="assets/vo4/m6-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m7" data-start="40.20" data-duration="6.17" data-track-index="20" src="assets/vo4/m7-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m8" data-start="49.20" data-duration="7.30" data-track-index="20" src="assets/vo4/m8-slow.mp3" data-volume="1"></audio>
-      <audio id="vo-m9" data-start="60.40" data-duration="3.08" data-track-index="20" src="assets/vo4/m9-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m1" data-start="1.20" data-duration="7.90" data-track-index="20" src="assets/vo4/m1-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m2" data-start="10.20" data-duration="8.45" data-track-index="20" src="assets/vo4/m2-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m3" data-start="18.60" data-duration="4.95" data-track-index="20" src="assets/vo4/m3-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m4" data-start="26.20" data-duration="3.80" data-track-index="20" src="assets/vo4/m4-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m5" data-start="31.20" data-duration="3.25" data-track-index="20" src="assets/vo4/m5-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m6" data-start="35.80" data-duration="3.80" data-track-index="20" src="assets/vo4/m6-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m7" data-start="40.20" data-duration="5.80" data-track-index="20" src="assets/vo4/m7-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m8" data-start="49.20" data-duration="6.85" data-track-index="20" src="assets/vo4/m8-slow.mp3" data-volume="1"></audio>
+      <audio id="vo-m9" data-start="60.40" data-duration="3.50" data-track-index="20" src="assets/vo4/m9-slow.mp3" data-volume="1"></audio>
 
       <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
         <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
@@ -270,9 +270,11 @@
       tl.fromTo("#s2-h2", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 12.80);
       var gateP = document.getElementById("em-gate-p"), gateLen = gateP.getTotalLength();
       gateP.style.strokeDasharray = gateLen; gsap.set(gateP, { strokeDashoffset: gateLen });
-      tl.set("#em-gate-p", { opacity: 0.9 }, 15.80);
-      tl.fromTo("#em-gate-p", { strokeDashoffset: gateLen }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 15.80);
-      tl.fromTo("#em-gate", { scale: 1 }, { scale: 1.04, duration: 0.16, ease: "power1.out", yoyo: true, repeat: 1 }, 16.30);
+      // Gate circle re-anchored for round 18 (Tobias's clone narration): "where the easy part
+      // ends" now at 16.62–18.07 (transcribed), draw leads it at 16.40.
+      tl.set("#em-gate-p", { opacity: 0.9 }, 16.40);
+      tl.fromTo("#em-gate-p", { strokeDashoffset: gateLen }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 16.40);
+      tl.fromTo("#em-gate", { scale: 1 }, { scale: 1.04, duration: 0.16, ease: "power1.out", yoyo: true, repeat: 1 }, 16.90);
 
       // ===== S2 prompt (13.4 – 23.8). VO n3 14.8–17.2, n4 19.6–22.2 =====
       tl.to("#s2-col", { x: -60, opacity: 0, duration: 0.5, ease: "power2.in" }, 24.60);

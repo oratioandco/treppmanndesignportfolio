@@ -215,18 +215,18 @@
       </section>
 
       <audio id="bgm" data-start="0.40" data-duration="64.6" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
-      <audio id="vo-n1" data-start="0.60" data-duration="4.28" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n2" data-start="4.95" data-duration="2.90" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n1" data-start="0.60" data-duration="4.35" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n2" data-start="4.95" data-duration="3.15" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n3" data-start="10.50" data-duration="3.85" data-track-index="20" src="assets/vo/n3-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n4" data-start="14.40" data-duration="2.73" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n4b" data-start="17.35" data-duration="2.40" data-track-index="20" src="assets/vo/n4b-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n6" data-start="22.70" data-duration="3.25" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n7" data-start="26.50" data-duration="2.82" data-track-index="20" src="assets/vo/n7-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n8" data-start="29.40" data-duration="1.79" data-track-index="20" src="assets/vo/n8-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n9" data-start="32.20" data-duration="2.91" data-track-index="20" src="assets/vo/n9-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n10" data-start="36.90" data-duration="6.34" data-track-index="20" src="assets/vo/n10-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n11" data-start="43.90" data-duration="9.69" data-track-index="20" src="assets/vo/n11-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n13" data-start="54.20" data-duration="8.68" data-track-index="20" src="assets/vo/n13-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n4" data-start="14.40" data-duration="2.90" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n4b" data-start="17.35" data-duration="2.30" data-track-index="20" src="assets/vo/n4b-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n6" data-start="22.70" data-duration="3.70" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n7" data-start="26.50" data-duration="3.25" data-track-index="20" src="assets/vo/n7-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n8" data-start="29.70" data-duration="1.45" data-track-index="20" src="assets/vo/n8-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n9" data-start="32.20" data-duration="2.90" data-track-index="20" src="assets/vo/n9-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n10" data-start="36.90" data-duration="6.60" data-track-index="20" src="assets/vo/n10-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n11" data-start="43.90" data-duration="9.80" data-track-index="20" src="assets/vo/n11-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n13" data-start="54.20" data-duration="8.35" data-track-index="20" src="assets/vo/n13-fit.mp3" data-volume="1"></audio>
 
       <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
         <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
@@ -267,8 +267,9 @@
       tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 0.25);
       tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.25);
 
-      // ===== S1 cold open — the phone chain, felt (0.4 – 19.8). VO n1 0.6–4.88, n2 4.95–7.85,
-      // n3 10.5–14.35, n4 14.4–17.13. Round 13 (2026-09-17): four real people, one grid, no text
+      // ===== S1 cold open — the phone chain, felt (0.4 – 19.8). VO n1 0.6–4.76, n2 4.95–7.91,
+      // n3 10.5–14.18, n4 14.4–17.12, pivot n4b 17.35–19.43 (round 18: Tobias's clone, word times
+      // re-measured). Round 13 (2026-09-17): four real people, one grid, no text
       // labels — the chain plays across the four videos as the narration names each one, the
       // spotlight moving cell to cell, back and forth, family held for the emotional close. This
       // replaces both the diagram (round 12) and the standalone human-moment beat that followed
@@ -290,25 +291,25 @@
         });
       }
       // "A funeral home" (0.67) already active from entrance. "calls the parish." (word "calls"
-      // at 1.54) — the parish takes the call.
-      spot("#gc-parish", 1.55, 0.4);
-      // "The parish calls the priest on call." (word "calls" at 3.36) — the priest takes it.
-      spot("#gc-priest", 3.55, 0.4);
+      // at 1.64) — the parish takes the call.
+      spot("#gc-parish", 1.60, 0.4);
+      // "The parish calls the priest on call." (word "calls" at 3.48) — the priest takes it.
+      spot("#gc-priest", 3.46, 0.4);
       // "The priest checks the cemetery," (5.03–6.01) — an internal action, not a call; there is
       // no cemetery party to cut to, so the priest just stays highlighted through this phrase.
-      // "then calls back." (word "calls" at 6.92, absolute 6.85) — back to the parish, not the
+      // "then calls back." (word "calls" at 7.11) — back to the parish, not the
       // funeral home directly; that's the actual shape of the chain (round 14 fix).
-      spot("#gc-parish", 6.85, 0.4);
-      // "Back and forth, call after call, until a time is found." (n3, measured words 10.60–13.53)
+      spot("#gc-parish", 7.09, 0.4);
+      // "Back and forth, call after call, until a time is found." (n3, measured words 10.56–13.78)
       // — the spotlight itself does the back-and-forth now, cycling the three institutional
       // parties (never family — family isn't part of the calling, they're who's waiting).
-      spot("#gc-funeralhome", 10.60, 0.35);
-      spot("#gc-priest", 11.60, 0.35);
+      spot("#gc-funeralhome", 10.56, 0.35);
+      spot("#gc-priest", 11.50, 0.35);
       spot("#gc-parish", 12.30, 0.35);
       spot("#gc-funeralhome", 13.00, 0.35);
-      // "A grieving family waits through every round." (word "family" at 15.05) — the payoff, held
+      // "A grieving family waits through every round." (word "family" at 15.01) — the payoff, held
       // through the beat's trailing silence too.
-      spot("#gc-family", 14.45, 0.6);
+      spot("#gc-family", 14.43, 0.6);
 
       // T1 blur crossfade (19.8). No product yet — the customer's own goal (S3/S4) and the proof
       // (S5) still have to come first (round 10 feedback holds).

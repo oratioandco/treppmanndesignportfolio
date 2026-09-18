@@ -1,0 +1,122 @@
+[
+  {
+    "text": "But",
+    "start": 0.11,
+    "end": 0.19,
+    "id": "w0"
+  },
+  {
+    "text": "first",
+    "start": 0.3,
+    "end": 0.72,
+    "id": "w1"
+  },
+  {
+    "text": "comes",
+    "start": 0.72,
+    "end": 1.09,
+    "id": "w2"
+  },
+  {
+    "text": "the",
+    "start": 1.18,
+    "end": 1.42,
+    "id": "w3"
+  },
+  {
+    "text": "schema,",
+    "start": 1.42,
+    "end": 2.14,
+    "id": "w4"
+  },
+  {
+    "text": "tables,",
+    "start": 2.14,
+    "end": 2.61,
+    "id": "w5"
+  },
+  {
+    "text": "fields,",
+    "start": 2.87,
+    "end": 3.58,
+    "id": "w6"
+  },
+  {
+    "text": "how",
+    "start": 3.68,
+    "end": 3.76,
+    "id": "w7"
+  },
+  {
+    "text": "records",
+    "start": 3.76,
+    "end": 4.12,
+    "id": "w8"
+  },
+  {
+    "text": "connect.",
+    "start": 4.12,
+    "end": 5,
+    "id": "w9"
+  },
+  {
+    "text": "For",
+    "start": 5.11,
+    "end": 5.21,
+    "id": "w10"
+  },
+  {
+    "text": "new",
+    "start": 5.3,
+    "end": 5.46,
+    "id": "w11"
+  },
+  {
+    "text": "users,",
+    "start": 5.46,
+    "end": 5.99,
+    "id": "w12"
+  },
+  {
+    "text": "that",
+    "start": 5.99,
+    "end": 6.29,
+    "id": "w13"
+  },
+  {
+    "text": "is",
+    "start": 6.29,
+    "end": 6.42,
+    "id": "w14"
+  },
+  {
+    "text": "where",
+    "start": 6.42,
+    "end": 6.54,
+    "id": "w15"
+  },
+  {
+    "text": "the",
+    "start": 6.54,
+    "end": 7.13,
+    "id": "w16"
+  },
+  {
+    "text": "easy",
+    "start": 7.13,
+    "end": 7.35,
+    "id": "w17"
+  },
+  {
+    "text": "part",
+    "start": 7.35,
+    "end": 7.56,
+    "id": "w18"
+  },
+  {
+    "text": "ends.",
+    "start": 7.87,
+    "end": 8,
+    "id": "w19"
+  }
+]

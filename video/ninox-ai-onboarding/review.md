@@ -133,3 +133,22 @@ dissolves, and the kinetic S1 build begins fresh underneath — no double-flash,
 
 Gate 4: see the render summary appended below.
 Gate 4 (v10): 65.0s, integrated -14.8 LUFS, peak -1.8 dBFS. Poster now grabbed from the cover hold (0.2s). Not measured: sound, whether the cover-to-opening dissolve reads as intentional in motion (only checked as still frames).
+
+## Round 18 — voice swap to Tobias's own clone (2026-09-18)
+
+Tobias chose his ElevenLabs clone `kMS8f1BmXMghbv2jguJo` as the house narrator (2026-09-18);
+all 9 lines re-recorded into the existing `assets/vo4/m{1..9}-slow.mp3` filenames. Only m2
+needed help (raw 8.80s overran its 8.4s window; atempo 1.06, under the 1.08 ceiling) —
+everything else at natural pace (~2.8 wps). Fitted: m1 7.68 / m2 8.27 / m3 4.72 / m4 3.60 /
+m5 3.04 / m6 3.60 / m7 5.60 / m8 6.64 / m9 3.28 — 46.4s speech, voice-free 28.6%, 2.80 wps.
+Gate-circle cues re-anchored from a fresh `hyperframes transcribe` (round-14 discipline):
+"where the easy part ends" now lands 16.62–18.07 abs, so set+draw moved 15.80/16.30 → 16.40
+and pulse → 16.90. Beat-7 punch cues kept (new m8 lands "Now the onboarding" at exactly 53.00);
+m7 "card" cue 44.42 ≈ existing 44.50 kept. vo-stem + bed rebuilt. Gate: **0 FAIL, 7 WARN,
+18 PASS** (first pronoun PASS active under the author-voice rule; narration stays we/you — no
+line needed the flip).
+
+Gate 4 (v18 render): 65.0s, integrated −15.5 LUFS, true peak −1.49 dBTP. Ship-encoded to
+`public/video/ninox-ai-onboarding.mp4`, poster from the cover hold (−ss 0.2, per the v10 house
+standard). **Working cut for review — not approved, and not pushed/deployed until Tobias has
+watched it.**

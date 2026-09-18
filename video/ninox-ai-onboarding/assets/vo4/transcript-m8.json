@@ -1,0 +1,104 @@
+[
+  {
+    "text": "The",
+    "start": 0.08,
+    "end": 0.24,
+    "id": "w0"
+  },
+  {
+    "text": "AI",
+    "start": 0.24,
+    "end": 0.4,
+    "id": "w1"
+  },
+  {
+    "text": "starts",
+    "start": 0.4,
+    "end": 0.83,
+    "id": "w2"
+  },
+  {
+    "text": "the",
+    "start": 0.96,
+    "end": 1.11,
+    "id": "w3"
+  },
+  {
+    "text": "database,",
+    "start": 1.11,
+    "end": 1.8,
+    "id": "w4"
+  },
+  {
+    "text": "the",
+    "start": 1.87,
+    "end": 2.24,
+    "id": "w5"
+  },
+  {
+    "text": "user",
+    "start": 2.24,
+    "end": 2.8,
+    "id": "w6"
+  },
+  {
+    "text": "owns",
+    "start": 2.82,
+    "end": 3,
+    "id": "w7"
+  },
+  {
+    "text": "it.",
+    "start": 3,
+    "end": 3.8,
+    "id": "w8"
+  },
+  {
+    "text": "Now",
+    "start": 3.8,
+    "end": 3.91,
+    "id": "w9"
+  },
+  {
+    "text": "the",
+    "start": 3.92,
+    "end": 4.12,
+    "id": "w10"
+  },
+  {
+    "text": "onboarding",
+    "start": 4.12,
+    "end": 4.79,
+    "id": "w11"
+  },
+  {
+    "text": "for",
+    "start": 4.79,
+    "end": 4.98,
+    "id": "w12"
+  },
+  {
+    "text": "Nenox",
+    "start": 5,
+    "end": 5.29,
+    "id": "w13"
+  },
+  {
+    "text": "AI's",
+    "start": 5.29,
+    "end": 5.57,
+    "id": "w14"
+  },
+  {
+    "text": "public",
+    "start": 5.59,
+    "end": 5.97,
+    "id": "w15"
+  },
+  {
+    "text": "beta.",
+    "start": 5.97,
+    "end": 6.5,
+    "id": "w16"
+  }
+]

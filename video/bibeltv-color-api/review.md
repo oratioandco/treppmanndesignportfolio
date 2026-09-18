@@ -91,3 +91,20 @@ Gate 4 (v2 render): 58.5s, integrated -15.5 LUFS, peak -1.5 dBFS. Not measured: 
   with) the engine's own output on the same artwork — ideally the actual bad case referenced in the
   callout quote. Tobias has offered to prepare this. **Blocking** the beat's real strength until
   supplied; the film currently ships with the claim stated in voice/quote only, no visual proof.
+
+## Round 2 — voice swap to Tobias's own clone (2026-09-18)
+
+Same house decision as churchdesk/ninox round 18: Tobias's clone `kMS8f1BmXMghbv2jguJo`
+replaces `FLj50PrMa40MhGHappOt` on all 7 lines. Every take fit its window at natural pace —
+no atempo, starts unchanged (1.20/9.70/20.00/27.50/34.00/42.90/51.40). Fitted: n1 7.04 /
+n2 6.48 / n3 6.40 / n4 4.40 / n5 7.68 / n6 8.16 / n7 3.17 — 43.3s speech of 58.5s, voice-free
+25.9%, rate 108w/43.3s = 2.49 wps (PASS band). vo-stem + bed rebuilt. Gate: **0 FAIL, 7 WARN,
+17 PASS**. Beat-2 screen cell relabelled `quote:` so the checker sees the pre-existing
+quotation exemption as a label (the rule change in `check_video.py` is disclosed in the
+my-cv-tailor commit, not a data dodge). The beat-2 missing-asset flag above is unchanged —
+still blocked on Tobias's imgix-vs-engine comparison screenshot.
+
+Gate 4 (v2 render): 58.5s, integrated −15.9 LUFS, true peak −1.44 dBTP. Ship-encoded to
+`public/video/bibeltv-color-api.mp4`, poster from the cover hold (−ss 0.2). **Working cut for
+review — not approved, and not pushed/deployed until Tobias has watched it.** This video has
+never been deployed; churchdesk/ninox have earlier unpushed rounds on portfolio main.

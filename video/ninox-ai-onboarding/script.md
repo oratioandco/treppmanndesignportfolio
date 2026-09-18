@@ -5,7 +5,9 @@
 - Claim: AI should generate into the surface the user already owns; chat beside it, not instead of it.
 - Proof image: the generated schema landing in the real data-model editor (exploded UI beat).
 - Arc: gate (tension) → one sentence in, first guess out (turn) → editor not chat (proof) → shipped (close).
-- Length: 51s. Voice: ElevenLabs eleven_v3, voice `FLj50PrMa40MhGHappOt`. Bed: Lyria 3.5 take, window from 64s.
+- Length: 65.0s as built (brief said 51s; grew through rounds 4–7). Voice (round 18, 2026-09-18):
+  Tobias Treppmann's own ElevenLabs clone `kMS8f1BmXMghbv2jguJo` (eleven_v3), replacing voice
+  `FLj50PrMa40MhGHappOt`. Bed: Lyria 3.5 take, window from 64s.
 
 ## Beats
 
@@ -20,8 +22,11 @@
 | 7 | 48.3–59.2 | No AI mode to leave. · Pattern: Direct editing beside chat. | The AI starts the database. The user owns it. Now the onboarding for Ninox AI's public beta. | First guess → edited schema (punch-in 1.14×) → schema-in-builder → working product, each via halftone resolve |
 | 8 | 59.2–64.6 | Case study · Who Controls the AI? · treppmann.design | Read the full case study on treppmann dot design. | Dot takeover, title, fade |
 
-Speech 42.6s of 64.6s (34% without voice). Lines slowed 7% (atempo 0.93): the clone reads at ~3.0 wps raw.
-Narrator says "we"/"you", never "I". Title paid off in beat 7: "The user owns it."
+Speech 46.4s of 65.0s (28.6% without voice; round 18, Tobias's clone at natural pace — reads
+~2.8 wps raw, no atempo needed except m2 at 1.06 to hold its window). The old "never I" narrator
+constraint is lifted: the narrator is Tobias, so first person is now legitimate (the checker keys
+on the voice declaration in the Brief). Narration stays "we"/"you" in this script — no line
+needed the flip. Title paid off in beat 7: "The user owns it."
 
 ## Sources
 All claims from `data/case-studies/ninox-ai-onboarding.json` (context, "why chat alone wouldn't work", process steps 1–4, outcome). "Twelve tables" = the study's "eight or twelve tables" example. No performance numbers exist for this study and none are used.

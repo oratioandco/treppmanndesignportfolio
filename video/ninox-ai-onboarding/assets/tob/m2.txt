@@ -1,0 +1,1 @@
+But first comes the schema: tables, fields, how records connect. For new users, that is where the easy part ends.

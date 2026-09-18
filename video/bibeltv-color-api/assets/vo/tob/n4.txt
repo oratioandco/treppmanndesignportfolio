@@ -1,0 +1,1 @@
+Every theme is checked against the artwork, then validated for contrast.

@@ -1,0 +1,1 @@
+This project set out to fix that. Describe what you need, and the AI drafts the schema.
