@@ -1,62 +1,50 @@
 [
   {
     "text": "Fast",
-    "start": 0.09,
-    "end": 0.41,
+    "start": 0.15,
+    "end": 0.35,
     "id": "w0"
   },
   {
     "text": "for",
-    "start": 0.51,
+    "start": 0.48,
     "end": 0.72,
     "id": "w1"
   },
   {
     "text": "the",
-    "start": 0.78,
-    "end": 1.04,
+    "start": 0.72,
+    "end": 1.03,
     "id": "w2"
   },
   {
     "text": "family,",
-    "start": 1.04,
-    "end": 1.82,
+    "start": 1.03,
+    "end": 1.79,
     "id": "w3"
   },
   {
-    "text": "never",
-    "start": 1.82,
-    "end": 2.15,
+    "text": "control",
+    "start": 1.79,
+    "end": 2.2,
     "id": "w4"
   },
   {
-    "text": "a",
-    "start": 2.18,
-    "end": 2.24,
+    "text": "for",
+    "start": 2.31,
+    "end": 2.43,
     "id": "w5"
   },
   {
-    "text": "burden",
-    "start": 2.24,
-    "end": 2.66,
+    "text": "the",
+    "start": 2.43,
+    "end": 2.62,
     "id": "w6"
   },
   {
-    "text": "on",
-    "start": 2.66,
-    "end": 2.8,
+    "text": "pastor.",
+    "start": 2.62,
+    "end": 3.05,
     "id": "w7"
-  },
-  {
-    "text": "the",
-    "start": 2.8,
-    "end": 3.01,
-    "id": "w8"
-  },
-  {
-    "text": "priest.",
-    "start": 3.01,
-    "end": 3.52,
-    "id": "w9"
   }
 ]

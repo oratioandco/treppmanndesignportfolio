@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>When booking a priest isn't simple — ChurchDesk funeral booking</title>
+    <title>When booking a pastor isn't simple — ChurchDesk funeral booking</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
       @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
@@ -67,7 +67,7 @@
 
       /* S3: the tension the customer already named */
       #s3-col { position: absolute; left: 140px; right: 140px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
-      #s3-l1, #s3-l2 { font-family: "Redaction 20", serif; font-size: 62px; line-height: 1.15; color: var(--ink); letter-spacing: -0.02em; }
+      #s3-l1, #s3-l2, #s3-l3 { font-family: "Redaction 20", serif; font-size: 62px; line-height: 1.15; color: var(--ink); letter-spacing: -0.02em; }
       .gw { position: relative; display: inline-block; white-space: nowrap; }
       .gw .bg { position: absolute; left: -2%; right: -2%; top: 10%; bottom: 6%; background: var(--teal-light); z-index: 0; }
       .gw .t { position: relative; z-index: 1; }
@@ -128,7 +128,7 @@
       <section id="cover" class="scene">
         <div id="cover-col">
           <span class="kicker" id="cover-kick">ChurchDesk · Funeral Booking · 2024–25</span>
-          <h1 id="cover-title">When booking a priest isn't simple</h1>
+          <h1 id="cover-title">When booking a pastor isn't simple</h1>
           <p id="cover-sub">Three stakeholders. One booking flow.</p>
         </div>
       </section>
@@ -146,7 +146,8 @@
       <section id="s3" class="scene">
         <div id="s3-col">
           <p id="s3-l1">Fast for the family.</p>
-          <p id="s3-l2">Never a <span class="gw"><span class="bg" id="bg1"></span><span class="t">burden</span></span> on the priest.</p>
+          <p id="s3-l2">Clear for the funeral home.</p>
+          <p id="s3-l3"><span class="gw"><span class="bg" id="bg1"></span><span class="t">Control</span></span> for the pastor.</p>
         </div>
       </section>
 
@@ -211,22 +212,22 @@
         <div id="wash8" class="wash"></div>
         <div id="s8-col">
           <span class="kicker" id="s8-kick">Portfolio</span>
-          <h2 id="s8-title" class="display">When booking a priest<br />isn't simple</h2>
+          <h2 id="s8-title" class="display">When booking a pastor<br />isn't simple</h2>
           <span id="s8-url">treppmann.design</span>
         </div>
       </section>
 
       <audio id="bgm" data-start="0.40" data-duration="64.6" data-track-index="9" src="assets/audio/bed.mp3" data-volume="0.8"></audio>
-      <audio id="vo-n1" data-start="0.60" data-duration="4.35" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n1" data-start="0.60" data-duration="4.20" data-track-index="20" src="assets/vo/n1-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n2" data-start="4.95" data-duration="3.15" data-track-index="20" src="assets/vo/n2-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n3" data-start="10.50" data-duration="3.85" data-track-index="20" src="assets/vo/n3-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n4" data-start="14.40" data-duration="2.90" data-track-index="20" src="assets/vo/n4-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n4b" data-start="17.35" data-duration="2.30" data-track-index="20" src="assets/vo/n4b-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n6" data-start="22.70" data-duration="3.70" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n6" data-start="22.70" data-duration="3.40" data-track-index="20" src="assets/vo/n6-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n7" data-start="26.50" data-duration="3.25" data-track-index="20" src="assets/vo/n7-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n8" data-start="29.70" data-duration="1.45" data-track-index="20" src="assets/vo/n8-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n9" data-start="32.20" data-duration="2.90" data-track-index="20" src="assets/vo/n9-fit.mp3" data-volume="1"></audio>
-      <audio id="vo-n10" data-start="36.90" data-duration="6.60" data-track-index="20" src="assets/vo/n10-fit.mp3" data-volume="1"></audio>
+      <audio id="vo-n10" data-start="36.90" data-duration="6.82" data-track-index="20" src="assets/vo/n10-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n11" data-start="43.90" data-duration="9.80" data-track-index="20" src="assets/vo/n11-fit.mp3" data-volume="1"></audio>
       <audio id="vo-n13" data-start="54.20" data-duration="8.35" data-track-index="20" src="assets/vo/n13-fit.mp3" data-volume="1"></audio>
 
@@ -292,16 +293,16 @@
           tl.to(s, { scale: s === sel ? 1.035 : 0.965, opacity: s === sel ? 1 : 0.45, duration: dur, ease: "power2.inOut" }, t);
         });
       }
-      // "A funeral home" (0.67) already active from entrance. "calls the parish." (word "calls"
-      // at 1.64) — the parish takes the call.
-      spot("#gc-parish", 1.60, 0.4);
-      // "The parish calls the priest on call." (word "calls" at 3.48) — the priest takes it.
-      spot("#gc-priest", 3.46, 0.4);
-      // "The priest checks the cemetery," (5.03–6.01) — an internal action, not a call; there is
-      // no cemetery party to cut to, so the priest just stays highlighted through this phrase.
-      // "then calls back." (word "calls" at 7.11) — back to the parish, not the
+      // "A funeral home" (0.65) already active from entrance. "calls the parish." (word "calls"
+      // at 1.51, round 20 re-measure) — the parish takes the call.
+      spot("#gc-parish", 1.47, 0.4);
+      // "The parish calls the pastor on call." (word "calls" at 3.20) — the pastor takes it.
+      spot("#gc-priest", 3.16, 0.4);
+      // "The pastor checks the cemetery," (5.85–6.83) — an internal action, not a call; there is
+      // no cemetery party to cut to, so the pastor just stays highlighted through this phrase.
+      // "then calls back." (word "calls" at 7.29) — back to the parish, not the
       // funeral home directly; that's the actual shape of the chain (round 14 fix).
-      spot("#gc-parish", 7.09, 0.4);
+      spot("#gc-parish", 7.25, 0.4);
       // "Back and forth, call after call, until a time is found." (n3, measured words 10.56–13.78)
       // — the spotlight itself does the back-and-forth now, cycling the three institutional
       // parties (never family — family isn't part of the calling, they're who's waiting).
@@ -324,14 +325,16 @@
       tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 19.80);
       tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 19.90);
 
-      // ===== S3 fast for the family (19.9 – 26.1). VO n6 22.7–26.22 (measured words: "Fast"
-      // 22.79, "never" 24.52, "burden" 24.94). Round 19 per Tobias: the lines used to lead the
-      // voice by 2.3s; they now arrive with the words they carry. The scene holds empty through
-      // the pivot's trailing breath. =====
+      // ===== S3 the three needs (19.9 – 26.1). Round 20, per Tobias: "never a burden on the
+      // priest" framed the pastor as the obstacle; replaced with the study's own control framing.
+      // Voice says the two bookends (n6 22.7–25.9: "Fast" 22.85, "control" 24.49 measured); the
+      // screen carries the full triad — "Clear for the funeral home." is the funeral home's
+      // transparency/quick-answer need, spoken in no round but named in the study. =====
       gsap.set("#bg1", { scaleX: 0, transformOrigin: "0% 50%" });
       tl.fromTo("#s3-l1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 22.70);
-      tl.fromTo("#s3-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 24.45);
-      tl.to("#bg1", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 24.90);
+      tl.fromTo("#s3-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 23.75);
+      tl.fromTo("#s3-l3", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 24.42);
+      tl.to("#bg1", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 24.49);
 
       // T3 blur crossfade (26.1)
       tl.to("#s3", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 26.10);

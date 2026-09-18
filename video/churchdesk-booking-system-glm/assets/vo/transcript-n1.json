@@ -1,0 +1,80 @@
+[
+  {
+    "text": "A",
+    "start": 0.05,
+    "end": 0.07,
+    "id": "w0"
+  },
+  {
+    "text": "funeral",
+    "start": 0.07,
+    "end": 0.6,
+    "id": "w1"
+  },
+  {
+    "text": "home",
+    "start": 0.6,
+    "end": 0.85,
+    "id": "w2"
+  },
+  {
+    "text": "calls",
+    "start": 0.91,
+    "end": 1.24,
+    "id": "w3"
+  },
+  {
+    "text": "the",
+    "start": 1.27,
+    "end": 1.51,
+    "id": "w4"
+  },
+  {
+    "text": "parish.",
+    "start": 1.51,
+    "end": 2.06,
+    "id": "w5"
+  },
+  {
+    "text": "The",
+    "start": 2.11,
+    "end": 2.21,
+    "id": "w6"
+  },
+  {
+    "text": "parish",
+    "start": 2.31,
+    "end": 2.6,
+    "id": "w7"
+  },
+  {
+    "text": "calls",
+    "start": 2.6,
+    "end": 2.9,
+    "id": "w8"
+  },
+  {
+    "text": "the",
+    "start": 2.9,
+    "end": 3.08,
+    "id": "w9"
+  },
+  {
+    "text": "pastor",
+    "start": 3.08,
+    "end": 3.44,
+    "id": "w10"
+  },
+  {
+    "text": "on",
+    "start": 3.44,
+    "end": 3.56,
+    "id": "w11"
+  },
+  {
+    "text": "call.",
+    "start": 3.56,
+    "end": 4.01,
+    "id": "w12"
+  }
+]

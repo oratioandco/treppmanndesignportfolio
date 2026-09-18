@@ -1,0 +1,50 @@
+[
+  {
+    "text": "The",
+    "start": 0.11,
+    "end": 0.21,
+    "id": "w0"
+  },
+  {
+    "text": "pastor",
+    "start": 0.23,
+    "end": 0.67,
+    "id": "w1"
+  },
+  {
+    "text": "checks",
+    "start": 0.7,
+    "end": 1.12,
+    "id": "w2"
+  },
+  {
+    "text": "the",
+    "start": 1.15,
+    "end": 1.35,
+    "id": "w3"
+  },
+  {
+    "text": "cemetery,",
+    "start": 1.38,
+    "end": 2.11,
+    "id": "w4"
+  },
+  {
+    "text": "then",
+    "start": 2.11,
+    "end": 2.34,
+    "id": "w5"
+  },
+  {
+    "text": "calls",
+    "start": 2.34,
+    "end": 2.63,
+    "id": "w6"
+  },
+  {
+    "text": "back.",
+    "start": 2.63,
+    "end": 2.94,
+    "id": "w7"
+  }
+]

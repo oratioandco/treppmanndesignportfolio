@@ -741,7 +741,7 @@ Classified: all four are **timing/visual** (none script/facts). Root causes foun
 clean. Snapshots at 10/17.9/21.5/23.3/25.3/32.7/35.2 confirm each fix. Gate 4 pending on the
 v19 render. **Working cut for review — not approved, not pushed until Tobias has watched it.**
 
-## Round 20 — "never a burden on the priest" + the priest/pastor question (2026-09-18, decision pending)
+## Round 20 — "never a burden on the priest" + the priest/pastor question (2026-09-18, decided and shipped as v20)
 
 Tobias, verbatim: "doesn't 'never a burden on the priest' sound bad? it was about transparency
 and quick responses for the funeral home and with that fast for the family. so maybe fast for
@@ -759,5 +759,45 @@ checker could never catch: the line compressed the stakeholder triad into a nega
 consent ("never feel like being booked … stay in control of their own time"). And the film's
 English gloss "priest" contradicts the customer's actual identity — the study names
 Evangelische Kirche von Kurhessen-Waldeck (Protestant), and the S5 screenshot literally reads
-"Back to Protestant Funeral" on screen while the voice says "priest". Decision pending with
-Tobias: proposed replacement line + terminology sweep scope.
+"Back to Protestant Funeral" on screen while the voice says "priest". Tobias approved the
+plan ("go") the same day.
+
+**What v20 shipped:**
+
+1. **Beat-2 line replaced, with one deviation from the literal approved line.** The plan was to
+   speak the full triad ("Fast for the family. Clear for the funeral home. Control for the
+   pastor."). At voice generation that line measured 5.12s natural (5.28s at higher stability),
+   which drops voice-free to 20.4% — below the checker's 22% FAIL floor — and would have forced
+   re-timing the whole back half. Resolution: a voice/screen **modality split**. The voice says
+   the two bookends ("Fast for the family. Control for the pastor.", n6, 3.20s); the screen
+   carries all three lines, so "Clear for the funeral home." — the funeral home's
+   transparency/quick-answer need, named in the study but never spoken in any round — is now
+   visible without being voiced. Voice-free improves to 23.4% (WARN, not FAIL); no downstream
+   re-timing. Complement-not-caption also holds: 4 of 7 card words overlap the narration = 57%,
+   under the 60% WARN threshold. The teal sweep moved from "burden" to "Control", which is the
+   word the whole reframe turns on.
+2. **priest → pastor sweep across the film.** Four spoken lines re-recorded in Tobias's clone
+   with pastor wording (n1, n2, n6, n10); all word cues re-transcribed and re-anchored (S1
+   spots 1.47/3.16/7.25; S3 lines 22.70/23.75/24.42, sweep 24.49; S6 verified unchanged — new
+   n10's "One button"/"accept" land at 40.54/41.53, cues 40.00/40.75/41.55 still valid; n10
+   ends 43.52, inside beat 43.5+0.3). On-screen copy changed too: cover title, S8 closing card
+   ("When booking a pastor isn't simple"), S3 line 3. Element IDs and asset filenames
+   (`#gc-priest`, `priest-availability.jpg`) unchanged — they're internal names, not copy.
+   Footage stays: German Protestant pastors wear the same clerical shirt/collar the four grid
+   clips and the notification reel show, and the S5 calendar's own "Back to Protestant funeral"
+   breadcrumb now agrees with the voice instead of contradicting it.
+3. **No re-timing elsewhere.** Same 12 clip starts; stem and ducked bed rebuilt from the same
+   delays.
+
+**Gate state:** `check_video.py --strict` → 0 FAIL, 5 WARN (length 65.0s over 60s target; rate
+2.79 wps; voice-free 23%; beat-6 card 7 words; beat-7 sentence 17 words — all pre-existing or
+the accepted trade of this round). Loudness −17.0 LUFS integrated. Verified in the rendered
+MP4, not only snapshots: S1 spots land on parish (2.0s), priest-hold (5.5s), parish (8.0s); S3
+builds one line at a time (23.0s one line, 25.5s all three); calendar resolves on the spoken
+"calendar" (32.6s frame).
+
+**Status: working cut. Not approved — Tobias has not yet watched v20. Not pushed** — the
+portfolio repo's unpushed commits (v16→v20, voice swap) deploy on push, and deployment is not
+approval. German terms (Pfarrpersonen, Pfarrer Meissner) were never touched; the upstream
+English gloss in `my-cv-tailor/data/case-studies/churchdesk-booking-system.json` gets the same
+correction with its own verification-log entry there.
