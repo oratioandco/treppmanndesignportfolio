@@ -740,3 +740,24 @@ Classified: all four are **timing/visual** (none script/facts). Root causes foun
 `check_video.py`: 0 FAIL, 7 WARN, 21 PASS (unchanged — script untouched this round). Lint
 clean. Snapshots at 10/17.9/21.5/23.3/25.3/32.7/35.2 confirm each fix. Gate 4 pending on the
 v19 render. **Working cut for review — not approved, not pushed until Tobias has watched it.**
+
+## Round 20 — "never a burden on the priest" + the priest/pastor question (2026-09-18, decision pending)
+
+Tobias, verbatim: "doesn't 'never a burden on the priest' sound bad? it was about transparency
+and quick responses for the funeral home and with that fast for the family. so maybe fast for
+the family, transparency and ease of use for the funeral home and yet not a burden on the
+priest (still sounds not amazing about the priest…) … this is not because priests think
+they're too good for this but because they reject the idea of being booked or somebody else
+controlling their time not because they're vain but because they're engaged in kind of whole
+life ministry and that includes … it's really important to be able to manage their own time
+well. Now … it was a Protestant diocese so I don't know if they're called different and so
+that's not a priest it would be a pastor actually. Maybe that's something we need to change."
+
+Classified: **script** (beat-2 line) + **facts** (priest → pastor terminology). Root cause the
+checker could never catch: the line compressed the stakeholder triad into a negative framing
+("burden") that implies the pastor is the problem, when the study's own callout frames it as
+consent ("never feel like being booked … stay in control of their own time"). And the film's
+English gloss "priest" contradicts the customer's actual identity — the study names
+Evangelische Kirche von Kurhessen-Waldeck (Protestant), and the S5 screenshot literally reads
+"Back to Protestant Funeral" on screen while the voice says "priest". Decision pending with
+Tobias: proposed replacement line + terminology sweep scope.
