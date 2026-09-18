@@ -708,3 +708,35 @@ Gate 4 (v18 render): 65.0s, integrated −16.5 LUFS, true peak −1.46 dBTP. Shi
 (-c:v copy, aac 192k @48k) to `public/video/churchdesk-booking-system.mp4`, poster at −ss 32.2.
 **v18 is a working cut for review — not approved, and not pushed/deployed until Tobias has
 watched it.**
+
+## Round 19 — four A/V sync + layout defects (2026-09-18, Tobias on v18)
+
+Tobias, verbatim: "the audio and the visual timing are off. voice says calendar and only a
+second later it shows up. while the voice says the church wanted it different the 3x3 grid
+still is sitting there. also the grid has a weird before label, maybe we can position that
+differently or make the grid smaller so it can sit above? Fast for the family is visible for
+over a second before the voice says it"
+
+Classified: all four are **timing/visual** (none script/facts). Root causes found:
+
+1. **"calendar" lag** — a real drift bug, not a judgement call: S5's internal cues (halftone
+   resolve 32.30, device zoom 32.20) assumed the scene was visible from ~32.0, but the T4
+   crossfade sat at 34.30/34.40 — so the resolve played behind a still-invisible scene and the
+   calendar arrived ~1.9s after "calendar" was spoken (measured: word at 32.55–33.12 abs,
+   `transcript-n9.json`). Fixed: T4 moved to the beat-3/4 boundary the beat table already
+   declared (31.90/32.00) — the resolve now lands on the word. The beat table had been right;
+   the composition had drifted from it.
+2. **Grid still up through the pivot** — n4b (17.35–19.43) now dims the whole grid to 0.32
+   opacity with a 5px stage blur while it plays; the old way visibly recedes before the
+   crossfade takes it out at 19.8.
+3. **"Before" label** — the grid had spanned y=20..1060 (nearly full frame) with the kicker
+   overlaid on the footage. Grid shrunk (cells 455px tall, rows at y=110/585) so the kicker
+   sits in clear paper above it.
+4. **"Fast for the family" leading the voice** — s3-l1 appeared at 20.40 vs voice onset 22.79
+   (measured, `transcript-n6.json`: "Fast" 22.79, "never" 24.52, "burden" 24.94). Lines now
+   arrive at 22.70 / 24.45, teal sweep at 24.90 — with the words, not ahead of them. S3 holds
+   an empty paper breath through the pivot's tail.
+
+`check_video.py`: 0 FAIL, 7 WARN, 21 PASS (unchanged — script untouched this round). Lint
+clean. Snapshots at 10/17.9/21.5/23.3/25.3/32.7/35.2 confirm each fix. Gate 4 pending on the
+v19 render. **Working cut for review — not approved, not pushed until Tobias has watched it.**

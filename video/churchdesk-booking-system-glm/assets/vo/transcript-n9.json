@@ -1,0 +1,50 @@
+[
+  {
+    "text": "So",
+    "start": 0.14,
+    "end": 0.18,
+    "id": "w0"
+  },
+  {
+    "text": "the",
+    "start": 0.18,
+    "end": 0.35,
+    "id": "w1"
+  },
+  {
+    "text": "calendar",
+    "start": 0.35,
+    "end": 0.92,
+    "id": "w2"
+  },
+  {
+    "text": "shows",
+    "start": 0.92,
+    "end": 1.27,
+    "id": "w3"
+  },
+  {
+    "text": "what",
+    "start": 1.27,
+    "end": 1.54,
+    "id": "w4"
+  },
+  {
+    "text": "is",
+    "start": 1.56,
+    "end": 1.69,
+    "id": "w5"
+  },
+  {
+    "text": "genuinely",
+    "start": 1.69,
+    "end": 2.33,
+    "id": "w6"
+  },
+  {
+    "text": "free.",
+    "start": 2.33,
+    "end": 2.64,
+    "id": "w7"
+  }
+]

@@ -58,10 +58,12 @@
       #s1-kick { position: absolute; left: 0; right: 0; top: 40px; text-align: center; opacity: 0; z-index: 5; }
       .gcell { position: absolute; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(26,37,32,0.24); transform-origin: 50% 50%; }
       .gcell video { width: 100%; height: 100%; display: block; object-fit: cover; }
-      #gc-family { left: 20px; top: 20px; width: 932px; height: 512px; }
-      #gc-funeralhome { left: 968px; top: 20px; width: 932px; height: 512px; }
-      #gc-parish { left: 20px; top: 548px; width: 932px; height: 512px; }
-      #gc-priest { left: 968px; top: 548px; width: 932px; height: 512px; }
+      /* Round 19: grid shrunk and dropped so the "Before" kicker sits in clear paper
+         above it instead of overlaying the footage (per Tobias). */
+      #gc-family { left: 20px; top: 110px; width: 932px; height: 455px; }
+      #gc-funeralhome { left: 968px; top: 110px; width: 932px; height: 455px; }
+      #gc-parish { left: 20px; top: 585px; width: 932px; height: 455px; }
+      #gc-priest { left: 968px; top: 585px; width: 932px; height: 455px; }
 
       /* S3: the tension the customer already named */
       #s3-col { position: absolute; left: 140px; right: 140px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
@@ -310,17 +312,26 @@
       // "A grieving family waits through every round." (word "family" at 15.01) — the payoff, held
       // through the beat's trailing silence too.
       spot("#gc-family", 14.43, 0.6);
+      // Pivot (n4b 17.35–19.43, round 19 per Tobias): the whole grid turns down and softens while
+      // "the church wanted this to feel different" plays — the old way recedes before the
+      // crossfade takes it out, and the "Before" label leaves with it.
+      tl.to(GCELLS.join(","), { opacity: 0.32, duration: 0.9, ease: "power2.inOut" }, 17.35);
+      tl.to("#s1-stage", { filter: "blur(5px)", duration: 0.9, ease: "power2.inOut" }, 17.35);
+      tl.to("#s1-kick", { opacity: 0, duration: 0.6, ease: "power2.in" }, 17.40);
 
       // T1 blur crossfade (19.8). No product yet — the customer's own goal (S3/S4) and the proof
       // (S5) still have to come first (round 10 feedback holds).
       tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 19.80);
       tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 19.90);
 
-      // ===== S3 fast for the family (19.9 – 26.1). VO n5 20.2–22.66, n6 22.7–25.95 =====
+      // ===== S3 fast for the family (19.9 – 26.1). VO n6 22.7–26.22 (measured words: "Fast"
+      // 22.79, "never" 24.52, "burden" 24.94). Round 19 per Tobias: the lines used to lead the
+      // voice by 2.3s; they now arrive with the words they carry. The scene holds empty through
+      // the pivot's trailing breath. =====
       gsap.set("#bg1", { scaleX: 0, transformOrigin: "0% 50%" });
-      tl.fromTo("#s3-l1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 20.40);
-      tl.fromTo("#s3-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 23.00);
-      tl.to("#bg1", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 24.10);
+      tl.fromTo("#s3-l1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 22.70);
+      tl.fromTo("#s3-l2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 24.45);
+      tl.to("#bg1", { scaleX: 1, duration: 0.6, ease: "power2.inOut" }, 24.90);
 
       // T3 blur crossfade (26.1)
       tl.to("#s3", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 26.10);
@@ -332,9 +343,11 @@
       tl.to("#photo-strip", { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.4, ease: "power2.out" }, 26.70);
       tl.to("#photo-strip", { scale: 0.995, rotation: -1.2, duration: 5.0, ease: "sine.inOut" }, 28.10);
 
-      // T4 blur crossfade (34.3)
-      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 34.30);
-      tl.fromTo("#s5", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 34.40);
+      // T4 blur crossfade (31.9 — the beat-3/4 boundary; round 19 fix per Tobias: it sat at 34.3,
+      // so the calendar arrived ~1.9s after "calendar" was spoken at 32.55 and the halftone
+      // resolve at 32.3 played behind a still-invisible scene)
+      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.7, ease: "power2.inOut" }, 31.90);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 32.00);
 
       // ===== S5 money shot (31.8 – 36.5). VO n9 32.2–34.86. Held past its own speech =====
       gsap.set(ht5, { scale: 0, transformOrigin: "50% 50%" });
