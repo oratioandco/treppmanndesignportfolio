@@ -836,3 +836,47 @@ wrong intent. Moved out to a sibling after the diagram's closing div. Snapshot r
 **Status: working cut. Not approved — Tobias has not yet watched v21. Not pushed** — the
 portfolio repo's unpushed commits (v16→v21, voice swap) deploy on push, and deployment is not
 approval.
+
+## Round 22 — the full triad spoken, the pastor line reframed (2026-09-18, shipped as v22)
+
+**Tobias on v21, verbatim:** "the audio is missing the 'clear for the funeral home' and control
+for the pastro also means 28h lead time so they don't have to cancel because they logistically
+can't even do it. so maybe its more compatible with the pastor's schedule and workflows?"
+
+**Two decisions taken with him** (AskUserQuestion, both answered):
+1. **Third line → "Compatible with the pastor's schedule."** — his compatibility reframe beats
+   keeping "Control for the pastor". The study's "control" framing stands in the case study; the
+   film now uses his word.
+2. **The lead time goes into the case study, not the film** — beat 2 is already at the
+   voice-free ceiling; a spoken lead-time line would force retiming the back half.
+
+**The figure went upstream first** (my-cv-tailor b57ca68, pushed) — and was then corrected by
+Tobias mid-turn: **"oh hut its 48 not 28h"**. The 28h in his first message was a slip; the real
+minimum lead time is **48 hours**. Corrected forward the same day in my-cv-tailor (566694e +
+7c93cbc, pushed): verification log renamed to `2026-09-18-churchdesk-48h-lead-time.md`, study
+JSON and experience file now carry 48h. His quote above is kept verbatim with the wrong figure —
+it is what he said, and the correction is what he said next.
+
+**Why round 20's modality split had to be reversed.** The split existed only because the full
+triad spoken (then 5.12s) broke the voice-free floor. Reversing it re-adds ~1.8s of speech to a
+film narrated to its ceiling — the round-17 note predicted exactly this. Three n6 takes were
+generated (6.56 / 6.08 / 5.20s); take c still left speech at 51.8s, and the first fix tried
+(extending the close to 67.0s) **failed the gate**: the length rule is a hard 65s ceiling, not a
+soft target.
+
+**What actually paid for the triad: pause tightening.** Internal silences >0.18s were compressed
+in two clips only — n6 (5.20→4.80s) and n10 (6.62→5.45s) — reclaiming 1.58s of breath without
+atempo (skill ceiling 1.08 untouched; sentence rhythm intact). Speech lands at 50.2s / 65.0s →
+voice-free 23%, back in the WARN band the film has shipped in since v17. Re-anchored from fresh
+transcripts (`transcript-n6-v22-tight`, `transcript-n10-tight`): l2 21.60, l3 23.05, teal sweep
+23.15 (rides the spoken "compatible"); S6's 40.75 dot-takeover cut needed no move — the tight
+take puts "accept" at 40.86, and the cut still hits it (verified at 41.2s). n11's round-21
+calendar return is untouched.
+
+**New gate WARN, accepted:** `caption` now fires on beat 2 — the voice repeats the card, because
+Tobias asked to hear all three lines. That is his call, recorded here as deliberate. Gate: 0
+FAIL, 6 WARN, 21 PASS.
+
+**Status: working cut. Not approved — Tobias has not yet watched v22. Not pushed** — the
+portfolio repo's unpushed commits (v16→v22, voice swap) deploy on push, and deployment is not
+approval.
