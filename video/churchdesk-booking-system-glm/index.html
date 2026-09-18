@@ -113,6 +113,10 @@
       #s7-cem4 { left: 380px; top: 380px; } #s7-cem5 { left: 380px; top: 500px; }
       #s7-links { position: absolute; inset: 0; width: 600px; height: 560px; }
       #s7-links line { stroke: var(--teal); stroke-width: 4; stroke-dasharray: 3 11; stroke-linecap: round; opacity: 0.55; }
+      /* Round 21: the calendar returns for "So I extended the calendar they already used" —
+         same screenshot S6 established, now as the beat's own payoff. Different presentation
+         (blur-resolve + slow zoom, no dot takeover), so it reads as callback, not repeat. */
+      #s7-cal { left: 980px; top: 245px; width: 900px; height: 501px; opacity: 0; }
 
       /* S8 */
       #s8-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
@@ -197,7 +201,7 @@
           <span class="node-sm" id="s7-cem3"><span class="dot"></span><span class="ncol"><span>Bestattungswald</span><em>Thu 9:00 only</em></span></span>
           <span class="node-sm" id="s7-cem4"><span class="dot"></span><span class="ncol"><span>Stadtfriedhof</span><em>Wed &amp; Fri 14:00–16:00</em></span></span>
           <span class="node-sm" id="s7-cem5"><span class="dot"></span><span class="ncol"><span>Lindenfriedhof</span><em>Tue 10:00–12:00</em></span></span>
-          <svg id="s7-links" viewBox="0 0 600 560" aria-hidden="true">
+            <svg id="s7-links" viewBox="0 0 600 560" aria-hidden="true">
             <line id="s7lk1" x1="130" y1="270" x2="380" y2="45" />
             <line id="s7lk2" x1="130" y1="270" x2="380" y2="165" />
             <line id="s7lk3" x1="130" y1="270" x2="380" y2="285" />
@@ -205,6 +209,7 @@
             <line id="s7lk5" x1="130" y1="270" x2="380" y2="525" />
           </svg>
         </div>
+        <div class="device" id="s7-cal"><div class="wrap"><img src="assets/ui/priest-availability.jpg" alt="" /></div></div>
       </section>
 
       <section id="s8" class="scene">
@@ -390,8 +395,11 @@
       tl.fromTo("#s7", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power2.inOut" }, 43.60);
 
       // ===== S7 the harder path — cemetery complexity, now with a diagram (43.5 – 53.8).
-      // VO n11 43.9–53.59: "One on-call shift can cover several cemeteries at once. Entering
-      // that by hand was the wrong fight. So we extended the calendar they already used." =====
+      // VO n11 43.9–53.50: "One on-call shift can cover several cemeteries at once. Entering
+      // that by hand was the wrong fight. So I extended the calendar they already used."
+      // Round 21: on "So I extended" (word at 51.13) the diagram gives way to the calendar
+      // itself — the availability modal from S6, returned as the payoff; settled by the
+      // spoken "calendar" (51.97), slow zoom holds it until the T7 takeover at 53.8. =====
       tl.fromTo("#s7-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 44.10);
       tl.fromTo("#s7-h", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 44.30);
       tl.fromTo("#s7-sub", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 48.10);
@@ -401,6 +409,11 @@
         tl.to(p[0], { opacity: 1, duration: 0.45, ease: "power1.inOut" }, p[1]);
         tl.fromTo(p[2], { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, p[1] + 0.15);
       });
+      // Calendar return, round 21: diagram out as "so I" begins (50.96), calendar blur-resolves
+      // on "extended" (51.13), then drifts in slow zoom until the scene hands over at 53.8.
+      tl.to("#s7-diagram", { opacity: 0, filter: "blur(6px)", duration: 0.5, ease: "power2.in" }, 50.90);
+      tl.fromTo("#s7-cal", { opacity: 0, scale: 1.07, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.85, ease: "power3.out" }, 51.10);
+      tl.fromTo("#s7-cal", { scale: 1 }, { scale: 1.04, duration: 2.7, ease: "sine.inOut" }, 51.95);
 
       // T7 dots take over (53.8)
       tl.to("#s7", { opacity: 0, filter: "blur(10px)", duration: 0.7, ease: "power2.inOut" }, 53.80);

@@ -801,3 +801,38 @@ portfolio repo's unpushed commits (v16→v20, voice swap) deploy on push, and de
 approval. German terms (Pfarrpersonen, Pfarrer Meissner) were never touched; the upstream
 English gloss in `my-cv-tailor/data/case-studies/churchdesk-booking-system.json` gets the same
 correction with its own verification-log entry there.
+
+## Round 21 — the calendar returns for "So I extended the calendar they already used" (2026-09-18, shipped as v21)
+
+**Tobias's request, verbatim:** "no I mean that in the scene at the end I want to see the
+calendar again because it makes sense as the video is talking about it" — after two clarifying
+rounds where the answer first came back as visual-advice and wording-advice. The lesson recorded
+above the fix: he was asking for a change, not an analysis; once the intent is stated plainly,
+implement it.
+
+**The gap he saw.** Beat 6 (43.5–53.8) ends its narration with "So I extended the calendar they
+already used" (n11: "extended" 51.13, "calendar" 51.97, ends 53.50) — but the screen shows a
+typographic claim + the one-shift-to-five-cemeteries diagram. The payoff image, the availability
+modal in the calendar, had appeared back in beat 5 (32.6) and then the film never shows the thing
+the sentence is about. He's right that it makes sense: the line's whole point is *that surface*.
+
+**The fix (anchored to measured word times from `assets/vo/transcript-n11.json`):**
+- `#s7-diagram` fades out (opacity + 6px blur, 0.5s power2.in) as "so I" begins — 50.90.
+- `#s7-cal` (the same `priest-availability.jpg` screenshot beat 5 established) blur-resolves in
+  from 51.10: opacity 0→1, scale 1.07→1, blur 14px→0, 0.85s power3.out — settled by the spoken
+  "calendar" at 51.97.
+- Slow ambient zoom (scale 1→1.04, 2.7s sine.inOut) holds it to the beat's end; the T7 dot
+  takeover takes over at 53.8.
+
+**Presentation deliberately different from beat 5's introduction** (device slide-in + dot
+takeover): here it's a blur-resolve + slow zoom, no dots — a callback, not a repeat.
+
+**Build bug found and fixed in verification:** `#s7-cal` was first nested *inside* `#s7-diagram`,
+so it inherited the diagram's fade-out and the frame after 51.1 went empty (snapshots showed the
+fade, nothing after). `npx hyperframes check` passed 0 errors — the nesting was legal markup, just
+wrong intent. Moved out to a sibling after the diagram's closing div. Snapshot re-verify at
+50.5 / 52.0 / 53.2: diagram up → calendar resolved → calendar holding in zoom.
+
+**Status: working cut. Not approved — Tobias has not yet watched v21. Not pushed** — the
+portfolio repo's unpushed commits (v16→v21, voice swap) deploy on push, and deployment is not
+approval.
