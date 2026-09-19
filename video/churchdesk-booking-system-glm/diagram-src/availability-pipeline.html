@@ -59,7 +59,6 @@
     margin-bottom: 10px;
   }
   .stage-name { font-size: 25px; font-weight: 600; line-height: 1.25; }
-  .stage-name .op { color: var(--accent); font-weight: 700; }
   .stage-sub { margin-top: 10px; font-size: 16.5px; line-height: 1.5; color: var(--muted); }
 
   /* the calendar strip */
@@ -71,6 +70,7 @@
     border-radius: 6px;
     overflow: hidden;
   }
+  .day.tall { height: 150px; }
   .hours {
     position: relative;
     height: 22px;
@@ -137,46 +137,58 @@
     background: var(--ink);
     z-index: 4;
   }
-  .window-note {
+  .ghost {
     position: absolute;
-    top: -34px;
-    transform: translateX(-50%);
-    font-family: "Departure Mono", ui-monospace, monospace;
-    font-size: 12.5px;
-    color: var(--ink);
-    white-space: nowrap;
-    z-index: 4;
+    top: 2px; bottom: 2px;
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 75%, transparent);
+    border-radius: 8px;
+    z-index: 1;
   }
   .buffer-cut {
     position: absolute;
-    top: -4px; bottom: -4px;
+    top: 4px; bottom: 4px;
     width: 0;
     border-left: 2px dashed var(--accent);
-    z-index: 4;
+    z-index: 2;
   }
   .buffer-label {
     position: absolute;
-    top: -32px;
+    top: calc(100% + 7px);
     transform: translateX(-50%);
     font-family: "Departure Mono", ui-monospace, monospace;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--accent);
     white-space: nowrap;
   }
-  .avail.dim {
-    background: color-mix(in srgb, var(--accent) 100%, transparent);
-  }
-  .slot {
+  .incr-tick {
     position: absolute;
-    top: 0; bottom: 0;
-    background: var(--accent);
-    border-radius: 4px;
-    z-index: 1;
-    display: flex; align-items: center; justify-content: center;
-    color: #f8f3ee;
-    font-family: "Departure Mono", ui-monospace, monospace;
-    font-size: 13.5px;
+    top: 6px;
+    width: 1.5px;
+    height: 6px;
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+    z-index: 3;
   }
+  .cand {
+    position: absolute;
+    top: 17px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+  .cand.ok { background: var(--accent); }
+  .cand.rej { background: transparent; border: 1.5px solid var(--grey); }
+  .cand-tag {
+    position: absolute;
+    top: 30px;
+    transform: translateX(-50%);
+    font-family: "Departure Mono", ui-monospace, monospace;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 3;
+  }
+  .cand-tag.ok { color: var(--accent); }
+  .cand-tag.rej { color: #9a938a; text-decoration: line-through; }
   .slot-final {
     position: absolute;
     top: 22px; bottom: 22px;
@@ -186,27 +198,9 @@
     display: flex; align-items: center; justify-content: center;
     font-family: "Departure Mono", ui-monospace, monospace;
     font-size: 14px;
-    z-index: 1;
+    z-index: 2;
     box-shadow: 0 1px 4px color-mix(in srgb, var(--ink) 18%, transparent);
   }
-  .ghost {
-    position: absolute;
-    top: 2px; bottom: 2px;
-    border: 1.5px dashed color-mix(in srgb, var(--accent) 75%, transparent);
-    border-radius: 8px;
-    z-index: 1;
-  }
-
-  .connector {
-    grid-column: 2;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    padding-left: 56px;
-    margin-top: -26px;
-    margin-bottom: -14px;
-  }
-  .connector .line { display: none; }
 </style>
 </head>
 <body>
@@ -249,7 +243,7 @@
         <div class="day">
           <div class="avail" style="left:0%; width:100%"></div>
           <div class="other-event" style="left:5%; width:10%">Home visit</div>
-          <div class="other-event" style="left:45%; width:10%">Service</div>
+          <div class="other-event" style="left:40%; width:10%">Service</div>
         </div>
       </div>
     </div>
@@ -271,7 +265,7 @@
         <div class="day">
           <div class="avail" style="left:0%; width:100%"></div>
           <div class="other-event" style="left:5%; width:10%">Home visit</div>
-          <div class="other-event" style="left:45%; width:10%">Service</div>
+          <div class="other-event" style="left:40%; width:10%">Service</div>
           <div class="outside" style="left:0%; width:20%"></div>
           <div class="outside" style="left:80%; width:20%"></div>
           <div class="window-edge" style="left:20%"></div>
@@ -281,12 +275,12 @@
     </div>
   </div>
 
-  <!-- 04 minus prep & follow-up -->
+  <!-- 04 minus prep & follow-up, starts on a grid -->
   <div class="stage">
     <div class="stage-label">
       <div class="stage-num">04 — MINUS PREP AND FOLLOW-UP TIME</div>
-      <div class="stage-name">Buffers configured on<br>the booking option itself</div>
-      <div class="stage-sub">Time to travel, prepare and close out is carved off each surviving slot, per booking option — so a slot is never shown that would have to run over.</div>
+      <div class="stage-name">Buffers carved off,<br>starts on a grid</div>
+      <div class="stage-sub">Each surviving stretch loses 30 minutes to prep and follow-up. Starts then land on the booking option's grid — hourly for funerals, 15 minutes for appointments and video calls. The 13:00–16:00 afternoon keeps exactly one start: 14:00. 15:00 would run its follow-up past the cemetery's close.</div>
     </div>
     <div>
       <div class="hours">
@@ -294,12 +288,31 @@
       </div>
       <div class="track-wrap">
         <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
-        <div class="day">
-          <div class="ghost" style="left:20%; width:25%"></div>
-          <div class="ghost" style="left:55%; width:25%"></div>
-          <div class="slot-final" style="left:25%; width:15%">10:30</div>
-          <div class="slot-final" style="left:60%; width:15%">14:00</div>
+        <div class="day tall">
+          <!-- morning: 10:00-12:00 raw, 30-min buffers both sides, 10:30 start -->
+          <div class="ghost" style="left:20%; width:20%"></div>
+          <div class="buffer-cut" style="left:25%"></div>
+          <div class="buffer-cut" style="left:35%"></div>
+          <div class="slot-final" style="left:25%; width:10%; top:52px;">10:30</div>
+          <!-- afternoon: 13:00-16:00 raw, hourly start grid, only 14:00 survives -->
+          <div class="ghost" style="left:50%; width:30%"></div>
+          <div class="buffer-cut" style="left:55%"></div>
+          <div class="buffer-cut" style="left:75%"></div>
+          <div class="incr-tick" style="left:50%"></div>
+          <div class="incr-tick" style="left:60%"></div>
+          <div class="incr-tick" style="left:70%"></div>
+          <div class="incr-tick" style="left:80%"></div>
+          <div class="cand ok" style="left:60%"></div>
+          <div class="cand-tag ok" style="left:60%">14:00</div>
+          <div class="cand rej" style="left:70%"></div>
+          <div class="cand-tag rej" style="left:70%">15:00</div>
+          <div class="slot-final" style="left:60%; width:10%; top:52px;">14:00</div>
         </div>
+        <!-- buffer labels under the strip -->
+        <div class="buffer-label" style="left:22.5%">prep</div>
+        <div class="buffer-label" style="left:37.5%">follow-up</div>
+        <div class="buffer-label" style="left:52.5%">prep</div>
+        <div class="buffer-label" style="left:77.5%">follow-up</div>
       </div>
     </div>
   </div>
@@ -318,8 +331,8 @@
       <div class="track-wrap">
         <div class="tick" style="left:0%"></div><div class="tick" style="left:20%"></div><div class="tick" style="left:40%"></div><div class="tick" style="left:60%"></div><div class="tick" style="left:80%"></div><div class="tick" style="left:100%"></div>
         <div class="day">
-          <div class="slot-final" style="left:25%; width:15%">10:30</div>
-          <div class="slot-final" style="left:60%; width:15%">14:00</div>
+          <div class="slot-final" style="left:25%; width:10%">10:30</div>
+          <div class="slot-final" style="left:60%; width:10%">14:00</div>
         </div>
       </div>
     </div>
