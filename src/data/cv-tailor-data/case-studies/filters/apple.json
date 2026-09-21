@@ -1,0 +1,56 @@
+{
+  "slug": "apple",
+  "aliases": [
+    "apple-senior-designer-london"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Prototypes that decide — built in real code, shipped with measured outcomes.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-apple.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Designer, Interaction Architecture role"
+  },
+  "bio": {
+    "short": "I prototype in real code, because a prototype that runs is the one that decides: at Bibel TV, engineering at an external agency ships from my Claude Code prototypes, reusing about half of the prototype code directly. My AI interaction design shipped with a measured lift of +153% and +85% weekly starts, and a one-week scrappy prototype I led at Spreadshirt reached production and shifted company strategy. Kotlin/Jetpack Compose, Swift on iOS, React.",
+    "long": "At Bibel TV I am the only in-house designer, and I hold product manager, product owner and design for the consumer app redesign across iOS, Android, web and connected TV. I prototype in Claude Code against production APIs — web first, then native Kotlin/Jetpack Compose — and the external engineering agency ships from that code, reusing about half of it directly. Under the same roof sits a four-tier design-token architecture whose production rails run through Storybook.\n\nThe AI interaction design has shipped twice with outcomes attached. The entry point of the AI feature I designed full scope went from an unclear button to a self-explaining input, and weekly starts moved +153% on iOS and +85% on Android (GA4, four-week averages). A support copilot drafts replies for the viewer-services team with every send decision staying human, and the prompt-to-database onboarding I designed for Ninox with the CEO and technical co-founder shipped as their public AI beta in February 2026.\n\nThe range runs scrappy to polished: at Spreadshirt, a one-week Axure research prototype I led went to production and shifted company mobile strategy — the prototype was the argument that decided it. Around the work itself: Director of Design at Datameer, three Head-of roles since 2023, and a decade mentoring designers.",
+    "context": {
+      "company": "Apple — Interaction Architecture (IA), a design and prototyping team exploring future experiences; this role is London-based",
+      "role": "Senior Designer",
+      "emphasis": "The prototype as decision instrument: real code, production APIs, open-ended briefs carried to a running artifact. Scrappy-to-polished range with named proofs. AI interaction design with measured outcomes rather than adjectives. He builds the work himself — Claude Code, Kotlin/Compose, Swift — and engineering ships from it across a company boundary."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
