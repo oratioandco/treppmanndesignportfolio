@@ -1,0 +1,56 @@
+{
+  "slug": "newmonday",
+  "aliases": [
+    "newmonday-senior-ux-designer-ki"
+  ],
+  "title": "Selected Work",
+  "subtitle": "AI tools shipped in production, design systems built for agentic use — the pairing this role asks for.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-newmonday.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior UX Designer mit KI-Erfahrung role"
+  },
+  "bio": {
+    "short": "I'm the UX designer who also ships the AI tools: at Bibel TV my support copilot, AI fundraising ecosystem, colour-extraction API and design-token API are all live in production — the fundraising ecosystem built solo, end to end. My design systems are built for agentic use, and engineering ships from about half of my prototype code. Fifteen years of UX craft plus working AI systems is the pairing this posting describes, and it's the pairing I'd bring to your clients.",
+    "long": "I've been a UX designer for fifteen years, and the last year looked different from the first fourteen: at Bibel TV, where I'm the only in-house designer, the AI tools I built went live. A support copilot drafts viewer-services replies from the CS handbook with a human keeping every send decision. An AI fundraising ecosystem I built solo runs from performance analysis through a Claude Project with follow-up loops to a web prototype and a shipped Claude skill. A colour-extraction API with its own config tool and a design-token API run alongside them. ChatGPT, Gemini and Claude are my daily drivers for research synthesis, data analysis and prototyping; Claude Code is where the building happens. An MCP prototyping server is in active development, with one colleague already using it for their project.\n\nThe design systems are built for the same reality. The four-tier token architecture I built from scratch serves iOS, Android, web and connected TV from one CI-enforced source, with Storybook as the source of truth and six checks that refuse off-system work — designed so an AI assistant can build against it without silently breaking it. I prototype in real code against production APIs, and engineering ships from about half of that code. Before Bibel TV I owned the design system and established joint governance with engineering at Ninox, where the prompt-to-database AI onboarding I designed with the CEO shipped as the public AI beta, and co-built the one at Datameer, whose analytics platform serves top banks and insurers.\n\nUnderneath it is the craft the title promises: research that ends in decisions, not decks — a viewer survey programme (n=264/80/163) that set the redesign's direction, in-person shop-owner interviews at Spreadshirt that overturned an executive assumption, a ChurchDesk booking capability that cut coordination time 70% with 90% acceptance. I've taught AI-for-design workshops to an agency's designers and developers, and mentored designers for a decade. German native, based in Berlin, working 100% remote — and looking for the seat where building the AI capability of a design team is the actual job.",
+    "context": {
+      "company": "New Monday",
+      "role": "Senior UX Designer mit KI-Erfahrung",
+      "emphasis": "Shipped AI systems in production, named individually (support copilot, fundraising ecosystem, colour-extraction API + config tool, token API); design systems deliberately built for agentic/LLM use — CI-enforced token source, closed vocabulary, Storybook as source of truth; prototyping in real code against production APIs that engineering reuses (~half); multi-model AI practice (ChatGPT, Gemini, Claude) across research, analysis and prototyping with Claude Code as the build tier; research-to-decision with real numbers; senior UX craft in Figma, IA and interaction design; German native, 100% remote in Germany."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
