@@ -160,6 +160,10 @@ let figureIndex = 0;
       const content = section.content || (section as CaseStudySection & { narrative?: string }).narrative;
       const contentParagraphs = splitParagraphs(content);
       const lead = contentParagraphs[0] ?? '';
+      // A lead paragraph may open with a markdown heading ("### …") when the
+      // section starts on a numbered item; render it as a subhead, never raw.
+      const leadIsHeading = lead.startsWith('### ');
+      const leadBody = leadIsHeading ? lead.slice(4).trim() : lead;
       const hasOptionalDepth = section.type === 'narrative' && contentParagraphs.length > 3;
       const optionalDepth = hasOptionalDepth ? contentParagraphs.slice(1, -1).join('\n\n') : '';
       const remainder = hasOptionalDepth
@@ -192,7 +196,9 @@ let figureIndex = 0;
             </blockquote>
           )}
 
-          {lead && <p class="cs-spine-lead" set:html={inlineStrong(lead)} />}
+          {lead && (leadIsHeading
+            ? <h3 class="cs-spine-lead cs-spine-lead-subhead" set:html={inlineStrong(leadBody)} />
+            : <p class="cs-spine-lead" set:html={inlineStrong(lead)} />)}
 
           {sectionIndex === 0 && supportingEvidence && (() => {
             figureIndex += 1;
@@ -479,6 +485,12 @@ let figureIndex = 0;
     font-size: clamp(1.24rem, 2vw, 1.72rem);
     line-height: 1.38;
     text-wrap: pretty;
+  }
+
+  .cs-spine-lead-subhead {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-weight: 650;
+    line-height: 1.35;
   }
 
   .cs-spine-copy {
