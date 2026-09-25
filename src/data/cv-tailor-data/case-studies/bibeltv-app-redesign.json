@@ -15,8 +15,8 @@
   "role": "Head of Product Design",
   "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
   "duration": "2025 – Present",
-  "status": "draft",
-  "last_updated": "2026-08-25",
+  "status": "published",
+  "last_updated": "2026-09-25",
   "format_priority": [
     "in-depth",
     "executive",
@@ -68,6 +68,16 @@
       ]
     },
     {
+      "type": "video",
+      "headline": "The launch ad",
+      "video": {
+        "src": "/video/bibeltv-app-redesign-ad.mp4",
+        "poster": "/video/bibeltv-app-redesign-ad-poster.jpg",
+        "caption": "The 30-second launch spot for the redesigned app.",
+        "duration_s": 30
+      }
+    },
+    {
       "type": "reflection",
       "headline": "Underneath the light-mode bet",
       "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
@@ -85,7 +95,8 @@
         "hero",
         "The gap",
         "The light-mode bet",
-        "What changed"
+        "What changed",
+        "The launch ad"
       ],
       "max_read_time": "2 min"
     },

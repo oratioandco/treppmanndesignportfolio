@@ -66,6 +66,7 @@ function sectionLabel(section: CaseStudySection, index: number): string {
   if (section.type === 'process') return 'The mechanism';
   if (section.type === 'reflection') return 'The implication';
   if (section.type === 'key-takeaway') return 'The point';
+  if (section.type === 'video') return 'The result';
   return index === 0 ? 'The condition' : 'The decision';
 }
 
@@ -87,6 +88,7 @@ const visibleSections = selectedSections.filter((section) => (
   || section.steps?.length
   || section.metrics?.length
   || section.images?.length
+  || section.video
 ));
 const selectedHasImage = visibleSections.some((section) => !!section.images?.length || !!section.steps?.some((step) => step.image));
 // The accepted LLM-safe pilot deliberately showed one concrete system image
@@ -209,6 +211,16 @@ let figureIndex = 0;
             figureIndex += 1;
             return <EvidenceFigure image={image} index={figureIndex} eager={sectionIndex === 0} />;
           })}
+
+          {section.video && (
+            <figure class="cs-spine-section-video">
+              <video class="cs-spine-video-player" controls preload="metadata" playsinline poster={section.video.poster} src={section.video.src}></video>
+              <figcaption>
+                <span class="cs-spine-video-kicker">Watch{section.video.duration_s ? ` · ${section.video.duration_s}s` : ''}</span>
+                {section.video.caption && <span>{section.video.caption}</span>}
+              </figcaption>
+            </figure>
+          )}
 
           {optionalDepth && (
             <details class="cs-spine-depth">
@@ -425,6 +437,26 @@ let figureIndex = 0;
   }
   @media (max-width: 48rem) {
     .cs-spine-video-figure figcaption { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  .cs-spine-section-video {
+    width: min(91%, 68rem);
+    margin: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(2.5rem, 5vw, 4.5rem) auto;
+  }
+  .cs-spine-section-video figcaption {
+    display: grid;
+    grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1.68fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+  }
+  .cs-spine-section-video figcaption > span:last-child {
+    max-width: 56ch;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+  @media (max-width: 48rem) {
+    .cs-spine-section-video figcaption { grid-template-columns: 1fr; gap: 0.5rem; }
   }
 
   .cs-spine-section {

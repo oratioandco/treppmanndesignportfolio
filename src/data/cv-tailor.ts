@@ -35,6 +35,7 @@ export interface CaseStudySection {
   content?: string;
   subtext?: string;
   images?: { src: string; alt: string; caption?: string }[];
+  video?: { src: string; poster: string; caption?: string; duration_s?: number; variant?: string };
   quote?: string;
   attribution?: string;
   context?: string;
