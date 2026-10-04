@@ -4,11 +4,6 @@
   "subtitle": "Coordination between people who have never met, design systems that ship to production, and colour that stays readable for everyone",
   "theme": "default",
   "show_all_label": "Show more work",
-  "cv": {
-    "href": "/documents/tobias-treppmann-cv-kleinanzeigen.pdf",
-    "label": "Download CV (PDF)",
-    "note": "Tailored for the Senior Product Designer role"
-  },
   "bio": {
     "short": "I'm Tobias Treppmann, a product designer in Berlin. My work centres on systems that are complicated underneath and have to feel simple on top: a booking system holding four parties together, filter logic over datasets too large to query whole, and a design system that ships tokens to production rather than to Figma. I run my own research, in German and in English.",
     "long": "I'm Tobias Treppmann, a product designer in Berlin.\n\nMost of my work has been on systems that are complicated underneath and have to feel obvious on the surface. At ChurchDesk I designed a booking system that held funeral homes, pastors and cemeteries together across twenty-plus locations and cut coordination from days of phone-tag to hours. At Datameer I spent five years on filter logic, pivot tables and result cards for analysts at banks and insurers, including the awkward problem of a preview that reports nothing while the data is sitting there. At Bibel TV I do the work rather than assign it — the design system ships as a live token API across web, iOS, Android and Figma, and I'm adding an MCP layer so people who aren't designers can use it without breaking it.\n\nI run my own research sessions, in German and in English. I've also spent ten years mentoring designers, which is the part of the job I'd miss most if it went away.",
