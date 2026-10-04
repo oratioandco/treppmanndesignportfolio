@@ -1,0 +1,44 @@
+{
+  "slug": "babbel",
+  "aliases": [
+    "babbel-lead-product-designer-ai-builder"
+  ],
+  "title": "Selected Work",
+  "subtitle": "AI products built where interaction design, code and user control meet.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-babbel.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Lead Product Designer, AI Builder role"
+  },
+  "bio": {
+    "short": "I lead product design at Bibel TV and turn AI concepts into working software. I prototype with Claude Code against real APIs. I own a conversational Bible study app across product, design and agentic development. I also shipped Selah, a Mac app I designed and agentically engineered. Before this I led teams at Ninox and the UX team within Datameer's design organisation.",
+    "long": "At Bibel TV I lead product design across iOS, Android, web and connected TV. I also hold product responsibility for the app redesign. I prototype new experiences with Claude Code against real and self-built APIs. The external engineering agency works from those running prototypes. I own a Conversational AI Bible Study App in development across product direction, interface design and agentic development. I also shipped a Microsoft Copilot skill for viewer support whose replies remain under staff control.\n\nMy independent practice carries the same builder track. I designed and agentically engineered Selah - Mindful Transitions, a Mac app shipped through the Mac App Store. In summer 2025 I worked with Ninox's CEO and technical co-founder on conversational prompt-to-database onboarding. AI generates the schema, then displays it in the real editor beside chat. The user can inspect and change it directly.\n\nI have also led teams and design systems. At Ninox I managed five people across product design and UX writing. I hired two, promoted two and owned the design system with joint engineering governance. At Datameer I led the UX team across Germany and New York for enterprise analytics. The throughline is hands-on product craft paired with structures that help other designers and engineers move faster.",
+    "context": {
+      "company": "Babbel",
+      "role": "Lead Product Designer, AI Builder",
+      "emphasis": "Lead with working AI software, conversational interaction, real-code prototyping, user control and the ability to coach a design practice. Keep current Bibel TV products explicitly in development where applicable; use Selah as shipped independent-product proof."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    }
+  ]
+}
