@@ -1,0 +1,56 @@
+{
+  "slug": "4flow",
+  "aliases": [
+    "4flow-director-ux"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Design organisations, complex B2B products and AI transformation made concrete.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-4flow.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director UX role"
+  },
+  "bio": {
+    "short": "I lead design as an organisation and as a working part of product delivery. At Ninox I owned the design function's capacity, allocation, structure and development; at Datameer I led UX across Germany and New York. Today at Bibel TV I turn AI into shipped workflows, new product experiences and executable prototypes.",
+    "long": "At Ninox I sat on the Senior Leadership Team. I owned the design function's operating model across product design and UX writing: capacity, allocation, prioritisation, team structure and processes. I built levelling and growth structures, hired two and promoted two. For four months I also led product, bringing the scope to nine people across two functions and four disciplines.\n\nAt Datameer I led UX across Germany and New York for five years. The product was data-dense enterprise analytics for regulated banks and insurers. During a new-product bet, research gained executive backing and design moved into roadmap conversations. I built the screening method that reached analysts inside institutions standard panels could not access.\n\nAt Bibel TV I work directly at the AI and delivery layer. I prototype against real APIs with Claude Code, and the external engineering agency works from the running software. I shipped a human-controlled Microsoft Copilot workflow for viewer support and built an AI fundraising workflow from performance analysis through production skill. The throughline is making systems usable: the organisation designers work in, the complex product a customer works in, or the internal workflow software can improve.",
+    "context": {
+      "company": "4flow",
+      "role": "Director UX",
+      "emphasis": "Lead with design-organisation ownership at Ninox, distributed complex-B2B leadership at Datameer and working AI systems at Bibel TV. Use workflow productisation as the connection to 4flow's operational software portfolio."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
