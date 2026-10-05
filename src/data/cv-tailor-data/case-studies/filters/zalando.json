@@ -1,0 +1,62 @@
+{
+  "slug": "zalando",
+  "aliases": [
+    "zalando-principal-product-designer-size-fit"
+  ],
+  "title": "Evidence Before Assumption",
+  "subtitle": "Consumer-product decisions carried from research into working software",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-zalando.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Principal Product Designer – Size & Fit role"
+  },
+  "bio": {
+    "short": "I turn uncertain consumer-product questions into testable direction. At Spreadshirt, in-person seller interviews changed an automation-led strategy and a mobile prototype moved to production. Today I connect usage data, real-code prototypes and multi-platform systems at Bibel TV.",
+    "long": "At Spreadshirt I led the third attempt to redesign the seller experience for an international fashion and print-on-demand marketplace. In-person interviews showed that shop owners valued creative control more than a 60-second automated journey. That evidence changed the product direction. A mobile t-shirt designer built with the UI team in Axure made the decision tangible, tested strongly and moved to production.\n\nAt Bibel TV I now hold product design and product-management responsibility for a consumer streaming redesign across iOS, Android, web and connected TV. A redesigned entry into an AI feature raised weekly starts by 153% on iOS and 85% on Android in four-week before-and-after averages. I prototype against production APIs, and the external engineering agency ships from that work. The same practice produced a four-platform design system and a production colour engine that generates accessible themes from content artwork.\n\nAt Ninox I led five people across product design and UX writing from the Senior Leadership Team, hired two and promoted two. I owned and grew the design system with engineering and led Product and Design together for four months. The throughline across these roles is evidence that changes direction and systems that preserve craft at delivery. Mentoring raises the quality of the work around me.",
+    "context": {
+      "company": "Zalando serves a large, diverse fashion and lifestyle marketplace. This role works across Size & Fit and proposition teams, including the Virtual Fitting Room and personalised size advice.",
+      "role": "A one-year Principal Product Designer cover in Berlin. The work combines problem definition, consumer research, product and customer data with fast prototyping, UI craft, systems and accessibility. It requires experimentation and influence across Product, Engineering and Data Science.",
+      "emphasis": "Introduce Tobias through fashion e-commerce research that changed product direction, current consumer-product craft, usage data, rapid real-code prototypes, mature systems and Principal-level influence. Every project must be understandable without knowing this application."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
