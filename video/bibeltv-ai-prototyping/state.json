@@ -1,0 +1,35 @@
+{
+  "study": "bibeltv-ai-prototyping",
+  "updated": "2026-10-05T23:10",
+  "stage": "script",
+  "variant": "master",
+  "gates": {
+    "gate1_script": {
+      "status": "passed-pending-go",
+      "date": "2026-10-05",
+      "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted — real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md. Awaiting Tobias: script go, budget cap (approved_max=0 fails closed), product-ads capture reuse, native-Kotlin capture existence."
+    },
+    "gate2_storyboard": {},
+    "gate3_audio": {},
+    "gate4_render": {}
+  },
+  "budget": {
+    "currency": "USD",
+    "approved_max": 0,
+    "spent": 0,
+    "entries": [],
+    "note": "approved_max is deliberately 0 until the budget conversation with Tobias happens (references/project-state.md). Every paid call hard-fails until he sets the cap in words, logged dated in review.md. Voice (ElevenLabs, ~9 lines) + one Lyria bed expected; no generated footage planned."
+  },
+  "assets": [],
+  "renders": [],
+  "open_questions": [
+    "Asset reuse: the proof/turn beats want the real device captures of the same prototype from product-ads/bibeltv-redesign (captures/proto-phone, proto-tablet, assets/ui/*.mp4). Different project — needs Tobias's confirmation before anything is wired in.",
+    "Budget cap conversation before the first paid voice call.",
+    "Tobias's go on the script after Gate 1."
+  ],
+  "next": [
+    "Gate 1: adversarial critique written to review.md + check_video.py --strict",
+    "Assets-needed section in review.md (browser-chrome beat has no capture; diagram candidate)",
+    "Tobias: script go + asset-reuse confirmation + budget cap"
+  ]
+}
