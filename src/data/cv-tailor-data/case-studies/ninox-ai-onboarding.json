@@ -48,7 +48,7 @@
     },
     {
       "type": "narrative",
-      "headline": "The Context",
+      "headline": "The schema kept non-technical builders out",
       "content": "Ninox is a no-code business application platform, people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly, law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The prompt-to-database initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this directly with Ninox's CEO and technical co-founder in a stealth pre-product-team phase, a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
       "images": [
         {
@@ -70,7 +70,7 @@
     },
     {
       "type": "process",
-      "headline": "Design decisions",
+      "headline": "Put the generated schema in the real editor",
       "steps": [
         {
           "label": "Schema renders into the real data-model editor",
@@ -109,7 +109,7 @@
     },
     {
       "type": "outcome",
-      "headline": "Outcome",
+      "headline": "Direct manipulation became the beta's interaction model",
       "metrics": [
         {
           "label": "Engagement scope",
@@ -149,10 +149,10 @@
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
       "sections": [
         "hero",
-        "The Context",
+        "The schema kept non-technical builders out",
         "Why chat alone wouldn't work",
-        "Design decisions",
-        "Outcome"
+        "Put the generated schema in the real editor",
+        "Direct manipulation became the beta's interaction model"
       ],
       "max_read_time": "2 min"
     }

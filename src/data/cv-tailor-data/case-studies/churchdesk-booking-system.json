@@ -88,7 +88,12 @@
         },
         {
           "label": "Extended the existing platform: the right option, not the cheap one",
-          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been, and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product."
+          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been, and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product.",
+          "image": {
+            "src": "/images/churchdesk/availability-filtering-pipeline.png",
+            "alt": "Filtering diagram showing how a pastor's availability, existing calendar events, cemetery hours and booking buffers leave only genuinely free slots for the funeral home",
+            "caption": "The integration decision made one availability mechanism reusable: calendar commitments, cemetery hours and booking buffers resolve before a slot reaches the funeral home."
+          }
         },
         {
           "label": "Designed in Figma with my designer; engineering built quickly",
@@ -127,7 +132,7 @@
     },
     {
       "type": "outcome",
-      "headline": "What changed",
+      "headline": "Coordination fell from days to hours",
       "metrics": [
         {
           "label": "Coordination time",
@@ -168,7 +173,7 @@
         "hero",
         "The problem was the phone",
         "How the system fits together",
-        "What changed"
+        "Coordination fell from days to hours"
       ],
       "max_read_time": "2 min"
     },

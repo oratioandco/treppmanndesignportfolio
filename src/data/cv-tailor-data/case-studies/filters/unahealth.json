@@ -1,64 +1,68 @@
 {
   "slug": "unahealth",
-  "title": "Selected Work",
-  "subtitle": "AI product design in regulated, sensitive-data environments — end-to-end discovery, pragmatic design systems, multi-stakeholder coordination. Selected for Una Health.",
+  "aliases": [
+    "unahealth-product-design-lead"
+  ],
+  "title": "From Unclear Problem to Usable System",
+  "subtitle": "Product decisions that stay connected from discovery to working software",
   "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-unahealth.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior / Staff / Lead Product Designer role"
+  },
+  "bio": {
+    "short": "I am most useful while the product answer is still unclear. I frame the decision, prototype against real systems and stay with the work through UI, engineering and iteration. My recent work joins responsible AI, sensitive workflows and software that people can inspect and control.",
+    "long": "At Bibel TV I lead product design and hold product-management responsibility for a consumer streaming redesign across iOS, Android, web and connected TV. I write and prioritise the work engineering builds, prototype against real APIs and check the result in beta and production. The same hands-on practice produced two more systems. One is a viewer-support Copilot workflow where staff review, edit and send every response. The other is a design system that serves four platforms from one source.\n\nAt ChurchDesk I held product management and design for the core platform. A German customer needed funeral booking. The faster internal option was a standalone module. I built the capability into the existing calendar and form builder, so the same product could serve room rentals, baptisms and weddings. It reduced coordination time by 70% with 90% booking acceptance at the launch customer. I ran recurring German validation with the parish lead, pastors and funeral directors.\n\nFor Ninox I designed prompt-to-database onboarding with the founders. The AI-generated schema appears in the real data-model editor, where users can inspect and correct it instead of managing a large structured artefact through chat. In 2025 I completed a short confidential health-tech engagement. I assessed a speech-therapy product concept, evaluated product and technical possibilities, set initial UX direction and created prototypes.",
+    "context": {
+      "company": "Una Health is a Berlin digital-health company whose reimbursed therapy supports people with type 2 diabetes. Its next products combine medical research, data science, biosensors, human-centred design and AI.",
+      "role": "Senior / Staff / Lead Product Designer. A hands-on role from problem discovery and research through hypotheses, high-fidelity UI, handover and iteration, with broad cross-functional partnership.",
+      "emphasis": "Introduce Tobias through problem-first product judgment, hands-on technical follow-through, German-language research, responsible AI interactions and experience working inside regulatory constraints. Use concrete projects and decisions that make sense without knowledge of this application."
+    }
+  },
   "case_studies": [
-    {
-      "id": "ninox-ai-onboarding",
-      "visibility": "featured",
-      "order": 1,
-      "format_override": "in-depth"
-    },
     {
       "id": "churchdesk-booking-system",
       "visibility": "featured",
-      "order": 2,
-      "format_override": "in-depth"
+      "order": 1,
+      "format_override": "executive"
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
       "visibility": "featured",
       "order": 3,
-      "format_override": "in-depth"
+      "format_override": "executive"
     },
     {
-      "id": "bibeltv-support-agent",
+      "id": "bibeltv-ai-prototyping",
       "visibility": "browseable",
       "order": 4,
       "format_override": "executive"
     },
     {
-      "id": "datameer-data-dense-analytics",
+      "id": "bibeltv-support-agent",
       "visibility": "browseable",
       "order": 5,
       "format_override": "executive"
     },
     {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "hidden",
-      "order": 6
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
     },
     {
-      "id": "bibeltv-color-api",
-      "visibility": "hidden",
-      "order": 7
-    },
-    {
-      "id": "bibeltv-app-redesign",
-      "visibility": "hidden",
-      "order": 9
-    },
-    {
-      "id": "bibeltv-ai-prototyping",
-      "visibility": "hidden",
-      "order": 10
-    },
-    {
-      "id": "spreadshirt-user-research-strategy",
-      "visibility": "hidden",
-      "order": 11
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 7,
+      "format_override": "executive"
     }
-  ],
-  "show_all_label": "Show more work"
+  ]
 }
