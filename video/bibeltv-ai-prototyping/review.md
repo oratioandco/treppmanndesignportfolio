@@ -125,6 +125,37 @@ Script passes Gate 1. Waiting on Tobias: (1) go on this script, (2) budget cap f
 confidential — read for context only; nothing from it enters the film or any public output.
 The study JSON stays the only claim source.
 
+## Budget cap set (2026-10-06, second answer in words)
+
+Tobias: *"let's do $5 cap"*. **`budget.approved_max` = 5 USD**, logged same session. Covers the
+voice (~102 clone words ≈ pennies even with redos) and the Lyria bed. Any spend above $5
+hard-fails again until a new number is agreed in words.
+
+Same message: *"you do the emulator, but also there is a pixel phone connected you can use"* —
+beat-5 capture is mine to make, real Pixel device preferred over the emulator (sharper render).
+APK of record: `ProtoBible/exports/ProtoBible-Neues-Design-Home-Screen v4.3.apk` (home-screen
+build, matching the beat's card).
+
+## Beat-5 capture (2026-10-06, done)
+
+Recorded on Tobias's Pixel 8 Pro via adb (`39201FDJG000F8`, streamed install of the v4.3 APK,
+versionName 0.012). Two files in `assets/native/`:
+
+- `protobible-home-pixel8pro.mp4` — 22s static hold on the home screen (take 1).
+- `protobible-tabs-take3-pixel8pro.mp4` — 22s interaction: Home → Mediathek → Live TV (live
+  player + channel chips) → Programm (schedule, date chips). **Beat-5 primary.**
+
+Both carry the system status bar and bottom nav — the composition crops them (same treatment
+the product-ads clean-clip pipeline applied to beat 3's footage).
+
+**One question for Tobias, open at Gate 2:** the capture shows the app with live real content —
+including the "God Friendled Me" series promo card and (on Live TV/Programm) broadcast imagery.
+The film's company rule says Bibel TV is never *named*; showing the app's own UI with its real
+content is inherent to showing the prototype, but third-party series artwork and broadcast
+frames in a public portfolio film is his call, not mine. If he wants it clean, the fix is
+dismissing the promo card (the ✕ is at uiautomator (960,359) device px) and re-recording —
+cheap.
+
 ### What unblocks next
 
 - **Now (no money):** Gate 2 — build scenes into index.html against the beat table; beat 3

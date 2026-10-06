@@ -1,6 +1,6 @@
 {
   "study": "bibeltv-ai-prototyping",
-  "updated": "2026-10-06T07:30",
+  "updated": "2026-10-06T07:55",
   "stage": "storyboard",
   "variant": "master",
   "gates": {
@@ -16,10 +16,10 @@
   },
   "budget": {
     "currency": "USD",
-    "approved_max": 0,
+    "approved_max": 5,
     "spent": 0,
     "entries": [],
-    "note": "Tobias (2026-10-06): cap 'not sure' — approved_max stays 0, all paid calls hard-fail. Proposal on the table: $5 (voice ~102 words ≈ pennies even with redos; one or two Lyria bed takes ≈ cents). Unblocks the moment he says a number in words, logged dated in review.md."
+    "note": "Tobias in words 2026-10-06: 'let's do $5 cap' (review.md, dated). Covers clone voice (~102 words, pennies) + Lyria bed. Spends above $5 hard-fail again until a new number in words."
   },
   "assets": [
     {
@@ -30,18 +30,18 @@
     },
     {
       "beat": 5,
-      "source": "ProtoBible repo (~/Developer/StudioProjects/ProtoBible, packages/android) — native Kotlin new-design prototype",
-      "status": "no capture exists — needs a recording run (emulator or device)",
-      "note": "APKs installable from exports/. Scope qualifier: native Kotlin ONLY for the new-design prototype. Verified 2026-10-06 in my-cv-tailor verification log."
+      "source": "assets/native/protobible-tabs-take3-pixel8pro.mp4 (primary; protobible-home-pixel8pro.mp4 static hold as alt)",
+      "status": "captured 2026-10-06 — Pixel 8 Pro, v4.3 APK installed and recorded via adb",
+      "note": "Status bar + bottom nav to be cropped in composition. OPEN: capture shows real series promo/broadcast content — Tobias's call whether that ships (dismiss promo card + re-record if not)."
     }
   ],
   "renders": [],
   "open_questions": [
-    "Budget cap: Tobias said 'not sure' 2026-10-06 — $5 proposal pending his word-confirmation.",
-    "Beat-5 capture: who records the native build — Claude in an emulator, or Tobias on a device?"
+    "Beat-5 content verdict: ship the capture with real promo/broadcast content, or dismiss the promo card and re-record clean?"
   ],
   "next": [
-    "Gate 2 (unpaid): build scenes into index.html against the script beat table; beat 3 wired from product-ads captures; beat 5 built with placeholder pending capture.",
-    "Retire the 2.3-wps estimate at Gate 3 — timing table wants measured clip durations from real voice clips."
+    "Beat-5 capture: install ProtoBible-Neues-Design-Home-Screen v4.3.apk on the Pixel, screenrecord the home screen (+ a swipe for life), pull the mp4.",
+    "Gate 2 (unpaid): build scenes into index.html against the script beat table; beat 3 wired from product-ads captures.",
+    "Voice + bed now unblocked under the $5 cap; retire the 2.3-wps estimate at Gate 3 with measured clip durations."
   ]
 }
