@@ -102,3 +102,33 @@ carry their verification method inline.
 Script passes Gate 1. Waiting on Tobias: (1) go on this script, (2) budget cap for voice + bed
 (state.json `approved_max` is 0 and every paid call hard-fails), (3) product-ads capture reuse,
 (4) whether any native-Kotlin capture exists for beat 5.
+
+## Tobias's decisions (2026-10-06, in words — logged same session)
+
+1. **Script: YES.** Gate 1 passed; the script is the film's script. Any wording change from
+   here on is a dated entry in this file.
+2. **Budget cap: not sure — still unset.** `approved_max` stays 0 and voice/bed remain
+   hard-blocked. Proposed to Tobias same day: **cap $5** (the film needs ~10 clone TTS
+   clips ≈ 102 words — well under $1 even with redos — plus one or two Lyria bed takes at
+   cents per request; $5 is generous headroom). Waits on a number in words from him.
+3. **product-ads capture reuse: OK.** Beat 3 may use
+   `product-ads/bibeltv-redesign/captures/proto-phone/` (+ `proto-tablet/`).
+4. **Native Kotlin: exists — but no recording of it yet.** Per Tobias, the native build is
+   ONLY the new-design prototype, and it lives in the ProtoBible repo
+   (`~/Developer/StudioProjects/ProtoBible`, `packages/android`, installable APKs in
+   `exports/`). Repo inspected 2026-10-06: **no mp4/mov anywhere** — beat 5 needs a capture
+   run (emulator or device) before its footage exists. Recorded with the scope qualifier in
+   `my-cv-tailor/data/verification-log/2026-10-06-bibeltv-native-build-and-strategy-deck.md`.
+
+**Context, not claims:** Tobias also pointed at `~/Downloads/Online Design Strategy.pdf`
+(his Bibel APP strategy deck, 30.10.2025) as background on the new design's vision. Client
+confidential — read for context only; nothing from it enters the film or any public output.
+The study JSON stays the only claim source.
+
+### What unblocks next
+
+- **Now (no money):** Gate 2 — build scenes into index.html against the beat table; beat 3
+  wired from the product-ads captures; beat 5 built but pending its capture.
+- **Blocked on the cap:** voice (Gate 2's timing table wants measured clip durations first —
+  the 2.3-wps estimate retires once real clips exist), then bed.
+- **Blocked on a capture run:** beat 5 footage (ask: emulator OK, or does he record a device?).

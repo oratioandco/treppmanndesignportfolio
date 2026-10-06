@@ -1,13 +1,14 @@
 {
   "study": "bibeltv-ai-prototyping",
-  "updated": "2026-10-05T23:10",
-  "stage": "script",
+  "updated": "2026-10-06T07:30",
+  "stage": "storyboard",
   "variant": "master",
   "gates": {
     "gate1_script": {
-      "status": "passed-pending-go",
+      "status": "passed-and-approved",
       "date": "2026-10-05",
-      "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted — real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md. Awaiting Tobias: script go, budget cap (approved_max=0 fails closed), product-ads capture reuse, native-Kotlin capture existence."
+      "approved_by_tobias": "2026-10-06 (in words; logged in review.md)",
+      "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted — real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md."
     },
     "gate2_storyboard": {},
     "gate3_audio": {},
@@ -18,18 +19,29 @@
     "approved_max": 0,
     "spent": 0,
     "entries": [],
-    "note": "approved_max is deliberately 0 until the budget conversation with Tobias happens (references/project-state.md). Every paid call hard-fails until he sets the cap in words, logged dated in review.md. Voice (ElevenLabs, ~9 lines) + one Lyria bed expected; no generated footage planned."
+    "note": "Tobias (2026-10-06): cap 'not sure' — approved_max stays 0, all paid calls hard-fail. Proposal on the table: $5 (voice ~102 words ≈ pennies even with redos; one or two Lyria bed takes ≈ cents). Unblocks the moment he says a number in words, logged dated in review.md."
   },
-  "assets": [],
+  "assets": [
+    {
+      "beat": 3,
+      "source": "product-ads/bibeltv-redesign/captures/proto-phone/ (+ proto-tablet)",
+      "status": "cleared 2026-10-06 — Tobias approved cross-project reuse",
+      "note": "Real captures of the same web prototype; sourced from the ad project, used as footage here."
+    },
+    {
+      "beat": 5,
+      "source": "ProtoBible repo (~/Developer/StudioProjects/ProtoBible, packages/android) — native Kotlin new-design prototype",
+      "status": "no capture exists — needs a recording run (emulator or device)",
+      "note": "APKs installable from exports/. Scope qualifier: native Kotlin ONLY for the new-design prototype. Verified 2026-10-06 in my-cv-tailor verification log."
+    }
+  ],
   "renders": [],
   "open_questions": [
-    "Asset reuse: the proof/turn beats want the real device captures of the same prototype from product-ads/bibeltv-redesign (captures/proto-phone, proto-tablet, assets/ui/*.mp4). Different project — needs Tobias's confirmation before anything is wired in.",
-    "Budget cap conversation before the first paid voice call.",
-    "Tobias's go on the script after Gate 1."
+    "Budget cap: Tobias said 'not sure' 2026-10-06 — $5 proposal pending his word-confirmation.",
+    "Beat-5 capture: who records the native build — Claude in an emulator, or Tobias on a device?"
   ],
   "next": [
-    "Gate 1: adversarial critique written to review.md + check_video.py --strict",
-    "Assets-needed section in review.md (browser-chrome beat has no capture; diagram candidate)",
-    "Tobias: script go + asset-reuse confirmation + budget cap"
+    "Gate 2 (unpaid): build scenes into index.html against the script beat table; beat 3 wired from product-ads captures; beat 5 built with placeholder pending capture.",
+    "Retire the 2.3-wps estimate at Gate 3 — timing table wants measured clip durations from real voice clips."
   ]
 }

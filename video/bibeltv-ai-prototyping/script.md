@@ -66,8 +66,11 @@ not about the product.
 
 **Asset reuse:** beats 3 and 5 both want device footage of the same prototype — intentional
 (callback: web problem → native answer), different captures (proto-phone web vs. native build),
-not the same clip twice. Pending Tobias's confirmation that product-ads captures may be reused
-in the portfolio film.
+not the same clip twice. **Cleared 2026-10-06:** Tobias approved reusing the product-ads
+captures for beat 3. Beat 5 has no capture yet — the native build lives in the ProtoBible repo
+(`~/Developer/StudioProjects/ProtoBible`, `packages/android`, APKs in `exports/`) and no screen
+recording of it exists; beat 5 footage needs a capture run. Native Kotlin exists ONLY for the
+new-design prototype (Tobias's scope qualifier, verification log 2026-10-06).
 
 **Beats to hold on text** (reading hold ≥ 1s + 0.35s/word): the two metric cards and the quote
 card carry the longest holds; the beat t-spans already reserve that silence (beat 6 is 12.5s for
@@ -92,9 +95,15 @@ checker would otherwise count them as words.
 
 - Study JSON: `data/case-studies/bibeltv-ai-prototyping.json` (all claims; close hook trimmed
   from `key-takeaway`).
-- Footage candidates (pending Tobias's confirmation): `product-ads/bibeltv-redesign/captures/`
+- Footage for beat 3 (cleared 2026-10-06): `product-ads/bibeltv-redesign/captures/`
   (proto-phone, proto-tablet) and `product-ads/bibeltv-redesign/assets/ui/*.mp4` — real captures
   of the same prototype, from the ad project, not the portfolio.
+- Footage for beat 5: `~/Developer/StudioProjects/ProtoBible` (`packages/android`) — the native
+  Kotlin new-design prototype. No capture exists yet (repo searched 2026-10-06: no mp4/mov);
+  needs a recording run from an installed APK before the beat can render.
+- Context only, never claim material: Tobias's Bibel APP strategy deck
+  (`~/Downloads/Online Design Strategy.pdf`) — client-confidential; nothing from it is quoted,
+  shown, or paraphrased in the film. Study JSON stays the only claim source.
 - Diagram source for beat 4: `data/projects/bibelv-design-token-sync.md` architecture sketch as
   reference only; the film draws a simpler three-node version (prototype / custom API / content).
 - No generated illustration planned. The browser-chrome beat (2) is drawn as a diagram in the
