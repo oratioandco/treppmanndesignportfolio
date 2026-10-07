@@ -1,7 +1,7 @@
 {
   "study": "bibeltv-ai-prototyping",
-  "updated": "2026-10-06T07:55",
-  "stage": "storyboard",
+  "updated": "2026-10-07T10:50",
+  "stage": "composition",
   "variant": "master",
   "gates": {
     "gate1_script": {
@@ -10,7 +10,11 @@
       "approved_by_tobias": "2026-10-06 (in words; logged in review.md)",
       "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted — real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md."
     },
-    "gate2_storyboard": {},
+    "gate2_storyboard": {
+      "status": "passed",
+      "date": "2026-10-07",
+      "evidence": "30 snapshots reviewed frame-by-frame (snapshots/contact-sheet-1..4.jpg); check_video.py --strict: 0 FAIL, 1 WARN (64s length, carried from Gate 1). One bug found+fixed (getTotalLength on <g>). Mute pass, card/hold audit, squint test in review.md. Gate-1 craft risks #1 and #2 closed visually; #3 (poster state) confirmed at Gate 4."
+    },
     "gate3_audio": {},
     "gate4_render": {}
   },
@@ -24,24 +28,22 @@
   "assets": [
     {
       "beat": 3,
-      "source": "product-ads/bibeltv-redesign/captures/proto-phone/ (+ proto-tablet)",
-      "status": "cleared 2026-10-06 — Tobias approved cross-project reuse",
-      "note": "Real captures of the same web prototype; sourced from the ad project, used as footage here."
+      "source": "assets/footage/web-ki-answer.mp4 (copy of product-ads/bibeltv-redesign/assets/ui/b5-answer.mp4)",
+      "status": "wired into index.html (data-start 15.40, dur 6.00) — cleared 2026-10-06 by Tobias for cross-project reuse",
+      "note": "Web prototype's AI chat actually answering: chips → typed query → Matthäus 11,28-30 answer card. Chosen over broken beat3.mp4 (black-frame defect)."
     },
     {
       "beat": 5,
       "source": "assets/native/protobible-tabs-take3-pixel8pro.mp4 (primary; protobible-home-pixel8pro.mp4 static hold as alt)",
-      "status": "captured 2026-10-06 — Pixel 8 Pro, v4.3 APK installed and recorded via adb",
-      "note": "Status bar + bottom nav to be cropped in composition. OPEN: capture shows real series promo/broadcast content — Tobias's call whether that ships (dismiss promo card + re-record if not)."
+      "status": "wired into index.html (data-start 27.90, dur 5.40) — captured 2026-10-06, Pixel 8 Pro, v4.3 APK",
+      "note": "Status bar + bottom nav cropped in composition (negative video offset). Content question CLOSED 2026-10-07: ship as-is, videos committed."
     }
   ],
   "renders": [],
-  "open_questions": [
-    "Beat-5 content verdict: ship the capture with real promo/broadcast content, or dismiss the promo card and re-record clean?"
-  ],
+  "open_questions": [],
   "next": [
-    "Beat-5 capture: install ProtoBible-Neues-Design-Home-Screen v4.3.apk on the Pixel, screenrecord the home screen (+ a swipe for life), pull the mp4.",
-    "Gate 2 (unpaid): build scenes into index.html against the script beat table; beat 3 wired from product-ads captures.",
-    "Voice + bed now unblocked under the $5 cap; retire the 2.3-wps estimate at Gate 3 with measured clip durations."
+    "Voice (paid, under $5 cap): one clone clip per beat (kMS8f1BmXMghbv2jguJo), measure all, trim leading silence only, -16 LUFS; log every cost in budget.entries.",
+    "Timing table from measured clip durations (retires the 2.3-wps estimate); re-anchor composition cues via hyperframes transcribe word timestamps — never arithmetic.",
+    "Music bed (Lyria, mood line in music-direction.md) + sidechain duck; then Gate 3, render, Gate 4, wire into study JSON."
   ]
 }

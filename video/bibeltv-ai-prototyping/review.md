@@ -154,12 +154,66 @@ The film's company rule says Bibel TV is never *named*; showing the app's own UI
 content is inherent to showing the prototype, but third-party series artwork and broadcast
 frames in a public portfolio film is his call, not mine. If he wants it clean, the fix is
 dismissing the promo card (the ✕ is at uiautomator (960,359) device px) and re-recording —
-cheap.
+cheap. **Answered 2026-10-07 in words: ship as-is — "no also commit the videos so they are
+live in the case study."** The mp4s are committed; content question closed.
 
-### What unblocks next
+## Gate 2 — composition (2026-10-07)
 
-- **Now (no money):** Gate 2 — build scenes into index.html against the beat table; beat 3
-  wired from the product-ads captures; beat 5 built but pending its capture.
-- **Blocked on the cap:** voice (Gate 2's timing table wants measured clip durations first —
-  the 2.3-wps estimate retires once real clips exist), then bed.
-- **Blocked on a capture run:** beat 5 footage (ask: emulator OK, or does he record a device?).
+`index.html` built to the approved beat table: 8 scenes + cover + close, 64.0s root, house
+conventions from ninox (GSAP timeline on `window.__timelines["main"]`, mulberry32 seed, dot
+field + halftone screens, film-grain overlay, Redaction grade-morph sets).
+
+### Evidence
+
+30 snapshots (beats + transition midpoints) → `snapshots/contact-sheet-{1..4}.jpg`, reviewed
+frame by frame against the script. Checker:
+
+```
+python3 engine/bin/check_video.py --project video/bibeltv-ai-prototyping --strict
+0 FAIL, 1 WARN, 5 PASS   (WARN = 64s length, same accepted WARN as Gate 1)
+```
+
+**Bug found and fixed during verification:** first snapshot pass showed only the static cover on
+all 30 frames. Console probe via hyperframes' bundled puppeteer-core showed
+`TypeError: p.getTotalLength is not a function` — the stroke-draw prep targeted a `<g>` wrapper,
+which has no `getTotalLength`. Fixed by putting `#ph-frame` on the `<rect>` itself. Second
+probe error (`Cannot set properties of undefined`) is a bare-Chrome artifact — `window.__timelines`
+only exists under the hyperframes runtime.
+
+### Frame-by-frame findings
+
+| Beat | Frames | Verdict |
+|---|---|---|
+| Cover | 1.8 | settled title; doubles as poster state |
+| 1 problem | 2.75, 5.5, 6.8, 8.45 | card + gradient draw; smooth at 6.8 is correct (bands step 6.85/7.15); banded + "what ships" by 8.45 |
+| 2 breaks | 10.5–14.9 | schematic reads as drawn (stroke frame, "DRAWN · NOT A SCREENSHOT" caption, labeled bars); circle draw completes 14.9 — **Gate-1 risk #1 closed** |
+| 3 handoff | 15.8, 18, 20.5 | halftone resolves; footage plays chips → typed query → answer card; status bar cropped |
+| 4 build | 23, 25.5, 26.6, 27.4 | nodes → connectors → API pulse → loop + "one working loop" |
+| 5 rebuild | 29, 31 | native footage tilted (rotationY 26→−10 entrance + drift), halftone, status bar + bottom nav cropped |
+| 6 proof | 35, 37.5, 40, 45.9 | count-ups mid-flight (46.6%, 87%); both landed + "verified field by field", holding to 45.9 — **Gate-1 risk #2 closed** |
+| 7 quote | 48, 52, 54.4 | quote + attribution on card |
+| 8 close | 56, 60, 63.8 | dot takeover, title, url, clean fade |
+
+**Accepted, recorded:** at 21.4s and 33.4s the device screens read dark — the video element at/
+past its media end inside the zoom-through-out, under 0.3s mid-transition. Not re-timed.
+
+### Mute pass (reasoned, per checklist)
+
+Cards alone tell the story: cover thesis → spec card with banded gradient → drawn phone with
+banding + chrome bar → running prototype on device → prototype→API→content loop → native
+Kotlin on device → 91.8% / 94% verified field by field → engineering quote → title. Every beat
+carries its claim visually; narration adds argument, not information the eye lacks.
+
+### Card + hold audit
+
+Hero headlines ≤6 words (5/4/4/4/4/3), support text ≤12 per card; every headline holds ≥ its
+scene minus entrances (min ≈2.5s at beat 6's landed numbers — over the 1.5s floor); grade morph
+on the metric numbers completes 38.9, before the hold ends. One ambient motion per scene (device
+float in 3/5, nothing looping elsewhere); 3 transition types total (blur crossfade, zoom-through,
+dot takeover). Squint test: each beat has one dominant readable element.
+
+### Verdict
+
+Gate 2 **passed** (0 FAIL; the 64s WARN carries from Gate 1 and retires at Gate 3 when measured
+clip durations replace the 2.3-wps estimate). Next: voice — one clone clip per beat, measure all,
+build the timing table, re-anchor cues via transcribe, then bed.

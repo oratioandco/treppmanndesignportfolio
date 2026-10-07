@@ -1,24 +1,488 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>bibeltv-ai-prototyping</title>
-  <!-- Gate-1 skeleton: root only, no clips yet. Scenes and the audio block are
-       built at Gate 2 against the timing table derived from measured voice files. -->
-</head>
-<body>
-  <div
-    id="composition"
-    data-composition-id="main"
-    data-start="0"
-    data-duration="64"
-    data-width="1920"
-    data-height="1080"
-    data-fps="30">
-  </div>
-  <script type="module">
-    // Placeholder root — replaced by the real composition at Gate 2.
-    document.getElementById("composition").textContent = "";
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Specs Are Lossy — AI prototyping case study</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      #cover { z-index: 60; }
+      #s1 { z-index: 1; opacity: 0; }
+      #s2 { z-index: 2; opacity: 0; }
+      #s3 { z-index: 3; opacity: 0; perspective: 2000px; perspective-origin: 30% 50%; }
+      #s4 { z-index: 4; opacity: 0; }
+      #s5 { z-index: 5; opacity: 0; perspective: 2000px; perspective-origin: 30% 50%; }
+      #s6 { z-index: 6; opacity: 0; }
+      #s7 { z-index: 7; opacity: 0; }
+      #s8 { z-index: 8; opacity: 0; }
+
+      /* Cover: a settled title card, held, dissolved — doubles as the poster frame */
+      #cover-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; background: var(--paper); }
+      #cover-title { font-size: 116px; max-width: 1500px; }
+      #cover-sub { font-family: "Switzer", serif; font-weight: 400; font-size: 30px; color: var(--muted); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.02; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); }
+      .col { position: absolute; left: 150px; top: 0; height: 100%; width: 620px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      .kickrow { display: flex; align-items: center; gap: 18px; }
+
+      .device { position: absolute; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device .screen { position: absolute; left: 0; top: 0; width: 100%; overflow: hidden; background: #10201b; }
+      .device .screen video { position: absolute; left: 0; width: 100%; display: block; }
+      .device .ht { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .device .ht circle { fill: var(--teal); }
+      .grade { position: absolute; inset: 0; pointer-events: none; background: rgba(38, 28, 16, 0.10); mix-blend-mode: multiply; }
+      .vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 120% 100% at 50% 45%, rgba(0,0,0,0) 62%, rgba(20,14,8,0.28) 100%); }
+
+      /* S1: the spec and its lossy gradient */
+      #spec-card { position: absolute; left: 1010px; top: 210px; width: 700px; padding: 44px 48px 52px; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 30px 70px rgba(26,37,32,0.14); display: flex; flex-direction: column; gap: 30px; }
+      #spec-k { font-family: "Departure Mono", monospace; font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-text); }
+      #spec-line { font-family: "Switzer", serif; font-weight: 400; font-size: 38px; color: var(--ink); }
+      #spec-line em { font-family: "Redaction 35", serif; font-style: italic; color: var(--teal-text); }
+      #spec-barwrap { position: relative; height: 96px; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
+      #g-smooth, #g-band { position: absolute; inset: 0; }
+      #g-band { opacity: 0; }
+      #spec-cap { font-family: "Departure Mono", monospace; font-size: 16px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; opacity: 0; }
+
+      /* S2: the drawn phone — deliberately schematic */
+      #s2-h { font-size: 84px; }
+      #phone-svg { position: absolute; left: 1010px; top: 50px; width: 740px; height: 960px; }
+
+      /* S3/S5: footage devices */
+      #dev3 { left: 1280px; top: 88px; width: 400px; height: 896px; }
+      #dev3 .screen { height: 864px; }
+      #dev3 .screen video { top: -33px; }
+      #dev5 { left: 1280px; top: 140px; width: 400px; height: 820px; }
+      #dev5 .screen { height: 788px; }
+      #dev5 .screen video { top: -38px; }
+      #s3-h, #s5-h { font-size: 76px; }
+
+      /* S4: stroke-drawn architecture diagram */
+      #arch-svg { position: absolute; left: 660px; top: 300px; width: 1130px; height: 480px; }
+      #s4-h { font-size: 76px; }
+
+      /* S6: the proof */
+      #s6-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
+      #s6-kick { display: flex; align-items: center; gap: 18px; }
+      #s6-cards { display: flex; gap: 60px; margin-top: 26px; }
+      .metric { width: 560px; padding: 54px 40px 46px; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 30px 70px rgba(26,37,32,0.12); display: flex; flex-direction: column; gap: 14px; }
+      .metric .num { font-family: "Redaction 70", serif; font-style: italic; font-size: 168px; line-height: 0.95; color: var(--ink); }
+      .metric .lab { font-family: "Departure Mono", monospace; font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      #s6-qual { margin-top: 34px; font-family: "Switzer", serif; font-weight: 300; font-size: 30px; color: var(--muted); }
+
+      /* S7: the quote */
+      #s7-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; text-align: center; }
+      #s7-kick { display: flex; align-items: center; gap: 18px; }
+      #s7-quote { font-family: "Redaction 35", serif; font-style: italic; font-size: 104px; line-height: 1.08; max-width: 1400px; color: var(--ink); }
+      #s7-quote .qm { color: var(--teal); }
+      #s7-attr { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+      /* S8: close */
+      #s8-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+      #s8-title { font-size: 120px; }
+      #s8-url { font-family: "Switzer", serif; font-weight: 500; font-size: 40px; color: var(--ink); }
+
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+
+      #grain { position: absolute; inset: 0; z-index: 20; opacity: 0.07; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.0" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="cover" class="scene">
+        <div id="cover-col">
+          <span class="kicker" id="cover-kick">AI-native prototyping · case study</span>
+          <h1 id="cover-title" class="display">Specs are lossy</h1>
+          <p id="cover-sub">treppmann.design</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s1-kick">The problem</span><span class="rule" id="s1-rule"></span></div>
+          <h2 id="s1-h" class="display" style="font-size: 86px;">What specs can't tell you</h2>
+          <p class="body" style="font-size: 30px; max-width: 560px; line-height: 1.35;">A gradient can be written down. The way it lands on a screen cannot.</p>
+        </div>
+        <div id="spec-card">
+          <span id="spec-k">spec · v3 · approved</span>
+          <div id="spec-line">gradient: <em>premium feel</em></div>
+          <div id="spec-barwrap">
+            <div id="g-smooth"></div>
+            <div id="g-band"></div>
+          </div>
+          <span id="spec-cap">what ships</span>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s2-kick">Where it breaks</span><span class="rule" id="s2-rule"></span></div>
+          <h2 id="s2-h" class="display">Android bands. Chrome eats.</h2>
+          <p class="body" style="font-size: 30px; max-width: 560px; line-height: 1.35;">Drawn, not screenshotted — the two failure modes a spec never mentions.</p>
+        </div>
+        <svg id="phone-svg" viewBox="0 0 740 960" aria-hidden="true">
+          <defs>
+            <linearGradient id="bandpat" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#457468"/><stop offset="0.166" stop-color="#457468"/>
+              <stop offset="0.167" stop-color="#5b8679"/><stop offset="0.333" stop-color="#5b8679"/>
+              <stop offset="0.334" stop-color="#71988a"/><stop offset="0.5" stop-color="#71988a"/>
+              <stop offset="0.501" stop-color="#87aa9c"/><stop offset="0.666" stop-color="#87aa9c"/>
+              <stop offset="0.667" stop-color="#9dbcb0"/><stop offset="0.833" stop-color="#9dbcb0"/>
+              <stop offset="0.834" stop-color="#b3d0c5"/><stop offset="1" stop-color="#b3d0c5"/>
+            </linearGradient>
+          </defs>
+          <rect id="ph-body" x="64" y="34" width="612" height="892" rx="48" fill="#fffdfa" />
+          <rect id="ph-frame" x="60" y="30" width="620" height="900" rx="52" fill="none" stroke="#1a1a1a" stroke-width="3" />
+          <rect id="ph-screen" x="90" y="110" width="560" height="740" rx="10" fill="#f2ece4" stroke="#c9c0b6" stroke-width="1.5" />
+          <g id="ph-lines" fill="#d9d0c5">
+            <rect x="122" y="150" width="300" height="18" rx="9" />
+            <rect x="122" y="188" width="220" height="14" rx="7" />
+            <rect x="122" y="620" width="330" height="16" rx="8" />
+            <rect x="122" y="652" width="260" height="14" rx="7" />
+            <rect x="122" y="690" width="300" height="14" rx="7" />
+          </g>
+          <rect id="ph-grad" x="122" y="740" width="496" height="72" rx="8" fill="url(#bandpat)" />
+          <g id="ph-chrome">
+            <rect x="90" y="110" width="560" height="130" rx="10" fill="#e8f0ed" stroke="#457468" stroke-width="2" />
+            <rect x="150" y="152" width="380" height="44" rx="22" fill="#fffdfa" stroke="#c9c0b6" stroke-width="1.5" />
+            <circle cx="124" cy="140" r="7" fill="none" stroke="#457468" stroke-width="2" />
+            <circle cx="124" cy="174" r="7" fill="none" stroke="#457468" stroke-width="2" />
+            <text id="ph-chrome-label" x="340" y="182" text-anchor="middle" font-family="Departure Mono, monospace" font-size="22" fill="#3d6a5e" letter-spacing="2">BIBLE.APP</text>
+          </g>
+          <text id="ph-cap" x="370" y="972" text-anchor="middle" font-family="Departure Mono, monospace" font-size="20" fill="#666666" letter-spacing="3">DRAWN · NOT A SCREENSHOT</text>
+          <text id="ph-bandcap" x="660" y="790" text-anchor="end" font-family="Departure Mono, monospace" font-size="19" fill="#3d6a5e" letter-spacing="2">BANDS ON OLDER ANDROID</text>
+          <text id="ph-chromecap" x="660" y="92" text-anchor="end" font-family="Departure Mono, monospace" font-size="19" fill="#3d6a5e" letter-spacing="2">THE BROWSER'S OWN BAR</text>
+          <circle id="ph-circ" cx="370" cy="175" r="86" fill="none" stroke="#457468" stroke-width="6" opacity="0" />
+        </svg>
+      </section>
+
+      <section id="s3" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s3-kick">The handoff</span><span class="rule" id="s3-rule"></span></div>
+          <h2 id="s3-h" class="display">Handoff: a running prototype</h2>
+          <p class="body" style="font-size: 30px; max-width: 540px; line-height: 1.35;">The AI feature, live in the browser build — asked, answered, on real content.</p>
+        </div>
+        <div id="dev3" class="device">
+          <div class="screen">
+            <video data-start="15.40" data-duration="6.00" data-media-start="0.40" data-track-index="30" src="assets/footage/web-ki-answer.mp4" muted playsinline></video>
+            <div class="grade"></div>
+            <div class="vig"></div>
+          </div>
+          <svg id="ht3" class="ht" viewBox="0 0 400 864" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+      </section>
+
+      <section id="s4" class="scene">
+        <div class="col" style="width: 480px;">
+          <div class="kickrow"><span class="kicker" id="s4-kick">The build</span><span class="rule" id="s4-rule"></span></div>
+          <h2 id="s4-h" class="display">From brief to build</h2>
+          <p class="body" style="font-size: 30px; max-width: 420px; line-height: 1.35;">One working loop: prototype, API, content — no mock data anywhere.</p>
+        </div>
+        <svg id="arch-svg" viewBox="0 0 1130 480" aria-hidden="true">
+          <g stroke="#1a1a1a" stroke-width="3" fill="#fffdfa">
+            <rect id="n1" x="20" y="90" width="300" height="130" rx="18" />
+            <rect id="n2" x="415" y="90" width="300" height="130" rx="18" />
+            <rect id="n3" x="810" y="90" width="300" height="130" rx="18" />
+          </g>
+          <g font-family="Departure Mono, monospace" font-size="26" fill="#1a1a1a" text-anchor="middle" letter-spacing="2">
+            <text id="n1t" x="170" y="168">PROTOTYPE</text>
+            <text id="n2t" x="565" y="168">CUSTOM API</text>
+            <text id="n3t" x="960" y="168">REAL CONTENT</text>
+          </g>
+          <g font-family="Switzer, serif" font-size="21" fill="#666666" text-anchor="middle">
+            <text id="n1c" x="170" y="266">built in Claude Code</text>
+            <text id="n2c" x="565" y="266">stood up myself</text>
+            <text id="n3c" x="960" y="266">live, not lorem</text>
+          </g>
+          <g stroke="#3d6a5e" stroke-width="4" fill="none">
+            <path id="c1" d="M 326 155 L 407 155" />
+            <path id="c2" d="M 721 155 L 802 155" />
+            <path id="c1h" d="M 396 146 L 407 155 L 396 164" />
+            <path id="c2h" d="M 791 146 L 802 155 L 791 164" />
+            <path id="c3" d="M 810 250 C 700 340, 430 340, 320 250" stroke-dasharray="2 10" stroke-linecap="round" />
+          </g>
+          <text id="c3t" x="565" y="368" text-anchor="middle" font-family="Departure Mono, monospace" font-size="19" fill="#3d6a5e" letter-spacing="2">ONE WORKING LOOP</text>
+        </svg>
+      </section>
+
+      <section id="s5" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s5-kick">The rebuild</span><span class="rule" id="s5-rule"></span></div>
+          <h2 id="s5-h" class="display">Same prototype, different body</h2>
+          <p class="body" style="font-size: 30px; max-width: 540px; line-height: 1.35;">Native Kotlin, Jetpack Compose — the same app, on the phone's own terms.</p>
+        </div>
+        <div id="dev5" class="device">
+          <div class="screen">
+            <video data-start="27.90" data-duration="5.40" data-media-start="2.00" data-track-index="31" src="assets/native/protobible-tabs-take3-pixel8pro.mp4" muted playsinline></video>
+            <div class="grade"></div>
+            <div class="vig"></div>
+          </div>
+          <svg id="ht5" class="ht" viewBox="0 0 400 788" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <div id="s6-wrap">
+          <div id="s6-kick"><span class="kicker" id="s6-k">The proof</span><span class="rule" id="s6-rule"></span></div>
+          <div id="s6-cards">
+            <div class="metric" id="m1">
+              <span class="num" id="m1n">0.0%</span>
+              <span class="lab">design-token fields</span>
+            </div>
+            <div class="metric" id="m2">
+              <span class="num" id="m2n">0%</span>
+              <span class="lab">core data model</span>
+            </div>
+          </div>
+          <span id="s6-qual">verified field by field</span>
+        </div>
+      </section>
+
+      <section id="s7" class="scene">
+        <div id="s7-wrap">
+          <div id="s7-kick"><span class="kicker" id="s7-k">What engineering kept</span><span class="rule" id="s7-rule"></span></div>
+          <p id="s7-quote"><span class="qm">&ldquo;</span>a lot, if not the majority<span class="qm">&rdquo;</span></p>
+          <span id="s7-attr">&mdash; appbase engineering, on what ships</span>
+        </div>
+      </section>
+
+      <section id="s8" class="scene">
+        <svg id="dots8" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="s8-wrap">
+          <span class="kicker" id="s8-k">Case study</span>
+          <h2 id="s8-title" class="display">Specs are lossy</h2>
+          <span id="s8-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      // S1 banding: quantise the smooth teal ramp into hard steps, deterministically
+      function lerpHex(a, b, t) {
+        var pa = [1, 3, 5].map(function (i) { return parseInt(a.substr(i, 2), 16); });
+        var pb = [1, 3, 5].map(function (i) { return parseInt(b.substr(i, 2), 16); });
+        return "#" + pa.map(function (v, i) { var x = Math.round(v + (pb[i] - v) * t); return ("0" + x.toString(16)).slice(-2); }).join("");
+      }
+      function bandBackground(n) {
+        var stops = [];
+        for (var i = 0; i < n; i++) {
+          var c = lerpHex("#457468", "#b3d0c5", i / (n - 1)), a = (i / n * 100).toFixed(3), b = ((i + 1) / n * 100).toFixed(3);
+          stops.push(c + " " + a + "%, " + c + " " + b + "%");
+        }
+        return "linear-gradient(90deg, " + stops.join(", ") + ")";
+      }
+      document.getElementById("g-smooth").style.background = "linear-gradient(90deg, #457468, #b3d0c5)";
+      var gBand = document.getElementById("g-band");
+      var bands = { 24: bandBackground(24), 12: bandBackground(12), 7: bandBackground(7) };
+      gBand.style.background = bands[24];
+
+      var dots8 = buildField(document.getElementById("dots8"), 1920, 1080, 38, [0.5, 0.5], 14, 23, 1.10);
+      var ht3 = buildScreen(document.getElementById("ht3"), 400, 864, 24, [0.5, 0.3]);
+      var ht5 = buildScreen(document.getElementById("ht5"), 400, 788, 24, [0.5, 0.3]);
+
+      var tl = gsap.timeline({ paused: true });
+
+      // ===== Cover (0 – 2.5). Settled title card, held ~2s, blur-crossfade out. Poster frame. =====
+      tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.25);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.30);
+
+      // ===== S1 the spec (2.5 – 8.5). VO b1 ~2.5–6.5: "A spec can say a gradient should feel premium." =====
+      tl.fromTo("#s1-kick", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 2.70);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 2.90);
+      tl.fromTo("#s1-h", { y: 36, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 2.90);
+      tl.fromTo("#s1 .body", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 3.40);
+      tl.fromTo("#spec-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 3.20);
+      tl.fromTo("#g-smooth", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.1, ease: "power2.inOut" }, 4.60);
+      // "premium" is promised — then the screen tells the truth: the ramp bands into steps
+      tl.to("#g-band", { opacity: 1, duration: 0.25, ease: "power1.inOut" }, 6.30);
+      tl.set(gBand, { background: bands[12] }, 6.85);
+      tl.set(gBand, { background: bands[7] }, 7.15);
+      tl.fromTo("#spec-cap", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 7.00);
+      tl.fromTo("#spec-card", { y: 0 }, { y: -8, duration: 1.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 6.40);
+
+      // T1 blur crossfade (8.5)
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.55, ease: "power2.inOut" }, 8.25);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.inOut" }, 8.40);
+
+      // ===== S2 where it breaks (8.5 – 15.0). VO b2 ~8.5–13.5: banding on older Android; the screen a browser eats. =====
+      function prepDraw(id) {
+        var p = document.getElementById(id), len = p.getTotalLength();
+        p.style.strokeDasharray = len; gsap.set(p, { strokeDashoffset: len }); return len;
+      }
+      var phLen = prepDraw("ph-frame");
+      gsap.set("#ph-chrome", { y: -220, opacity: 0 });
+      gsap.set(["#ph-lines rect", "#ph-grad", "#ph-body", "#ph-screen"], { opacity: 0 });
+      gsap.set(["#ph-bandcap", "#ph-chromecap", "#ph-cap"], { opacity: 0 });
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 8.70);
+      tl.fromTo("#s2-h", { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 8.90);
+      tl.fromTo("#s2 .body", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 9.40);
+      tl.set("#ph-body", { opacity: 1 }, 9.50);
+      tl.set("#ph-screen", { opacity: 1 }, 9.55);
+      tl.fromTo("#ph-frame", { strokeDashoffset: phLen }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }, 9.60);
+      tl.to("#ph-lines rect", { opacity: 1, duration: 0.4, stagger: 0.08 }, 10.60);
+      tl.set("#ph-grad", { opacity: 1 }, 10.90);
+      tl.fromTo("#ph-bandcap", { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.45 }, 11.00);
+      // the browser's own bar eats the viewport
+      tl.set("#ph-chrome", { opacity: 1 }, 11.80);
+      tl.to("#ph-chrome", { y: 0, duration: 0.8, ease: "power3.inOut" }, 11.80);
+      tl.fromTo("#ph-chromecap", { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.45 }, 12.60);
+      tl.fromTo("#ph-cap", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 12.90);
+      // emphasis draw: circle the chrome bar as VO names it
+      var circLen = prepDraw("ph-circ");
+      tl.set("#ph-circ", { opacity: 0.9 }, 13.20);
+      tl.fromTo("#ph-circ", { strokeDashoffset: circLen }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 13.20);
+
+      // T2 blur crossfade (15.0)
+      tl.to("#s2", { filter: "blur(12px)", opacity: 0, duration: 0.55, ease: "power2.inOut" }, 14.75);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.inOut" }, 14.90);
+
+      // ===== S3 the handoff (15.0 – 21.5). VO b3 ~15.0–20.5. Real web prototype, halftone-resolved onto the device. =====
+      var DEV_REST = { rotationY: -10, rotationX: 3, transformOrigin: "50% 50%" };
+      gsap.set("#dev3", Object.assign({ y: 26, opacity: 1 }, DEV_REST));
+      gsap.set(ht3, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to("#dev3", { y: 0, duration: 1.0, ease: "power3.out" }, 15.30);
+      tl.to(ht3, { scale: 1.12, duration: 0.5, ease: "power2.in", stagger: { each: 0.0011 } }, 15.60);
+      tl.to(ht3, { scale: 0, duration: 0.45, ease: "power3.out", stagger: { each: 0.0011 } }, 16.35);
+      tl.fromTo("#s3-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 15.40);
+      tl.fromTo("#s3-h", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 15.60);
+      tl.fromTo("#s3 .body", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 16.10);
+      tl.fromTo("#dev3", { y: 0 }, { y: -10, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 3 }, 17.20);
+
+      // T3 zoom-through into the build (21.5)
+      tl.to("#s3", { scale: 1.2, opacity: 0, duration: 0.5, ease: "power2.in" }, 21.25);
+      tl.fromTo("#s4", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 21.40);
+
+      // ===== S4 from brief to build (21.5 – 27.5). VO b4 ~21.5–26.5. Stroke-drawn loop diagram. =====
+      var nLens = { n1: prepDraw("n1"), n2: prepDraw("n2"), n3: prepDraw("n3"), c1: prepDraw("c1"), c2: prepDraw("c2"), c1h: prepDraw("c1h"), c2h: prepDraw("c2h"), c3: prepDraw("c3") };
+      gsap.set(["#n1t", "#n2t", "#n3t", "#n1c", "#n2c", "#n3c", "#c3t"], { opacity: 0 });
+      tl.fromTo("#s4-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 21.70);
+      tl.fromTo("#s4-h", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 21.90);
+      tl.fromTo("#s4 .body", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 22.40);
+      tl.fromTo("#n1", { strokeDashoffset: nLens.n1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 22.60);
+      tl.fromTo("#n2", { strokeDashoffset: nLens.n2 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 23.00);
+      tl.fromTo("#n3", { strokeDashoffset: nLens.n3 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 23.40);
+      tl.to(["#n1t", "#n1c"], { opacity: 1, duration: 0.4 }, 23.20);
+      tl.to(["#n2t", "#n2c"], { opacity: 1, duration: 0.4 }, 23.60);
+      tl.to(["#n3t", "#n3c"], { opacity: 1, duration: 0.4 }, 24.00);
+      tl.fromTo("#c1", { strokeDashoffset: nLens.c1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, 24.40);
+      tl.fromTo("#c1h", { strokeDashoffset: nLens.c1h }, { strokeDashoffset: 0, duration: 0.25 }, 24.70);
+      tl.fromTo("#c2", { strokeDashoffset: nLens.c2 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, 24.90);
+      tl.fromTo("#c2h", { strokeDashoffset: nLens.c2h }, { strokeDashoffset: 0, duration: 0.25 }, 25.20);
+      // the API node gets its moment as VO says "an API I built myself"
+      tl.to("#n2", { stroke: "#457468", strokeWidth: 6, duration: 0.35, ease: "power2.out" }, 25.40);
+      tl.fromTo("#n2", { scale: 1 }, { scale: 1.035, transformOrigin: "50% 50%", duration: 0.18, yoyo: true, repeat: 1 }, 25.40);
+      tl.fromTo("#c3", { strokeDashoffset: nLens.c3, opacity: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 25.90);
+      tl.fromTo("#c3t", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, 26.30);
+
+      // T4 blur crossfade (27.5)
+      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.55, ease: "power2.inOut" }, 27.25);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.inOut" }, 27.40);
+
+      // ===== S5 the rebuild (27.5 – 33.5). VO b5 ~27.5–32.5. Native Kotlin build, tilting in. =====
+      gsap.set("#dev5", { opacity: 1, rotationY: 26, rotationX: 5, transformOrigin: "50% 50%" });
+      gsap.set(ht5, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to("#dev5", { rotationY: -10, rotationX: 3, duration: 1.3, ease: "power3.out" }, 27.80);
+      tl.to(ht5, { scale: 1.12, duration: 0.5, ease: "power2.in", stagger: { each: 0.0011 } }, 28.10);
+      tl.to(ht5, { scale: 0, duration: 0.45, ease: "power3.out", stagger: { each: 0.0011 } }, 28.85);
+      tl.fromTo("#s5-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 27.90);
+      tl.fromTo("#s5-h", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 28.10);
+      tl.fromTo("#s5 .body", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 28.60);
+      tl.fromTo("#dev5", { rotationY: -10, rotationX: 3 }, { rotationY: -14, rotationX: 5, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 29.50);
+
+      // T5 zoom-through into the proof (33.5)
+      tl.to("#s5", { scale: 1.2, opacity: 0, duration: 0.5, ease: "power2.in" }, 33.25);
+      tl.fromTo("#s6", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 33.40);
+
+      // ===== S6 the proof (33.5 – 46.0). VO b6 ~33.5–40.5: "The shipped app proves it: 91.8 percent… 94 percent…"
+      // Count-ups start as the VO names each number; both land well before 46.0 with reading hold. =====
+      gsap.set(["#m1", "#m2", "#s6-qual"], { opacity: 0, y: 24 });
+      tl.fromTo("#s6-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 33.70);
+      tl.fromTo("#s6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out", transformOrigin: "50% 50%" }, 33.90);
+      tl.to("#m1", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 34.20);
+      var cnt1 = { v: 0 }, cnt2 = { v: 0 };
+      tl.to(cnt1, { v: 91.8, duration: 1.9, ease: "power2.out", onUpdate: function () { document.getElementById("m1n").textContent = cnt1.v.toFixed(1) + "%"; } }, 34.60);
+      tl.to("#m2", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 36.10);
+      tl.to(cnt2, { v: 94, duration: 1.7, ease: "power2.out", onUpdate: function () { document.getElementById("m2n").textContent = Math.round(cnt2.v) + "%"; } }, 36.50);
+      // grade morph on landing: 70 → 50 → 35 → 20
+      tl.set("#m1n", { fontFamily: '"Redaction 50", serif' }, 36.60);
+      tl.set("#m1n", { fontFamily: '"Redaction 35", serif' }, 36.90);
+      tl.set("#m1n", { fontFamily: '"Redaction 20", serif' }, 37.20);
+      tl.set("#m2n", { fontFamily: '"Redaction 50", serif' }, 38.30);
+      tl.set("#m2n", { fontFamily: '"Redaction 35", serif' }, 38.60);
+      tl.set("#m2n", { fontFamily: '"Redaction 20", serif' }, 38.90);
+      tl.to("#s6-qual", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 37.80);
+
+      // T6 blur crossfade (46.0)
+      tl.to("#s6", { filter: "blur(12px)", opacity: 0, duration: 0.55, ease: "power2.inOut" }, 45.75);
+      tl.fromTo("#s7", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.inOut" }, 45.90);
+
+      // ===== S7 the quote (46.0 – 54.5). VO b7 ~46.0–51.5. =====
+      tl.fromTo("#s7-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 46.30);
+      tl.fromTo("#s7-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out", transformOrigin: "50% 50%" }, 46.50);
+      tl.fromTo("#s7-quote", { opacity: 0, filter: "blur(12px)", scale: 1.03 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 46.80);
+      tl.fromTo("#s7-attr", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 48.20);
+
+      // T7 dots take over (54.5)
+      tl.to("#s7", { opacity: 0, filter: "blur(10px)", duration: 0.6, ease: "power2.inOut" }, 54.25);
+      tl.fromTo("#s8", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 54.35);
+
+      // ===== S8 close (54.5 – 64.0). VO b8 ~54.5–59.5. Quiet title card, URL only. =====
+      gsap.set(dots8, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots8, { scale: 1, duration: 0.7, ease: "back.out(1.5)", stagger: { each: 0.0012 } }, 54.55);
+      tl.fromTo("#s8-title", { opacity: 0, filter: "blur(12px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 55.00);
+      tl.fromTo("#s8-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 55.40);
+      tl.fromTo("#s8-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 56.00);
+      tl.to("#s8-wrap", { opacity: 0, duration: 0.5, ease: "power2.in" }, 63.60);
+      tl.to(dots8, { scale: 0, duration: 0.45, ease: "power2.in", stagger: { each: 0.0004 } }, 63.60);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
 </html>
