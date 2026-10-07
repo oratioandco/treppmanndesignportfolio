@@ -1,0 +1,90 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 13,
+  "durationSeconds": 4.98,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "It",
+      "start": 0.06,
+      "end": 0.18,
+      "id": "w0"
+    },
+    {
+      "text": "can't",
+      "start": 0.19,
+      "end": 0.64,
+      "id": "w1"
+    },
+    {
+      "text": "show",
+      "start": 0.64,
+      "end": 1.01,
+      "id": "w2"
+    },
+    {
+      "text": "banding",
+      "start": 1.01,
+      "end": 1.66,
+      "id": "w3"
+    },
+    {
+      "text": "on",
+      "start": 1.66,
+      "end": 1.84,
+      "id": "w4"
+    },
+    {
+      "text": "older",
+      "start": 1.84,
+      "end": 2.11,
+      "id": "w5"
+    },
+    {
+      "text": "Android",
+      "start": 2.11,
+      "end": 3.03,
+      "id": "w6"
+    },
+    {
+      "text": "or",
+      "start": 3.03,
+      "end": 3.18,
+      "id": "w7"
+    },
+    {
+      "text": "the",
+      "start": 3.18,
+      "end": 3.45,
+      "id": "w8"
+    },
+    {
+      "text": "screen",
+      "start": 3.45,
+      "end": 4,
+      "id": "w9"
+    },
+    {
+      "text": "a",
+      "start": 4,
+      "end": 4.06,
+      "id": "w10"
+    },
+    {
+      "text": "browser",
+      "start": 4.06,
+      "end": 4.48,
+      "id": "w11"
+    },
+    {
+      "text": "eats.",
+      "start": 4.49,
+      "end": 4.97,
+      "id": "w12"
+    }
+  ]
+}

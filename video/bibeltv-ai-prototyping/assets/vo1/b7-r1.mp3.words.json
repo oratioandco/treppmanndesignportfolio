@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 14,
+  "durationSeconds": 5.92,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "Engineering",
+      "start": 0.09,
+      "end": 0.73,
+      "id": "w0"
+    },
+    {
+      "text": "decides",
+      "start": 0.78,
+      "end": 1.17,
+      "id": "w1"
+    },
+    {
+      "text": "what",
+      "start": 1.26,
+      "end": 1.54,
+      "id": "w2"
+    },
+    {
+      "text": "to",
+      "start": 1.54,
+      "end": 1.68,
+      "id": "w3"
+    },
+    {
+      "text": "keep.",
+      "start": 1.68,
+      "end": 2.24,
+      "id": "w4"
+    },
+    {
+      "text": "Their",
+      "start": 2.24,
+      "end": 2.46,
+      "id": "w5"
+    },
+    {
+      "text": "estimate?",
+      "start": 2.55,
+      "end": 3.1,
+      "id": "w6"
+    },
+    {
+      "text": "A",
+      "start": 3.21,
+      "end": 3.25,
+      "id": "w7"
+    },
+    {
+      "text": "lot,",
+      "start": 3.25,
+      "end": 3.92,
+      "id": "w8"
+    },
+    {
+      "text": "if",
+      "start": 4.07,
+      "end": 4.09,
+      "id": "w9"
+    },
+    {
+      "text": "not",
+      "start": 4.09,
+      "end": 4.34,
+      "id": "w10"
+    },
+    {
+      "text": "the",
+      "start": 4.34,
+      "end": 4.59,
+      "id": "w11"
+    },
+    {
+      "text": "majority",
+      "start": 4.59,
+      "end": 5.15,
+      "id": "w12"
+    },
+    {
+      "text": "ships.",
+      "start": 5.35,
+      "end": 5.92,
+      "id": "w13"
+    }
+  ]
+}

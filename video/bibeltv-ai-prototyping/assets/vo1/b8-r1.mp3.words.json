@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 12,
+  "durationSeconds": 4.34,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "Why",
+      "start": 0.06,
+      "end": 0.24,
+      "id": "w0"
+    },
+    {
+      "text": "a",
+      "start": 0.24,
+      "end": 0.32,
+      "id": "w1"
+    },
+    {
+      "text": "browser",
+      "start": 0.32,
+      "end": 0.81,
+      "id": "w2"
+    },
+    {
+      "text": "forced",
+      "start": 0.96,
+      "end": 1.39,
+      "id": "w3"
+    },
+    {
+      "text": "the",
+      "start": 1.39,
+      "end": 1.63,
+      "id": "w4"
+    },
+    {
+      "text": "rebuild?",
+      "start": 1.63,
+      "end": 2.28,
+      "id": "w5"
+    },
+    {
+      "text": "How",
+      "start": 2.36,
+      "end": 2.42,
+      "id": "w6"
+    },
+    {
+      "text": "much",
+      "start": 2.42,
+      "end": 2.8,
+      "id": "w7"
+    },
+    {
+      "text": "ships",
+      "start": 2.8,
+      "end": 3.09,
+      "id": "w8"
+    },
+    {
+      "text": "get",
+      "start": 3.09,
+      "end": 3.59,
+      "id": "w9"
+    },
+    {
+      "text": "in",
+      "start": 3.59,
+      "end": 3.79,
+      "id": "w10"
+    },
+    {
+      "text": "touch?",
+      "start": 3.79,
+      "end": 4.34,
+      "id": "w11"
+    }
+  ]
+}

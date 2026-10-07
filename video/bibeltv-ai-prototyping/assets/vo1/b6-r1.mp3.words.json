@@ -1,0 +1,102 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 15,
+  "durationSeconds": 6.72,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "The",
+      "start": 0.07,
+      "end": 0.23,
+      "id": "w0"
+    },
+    {
+      "text": "shipped",
+      "start": 0.23,
+      "end": 0.66,
+      "id": "w1"
+    },
+    {
+      "text": "app",
+      "start": 0.89,
+      "end": 1.05,
+      "id": "w2"
+    },
+    {
+      "text": "proves",
+      "start": 1.05,
+      "end": 1.26,
+      "id": "w3"
+    },
+    {
+      "text": "it,",
+      "start": 1.72,
+      "end": 1.95,
+      "id": "w4"
+    },
+    {
+      "text": "91.8%",
+      "start": 1.95,
+      "end": 3.48,
+      "id": "w5"
+    },
+    {
+      "text": "of",
+      "start": 3.48,
+      "end": 3.57,
+      "id": "w6"
+    },
+    {
+      "text": "the",
+      "start": 3.57,
+      "end": 3.73,
+      "id": "w7"
+    },
+    {
+      "text": "design",
+      "start": 3.73,
+      "end": 4.04,
+      "id": "w8"
+    },
+    {
+      "text": "tokens,",
+      "start": 4.04,
+      "end": 5.2,
+      "id": "w9"
+    },
+    {
+      "text": "94%",
+      "start": 5.2,
+      "end": 5.92,
+      "id": "w10"
+    },
+    {
+      "text": "of",
+      "start": 5.92,
+      "end": 5.99,
+      "id": "w11"
+    },
+    {
+      "text": "the",
+      "start": 6.01,
+      "end": 6.16,
+      "id": "w12"
+    },
+    {
+      "text": "data",
+      "start": 6.16,
+      "end": 6.38,
+      "id": "w13"
+    },
+    {
+      "text": "model.",
+      "start": 6.38,
+      "end": 6.72,
+      "id": "w14"
+    }
+  ]
+}

@@ -217,3 +217,52 @@ dot takeover). Squint test: each beat has one dominant readable element.
 Gate 2 **passed** (0 FAIL; the 64s WARN carries from Gate 1 and retires at Gate 3 when measured
 clip durations replace the 2.3-wps estimate). Next: voice — one clone clip per beat, measure all,
 build the timing table, re-anchor cues via transcribe, then bed.
+
+## Voice round + cue re-anchor (2026-10-07)
+
+### Voice clips
+
+8 clone clips (voice kMS8f1BmXMghbv2jguJo — Tobias's clone, per LEARNINGS), texts verbatim from
+the approved script's narration lines. Total spend **$0.34** (8 × ElevenLabs entries in
+`state.json` budget). Measured durations:
+
+| Clip | dur | data-start | key word anchors (from b{n}-r1.mp3.words.json, whisper small.en) |
+|---|---|---|---|
+| b1-r1 | 2.56 | 2.50 | "premium" ends 5.00 |
+| b2-r1 | 5.12 | 8.50 | "banding" 9.51–10.16, "browser" 12.56, "eats" ends 13.47 |
+| b3-r1 | 4.56 | 15.00 | "I handed" 17.48, "runs" ends 19.26 |
+| b4-r1 | 4.80 | 21.50 | "API" 24.75–25.14, "myself" ends 25.96 |
+| b5-r1 | 3.85 | 27.50 | "native" 30.46, "Kotlin" ends 31.30 |
+| b6-r1 | 6.80 | 33.50 | "91.8%" 35.45–36.98, "94%" 38.70–39.42, "data model" ends 40.22 |
+| b7-r1 | 6.10 | 46.00 | "a lot" 49.21, "majority" ends 51.15, "ships" ends 51.92 |
+| b8-r1 | 4.48 | 54.50 | "get in touch" 57.59–58.84 |
+
+`fit` chain measured + asserted (atempo ceiling 1.08 respected — no clip needed speeding).
+`check-audio`: **PASS 8 clips, root 64.0s, 0 warn** (after bumping three data-durations to give
+the ≥0.15s hard / ≥0.2s comfort pads).
+
+### Cue re-anchoring
+
+The Gate 2 composition ran on the 2.3-wps *estimate*. All speech-synced cues re-anchored to the
+whisper word timestamps above (each edit carries an inline comment citing its words.json anchor —
+never arithmetic, per the LEARNINGS rule that cost ninox round 5 a second of drift). Largest moves:
+beat-3 halftone dissolve 16.35→**18.50** (reveal lands on "already runs"); beat-5 dissolve
+28.85→**30.30**; count-up cards 34.60→**35.45** / 36.50→**38.70** (each lands just after its
+number is spoken); quote 46.80→**48.90**, attribution 48.20→**51.95**, url 56.00→**57.55**.
+The beat-3/5 halftone *swells* did not move — treatment rule holds: dots cover the product until
+the line that earns it.
+
+### Re-anchor verification
+
+16 snapshots at the new cue times (4.5→58.0), reviewed frame by frame: all correct — circle
+mid-draw at 14.2, dots covering both devices with footage hidden until their reveal lines,
+footage revealed at 19.2/31.0, API pulse on "API", count-ups mid-flight *while spoken* and landed
+with the qualifier by 42.0, quote + attribution + url all landing on their words. Zero defects.
+
+Voice-free reality: 38.2s measured speech / 64.0s ≈ **40% voice-free** — the Gate-1 estimate WARN
+(2.3 wps → 31%) retires here.
+
+### Audio wired
+
+`<audio>` block (track 20) in index.html: vo-b1..vo-b8 at the data-starts above, data-duration =
+file + ≥0.15s pad, data-volume 1. Ducking/bed next (Gate 3 continues).

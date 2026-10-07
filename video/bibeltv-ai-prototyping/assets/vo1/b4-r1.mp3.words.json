@@ -1,0 +1,78 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 11,
+  "durationSeconds": 4.58,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "Prototyped",
+      "start": 0.11,
+      "end": 0.81,
+      "id": "w0"
+    },
+    {
+      "text": "in",
+      "start": 0.89,
+      "end": 0.98,
+      "id": "w1"
+    },
+    {
+      "text": "Cloud",
+      "start": 0.98,
+      "end": 1.39,
+      "id": "w2"
+    },
+    {
+      "text": "Code,",
+      "start": 1.39,
+      "end": 1.94,
+      "id": "w3"
+    },
+    {
+      "text": "Real",
+      "start": 1.94,
+      "end": 2.3,
+      "id": "w4"
+    },
+    {
+      "text": "Content,",
+      "start": 2.3,
+      "end": 3,
+      "id": "w5"
+    },
+    {
+      "text": "an",
+      "start": 3.04,
+      "end": 3.25,
+      "id": "w6"
+    },
+    {
+      "text": "API",
+      "start": 3.25,
+      "end": 3.64,
+      "id": "w7"
+    },
+    {
+      "text": "I",
+      "start": 3.64,
+      "end": 3.7,
+      "id": "w8"
+    },
+    {
+      "text": "built",
+      "start": 3.7,
+      "end": 4.01,
+      "id": "w9"
+    },
+    {
+      "text": "myself.",
+      "start": 4.01,
+      "end": 4.46,
+      "id": "w10"
+    }
+  ]
+}

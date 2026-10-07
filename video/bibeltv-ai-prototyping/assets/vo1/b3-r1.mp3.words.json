@@ -1,0 +1,90 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 13,
+  "durationSeconds": 4.34,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "I",
+      "start": 0.08,
+      "end": 0.08,
+      "id": "w0"
+    },
+    {
+      "text": "stopped",
+      "start": 0.08,
+      "end": 0.53,
+      "id": "w1"
+    },
+    {
+      "text": "handing",
+      "start": 0.69,
+      "end": 1.18,
+      "id": "w2"
+    },
+    {
+      "text": "engineering",
+      "start": 1.18,
+      "end": 1.99,
+      "id": "w3"
+    },
+    {
+      "text": "a",
+      "start": 1.99,
+      "end": 2.12,
+      "id": "w4"
+    },
+    {
+      "text": "spec.",
+      "start": 2.13,
+      "end": 2.48,
+      "id": "w5"
+    },
+    {
+      "text": "I",
+      "start": 2.48,
+      "end": 2.56,
+      "id": "w6"
+    },
+    {
+      "text": "handed",
+      "start": 2.56,
+      "end": 2.72,
+      "id": "w7"
+    },
+    {
+      "text": "them",
+      "start": 2.81,
+      "end": 3,
+      "id": "w8"
+    },
+    {
+      "text": "something",
+      "start": 3.17,
+      "end": 3.44,
+      "id": "w9"
+    },
+    {
+      "text": "that",
+      "start": 3.44,
+      "end": 3.63,
+      "id": "w10"
+    },
+    {
+      "text": "already",
+      "start": 3.63,
+      "end": 3.97,
+      "id": "w11"
+    },
+    {
+      "text": "runs.",
+      "start": 3.97,
+      "end": 4.26,
+      "id": "w12"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 11,
+  "durationSeconds": 3.8,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "The",
+      "start": 0.06,
+      "end": 0.24,
+      "id": "w0"
+    },
+    {
+      "text": "web",
+      "start": 0.24,
+      "end": 0.48,
+      "id": "w1"
+    },
+    {
+      "text": "build",
+      "start": 0.48,
+      "end": 0.87,
+      "id": "w2"
+    },
+    {
+      "text": "fought",
+      "start": 0.87,
+      "end": 1.34,
+      "id": "w3"
+    },
+    {
+      "text": "the",
+      "start": 1.34,
+      "end": 1.55,
+      "id": "w4"
+    },
+    {
+      "text": "phone,",
+      "start": 1.55,
+      "end": 2.09,
+      "id": "w5"
+    },
+    {
+      "text": "the",
+      "start": 2.11,
+      "end": 2.17,
+      "id": "w6"
+    },
+    {
+      "text": "prototype",
+      "start": 2.26,
+      "end": 2.66,
+      "id": "w7"
+    },
+    {
+      "text": "went",
+      "start": 2.77,
+      "end": 2.92,
+      "id": "w8"
+    },
+    {
+      "text": "native",
+      "start": 2.96,
+      "end": 3.25,
+      "id": "w9"
+    },
+    {
+      "text": "Kotlin.",
+      "start": 3.35,
+      "end": 3.8,
+      "id": "w10"
+    }
+  ]
+}

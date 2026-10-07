@@ -1,0 +1,66 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 9,
+  "durationSeconds": 2.5,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-ai-prototyping/assets/vo1/transcript.json",
+  "words": [
+    {
+      "text": "A",
+      "start": 0.06,
+      "end": 0.11,
+      "id": "w0"
+    },
+    {
+      "text": "spec",
+      "start": 0.11,
+      "end": 0.25,
+      "id": "w1"
+    },
+    {
+      "text": "can",
+      "start": 0.35,
+      "end": 0.49,
+      "id": "w2"
+    },
+    {
+      "text": "say",
+      "start": 0.54,
+      "end": 0.69,
+      "id": "w3"
+    },
+    {
+      "text": "a",
+      "start": 0.69,
+      "end": 0.74,
+      "id": "w4"
+    },
+    {
+      "text": "gradient",
+      "start": 0.82,
+      "end": 1.26,
+      "id": "w5"
+    },
+    {
+      "text": "should",
+      "start": 1.26,
+      "end": 1.59,
+      "id": "w6"
+    },
+    {
+      "text": "feel",
+      "start": 1.66,
+      "end": 1.89,
+      "id": "w7"
+    },
+    {
+      "text": "premium.",
+      "start": 1.89,
+      "end": 2.5,
+      "id": "w8"
+    }
+  ]
+}

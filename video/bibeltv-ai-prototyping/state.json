@@ -1,49 +1,110 @@
 {
   "study": "bibeltv-ai-prototyping",
-  "updated": "2026-10-07T10:50",
-  "stage": "composition",
+  "updated": "2026-10-07T11:10",
+  "stage": "audio (bed + duck pending; VO done)",
   "variant": "master",
   "gates": {
     "gate1_script": {
       "status": "passed-and-approved",
       "date": "2026-10-05",
       "approved_by_tobias": "2026-10-06 (in words; logged in review.md)",
-      "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted — real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md."
+      "evidence": "check_video.py --strict: 0 FAIL, 1 WARN (64s length, accepted \u2014 real clone pace ~2.9 wps gives ~45% voice-free; re-check with real clips at Gate 3). Adversarial read in review.md."
     },
     "gate2_storyboard": {
       "status": "passed",
       "date": "2026-10-07",
       "evidence": "30 snapshots reviewed frame-by-frame (snapshots/contact-sheet-1..4.jpg); check_video.py --strict: 0 FAIL, 1 WARN (64s length, carried from Gate 1). One bug found+fixed (getTotalLength on <g>). Mute pass, card/hold audit, squint test in review.md. Gate-1 craft risks #1 and #2 closed visually; #3 (poster state) confirmed at Gate 4."
     },
-    "gate3_audio": {},
+    "gate3_audio": {
+      "status": "in-progress",
+      "date": "2026-10-07",
+      "evidence": "Voice round done: 8 clone clips (kMS8f1BmXMghbv2jguJo), $0.34, fit chain PASS, check-audio PASS (8 clips, 0 warn, root 64.0s). All speech-synced cues re-anchored to whisper word timestamps (b{n}-r1.mp3.words.json); 16-snapshot verification, zero defects; ~40% voice-free retires the 2.3-wps WARN. Remaining: Lyria bed, stem, sidechain duck, gate audio checks."
+    },
     "gate4_render": {}
   },
   "budget": {
     "currency": "USD",
     "approved_max": 5,
-    "spent": 0,
-    "entries": [],
+    "spent": 0.34,
+    "entries": [
+      {
+        "date": "2026-10-07T10:52",
+        "item": "ElevenLabs b1-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:52",
+        "item": "ElevenLabs b2-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:52",
+        "item": "ElevenLabs b3-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:52",
+        "item": "ElevenLabs b4-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:53",
+        "item": "ElevenLabs b5-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:53",
+        "item": "ElevenLabs b6-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.05,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:53",
+        "item": "ElevenLabs b7-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.05,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T10:53",
+        "item": "ElevenLabs b8-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      }
+    ],
     "note": "Tobias in words 2026-10-06: 'let's do $5 cap' (review.md, dated). Covers clone voice (~102 words, pennies) + Lyria bed. Spends above $5 hard-fail again until a new number in words."
   },
   "assets": [
     {
       "beat": 3,
       "source": "assets/footage/web-ki-answer.mp4 (copy of product-ads/bibeltv-redesign/assets/ui/b5-answer.mp4)",
-      "status": "wired into index.html (data-start 15.40, dur 6.00) — cleared 2026-10-06 by Tobias for cross-project reuse",
-      "note": "Web prototype's AI chat actually answering: chips → typed query → Matthäus 11,28-30 answer card. Chosen over broken beat3.mp4 (black-frame defect)."
+      "status": "wired into index.html (data-start 15.40, dur 6.00) \u2014 cleared 2026-10-06 by Tobias for cross-project reuse",
+      "note": "Web prototype's AI chat actually answering: chips \u2192 typed query \u2192 Matth\u00e4us 11,28-30 answer card. Chosen over broken beat3.mp4 (black-frame defect)."
     },
     {
       "beat": 5,
       "source": "assets/native/protobible-tabs-take3-pixel8pro.mp4 (primary; protobible-home-pixel8pro.mp4 static hold as alt)",
-      "status": "wired into index.html (data-start 27.90, dur 5.40) — captured 2026-10-06, Pixel 8 Pro, v4.3 APK",
+      "status": "wired into index.html (data-start 27.90, dur 5.40) \u2014 captured 2026-10-06, Pixel 8 Pro, v4.3 APK",
       "note": "Status bar + bottom nav cropped in composition (negative video offset). Content question CLOSED 2026-10-07: ship as-is, videos committed."
     }
   ],
   "renders": [],
   "open_questions": [],
   "next": [
-    "Voice (paid, under $5 cap): one clone clip per beat (kMS8f1BmXMghbv2jguJo), measure all, trim leading silence only, -16 LUFS; log every cost in budget.entries.",
-    "Timing table from measured clip durations (retires the 2.3-wps estimate); re-anchor composition cues via hyperframes transcribe word timestamps — never arithmetic.",
-    "Music bed (Lyria, mood line in music-direction.md) + sidechain duck; then Gate 3, render, Gate 4, wire into study JSON."
+    "Music bed (Lyria, mood line in music-direction.md: bright, precise, playful-technical ~108-112 BPM), budget-checked under the $5 cap (0.34 spent).",
+    "bed-fit, stem (VO stem from the audio block), sidechain duck (verify 18-25 dB per-window RMS), then Gate 3 audio checks.",
+    "Render -> encode -> poster (confirm poster = settled title state, Gate-1 risk #3) -> verify (Gate 4) -> wire public/video/bibeltv-ai-prototyping.mp4 + video field in study JSON -> retro into LEARNINGS.md."
   ]
 }
