@@ -1,63 +1,62 @@
 {
   "slug": "n8n",
-  "title": "Selected Work",
-  "subtitle": "Audience expansion, AI-era product design, design engineering, and leadership — selected for n8n",
+  "aliases": [
+    "n8n-head-of-product-design-repost"
+  ],
+  "title": "Designing Powerful Tools for More People",
+  "subtitle": "Builder-product strategy, active n8n implementation and design leadership that stays close to the work",
   "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-n8n.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of Product Design role"
+  },
+  "bio": {
+    "short": "I lead design for complex builder products and stay close enough to implementation to judge the real workflow. At Ninox, I designed AI onboarding that opens a database-first no-code platform to less technical users while keeping its schema visible and editable. At Bibel TV, I now build active n8n workflows for a conversational AI product. I pair that product judgment with team building, performance leadership and design engineering.",
+    "long": "At Ninox I led Product Design for a configurable no-code platform and later worked with the CEO and technical co-founder on prompt-to-database onboarding. The central decision was to put the generated schema in the real data-model editor beside chat. New users could start from plain-language intent, while experienced builders retained direct control over tables, fields and relationships.\n\nAt Bibel TV I lead product design and hold product responsibility across iOS, Android, web and connected TV. “Bibel erklärt” is a Conversational AI Bible Study App in development. I built and live-tested n8n workflows that turn sermon videos into transcripts, source-linked clips, chapters and retrievable material. A live-checked September 2026 snapshot contained 805 clips from 299 transcribed videos wired into the running chat system. I also prototype against real APIs, and external engineering ships from that code.\n\nMy leadership work is equally concrete. At Ninox I led five people across product design and UX writing. For four months, I led Product and Design together across nine direct reports and four disciplines. I hired two people, promoted two, made two exit decisions, developed the levelling framework and ran performance reviews. Across Ninox, Datameer, Spreadshirt and ChurchDesk, I brought research and design into product decisions rather than treating them as downstream delivery steps.",
+    "context": {
+      "company": "n8n is an open workflow-orchestration platform expanding from deeply technical users toward a broader set of builders while preserving expert power and control.",
+      "role": "The Head of Product Design owns product quality, strategic influence, team structure and craft systems. The role also establishes research practice and practical AI adoption across a growing remote design organisation.",
+      "emphasis": "Lead with the direct parallel between Ninox's audience-expansion problem and n8n's strategic challenge, then prove builder credibility with the active Bibel TV n8n pipeline. Support it with specific people leadership, difficult performance decisions, research practice and current design engineering."
+    }
+  },
   "case_studies": [
     {
       "id": "ninox-ai-onboarding",
       "visibility": "featured",
       "order": 1,
-      "format_override": "in-depth"
+      "format_override": "executive"
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "bibeltv-metadata-extraction",
       "visibility": "featured",
       "order": 2,
-      "format_override": "in-depth"
+      "format_override": "executive"
     },
     {
       "id": "leading-a-team-is-a-design-problem",
       "visibility": "featured",
       "order": 3,
-      "format_override": "in-depth"
+      "format_override": "executive"
     },
     {
-      "id": "churchdesk-booking-system",
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
       "visibility": "browseable",
       "order": 5,
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-color-api",
-      "visibility": "hidden",
-      "order": 6
-    },
-    {
-      "id": "datameer-data-dense-analytics",
-      "visibility": "hidden",
-      "order": 7
-    },
-    {
       "id": "spreadshirt-user-research-strategy",
-      "visibility": "hidden",
-      "order": 8
-    },
-    {
-      "id": "bibeltv-app-redesign",
-      "visibility": "hidden",
-      "order": 9
-    },
-    {
-      "id": "bibeltv-support-agent",
-      "visibility": "hidden",
-      "order": 10
-    },
-    {
-      "id": "bibeltv-ai-prototyping",
-      "visibility": "hidden",
-      "order": 11
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
     }
-  ],
-  "show_all_label": "Show more work"
+  ]
 }
