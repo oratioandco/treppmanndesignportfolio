@@ -1,0 +1,62 @@
+{
+  "slug": "parloa",
+  "aliases": [
+    "parloa-staff-product-designer-expert-experience"
+  ],
+  "title": "Making Complex Systems Understandable",
+  "subtitle": "Inspectable AI generation, expert workflow design and working orchestration systems",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-parloa.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Staff Product Designer - Expert Experience role"
+  },
+  "bio": {
+    "short": "I design complex systems in which people express intent, inspect what the software creates and retain control of the underlying structure. At Ninox, I designed AI onboarding that places generated tables and fields in the real editor beside the conversation. At Datameer, I designed dense analytical tools for expert users. I now build and test AI workflows in n8n at Bibel TV.",
+    "long": "At Ninox I led Product Design for a configurable no-code platform and later worked with the CEO and technical co-founder on prompt-to-database onboarding. The central decision was to place the generated schema in the real data-model editor beside the conversation. New users could begin with plain-language intent while experienced builders retained direct control over tables, fields and relationships.\n\nAt Datameer I directed design for enterprise analytics software used by analysts in regulated banks and insurers. My work included query builders, pivot and filter behaviour, aggregated JSON views, result cards and uncertainty states for sampled data. I also built an iterative recruitment method for specialist users whom ordinary research panels could not find.\n\nAt Bibel TV I lead product design and hold product responsibility across iOS, Android, web and connected TV. “Bibel erklärt” is a conversational AI Bible-study app in development. I built and live-tested n8n workflows that turn sermon video into transcripts, source-linked clips, chapters and retrievable material. I use real execution traces to debug the workflow and prototypes against real APIs to make product behaviour testable before delivery.",
+    "context": {
+      "company": "Parloa builds enterprise conversational-AI software through which expert users configure, orchestrate and improve AI agents.",
+      "role": "The Staff Product Designer owns product-area UX strategy and hands-on craft for configuration-heavy expert workflows, balancing flexibility, clarity, technical feasibility and trust.",
+      "emphasis": "Lead with Ninox as the closest product analogue, Datameer as sustained proof of expert-interface depth and the Bibel TV n8n pipeline as current orchestration practice. Make inspectability, direct editing and failure recovery concrete."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
