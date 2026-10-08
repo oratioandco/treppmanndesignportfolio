@@ -1,0 +1,62 @@
+{
+  "slug": "finom",
+  "aliases": [
+    "finom-principal-product-designer-core-experience"
+  ],
+  "title": "Complex Products, Made Clear",
+  "subtitle": "Native mobile craft, reusable workflows and AI products people can control",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-finom.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Principal Product Designer – Core Experience role"
+  },
+  "bio": {
+    "short": "I design complex products where mobile constraints, business rules and system quality have to work together. At Bibel TV, I lead the iOS and Android redesign. A new entry into a live AI feature raised weekly starts by 153% on iOS and 85% on Android. I pair hands-on interaction craft with platform thinking and AI-native product work.",
+    "long": "At Bibel TV I lead product design and hold product responsibility for consumer streaming across iOS, Android, web and connected TV. I work from research and product direction through interaction, visual design and delivery specifications. I prototype against real APIs and continue the new experience on Android to test target-device constraints; the external engineering agency works from those running prototypes. I also redesigned the entry into a live AI passage feature. Weekly starts rose by 153% on iOS and 85% on Android in four-week before-and-after averages.\n\nAt ChurchDesk I led product design and product management for the core platform across six European markets. A request for funeral booking became a reusable capability inside the existing calendar and form builder, designed around multiple roles, availability rules and states. It reduced coordination time by 70% and reached 90% booking acceptance at the launch customer. At Datameer, I worked on query builders, data-dense analytics and uncertainty states for regulated banks and insurers.\n\nI also design AI experiences that keep generated work visible and editable. For Ninox, I worked with the CEO and technical co-founder on prompt-to-database onboarding. The generated schema appears in the real product editor beside chat, so people can inspect and change tables and fields directly. Across these products, my role is to turn complex rules into a coherent experience and stay close enough to implementation that the quality survives delivery.",
+    "context": {
+      "company": "Finom builds a mobile-first European financial platform for entrepreneurs, combining banking, accounting, financial management and invoicing.",
+      "role": "A Principal individual-contributor role setting design direction for the foundational Core Experience across native mobile and complex platform workflows.",
+      "emphasis": "Lead with current iOS and Android craft, evidence-based product change, complex reusable workflows, AI-native practice and systems that carry quality into implementation. Every project must stand alone for a reader who has not seen the application discussion."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
