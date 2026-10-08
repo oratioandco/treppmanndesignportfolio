@@ -1,0 +1,62 @@
+{
+  "slug": "superhuman",
+  "aliases": [
+    "superhuman-staff-product-designer"
+  ],
+  "title": "Language Is Part of the Interface",
+  "subtitle": "AI agents, complex desktop products and working prototypes that keep people in control",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-superhuman.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Staff Product Designer, Agents role"
+  },
+  "bio": {
+    "short": "I design AI products where language and generated structure are part of the interaction. At Bibel TV, I built a support copilot around house voice and human review. At Ninox, the generated database remains editable in the real product. I pair that AI practice with sustained work on complex desktop software and prototypes that run against real APIs.",
+    "long": "At Bibel TV I lead product design and hold product responsibility across iOS, Android, web and connected TV. I designed a Microsoft Copilot support workflow that drafts from the customer-service handbook. It follows a defined house voice and keeps every edit-and-send decision with the team. I also built a fundraising-content system that analyses source material before it writes. It asks for campaign and audience context, then adapts an approved message for notifications, web banners and video scripts.\n\nAt Ninox I worked with the CEO and technical co-founder on prompt-to-database onboarding. The central interaction decision was to place the generated schema in the real product editor beside the conversation. People can inspect and change tables and fields directly instead of trying to repair a complex structure through more prompts. Earlier, I led Product Design for Ninox's no-code platform and designed deep desktop software for data analysts and engineers at Datameer.\n\nMy current practice connects design and implementation. I use Claude Code to prototype against real APIs, moving from web to native platforms when the behaviour depends on them. For my own products, including the shipped Selah Mac app, I have authored pull requests that reached production. I use Figma for visual and interaction refinement and bring research, metrics, critique and mentoring into the product decisions around the running experience.",
+    "context": {
+      "company": "Superhuman builds AI productivity products and agents for writing, communication and work across Grammarly, Coda, Mail and Go.",
+      "role": "A Berlin-based Staff Product Designer role on the Agents team. The work combines zero-to-one AI interaction design, language judgment, complex desktop software, code-based prototyping, metrics, strategy and mentoring.",
+      "emphasis": "Lead with concrete language-system decisions, inspectable and editable AI output, deep desktop-software craft, working prototypes and accurate production-PR evidence. Every project must make sense to a reader who has not seen the job description or this application process."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
