@@ -15,7 +15,7 @@
   "team": "Solo product, design and development; grounded with the logging team",
   "duration": "2026 – Present",
   "status": "review",
-  "last_updated": "2026-10-07",
+  "last_updated": "2026-10-09",
   "format_priority": [
     "executive",
     "in-depth"
@@ -55,6 +55,12 @@
         {
           "label": "Keep cost and failure visible",
           "description": "Model usage and estimated cost are recorded with the corpus data. Live n8n traces exposed an execution-order race and a broken upstream node reference; I fixed both and re-verified the transcription path end to end."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/bibeltv/n8n-sermon-insights-workflow.png",
+          "alt": "Sanitized overview of the real n8n sermon-insight workflow for Bibel erklärt, showing transcription inputs branching into Bible clip extraction, summaries, chapters, embeddings, topic classification and stored records."
         }
       ]
     },
@@ -112,6 +118,6 @@
     "read_time_minutes": 4,
     "confidential": false,
     "confidentiality_note": "Cleared for publication by Tobias on 2026-08-25. Public material must not show credentials, private URLs, internal identifiers, execution payloads or colleague names. A workflow overview screenshot is acceptable only after those details are excluded.",
-    "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md; data/projects/bibeltv-vsb-n8n-sermon-pipeline.md; Tobias direct confirmation 2026-10-07"
+    "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md; data/projects/bibeltv-vsb-n8n-sermon-pipeline.md; Tobias direct confirmation 2026-10-07; sanitized workflow overview rendered from 03-extract-sermon-insights.json on 2026-10-09"
   }
 }
