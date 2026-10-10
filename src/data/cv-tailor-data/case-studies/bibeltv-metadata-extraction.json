@@ -81,7 +81,14 @@
           "value": "The corrected transcription path completed end to end; the sermon-insight workflow later passed a 31-node dry run on a real transcript"
         }
       ],
-      "narrative": "This is a pipeline result, not an adoption metric. The app remains in development. What is already real is the path from a source video to retrievable, time-bounded material that the product can cite, and the operational evidence behind it."
+      "narrative": "This is a pipeline result, not an adoption metric. The app remains in development. What is already real is the path from a source video to retrievable, time-bounded material that the product can cite, and the operational evidence behind it.",
+      "images": [
+        {
+          "src": "/images/bibeltv/metadata-extraction-verse-to-clip.jpg",
+          "alt": "Three screens of the Bibel erklärt app. Left: John 3 in the reader, with a small video marker after several verses. Middle: the passage John 3:1-21 with a row of sermon clips, the first titled 'Nikodemus und die Bedeutung der neuen Geburt', 4:44, John 3:1-8. Right: that clip open, its player at 00:18 of 04:44, with title, summary, passage, a button to watch the full sermon and more clips from the same sermon.",
+          "caption": "What the pipeline produces, in the unpublished app's development build, October 2026. A marker in the reader means a verse has clips; the passage lists them; a clip plays only its own 4:44 window of the sermon, with its passage and summary and a way back to the full video."
+        }
+      ]
     },
     {
       "type": "reflection",
@@ -119,5 +126,9 @@
     "confidential": false,
     "confidentiality_note": "Cleared for publication by Tobias on 2026-08-25. Public material must not show credentials, private URLs, internal identifiers, execution payloads or colleague names. A workflow overview screenshot is acceptable only after those details are excluded.",
     "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md; data/projects/bibeltv-vsb-n8n-sermon-pipeline.md; Tobias direct confirmation 2026-10-07; sanitized workflow overview rendered from 03-extract-sermon-insights.json on 2026-10-09"
+  },
+  "cover": {
+    "src": "/images/covers/cover-metadata-extraction.jpg",
+    "alt": "The Bibel erklärt app showing John 3:1-21 with a row of sermon clips under the passage, the first titled 'Nikodemus und die Bedeutung der neuen Geburt'."
   }
 }
