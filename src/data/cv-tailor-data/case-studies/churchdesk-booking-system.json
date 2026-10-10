@@ -199,5 +199,9 @@
     "confidentiality_note": "First customer (Evangelische Kirche von Kurhessen-Waldeck) is named with their consent; they are publicly identified in the ChurchDesk conference talk from 2025-02-26.",
     "source": "churchdesk experience file + verification 2026-04-23 + ChurchDesk conference talk 2025-02-26 (Kooperationsraum Bestattungskalender), see data/case-studies/images/churchdesk/source-conference-talk-2025-02-26.pdf, corrections 2026-05-24 (user confirmed: project was WEB and mobile, not mobile-only; tech stack was React (web) + React Native (mobile), NOT ShadCn; validation conversations with project lead, pastors, funeral directors are real; build-vs-buy was an early-and-quick decision dismissed via competitive analysis once custom-form requirement became clear; Calendly does not actually offer white-labeling, so build-vs-buy alternatives were a different vendor or a library; standalone module was the faster path and was floated internally; deep platform integration was chosen as the right option, not the cheap one; designs were Figma + my designer, engineering built the code), platform-integration mechanism detail added 2026-09-17 (user confirmed: form builder reused twice, incl. file upload and a required follow-up form for death certificates/camp consent/rental agreements; availability is its own calendar entry type supporting an all-day or repeat/series option plus per-booking-page custom hours; capability also now serves youth-camp sign-ups), see data/verification-log/2026-09-16-ninox-context-for-video.md"
   },
-  "generation": 4
+  "generation": 4,
+  "cover": {
+    "src": "/images/covers/cover-churchdesk.jpg",
+    "alt": "The funeral-home booking view: a week of available time slots for a cemetery in December 2026."
+  }
 }

@@ -46,6 +46,8 @@ export interface CaseStudySection {
 }
 
 export interface CaseStudy {
+  /** Real-work cover for the listing card; the generative motif is the fallback. */
+  cover?: { src: string; alt: string; position?: string };
   id: string;
   title: string;
   subtitle?: string;

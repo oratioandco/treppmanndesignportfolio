@@ -165,6 +165,7 @@ const headlineDisplay = headline;
               headline={heroSection?.headline || study.title}
               caption={[study.company, study.duration].filter(Boolean).join(" · ")}
               studyId={study.id}
+              cover={study.cover}
             />
           );
         })}
@@ -188,6 +189,7 @@ const headlineDisplay = headline;
                   headline={heroSection?.headline || study.title}
                   caption={[study.company, study.duration].filter(Boolean).join(" · ")}
                   studyId={study.id}
+              cover={study.cover}
                 />
               );
             })}

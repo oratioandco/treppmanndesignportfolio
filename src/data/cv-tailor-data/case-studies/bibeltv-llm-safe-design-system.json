@@ -169,5 +169,9 @@
     "screenshots_pending": "Removed 2026-08-29: the raw token-vocabulary palette dump (llm-safe-token-vocabulary.png) read as a meaningless wall of unlabeled color swatches with no context, contradicting its own caption about 'enumerate instead of recall.' A real replacement would show the enumerate-vs-invent point directly — e.g. an AI assistant's tool-call UI picking from a closed list — rather than the full resolved palette. Not urgent; the Storybook screenshot alone carries the section. Two other optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. None block publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   },
-  "generation": 3
+  "generation": 3,
+  "cover": {
+    "src": "/images/covers/cover-llm-safe.jpg",
+    "alt": "Two donation cards in Storybook, rendered from the design system's tokens on a dark surface."
+  }
 }
