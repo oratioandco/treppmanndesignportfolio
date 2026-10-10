@@ -1,0 +1,56 @@
+{
+  "slug": "recare",
+  "aliases": [
+    "recare-senior-ai-product-designer"
+  ],
+  "title": "Selected Work",
+  "subtitle": "AI products designed around human judgment, traceable sources and workflows that hold up in production.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-recare.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior AI Product Designer role"
+  },
+  "bio": {
+    "short": "I design AI products around human judgment. At Ninox, generated schemas stay visible and editable in the real product. At Bibel TV, I shipped a manually operated MS Copilot skill. I also built an active n8n pipeline for a Conversational AI Bible Study App in development. I also lead the systems and product decisions that keep complex software coherent.",
+    "long": "At Bibel TV I lead product design across iOS, Android, web and connected TV and hold product responsibility for the app redesign. I also own a Conversational AI Bible Study App in development across product direction, interface and agentic development. Its active n8n pipeline turns sermon transcripts into source-linked clips, chapters and retrieval material. A live-checked snapshot contained 805 clips from 299 transcribed videos.\n\nI design AI interactions so people can inspect and change what the model produces. For Ninox's prompt-to-database onboarding, the generated schema appears in the real editor beside chat. For Bibel TV's viewer-support team, I shipped a manually operated Microsoft Copilot skill. It drafts in the handbook's voice while staff review, edit and send every response. The interface and workflow keep judgment with the person doing the work.\n\nThat hands-on work sits on top of design-system and product leadership. I owned Ninox's design system and established joint governance with engineering. At ChurchDesk I held product and design together and turned a complex multi-party funeral workflow into a reusable platform capability. Across these projects, I first understand how the work really happens. Then I make the workflow clearer, faster and maintainable without hiding consequential decisions.",
+    "context": {
+      "company": "Recare",
+      "role": "Senior AI Product Designer",
+      "emphasis": "Human-in-the-loop AI, agent state and uncertainty, editable generated output, source traceability, 0-to-1 delivery, workflow productization, design-system coherence, consumer-grade craft for complex B2B software."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
