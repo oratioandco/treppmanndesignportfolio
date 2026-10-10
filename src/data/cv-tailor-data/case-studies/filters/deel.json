@@ -1,0 +1,62 @@
+{
+  "slug": "deel",
+  "aliases": [
+    "deel-director-product-design-connectivity"
+  ],
+  "title": "Systems That Connect",
+  "subtitle": "Design organizations, AI workflows and platform decisions that hold from API to interface",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-deel.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director, Product Design – Connectivity role"
+  },
+  "bio": {
+    "short": "I build design organizations and the systems they ship. At Ninox I led five people and temporarily carried Product across nine people and four disciplines. My current work combines production-API prototypes, live AI and n8n workflows, and cross-platform design infrastructure. The throughline is turning complex workflows into reusable product capabilities for builders, operators, partners and end users.",
+    "long": "At Ninox I led five people, including a design lead, and owned the design function's operating model: capacity, allocation, prioritization, team structure and processes. During a critical transition I also held Product, bringing the scope to nine people across product design, UX writing, product management and data science. I later returned as an independent consultant to design prompt-to-database AI onboarding with the founders. The generated schema appears in the real data-model editor so builders can inspect and correct it.\n\nAt Bibel TV I lead product design and remain close to implementation. I prototype against production APIs, and the external engineering agency ships from that code. I built a token system designed to serve iOS, Android, web and connected TV from one source. I also shipped a human-operated support copilot. Live-tested n8n workflows turn timed transcripts into source-linked material for an AI Bible experience.\n\nThe same platform judgment appears in earlier work. At ChurchDesk I turned a customer-specific booking request into an integrated capability for funerals, room rentals, baptisms and weddings. It reduced coordination time by 70% with 90% booking acceptance at the launch customer. At Datameer I led design across Germany and New York while working on technical data products for major banks and insurers.",
+    "context": {
+      "company": "Deel is becoming a platform whose connectivity layer spans APIs, developer experience, partners, an app ecosystem, internal tools and AI-native customer surfaces.",
+      "role": "Director, Product Design – Connectivity. The role builds and runs the design organization and co-owns platform strategy with Product and Engineering. It remains close enough to the work to unblock launches and raise craft quality.",
+      "emphasis": "Lead with the pairing of organization building and current hands-on AI and platform work. Show repeated workflow-to-platform decisions across Ninox, ChurchDesk, Datameer and Bibel TV, with visible evidence of technical constraints, multi-sided products and measurable outcomes."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
