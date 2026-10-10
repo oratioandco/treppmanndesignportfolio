@@ -29,7 +29,7 @@
     {
       "type": "narrative",
       "headline": "A correct search result could still look wrong",
-      "content": "Bibel TV's catalogue contains sermons, Bible studies and lectures. Connecting that catalogue to a Bible-study product requires more than a transcript. The system needs to know which passage is discussed, when the discussion starts and ends, and what the segment is about.\n\nThe failure became concrete in one result. A sermon titled **\"Who is Jesus?\"** also discussed the creation account. Someone reading that passage could receive a technically relevant result whose inherited video title made it look irrelevant. The search had found the right source and still failed to explain itself.\n\nA timestamp was not merely metadata. It was a product interface: the address a person would tap, the point where playback would begin, and the boundary of the evidence supporting an answer."
+      "content": "Bibel TV's catalog contains sermons, Bible studies and lectures. Connecting that catalog to a Bible-study product requires more than a transcript. The system needs to know which passage is discussed, when the discussion starts and ends, and what the segment is about.\n\nThe failure became concrete in one result. A sermon titled **\"Who is Jesus?\"** also discussed the creation account. Someone reading that passage could receive a technically relevant result whose inherited video title made it look irrelevant. The search had found the right source and still failed to explain itself.\n\nA timestamp was not merely metadata. It was a product interface: the address a person would tap, the point where playback would begin, and the boundary of the evidence supporting an answer."
     },
     {
       "type": "narrative",
@@ -42,7 +42,7 @@
       "steps": [
         {
           "label": "Create one consistent transcript",
-          "description": "The n8n transcription workflow obtains the source video, extracts audio and stores timed transcript segments in Postgres. The app's own catalogue status is the source of truth instead of accepting transcripts of unknown provenance."
+          "description": "The n8n transcription workflow obtains the source video, extracts audio and stores timed transcript segments in Postgres. The app's own catalog status is the source of truth instead of accepting transcripts of unknown provenance."
         },
         {
           "label": "Derive clips, chapters and topics",
@@ -91,13 +91,13 @@
     {
       "type": "narrative",
       "headline": "The details worth discussing",
-      "content": "Curious why I removed an apparently useful legacy chain from the critical path, what two live execution failures taught me about n8n's branch behaviour, or why a clip title matters to retrieval quality? Get in touch."
+      "content": "Curious why I removed an apparently useful legacy chain from the critical path, what two live execution failures taught me about n8n's branch behavior, or why a clip title matters to retrieval quality? Get in touch."
     }
   ],
   "variants": {
     "executive": {
       "summary": "Built a live-tested n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing the logging work by hand.",
-      "angle": "Workflow productisation grounded in the manual work and hardened through live execution",
+      "angle": "Workflow productization grounded in the manual work and hardened through live execution",
       "sections": [
         "hero",
         "A correct search result could still look wrong",

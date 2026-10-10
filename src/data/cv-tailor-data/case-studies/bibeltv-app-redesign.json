@@ -31,7 +31,7 @@
     {
       "type": "callout",
       "quote": "Dark mode is the streaming default for a considered reason, not just habit: a near-black frame recedes, the way a theater dims its walls, so the content reads as the whole picture instead of competing with the interface around it. Our research kept surfacing something else. Users associate Bibel TV with hope, and felt that belonged in the interface, not just the content. We had to take that seriously against a convention that exists for good reason.",
-      "context": "The strategic design bet at the centre of the project"
+      "context": "The strategic design bet at the center of the project"
     },
     {
       "type": "narrative",
@@ -48,22 +48,22 @@
     {
       "type": "narrative",
       "headline": "The light-mode bet",
-      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. That default exists for a considered reason: a dark frame recedes into the background — the same principle a theater uses when it dims the room — so artwork and video carry the screen instead of competing with the chrome around them. Our research said something different was true here — users associate Bibel TV with hope, and expected that to show up in the interface itself, not only in the content. That is a real, specific research insight, and it argued directly against an industry convention that is not arbitrary, so it had to be taken seriously rather than simply preferred. We did not start there. The first concepts, in October 2025, kept the Mediathek dark, like every streaming app we had analysed. The concept survey in February 2026 moved it. Shown the new design in dark mode, respondents called it too gloomy and uninviting; the core need they named was brightness and readability, the older ones citing eye strain.\n\nTaking it seriously created the actual design problem: the new branding runs on image-based, dynamically extracted colour themes, built the way the rest of the industry builds them — for dark backgrounds first. Making that same system hold a premium, on-brand feel in light mode was genuinely unsolved going in. It could not stay a surface decision; it needed real colour and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies): the colour engine, tuned for light mode first — the reverse of the usual order — and a token system delivered as an API, which is also a step toward Bibel TV's own stated direction of server-driven UI and less dependency on the agency that builds the app. Prototyping the redesign directly in code, rather than static specs, is what let all three move in parallel instead of waiting on each other.",
+      "content": "The redesign gave the app a new visual language, aligned with the 2025 broadcast rebrand: lighter, warmer, and properly premium. Streaming-native patterns for discovery, search, and watch-next. Three core areas, the Mediathek, Bible reading, and reading plans.\n\nThe real bet was light mode as the primary direction, against the streaming-industry default of dark. That default exists for a considered reason: a dark frame recedes into the background — the same principle a theater uses when it dims the room — so artwork and video carry the screen instead of competing with the chrome around them. Our research said something different was true here — users associate Bibel TV with hope, and expected that to show up in the interface itself, not only in the content. That is a real, specific research insight, and it argued directly against an industry convention that is not arbitrary, so it had to be taken seriously rather than simply preferred. We did not start there. The first concepts, in October 2025, kept the Mediathek dark, like every streaming app we had analyzed. The concept survey in February 2026 moved it. Shown the new design in dark mode, respondents called it too gloomy and uninviting; the core need they named was brightness and readability, the older ones citing eye strain.\n\nTaking it seriously created the actual design problem: the new branding runs on image-based, dynamically extracted color themes, built the way the rest of the industry builds them — for dark backgrounds first. Making that same system hold a premium, on-brand feel in light mode was genuinely unsolved going in. It could not stay a surface decision; it needed real color and contrast work underneath, and a design system that could keep four platforms in step. Those became their own projects (see the related case studies): the color engine, tuned for light mode first — the reverse of the usual order — and a token system delivered as an API, which is also a step toward Bibel TV's own stated direction of server-driven UI and less dependency on the agency that builds the app. Prototyping the redesign directly in code, rather than static specs, is what let all three move in parallel instead of waiting on each other.",
       "images": [
         {
           "src": "/images/bibeltv/app-redesign-streaming-always-dark.jpg",
           "alt": "A wall of streaming-app screens (WOW, Joyn, ZDF, Disney+, Pluto TV and others), every one on a black or near-black background.",
-          "caption": "From the competitive analysis: near-black backgrounds regardless of the system setting. Of the streaming apps analysed, only YouTube offered light and dark."
+          "caption": "From the competitive analysis: near-black backgrounds regardless of the system setting. Of the streaming apps analyzed, only YouTube offered light and dark."
         },
         {
           "src": "/images/bibeltv/app-redesign-mediathek-dark-concept.jpg",
-          "alt": "Four dark Mediathek concept screens, each with a hero card tinted from its own artwork: green, slate, grey and sand.",
+          "alt": "Four dark Mediathek concept screens, each with a hero card tinted from its own artwork: green, slate, gray and sand.",
           "caption": "Where we started: the October 2025 Mediathek concept, dark like the rest of the industry, with each hero card tinted from its artwork. The survey moved it to light."
         },
         {
           "src": "/images/bibeltv/app-redesign-home-themes.jpg",
-          "alt": "Six captures of the 6.0 Home, one per hero in the carousel. The page background, card and logo asterisk change colour with each hero: beige, peach, slate blue, two light blues and aqua — all light.",
-          "caption": "Light, but not one colour: the 6.0 Home takes its page tint from each hero's artwork. Six heroes, six themes."
+          "alt": "Six captures of the 6.0 Home, one per hero in the carousel. The page background, card and logo asterisk change color with each hero: beige, peach, slate blue, two light blues and aqua — all light.",
+          "caption": "Light, but not one color: the 6.0 Home takes its page tint from each hero's artwork. Six heroes, six themes."
         },
         {
           "src": "/images/bibeltv/app-redesign-before-after-series.jpg",
@@ -75,7 +75,7 @@
     {
       "type": "narrative",
       "headline": "Research, and a lesson about platforms",
-      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast, then rebuilt it on Android, because Android is the largest part of our userbase. A stakeholder had raised a specific worry on the way in: old Android screens in our userbase render gradients badly. Testing it showed the worry was real and the diagnosis was not. The banding tracks old displays, not Android. So the fix generalised past the original concern, and we now build multi-step gradients even for monochrome ones, which is what actually addresses banding. Prototype where your users are, and be willing to find that the thing everyone named was not the variable.",
+      "content": "The work ran about nine months in three phases: competitive analysis against the global streaming apps, prototyping, then validation with staff and with users.\n\nOne lesson is worth keeping. I built the first prototype for web because web is fast, then rebuilt it on Android, because Android is the largest part of our userbase. A stakeholder had raised a specific worry on the way in: old Android screens in our userbase render gradients badly. Testing it showed the worry was real and the diagnosis was not. The banding tracks old displays, not Android. So the fix generalized past the original concern, and we now build multi-step gradients even for monochrome ones, which is what actually addresses banding. Prototype where your users are, and be willing to find that the thing everyone named was not the variable.",
       "images": [
         {
           "src": "/images/bibeltv/app-redesign-mindfulness-reference.jpg",
@@ -123,7 +123,7 @@
     {
       "type": "reflection",
       "headline": "Underneath the light-mode bet",
-      "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the colour engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
+      "content": "Owning the design of this app end to end meant owning what sat under it. A light-mode redesign that looks premium is not a Figma decision, it depends on the color engine and the token system that keep it consistent and correct. Designing the surface and leaving the infrastructure to chance would have produced a demo, not a product.\n\nAnd the platform lesson stuck: web-first prototyping is fast, but target-platform-first is honest."
     },
     {
       "type": "narrative",
