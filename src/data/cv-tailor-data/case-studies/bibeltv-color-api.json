@@ -118,6 +118,16 @@
       ],
       "images": [
         {
+          "src": "/images/bibeltv/color-api-one-artwork-two-themes.jpg",
+          "alt": "The Chosen's series page in the Bibel TV 6.0 app, twice: on the left in light mode with a peach page gradient, on the right in dark mode with a deep green one, both computed from the same artwork.",
+          "caption": "One artwork, two themes. In the 6.0 release build, the page gradient on Home and every detail view is computed from the image: peach in light mode, deep green in dark."
+        },
+        {
+          "src": "/images/bibeltv/app-redesign-home-themes.jpg",
+          "alt": "Six captures of the 6.0 Home, one per hero: the page background, card and logo asterisk change colour with each artwork — beige, peach, slate blue, two light blues and aqua.",
+          "caption": "Six heroes, six themes, all light, with nobody picking a colour by hand."
+        },
+        {
           "src": "/images/bibeltv/color-lab-applied.png",
           "alt": "The same Color Lab preview panel: a Bibel TV content card themed from one extracted palette, shown in dark mode and light mode side by side — both read warm and on-brand rather than generic."
         }
@@ -174,5 +184,9 @@
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical artifact sidecars continue to resolve after editorial copy changes. The current narrative preserves the same extraction and OKLCH facts.",
     "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Figma plugin source + Jupus case-study quality pass 2026-05-22 + voice and teaser pass 2026-08-25"
   },
-  "generation": 3
+  "generation": 3,
+  "cover": {
+    "src": "/images/covers/cover-color-api.jpg",
+    "alt": "The same series page in the Bibel TV 6.0 app, side by side: peach in light mode, deep green in dark, both computed from one artwork."
+  }
 }
