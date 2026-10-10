@@ -88,12 +88,7 @@
         },
         {
           "label": "Extended the existing platform: the right option, not the cheap one",
-          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been, and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product.",
-          "image": {
-            "src": "/images/churchdesk/availability-filtering-pipeline.png",
-            "alt": "Filtering diagram showing how a pastor's availability, existing calendar events, cemetery hours and booking buffers leave only genuinely free slots for the funeral home",
-            "caption": "The integration decision made one availability mechanism reusable: calendar commitments, cemetery hours and booking buffers resolve before a slot reaches the funeral home."
-          }
+          "description": "ChurchDesk already had a calendar with people and resources attached to events, and a form builder used everywhere else in the product. Extending both was harder than building a standalone booking module would have been, and a standalone module was the option floated internally as the faster path. But ChurchDesk's magic moments come from deeply integrated features, not from a longer feature list. A separate booking surface would have shipped on time and looked like progress, but it would have been one more thing parishes had to learn alongside the rest of the platform. The integrated approach took more work; it also produced a feature that actually felt like part of the product."
         },
         {
           "label": "Designed in Figma with my designer; engineering built quickly",
@@ -126,7 +121,12 @@
         {
           "src": "/images/churchdesk/availability-filtering-pipeline.png",
           "alt": "Five-stage filtering diagram across one 08:00–18:00 calendar day: a full-day Verfügbarkeit availability event is reduced by the pastor's other calendar events (a home visit, a service at 12:00), then by the cemetery's 10:00–16:00 funeral hours, then by 30-minute prep and follow-up buffers combined with the booking option's hourly start grid — leaving two genuinely free slots, 10:30 and 14:00, on the funeral home's booking page (a 15:00 candidate is rejected because its follow-up would run past the cemetery's close)",
-          "caption": "The whole filtering chain in one picture. The pastor enters availability once, as an event in the calendar they already use — everything else on that calendar, the cemetery's hours, and the booking option's own prep and follow-up time cut themselves out, and what survives lands on the booking option's start grid: hourly for funerals, 15-minute increments for appointments and video calls. A slot only reaches the funeral home if every constraint resolves true; every booking is still a request the pastor confirms. Diagram source: treppmanndesignportfolio video/churchdesk-booking-system-glm/diagram-src/availability-pipeline.html."
+          "caption": "The whole filtering chain in one picture. The pastor enters availability once, as an event in the calendar they already use — everything else on that calendar, the cemetery's hours, and the booking option's own prep and follow-up time cut themselves out, and what survives lands on the booking option's start grid: hourly for funerals, 15-minute increments for appointments and video calls. A slot only reaches the funeral home if every constraint resolves true; every booking is still a request the pastor confirms."
+        },
+        {
+          "src": "/images/churchdesk/funeral-home-booking.jpg",
+          "alt": "The funeral home's booking screen: a full week of time slots for the Main Cemetery, with only the slots that resolve true against the pastor's on-call rota, the cemetery's opening hours, and any standing commitments",
+          "caption": "The result on the funeral home's side: a week of slots for one cemetery, showing only the times that survived the filtering above."
         }
       ]
     },

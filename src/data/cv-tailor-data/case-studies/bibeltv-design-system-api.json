@@ -20,7 +20,7 @@
   "last_updated": "2026-08-25",
   "hero_image": {
     "src": "/images/diagrams/design-system-token-flow.svg",
-    "alt": "Diagram: one token repository flows through Style Dictionary and out to Android, iOS, web and the Figma plugin. Four platforms and Figma consume the same build instead of drifting from a shared library reference."
+    "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, and Figma syncs through a plugin; iOS and connected TV are drawn dashed as the next implementation step."
   },
   "format_priority": [
     "executive",
@@ -46,7 +46,13 @@
       "type": "narrative",
       "headline": "The architecture",
       "content": "The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.\n\nWhat I built is a Git-based token repository that builds to a live API the platforms consume directly.\n\n**One Git repo** holds the tokens, versioned and reviewed like any other code. **A four-tier hierarchy** keeps them sane, running from primitives (OKLCH colors, spacing, type) through semantic and component to the page and view tokens a product team works in. **Style Dictionary** builds platform-specific outputs from that single definition. **An automation layer** distributes every committed change to the platform endpoints and the Figma plugin.\n\nThe top two tiers are the part a purist would question. Component and page-or-view tokens introduce no new values at all; they alias downward to semantic and primitives. That redundancy is deliberate. Each is a place the company can reach in and change a component's spacing or type size, or border radius across the board, without going through the agency that owns the code. Read as a taxonomy it is redundant. Read as a control surface it is the whole point, and it is the first step toward server-driven UI for the streaming section of the app.\n\nThe agency backed it, which I did not take for granted. The architecture takes billable change work away from them and they were enthusiastic anyway.",
-      "images": []
+      "images": [
+        {
+          "src": "/images/diagrams/design-system-token-flow.svg",
+          "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, and Figma syncs through a plugin; iOS and connected TV are drawn dashed as the next implementation step.",
+          "caption": "Android, web and Figma read the same build today. iOS and connected TV are dashed: reaching them is an implementation task, not a system change."
+        }
+      ]
     },
     {
       "type": "process",
@@ -91,6 +97,13 @@
         {
           "label": "Structure",
           "value": "Four-tier token hierarchy: consistency enforced by structure, not by coordination"
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/bibeltv/design-system-tokens.jpg",
+          "alt": "Figma with the BibelTV Design Tools plugin open: a 'Sync Tokens to Figma' button with the token API as source, beside the primitive color ramps (blue, brand, green, neutral, orange, purple, red) it wrote into the file, and a page list of components from buttons and cards to heroes.",
+          "caption": "Figma as a consumer, not the source: the plugin pulls the primitives from the token API into the design file, and every component page binds to them."
         }
       ]
     },
