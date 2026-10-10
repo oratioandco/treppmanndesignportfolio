@@ -73,7 +73,7 @@
       "metrics": [
         {
           "label": "User validation",
-          "value": "A concept survey confirmed it: users wanted light over the app's dark-only default by a clear margin (83% chose light or a mixed palette) — the insight that reshaped the whole redesign's direction"
+          "value": "A concept survey moved it: shown the new design in dark mode, users called it too gloomy and uninviting, and named brightness and readability as what they needed — the insight that reshaped the whole redesign's direction"
         },
         {
           "label": "Brand alignment",
@@ -108,7 +108,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. A concept survey found 83% of respondents with a preference chose light or mixed over dark-only. The redesign is in active development. The AI feature the app carries, redesigned full scope, more than doubled weekly starts: +153% on iOS, +85% on Android (GA4, four-week averages).",
+      "summary": "Led the redesign of Bibel TV's streaming apps into a premium, warm, light-mode experience closing the gap between the app and the 2025 broadcast rebrand. A concept survey found brightness and readability, not a cinema-dark frame, were what users needed. The redesign is in active development. The AI feature the app carries, redesigned full scope, more than doubled weekly starts: +153% on iOS, +85% on Android (GA4, four-week averages).",
       "angle": "A redesign as competitive strategy",
       "sections": [
         "hero",

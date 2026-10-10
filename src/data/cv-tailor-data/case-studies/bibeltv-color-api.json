@@ -105,7 +105,7 @@
       "metrics": [
         {
           "label": "Light mode preference",
-          "value": "A concept survey (n=264) found 51% of respondents with a clear preference chose light outright and 32% chose a mixed palette — only 17% preferred dark alone, against the current app's dark-only default"
+          "value": "A concept survey (n=264) named brightness and readability as users' core need; shown the new design in dark mode, respondents called it too gloomy and uninviting"
         },
         {
           "label": "Contrast compliance",
@@ -135,7 +135,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built a K-means color extraction engine in OKLCH that powers dynamic theming, card gradients, and WCAG-compliant text for the Bibel TV app. A concept survey found 83% of respondents with a preference chose light or mixed over dark-only; zero manual contrast checking, brand-consistent by default.",
+      "summary": "Built a K-means color extraction engine in OKLCH that powers dynamic theming, card gradients, and WCAG-compliant text for the Bibel TV app. A concept survey named brightness and readability as users' core need; zero manual contrast checking, brand-consistent by default.",
       "angle": "Design-led infrastructure, when industry defaults don't fit the brand",
       "sections": [
         "hero",
