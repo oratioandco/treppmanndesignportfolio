@@ -39,9 +39,9 @@
       "content": "Bibel TV is a broadcaster in the middle of a linear-to-streaming transformation, with apps across iOS, Android, web, and connected TV, and a broadcast archive going back generations. The app did not show it. The patterns were dated, it had not followed the 2025 broadcast rebrand, content was hard to discover, and nothing in it was built for retention.\n\nThe redesign had to close that gap: turn German-market knowledge, cultural fit, and the archive into something a user could feel in the first thirty seconds, instead of an app that looked older than the brand actually was.",
       "images": [
         {
-          "src": "/images/bibeltv/app-redesign-home-before-after.jpg",
-          "alt": "Two phone screens of the Bibel TV app Home. Left, version 5.12: blue text, a verse of the day, a gradient AI button and thumbnail rails. Right, the 6.0 release build: a full-width hero card, a search field, filter chips and a page tinted warm beige from the hero image.",
-          "caption": "Home, before and after: version 5.12 next to the 6.0 release build, which launches on Android in the coming weeks."
+          "src": "/images/bibeltv/app-redesign-before-after-home.jpg",
+          "alt": "Four Home screens. Light pair: version 5.12 with blue text, a verse of the day, a gradient AI button and thumbnail rails, then 6.0 with a full-width hero and a page tinted aqua from it. Dark pair: the same two apps in dark mode.",
+          "caption": "Home, before and after. Light on the left, dark on the right; in each pair, the current 5.x app, then the 6.0 release build launching on Android in the coming weeks. Both versions support light and dark."
         }
       ]
     },
@@ -64,6 +64,11 @@
           "src": "/images/bibeltv/app-redesign-home-themes.jpg",
           "alt": "Six captures of the 6.0 Home, one per hero in the carousel. The page background, card and logo asterisk change colour with each hero: beige, peach, slate blue, two light blues and aqua — all light.",
           "caption": "Light, but not one colour: the 6.0 Home takes its page tint from each hero's artwork. Six heroes, six themes."
+        },
+        {
+          "src": "/images/bibeltv/app-redesign-before-after-series.jpg",
+          "alt": "The Chosen's series page in four screens. Version 5.12 shows a plain episode list in light and dark. Version 6.0 shows header artwork, a play button, tabs and episodes on a page tinted peach in light mode and deep green in dark.",
+          "caption": "The same series page, before and after. In 6.0 the page takes its tint from the artwork, peach in light mode and deep green in dark, where 5.x showed a plain list."
         }
       ]
     },
@@ -95,6 +100,13 @@
         {
           "label": "In production",
           "value": "The AI feature the app carries, redesigned full scope, is in production on iOS and Android: it went from 205 to 518 weekly starts on iOS (+153%) and 655 to 1,213 on Android (+85%), each an average of the four full weeks before and after its own release (GA4). The app redesign itself is in active development; engineering builds from working prototype code."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/bibeltv/app-redesign-before-after-video.jpg",
+          "alt": "An episode page of The Chosen in four screens. Version 5.12: player, metadata and description in light and dark. Version 6.0: a header image, a play button, a tinted page and a Bible verses section.",
+          "caption": "An episode page, before and after. 6.0 adds the episode's Bible verses next to the description."
         }
       ]
     },
