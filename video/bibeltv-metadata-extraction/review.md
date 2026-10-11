@@ -78,3 +78,11 @@ tight; if the clone runs slow, cut "from the sermon" from the last sentence, or 
 
 `check_video.py --strict`: 0 FAIL, 0 WARN, 5 PASS (95 words, ~30% voice-free est.).
 **Gate 1 holds.** Still waiting on Tobias: go on the script, the beat-3 boundary line, budget cap.
+
+### Genesis 1 alternate for beat 5 (2026-10-11, 09:35)
+Genesis 1 does have clips (1. Mose 1,1: five, e.g. "Der Schöpfungsbericht als göttliche
+Offenbarung"; the count grew from 4 to 5 while capturing, so the corpus is live). None of them is
+the "Who is Jesus?" sermon from the hook, so the film can echo the passage but not the example.
+Two screenrecord takes ended at the moment the player launched (12.9s / 14.6s, sheet only), so
+there is no usable Genesis take yet. **John 3 stays the keeper.** At picture stage, retry with
+screenrecord started after the sheet opens, or record the player as a separate take.

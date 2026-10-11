@@ -43,6 +43,14 @@
       "provenance": "study-json",
       "source": "public/images/bibeltv/n8n-sermon-insights-workflow.png",
       "status": "keeper"
+    },
+    {
+      "id": "clip-detail",
+      "kind": "ui",
+      "path": "assets/capture/clip-detail-transcript.png",
+      "provenance": "captured",
+      "source": "my-cv-tailor data/verification-log/2026-10-11-who-writes-each-clip-field.md",
+      "status": "alternate"
     }
   ],
   "renders": [],
@@ -53,7 +61,7 @@
   ],
   "next": [
     "On go + cap: voice (clone), fit, timing table",
-    "Try a Genesis 1 recording for beat 5",
+    "Genesis 1 retake optional: clips exist, recording cut at player launch (review.md); John 3 is the keeper",
     "Build composition, Gate 2"
   ],
   "resolved": [
