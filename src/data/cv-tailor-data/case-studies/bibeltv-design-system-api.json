@@ -104,6 +104,11 @@
           "src": "/images/bibeltv/design-system-tokens.jpg",
           "alt": "Figma with the BibelTV Design Tools plugin open: a 'Sync Tokens to Figma' button with the token API as source, beside the primitive color ramps (blue, brand, green, neutral, orange, purple, red) it wrote into the file, and a page list of components from buttons and cards to heroes.",
           "caption": "Figma as a consumer, not the source: the plugin pulls the primitives from the token API into the design file, and every component page binds to them."
+        },
+        {
+          "src": "/images/bibeltv/design-system-one-token-two-platforms.jpg",
+          "alt": "One token on two platforms. Left: the play button on an episode page of the Android app, version 6.0.7, dark on a light page and white on a dark page. Middle: the token API entries component.light.button.primary (background #252F35, text #EBF0F2) and component.dark.button.primary (background #FFFFFF, text #252F35). Right: the same button rendered in the web Storybook from the live token API, in both themes.",
+          "caption": "One token, two platforms. The shipped Android app loads this payload at launch, and Storybook reads the live token API. On both, the primary button's fill and label match the token to the hex, in light and in dark."
         }
       ]
     },
