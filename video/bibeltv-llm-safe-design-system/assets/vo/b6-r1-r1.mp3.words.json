@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 8,
+  "durationSeconds": 3.68,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-llm-safe-design-system/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "Design",
+      "start": 0.09,
+      "end": 0.43,
+      "id": "w0"
+    },
+    {
+      "text": "Authority",
+      "start": 0.43,
+      "end": 1.07,
+      "id": "w1"
+    },
+    {
+      "text": "lives",
+      "start": 1.07,
+      "end": 1.29,
+      "id": "w2"
+    },
+    {
+      "text": "in",
+      "start": 1.48,
+      "end": 1.57,
+      "id": "w3"
+    },
+    {
+      "text": "whatever",
+      "start": 1.57,
+      "end": 2.15,
+      "id": "w4"
+    },
+    {
+      "text": "the",
+      "start": 2.16,
+      "end": 2.44,
+      "id": "w5"
+    },
+    {
+      "text": "build",
+      "start": 2.44,
+      "end": 2.91,
+      "id": "w6"
+    },
+    {
+      "text": "refuses.",
+      "start": 2.91,
+      "end": 3.68,
+      "id": "w7"
+    }
+  ]
+}

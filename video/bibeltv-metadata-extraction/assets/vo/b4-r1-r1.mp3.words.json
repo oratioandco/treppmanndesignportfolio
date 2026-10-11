@@ -1,0 +1,168 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 26,
+  "durationSeconds": 8.6,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-metadata-extraction/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "I",
+      "start": 0.07,
+      "end": 0.08,
+      "id": "w0"
+    },
+    {
+      "text": "built",
+      "start": 0.08,
+      "end": 0.4,
+      "id": "w1"
+    },
+    {
+      "text": "a",
+      "start": 0.42,
+      "end": 0.48,
+      "id": "w2"
+    },
+    {
+      "text": "pipeline",
+      "start": 0.54,
+      "end": 1.05,
+      "id": "w3"
+    },
+    {
+      "text": "that",
+      "start": 1.05,
+      "end": 1.33,
+      "id": "w4"
+    },
+    {
+      "text": "reads",
+      "start": 1.33,
+      "end": 1.68,
+      "id": "w5"
+    },
+    {
+      "text": "the",
+      "start": 1.68,
+      "end": 1.89,
+      "id": "w6"
+    },
+    {
+      "text": "sermon,",
+      "start": 1.89,
+      "end": 2.48,
+      "id": "w7"
+    },
+    {
+      "text": "not",
+      "start": 2.57,
+      "end": 2.91,
+      "id": "w8"
+    },
+    {
+      "text": "its",
+      "start": 2.91,
+      "end": 3.36,
+      "id": "w9"
+    },
+    {
+      "text": "title.",
+      "start": 3.36,
+      "end": 4.16,
+      "id": "w10"
+    },
+    {
+      "text": "The",
+      "start": 4.24,
+      "end": 4.39,
+      "id": "w11"
+    },
+    {
+      "text": "model",
+      "start": 4.39,
+      "end": 4.77,
+      "id": "w12"
+    },
+    {
+      "text": "marks",
+      "start": 4.77,
+      "end": 5.15,
+      "id": "w13"
+    },
+    {
+      "text": "each",
+      "start": 5.15,
+      "end": 5.45,
+      "id": "w14"
+    },
+    {
+      "text": "passage",
+      "start": 5.45,
+      "end": 5.92,
+      "id": "w15"
+    },
+    {
+      "text": "and",
+      "start": 6.01,
+      "end": 6.21,
+      "id": "w16"
+    },
+    {
+      "text": "names",
+      "start": 6.21,
+      "end": 6.42,
+      "id": "w17"
+    },
+    {
+      "text": "it.",
+      "start": 6.73,
+      "end": 6.99,
+      "id": "w18"
+    },
+    {
+      "text": "The",
+      "start": 7.08,
+      "end": 7.17,
+      "id": "w19"
+    },
+    {
+      "text": "quote",
+      "start": 7.17,
+      "end": 7.46,
+      "id": "w20"
+    },
+    {
+      "text": "is",
+      "start": 7.46,
+      "end": 7.48,
+      "id": "w21"
+    },
+    {
+      "text": "cut",
+      "start": 7.59,
+      "end": 7.74,
+      "id": "w22"
+    },
+    {
+      "text": "from",
+      "start": 7.74,
+      "end": 7.97,
+      "id": "w23"
+    },
+    {
+      "text": "the",
+      "start": 7.97,
+      "end": 8.1,
+      "id": "w24"
+    },
+    {
+      "text": "sermon.",
+      "start": 8.21,
+      "end": 8.56,
+      "id": "w25"
+    }
+  ]
+}

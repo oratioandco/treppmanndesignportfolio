@@ -1,7 +1,7 @@
 {
   "study": "bibeltv-metadata-extraction",
-  "updated": "2026-10-11T09:45",
-  "stage": "script",
+  "updated": "2026-10-11T18:45",
+  "stage": "music",
   "variant": "master",
   "gates": {
     "gate1_script": {
@@ -9,15 +9,102 @@
       "date": "2026-10-11",
       "evidence": "review.md rounds 1 and 1b; check_video.py --strict: 0 FAIL, 0 WARN, 5 PASS (95 words, ~30% voice-free est.)"
     },
-    "gate2_storyboard": {},
-    "gate3_audio": {},
+    "gate2_storyboard": {
+      "status": "passed",
+      "date": "2026-10-11",
+      "evidence": "review.md round 2: snapshots at beat mids + cues, fixes applied and re-snapshotted"
+    },
+    "gate3_audio": {
+      "status": "in-progress",
+      "date": "2026-10-11",
+      "evidence": "voice r1 done (7 clips, transcribed, word-for-word); 3 Lyria beds; previews renders/previews/*-bed-r{1,2,3}.mp4 at -16 LUFS / 48 kHz; awaiting Tobias's pick"
+    },
     "gate4_render": {}
   },
   "budget": {
     "currency": "USD",
-    "approved_max": 0,
-    "spent": 0,
-    "entries": []
+    "approved_max": 5,
+    "spent": 0.58,
+    "entries": [
+      {
+        "date": "2026-10-11T18:12",
+        "item": "ElevenLabs b1-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:12",
+        "item": "ElevenLabs b2-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:12",
+        "item": "ElevenLabs b3-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:13",
+        "item": "ElevenLabs b4-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:13",
+        "item": "ElevenLabs b5-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:13",
+        "item": "ElevenLabs b6-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:13",
+        "item": "ElevenLabs b7-r1.mp3",
+        "provider": "ElevenLabs",
+        "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:22",
+        "item": "Lyria bed rr1",
+        "provider": "Gemini/Lyria 3.5",
+        "cost": 0.1,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:23",
+        "item": "Lyria bed rr2",
+        "provider": "Gemini/Lyria 3.5",
+        "cost": 0.1,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-11T18:24",
+        "item": "Lyria bed rr3",
+        "provider": "Gemini/Lyria 3.5",
+        "cost": 0.1,
+        "evidence": ".buildlog.jsonl"
+      }
+    ],
+    "approvals": [
+      {
+        "date": "2026-10-11",
+        "by": "Tobias",
+        "cap": 5,
+        "words": "go for both (reply to: go on each script + proposed $5 cap each)"
+      }
+    ]
   },
   "assets": [
     {
@@ -53,16 +140,26 @@
       "status": "alternate"
     }
   ],
-  "renders": [],
+  "renders": [
+    {
+      "file": "renders/vo-only-r1.mp4",
+      "variant": "master",
+      "date": "2026-10-11",
+      "checks": {
+        "duration_s": 59.4,
+        "sr": 48000
+      },
+      "verdict": "internal: base for bed previews"
+    }
+  ],
   "open_questions": [
-    "Tobias: go on the script?",
     "Tobias: add the automation-boundary line to beat 3 (~10 words)?",
-    "Budget cap not set: proposing $5 (voice ~$0.40 + bed), same as ai-prototyping"
+    "Tobias: pick bed r1/r2/r3 by ear; check 'Bibel TV' pronunciation and pace"
   ],
   "next": [
-    "On go + cap: voice (clone), fit, timing table",
-    "Genesis 1 retake optional: clips exist, recording cut at player launch (review.md); John 3 is the keeper",
-    "Build composition, Gate 2"
+    "On pick: video_build.py bed-fit + duck (verified), final render, encode, poster",
+    "Gate 4 verify sheet",
+    "Wire video field in study JSON, build, retro"
   ],
   "resolved": [
     "2026-10-11: clip titles are model-generated (workflow 03); beat 4 rewritten, see review.md round 1b"

@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 7,
+  "durationSeconds": 2.36,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-metadata-extraction/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "The",
+      "start": 0.11,
+      "end": 0.2,
+      "id": "w0"
+    },
+    {
+      "text": "clip",
+      "start": 0.21,
+      "end": 0.47,
+      "id": "w1"
+    },
+    {
+      "text": "starts",
+      "start": 0.47,
+      "end": 0.83,
+      "id": "w2"
+    },
+    {
+      "text": "where",
+      "start": 0.89,
+      "end": 1.21,
+      "id": "w3"
+    },
+    {
+      "text": "the",
+      "start": 1.21,
+      "end": 1.4,
+      "id": "w4"
+    },
+    {
+      "text": "passage",
+      "start": 1.4,
+      "end": 1.87,
+      "id": "w5"
+    },
+    {
+      "text": "starts.",
+      "start": 1.87,
+      "end": 2.36,
+      "id": "w6"
+    }
+  ]
+}

@@ -86,3 +86,40 @@ the "Who is Jesus?" sermon from the hook, so the film can echo the passage but n
 Two screenrecord takes ended at the moment the player launched (12.9s / 14.6s, sheet only), so
 there is no usable Genesis take yet. **John 3 stays the keeper.** At picture stage, retry with
 screenrecord started after the sheet opens, or record the player as a separate take.
+
+## Approval — 2026-10-11
+Tobias: "go for both" — in reply to: go on the script, and the proposed $5 cap. Script approved as
+written; budget.approved_max = 5 USD.
+
+## Round 2 — 2026-10-11, voice + picture (Gate 3 voice part, Gate 2)
+
+### Voice
+7 clone lines (`kMS8f1BmXMghbv2jguJo`, eleven_v3), $0.28. Fit chain PASS. Every clip transcribed
+(`assets/vo/b*-r1-r1.mp3.words.json`) and matches the script word for word. check_video --strict:
+0 FAIL, 1 WARN — rate 2.95 wps (band 2.0–2.6). Same as the clone's pace on earlier films; kept.
+If it sounds rushed, re-fit all seven with `atempo 0.93` (fits every window; cues re-anchor).
+Voice-free 46%.
+
+### Picture — built, snapshotted, fixed
+- Cover held 0–0.4s per DESIGN.md (the ai-prototyping film holds 2.5s with no recorded reason; the
+  written rule wins).
+- **Beat 5 timing changed from the script table.** The raw recording spends ~3s on loading
+  placeholders, so it was cut into three real segments (reader 0–3.8s, clip list 6.4–8.6s, tap →
+  player 10.6–12.5s, last frame held): `assets/capture/verse-to-clip-cut.mp4`, 30fps CFR (the
+  source is VFR from screenrecord). The player opens at 40.1s, so b5 moved to 40.2s ("clip
+  starts" lands as it opens) — the silence before it grew from 3s to ~6.7s. Jump cuts are real
+  footage, no reordering.
+- Portfolio-proof size: the recording is portrait, so the ≥70%-width rule can't apply; the device
+  is 1002px tall (93% of frame height), the largest element in the film.
+- Beat 3 frame cropped to the preacher only (`assets/ui/sermon-frame.png`): the first crop showed
+  identifiable audience members.
+- Fixes after the first snapshot pass: close card unreadable (title over the densest dots) → the
+  dots now sweep in and clear before the title; marker circle clipped the result card's kicker →
+  refit around the title only; beat-5 caption wrapped mid-phrase → shortened.
+- Motion vocabulary: halftone resolves (beat 3 sermon, beat 4 workflow, beat 5 device), marker
+  circle (beat 1) + underline (beat 3), device tilt (beats 4, 5), grade morph (beats 3, 6),
+  dot-takeover close. Cues cite word timestamps in `index.html` comments.
+- Mute pass: problem (search → wrong-looking title) → timestamp diagram → 3–5 min by hand →
+  pipeline → the record's fields (model vs transcript) → the app → 805 / 299, in development. Holds.
+
+**Gate 2: passed on snapshots.** Gate 3 (bed, duck, levels) next.

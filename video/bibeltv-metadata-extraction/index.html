@@ -1,4 +1,372 @@
 <!doctype html>
-<!-- Gate-1 stub: root duration only. The composition is built after Tobias approves the script. -->
-<html lang="en"><head><meta charset="UTF-8" /><title>The Metadata Nobody Sees — case study</title></head>
-<body><div id="root" data-composition-id="bibeltv-metadata-extraction" data-start="0" data-duration="59.4" data-width="1920" data-height="1080"></div></body></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>The Metadata Nobody Sees — case study</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+      #cover { z-index: 60; opacity: 1; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; } #s3 { z-index: 3; }
+      #s4 { z-index: 4; perspective: 2200px; perspective-origin: 70% 40%; }
+      #s5 { z-index: 5; perspective: 2000px; perspective-origin: 70% 50%; }
+      #s6 { z-index: 6; } #s7 { z-index: 7; }
+
+      #cover-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; background: var(--paper); }
+      #cover-title { font-size: 112px; max-width: 1500px; }
+      #cover-sub { font-family: "Switzer", serif; font-weight: 400; font-size: 32px; color: var(--muted); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.02; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); font-size: 30px; line-height: 1.35; }
+      .col { position: absolute; left: 150px; top: 0; height: 100%; width: 640px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      .kickrow { display: flex; align-items: center; gap: 18px; }
+      .card { position: absolute; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 30px 70px rgba(26,37,32,0.13); }
+
+      /* S1: search → a right result that looks wrong */
+      #q-box { left: 1000px; top: 250px; width: 740px; height: 116px; padding: 0 40px; display: flex; align-items: center; gap: 24px; }
+      #q-k { font-family: "Departure Mono", monospace; font-size: 18px; letter-spacing: 0.14em; color: var(--muted); width: 120px; }
+      #q-text { font-family: "Switzer", serif; font-weight: 500; font-size: 46px; color: var(--ink); width: 520px; white-space: pre; }
+      #res { left: 1000px; top: 420px; width: 740px; padding: 40px 44px 46px; display: flex; flex-direction: column; gap: 16px; }
+      #res-k { font-family: "Departure Mono", monospace; font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-text); }
+      #res-title { font-family: "Redaction 20", serif; font-size: 78px; color: var(--ink); line-height: 1; }
+      #res-sub { font-family: "Switzer", serif; font-weight: 300; font-size: 28px; color: var(--muted); }
+      #res-circ { position: absolute; left: 14px; top: 56px; width: 560px; height: 118px; overflow: visible; }
+
+      /* S2: a sermon as a timeline */
+      #tl-svg { position: absolute; left: 900px; top: 360px; width: 880px; height: 360px; }
+
+      /* S3: by hand first */
+      #s3-num { font-family: "Redaction 70", serif; font-style: italic; font-size: 150px; line-height: 0.95; position: relative; }
+      #s3-ul { position: absolute; left: 0; bottom: -18px; width: 440px; height: 30px; overflow: visible; }
+      #frame3 { position: absolute; left: 1080px; top: 230px; width: 620px; height: 620px; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule); box-shadow: 0 30px 70px rgba(26,37,32,0.16); }
+      #frame3 img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.8) contrast(0.96); }
+      #frame3 .ht { position: absolute; inset: 0; width: 100%; height: 100%; }
+      #frame3 .ht circle, .device .ht circle { fill: var(--teal); }
+      #frame3-cap { position: absolute; left: 1080px; top: 872px; font-family: "Departure Mono", monospace; font-size: 18px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+      /* devices */
+      .device { position: absolute; border-radius: 22px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      .device .ht { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+
+      /* S4: pipeline → the five fields */
+      #dev4 { left: 830px; top: 170px; width: 1000px; height: 508px; }
+      #dev4 img { width: 100%; height: 100%; display: block; }
+      #chips { position: absolute; left: 830px; top: 760px; width: 1000px; display: flex; gap: 18px; }
+      .chip { flex: 1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+      .chip .pill { font-family: "Switzer", serif; font-weight: 500; font-size: 28px; color: var(--ink); padding: 14px 22px; border: 1.5px solid var(--rule); border-radius: 999px; background: var(--surface); white-space: nowrap; }
+      .chip .tag { font-family: "Departure Mono", monospace; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+      #chip-q .pill { background: var(--teal-light); border-color: var(--teal); color: var(--teal-text); }
+      #chip-q .tag { color: var(--teal-text); }
+
+      /* S5: the money shot */
+      #dev5 { left: 1150px; top: 38px; width: 446px; height: 1002px; border-radius: 34px; }
+      #dev5 video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+
+      /* S6: where it stands */
+      #s6-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+      #s6-row { display: flex; gap: 70px; margin-top: 24px; }
+      .metric { width: 520px; padding: 50px 40px 44px; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 30px 70px rgba(26,37,32,0.12); display: flex; flex-direction: column; gap: 12px; }
+      .metric .num { font-family: "Redaction 70", serif; font-style: italic; font-size: 160px; line-height: 0.95; color: var(--ink); }
+      .metric .lab { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      #s6-qual { margin-top: 34px; font-family: "Switzer", serif; font-weight: 400; font-size: 32px; color: var(--muted); }
+
+      /* S7: close */
+      #s7-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+      #s7-title { font-size: 116px; }
+      #s7-url { font-family: "Switzer", serif; font-weight: 500; font-size: 40px; color: var(--ink); }
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+
+      #grain { position: absolute; inset: 0; z-index: 20; opacity: 0.07; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="59.4" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="cover" class="scene">
+        <div id="cover-col">
+          <span class="kicker">Bibel TV · Sermon pipeline · 2026</span>
+          <h1 id="cover-title" class="display">The Metadata Nobody Sees</h1>
+          <p id="cover-sub">A timestamp is an interface.</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s1-kick">The problem</span><span class="rule" id="s1-rule"></span></div>
+          <h2 id="s1-h" class="display" style="font-size: 88px;">The right result looks wrong</h2>
+        </div>
+        <div id="q-box" class="card"><span id="q-k">SEARCH</span><span id="q-text"></span></div>
+        <div id="res" class="card">
+          <span id="res-k">Sermon · top result</span>
+          <span id="res-title">Who is Jesus?</span>
+          <span id="res-sub">Also discusses the creation account.</span>
+          <svg id="res-circ" viewBox="0 0 560 150" preserveAspectRatio="none" aria-hidden="true"><path id="circ1" d="M 300 18 C 470 10, 548 52, 534 86 C 518 128, 330 140, 180 132 C 60 124, 6 98, 22 64 C 38 30, 150 12, 318 16" fill="none" stroke="#457468" stroke-width="6" stroke-linecap="round"/></svg>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s2-kick">The interface</span><span class="rule" id="s2-rule"></span></div>
+          <h2 id="s2-h" class="display" style="font-size: 88px;">A timestamp is an interface.</h2>
+        </div>
+        <svg id="tl-svg" viewBox="0 0 880 360" aria-hidden="true">
+          <text x="0" y="40" font-family="Departure Mono, monospace" font-size="20" fill="#666666" letter-spacing="3">ONE SERMON</text>
+          <line id="tl-bar" x1="0" y1="170" x2="880" y2="170" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+          <rect id="tl-seg" x="420" y="140" width="260" height="60" rx="8" fill="#e8f0ed" stroke="#457468" stroke-width="3"/>
+          <text id="tl-seg-t" x="550" y="122" text-anchor="middle" font-family="Departure Mono, monospace" font-size="20" fill="#3d6a5e" letter-spacing="3">THE PASSAGE</text>
+          <line id="tl-tick" x1="420" y1="110" x2="420" y2="232" stroke="#457468" stroke-width="4"/>
+          <g id="tl-head"><line x1="0" y1="96" x2="0" y2="244" stroke="#1a1a1a" stroke-width="3"/><circle cx="0" cy="96" r="12" fill="#1a1a1a"/></g>
+          <text id="tl-play-t" x="420" y="292" text-anchor="middle" font-family="Departure Mono, monospace" font-size="20" fill="#3d6a5e" letter-spacing="3">PLAYBACK STARTS HERE</text>
+        </svg>
+      </section>
+
+      <section id="s3" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s3-kick">By hand, first</span><span class="rule" id="s3-rule"></span></div>
+          <div id="s3-num">3–5 min<svg id="s3-ul" viewBox="0 0 440 30" aria-hidden="true"><path id="ul3" d="M 4 18 C 120 6, 300 26, 436 12" fill="none" stroke="#457468" stroke-width="6" stroke-linecap="round"/></svg></div>
+          <p class="body" id="s3-b">per video, for Scripture alone, logged by hand.</p>
+        </div>
+        <div id="frame3"><img src="assets/ui/sermon-frame.png" alt="" /><svg id="ht3" class="ht" viewBox="0 0 620 620" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <span id="frame3-cap">A real sermon from the catalog</span>
+      </section>
+
+      <section id="s4" class="scene">
+        <div class="col" style="width: 560px;">
+          <div class="kickrow"><span class="kicker" id="s4-kick">The pipeline</span><span class="rule" id="s4-rule"></span></div>
+          <h2 id="s4-h" class="display" style="font-size: 80px;">Transcript → passage → clip</h2>
+        </div>
+        <div id="dev4" class="device"><img src="assets/ui/n8n-sermon-insights-workflow.png" alt="" /><svg id="ht4" class="ht" viewBox="0 0 1000 508" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <div id="chips">
+          <div class="chip" id="chip-v"><span class="pill">Source video</span><span class="tag">code</span></div>
+          <div class="chip" id="chip-s"><span class="pill">Start</span><span class="tag">model</span></div>
+          <div class="chip" id="chip-e"><span class="pill">End</span><span class="tag">model</span></div>
+          <div class="chip" id="chip-t"><span class="pill">Title</span><span class="tag">model</span></div>
+          <div class="chip" id="chip-q"><span class="pill">Quote</span><span class="tag">cut from the transcript</span></div>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s5-kick">In the app</span><span class="rule" id="s5-rule"></span></div>
+          <h2 id="s5-h" class="display" style="font-size: 96px;">Tap a verse.</h2>
+          <p class="body" id="s5-b">Bibel erklärt · development build</p>
+        </div>
+        <div id="dev5" class="device">
+          <video id="flow5" data-start="33.80" data-duration="11.20" data-media-start="0" data-track-index="30" src="assets/capture/verse-to-clip-cut.mp4" muted playsinline></video>
+          <svg id="ht5" class="ht" viewBox="0 0 446 1002" preserveAspectRatio="none" aria-hidden="true"></svg>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <div id="s6-wrap">
+          <div class="kickrow"><span class="kicker" id="s6-k">Where it stands</span><span class="rule" id="s6-rule"></span></div>
+          <div id="s6-row">
+            <div class="metric" id="m1"><span class="num" id="m1n">0</span><span class="lab">sermon clips</span></div>
+            <div class="metric" id="m2"><span class="num" id="m2n">0</span><span class="lab">transcribed videos</span></div>
+          </div>
+          <span id="s6-qual">In development, not yet published</span>
+        </div>
+      </section>
+
+      <section id="s7" class="scene">
+        <svg id="dots7" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="s7-wrap">
+          <span class="kicker" id="s7-k">Case study</span>
+          <h2 id="s7-title" class="display">The Metadata Nobody Sees</h2>
+          <span id="s7-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+
+      <!-- VO r1 (video_build.py fit, round r1). data-duration = file + 0.2s. Word anchors: assets/vo/b*-r1-r1.mp3.words.json -->
+      <audio id="vo-b1" data-start="0.90" data-duration="6.68" data-track-index="20" src="assets/vo/b1-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b2" data-start="8.60" data-duration="3.48" data-track-index="20" src="assets/vo/b2-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b3" data-start="14.60" data-duration="3.96" data-track-index="20" src="assets/vo/b3-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b4" data-start="22.60" data-duration="9.08" data-track-index="20" src="assets/vo/b4-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b5" data-start="40.20" data-duration="2.68" data-track-index="20" src="assets/vo/b5-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b6" data-start="45.60" data-duration="3.80" data-track-index="20" src="assets/vo/b6-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b7" data-start="53.00" data-duration="3.88" data-track-index="20" src="assets/vo/b7-r1-r1.mp3" data-volume="1"></audio>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function prepDraw(id) { var p = document.getElementById(id), len = p.getTotalLength(); p.style.strokeDasharray = len; gsap.set(p, { strokeDashoffset: len }); return len; }
+
+      var ht3 = buildScreen(document.getElementById("ht3"), 620, 620, 34, [0.4, 0.4]);
+      var ht4 = buildScreen(document.getElementById("ht4"), 1000, 508, 40, [0.35, 0.45]);
+      var ht5 = buildScreen(document.getElementById("ht5"), 446, 1002, 34, [0.5, 0.35]);
+      var dots7 = buildField(document.getElementById("dots7"), 1920, 1080, 40, [0.5, 0.5], 14, 23, 1.10);
+
+      var tl = gsap.timeline({ paused: true });
+
+      // ===== Cover (0 – 0.4): settled title card, held, blur-crossfade. Poster frame. =====
+      tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 0.25);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.28);
+
+      // ===== S1 (0.4 – 8.0). b1 @0.90: "creation story" 2.12–3.36, "sermon" 4.76–5.33, "wrong" 6.41–7.22. =====
+      tl.fromTo("#s1-kick", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.45);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.6);
+      tl.fromTo("#s1-h", { y: 30, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, 0.6);
+      tl.fromTo("#q-box", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.5);
+      var q = "Genesis 1";
+      for (var i = 1; i <= q.length; i++) tl.set("#q-text", { textContent: q.slice(0, i) }, 1.0 + i * 0.11);
+      tl.fromTo("#res", { opacity: 0, y: 30, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 4.55);
+      var c1 = prepDraw("circ1");
+      tl.fromTo("#circ1", { strokeDashoffset: c1 }, { strokeDashoffset: 0, duration: 0.75, ease: "power2.inOut" }, 6.40);
+
+      // T1 blur crossfade (8.0)
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.80);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 7.95);
+
+      // ===== S2 (8.0 – 14.0). b2 @8.60: "passage" 9.16–9.65, "playback" 10.59–11.06, "start" ends 11.84. =====
+      var barLen = prepDraw("tl-bar");
+      gsap.set(["#tl-seg", "#tl-seg-t", "#tl-tick", "#tl-play-t"], { opacity: 0 });
+      gsap.set("#tl-head", { x: 40 });
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 8.2);
+      tl.fromTo("#s2-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 8.3);
+      tl.fromTo("#s2-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 8.35);
+      tl.fromTo("#tl-bar", { strokeDashoffset: barLen }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 8.4);
+      tl.fromTo("#tl-seg", { opacity: 0, scaleX: 0, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "expo.out" }, 9.15);
+      tl.to("#tl-seg-t", { opacity: 1, duration: 0.4 }, 9.45);
+      tl.to("#tl-tick", { opacity: 1, duration: 0.3 }, 9.8);
+      // the play-head jumps to the passage start on "playback"
+      tl.to("#tl-head", { x: 420, duration: 0.45, ease: "expo.inOut" }, 10.55);
+      tl.to("#tl-play-t", { opacity: 1, duration: 0.4 }, 11.0);
+
+      // T2 blur crossfade (14.0)
+      tl.to("#s2", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 13.80);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 13.95);
+
+      // ===== S3 (14.0 – 22.0). b3 @14.60: "logging" 15.48–16.00, "week" 16.74–16.96, "videos" ends 18.28. Halftone resolves the sermon. =====
+      gsap.set(ht3, { scale: 1, transformOrigin: "50% 50%" });
+      tl.fromTo("#s3-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 14.2);
+      tl.fromTo("#s3-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 14.3);
+      tl.fromTo("#frame3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 14.2);
+      tl.to(ht3, { scale: 0, duration: 0.5, ease: "power3.out", stagger: { each: 0.0012 } }, 15.4);
+      tl.fromTo("#frame3-cap", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 16.3);
+      tl.fromTo("#s3-num", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 15.45);
+      tl.set("#s3-num", { fontFamily: '"Redaction 50", serif' }, 16.2);
+      tl.set("#s3-num", { fontFamily: '"Redaction 35", serif' }, 16.45);
+      tl.set("#s3-num", { fontFamily: '"Redaction 20", serif', fontStyle: "normal" }, 16.7);
+      tl.fromTo("#s3-b", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 16.8);
+      var u3 = prepDraw("ul3");
+      tl.fromTo("#ul3", { strokeDashoffset: u3 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 17.3);
+      tl.to("#frame3", { y: -10, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 18.4);
+
+      // T3 zoom-through into the pipeline (22.0)
+      tl.to("#s3", { scale: 1.2, opacity: 0, duration: 0.5, ease: "power2.in" }, 21.75);
+      tl.fromTo("#s4", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 21.9);
+
+      // ===== S4 (22.0 – 33.5). b4 @22.60: "pipeline" 23.14–23.65, "model" 26.99–27.37, "names it" 28.81–29.59, "quote" 29.77–30.06, "sermon" ends 31.16. =====
+      gsap.set("#dev4", { rotationY: -16, rotationX: 4, transformOrigin: "50% 50%", y: 30 });
+      gsap.set(ht4, { scale: 1, transformOrigin: "50% 50%" });
+      gsap.set(".chip", { opacity: 0, y: 20 });
+      tl.fromTo("#s4-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 22.2);
+      tl.fromTo("#s4-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 22.3);
+      tl.fromTo("#s4-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 22.4);
+      tl.to("#dev4", { rotationY: -8, rotationX: 3, y: 0, duration: 1.2, ease: "power3.out" }, 22.3);
+      tl.to(ht4, { scale: 0, duration: 0.5, ease: "power3.out", stagger: { each: 0.0018 } }, 23.15);
+      // the record's fields come out of the graph: from the model's pass, then the quote
+      tl.to("#dev4", { opacity: 0.45, y: -20, duration: 0.6, ease: "power2.inOut" }, 26.9);
+      tl.to("#chip-v", { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.4)" }, 26.95);
+      tl.to("#chip-s", { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.4)" }, 27.15);
+      tl.to("#chip-e", { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.4)" }, 27.35);
+      tl.to("#chip-t", { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.4)" }, 28.80);
+      tl.to("#chip-q", { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.4)" }, 29.75);
+      tl.fromTo("#chip-q .pill", { scale: 1 }, { scale: 1.08, transformOrigin: "0% 50%", duration: 0.2, yoyo: true, repeat: 1 }, 30.3);
+
+      // T4 blur crossfade (33.5)
+      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 33.25);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 33.4);
+
+      // ===== S5 (33.5 – 45.0). Recording cut: reader 0–3.8, clip list 3.8–6.0, player from ~6.3 (= 40.1 abs).
+      // b5 @40.20: "clip starts" 40.41–41.03, "passage starts" 41.60–42.56 — lands as the player opens. =====
+      gsap.set("#dev5", { rotationY: 18, rotationX: 4, transformOrigin: "50% 50%" });
+      gsap.set(ht5, { scale: 1, transformOrigin: "50% 50%" });
+      tl.to("#dev5", { rotationY: -6, rotationX: 2, duration: 1.2, ease: "power3.out" }, 33.5);
+      tl.to(ht5, { scale: 0, duration: 0.5, ease: "power3.out", stagger: { each: 0.0010 } }, 33.7);
+      tl.fromTo("#s5-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 33.8);
+      tl.fromTo("#s5-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 33.9);
+      tl.fromTo("#s5-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 34.0);
+      tl.fromTo("#s5-b", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 34.5);
+      tl.fromTo("#dev5", { y: 0 }, { y: -10, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 36.0);
+
+      // T5 blur crossfade (45.0)
+      tl.to("#s5", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 44.75);
+      tl.fromTo("#s6", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 44.9);
+
+      // ===== S6 (45.0 – 52.5). b6 @45.60: "evidence" 46.25–46.80, "answer" ends 49.00. Corpus snapshot, Tobias's own check (2026-09-16). =====
+      gsap.set(["#m1", "#m2", "#s6-qual"], { opacity: 0, y: 24 });
+      tl.fromTo("#s6-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 45.1);
+      tl.fromTo("#s6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out", transformOrigin: "50% 50%" }, 45.3);
+      tl.to("#m1", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 45.4);
+      tl.to("#m2", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 45.7);
+      var k1 = { v: 0 }, k2 = { v: 0 };
+      tl.to(k1, { v: 805, duration: 1.6, ease: "power2.out", onUpdate: function () { document.getElementById("m1n").textContent = Math.round(k1.v); } }, 45.6);
+      tl.to(k2, { v: 299, duration: 1.6, ease: "power2.out", onUpdate: function () { document.getElementById("m2n").textContent = Math.round(k2.v); } }, 45.9);
+      tl.set("#m1n", { fontFamily: '"Redaction 50", serif' }, 47.3); tl.set("#m1n", { fontFamily: '"Redaction 35", serif' }, 47.55); tl.set("#m1n", { fontFamily: '"Redaction 20", serif', fontStyle: "normal" }, 47.8);
+      tl.set("#m2n", { fontFamily: '"Redaction 50", serif' }, 47.6); tl.set("#m2n", { fontFamily: '"Redaction 35", serif' }, 47.85); tl.set("#m2n", { fontFamily: '"Redaction 20", serif', fontStyle: "normal" }, 48.1);
+      tl.to("#s6-qual", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 48.4);
+
+      // T6 dots take over (52.5)
+      tl.to("#s6", { opacity: 0, filter: "blur(10px)", duration: 0.5, ease: "power2.inOut" }, 52.3);
+      tl.fromTo("#s7", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.inOut" }, 52.35);
+
+      // ===== S7 close (52.5 – 59.4). b7 @53.00: "Get in touch" 55.92–56.58. =====
+      gsap.set(dots7, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots7, { scale: 1, duration: 0.45, ease: "back.out(1.5)", stagger: { each: 0.0003 } }, 52.35);
+      tl.to(dots7, { scale: 0, duration: 0.4, ease: "power2.in", stagger: { each: 0.0003 } }, 52.95);
+      tl.fromTo("#s7-title", { opacity: 0, filter: "blur(12px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 53.15);
+      tl.fromTo("#s7-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 53.2);
+      tl.fromTo("#s7-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 55.9);
+      tl.to("#s7-wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 58.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

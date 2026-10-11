@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 12,
+  "durationSeconds": 3.4,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-metadata-extraction/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "Each",
+      "start": 0.05,
+      "end": 0.28,
+      "id": "w0"
+    },
+    {
+      "text": "one",
+      "start": 0.29,
+      "end": 0.51,
+      "id": "w1"
+    },
+    {
+      "text": "is",
+      "start": 0.51,
+      "end": 0.65,
+      "id": "w2"
+    },
+    {
+      "text": "evidence",
+      "start": 0.65,
+      "end": 1.2,
+      "id": "w3"
+    },
+    {
+      "text": "the",
+      "start": 1.3,
+      "end": 1.44,
+      "id": "w4"
+    },
+    {
+      "text": "apps",
+      "start": 1.44,
+      "end": 1.65,
+      "id": "w5"
+    },
+    {
+      "text": "chat",
+      "start": 1.73,
+      "end": 2.01,
+      "id": "w6"
+    },
+    {
+      "text": "can",
+      "start": 2.07,
+      "end": 2.21,
+      "id": "w7"
+    },
+    {
+      "text": "retrieve",
+      "start": 2.21,
+      "end": 2.61,
+      "id": "w8"
+    },
+    {
+      "text": "for",
+      "start": 2.74,
+      "end": 2.79,
+      "id": "w9"
+    },
+    {
+      "text": "an",
+      "start": 2.79,
+      "end": 2.88,
+      "id": "w10"
+    },
+    {
+      "text": "answer.",
+      "start": 2.88,
+      "end": 3.4,
+      "id": "w11"
+    }
+  ]
+}

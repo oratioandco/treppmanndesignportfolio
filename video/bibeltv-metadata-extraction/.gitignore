@@ -1,0 +1,6 @@
+renders/
+snapshots/
+.hyperframes/
+node_modules/
+transcript.json
+assets/audio/vo-stem*.wav

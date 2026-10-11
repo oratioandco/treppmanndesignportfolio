@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 12,
+  "durationSeconds": 3.68,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-metadata-extraction/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "First",
+      "start": 0.18,
+      "end": 0.36,
+      "id": "w0"
+    },
+    {
+      "text": "I",
+      "start": 0.42,
+      "end": 0.44,
+      "id": "w1"
+    },
+    {
+      "text": "did",
+      "start": 0.44,
+      "end": 0.66,
+      "id": "w2"
+    },
+    {
+      "text": "the",
+      "start": 0.66,
+      "end": 0.88,
+      "id": "w3"
+    },
+    {
+      "text": "logging",
+      "start": 0.88,
+      "end": 1.4,
+      "id": "w4"
+    },
+    {
+      "text": "myself",
+      "start": 1.4,
+      "end": 1.51,
+      "id": "w5"
+    },
+    {
+      "text": "for",
+      "start": 1.85,
+      "end": 2.07,
+      "id": "w6"
+    },
+    {
+      "text": "a",
+      "start": 2.07,
+      "end": 2.14,
+      "id": "w7"
+    },
+    {
+      "text": "week",
+      "start": 2.14,
+      "end": 2.36,
+      "id": "w8"
+    },
+    {
+      "text": "on",
+      "start": 2.56,
+      "end": 2.66,
+      "id": "w9"
+    },
+    {
+      "text": "real",
+      "start": 2.66,
+      "end": 3.02,
+      "id": "w10"
+    },
+    {
+      "text": "videos.",
+      "start": 3.02,
+      "end": 3.68,
+      "id": "w11"
+    }
+  ]
+}

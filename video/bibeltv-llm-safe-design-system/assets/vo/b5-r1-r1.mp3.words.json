@@ -1,0 +1,126 @@
+{
+  "ok": true,
+  "engine": "whisper",
+  "model": "small.en",
+  "detectedLanguage": null,
+  "wordCount": 19,
+  "durationSeconds": 7.32,
+  "speechOnsetSeconds": null,
+  "transcriptPath": "/Users/ttreppmann/Developer/StudioProjects/treppmanndesignportfolio/video/bibeltv-llm-safe-design-system/assets/vo/transcript.json",
+  "words": [
+    {
+      "text": "My",
+      "start": 0.06,
+      "end": 0.16,
+      "id": "w0"
+    },
+    {
+      "text": "check",
+      "start": 0.16,
+      "end": 0.58,
+      "id": "w1"
+    },
+    {
+      "text": "once",
+      "start": 0.58,
+      "end": 0.9,
+      "id": "w2"
+    },
+    {
+      "text": "matched",
+      "start": 0.9,
+      "end": 1.48,
+      "id": "w3"
+    },
+    {
+      "text": "a",
+      "start": 1.54,
+      "end": 1.57,
+      "id": "w4"
+    },
+    {
+      "text": "12",
+      "start": 1.65,
+      "end": 2.08,
+      "id": "w5"
+    },
+    {
+      "text": "pixel",
+      "start": 2.08,
+      "end": 2.5,
+      "id": "w6"
+    },
+    {
+      "text": "font",
+      "start": 2.5,
+      "end": 2.7,
+      "id": "w7"
+    },
+    {
+      "text": "to",
+      "start": 2.92,
+      "end": 3.05,
+      "id": "w8"
+    },
+    {
+      "text": "an",
+      "start": 3.05,
+      "end": 3.2,
+      "id": "w9"
+    },
+    {
+      "text": "unrelated",
+      "start": 3.21,
+      "end": 3.99,
+      "id": "w10"
+    },
+    {
+      "text": "token.",
+      "start": 3.99,
+      "end": 4.76,
+      "id": "w11"
+    },
+    {
+      "text": "Now",
+      "start": 4.82,
+      "end": 5.01,
+      "id": "w12"
+    },
+    {
+      "text": "if",
+      "start": 5.06,
+      "end": 5.19,
+      "id": "w13"
+    },
+    {
+      "text": "nothing",
+      "start": 5.19,
+      "end": 5.81,
+      "id": "w14"
+    },
+    {
+      "text": "fits,",
+      "start": 5.81,
+      "end": 6.33,
+      "id": "w15"
+    },
+    {
+      "text": "it",
+      "start": 6.41,
+      "end": 6.5,
+      "id": "w16"
+    },
+    {
+      "text": "stays",
+      "start": 6.5,
+      "end": 6.86,
+      "id": "w17"
+    },
+    {
+      "text": "silent.",
+      "start": 6.86,
+      "end": 7.32,
+      "id": "w18"
+    }
+  ]
+}

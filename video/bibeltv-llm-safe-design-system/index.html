@@ -1,4 +1,429 @@
 <!doctype html>
-<!-- Gate-1 stub: root duration only. The composition is built after Tobias approves the script. -->
-<html lang="en"><head><meta charset="UTF-8" /><title>An LLM-safe design system — case study</title></head>
-<body><div id="root" data-composition-id="bibeltv-llm-safe-design-system" data-start="0" data-duration="59.4" data-width="1920" data-height="1080"></div></body></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>An LLM-safe design system — case study</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 20"; src: url("assets/fonts/Redaction_20-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Redaction 35"; src: url("assets/fonts/Redaction_35-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 50"; src: url("assets/fonts/Redaction_50-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Redaction 70"; src: url("assets/fonts/Redaction_70-Italic.otf") format("opentype"); font-weight: 400; font-style: normal; }
+      @font-face { font-family: "Switzer"; src: url("assets/fonts/Switzer-Variable.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+      @font-face { font-family: "Departure Mono"; src: url("assets/fonts/DepartureMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+
+      :root {
+        --paper: #f8f3ee; --ink: #1a1a1a; --muted: #666666; --rule: #c9c0b6;
+        --teal: #457468; --teal-text: #3d6a5e; --teal-light: #e8f0ed; --surface: #fffdfa;
+        --term: #1c2421; --term-ink: #e8e0d2; --term-dim: #9aa79f; --term-red: #e0907a; --term-green: #a4c6b9;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Switzer", serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+      #cover { z-index: 60; opacity: 1; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; }
+      #s3 { z-index: 3; perspective: 2200px; perspective-origin: 70% 45%; }
+      #s4 { z-index: 4; } #s5 { z-index: 5; } #s6 { z-index: 6; } #s7 { z-index: 7; }
+
+      #cover-col { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; background: var(--paper); }
+      #cover-title { font-size: 112px; max-width: 1500px; }
+      #cover-sub { font-family: "Switzer", serif; font-weight: 400; font-size: 32px; color: var(--muted); }
+
+      .kicker { font-family: "Departure Mono", monospace; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-text); }
+      .rule { height: 2px; background: var(--rule); width: 120px; }
+      .display { font-family: "Redaction 20", serif; color: var(--ink); letter-spacing: -0.02em; line-height: 1.02; }
+      .body { font-family: "Switzer", serif; font-weight: 300; color: var(--muted); font-size: 30px; line-height: 1.35; }
+      .col { position: absolute; left: 150px; top: 0; height: 100%; width: 620px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+      .kickrow { display: flex; align-items: center; gap: 18px; }
+      .card { position: absolute; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 30px 70px rgba(26,37,32,0.13); }
+      .mono { font-family: "Departure Mono", monospace; }
+
+      /* S1: same pixels, wrong code */
+      #code1 { left: 900px; top: 150px; width: 880px; padding: 30px 36px; display: flex; flex-direction: column; gap: 14px; }
+      #code1 .file { font-size: 17px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+      .dl { font-family: "Departure Mono", monospace; font-size: 18px; white-space: pre; position: relative; }
+      #dl-old { color: #9a5b4a; text-decoration: line-through; text-decoration-color: rgba(154,91,74,0.5); }
+      #dl-new { color: var(--teal-text); min-height: 30px; }
+      #c16 { position: absolute; left: -26px; top: -18px; width: 92px; height: 58px; overflow: visible; }
+      #dl-16 { position: relative; opacity: 0; }
+      #chipimg { position: absolute; left: 900px; top: 400px; width: 735px; height: 90px; border-radius: 0; }
+      #chipimg-cap { position: absolute; left: 900px; top: 506px; font-family: "Departure Mono", monospace; font-size: 17px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+      #demo { position: absolute; left: 900px; top: 600px; width: 880px; height: 330px; }
+      .dchip { position: absolute; width: 420px; height: 96px; background: var(--surface); border: 1.5px solid var(--rule); display: flex; align-items: center; padding: 0 28px; font-family: "Switzer", serif; font-weight: 500; font-size: 26px; color: var(--ink); box-shadow: 0 14px 30px rgba(26,37,32,0.10); }
+      #chipA { left: 0; top: 70px; border-radius: 16px; }
+      #chipB { left: 460px; top: 70px; border-radius: 16px; }
+      .dlab { position: absolute; top: 186px; font-family: "Departure Mono", monospace; font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; }
+      #labA { left: 0; color: var(--teal-text); } #labB { left: 460px; color: #9a5b4a; }
+      #tokval { position: absolute; left: 0; top: 0; font-family: "Departure Mono", monospace; font-size: 21px; color: var(--ink); letter-spacing: 0.04em; }
+      #tokval b { color: var(--teal-text); font-weight: 400; }
+      #demo-cap { position: absolute; left: 0; top: 246px; font-family: "Departure Mono", monospace; font-size: 16px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+      /* S2/S3: Storybook device (persistent across both) */
+      #sbwrap { position: absolute; inset: 0; z-index: 15; opacity: 0; perspective: 2200px; perspective-origin: 70% 45%; pointer-events: none; }
+      .device { position: absolute; border-radius: 18px; overflow: hidden; background: var(--surface); border: 1px solid var(--rule); box-shadow: 0 40px 90px rgba(26,37,32,0.22), 0 6px 18px rgba(26,37,32,0.10); transform-style: preserve-3d; will-change: transform; }
+      #devsb { left: 880px; top: 200px; width: 960px; height: 600px; }
+      #devsb img { width: 100%; height: 100%; display: block; }
+      .device .ht { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .device .ht circle { fill: var(--teal); }
+      #vocab { position: absolute; left: 1400px; top: 150px; width: 470px; height: 780px; overflow: hidden; padding: 0; z-index: 16; opacity: 0; }
+      #vocab-head { position: absolute; left: 0; top: 0; right: 0; padding: 22px 26px 14px; background: var(--surface); z-index: 2; border-bottom: 1px solid var(--rule); font-family: "Departure Mono", monospace; font-size: 16px; letter-spacing: 0.12em; color: var(--teal-text); text-transform: uppercase; }
+      #vocab-list { position: absolute; left: 26px; top: 70px; font-family: "Departure Mono", monospace; font-size: 17px; line-height: 1.75; color: var(--ink); white-space: pre; }
+      #vocab-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: linear-gradient(rgba(255,253,250,0), var(--surface)); z-index: 2; }
+
+      /* S4: the money shot — the real refusals */
+      #term { position: absolute; left: 210px; top: 175px; width: 1500px; height: 780px; background: var(--term); border-radius: 16px; box-shadow: 0 40px 90px rgba(26,37,32,0.28); overflow: hidden; }
+      #term-bar { height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 22px; border-bottom: 1px solid #2c3833; }
+      #term-bar i { width: 13px; height: 13px; border-radius: 50%; background: #3a4a43; display: block; }
+      #term-bar span { margin-left: 18px; font-family: "Departure Mono", monospace; font-size: 16px; letter-spacing: 0.12em; color: var(--term-dim); text-transform: uppercase; }
+      #term-body { padding: 30px 40px; font-family: "Departure Mono", monospace; font-size: 25px; line-height: 1.62; color: var(--term-ink); white-space: pre; }
+      #term-body .ln { opacity: 0; position: relative; }
+      #term-body .cmd { color: var(--term-green); }
+      #term-body .fail { color: var(--term-red); }
+      #term-body .dim { color: var(--term-dim); }
+      .hl { position: relative; }
+      .hlbar { position: absolute; left: -6px; right: -6px; top: 4px; bottom: 2px; background: rgba(164,198,185,0.22); border-bottom: 3px solid var(--term-green); transform-origin: 0% 50%; transform: scaleX(0); }
+      #s4-top { position: absolute; left: 210px; top: 96px; display: flex; align-items: center; gap: 18px; }
+
+      /* S5: twelve pixels */
+      #d5 { position: absolute; left: 860px; top: 250px; width: 960px; height: 600px; }
+      .nbox { position: absolute; padding: 26px 30px; background: var(--surface); border: 1.5px solid var(--rule); border-radius: 12px; font-family: "Departure Mono", monospace; font-size: 24px; color: var(--ink); box-shadow: 0 16px 34px rgba(26,37,32,0.09); }
+      .nbox small { display: block; margin-top: 10px; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+      #nfont { left: 0; top: 200px; }
+      #ncand { left: 520px; top: 60px; }
+      #nnone { left: 520px; top: 360px; border-style: dashed; color: var(--muted); background: transparent; box-shadow: none; }
+      #d5-svg { position: absolute; left: 0; top: 0; width: 960px; height: 600px; overflow: visible; }
+
+      /* S6 */
+      #s6-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; text-align: center; }
+      #s6-line { font-family: "Redaction 70", serif; font-style: italic; font-size: 132px; line-height: 1.04; max-width: 1500px; color: var(--ink); }
+
+      /* S7 close */
+      #s7-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+      #s7-title { font-size: 116px; }
+      #s7-url { font-family: "Switzer", serif; font-weight: 500; font-size: 40px; color: var(--ink); }
+      .dots { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .dots circle { fill: var(--teal); }
+
+      #grain { position: absolute; inset: 0; z-index: 40; opacity: 0.07; mix-blend-mode: multiply; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="59.4" data-width="1920" data-height="1080" data-fps="30" data-layout-allow-overflow>
+
+      <section id="cover" class="scene">
+        <div id="cover-col">
+          <span class="kicker">Bibel TV · Design system · 2026</span>
+          <h1 id="cover-title" class="display">An LLM-safe design system</h1>
+          <p id="cover-sub">A company with no staff designers.</p>
+        </div>
+      </section>
+
+      <section id="s1" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s1-kick">The problem</span><span class="rule" id="s1-rule"></span></div>
+          <h2 id="s1-h" class="display" style="font-size: 92px;">Same pixels. Wrong code.</h2>
+        </div>
+        <div id="code1" class="card">
+          <span class="file mono">SuggestionChip.tsx · line 83</span>
+          <span class="dl" id="dl-old">- borderRadius: 'var(--btv-component-suggestion-chip-corner-radius)',</span>
+          <span class="dl" id="dl-new"><span id="dl-pre"></span><span id="dl-16">16<svg id="c16" viewBox="0 0 120 70" preserveAspectRatio="none" aria-hidden="true"><path id="circ16" d="M 64 6 C 104 4, 118 24, 112 42 C 104 62, 56 68, 26 62 C 6 56, 2 34, 14 20 C 26 8, 52 4, 74 6" fill="none" stroke="#457468" stroke-width="5" stroke-linecap="round"/></svg></span><span id="dl-post"></span></span>
+        </div>
+        <img id="chipimg" src="assets/capture/suggestion-chip-light.png" alt="" />
+        <span id="chipimg-cap">Rendered either way: identical</span>
+        <div id="demo">
+          <div id="tokval">suggestion-chip-corner-radius: <b id="tokv">16</b></div>
+          <div class="dchip" id="chipA">Ich brauche Ermutigung</div>
+          <div class="dchip" id="chipB">Ich brauche Ermutigung</div>
+          <span class="dlab" id="labA">Bound to the token</span>
+          <span class="dlab" id="labB">Hardcoded 16</span>
+          <span id="demo-cap">Diagram: change the token, see who follows</span>
+        </div>
+      </section>
+
+      <section id="s2" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s2-kick">The constraint</span><span class="rule" id="s2-rule"></span></div>
+          <h2 id="s2-h" class="display" style="font-size: 78px;">Product managers shape the features.</h2>
+        </div>
+      </section>
+
+      <section id="s3" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s3-kick">The turn</span><span class="rule" id="s3-rule"></span></div>
+          <h2 id="s3-h" class="display" style="font-size: 92px;">Storybook, not Figma.</h2>
+          <p class="body" id="s3-b">A closed list of names.</p>
+        </div>
+      </section>
+
+      <div id="sbwrap">
+        <div id="devsb" class="device"><img src="assets/ui/llm-safe-storybook.png" alt="" /><svg id="htsb" class="ht" viewBox="0 0 960 600" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <div id="vocab" class="card">
+          <div id="vocab-head">list_token_vocabulary · the only valid names</div>
+          <div id="vocab-list">--btv-component-search-field-asterisk-size
+--btv-component-search-field-border-width
+--btv-component-search-field-chip-border-width
+--btv-component-search-field-chip-corner-radius
+--btv-component-search-field-chip-surface-alpha
+--btv-component-search-field-corner-radius
+--btv-component-search-field-expanded-padding-horizontal
+--btv-component-search-field-expanded-padding-vertical
+--btv-component-search-field-expanded-surface-alpha
+--btv-component-search-field-field-height
+--btv-component-search-field-glow-alpha-max
+--btv-component-search-field-glow-alpha-min
+--btv-component-search-field-glow-bloom-radius
+--btv-component-search-field-glow-breathe-duration-ms
+--btv-component-search-field-glow-edge-width
+--btv-component-search-field-glow-sweep-duration-ms
+--btv-component-search-field-loading-message-interval-ms
+--btv-component-search-field-resting-surface-alpha
+--btv-component-search-field-starter-prompts-min-height
+--btv-component-search-field-transition-duration-ms
+--btv-component-section-horizontal-padding
+--btv-component-section-vertical-spacing
+--btv-component-slider-hero-auto-advance-interval-ms
+--btv-component-slider-hero-height-mobile
+--btv-component-slider-hero-height-tablet
+--btv-component-slider-hero-indicator-bottom-padding
+--btv-component-slider-horizontal-padding
+--btv-component-slider-item-spacing
+--btv-component-slider-title-bottom-padding
+--btv-component-slider-title-font-size
+--btv-component-suggestion-chip-category-anlass-color
+--btv-component-suggestion-chip-category-persoenlich-color
+--btv-component-suggestion-chip-category-stelle-finden-color
+--btv-component-suggestion-chip-category-thema-color
+--btv-component-suggestion-chip-corner-radius
+--btv-component-suggestion-chip-surface-alpha
+--btv-views-detail-button-row-top-gap
+--btv-views-detail-content-fade-in-duration-ms
+--btv-views-detail-content-padding-horizontal
+--btv-views-detail-description-bottom-gap
+--btv-views-detail-hero-image-bottom-gap
+--btv-views-detail-meta-description-gap
+--btv-views-detail-section-gap
+--btv-views-detail-title-meta-gap
+--btv-views-detail-top-bar-content-gap
+--btv-views-home-layout-content-padding-bottom-mobile</div>
+          <div id="vocab-fade"></div>
+        </div>
+      </div>
+
+      <section id="s4" class="scene">
+        <div id="s4-top"><span class="kicker" id="s4-k">Six checks · locally and in CI</span><span class="rule"></span></div>
+        <div id="term">
+          <div id="term-bar"><i></i><i></i><i></i><span>Staged change · real checks · ProtoBible design system</span></div>
+          <div id="term-body"><div class="ln cmd" id="t1">$ <span id="t1c"></span></div><div class="ln fail" id="t2">verify-component-vars: FAIL — 1 phantom var() reference(s):</div><div class="ln" id="t3">  SuggestionChip.tsx:86  <span class="hl"><span class="hlbar" id="hl1"></span>--btv-semantic-spacing-gap-roomy</span></div><div class="ln dim" id="t4"> </div><div class="ln cmd" id="t5">$ <span id="t5c"></span></div><div class="ln fail" id="t6">verify-style-literals: FAIL — 1 hardcoded style value(s):</div><div class="ln" id="t7">  SuggestionChip.tsx:83  <span class="hl"><span class="hlbar" id="hl2"></span>borderRadius: 16</span>  <span class="dim">[dimension]</span></div><div class="ln" id="t8">      → use <span class="hl"><span class="hlbar" id="hl3"></span>var(--btv-component-suggestion-chip-corner-radius)</span></div><div class="ln" id="t9">        or  var(--btv-semantic-buttons-radius)</div><div class="ln" id="t10">        or  var(--btv-semantic-card-radius)</div><div class="ln dim" id="t11">  1 of 1 match an existing token's VALUE — confirm the binding is</div><div class="ln dim" id="t12">  semantically right, not merely numerically equal.</div></div>
+        </div>
+      </section>
+
+      <section id="s5" class="scene">
+        <div class="col">
+          <div class="kickrow"><span class="kicker" id="s5-kick">The suggestion</span><span class="rule" id="s5-rule"></span></div>
+          <h2 id="s5-h" class="display" style="font-size: 110px;">12 px ≠ 12 px</h2>
+        </div>
+        <div id="d5">
+          <svg id="d5-svg" viewBox="0 0 960 600" aria-hidden="true">
+            <path id="a1" d="M 300 250 C 390 250, 420 130, 512 120" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+            <path id="a2" d="M 300 280 C 390 280, 420 400, 512 410" fill="none" stroke="#457468" stroke-width="3" stroke-dasharray="8 8"/>
+            <path id="x1" d="M 506 70 L 900 196" fill="none" stroke="#9a5b4a" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <div class="nbox" id="nfont">font-size: 12px<small>a type decision</small></div>
+          <div class="nbox" id="ncand">a 12 px token<small>from an unrelated decision</small></div>
+          <div class="nbox" id="nnone">no suggestion<small>the system has no name for it yet</small></div>
+        </div>
+      </section>
+
+      <section id="s6" class="scene">
+        <div id="s6-wrap">
+          <div class="kickrow"><span class="kicker" id="s6-k">Where design authority lives</span><span class="rule" id="s6-rule"></span></div>
+          <p id="s6-line">Everything else is advice.</p>
+        </div>
+      </section>
+
+      <section id="s7" class="scene">
+        <svg id="dots7" class="dots" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+        <div id="s7-wrap">
+          <span class="kicker" id="s7-k">Case study</span>
+          <h2 id="s7-title" class="display">An LLM-safe design system</h2>
+          <span id="s7-url">treppmann.design</span>
+        </div>
+      </section>
+
+      <svg id="grain" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect width="1920" height="1080" filter="url(#g)"/>
+      </svg>
+
+      <!-- VO r1 (video_build.py fit, round r1). data-duration = file + 0.2s. Word anchors: assets/vo/b*-r1-r1.mp3.words.json -->
+      <audio id="vo-b1" data-start="0.90" data-duration="4.92" data-track-index="20" src="assets/vo/b1-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b2" data-start="8.60" data-duration="5.16" data-track-index="20" src="assets/vo/b2-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b3" data-start="15.10" data-duration="4.76" data-track-index="20" src="assets/vo/b3-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b4" data-start="25.30" data-duration="6.60" data-track-index="20" src="assets/vo/b4-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b5" data-start="37.10" data-duration="7.72" data-track-index="20" src="assets/vo/b5-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b6" data-start="46.10" data-duration="3.96" data-track-index="20" src="assets/vo/b6-r1-r1.mp3" data-volume="1"></audio>
+      <audio id="vo-b7" data-start="52.10" data-duration="4.84" data-track-index="20" src="assets/vo/b7-r1-r1.mp3" data-volume="1"></audio>
+    </div>
+
+    <script>
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      var NS = "http://www.w3.org/2000/svg";
+      function buildField(svg, w, h, spacing, focal, maxR, seed, falloff) {
+        var rnd = mulberry32(seed), cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), diag = Math.hypot(w, h), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var d = Math.hypot(cx - focal[0] * w, cy - focal[1] * h) / diag, base = Math.max(0, 1 - d / falloff);
+          var rad = maxR * (base * base) + maxR * 0.12 * rnd(); if (rad < 0.6) continue;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", rad.toFixed(2)); svg.appendChild(el); dots.push({ el: el, d: d });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function buildScreen(svg, w, h, spacing, focal) {
+        var cols = Math.ceil(w / spacing), rows = Math.ceil(h / spacing), dots = [];
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+          var cx = c * spacing + spacing / 2, cy = r * spacing + spacing / 2;
+          var el = document.createElementNS(NS, "circle"); el.setAttribute("cx", cx); el.setAttribute("cy", cy); el.setAttribute("r", (spacing * 0.74).toFixed(2)); svg.appendChild(el);
+          dots.push({ el: el, d: Math.hypot(cx - focal[0] * w, cy - focal[1] * h) });
+        }
+        dots.sort(function (a, b) { return a.d - b.d; }); return dots.map(function (x) { return x.el; });
+      }
+      function prepDraw(id) { var p = document.getElementById(id), len = p.getTotalLength(); p.style.strokeDasharray = len; gsap.set(p, { strokeDashoffset: len }); return len; }
+
+      var htsb = buildScreen(document.getElementById("htsb"), 960, 600, 40, [0.3, 0.4]);
+      var dots7 = buildField(document.getElementById("dots7"), 1920, 1080, 40, [0.5, 0.5], 14, 23, 1.10);
+
+      var tl = gsap.timeline({ paused: true });
+
+      // ===== Cover (0 – 0.4) =====
+      tl.to("#cover", { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 0.25);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0.28);
+
+      // ===== S1 (0.4 – 8.0). b1 @0.90: "rounder cards" 2.05–3.11, "number" 4.01–4.64, "token" 5.08–5.46. =====
+      gsap.set(["#chipimg", "#chipimg-cap", "#demo"], { opacity: 0 });
+      tl.fromTo("#s1-kick", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.45);
+      tl.fromTo("#s1-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.6);
+      tl.fromTo("#s1-h", { y: 30, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, 0.6);
+      tl.fromTo("#code1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.5);
+      tl.to("#chipimg", { opacity: 1, duration: 0.5 }, 1.2);
+      tl.to("#chipimg-cap", { opacity: 1, duration: 0.4 }, 1.6);
+      var nl = "+ borderRadius: ";
+      for (var i = 1; i <= nl.length; i++) tl.set("#dl-pre", { textContent: nl.slice(0, i) }, 3.70 + i * 0.03);
+      tl.set("#dl-16", { opacity: 1 }, 4.25); tl.set("#dl-post", { textContent: "," }, 4.30);
+      // marker circle on "16" ("number" 4.01–4.64); anchored inside the span, not by coordinates
+      var c16 = prepDraw("circ16");
+      tl.fromTo("#circ16", { strokeDashoffset: c16 }, { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, 4.65);
+      // wordless stake: the token moves, only the bound chip follows
+      tl.to("#demo", { opacity: 1, duration: 0.45, ease: "power2.out" }, 5.55);
+      var tv = { v: 16 };
+      tl.to(tv, { v: 24, duration: 0.6, ease: "power2.inOut", onUpdate: function () { document.getElementById("tokv").textContent = Math.round(tv.v); } }, 6.25);
+      tl.to("#chipA", { borderRadius: 48, duration: 0.6, ease: "power2.inOut" }, 6.25);
+      tl.fromTo("#chipB", { x: 0 }, { x: 4, duration: 0.08, yoyo: true, repeat: 3 }, 6.95);
+
+      // T1 blur crossfade (8.0)
+      tl.to("#s1", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.80);
+      tl.fromTo("#s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 7.95);
+
+      // ===== S2 (8.0 – 14.5). b2 @8.60: "staff designers" 9.61–11.16, "notice" 12.98–13.45. Storybook under a full halftone. =====
+      gsap.set("#devsb", { rotationY: -14, rotationX: 4, transformOrigin: "50% 50%" });
+      gsap.set(htsb, { scale: 0.42, transformOrigin: "50% 50%" });
+      tl.to("#sbwrap", { opacity: 1, duration: 0.6, ease: "power2.out" }, 8.2);
+      tl.fromTo("#s2-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 8.2);
+      tl.fromTo("#s2-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 8.3);
+      tl.fromTo("#s2-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 8.35);
+      tl.to("#devsb", { y: -8, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 9.5);
+
+      // T2 blur crossfade (14.5) — device stays: one continuous reveal
+      tl.to("#s2", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 14.30);
+      tl.fromTo("#s3", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 14.45);
+
+      // ===== S3 (14.5 – 23.0). b3 @15.10: "Storybook" 15.36–15.67, "closed list" 18.12–18.80, "tokens" ends 19.45. =====
+      tl.fromTo("#s3-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 14.7);
+      tl.fromTo("#s3-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 14.8);
+      tl.fromTo("#s3-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 14.85);
+      tl.to(htsb, { scale: 0, duration: 0.5, ease: "power3.out", stagger: { each: 0.0012 } }, 15.35);
+      tl.to("#devsb", { rotationY: -6, rotationX: 2, duration: 1.2, ease: "power3.out" }, 15.4);
+      // the closed list: the device steps back, the real names roll
+      tl.fromTo("#s3-b", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 18.1);
+      tl.to("#devsb", { x: -260, scale: 0.86, opacity: 0.55, duration: 0.8, ease: "power3.inOut" }, 18.0);
+      tl.fromTo("#vocab", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 18.15);
+      tl.fromTo("#vocab-list", { y: 0 }, { y: -900, duration: 4.4, ease: "none" }, 18.4);
+
+      // T3 (23.0) — the device layer leaves with the scene
+      tl.to(["#s3", "#sbwrap"], { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 22.80);
+      tl.fromTo("#s4", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 22.95);
+
+      // ===== S4 (23.0 – 36.5). Money shot. b4 @25.30: "invented token" 25.50–26.67, "refused by name" 26.98–28.38,
+      // "hardcoded 16" 28.47–29.76, "real tokens back" 30.12–31.58. Output lines are the captured text (path prefix trimmed). =====
+      tl.fromTo("#s4-k", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 23.1);
+      tl.fromTo("#term", { opacity: 0, y: 30, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 23.05);
+      tl.set("#t1", { opacity: 1 }, 23.5);
+      var c1 = "node verify-component-vars.mjs";
+      for (var j = 1; j <= c1.length; j++) tl.set("#t1c", { textContent: c1.slice(0, j) }, 23.55 + j * 0.028);
+      tl.to("#t2", { opacity: 1, duration: 0.15 }, 24.65);
+      tl.to("#t3", { opacity: 1, duration: 0.15 }, 24.85);
+      tl.to("#hl1", { scaleX: 1, duration: 0.45, ease: "power2.out" }, 27.0);
+      tl.set(["#t4", "#t5"], { opacity: 1 }, 27.45);
+      var c2 = "node verify-style-literals.mjs";
+      for (var k = 1; k <= c2.length; k++) tl.set("#t5c", { textContent: c2.slice(0, k) }, 27.5 + k * 0.025);
+      tl.to("#t6", { opacity: 1, duration: 0.15 }, 28.40);
+      tl.to("#t7", { opacity: 1, duration: 0.15 }, 28.55);
+      tl.to("#hl2", { scaleX: 1, duration: 0.45, ease: "power2.out" }, 29.35);
+      tl.to("#t8", { opacity: 1, duration: 0.15 }, 30.05);
+      tl.to("#t9", { opacity: 1, duration: 0.15 }, 30.25);
+      tl.to("#t10", { opacity: 1, duration: 0.15 }, 30.45);
+      tl.to("#hl3", { scaleX: 1, duration: 0.5, ease: "power2.out" }, 30.70);
+      tl.to(["#t11", "#t12"], { opacity: 1, duration: 0.3, stagger: 0.15 }, 31.7);
+
+      // T4 blur crossfade (36.5)
+      tl.to("#s4", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 36.30);
+      tl.fromTo("#s5", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 36.45);
+
+      // ===== S5 (36.5 – 45.5). b5 @37.10: "12 pixel font" 38.75–39.80, "unrelated token" 40.15–41.86, "nothing fits" 42.29–43.43, "stays silent" 43.60–44.42. =====
+      var a1 = prepDraw("a1"), a2 = prepDraw("a2"), x1 = prepDraw("x1");
+      gsap.set(["#x1", "#a2"], { opacity: 0 }); tl.set("#x1", { opacity: 1 }, 41.7); tl.set("#a2", { opacity: 1 }, 42.4);
+      gsap.set(["#nfont", "#ncand", "#nnone"], { opacity: 0, y: 16 });
+      tl.fromTo("#s5-kick", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 36.7);
+      tl.fromTo("#s5-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 36.8);
+      tl.fromTo("#s5-h", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 36.9);
+      tl.to("#nfont", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 38.7);
+      tl.fromTo("#a1", { strokeDashoffset: a1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 39.6);
+      tl.to("#ncand", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 40.1);
+      tl.fromTo("#x1", { strokeDashoffset: x1 }, { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, 41.7);
+      tl.to(["#ncand", "#a1"], { opacity: 0.45, duration: 0.4 }, 42.1);
+      tl.fromTo("#a2", { strokeDashoffset: a2 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 42.4);
+      tl.to("#nnone", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 42.8);
+
+      // T5 blur crossfade (45.5)
+      tl.to("#s5", { filter: "blur(12px)", opacity: 0, duration: 0.5, ease: "power2.inOut" }, 45.30);
+      tl.fromTo("#s6", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.inOut" }, 45.45);
+
+      // ===== S6 (45.5 – 51.5). b6 @46.10: "build refuses" 48.54–49.78. Grade morph lands with "refuses". =====
+      tl.fromTo("#s6-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 45.7);
+      tl.fromTo("#s6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out", transformOrigin: "50% 50%" }, 45.9);
+      tl.fromTo("#s6-line", { opacity: 0, y: 24, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 47.0);
+      tl.set("#s6-line", { fontFamily: '"Redaction 50", serif' }, 49.0);
+      tl.set("#s6-line", { fontFamily: '"Redaction 35", serif' }, 49.3);
+      tl.set("#s6-line", { fontFamily: '"Redaction 20", serif', fontStyle: "normal" }, 49.6);
+
+      // T6 dots take over (51.5)
+      tl.to("#s6", { opacity: 0, filter: "blur(10px)", duration: 0.5, ease: "power2.inOut" }, 51.3);
+      tl.fromTo("#s7", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.inOut" }, 51.35);
+
+      // ===== S7 close (51.5 – 59.4). b7 @52.10: "Get in touch" 56.04–56.76. =====
+      gsap.set(dots7, { scale: 0, transformOrigin: "50% 50%" });
+      tl.to(dots7, { scale: 1, duration: 0.45, ease: "back.out(1.5)", stagger: { each: 0.0003 } }, 51.35);
+      tl.to(dots7, { scale: 0, duration: 0.4, ease: "power2.in", stagger: { each: 0.0003 } }, 51.95);
+      tl.fromTo("#s7-title", { opacity: 0, filter: "blur(12px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.9, ease: "power3.out" }, 52.15);
+      tl.fromTo("#s7-k", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 52.4);
+      tl.fromTo("#s7-url", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 56.0);
+      tl.to("#s7-wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 58.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

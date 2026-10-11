@@ -71,3 +71,35 @@ runs slow: B3's "Storybook became the reference." The card already says it).
 
 **Gate 1: passed. Waiting on Tobias: go on the script, and a budget cap (proposing $5: voice
 ≈$0.40 + bed, same as the other films).**
+
+## Approval — 2026-10-11
+Tobias: "go for both" — in reply to: go on the script, and the proposed $5 cap. Script approved as
+written; budget.approved_max = 5 USD.
+
+## Round 2 — 2026-10-11, voice + picture (Gate 3 voice part, Gate 2)
+
+### Voice
+7 clone lines, $0.28. Fit PASS; every clip transcribed and matches the script word for word
+("Bibel TV" transcribes as "Bible TV": pronunciation is for Tobias's ear). check_video --strict:
+0 FAIL, 0 WARN, rate 2.60 wps, voice-free 38%.
+
+### Picture — built, snapshotted, fixed
+- Cover 0–0.4s per DESIGN.md.
+- Beat 1: the real Storybook render of SuggestionChip sits under the staged diff; the 16 → 24
+  divergence is a labeled diagram ("Diagram: change the token, see who follows").
+- Beat 4 money shot: terminal 1500px wide (78%). Output lines are the captured text with the
+  `design-system/src/components/SuggestionChip/` prefix trimmed, as in the published figure;
+  commands shown as run (`node verify-*.mjs`). Highlights land on "refused by name", "16" and
+  "real tokens" per the word timestamps.
+- Beat 3 token list: 46 consecutive real names from `list_token_vocabulary` around the chip's own
+  corner-radius token; no count shown.
+- Fixes after the first snapshot pass: old diff line overflowed its card → 18px; marker circle was
+  positioned by coordinates → anchored inside the "16" span; beat-2 halftone read as a solid slab →
+  dots scaled to 0.42 so Storybook shows through; stray dot before the strike-through → hidden until
+  it draws; beat-2 headline 4 lines → 78px.
+- Motion vocabulary: halftone resolve (Storybook), marker circle (16), highlight sweeps (terminal),
+  device tilt, grade morph (beat 6), dot-takeover close.
+- Mute pass: same pixels / wrong code → no designers → Storybook + closed list → refusals → 12 ≠ 12
+  → "Everything else is advice." Holds without voice.
+
+**Gate 2: passed on snapshots.** Gate 3 (bed, duck, levels) next.
