@@ -61,6 +61,11 @@
           "src": "/images/bibeltv/color-api-imgix-variants.jpg",
           "alt": "The same content card four times, its text panel filled with the Vibrant Dark, Muted Dark, Vibrant Light and Muted Light color from imgix.",
           "caption": "The four palettes on a content card. The test's verdict: text colors taken from the palette were not reliably accessible; fixed text colors over the palette color were."
+        },
+        {
+          "src": "/images/bibeltv/color-api-imgix-vs-engine-grid.jpg",
+          "alt": "Fifteen Bibel TV series artworks shown four times as content cards. On dark: imgix's Vibrant Dark panels range from near-black to bright green and rust; the color engine's panels sit at one even depth in purples, teals and navy. On light: imgix's Vibrant Light panels range from mid-tone peach and blue to plain white; the engine's are all the same soft lightness, mostly beige and pale blue.",
+          "caption": "Fifteen artworks, same card. imgix's dark panels span OKLCH lightness 0.16 to 0.57, and one falls below 4.5:1 for white text; its light panels run from mid-tone to pure white. The color engine, from its production API, holds every dark card at 0.25 to 0.27 and every light card at 0.85. The cost shows in light mode: with lightness and chroma fixed, the hues bunch into beige and pale blue."
         }
       ]
     },

@@ -109,6 +109,13 @@
           "before": "A written convention, dependent on someone noticing in review",
           "after": "Six checks refuse off-system work locally and in CI"
         }
+      ],
+      "images": [
+        {
+          "src": "/images/bibeltv/llm-safe-check-refusal.png",
+          "alt": "A terminal. A two-line code change gives a suggestion chip a hardcoded 16-pixel corner radius and an invented spacing token. Two checks fail: one names the invented token as a reference that doesn't exist; the other flags the 16 and offers three real radius tokens, warning that they match by value and the binding still has to be confirmed.",
+          "caption": "A change staged to show the rails, run against the real checks. The invented token is refused by name. The hardcoded 16 is refused with three real tokens to use instead, and a warning that matching the number doesn't make the binding right."
+        }
       ]
     },
     {

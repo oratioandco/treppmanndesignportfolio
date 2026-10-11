@@ -91,7 +91,14 @@
           "value": "Leadership backed a direction that contradicted their own original intuition"
         }
       ],
-      "narrative": "The mobile prototype tested well: it showed the design experience could work on a small screen. The larger result was strategic: leadership changed the product approach from full automation to controlled automation. The redesign that had failed twice was finished, over nine months, scaling from a team of three into larger implementation teams."
+      "narrative": "The mobile prototype tested well: it showed the design experience could work on a small screen. The larger result was strategic: leadership changed the product approach from full automation to controlled automation. The redesign that had failed twice was finished, over nine months, scaling from a team of three into larger implementation teams.",
+      "images": [
+        {
+          "src": "/images/diagrams/spreadshirt-automation-agency.svg",
+          "alt": "A line from fully automated to full manual control. Management's vision, a 60-second automated journey, sits near the automated end; what shop owners valued, the design process as “the most uplifting experience,” sits near the manual end. Where the product shipped is marked between them, closer to user control.",
+          "caption": "Between the vision and what shop owners valued: automation that keeps the design in the owner's hands."
+        }
+      ]
     },
     {
       "type": "reflection",
