@@ -1,0 +1,6 @@
+@@ -83 +83 @@ export function SuggestionChip({ prompt, category, onTap }: SuggestionChipProps)
+-        borderRadius: 'var(--btv-component-suggestion-chip-corner-radius)',
++        borderRadius: 16,
+@@ -86 +86 @@ export function SuggestionChip({ prompt, category, onTap }: SuggestionChipProps)
+-        padding: 'var(--btv-semantic-spacing-gap-xs) var(--btv-semantic-spacing-gap-default)',
++        padding: 'var(--btv-semantic-spacing-gap-xs) var(--btv-semantic-spacing-gap-roomy)',

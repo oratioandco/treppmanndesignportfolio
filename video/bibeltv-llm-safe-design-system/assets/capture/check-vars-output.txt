@@ -1,0 +1,5 @@
+verify-component-vars: FAIL — 1 phantom var() reference(s):
+
+  design-system/src/components/SuggestionChip/SuggestionChip.tsx:86  --btv-semantic-spacing-gap-roomy
+
+Fix: use a real --btv-* name from tokens.css, or declare the var in-file.

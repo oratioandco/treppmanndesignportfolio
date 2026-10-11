@@ -1,0 +1,11 @@
+verify-style-literals: FAIL — 1 hardcoded style value(s):
+
+  design-system/src/components/SuggestionChip/SuggestionChip.tsx:83  borderRadius: 16  [dimension]
+      → use var(--btv-component-suggestion-chip-corner-radius)  or  var(--btv-semantic-buttons-radius)  or  var(--btv-semantic-card-radius)
+
+Each value above encodes a design decision inline.
+1 of 1 match an existing token's VALUE — confirm the
+binding is semantically right before using it, not merely numerically equal.
+For the rest: add the missing token (never invent a value), or — if it genuinely
+is not a design token — annotate that line with `// EXCEPTION: <reason>`.
+

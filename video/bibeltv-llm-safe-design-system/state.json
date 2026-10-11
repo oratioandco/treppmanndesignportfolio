@@ -1,0 +1,98 @@
+{
+  "study": "bibeltv-llm-safe-design-system",
+  "updated": "2026-10-11T10:30",
+  "stage": "script",
+  "variant": "master",
+  "gates": {
+    "gate1_script": {
+      "status": "passed",
+      "date": "2026-10-11",
+      "evidence": "review.md round 1; check_video.py --strict: 0 FAIL, 0 WARN, 4 PASS (95 words, ~30% voice-free est.)"
+    },
+    "gate2_storyboard": {},
+    "gate3_audio": {},
+    "gate4_render": {}
+  },
+  "budget": {
+    "currency": "USD",
+    "approved_max": 0,
+    "spent": 0,
+    "entries": []
+  },
+  "assets": [
+    {
+      "id": "chip",
+      "kind": "ui",
+      "path": "assets/capture/suggestion-chip-light.png",
+      "provenance": "captured",
+      "source": "ProtoBible Storybook build, components-suggestionchip--default",
+      "status": "keeper"
+    },
+    {
+      "id": "chip-dark",
+      "kind": "ui",
+      "path": "assets/capture/suggestion-chip-dark.png",
+      "provenance": "captured",
+      "source": "same",
+      "status": "alternate"
+    },
+    {
+      "id": "diff",
+      "kind": "ui",
+      "path": "assets/capture/staged-diff.txt",
+      "provenance": "captured",
+      "source": "my-cv-tailor data/verification-log/2026-10-11-llm-safe-check-refusal-capture.md",
+      "status": "keeper"
+    },
+    {
+      "id": "refusal-vars",
+      "kind": "ui",
+      "path": "assets/capture/check-vars-output.txt",
+      "provenance": "captured",
+      "source": "my-cv-tailor data/verification-log/2026-10-11-llm-safe-check-refusal-capture.md",
+      "status": "keeper"
+    },
+    {
+      "id": "refusal-literals",
+      "kind": "ui",
+      "path": "assets/capture/check-literals-output.txt",
+      "provenance": "captured",
+      "source": "my-cv-tailor data/verification-log/2026-10-11-llm-safe-check-refusal-capture.md",
+      "status": "keeper"
+    },
+    {
+      "id": "vocab",
+      "kind": "ui",
+      "path": "assets/capture/token-vocabulary.txt",
+      "provenance": "captured",
+      "source": "my-cv-tailor data/verification-log/2026-10-11-llm-safe-check-refusal-capture.md (addendum)",
+      "status": "keeper"
+    },
+    {
+      "id": "storybook",
+      "kind": "ui",
+      "path": "assets/ui/llm-safe-storybook.png",
+      "provenance": "study-json",
+      "source": "public/images/bibeltv/llm-safe-storybook.png",
+      "status": "keeper"
+    },
+    {
+      "id": "refusal-figure",
+      "kind": "ui",
+      "path": "assets/ui/llm-safe-check-refusal.png",
+      "provenance": "study-json",
+      "source": "public/images/bibeltv/llm-safe-check-refusal.png",
+      "status": "alternate"
+    }
+  ],
+  "renders": [],
+  "open_questions": [
+    "Tobias: go on the script?",
+    "Budget cap not set: proposing $5 (voice ~$0.40 + bed)"
+  ],
+  "next": [
+    "On go + cap: voice (clone), fit, timing table",
+    "Build composition (B1 divergence diagram, B4 terminal money shot), Gate 2",
+    "Music: LLM-safe mood line, 3-5 candidates"
+  ]
+}
