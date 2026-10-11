@@ -61,6 +61,11 @@
         {
           "src": "/images/bibeltv/n8n-sermon-insights-workflow.png",
           "alt": "Sanitized overview of the real n8n sermon-insight workflow for Bibel erklärt, showing transcription inputs branching into Bible clip extraction, summaries, chapters, embeddings, topic classification and stored records."
+        },
+        {
+          "src": "/images/bibeltv/metadata-extraction-clip-fields.jpg",
+          "alt": "One clip open in the Bibel erklärt app, annotated. The time range (03:08), the title 'Nikodemus braucht neues Leben statt mehr Gesetzestreue', the summary and the passage Johannes 3,1-3 are labeled as model output. The transcript text under 'Transkript ausblenden' is labeled as cut from the transcript by code.",
+          "caption": "One clip, field by field. The model proposes the passage, the time range, the title and the summary. The quote under the transcript toggle is cut from the sermon's own transcript by code, so those words are the preacher's, never the model's."
         }
       ]
     },
