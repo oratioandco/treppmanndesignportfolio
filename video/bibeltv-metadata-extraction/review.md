@@ -56,3 +56,25 @@ two long sentences, a 7-word hero card). Rewritten from each beat's job, not pat
 - B5 recording — have it (`assets/capture/verse-to-clip-flow.mp4`); optional Genesis 1 re-take.
 
 **Gate 1: passed, pending Tobias's go on the script and the two open questions.**
+
+## Round 1b — 2026-10-11, open question 6 answered from the code
+
+**Are clip titles model-generated? Yes.** Workflow 03's extraction prompt asks the model for
+`title`, `description`, the passage and the time range; only `clip_text` is sliced from the
+transcript segments by code. Evidence: my-cv-tailor
+`data/verification-log/2026-10-11-who-writes-each-clip-field.md`.
+
+So v1's beat-4 line ("the clip's words come from the sermon, never from the model") beside a
+"Title" card overclaimed: a listener hears "words" and sees "Title". **Rewritten (v2):**
+"I built a pipeline that reads the sermon, not its title. The model marks each passage and names
+it. The quote is cut from the sermon." Card: "Source video. Start. End. Title. Quote." The five
+labels split visually: four from the model's pass, the quote tied back to the transcript.
+
+Adversarial re-read: the line now credits the model with exactly what it does, and the trust
+claim is narrower and true. "Names it" also sets up the study's own close (why a clip title
+matters to retrieval). Risk: beat 4 now carries 25 words in 11.5s (≈10.9s at 2.3 wps), so it is
+tight; if the clone runs slow, cut "from the sermon" from the last sentence, or extend beat 4 by
+1s from beat 5's silent lead-in.
+
+`check_video.py --strict`: 0 FAIL, 0 WARN, 5 PASS (95 words, ~30% voice-free est.).
+**Gate 1 holds.** Still waiting on Tobias: go on the script, the beat-3 boundary line, budget cap.

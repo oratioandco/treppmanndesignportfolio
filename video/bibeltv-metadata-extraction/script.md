@@ -21,7 +21,7 @@
      ticks; a play-head jumps to the start tick.
   3. `typographic` — the number card over a halftone of a real frame from the sermon footage.
   4. `screenshot` + `diagram` — sanitized n8n workflow (`n8n-sermon-insights-workflow.png`, already
-     public) resolves in a tilted device, then explodes into four labels: source video · start · end · title.
+     public) resolves in a tilted device, then explodes into five labels: source video · start · end · title · quote. The quote label draws a line back to the transcript (code cuts it); the other four come from the model's pass.
   5. `footage` — **money shot, ≥70% frame width**: the real screen recording
      (`assets/capture/verse-to-clip-flow.mp4`, 2026-10-11): reader John 3 → verse sheet → clip list
      → player. Device with depth.
@@ -45,16 +45,19 @@
 | 1 | 0.4–8.0 | Genesis 1 / result: "Who is Jesus?" | You're reading the creation story. Search finds the right sermon. Its title makes it look wrong. | Typographic: query typed, result card resolves, marker circle on the title. |
 | 2 | 8.0–14.0 | A timestamp is an interface. | Where the passage starts is where playback should start. | Diagram: sermon timeline, segment draws in, play-head jumps to its start. |
 | 3 | 14.0–22.0 | 3–5 min per video / Scripture alone, by hand | First I did the logging myself, for a week, on real videos. | Halftone of a sermon frame behind the number card. |
-| 4 | 22.0–33.5 | Transcript → passage → clip / Source video. Start. End. Title. | I built a pipeline that reads what was said, not the title. The clip's words come from the sermon, never from the model. | n8n workflow resolves in a tilted device; explodes into four labels. |
+| 4 | 22.0–33.5 | Transcript → passage → clip / Source video. Start. End. Title. Quote. | I built a pipeline that reads the sermon, not its title. The model marks each passage and names it. The quote is cut from the sermon. | n8n workflow resolves in a tilted device; explodes into five labels, the quote label last and tied back to the transcript. |
 | 5 | 33.5–45.0 | Tap a verse. | [silence 3s] The clip starts where the passage starts. | Money shot: real recording, reader → verse sheet → clip list → player, ≥70% width. |
 | 6 | 45.0–52.5 | 805 clips · 299 videos / In development, not yet published | Each one is evidence the app's chat can retrieve for an answer. | Typographic, one line each. |
 | 7 | 52.5–59.4 | Case study · The Metadata Nobody Sees · treppmann.design | Curious why a clip title matters to retrieval? Get in touch. | Dot takeover, title, fade. |
 
-Words: 92. Estimated speech at 2.3 wps ≈ 40s of 59.4s (~32% voice-free); the clone measured ~2.5 wps on prior films.
+Words: 95. Estimated speech at 2.3 wps ≈ 41s of 59.4s (~30% voice-free); the clone measured ~2.5 wps on prior films.
 
 ## Sources (every claim traced)
-- B4 "the clip's words come from the sermon, never from the model" — process step "Derive clips":
+- B4 "the model marks each passage and names it. The quote is cut from the sermon" — process step "Derive clips":
   *"Clip text is derived deterministically from source segments rather than invented by the model."*
+  Field-by-field split (title, range and passage from the model; `clip_text` sliced by code):
+  `data/verification-log/2026-10-11-who-writes-each-clip-field.md`. Replaces v1's "the clip's words come
+  from the sermon, never from the model", which sat beside a "Title" card and overclaimed.
 - B6 "retrieved as evidence for an answer in the app's chat" — process step "Make each segment
   retrievable": *"The app can retrieve the segment as evidence for a Bible-study answer"* + outcome
   *"wired into the app's running chat system during development"*.
