@@ -1,0 +1,24 @@
+{
+  "study": "bibeltv-metadata-extraction",
+  "updated": "2026-10-11T06:40",
+  "stage": "script",
+  "variant": "master",
+  "gates": {
+    "gate1_script": { "status": "passed", "date": "2026-10-11", "evidence": "review.md round 1; check_video.py --strict: 0 FAIL, 0 WARN, 5 PASS (92 words, ~33% voice-free est.)" },
+    "gate2_storyboard": {}, "gate3_audio": {}, "gate4_render": {}
+  },
+  "budget": { "currency": "USD", "approved_max": 0, "spent": 0, "entries": [] },
+  "assets": [
+    { "id": "flow", "kind": "footage", "path": "assets/capture/verse-to-clip-flow.mp4", "provenance": "captured", "source": "data/verification-log/2026-10-11-bibel-erklaert-flow-recording.md", "status": "keeper" },
+    { "id": "player", "kind": "ui", "path": "assets/capture/clip-player.png", "provenance": "captured", "source": "same log", "status": "alternate" },
+    { "id": "n8n", "kind": "ui", "path": "assets/ui/n8n-sermon-insights-workflow.png", "provenance": "study-json", "source": "public/images/bibeltv/n8n-sermon-insights-workflow.png", "status": "keeper" }
+  ],
+  "renders": [],
+  "open_questions": [
+    "Tobias: go on the script?",
+    "Tobias: add the automation-boundary line to beat 3 (~10 words)?",
+    "Tobias: are clip titles model-generated? (decides whether 'Title.' stays on the beat-4 card)",
+    "Budget cap not set: proposing $5 (voice ~$0.40 + bed), same as ai-prototyping"
+  ],
+  "next": ["On go + cap: voice (clone), fit, timing table", "Try a Genesis 1 recording for beat 5", "Build composition, Gate 2"]
+}
