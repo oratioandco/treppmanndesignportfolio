@@ -123,3 +123,16 @@ Voice-free 46%.
   pipeline → the record's fields (model vs transcript) → the app → 805 / 299, in development. Holds.
 
 **Gate 2: passed on snapshots.** Gate 3 (bed, duck, levels) next.
+
+## Round 3 — 2026-10-12, Tobias's feedback (verbatim)
+> "there is an odd part that's not in my voice and the numbers are wrong, we have thousands of clips now and thousands of transcribed videos and have live automation now to process new videos as well as they become available. we also have articles from the gott-erklaert.de website as well as additional videos that do not have bible verse tagging (bible verse tagging is also something we do in the pipeline. also I did not manually tag for a week (well sort of) but the next scene fails to mention the goal and vision of automating this and that the current setup only offered the starting point not the end point. so theer is still a lot we could improve for this clip"
+
+Classified: **facts** (805/299 stale; live automation, articles, untagged videos missing; "a week"
+wording in question), **script** (the turn lacks the goal and the start-point/end-point insight),
+**audio** (one line not in his voice — measured: b2 spectral centroid ~1,010 Hz vs 740–850 Hz for
+the other six at the same pitch; regenerate b2).
+Facts logged: my-cv-tailor `data/verification-log/2026-10-12-sermon-pipeline-scale-and-the-start-point.md`
+(11,405 clips / 3,504 videos, 3,574 transcripts, 91 articles, nightly + 15-min automation, as of 2026-10-09).
+Gate gap: Gate 1 traced 805/299 to the study and stopped; for a live, growing system the number
+must also be checked against the current ops record. To add to LEARNINGS + review-gates.
+Next: script v3 (beats 3, 4, 6 rewritten), regenerate b2, re-cut. Open: what the onboarding "week" was.
