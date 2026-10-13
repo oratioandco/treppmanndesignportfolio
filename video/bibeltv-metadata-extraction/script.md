@@ -29,7 +29,7 @@
   7. `typographic` — dot takeover close, title + treppmann.design.
 - **Reuse**: the sermon footage frame in beat 3's halftone is from the beat 5 recording —
   intentional callback (the same sermon you then see as a clip). No other asset repeats.
-- **Length**: ~60s + 0.4s cover. Mood: patient, archival, precise — quieter than the color-api
+- **Length**: 60s incl. 0.4s cover (v3: beat 6 carries more, close tighter). Mood: patient, archival, precise — quieter than the color-api
   film; the bed leaves air for the timeline beat.
 
 ## Brief
@@ -39,51 +39,43 @@
 
 ## Beats
 
+v3, 2026-10-12 — rewritten from Tobias's round-3 feedback (review.md): the turn is now the
+start-point/end-point insight plus the goal of automating it; the outcome uses the 2026-10-09
+counts and the live automation; "for a week" is gone.
+
 | # | t (s) | On screen | Narration | Visual |
 |---|---|---|---|---|
 | 0 | 0.0–0.4 | Cover: Bibel TV · Sermon pipeline · 2026 / The Metadata Nobody Sees / A timestamp is an interface. | — | Settled title card, held, dissolves into S1. |
 | 1 | 0.4–8.0 | Genesis 1 / result: "Who is Jesus?" | You're reading the creation story. Search finds the right sermon. Its title makes it look wrong. | Typographic: query typed, result card resolves, marker circle on the title. |
 | 2 | 8.0–14.0 | A timestamp is an interface. | Where the passage starts is where playback should start. | Diagram: sermon timeline, segment draws in, play-head jumps to its start. |
-| 3 | 14.0–22.0 | 3–5 min per video / Scripture alone, by hand | First I did the logging myself, for a week, on real videos. | Halftone of a sermon frame behind the number card. |
-| 4 | 22.0–33.5 | Transcript → passage → clip / Source video. Start. End. Title. Quote. | I built a pipeline that reads the sermon, not its title. The model marks each passage and names it. The quote is cut from the sermon. | n8n workflow resolves in a tilted device; explodes into five labels, the quote label last and tied back to the transcript. |
-| 5 | 33.5–45.0 | Tap a verse. | [silence 3s] The clip starts where the passage starts. | Money shot: real recording, reader → verse sheet → clip list → player, ≥70% width. |
-| 6 | 45.0–52.5 | 805 clips · 299 videos / In development, not yet published | Each one is evidence the app's chat can retrieve for an answer. | Typographic, one line each. |
-| 7 | 52.5–59.4 | Case study · The Metadata Nobody Sees · treppmann.design | Curious why a clip title matters to retrieval? Get in touch. | Dot takeover, title, fade. |
+| 3 | 14.0–22.0 | A start point. No end point. / 3–5 minutes each, by hand | The old logs marked where a verse came up. Never where its passage ended. | The log format as a diagram: verse · start · end, the end slot empty; sermon frame resolves beside it. |
+| 4 | 22.0–33.5 | The goal: automate it / Transcript → passage → clip / Source video. Start. End. Title. Quote. | The goal: automate it, start to end. The model marks each passage and names it. The quote is cut from the sermon. | n8n workflow resolves in a tilted device; the five fields come out, End lands with "start to end". |
+| 5 | 33.5–45.0 | Tap a verse. | [silence] The clip starts where the passage starts. | Money shot: real recording, reader → clip list → player. |
+| 6 | 45.0–54.0 | 11,405 clips · 3,504 videos / + 91 gott-erklärt articles / New videos processed nightly · in development | Thousands of clips now. New videos are processed every night. Videos without a verse get timed passages too. | Count-ups, then the two support lines. |
+| 7 | 54.0–60.0 | Case study · The Metadata Nobody Sees · treppmann.design | Curious why a clip title matters to retrieval? Get in touch. | Dot takeover, title, fade. |
 
-Words: 95. Estimated speech at 2.3 wps ≈ 41s of 59.4s (~30% voice-free); the clone measured ~2.5 wps on prior films.
+Words: 97. Estimated speech at 2.3 wps ≈ 42s of 60.0s (~30% voice-free); the clone ran 2.95 wps on r1 (~34s).
 
 ## Sources (every claim traced)
-- B4 "the model marks each passage and names it. The quote is cut from the sermon" — process step "Derive clips":
-  *"Clip text is derived deterministically from source segments rather than invented by the model."*
-  Field-by-field split (title, range and passage from the model; `clip_text` sliced by code):
-  `data/verification-log/2026-10-11-who-writes-each-clip-field.md`. Replaces v1's "the clip's words come
-  from the sermon, never from the model", which sat beside a "Title" card and overclaimed.
-- B6 "retrieved as evidence for an answer in the app's chat" — process step "Make each segment
-  retrievable": *"The app can retrieve the segment as evidence for a Bible-study answer"* + outcome
-  *"wired into the app's running chat system during development"*.
-- B1 "creation story … right sermon … title about something else" — study §"A correct search
-  result could still look wrong": *"A sermon titled 'Who is Jesus?' also discussed the creation
-  account … technically relevant result whose inherited video title made it look irrelevant."*
-  Same example in `data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md`.
-- B2 "where playback should start" / card "A timestamp is an interface" — study: *"A timestamp was
-  not merely metadata. It was a product interface: … the point where playback would begin."*
-- B3 voice "logging myself, for a week, on real videos" / card "3–5 min per video, Scripture alone, by hand" — study:
-  *"I spent a week with the logging team and did the capture work on real videos. Scripture
-  extraction alone took three to five minutes per video by my own count, sometimes more."* (The
-  hedge "sometimes more" runs upward; the spoken range does not overclaim.)
-- B4 "reads the transcript" — process step "Create one consistent transcript" / study: "transcript-
-  driven extraction". "Each passage becomes a clip with its own start, end and title" — process
-  step "Derive clips" + "connect each virtual clip back to its source video and time range"; the
-  per-clip title is the virtual-clip concept (2026-08-25 log: *"virtual clip metadata … instead of
-  the sermon title"*), visible on every clip card in the dev build (2026-10-10 and 2026-10-11
-  capture logs). Card "Source video. Start. End." — same process step.
-- B5 "the clip starts where the passage starts" + footage — `data/verification-log/2026-10-11-bibel-erklaert-flow-recording.md` (this round).
-- B6 card "805 clips · 299 videos" — outcome metrics:
-  *"805 sermon clips from 299 transcribed videos, checked live on 16 September 2026"*; *"wired into
-  the app's running chat system during development"*. Tobias ran that check himself (study meta
-  source: direct confirmation 2026-10-07) — attribution rule satisfied.
-- B7 — study's closing hook, trimmed: *"… or why a clip title matters to retrieval quality? Get in
-  touch."*
+- B1 — study §"A correct search result could still look wrong" ("Who is Jesus?" / creation account).
+- B2 — study: a timestamp is "the point where playback would begin".
+- B3 "The old logs marked where a verse came up. Never where its passage ended." —
+  `data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md`, "Virtual
+  clips": *"The state he found: only a start time is recorded per verse reference."*; Tobias
+  2026-10-12: *"the current setup only offered the starting point not the end point"*
+  (`2026-10-12-sermon-pipeline-scale-and-the-start-point.md`). Card "3–5 min per video" — his own
+  count (study; 2026-08-25 log). No duration of hand logging is claimed (the "week" is withdrawn:
+  "I did not manually tag for a week (well sort of)").
+- B4 "The goal: automate it, start to end." — Tobias 2026-10-12: *"the goal and vision of automating
+  this"*; start/end per the virtual-clip entry. "The model marks each passage and names it. The quote
+  is cut from the sermon." — `2026-10-11-who-writes-each-clip-field.md`.
+- B5 — `2026-10-11-bibel-erklaert-flow-recording.md`.
+- B6 "Thousands of clips" / card "11,405 clips · 3,504 videos", "+ 91 gott-erklärt articles" —
+  `CORPUS_OPERATIONS.md` counts checked live 2026-10-09, logged in the 2026-10-12 entry. "New videos
+  are processed every night" — nightly-sync 03:00 UTC + workflow 03 every 15 min (same). "Videos
+  without a verse get timed passages too" — 80,132 transcript passages from every transcript (same;
+  built, not claimed as live in the chat). "In development" — app unpublished.
+- B7 — study close, trimmed.
 
 ## Claim limits honoured
 - App unpublished: no adoption, usage or discovery-improvement claim (2026-08-25 log: discovery

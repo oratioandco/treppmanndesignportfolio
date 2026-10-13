@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-metadata-extraction",
   "title": "The Metadata Nobody Sees",
-  "subtitle": "I did the logging work by hand, then built the n8n pipeline that turns sermon videos into source-linked material for an AI product",
+  "subtitle": "I did some of the logging work by hand, then built the n8n pipeline that turns sermon videos into source-linked material for an AI product",
   "type": "technical-deep-dive",
   "tags": [
     "ai",
@@ -15,7 +15,7 @@
   "team": "Solo product, design and development; grounded with the logging team",
   "duration": "2026 – Present",
   "status": "review",
-  "last_updated": "2026-10-09",
+  "last_updated": "2026-10-12",
   "format_priority": [
     "executive",
     "in-depth"
@@ -24,7 +24,7 @@
     {
       "type": "hero",
       "headline": "The Metadata Nobody Sees",
-      "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did the logging work by hand, then built the n8n pipeline that turns timed transcripts into source-linked clips, chapters and retrievable material."
+      "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did some of the logging work by hand, then built the n8n pipeline that turns timed transcripts into source-linked clips, chapters and retrievable material."
     },
     {
       "type": "narrative",
@@ -34,7 +34,7 @@
     {
       "type": "narrative",
       "headline": "I learned the workflow before automating it",
-      "content": "During onboarding I spent a week with the logging team and did the capture work on real videos. Scripture extraction alone took three to five minutes per video by my own count, sometimes more. The broader task also included identifying structure, recording timecodes, capturing graphics and selecting a cover frame.\n\nThat experience shaped the automation boundary. The goal was not to make a model watch a video so a person never had to. It was to remove repeated capture work and make the resulting structure usable by a product. I built a feasibility prototype first, then carried its validated transcript-driven extraction approach into the Bible-study app's active product pipeline."
+      "content": "During onboarding I worked alongside the logging team and did some of the capture work on real videos myself. Scripture extraction alone took three to five minutes per video by my own count, sometimes more. The broader task also included identifying structure, recording timecodes, capturing graphics and selecting a cover frame. And what the logs held for each Bible reference was a start point, never an end point: where a verse came up, not where the passage about it ended.\n\nThat experience shaped the automation boundary. The goal was not to make a model watch a video so a person never had to. It was to remove repeated capture work and make the resulting structure usable by a product. I built a feasibility prototype first, then carried its validated transcript-driven extraction approach into the Bible-study app's active product pipeline."
     },
     {
       "type": "process",
@@ -71,11 +71,15 @@
     },
     {
       "type": "outcome",
-      "headline": "805 source-linked clips were already serving the chat",
+      "headline": "Thousands of source-linked clips, and new videos processed every night",
       "metrics": [
         {
-          "label": "Corpus snapshot",
-          "value": "805 sermon clips from 299 transcribed videos, checked live on 16 September 2026"
+          "label": "Corpus",
+          "value": "11,405 sermon clips from 3,504 videos, 3,574 transcripts processed and 91 gott-erklärt articles, counted live on 9 October 2026"
+        },
+        {
+          "label": "Automation",
+          "value": "New videos are imported every night and turned into clips, chapters and topics every 15 minutes, without anyone starting a run"
         },
         {
           "label": "Product connection",
@@ -108,14 +112,14 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built a live-tested n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing the logging work by hand.",
+      "summary": "Built a live-tested n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing some of the logging work by hand.",
       "angle": "Workflow productization grounded in the manual work and hardened through live execution",
       "sections": [
         "hero",
         "A correct search result could still look wrong",
         "I learned the workflow before automating it",
         "Turn the transcript into product structure",
-        "805 source-linked clips were already serving the chat",
+        "Thousands of source-linked clips, and new videos processed every night",
         "The details worth discussing"
       ],
       "max_read_time": "3 min"
