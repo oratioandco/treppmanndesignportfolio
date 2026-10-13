@@ -1,0 +1,56 @@
+{
+  "slug": "hse",
+  "aliases": [
+    "hse-teamlead-ux-design-research"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Team development, research-led decisions and AI-supported product delivery.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-hse.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Teamlead UX Design & Research role"
+  },
+  "bio": {
+    "short": "I build design teams and the working systems that help them make better product decisions. At Ninox I led five people and created the levelling, growth and feedback mechanisms behind their development. At Bibel TV I now apply AI across research synthesis, real-code prototyping, reusable design infrastructure and engineering handoff.",
+    "long": "At Ninox I led five people across product design and UX writing, including a design lead. I built the levelling framework, growth plans and feedback practices used to develop the team, and hired two and promoted two. For four months I also led Product, bringing the scope to nine people across two functions and four disciplines.\n\nAt Bibel TV I work directly across research, product and delivery. I use AI-assisted research synthesis, prototype against production APIs and create reusable design infrastructure for iOS, Android, web and connected TV. An external engineering agency works from the running prototype code, which turns design intent into something testable before handoff.\n\nMy research record spans product strategy as well as usability. At Spreadshirt, research changed the direction from full automation to controlled automation. At ChurchDesk, product and design work on a multi-party booking workflow reduced coordination time by 70%. That combination of people leadership, research judgment and current AI practice is what I would bring to HSE.",
+    "context": {
+      "company": "HSE",
+      "role": "Teamlead UX Design & Research",
+      "emphasis": "Lead with team development at Ninox, then current AI-supported research and delivery at Bibel TV, then research-led consumer and workflow decisions."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

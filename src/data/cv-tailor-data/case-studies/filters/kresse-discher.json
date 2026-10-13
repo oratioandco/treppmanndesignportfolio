@@ -1,0 +1,56 @@
+{
+  "slug": "kresse-discher",
+  "aliases": [
+    "kresse-discher-design-lead"
+  ],
+  "title": "Ausgewählte Arbeiten",
+  "subtitle": "Teamqualität, visuelle Systeme und KI-gestützte Designpraxis.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-kresse-discher.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Design Lead role"
+  },
+  "bio": {
+    "short": "Ich führe Designteams über klare Qualitätsmaßstäbe, Feedback und funktionierende Arbeitsweisen. Bei Ninox habe ich fünf Mitarbeitende geführt und das Leveling- und Entwicklungssystem aufgebaut. Heute verbinde ich bei Bibel TV plattformübergreifende Gestaltung mit KI-gestützter Recherche, Prototyping und wiederverwendbaren Workflows.",
+    "long": "Bei Ninox führte ich fünf Mitarbeitende aus Product Design und UX Writing, darunter einen Design Lead. Ich entwickelte das Leveling-System, Wachstumspläne und Feedbackformate, stellte zwei Menschen ein und beförderte zwei. Bei Datameer verantwortete ich Design über Deutschland und New York hinweg.\n\nBei Bibel TV arbeite ich heute selbst an Gestaltung und Umsetzung für iOS, Android, Web und Connected TV. Ich entwickle Prototypen gegen produktive APIs, baue wiederverwendbare Designinfrastruktur und nutze KI für Research-Synthese und interne Workflows. Die externe Entwicklungsagentur arbeitet aus dem laufenden Prototypcode weiter.\n\nMein Schwerpunkt liegt auf Systemen, die gute Gestaltung im Alltag wahrscheinlicher machen: klare Qualitätsmaßstäbe, wiederverwendbare Bausteine und Feedback, das Menschen weiterbringt. Diese Verbindung aus Führung, visueller Konsistenz und konkreter KI-Praxis bringe ich zu Kresse & Discher mit.",
+    "context": {
+      "company": "Kresse & Discher",
+      "role": "Design Lead",
+      "emphasis": "Mit Teamqualität und visuellen Systemen beginnen, dann konkrete KI-Praxis und plattformübergreifende Gestaltung zeigen."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

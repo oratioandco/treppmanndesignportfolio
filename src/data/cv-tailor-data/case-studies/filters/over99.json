@@ -1,0 +1,56 @@
+{
+  "slug": "over99",
+  "aliases": [
+    "over99-design-lead"
+  ],
+  "title": "Selected Work",
+  "subtitle": "Design-function leadership with current product, AI and systems execution.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-over99.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Design Lead role"
+  },
+  "bio": {
+    "short": "I lead design functions and stay close enough to the work to shape what ships. At Ninox I led five people and built the team's development and quality mechanisms. At Bibel TV my current work spans cross-platform UI, AI workflows, design infrastructure and real-code prototypes.",
+    "long": "At Ninox I led five people across product design and UX writing. I built the levelling framework, growth plans and feedback practices behind the team's development, hired two and promoted two. At Datameer I led design across Germany and New York and held responsibility for the consistency of a complex enterprise product.\n\nAt Bibel TV I work hands-on across iOS, Android, web and connected TV. I prototype against production APIs, build reusable design infrastructure and use AI in research and internal workflows. The external engineering agency works from the running prototype code, so design decisions reach delivery through an executable system rather than a static specification.\n\nThe thread across these roles is function building with practical output. I establish priorities, feedback and quality systems, then stay close enough to the product to resolve the hard interaction and implementation decisions. That is the part of my record most relevant to over99's broad Design Lead mandate.",
+    "context": {
+      "company": "over99",
+      "role": "Design Lead",
+      "emphasis": "Lead with whole-function leadership and current hands-on execution. Use design systems and AI delivery as proof of speed with quality."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
