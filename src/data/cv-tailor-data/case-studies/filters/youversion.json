@@ -1,0 +1,62 @@
+{
+  "slug": "youversion",
+  "aliases": [
+    "youversion-hub-uxr-consultant-europe"
+  ],
+  "title": "Research Across Faith, Culture, and Product Decisions",
+  "subtitle": "European Christian-product context, qualitative research, and evidence that changed what teams built",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-youversion.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Hub UXR Consultant Contractor - Europe role"
+  },
+  "bio": {
+    "short": "I work where research has to carry culture into product decisions. At Bibel TV I combine German-language user research with product leadership for Bible and streaming experiences. Earlier research changed strategy at Spreadshirt and opened access to difficult-to-reach enterprise users at Datameer.",
+    "long": "At Bibel TV I lead product design for a German Bible broadcaster's consumer products. Interviews, feature-use evidence and cultural interpretation shape the product direction. One concept survey reversed the redesign's initial dark-mode direction. Users described it as gloomy and asked for brightness and readability, so the product moved to a light-first system.\n\nAt Spreadshirt, in-person interviews with German shop owners challenged leadership's assumption that full automation was the right seller strategy. I then led and usability-tested a mobile T-shirt-designer research prototype; strong user feedback helped move it into production and shifted the company's mobile direction. At Datameer I secured research access to analysts inside US banks and insurers. I developed research protocols and used iterative UserTesting.com screening to reach participants ordinary panels could not supply.\n\nMy research operations combine Dovetail, Microsoft Teams transcription and careful AI-assisted synthesis. At Ninox, Dovetail held the shared research record while Claude helped analyze thousands of forum posts for sentiment, recurring pain points and feature requests. I use AI when volume makes the work otherwise impractical. For smaller studies I read the material directly because summaries can erase nuance and context. ChurchDesk adds product experience across Protestant and Catholic contexts in six European markets.",
+    "context": {
+      "company": "YouVersion develops Bible products used globally and is building European Hubs to make product and content experiences reflect local cultures and contexts.",
+      "role": "Hands-on European UXR contractor conducting qualitative studies, maintaining the research repository, synthesizing evidence and helping a US-based research team translate cultural insight into product direction.",
+      "emphasis": "Lead with European Christian digital-product context, research that changed decisions, German-language access, US collaboration, Dovetail and careful AI-assisted qualitative synthesis."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
