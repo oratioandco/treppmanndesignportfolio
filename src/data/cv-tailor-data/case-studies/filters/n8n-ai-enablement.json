@@ -1,0 +1,62 @@
+{
+  "slug": "n8n-ai-enablement",
+  "aliases": [
+    "n8n-internal-ai-enablement-lead"
+  ],
+  "title": "Turning AI into a Team Capability",
+  "subtitle": "Operational workflows, practical coaching, and product judgment from prototype to adoption",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-n8n-ai-enablement.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Internal AI Enablement Lead role"
+  },
+  "bio": {
+    "short": "I help teams move from AI curiosity to useful, repeatable ways of working. At Bibel TV, I introduced a Copilot workflow for viewer services through optional hands-on coaching. Complex letters dropped from hours to minutes. Temporary staff wrote in the company voice immediately, and initial skeptics returned voluntarily. I also use AI agents to create and operate an n8n pipeline for a conversational Bible app. I helped establish Claude for the product team through MCPs, guidelines, access, and prototyping setups.",
+    "long": "At Bibel TV, I introduced a Microsoft Copilot workflow for a nontechnical viewer-services team. The rollout started with an optional self-test week and individual sessions rather than a mandate. Complex, multi-topic letters moved from hours to minutes. Temporary staff could draft in the company voice immediately. Two skeptical colleagues returned voluntarily after trying it on difficult cases. The system keeps the team in charge of every send decision.\n\nFor the in-development “Bibel erklärt” app, I used AI agents to create an active n8n pipeline. It connects APIs, Postgres, timed transcripts, AI extraction, embeddings, and scheduled processing. I did not assemble those workflows manually node by node. I defined the workflow, tested it against the real product, and worked through execution failures with the coding agent. I then operated it and kept improving it. By October 2026, the pipeline held 11,405 source-linked clips from 3,504 videos. I also helped establish Claude for the product team through MCPs, guidelines, access and token-plan management, and prototyping setups.\n\nThe same pattern appears in earlier work. At Hypoport, recurring workshops and reviews helped turn case-by-case support into standardized service offerings. At ChurchDesk, a customer-specific funeral workflow became a reusable booking capability. It reduced coordination time by 70% and reached 90% acceptance. I led a focused English-language AI workshop series for agency team leads. I also spent a decade mentoring and coaching people through individual transitions into product design. I bring the product judgment to decide what should become reusable. I combine it with technical fluency and the facilitation skills to help people adopt it.",
+    "context": {
+      "company": "n8n is an open workflow-orchestration company with a builder culture and a growing need to make internal AI and automation useful across every function.",
+      "role": "The Internal AI Enablement Lead creates hands-on programs, owns internal experimentation, builds fluency and community, and product-owns the foundations for safe, reusable automation.",
+      "emphasis": "Lead with observable nontechnical adoption and an active n8n product workflow. Show a repeated ability to turn one-off work into reusable capability, then support it with facilitation, mentoring, product ownership, and honest agentic-building practice."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}

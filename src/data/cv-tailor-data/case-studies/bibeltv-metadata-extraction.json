@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-metadata-extraction",
   "title": "The Metadata Nobody Sees",
-  "subtitle": "I did some of the logging work by hand, then built the n8n pipeline that turns sermon videos into source-linked material for an AI product",
+  "subtitle": "I did some of the logging work by hand, then used AI agents to create and operate the n8n pipeline that turns sermon videos into source-linked material for an AI product",
   "type": "technical-deep-dive",
   "tags": [
     "ai",
@@ -24,7 +24,7 @@
     {
       "type": "hero",
       "headline": "The Metadata Nobody Sees",
-      "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did some of the logging work by hand, then built the n8n pipeline that turns timed transcripts into source-linked clips, chapters and retrievable material."
+      "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did some of the logging work by hand, then used AI agents to create the n8n pipeline and live-tested it until timed transcripts became source-linked clips, chapters and retrievable material."
     },
     {
       "type": "narrative",
@@ -54,7 +54,7 @@
         },
         {
           "label": "Keep cost and failure visible",
-          "description": "Model usage and estimated cost are recorded with the corpus data. Live n8n traces exposed an execution-order race and a broken upstream node reference; I fixed both and re-verified the transcription path end to end."
+          "description": "Model usage and estimated cost are recorded with the corpus data. Live n8n traces exposed an execution-order race and a broken upstream node reference; I worked through both problems with the coding agent and re-verified the transcription path end to end."
         }
       ],
       "images": [
@@ -112,7 +112,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built a live-tested n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing some of the logging work by hand.",
+      "summary": "Used AI agents to create, live-test and operate an n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing some of the logging work by hand.",
       "angle": "Workflow productization grounded in the manual work and hardened through live execution",
       "sections": [
         "hero",
@@ -139,5 +139,6 @@
   "cover": {
     "src": "/images/covers/cover-metadata-extraction.jpg",
     "alt": "The Bibel erklärt app showing John 3:1-21 with a row of sermon clips under the passage, the first titled 'Nikodemus und die Bedeutung der neuen Geburt'."
-  }
+  },
+  "generation": 3
 }
