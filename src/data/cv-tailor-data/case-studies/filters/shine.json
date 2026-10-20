@@ -1,0 +1,56 @@
+{
+  "slug": "shine",
+  "aliases": [
+    "shine-head-of-ai-enablement"
+  ],
+  "title": "From Team Workflow to AI Capability",
+  "subtitle": "Hands-on AI delivery, adoption, and product judgment across the full loop.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-shine.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of AI Enablement role"
+  },
+  "bio": {
+    "short": "I turn complex, domain-specific workflows into AI-enabled tools and repeatable product capabilities. At Bibel TV, I shipped a Microsoft Copilot support workflow and built Claude and n8n systems. I also helped nontechnical teams adopt new ways of working. I combine hands-on delivery with product judgment and change leadership.",
+    "long": "At Bibel TV, I start with the work people already do and stay with it through implementation and adoption. For viewer services, I designed and introduced a production Microsoft Copilot skill grounded in the team handbook and house voice. Complex multi-topic letters now take minutes rather than hours. Temporary staff can produce on-brand drafts from day one. Initially skeptical colleagues returned after trying it on difficult cases. The rollout was optional and supported with one-to-one coaching, so adoption had to be earned.\n\nI also build the systems behind the workflow. I built Bibel TV's AI fundraising ecosystem solo, from performance analysis and prompt architecture through a working prototype and shipped Claude skill. I operate active n8n pipelines for content processing. I also helped establish Claude for the product team with MCPs and guidelines. I managed member access, token plans, and overages while contributing to prototyping setups. My role was hands-on and collaborative rather than company-wide governance ownership.\n\nThe pattern extends beyond AI. At ChurchDesk, I turned phone-based funeral coordination into a reusable capability inside the existing calendar and form builder. The result was 70% less coordination time and 90% acceptance, followed by rollout to the full customer base. At Hypoport, I helped move bespoke internal support toward standardized offerings through recurring workshops and reviews. Across these settings, I follow the same principle. Understand where the work happens, preserve the judgment that matters, and build a capability people can use and maintain.",
+    "context": {
+      "company": "Shine, part of Cegid, builds financial software for entrepreneurs and small businesses. The CEO Office role works company-wide across functions such as Finance, HR, Sales, and Customer Support.",
+      "role": "Head of AI Enablement combines hands-on building with adoption. The role finds valuable workflows, builds and operates AI tools, coaches sustained use, and measures the resulting change.",
+      "emphasis": "Lead with the Bibel TV support Copilot as the closest proof of workflow discovery, practical AI delivery, coaching, and earned adoption. Then show hands-on AI systems and the longer pattern of turning specific workflows into reusable capabilities. Use American English."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-fundraising",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
