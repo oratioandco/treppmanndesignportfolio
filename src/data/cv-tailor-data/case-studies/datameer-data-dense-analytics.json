@@ -1,6 +1,6 @@
 {
   "id": "datameer-data-dense-analytics",
-  "title": "How do you make big data feel simple?",
+  "title": "When the preview says zero and the data is there",
   "subtitle": "Redesigning a collaborative analytics platform for data analysts at top US, Canadian, and UK banks and insurers, inside a regulated financial-services environment",
   "type": "design-case-study",
   "tags": [
@@ -19,7 +19,7 @@
   "team": "Led the UX side (two designers) alongside Datameer's UI lead, who ran the visual side — a functional-head peer to product and engineering, across a team split between Germany and New York",
   "duration": "2016 – 2021",
   "status": "draft",
-  "last_updated": "2026-08-25",
+  "last_updated": "2026-10-21",
   "hero_image": {
     "src": "/images/diagrams/datameer-design-function-shift.svg",
     "alt": "Two-panel diagram. Before: designers received specs and shipped screens, with no user research, no design strategy, and no seat at the product table. After: exec-sponsored site visits to banks and insurers gave direct access to the analysts who used the product, and those insights shaped the roadmap.",
@@ -33,23 +33,23 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "How do you make big data feel simple?",
-      "subtext": "A collaborative analytics platform built for data analysts at top US, Canadian, and UK banks and insurers. The data was already complex. The tools made it worse."
+      "headline": "When the preview says zero and the data is there",
+      "subtext": "Five years designing a collaborative analytics platform for data analysts at top US, Canadian and UK banks and insurers, and moving design from executing specs to shaping what got built."
     },
     {
       "type": "narrative",
       "headline": "The starting point",
-      "content": "When I joined Datameer in 2016, the platform had been built by engineers for engineers. It was powerful, but it fought the people using it. Data analysts at top US, Canadian, and UK banks and insurers used it daily — people who understood data deeply and needed the interface to get out of the way, not add cognitive load on top of already complex analytical work.\n\nDesign existed, but only as execution. Designers received specs and made them look good. No user research. No design strategy. No seat at the product table."
+      "content": "When I joined Datameer in 2016, the platform's users were data analysts at top US, Canadian and UK banks and insurers: people who understood data deeply and needed the interface to get out of the way, not add cognitive load on top of already complex analytical work.\n\nDesign existed, but as an execution function. Designers received specs and turned them into screens, and user research was not yet part of how product decisions got made."
     },
     {
       "type": "callout",
-      "quote": "The query builder showed empty results. The full data existed. Users thought the system was broken.",
+      "quote": "The preview showed empty results. The full data was there.",
       "context": "The sample-based uncertainty problem: the hardest UX challenge on the platform"
     },
     {
       "type": "narrative",
       "headline": "The core challenge",
-      "content": "Big data analytics platforms have a fundamental UX problem: when you're working with datasets too large to process in real-time, you show samples. But samples can be empty, not because the data isn't there, but because the sample didn't capture it.\n\nUsers would build a query, see empty results in the preview, and assume their data was missing. They'd file support tickets, redo their work, lose trust in the tool. The actual data was fine. The preview was lying to them, not through a bug, but through a fundamental limitation of sampled data.\n\nThis wasn't a visual design problem. It was an information design problem: how do you honestly represent uncertainty without making users lose confidence in the tool they depend on daily?",
+      "content": "Big data analytics platforms have a built-in UX problem: when a dataset is too large to process in real time, the preview runs on a sample. And a sample can come back empty, not because the data isn't there, but because the sample didn't catch it.\n\nUsers would build a query, see empty results in the preview, and reasonably conclude their data was missing. The data was fine. The preview was misleading them, not through a bug, but through a property of sampled data.\n\nThat made it an information design problem, not a visual one: how do you represent uncertainty honestly without making people lose confidence in a tool they depend on every day?",
       "images": [
         {
           "src": "/images/diagrams/datameer-sample-uncertainty.svg",
@@ -64,19 +64,19 @@
       "steps": [
         {
           "label": "Customer Research",
-          "description": "I secured exec-sponsored access to visit regulated enterprise environments, banks and insurers in the US, joining the sales team on customer site visits. This gave us direct insight into how analysts actually worked, not how we assumed they worked."
+          "description": "With executive support for user research, I joined the sales team on a customer research trip and ran sessions in person with US banking and insurance customers. Where access was harder, iterative screening on usertesting.com found the hard-to-reach personas."
         },
         {
           "label": "Platform Redesign",
-          "description": "Complete overhaul of the analytics interface: from information architecture down to pixel-level craft. Column charts, big-data pivot tables, aggregated JSON structure views, result cards, and a comprehensive filter system."
+          "description": "A complete UX and UI redesign of the analytics interface, from information architecture down to the details: column charts, big-data pivot tables, aggregated JSON views, result cards and a comprehensive filter system."
         },
         {
           "label": "Design System",
-          "description": "Co-built the platform's design system — I owned component behavior and interaction specs across the library. The first unified visual language for a product that had grown organically for years."
+          "description": "Co-built the platform's design system. I owned component behavior and interaction specs across the library, including details like data-table column headers, inspector panels and custom motion easing."
         },
         {
           "label": "Organizational Elevation",
-          "description": "Moved design from execution-only to strategic partner: earned a seat at the product table by demonstrating the business value of user-centered design in a deeply technical product."
+          "description": "Datameer was betting on a new product, and that bet needed research and design in the room where it was decided. Research got executive support, and design moved into the roadmap conversations."
         }
       ]
     },
@@ -86,28 +86,28 @@
       "metrics": [
         {
           "label": "UX Maturity",
-          "before": "Execution-only function: designers received specs",
-          "after": "Strategic business partner with exec-sponsored research access"
+          "before": "Execution function: designers received specs",
+          "after": "Strategic partner, with executive support for user research"
         },
         {
           "label": "Design System",
-          "value": "Built from scratch (0 → 1)"
+          "value": "Co-built, with component behavior and interaction specs owned by UX"
         },
         {
           "label": "User Research",
-          "value": "Direct access to regulated enterprise environments: rare for a vendor"
+          "value": "In-person sessions with US banking and insurance customers, plus remote screening for hard-to-reach personas"
         },
         {
           "label": "Sample Uncertainty UX",
-          "value": "Designed honest feedback that maintained user trust in sampled previews"
+          "value": "Visual and text feedback that tells users when a preview is a sample and how it differs from the full query"
         }
       ],
-      "narrative": "The biggest win wasn't a feature. It was organizational. Design moved from \"make it pretty\" to \"help us understand our users,\" and that shift unlocked research access into banks and insurers that had never let a vendor's design team observe their workflows before. Those insights shaped the product roadmap."
+      "narrative": "The biggest change was organizational. Datameer kept its existing product and went after a new one, and that new product needed research and design where its direction was set. Research got executive backing, design entered the roadmap conversations, and the design system got built."
     },
     {
       "type": "reflection",
       "headline": "What I learned",
-      "content": "The hardest part wasn't the design. It was earning the organizational credibility to do user research in banks that treated every external access as a compliance risk. I had to prove that design could think strategically before anyone would let us talk to users. The redesign was the proof; the research access was the reward.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products, because they actually talk to humans."
+      "content": "The hardest part wasn't the design. Regulated banks and insurers limit who can watch their analysts work, so research needed executive backing and methods that worked around those limits before it could happen at all.\n\nThis experience shaped my conviction that you can't build good products without building the organization that supports them. Human-centered organizations make better products, because they actually talk to humans."
     },
     {
       "type": "key-takeaway",
@@ -116,12 +116,12 @@
     },
     {
       "type": "narrative",
-      "content": "Curious how a bank that had never let a vendor's design team near its analysts ended up handing me exec-sponsored access to watch them work, or what it actually took to make an empty query preview stop reading as \"your data is missing\"? Get in touch."
+      "content": "Ask me how a preview that reported zero results while the data sat right there turned out to be an information design problem, and how research with bank and insurance analysts got executive backing in the first place. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Took design from execution-only to strategic partner at a big data analytics platform serving top US/UK financial institutions. Co-built the design system, owned component behavior and interaction specs, and solved a fundamental data-uncertainty UX problem.",
+      "summary": "Took design from an execution function to a strategic partner at a big data analytics platform serving top US, Canadian and UK banks and insurers. Co-built the design system, owned component behavior and interaction specs, and solved the sample-uncertainty problem in query previews.",
       "angle": "Organizational transformation through design",
       "sections": [
         "hero",
@@ -150,8 +150,8 @@
   ],
   "meta": {
     "read_time_minutes": 8,
-    "confidential": true,
-    "confidentiality_note": "Screenshots may need to be anonymized or use demo data. Verify with Datameer before publishing.",
-    "source": "data/experiences/datameer-director-of-design.md + verification log, 2026-04-23; diagram and voice pass 2026-08-25"
+    "confidential": false,
+    "confidentiality_note": "Cleared to publish by Tobias on 2026-10-21 (\"cleared to publish\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 3). Work photos with colleagues still need their faces, hair and clothing replaced with AI and the \"Edited with AI\" label (CAREER-TRUTH.md §2 Datameer).",
+    "source": "data/experiences/datameer-director-of-design.md + verification log, 2026-04-23; diagram and voice pass 2026-08-25 + 2026-10-21 publish pass: cleared by Tobias; title and closer brought to the house standard; unsourced claims removed (banks 'that had never let a vendor's design team' observe analysts, 'rare for a vendor', design system 'built from scratch', support tickets, 'maintained user trust') and research access restated from datameer-director-of-design.md and the liveeo verification log"
   }
 }

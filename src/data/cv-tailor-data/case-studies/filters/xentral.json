@@ -1,7 +1,7 @@
 {
   "slug": "xentral",
   "title": "Selected Work",
-  "subtitle": "AI agents in production, no-code ERP for SMEs, and SME workflow automation — selected for Xentral",
+  "subtitle": "AI agents in production, plus no-code ERP and workflow automation for SMEs.",
   "theme": "default",
   "case_studies": [
     {
@@ -27,11 +27,6 @@
       "visibility": "browseable",
       "order": 5,
       "format_override": "executive"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "hidden",
-      "order": 6
     },
     {
       "id": "datameer-data-dense-analytics",

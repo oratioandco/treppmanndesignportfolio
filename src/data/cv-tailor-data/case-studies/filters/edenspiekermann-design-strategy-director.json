@@ -1,7 +1,7 @@
 {
   "slug": "edenspiekermann-design-strategy-director",
   "title": "Selected Work",
-  "subtitle": "Product strategy, AI-driven development, and design leadership — selected for Edenspiekermann",
+  "subtitle": "Design leadership first, with product strategy and AI-driven development in the work behind it.",
   "theme": "default",
   "case_studies": [
     {
@@ -14,12 +14,6 @@
       "id": "bibeltv-app-redesign",
       "visibility": "featured",
       "order": 2,
-      "format_override": "in-depth"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "featured",
-      "order": 3,
       "format_override": "in-depth"
     },
     {

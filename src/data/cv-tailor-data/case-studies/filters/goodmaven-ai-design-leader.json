@@ -1,7 +1,7 @@
 {
   "slug": "goodmaven-ai-design-leader",
   "title": "Selected Work",
-  "subtitle": "AI copilot skill shipped, an AI fundraising ecosystem built end-to-end, prompt-to-database onboarding co-defined with founders — selected for Fin",
+  "subtitle": "I shipped an AI copilot skill and built an AI fundraising ecosystem end to end; the prompt-to-database onboarding I co-defined with the founders.",
   "theme": "default",
   "case_studies": [
     {
@@ -26,12 +26,6 @@
       "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 5,
-      "format_override": "executive"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 6,
       "format_override": "executive"
     },
     {

@@ -1,7 +1,7 @@
 {
   "slug": "jupus",
   "title": "Selected Work",
-  "subtitle": "AI product design, complex B2B workflows, and design leadership — selected for Jupus",
+  "subtitle": "AI product design for complex B2B workflows, with design leadership behind it.",
   "theme": "default",
   "case_studies": [
     {
@@ -21,12 +21,6 @@
       "visibility": "featured",
       "order": 3,
       "format_override": "executive"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 4,
-      "format_override": "in-depth"
     },
     {
       "id": "bibeltv-support-agent",

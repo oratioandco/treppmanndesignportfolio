@@ -1,7 +1,7 @@
 {
   "slug": "dayone-ai-experience-designer",
   "title": "Selected Work",
-  "subtitle": "AI workflows shipped, agentic prototyping consumed by engineering, design systems as deployed APIs — selected for DAYONE",
+  "subtitle": "AI workflows in production, and prototypes engineering consumes on top of design systems that run as deployed APIs.",
   "theme": "default",
   "case_studies": [
     {
@@ -42,11 +42,6 @@
       "id": "bibeltv-app-redesign",
       "visibility": "hidden",
       "order": 8
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "hidden",
-      "order": 9
     },
     {
       "id": "datameer-data-dense-analytics",

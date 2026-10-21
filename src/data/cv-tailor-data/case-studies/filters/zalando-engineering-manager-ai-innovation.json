@@ -1,7 +1,7 @@
 {
   "slug": "zalando-engineering-manager-ai-innovation",
   "title": "Selected Work",
-  "subtitle": "AI product shipped in production · prototype-vs-production discipline · B2C consumer-scale KPI history — selected for Lounge by Zalando",
+  "subtitle": "An AI product shipped in production, with prototype-versus-production discipline and a consumer-scale KPI history behind it.",
   "theme": "default",
   "case_studies": [
     {
@@ -32,11 +32,6 @@
       "id": "spreadshirt-user-research-strategy",
       "visibility": "hidden",
       "order": 6
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "hidden",
-      "order": 7
     },
     {
       "id": "datameer-data-dense-analytics",

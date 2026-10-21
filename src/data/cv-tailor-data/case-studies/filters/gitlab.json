@@ -1,7 +1,7 @@
 {
   "slug": "gitlab",
   "title": "Selected Work",
-  "subtitle": "Knowledge-graph UX, design-system-as-API, AI-native product design, and IC-craft leadership — selected for GitLab",
+  "subtitle": "I lead from the craft, starting with knowledge-graph UX and a design system built as an API.",
   "theme": "default",
   "case_studies": [
     {
@@ -21,12 +21,6 @@
       "visibility": "featured",
       "order": 3,
       "format_override": "in-depth"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 5,
-      "format_override": "executive"
     },
     {
       "id": "bibeltv-color-api",

@@ -1,7 +1,7 @@
 {
   "slug": "mobilede",
   "title": "Selected Work",
-  "subtitle": "B2B marketplace, multi-stakeholder coordination, AI-native design — selected for mobile.de",
+  "subtitle": "B2B marketplace design, with multi-stakeholder coordination and an AI-native way of working.",
   "theme": "default",
   "case_studies": [
     {
@@ -15,12 +15,6 @@
       "visibility": "featured",
       "order": 2,
       "format_override": "in-depth"
-    },
-    {
-      "id": "leading-a-team-is-a-design-problem",
-      "visibility": "browseable",
-      "order": 4,
-      "format_override": "executive"
     },
     {
       "id": "datameer-data-dense-analytics",
