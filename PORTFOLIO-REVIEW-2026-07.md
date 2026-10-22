@@ -437,7 +437,7 @@ unusually good access to it:
 
 - The **ChurchDesk conference talk (2025-02-26)** where the launch customer publicly presented this
   system — currently only in `meta.source`.
-- The **Ninox CEO and technical co-founder** you worked with directly.
+- The **Ninox CEO** you worked with directly.
 - The **Ninox AI public beta (2026)** built on your interaction model.
 - The **Bibel TV app** in the App Store / Play Store, if the redesign has shipped.
 - The **engineer** from the org-building story, and your former **design lead**.

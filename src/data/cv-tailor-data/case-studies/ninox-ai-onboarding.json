@@ -14,7 +14,7 @@
   ],
   "company": "Ninox Software GmbH",
   "role": "Design lead (freelance, founder-led stealth project)",
-  "team": "Direct collaboration with Ninox CEO and technical co-founder, pre-product-team handoff, Berlin",
+  "team": "Freelance, stealth phase before the product-team handoff, Berlin",
   "duration": "Summer 2025",
   "status": "draft",
   "last_updated": "2026-05-24",
@@ -49,7 +49,7 @@
     {
       "type": "narrative",
       "headline": "The schema kept non-technical builders out",
-      "content": "Ninox is a no-code business application platform, people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly, law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The prompt-to-database initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this directly with Ninox's CEO and technical co-founder in a stealth pre-product-team phase, a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
+      "content": "Ninox is a no-code business application platform, people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly, law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The prompt-to-database initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this in a stealth pre-product-team phase, a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
       "images": [
         {
           "src": "/images/ninox/prompt-input.png",
@@ -145,7 +145,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Founder-led stealth project (with the CEO and technical co-founder, pre-product-team handoff) to extend Ninox's reach beyond the database-savvy. Designed the prompt-to-database onboarding with split-screen direct manipulation: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
+      "summary": "Founder-led stealth project, before the product-team handoff, to extend Ninox's reach beyond the database-savvy. Designed the prompt-to-database onboarding with split-screen direct manipulation: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
       "sections": [
         "hero",
@@ -165,8 +165,8 @@
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,
-    "confidentiality_note": "Freelance consultation post-employment, in stealth phase with the CEO and technical co-founder. No confidential company data; platform is launching in public beta 2026.",
-    "source": "data/experiences/ninox-head-of-product-design.md + user corrections 2026-05-24 (stealth-with-founders context; SME audience specifics; two UX constraints, long-chat-outputs infeasible + trial-users-won't-spec, that drove split-screen direct manipulation)"
+    "confidentiality_note": "Freelance consultation post-employment, in the stealth phase before the product-team handoff. No confidential company data; platform is launching in public beta 2026.",
+    "source": "data/experiences/ninox-head-of-product-design.md + user corrections 2026-05-24 (stealth-phase context; collaborator corrected 2026-10-22: the CEO, who is also the technical founder, one person, not named in outputs; SME audience specifics; two UX constraints, long-chat-outputs infeasible + trial-users-won't-spec, that drove split-screen direct manipulation)"
   },
   "generation": 3,
   "cover": {
