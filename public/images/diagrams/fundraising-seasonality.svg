@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="Two panels. Left: average fundraising return by mailing month, indexed so the average month is 100 — September stands out at 160, the other months sit between 78 and 102. Right: every mailing from 2019 to 2025 plotted against its own month's average. Most months spread widely in both directions: May runs from minus 89 to plus 90 percent, September from minus 69 to plus 85. Only December stays inside plus or minus 20 percent.">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="Two panels. Left: average fundraising return by mailing month, indexed so the average month is 100 — September stands out at 160, the other months sit between 78 and 102. Right: every mailing on record plotted against its own month's average. Most months spread widely in both directions: May runs from minus 89 to plus 90 percent, September from minus 69 to plus 85. Only December stays inside plus or minus 20 percent.">
 <rect width="1200" height="600" fill="#0b0d12"/>
 <text x="70" y="62" fill="#e7e9ee" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600">1 · By the calendar</text>
 <text x="70" y="88" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Average return per month, average month = 100</text>
@@ -30,7 +30,7 @@
 <text x="400.0" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Dec</text>
 <text x="70" y="552" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Reading: send in September.</text>
 <text x="560" y="62" fill="#e7e9ee" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600">2 · Against its own month</text>
-<text x="560" y="88" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Each mailing, 2019–2025, vs. the average for its month</text>
+<text x="560" y="88" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Each mailing vs. the average for its month</text>
 <rect x="560" y="274.0" width="580" height="72.0" fill="#161b25"/>
 <line x1="560" x2="1140" y1="490.0" y2="490.0" stroke="#262c38" stroke-width="1"/>
 <text x="550" y="494.0" text-anchor="end" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="12">-100%</text>

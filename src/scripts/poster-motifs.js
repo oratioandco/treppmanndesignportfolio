@@ -297,7 +297,7 @@ const MOTIF_ASSIGNMENTS = {
   "bibeltv-app-redesign": "double-helix", // the light-mode bet held against the competitor's approach, resolved together
   "bibeltv-support-agent": "double-helix", // AI draft and human decision, paired, never fully merging
   "ninox-ai-onboarding": "double-helix", // AI capability and user control, balanced together
-  "bibeltv-ai-fundraising": "double-helix", // AI generation and a human deciding what actually goes out, paired
+  "ai-fundraising-letters": "double-helix", // AI generation and a human deciding what actually goes out, paired
 
   "bibeltv-ai-prototyping": "sunburst", // rapid iteration, generative variation
   "bibeltv-agentic-engineering": "sunburst", // collapsing the design-to-ship pipeline into one accelerated loop

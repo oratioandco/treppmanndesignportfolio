@@ -1,0 +1,22 @@
+---
+// The fundraising study was renamed away from an id that named the organization
+// (anonymized 2026-10-22, see my-cv-tailor data/verification-log/
+// 2026-10-22-fundraising-process-and-confidentiality.md §5–§7). The old URL was
+// sent in applications, so it keeps resolving. Same stub Astro's `redirects`
+// emits (meta refresh, canonical, noindex): GitHub Pages cannot serve a 301.
+// A page rather than an astro.config entry so it stays independent of the
+// route move in progress there; fold it into the config when that lands.
+const target = '/case-studies/ai-fundraising-letters';
+const canonical = new URL(target, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<meta http-equiv="refresh" content={`0;url=${target}`}>
+<meta name="robots" content="noindex">
+<link rel="canonical" href={canonical}>
+</head>
+<body><a href={target}>Redirecting to the case study</a></body>
+</html>

@@ -1,0 +1,34 @@
+---
+// Old tailored URL of the fundraising study, renamed away from an id that named
+// the organization (anonymized 2026-10-22). One stub per filter path (aliases
+// included) that shows the study, because these links were sent in
+// applications. See src/pages/case-studies/bibeltv-ai-fundraising.astro.
+import { getAllFilters, getFilterPaths, getFilterWithStudies } from '../../../data/cv-tailor';
+
+const NEW_ID = 'ai-fundraising-letters';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const filter of getAllFilters()) {
+    const data = getFilterWithStudies(filter.slug);
+    if (!data?.studies.some((s: any) => s.id === 'ai-fundraising-letters' && s.visibility !== 'hidden')) continue;
+    for (const slug of getFilterPaths(filter)) paths.push({ params: { slug } });
+  }
+  return paths;
+}
+
+const { slug } = Astro.params;
+const target = `/for/${slug}/${NEW_ID}`;
+const canonical = new URL(target, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<meta http-equiv="refresh" content={`0;url=${target}`}>
+<meta name="robots" content="noindex">
+<link rel="canonical" href={canonical}>
+</head>
+<body><a href={target}>Redirecting to the case study</a></body>
+</html>

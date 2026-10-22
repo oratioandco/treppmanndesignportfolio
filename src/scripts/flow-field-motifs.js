@@ -437,7 +437,7 @@ const SHAPE_ASSIGNMENTS = {
   "bibeltv-support-agent": ["double-helix"], // AI draft and human decision, paired, never fully merging
   "bibeltv-app-redesign": ["double-helix", { converge: true }], // old direction and new direction, resolving into one by the end
   "ninox-ai-onboarding": ["balance"], // AI capability and user control held in deliberate tension, not merged and not just paired
-  "bibeltv-ai-fundraising": ["funnel"], // many AI-generated drafts narrowing to the one a human sends — default (odd, 5) chute count deliberately, see the swastika-risk comment on the funnel shape itself
+  "ai-fundraising-letters": ["funnel"], // many AI-generated drafts narrowing to the one a human sends — default (odd, 5) chute count deliberately, see the swastika-risk comment on the funnel shape itself
 
   "bibeltv-ai-prototyping": ["spiral"], // the design-to-ship pipeline collapsing into one accelerating loop (merged in from the retired bibeltv-agentic-engineering, which told the same story)
   "bibeltv-metadata-extraction": ["sunburst", { skipOne: true }], // handles most fields, deliberately leaves one out — the gap is the point

@@ -86,7 +86,7 @@ const METAPHOR = {
   'leading-a-team-is-a-design-problem': 'constellation', // dots aligning into structure
   'ninox-ai-onboarding': 'diffusion',
   'ninox-org-building': 'lattice',            // an org taking structure
-  'bibeltv-ai-fundraising': 'spectrum',       // one voice banding across surfaces
+  'ai-fundraising-letters': 'spectrum',       // one voice banding across surfaces
   'spreadshirt-user-research-strategy': 'converge', // research converging
 };
 
