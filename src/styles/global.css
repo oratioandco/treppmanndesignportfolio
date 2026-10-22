@@ -1113,6 +1113,7 @@ main {
 }
 
 .hero--editorial > .container {
+    box-sizing: border-box;
     width: 100%;
     max-width: 86rem;
     padding: 0 clamp(1rem, 4vw, 4rem) clamp(2rem, 5vw, 4rem);
