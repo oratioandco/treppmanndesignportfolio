@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Three-step workflow from the live Storybook system, through Claude prototyping inside the valid token vocabulary, to reviewable component, view, and token changes. Six checks run locally and in CI and refuse off-system work.">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#667085"/></marker></defs>
+  <rect width="1200" height="520" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="600" y="56" text-anchor="middle" fill="#e7e9ee" font-size="22" font-weight="700">One path from feature idea to reviewable change</text>
+    <g transform="translate(55 125)">
+      <rect width="300" height="210" rx="16" fill="#161c28" stroke="#333c50" stroke-width="2"/>
+      <text x="28" y="48" fill="#8fd9b0" font-size="14" font-weight="700">01 · INSPECT</text>
+      <text x="28" y="88" fill="#e7e9ee" font-size="22" font-weight="700">Start from the live system</text>
+      <text x="28" y="126" fill="#aeb6c6" font-size="16">Real Storybook components</text><text x="28" y="152" fill="#aeb6c6" font-size="16">Themes · devices · token use</text>
+    </g>
+    <line x1="365" y1="230" x2="445" y2="230" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(455 125)">
+      <rect width="290" height="210" rx="16" fill="#1c2230" stroke="#4a5570" stroke-width="2"/>
+      <text x="28" y="48" fill="#8fd9b0" font-size="14" font-weight="700">02 · PROTOTYPE</text>
+      <text x="28" y="88" fill="#e7e9ee" font-size="22" font-weight="700">Work inside the system</text>
+      <text x="28" y="126" fill="#aeb6c6" font-size="16">Claude uses the valid vocabulary</text><text x="28" y="152" fill="#aeb6c6" font-size="16">Six checks run locally and in CI</text>
+    </g>
+    <line x1="755" y1="230" x2="835" y2="230" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
+    <g transform="translate(845 125)">
+      <rect width="300" height="210" rx="16" fill="#161c28" stroke="#333c50" stroke-width="2"/>
+      <text x="28" y="48" fill="#8fd9b0" font-size="14" font-weight="700">03 · REVIEW</text>
+      <text x="28" y="88" fill="#e7e9ee" font-size="22" font-weight="700">Make missing pieces explicit</text>
+      <text x="28" y="126" fill="#aeb6c6" font-size="16">Components · views · tokens</text><text x="28" y="152" fill="#aeb6c6" font-size="16">become reviewable pull requests</text>
+    </g>
+    <rect x="250" y="390" width="700" height="70" rx="35" fill="#22342d" stroke="#4f8f6b"/>
+    <text x="600" y="432" text-anchor="middle" fill="#bde8cf" font-size="18" font-weight="700">Invented references and hardcoded values fail early</text>
+  </g>
+</svg>

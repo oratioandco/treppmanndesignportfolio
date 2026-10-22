@@ -1,7 +1,7 @@
 {
   "id": "churchdesk-booking-system",
   "title": "When booking a pastor isn't simple",
-  "subtitle": "A funeral booking system designed so the rest of the ChurchDesk platform could build on it. Three stakeholder groups with opposite needs; one foundation deeply integrated with the product they already use.",
+  "subtitle": "I ran funeral booking in a dual PM and design role and built it into the calendar and form builder parishes already use. Coordination at the launch customer dropped from days to hours, and the rest of the platform could build on it.",
   "type": "business-process",
   "tags": [
     "measurable-impact",
@@ -14,15 +14,15 @@
     "platform-thinking",
     "product-management"
   ],
-  "company": "ChurchDesk GmbH",
+  "company": "ChurchDesk",
   "role": "Head of Platform and Design",
   "team": "1 designer + engineering team, Berlin",
   "duration": "2024 – 2025",
   "status": "draft",
-  "last_updated": "2026-09-17",
+  "last_updated": "2026-10-21",
   "hero_image": {
-    "src": "/images/churchdesk/funeral-home-booking.jpg",
-    "alt": "The funeral home's booking screen: a full week of time slots for the Main Cemetery, with only the slots that resolve true against the pastor's on-call rota, the cemetery's opening hours, and any standing commitments"
+    "src": "/images/churchdesk/priest-availability.jpg",
+    "alt": "The pastor's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), the pastor's name blurred, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown"
   },
   "video": {
     "src": "/video/churchdesk-booking-system.mp4",
@@ -103,30 +103,42 @@
       "images": [
         {
           "src": "/images/churchdesk/priest-availability.jpg",
-          "alt": "The pastor's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), user Pfarrer Meissner, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown",
-          "caption": "The decision that distinguishes the system from Calendly, captured in one screen. The pastor sets on-call rotation as a recurring event in the same calendar where they already plan their week, and a single event covers several cemeteries at once."
+          "alt": "The pastor's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), the pastor's name blurred, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown",
+          "caption": "The decision that distinguishes the system from Calendly, captured in one screen. The pastor sets on-call availability in the same calendar where they already plan their week, and a single event covers several cemeteries at once. Captured in ChurchDesk's customer-presentation environment. Personal names are blurred.",
+          "annotations": [
+            {
+              "x": 22,
+              "y": 42,
+              "label": "the same calendar where they already plan their week"
+            },
+            {
+              "x": 61,
+              "y": 49.4,
+              "label": "‘Bereitschaft Beerdigung’ (on-call for funerals)"
+            },
+            {
+              "x": 56,
+              "y": 65,
+              "label": "multiple cemeteries selected at once"
+            }
+          ]
         },
         {
           "src": "/images/churchdesk/booking-form.jpg",
-          "alt": "The funeral home's booking-form step: date and time slot at the top, a Select staff member radio list, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt",
-          "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. I reused infrastructure that was already in the product."
+          "alt": "The funeral home's booking-form step: date and time slot at the top, a Select staff member radio list with the staff name blurred, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt. Names, phone number and email in the fields are blurred.",
+          "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. I reused infrastructure that was already in the product. Names, phone number and email are blurred; the rest is demo data."
         }
       ]
     },
     {
       "type": "narrative",
       "headline": "How the system fits together",
-      "content": "The design rests on one composition: a pastor sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nThat filtering logic isn't special-cased for pastors. A booking option can carry both opening hours and one or more resources, a room, or a physical asset like a projector or a barbecue set, and every resource lives on the same calendar as the people. A time only ever surfaces on the booking page if every person and every resource attached to that option is free at once. It's one availability-resolution mechanism, reused for people and equipment alike, which is what let the same system carry room rentals and equipment bookings without a second engine being built for them.\n\nEvery booking is a request, not an automatic booking. The pastor confirms or declines. That single decision is what kept the system from feeling like pastors were being booked over their heads. Bookings also carried a 48-hour minimum lead time, so no one was asked to confirm a slot that was logistically impossible to fulfill — control that holds before the pastor ever has to say no.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation but a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back.",
+      "content": "The design rests on one composition: a pastor sets their availability in the calendar, the cemetery's opening hours and any standing commitments are layered on, and what remains is what the funeral home sees. A slot only reaches the funeral home if every constraint resolves true.\n\nThat filtering logic isn't special-cased for pastors. A booking option can carry both opening hours and one or more resources, a room, or a physical asset like a projector or a barbecue set, and every resource lives on the same calendar as the people. A time only ever surfaces on the booking page if every person and every resource attached to that option is free at once. It's one availability-resolution mechanism, reused for people and equipment alike, which is what let the same system carry room rentals and equipment bookings without a second engine being built for them.\n\nTwo standard booking-system guards sit underneath: a minimum notice period before any booking, and a buffer between bookings, so nothing is overbooked.\n\nEvery booking is a request, not an automatic booking. The pastor confirms or declines. That single decision is what kept the system from feeling like pastors were being booked over their heads. Bookings also carried a 48-hour minimum lead time, so no one was asked to confirm a slot that was logistically impossible to fulfill — control that holds before the pastor ever has to say no.\n\nThe availability model was deliberately general. The business goal was never a funeral-booking feature in isolation but a booking capability that could carry funeral booking as its launch use case and then expand across the platform: room rentals, equipment reservations, counseling appointments, anything resource-and-availability-shaped. Funeral booking shipped first; the deeper capability was what made the investment pay back.",
       "images": [
         {
           "src": "/images/churchdesk/availability-filtering-pipeline.png",
           "alt": "Five-stage filtering diagram across one 08:00–18:00 calendar day: a full-day Verfügbarkeit availability event is reduced by the pastor's other calendar events (a home visit, a service at 12:00), then by the cemetery's 10:00–16:00 funeral hours, then by 30-minute prep and follow-up buffers combined with the booking option's hourly start grid — leaving two genuinely free slots, 10:30 and 14:00, on the funeral home's booking page (a 15:00 candidate is rejected because its follow-up would run past the cemetery's close)",
           "caption": "The whole filtering chain in one picture. The pastor enters availability once, as an event in the calendar they already use — everything else on that calendar, the cemetery's hours, and the booking option's own prep and follow-up time cut themselves out, and what survives lands on the booking option's start grid: hourly for funerals, 15-minute increments for appointments and video calls. A slot only reaches the funeral home if every constraint resolves true; every booking is still a request the pastor confirms."
-        },
-        {
-          "src": "/images/churchdesk/funeral-home-booking.jpg",
-          "alt": "The funeral home's booking screen: a full week of time slots for the Main Cemetery, with only the slots that resolve true against the pastor's on-call rota, the cemetery's opening hours, and any standing commitments",
-          "caption": "The result on the funeral home's side: a week of slots for one cemetery, showing only the times that survived the filtering above."
         }
       ]
     },
@@ -153,7 +165,14 @@
           "value": "Became a core ChurchDesk feature. The launch customer needed funerals bookable for and by 20+ cemeteries, and the module then shipped to the whole customer base for room rentals, baptisms, weddings and youth-camp sign-ups as well, each reusing the same availability model and form builder, including the required follow-up form for the document each use case actually needs"
         }
       ],
-      "narrative": "Coordination dropped from days to hours. The 90% acceptance rate came directly from the filtering: if a funeral home could see a time, the pastor could take it. The longer-term outcome, the one that justified the investment to the business, was the availability model itself: built once for funeral booking, reusable across the platform without redesign. The funeral feature was the visible deliverable; the platform-wide capability behind it was the strategic one."
+      "narrative": "Coordination dropped from days to hours. The 90% acceptance rate came directly from the filtering: if a funeral home could see a time, the pastor could take it. The longer-term outcome, the one that justified the investment to the business, was the availability model itself: built once for funeral booking, reusable across the platform without redesign. The funeral feature was the visible deliverable; the platform-wide capability behind it was the strategic one.",
+      "images": [
+        {
+          "src": "/images/diagrams/churchdesk-outcome-proof.svg",
+          "alt": "Two outcome figures from the launch customer: around 70% less coordination time and a 90% booking acceptance rate, and the delivery constraint that was fixed before I joined: €20,000 of client funding and two months to development release, both met",
+          "caption": "Launch-customer results, as stated above. The budget and deadline were fixed before I joined; delivering within them was the constraint, not a result I set."
+        }
+      ]
     },
     {
       "type": "reflection",
@@ -162,7 +181,7 @@
     },
     {
       "type": "narrative",
-      "content": "Curious why turning down the faster, standalone-module path was the right call, or how a funeral-booking tool built in two months ended up running weddings, baptisms and room rentals for ChurchDesk's whole customer base? Get in touch."
+      "content": "Ask me why turning down the faster, standalone-module path was the right call, and how a funeral-booking tool built in two months ended up running weddings, baptisms and room rentals for ChurchDesk's whole customer base. Get in touch."
     }
   ],
   "variants": {
@@ -197,11 +216,7 @@
     "read_time_minutes": 7,
     "confidential": false,
     "confidentiality_note": "First customer (Evangelische Kirche von Kurhessen-Waldeck) is named with their consent; they are publicly identified in the ChurchDesk conference talk from 2025-02-26.",
-    "source": "churchdesk experience file + verification 2026-04-23 + ChurchDesk conference talk 2025-02-26 (Kooperationsraum Bestattungskalender), see data/case-studies/images/churchdesk/source-conference-talk-2025-02-26.pdf, corrections 2026-05-24 (user confirmed: project was WEB and mobile, not mobile-only; tech stack was React (web) + React Native (mobile), NOT ShadCn; validation conversations with project lead, pastors, funeral directors are real; build-vs-buy was an early-and-quick decision dismissed via competitive analysis once custom-form requirement became clear; Calendly does not actually offer white-labeling, so build-vs-buy alternatives were a different vendor or a library; standalone module was the faster path and was floated internally; deep platform integration was chosen as the right option, not the cheap one; designs were Figma + my designer, engineering built the code), platform-integration mechanism detail added 2026-09-17 (user confirmed: form builder reused twice, incl. file upload and a required follow-up form for death certificates/camp consent/rental agreements; availability is its own calendar entry type supporting an all-day or repeat/series option plus per-booking-page custom hours; capability also now serves youth-camp sign-ups), see data/verification-log/2026-09-16-ninox-context-for-video.md"
+    "source": "churchdesk experience file + verification 2026-04-23 + ChurchDesk conference talk 2025-02-26 (Kooperationsraum Bestattungskalender), see data/case-studies/images/churchdesk/source-conference-talk-2025-02-26.pdf, corrections 2026-05-24 (user confirmed: project was WEB and mobile, not mobile-only; tech stack was React (web) + React Native (mobile), NOT ShadCn; validation conversations with project lead, pastors, funeral directors are real; build-vs-buy was an early-and-quick decision dismissed via competitive analysis once custom-form requirement became clear; Calendly does not actually offer white-labeling, so build-vs-buy alternatives were a different vendor or a library; standalone module was the faster path and was floated internally; deep platform integration was chosen as the right option, not the cheap one; designs were Figma + my designer, engineering built the code), platform-integration mechanism detail added 2026-09-17 (user confirmed: form builder reused twice, incl. file upload and a required follow-up form for death certificates/camp consent/rental agreements; availability is its own calendar entry type supporting an all-day or repeat/series option plus per-booking-page custom hours; capability also now serves youth-camp sign-ups), see data/verification-log/2026-09-16-ninox-context-for-video.md, personal names in the demo captures blurred and funeral-home-booking.jpg retired 2026-10-21 (Tobias: 'blur them'; the capture shows the same weekday number under every day), minimum notice and buffer confirmed 2026-10-21 see data/verification-log/2026-10-21-portfolio-launch-answers.md"
   },
-  "generation": 3,
-  "cover": {
-    "src": "/images/covers/cover-churchdesk.jpg",
-    "alt": "The funeral-home booking view: a week of available time slots for a cemetery in December 2026."
-  }
+  "generation": 3
 }

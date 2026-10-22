@@ -1,0 +1,56 @@
+{
+  "slug": "gip",
+  "aliases": [
+    "gip-chief-ux-designer"
+  ],
+  "title": "UX für gewachsene Plattformen",
+  "subtitle": "Unternehmensweite UX-Vision, klare Bedienkonzepte und moderne KI-Workflows für komplexe B2B-Software",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-gip.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Zugeschnitten auf die Position Chief UX Designer"
+  },
+  "bio": {
+    "short": "Ich verbinde unternehmensweite UX-Führung mit der praktischen Modernisierung komplexer B2B-Produkte. Bei Ninox hielt ich neue Kernoberflächen und bestehende Administration bewusst kohärent; bei Bibel TV übertrage ich diese Aufgabe auf vier Plattformen. Dazu kommen KI-Interaktionen im Produkt, agentische Prototypen und WCAG-AA-Arbeit.",
+    "long": "Bei Ninox führte ich Design aus dem Senior Leadership Team für eine No-Code-Plattform, mit der Unternehmen eigene Datenmodelle, Anwendungen und Prozesse aufbauen. Ich verantwortete das Design System und etablierte die gemeinsame Governance mit Engineering. Editor und zentrale Oberflächen wurden neu gestaltet, während ältere administrative Bereiche bestehen blieben und auf den wichtigsten Journeys schrittweise angeglichen wurden.\n\nBei Bibel TV verbinde ich heute UX-Vision mit direkter Umsetzung. Ich verantworte Design über iOS, Android, Web und Connected TV. Ich entwickle agentisch Prototypen gegen reale APIs und gestalte KI-gestützte Bedienkonzepte für die in Entwicklung befindliche App „Bibel erklärt“. Ein produktiver Microsoft-Copilot-Skill unterstützt den Zuschauerservice; die neue App wurde gegen WCAG AA getestet.\n\nBei Datameer machte ich Research für schwer erreichbare Fachrollen in regulierten Banken und Versicherungen zur Grundlage von Produktentscheidungen. Bei ChurchDesk verband ich Produktmanagement, UX und Accessibility: Aus einem WCAG-AA-Audit entstanden konkrete Plattformverbesserungen für Kunden in sechs Ländern. Ich arbeite auf Deutsch muttersprachlich und auf Englisch C2.",
+    "context": {
+      "company": "GIP / KIDICAP",
+      "role": "Chief UX Designer (m/w/d)",
+      "emphasis": "Lead with company-wide UX direction, cross-product governance, selective modernization of mature platforms, KI interaction design, accessibility and current hands-on prototyping."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

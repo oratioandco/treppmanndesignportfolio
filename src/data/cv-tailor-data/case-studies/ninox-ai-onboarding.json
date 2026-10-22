@@ -1,7 +1,7 @@
 {
   "id": "ninox-ai-onboarding",
-  "title": "Who Controls the AI?",
-  "subtitle": "Designing the onboarding for prompt-to-database with split-screen direct manipulation, where AI builds databases from plain-language descriptions, and users stay in control",
+  "title": "User-controlled prompt-to-database onboarding",
+  "subtitle": "I designed the onboarding for prompt-to-database: AI builds a database from a plain-language description, and split-screen direct manipulation keeps the user in control.",
   "type": "design-case-study",
   "tags": [
     "ai",
@@ -12,7 +12,7 @@
     "user-research",
     "strategy"
   ],
-  "company": "Ninox Software GmbH",
+  "company": "Ninox",
   "role": "Design lead (freelance, founder-led stealth project)",
   "team": "Freelance, stealth phase before the product-team handoff, Berlin",
   "duration": "Summer 2025",
@@ -36,7 +36,7 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "Who Controls the AI?",
+      "headline": "User-controlled prompt-to-database onboarding",
       "subtext": "A founder-led stealth project to extend Ninox's reach. The platform is incredibly powerful once a schema exists, but defining the schema was the gate that kept most non-technical SMEs out. Prompt-to-database generates a schema from a plain-language description. The design problem: how to hand a non-database-savvy user a schema they can actually own.",
       "images": [
         {
@@ -66,7 +66,14 @@
     {
       "type": "narrative",
       "headline": "Why chat alone wouldn't work",
-      "content": "The obvious AI-onboarding pattern is a chat interface: user describes the database, AI replies with the schema rendered as text or a structured response, user asks for changes in chat, repeat. That pattern breaks here in two ways that aren't theoretical.\n\n### Long chat outputs don't scale to schemas\n\nA realistic SME database has eight or twelve tables, each with ten or twenty fields, plus relations. A chat that prints that schema back to the user, and then expects the user to type 'change the `Customer` table's `phone` field to a multi-value field, and add a `country` field after it', is going to feel like writing migration scripts in prose. The schema is large enough that the chat transcript stops being a conversation and starts being a wall of generated text the user has to navigate.\n\n### Trial users won't write a long spec upfront\n\nThe other end of the conversation has the same problem in reverse. A trial user is not going to type a 400-word spec into the first prompt: 'I need a CRM for my law firm with clients, matters, case files, billing records, deadlines, contact people per client, document attachments per matter…' They will type one sentence. The first AI-generated schema will be off by at least a little, sometimes by more. Recovering from that mismatch through additional chat turns leads back to the first problem.\n\nBoth constraints together meant chat alone was not a viable interaction model. The schema had to live on a surface the user could see and touch directly."
+      "content": "The obvious AI-onboarding pattern is a chat interface: user describes the database, AI replies with the schema rendered as text or a structured response, user asks for changes in chat, repeat. That pattern breaks here in two ways that aren't theoretical.\n\n### Long chat outputs don't scale to schemas\n\nA realistic SME database has eight or twelve tables, each with ten or twenty fields, plus relations. A chat that prints that schema back to the user, and then expects the user to type 'change the `Customer` table's `phone` field to a multi-value field, and add a `country` field after it', is going to feel like writing migration scripts in prose. The schema is large enough that the chat transcript stops being a conversation and starts being a wall of generated text the user has to navigate.\n\n### Trial users won't write a long spec upfront\n\nThe other end of the conversation has the same problem in reverse. A trial user is not going to type a 400-word spec into the first prompt: 'I need a CRM for my law firm with clients, matters, case files, billing records, deadlines, contact people per client, document attachments per matter…' They will type one sentence. The first AI-generated schema will be off by at least a little, sometimes by more. Recovering from that mismatch through additional chat turns leads back to the first problem.\n\nBoth constraints together meant chat alone was not a viable interaction model. The schema had to live on a surface the user could see and touch directly.",
+      "images": [
+        {
+          "src": "/images/diagrams/ninox-chat-vs-editor.svg",
+          "alt": "Two columns. Chat alone: long outputs do not scale to schemas, trial users will not write a long spec upfront, and recovering from a first schema that is off leads back to the first problem. In the real editor: the schema renders into the data-model editor, tables appear as cards, direct manipulation comes first and chat is the alternative.",
+          "caption": "The schema had to live on a surface the user could see and touch directly."
+        }
+      ]
     },
     {
       "type": "process",
@@ -98,7 +105,24 @@
         {
           "src": "/images/ninox/dual-paths.png",
           "alt": "The AI builder showing both the chat panel (with iterative edits) and the visual data model with editable table cards",
-          "caption": "Two paths, side by side. Chat-driven iteration on the left; direct-edit affordances (‘Create field’ on every card) on the right. The user picks whichever matches the change they want to make."
+          "caption": "Two paths, side by side. Chat-driven iteration on the left; direct-edit affordances (‘Create field’ on every card) on the right. The user picks whichever matches the change they want to make.",
+          "annotations": [
+            {
+              "x": 27.5,
+              "y": 34.5,
+              "label": "Chat-driven iteration on the left"
+            },
+            {
+              "x": 54.3,
+              "y": 46.9,
+              "label": "the visual data model with editable table cards"
+            },
+            {
+              "x": 54.3,
+              "y": 74.9,
+              "label": "‘Create field’ on every card"
+            }
+          ]
         },
         {
           "src": "/images/ninox/schema-in-builder.png",
@@ -140,7 +164,7 @@
     },
     {
       "type": "narrative",
-      "content": "The AI's first guess at your schema is almost always a little off. Curious why the fix was never a smarter chatbot, but making sure a law-firm partner who's never thought about tables and relations doesn't have an 'AI mode' to escape from? Get in touch."
+      "content": "The AI's first guess at your schema is almost always a little off. Ask me why the fix was never a smarter chatbot, and why a law-firm partner who has never thought about tables and relations should not have an 'AI mode' to escape from. Get in touch."
     }
   ],
   "variants": {

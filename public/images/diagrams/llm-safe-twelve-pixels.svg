@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="A twelve-pixel font size should not be bound to an unrelated token merely because the number matches. The corrected checker suggests only tokens from the same property family and stays silent when no valid relationship exists.">
+  <rect width="1200" height="520" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="600" y="58" text-anchor="middle" fill="#e7e9ee" font-size="23" font-weight="700">Twelve pixels is not twelve pixels</text>
+    <g transform="translate(80 115)">
+      <text x="0" y="0" fill="#c98c8c" font-size="15" font-weight="700">FIRST VERSION</text>
+      <rect x="0" y="28" width="470" height="260" rx="16" fill="#1c202a" stroke="#7a4e54" stroke-width="2"/>
+      <text x="36" y="85" fill="#e7e9ee" font-size="22" font-weight="700">font-size: 12px</text>
+      <text x="36" y="132" fill="#c6cad4" font-size="17">Found any token with value 12px</text>
+      <rect x="36" y="162" width="350" height="56" rx="8" fill="#312329"/>
+      <text x="58" y="197" fill="#e4b6bd" font-size="17">suggest: radius.small</text>
+      <line x1="52" y1="190" x2="370" y2="190" stroke="#e37986" stroke-width="3"/>
+      <text x="36" y="252" fill="#9aa3b5" font-size="15">Same number. Wrong relationship.</text>
+    </g>
+    <g transform="translate(650 115)">
+      <text x="0" y="0" fill="#8fd9b0" font-size="15" font-weight="700">CORRECTED CHECK</text>
+      <rect x="0" y="28" width="470" height="260" rx="16" fill="#17251f" stroke="#4f8f6b" stroke-width="2"/>
+      <text x="36" y="85" fill="#e7e9ee" font-size="22" font-weight="700">font-size: 12px</text>
+      <text x="36" y="132" fill="#c6cad4" font-size="17">Search only the typography family</text>
+      <rect x="36" y="162" width="350" height="56" rx="8" fill="#213b2f"/>
+      <text x="58" y="197" fill="#bde8cf" font-size="17">suggest: type.caption.size</text>
+      <text x="36" y="252" fill="#9aa3b5" font-size="15">No valid token? Say nothing.</text>
+    </g>
+  </g>
+</svg>

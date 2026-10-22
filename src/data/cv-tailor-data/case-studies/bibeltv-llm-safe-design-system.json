@@ -54,6 +54,13 @@
           "label": "Turn missing pieces into system work",
           "description": "The productionalization path is designed to identify the components, views and token changes a prototype requires, including new component or view aliases, and carry those changes into Storybook and the token API as reviewable pull requests."
         }
+      ],
+      "images": [
+        {
+          "src": "/images/diagrams/llm-safe-one-path.svg",
+          "alt": "Three steps: start from the live system in Storybook, prototype inside the system, turn missing pieces into system work. Six checks, run locally and in CI, reject nonexistent references and values written directly into a component before the change becomes a reviewable pull request.",
+          "caption": "Six checks refuse off-system work locally and in CI."
+        }
       ]
     },
     {
@@ -71,7 +78,14 @@
     {
       "type": "narrative",
       "headline": "Twelve pixels is not twelve pixels",
-      "content": "A check that only says *no* is useless to a product manager. So failures name the token to use instead. The first version of that was quietly dangerous.\n\nIt was looking at a font size of 12px. It found a primitive or semantic token holding exactly 12px and offered it as the alias. The value was correct; the relationship was not. Taking the suggestion would have compiled, rendered pixel-identical and passed review, while coupling the typography to an unrelated design decision. A later change to that token could then alter the type for no design reason. I'd written that suggestion engine an hour earlier, and I'd written it to be helpful.\n\nTwo numbers matching is a coincidence, not a relationship. Suggestions are now constrained to the property's own family, and a component's token is only ever offered to that component. Where nothing qualifies, the check says **nothing at all**.\n\nThat silence is the part I'd defend hardest. It means the system genuinely has no name for this decision yet, which is a finding worth surfacing, not a hole worth filling with the nearest number that fits. For someone who doesn't know the catalog, a confidently wrong suggestion is worse than no suggestion."
+      "content": "A check that only says *no* is useless to a product manager. So failures name the token to use instead. The first version of that was quietly dangerous.\n\nIt was looking at a font size of 12px. It found a primitive or semantic token holding exactly 12px and offered it as the alias. The value was correct; the relationship was not. Taking the suggestion would have compiled, rendered pixel-identical and passed review, while coupling the typography to an unrelated design decision. A later change to that token could then alter the type for no design reason. I'd written that suggestion engine an hour earlier, and I'd written it to be helpful.\n\nTwo numbers matching is a coincidence, not a relationship. Suggestions are now constrained to the property's own family, and a component's token is only ever offered to that component. Where nothing qualifies, the check says **nothing at all**.\n\nThat silence is the part I'd defend hardest. It means the system genuinely has no name for this decision yet, which is a finding worth surfacing, not a hole worth filling with the nearest number that fits. For someone who doesn't know the catalog, a confidently wrong suggestion is worse than no suggestion.",
+      "images": [
+        {
+          "src": "/images/diagrams/llm-safe-twelve-pixels.svg",
+          "alt": "A font size of 12px. First version: offered a token that holds exactly 12px, struck out, because the value matches but the relationship does not. Now: a token from the property's own family is offered, and where nothing qualifies the check says nothing at all.",
+          "caption": "Two numbers matching is a coincidence, not a relationship."
+        }
+      ]
     },
     {
       "type": "narrative",
@@ -114,7 +128,24 @@
         {
           "src": "/images/bibeltv/llm-safe-check-refusal.png",
           "alt": "A terminal. A two-line code change gives a suggestion chip a hardcoded 16-pixel corner radius and an invented spacing token. Two checks fail: one names the invented token as a reference that doesn't exist; the other flags the 16 and offers three real radius tokens, warning that they match by value and the binding still has to be confirmed.",
-          "caption": "A change staged to show the rails, run against the real checks. The invented token is refused by name. The hardcoded 16 is refused with three real tokens to use instead, and a warning that matching the number doesn't make the binding right."
+          "caption": "A change staged to show the rails, run against the real checks. The invented token is refused by name. The hardcoded 16 is refused with three real tokens to use instead, and a warning that matching the number doesn't make the binding right.",
+          "annotations": [
+            {
+              "x": 54,
+              "y": 41.5,
+              "label": "The invented token is refused by name."
+            },
+            {
+              "x": 52.5,
+              "y": 67.5,
+              "label": "The hardcoded 16 is refused with three real tokens to use instead"
+            },
+            {
+              "x": 57,
+              "y": 80.5,
+              "label": "matching the number doesn't make the binding right"
+            }
+          ]
         }
       ]
     },
@@ -131,7 +162,7 @@
     {
       "type": "narrative",
       "headline": "Want to hear more?",
-      "content": "How did a perfect twelve-pixel match become the wrong token?\n\nWhy did I ask an independent reviewer to try to disprove every audit finding?\n\nWhy did Storybook, not Figma, have to become the source of truth?\n\nGet in touch."
+      "content": "Ask me about the twelve-pixel match that turned out to be the wrong token, why I had an independent reviewer try to disprove every audit finding, and why Storybook, not Figma, had to become the source of truth. Get in touch."
     }
   ],
   "variants": {
@@ -142,9 +173,11 @@
         "hero",
         "The system could not depend on Figma expertise",
         "One path from feature idea to pull request",
+        "Twelve pixels is not twelve pixels",
+        "Trusting the tooling, carefully",
         "The production rails are already live"
       ],
-      "max_read_time": "3 min"
+      "max_read_time": "5 min"
     }
   },
   "related": [
@@ -178,7 +211,8 @@
   },
   "generation": 3,
   "cover": {
-    "src": "/images/covers/cover-llm-safe.jpg",
-    "alt": "Two donation cards in Storybook, rendered from the design system's tokens on a dark surface."
+    "src": "/images/bibeltv/llm-safe-storybook.png",
+    "alt": "Storybook showing the BibelTV component library: the component list in the sidebar, theme and device switches in the toolbar, a donation card in its frosted variant, and the Controls and Token-Check tabs.",
+    "focus": "30% 30%"
   }
 }

@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-app-redesign",
   "title": "Going light where every streaming app goes dark",
-  "subtitle": "A research insight, not a hunch, decided Bibel TV's streaming app should defy the industry's near-universal dark-mode default",
+  "subtitle": "A concept survey found Bibel TV's users wanted brightness and readability, so the redesign bets on a light app where streaming apps default to dark.",
   "type": "streaming-media",
   "tags": [
     "competitive-strategy",
@@ -41,7 +41,29 @@
         {
           "src": "/images/bibeltv/app-redesign-before-after-home.jpg",
           "alt": "Four Home screens. Light pair: version 5.12 with blue text, a verse of the day, a gradient AI button and thumbnail rails, then 6.0 with a full-width hero and a page tinted aqua from it. Dark pair: the same two apps in dark mode.",
-          "caption": "Home, before and after. Light on the left, dark on the right; in each pair, the current 5.x app, then the 6.0 release build launching on Android in the coming weeks. Both versions support light and dark."
+          "caption": "Home, before and after. Light on the left, dark on the right; in each pair, the current 5.x app, then the 6.0 release build launching on Android in the coming weeks. Both versions support light and dark.",
+          "compare": {
+            "light": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-home-5-light.jpg",
+                "alt": "Home in light mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-home-6-light.jpg",
+                "alt": "Home in light mode, the 6.0 release build"
+              }
+            },
+            "dark": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-home-5-dark.jpg",
+                "alt": "Home in dark mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-home-6-dark.jpg",
+                "alt": "Home in dark mode, the 6.0 release build"
+              }
+            }
+          }
         }
       ]
     },
@@ -68,7 +90,29 @@
         {
           "src": "/images/bibeltv/app-redesign-before-after-series.jpg",
           "alt": "The Chosen's series page in four screens. Version 5.12 shows a plain episode list in light and dark. Version 6.0 shows header artwork, a play button, tabs and episodes on a page tinted peach in light mode and deep green in dark.",
-          "caption": "The same series page, before and after. In 6.0 the page takes its tint from the artwork, peach in light mode and deep green in dark, where 5.x showed a plain list."
+          "caption": "The same series page, before and after. In 6.0 the page takes its tint from the artwork, peach in light mode and deep green in dark, where 5.x showed a plain list.",
+          "compare": {
+            "light": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-series-5-light.jpg",
+                "alt": "Series page in light mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-series-6-light.jpg",
+                "alt": "Series page in light mode, the 6.0 release build"
+              }
+            },
+            "dark": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-series-5-dark.jpg",
+                "alt": "Series page in dark mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-series-6-dark.jpg",
+                "alt": "Series page in dark mode, the 6.0 release build"
+              }
+            }
+          }
         }
       ]
     },
@@ -104,9 +148,36 @@
       ],
       "images": [
         {
+          "src": "/images/diagrams/app-redesign-ai-starts.svg",
+          "alt": "Paired bars for the redesigned AI feature, not the app redesign. Weekly starts on iOS went from 205 to 518 (+153%); on Android from 655 to 1,213 (+85%), each an average of the four full weeks before and after its own release (GA4).",
+          "caption": "Weekly starts of the redesigned AI feature, before and after its own release. The app redesign itself is in active development."
+        },
+        {
           "src": "/images/bibeltv/app-redesign-before-after-video.jpg",
           "alt": "An episode page of The Chosen in four screens. Version 5.12: player, metadata and description in light and dark. Version 6.0: a header image, a play button, a tinted page and a Bible verses section.",
-          "caption": "An episode page, before and after. 6.0 adds the episode's Bible verses next to the description."
+          "caption": "An episode page, before and after. 6.0 adds the episode's Bible verses next to the description.",
+          "compare": {
+            "light": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-video-5-light.jpg",
+                "alt": "Episode page in light mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-video-6-light.jpg",
+                "alt": "Episode page in light mode, the 6.0 release build"
+              }
+            },
+            "dark": {
+              "before": {
+                "src": "/images/bibeltv/app-redesign-video-5-dark.jpg",
+                "alt": "Episode page in dark mode, the current 5.x app"
+              },
+              "after": {
+                "src": "/images/bibeltv/app-redesign-video-6-dark.jpg",
+                "alt": "Episode page in dark mode, the 6.0 release build"
+              }
+            }
+          }
         }
       ]
     },
@@ -127,7 +198,7 @@
     },
     {
       "type": "narrative",
-      "content": "Curious how \"old Android phones render gradients badly\" turned out to be about the displays and not the platform, and why the resulting fix uses multiple stops even when the gradient looks monochrome? Get in touch."
+      "content": "Ask me how \"old Android phones render gradients badly\" turned out to be about the displays and not the platform, and why the resulting fix uses multiple stops even when the gradient looks monochrome. Get in touch."
     }
   ],
   "variants": {

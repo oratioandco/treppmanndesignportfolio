@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Weekly starts of the redesigned AI Bible feature increased by 153 percent on iOS and 85 percent on Android, comparing four-week averages before and after the change.">
+  <rect width="1200" height="520" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="600" y="62" text-anchor="middle" fill="#e7e9ee" font-size="23" font-weight="700">The new entry point made the AI feature easier to start</text>
+    <text x="600" y="94" text-anchor="middle" fill="#9aa3b5" font-size="15">GA4 · four-week averages before and after the change</text>
+    <g transform="translate(150 150)">
+      <text x="0" y="0" fill="#c6cad4" font-size="18" font-weight="700">iOS</text>
+      <rect x="0" y="38" width="160" height="58" rx="8" fill="#343b49"/><text x="178" y="75" fill="#9aa3b5" font-size="16">before</text>
+      <rect x="0" y="116" width="405" height="58" rx="8" fill="#4f8f6b"/><text x="423" y="153" fill="#bde8cf" font-size="19" font-weight="700">+153%</text>
+    </g>
+    <g transform="translate(650 150)">
+      <text x="0" y="0" fill="#c6cad4" font-size="18" font-weight="700">Android</text>
+      <rect x="0" y="38" width="200" height="58" rx="8" fill="#343b49"/><text x="218" y="75" fill="#9aa3b5" font-size="16">before</text>
+      <rect x="0" y="116" width="370" height="58" rx="8" fill="#4f8f6b"/><text x="388" y="153" fill="#bde8cf" font-size="19" font-weight="700">+85%</text>
+    </g>
+    <text x="600" y="430" text-anchor="middle" fill="#c6cad4" font-size="16">Usage change only; no attribution to retention or revenue.</text>
+  </g>
+</svg>
