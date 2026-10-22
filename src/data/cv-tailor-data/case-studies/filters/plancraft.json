@@ -1,0 +1,62 @@
+{
+  "slug": "plancraft",
+  "aliases": [
+    "plancraft-head-of-product"
+  ],
+  "title": "Complex work, turned into products people trust",
+  "subtitle": "Product and UX leadership for B2B workflows, European markets and measurable AI-supported experiences.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-plancraft.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of Product role"
+  },
+  "bio": {
+    "short": "I lead product and design around complex B2B workflows. At Ninox I ran Product and UX together with nine direct reports. At ChurchDesk I turned a manual coordination process into a reusable platform capability. Today at Bibel TV I combine product management, measurable AI experiences and hands-on agentic delivery.",
+    "long": "At Ninox I led Product and Design together for four months: nine direct reports across product design, UX writing, product management and data science. As a Senior Leadership Team member, I owned capacity, allocation, prioritization, team structure and processes for the design function.\n\nAt ChurchDesk I led product management for the core vertical-SaaS platform and product design across the company. A request for funeral booking became a reusable capability inside the existing calendar and form builder. Coordination time fell 70% and booking acceptance reached 90% at the launch customer; the capability then shipped to the full customer base.\n\nAt Bibel TV I combine product management with direct AI implementation and measurement. A redesign of the live AI Bible-passage entry increased weekly starts 153% on iOS and 85% on Android on four-week before-and-after averages. I also operate an n8n content pipeline and own a conversational product in development. The recurring pattern is turning specialist work into understandable, maintainable product capabilities while keeping human judgment visible.",
+    "context": {
+      "company": "Plancraft",
+      "role": "Head of Product",
+      "emphasis": "Lead with the exact nine-person Product-and-UX scope at Ninox, measured workflow productization at ChurchDesk, and current AI product judgment at Bibel TV."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
