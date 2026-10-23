@@ -1,0 +1,56 @@
+{
+  "slug": "zendesk",
+  "aliases": [
+    "zendesk-lead-product-designer-ai-agents"
+  ],
+  "title": "Trust Is Part of the Interaction",
+  "subtitle": "AI workflows that make boundaries, generated output and human control visible",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-zendesk.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Lead Product Designer, AI Agents role"
+  },
+  "bio": {
+    "short": "I design AI-assisted products around the decisions people still need to understand and control. At Bibel TV, I built a support assistant with explicit boundaries and human review. At Ninox, generated databases remain editable in the real product. I connect this interaction judgment to reusable systems, customer evidence and working prototypes.",
+    "long": "At Bibel TV I lead product design and hold product responsibility across iOS, Android, web and connected TV. I designed a Microsoft Copilot assistant for viewer services with explicit scope rules, restricted topics and a human edit-and-send decision. The team already had a handbook and house voice. I turned those into a useful drafting standard without making the assistant an autopilot.\n\nAt Ninox I designed prompt-to-database onboarding so the generated schema appears in the real data-model editor beside the conversation. People can inspect and change tables and fields directly instead of repairing a complex structure through more prompts. Earlier, I led Product Design for the no-code platform and owned the design system with joint Engineering governance.\n\nMy current practice connects the interaction to the system that preserves it. I built a platform-agnostic token architecture that product managers and coding agents can use through Storybook, with checks that refuse off-system values before review. I prototype against production APIs and combine qualitative research with product usage and support signals. I use AI for larger-scale synthesis while keeping human judgment on the evidence and the final decision.",
+    "context": {
+      "company": "Zendesk builds customer-service software and AI Agents across messaging, voice and email.",
+      "role": "A Berlin-based Lead Product Designer role owning AI-agent experiences from discovery and strategy through prototyping, launch, iteration and adoption.",
+      "emphasis": "Lead with concrete trust mechanics, inspectable and editable generated output, reusable patterns, working prototypes, customer evidence and Lead-level cross-functional influence."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

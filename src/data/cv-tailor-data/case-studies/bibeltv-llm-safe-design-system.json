@@ -1,7 +1,11 @@
 {
   "id": "bibeltv-llm-safe-design-system",
-  "title": "An LLM-safe design system for a company with no staff designers",
-  "subtitle": "A production path for product managers and product owners in a company without staff designers: from Claude-assisted Storybook prototypes to explicit component, view and token changes.",
+  "title": "A design system product managers can prototype with in Claude",
+  "subtitle": "Bibel TV has no in-house designers, so product managers and product owners shape new features. I made the design system something they and Claude can build with directly, with checks that refuse what nobody decided.",
+  "card": {
+    "title": "Design system for prototyping with Claude",
+    "line": "Product managers build with it, and checks refuse off-system values, naming the token to use instead."
+  },
   "type": "design-case-study",
   "tags": [
     "design-systems",
@@ -17,7 +21,7 @@
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
   "duration": "2026",
   "status": "published",
-  "last_updated": "2026-09-01",
+  "last_updated": "2026-10-23",
   "format_priority": [
     "in-depth",
     "executive"
@@ -25,110 +29,87 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "An LLM-safe design system for a company with no staff designers",
-      "subtext": "Bibel TV has no staff designers; product managers and product owners shape new features. I’m building a path that lets them prototype with Claude against real Storybook components, then surfaces the component, view and token changes needed for reviewable pull requests."
+      "headline": "A design system product managers can prototype with in Claude",
+      "subtext": "Bibel TV has no in-house designers, so product managers and product owners shape new features. I made Storybook the shared reference, gave Claude a closed list of valid token names, and set up checks that refuse an off-system value and name the token to use instead."
     },
     {
-      "type": "callout",
-      "quote": "A token is a guideline until something enforces it.",
-      "context": "Documentation is a probability. A check that fails the build is a contract."
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "An off-system value gets refused by name, before anyone has to spot it",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "Bibel TV, a German broadcaster moving from linear TV to apps and streaming. Product managers and product owners shape new features, with limited Figma skills."
+        },
+        {
+          "label": "My part",
+          "value": "Head of Product Design, and the entire in-house design capability. I made Storybook the source of truth, gave Claude a closed token vocabulary to work from, and set up six checks that run locally and in CI."
+        },
+        {
+          "label": "What changed",
+          "value": "A hardcoded value or an invented token used to compile and render like any other change. Now the checks refuse both and name what to use instead. Storybook, the vocabulary and the checks run today; the full path from a prototype to a pull request is what they are being built toward."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Make the shared reference something a person can run. Give the assistant a closed list of valid names. Make a refusal say what to use, and warn when the match is only by value."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "The system could not depend on Figma expertise",
-      "content": "Bibel TV has no on-staff designers, so product managers and product owners shape new features and interface changes without a designer sitting beside them. They have limited Figma skills, and teaching them to maintain and extend a component and token system in Figma is neither realistic nor the best use of their role.\n\nThe real bottleneck was moving from feature intent to production-safe design-system changes. A prototype might need an existing component, a modified component, a new view, a new token, or a component or view alias. Without a guided path, a plausible Claude result could invent a token or hardcode a value and still compile and render.\n\nThe design problem was therefore larger than documentation: Storybook had to become the inspectable source of truth, Claude had to work inside a closed vocabulary, and missing system capabilities had to become explicit work that could move into Storybook and the token API as a pull request."
+      "mark": "The scene",
+      "headline": "Two mistakes that compile and render",
+      "content": "To show what the checks do, I staged a two-line change in a throwaway copy of the prototype repo. It gives a suggestion chip a corner radius written as a plain 16, and padding from a spacing token that doesn't exist.\n\nBoth compile and render. The 16 isn't even visible: the token it replaced is 16px in every theme and device mode, so the chip renders pixel-identical. Nothing on screen gives it away.\n\nCatching exactly this, a value nobody decided in a change that looks finished, is why the checks exist."
     },
     {
-      "type": "process",
-      "headline": "One path from feature idea to pull request",
-      "steps": [
-        {
-          "label": "Start from the live system",
-          "description": "Storybook exposes the real components across light and dark themes and phone-to-TV sizes, so product managers and product owners can inspect what already exists without first mastering the Figma library."
-        },
-        {
-          "label": "Prototype inside the system",
-          "description": "Claude works from the valid token vocabulary instead of recalling names. Six checks run locally and in CI, rejecting nonexistent references and values written directly into a component."
-        },
-        {
-          "label": "Turn missing pieces into system work",
-          "description": "The productionalization path is designed to identify the components, views and token changes a prototype requires, including new component or view aliases, and carry those changes into Storybook and the token API as reviewable pull requests."
-        }
-      ],
+      "type": "narrative",
+      "mark": "Why it matters",
+      "headline": "The people shaping features are product managers",
+      "content": "Bibel TV has no in-house designers or developers. Product managers and product owners shape new features, and they are the people now building with AI. I am the design function, singular.\n\nSo the design system has to be usable by people who did not build it, and the standard has to hold without a designer reviewing every screen. If AI writes more of your interface and nobody reads every screen, the same question is already on your desk."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Figma could not be the way in",
+      "content": "The product managers' Figma skills are limited, and there is no meaningful way to upskill them into maintaining a component and token system in Figma.\n\nYet a prototype can need an existing component, a changed one, a new view, a new token or a new alias. Each of those is a design decision. Without a guided path, a prototype improvises it, and the improvised value looks just like a decided one."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "Storybook became the source of truth, and the vocabulary became closed",
+      "content": "So the source of truth moved out of Figma and into Storybook, where the components are real and runnable, reading from the token API. A new design language and a set of new components were landing, and the people who needed to build with them were product managers, not designers.\n\nClaude gets the same closed list a person would. An MCP server hands it the token vocabulary with a plain instruction: these are the only valid names, do not invent. The enumerated vocabulary that keeps the assistant on the compliant path is also what makes the system self-serve for a product manager.\n\nSix checks, identical locally and in CI, refuse a token reference that doesn't resolve and a value written straight into a component. A token is a guideline until something enforces it.",
       "images": [
         {
           "src": "/images/diagrams/llm-safe-one-path.svg",
           "alt": "Three steps: start from the live system in Storybook, prototype inside the system, turn missing pieces into system work. Six checks, run locally and in CI, reject nonexistent references and values written directly into a component before the change becomes a reviewable pull request.",
-          "caption": "Six checks refuse off-system work locally and in CI."
+          "caption": "The intended path from prototype to pull request. The gate on it is live: six checks, locally and in CI."
         }
       ]
     },
     {
-      "type": "narrative",
-      "headline": "What that looks like in practice",
-      "content": "The three layers compound. Storybook makes the system legible, the vocabulary makes the right answer reachable, and the build makes the wrong answer visible before it ships. Any one of them alone would have been a partial fix.\n\nThe toolbar carries the switches that matter for prototyping: light and dark, phone through TV, and whether tokens come from the local build or the live API. The panel underneath reports which tokens the selected component actually consumes, so a value drifting off-system is visible in the same place you're looking at the component.",
-      "images": [
+      "type": "process",
+      "mark": "How it works",
+      "headline": "A refusal names what to use instead",
+      "content": "Run against the staged change, both checks fail. One names the invented spacing token as a reference that doesn't exist. The other refuses the hardcoded 16 and suggests three real radius tokens.\n\nThe second check also attaches a warning: the match is by value, so someone has to confirm the binding is semantically right. The output below is verbatim, apart from a shortened file path.",
+      "steps": [
         {
-          "src": "/images/bibeltv/llm-safe-storybook.png",
-          "alt": "Storybook showing the BibelTV component library: the component list in the sidebar, theme and device switches in the toolbar, a token inspector, and a frosted-glass card variant rendered against a striped backdrop",
-          "caption": "The shared surface. Thirty components, theme and device switching, and a per-component token report, so someone who didn't build the system can still find and use the right part of it."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "Twelve pixels is not twelve pixels",
-      "content": "A check that only says *no* is useless to a product manager. So failures name the token to use instead. The first version of that was quietly dangerous.\n\nIt was looking at a font size of 12px. It found a primitive or semantic token holding exactly 12px and offered it as the alias. The value was correct; the relationship was not. Taking the suggestion would have compiled, rendered pixel-identical and passed review, while coupling the typography to an unrelated design decision. A later change to that token could then alter the type for no design reason. I'd written that suggestion engine an hour earlier, and I'd written it to be helpful.\n\nTwo numbers matching is a coincidence, not a relationship. Suggestions are now constrained to the property's own family, and a component's token is only ever offered to that component. Where nothing qualifies, the check says **nothing at all**.\n\nThat silence is the part I'd defend hardest. It means the system genuinely has no name for this decision yet, which is a finding worth surfacing, not a hole worth filling with the nearest number that fits. For someone who doesn't know the catalog, a confidently wrong suggestion is worse than no suggestion.",
-      "images": [
-        {
-          "src": "/images/diagrams/llm-safe-twelve-pixels.svg",
-          "alt": "A font size of 12px. First version: offered a token that holds exactly 12px, struck out, because the value matches but the relationship does not. Now: a token from the property's own family is offered, and where nothing qualifies the check says nothing at all.",
-          "caption": "Two numbers matching is a coincidence, not a relationship."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "Catching what reading can't",
-      "content": "The same audit compared every web component against the native app it mirrors. One of the things it surfaced: a card's fallback gradient was aliased one layer too deep in light mode, so where the app rendered a soft ramp, the web rendered flat white. Nobody had spotted it, because there was nothing visibly *broken* to spot, just a gradient quietly not being a gradient.\n\nThat is the class of defect this work exists for. It isn't a crash and it isn't ugly. It's the system slowly ceasing to mean what it says.",
-      "images": [
-        {
-          "src": "/images/bibeltv/llm-safe-frost-parity.png",
-          "alt": "Two identical donation cards over a striped backdrop: the upper card frosted so the stripes blur behind it, the lower card plain so the stripes show through sharply",
-          "caption": "Same component, two states. The web mirror had only ever rendered the lower one, the app's fallback, because the frosted variant the app actually ships was never ported. Comparing surfaces properly is how that surfaces."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "The escape hatch became the roadmap",
-      "content": "Some values genuinely aren't design decisions: a black stop inside a mask gradient is alpha arithmetic, an icon font's optical size isn't a brand token. A rule with no exit gets worked around, so there's a documented one: annotate the line with a reason. Every annotation is recorded, and adding one fails the build until that record is updated, so an exception can never be taken quietly.\n\nThe register also turns exceptions into evidence for the roadmap. It preserves the reason at the moment someone hits the friction, instead of letting every edge case become an improvised value."
-    },
-    {
-      "type": "narrative",
-      "headline": "Trusting the tooling, carefully",
-      "content": "All thirty components were audited against the native source, and then every substantive finding was handed to an independent reviewer whose instruction was to *refute* it.\n\n**Eleven of forty-six didn't survive.** Roughly a quarter would have become confident, well-argued, wrong changes to a client's design system. The same skepticism that motivated the checks had to be applied to the tooling that found the problems — otherwise I'd have automated the production of plausible mistakes instead of the prevention of them.\n\nThe findings worth the whole exercise were the ones that changed the question. More than once, something that looked like a missing token name turned out to be a genuine difference in how two platforms behaved, which needs a design decision, not a rename."
-    },
-    {
-      "type": "outcome",
-      "headline": "The production rails are already live",
-      "metrics": [
-        {
-          "label": "System reference",
-          "before": "Figma skills and documentation were the practical gateway",
-          "after": "Storybook exposes real components, themes, devices and token use"
+          "label": "Stage the change",
+          "description": "The example changes two lines: one component value becomes a literal 16, and one spacing reference points to a token that does not exist. Both still compile and render."
         },
         {
-          "label": "Enforcement",
-          "before": "A written convention, dependent on someone noticing in review",
-          "after": "Six checks refuse off-system work locally and in CI"
+          "label": "Run the same checks as CI",
+          "description": "The phantom-reference check names the invented token. The literal-value check refuses the 16 and offers three real radius tokens that match its value."
+        },
+        {
+          "label": "Return the semantic choice to a person",
+          "description": "A matching number is not proof of the right relationship, so the check warns that someone still has to confirm which token expresses the intended decision."
         }
       ],
       "images": [
         {
           "src": "/images/bibeltv/llm-safe-check-refusal.png",
           "alt": "A terminal. A two-line code change gives a suggestion chip a hardcoded 16-pixel corner radius and an invented spacing token. Two checks fail: one names the invented token as a reference that doesn't exist; the other flags the 16 and offers three real radius tokens, warning that they match by value and the binding still has to be confirmed.",
-          "caption": "A change staged to show the rails, run against the real checks. The invented token is refused by name. The hardcoded 16 is refused with three real tokens to use instead, and a warning that matching the number doesn't make the binding right.",
+          "caption": "A change staged for this page, run against the real checks. The invented token is refused by name. The hardcoded 16 is refused with three real tokens to use instead, and a warning that matching the number doesn't make the binding right.",
           "annotations": [
             {
               "x": 54,
@@ -151,33 +132,109 @@
     },
     {
       "type": "narrative",
-      "headline": "What it enables",
-      "content": "Someone who has never opened the token file can describe what they want, *make the cards rounder*, and get either a change that uses the real system or a refusal that names what's missing. Never a silent off-system change that looks fine in a screenshot and fails six months later when the palette moves.\n\nFor designers, the shift is that intent now survives contact with people who don't share it. A token isn't a request any more. It's the only expressible option, and the alternatives fail loudly and early enough to be cheap.\n\nAnd because the enforcement sits on the token source rather than on one platform's components, the same guarantee reaches Android, iOS, web and Figma, including the implementation partner building against those names, who now gets a breaking change announced instead of discovered."
+      "mark": "The lesson",
+      "headline": "Twelve pixels is not twelve pixels",
+      "content": "Claude made exactly this kind of error once. It gave a value the correct number, twelve pixels, and aliased it to the wrong primitive or semantic token. The pixels were right. The relationship was not.\n\nTwo design decisions now shared a number by coincidence. Nothing looked wrong, and nothing would have, until a later change to the unrelated token moved this value with it, for no design reason.\n\nEqual values don't prove that one decision should alias another. That is what the warning on every value match says.",
+      "images": [
+        {
+          "src": "/images/diagrams/llm-safe-twelve-pixels.svg",
+          "alt": "Diagram of a 12px value bound to the wrong primitive or semantic token: the pixels are right, the relationship is not.",
+          "caption": "Illustrative: a correct value, aliased to the wrong primitive or semantic token."
+        }
+      ]
     },
     {
-      "type": "reflection",
-      "headline": "Where design authority lives",
-      "content": "The strongest version of this makes off-system code impossible to express at all, a constrained set of primitives where the wrong thing simply won't compile. I scoped it and declined it, for now. It's a large migration whose cost is certain and whose benefit is still unmeasured; checks that fail the build may prove sufficient; and every constraint has a cost at the edges, while this system is still gaining tokens weekly.\n\nThe exception register is the instrument that decides it. If it grows, the stricter version earns its migration. If it stays small and every entry stays honest, it doesn't. I'd rather ship the cheaper mechanism with a way to measure whether it's enough than buy the expensive one on principle.\n\nThe broader lesson is about where design authority actually lives in an organization without designers. I used to think it lived in the Figma library and the review. It lives in whatever the build refuses. Everything else is advice.\n\nWorth noting that others are arriving at the same conclusion from different directions, Polar's [Orbit](https://polar.sh/blog/orbit-llm-safe-design-system) makes the wrong thing fail to typecheck in a single web codebase, where this enforces across a token source feeding four platforms and hands the vocabulary to the assistant directly. Different mechanisms, same underlying bet: that a design decision only holds if something automatic is holding it."
+      "type": "outcome",
+      "mark": "The rails",
+      "headline": "What runs today, and what it is for",
+      "metrics": [
+        {
+          "label": "The shared reference",
+          "before": "Figma, where the product managers' skills are limited",
+          "after": "Storybook, with the real components, reading from the token API"
+        },
+        {
+          "label": "Enforcement",
+          "before": "a plausible Claude result could invent a token or hardcode a value and still compile and render.",
+          "after": "Six checks, identical locally and in CI, refuse the unresolved reference and the hardcoded value"
+        },
+        {
+          "label": "Exceptions",
+          "value": "A value that genuinely isn't a design decision can pass, but only with a reason, and every exception is recorded instead of taken silently."
+        },
+        {
+          "label": "Being built",
+          "value": "The full path from a product manager's prototype to a pull request against Storybook and the token API. The MCP prototyping server is in active development, and a colleague uses it to prototype his project."
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/bibeltv/llm-safe-storybook.png",
+          "alt": "Storybook showing the BibelTV component library: the component list in the sidebar, theme and device switches in the toolbar, a token inspector, and a frosted-glass card variant rendered against a striped backdrop",
+          "caption": "Storybook, the shared reference: the real components, reading from the token API."
+        },
+        {
+          "src": "/images/bibeltv/llm-safe-frost-parity.png",
+          "alt": "Two identical donation cards over a striped backdrop: the upper card frosted so the stripes blur behind it, the lower card plain so the stripes show through sharply",
+          "caption": "The same donation card in two states: frosted, and plain."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "Want to hear more?",
-      "content": "Ask me about the twelve-pixel match that turned out to be the wrong token, why I had an independent reviewer try to disprove every audit finding, and why Storybook, not Figma, had to become the source of truth. Get in touch."
+      "mark": "The two planted mistakes",
+      "headline": "The next hardcoded 16 stops at the check",
+      "content": "The staged chip still looks exactly like the real one. What changed is the next step: the change stops, the invented token is named, and three real radius tokens are on the table.\n\nWhich one fits is a design decision. The check hands it back to a person, with the warning attached."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your system",
+      "headline": "Guardrails worth copying into your own system",
+      "steps": [
+        {
+          "label": "Make the shared reference something a person can run.",
+          "description": "If your reference is a design file, everyone building from it has to translate it first. The test: can someone who didn't build the system find and use the right part without a guide?"
+        },
+        {
+          "label": "Give the assistant a closed list of valid names.",
+          "description": "Enumerate the vocabulary instead of trusting recall. Then a name outside the list becomes a refusal you can see, instead of a plausible invention."
+        },
+        {
+          "label": "Make a refusal say what to use, and warn when the match is only by value.",
+          "description": "Plant a mistake yourself and run your checks against it. If the output names no fix, or offers a same-number token with no warning, a non-designer will take whatever it says."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Where it stops paying",
+      "headline": "A review loop may be cheaper where designers read every screen",
+      "content": "Where designers review interface work before it ships, a review loop may be the cheaper mechanism, and this infrastructure more than you need.\n\nThe checks also need code to run against. They read the component code, so a static mockup gives them nothing to refuse."
+    },
+    {
+      "type": "narrative",
+      "content": "Write to me with the last value that slipped into your product without anyone deciding it, and where it was caught, if it was. I'll tell you which of these checks would have stopped it. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Building a production path for product managers and product owners in a company without staff designers: Claude-assisted prototyping against Storybook, a closed token vocabulary, and reviewable component, view and token changes.",
-      "angle": "Design capacity as infrastructure: make the system usable by the people shaping features without requiring them to become Figma experts.",
+      "summary": "Made Bibel TV's design system usable by product managers and Claude without a designer reviewing every screen: Storybook as the source of truth, a closed token vocabulary for the assistant, and six checks, locally and in CI, that refuse off-system values and name the token to use instead.",
+      "angle": "Design capacity as infrastructure: the system holds its standard for the people shaping features, without making them Figma experts.",
       "sections": [
         "hero",
-        "The system could not depend on Figma expertise",
-        "One path from feature idea to pull request",
+        "An off-system value gets refused by name, before anyone has to spot it",
+        "Two mistakes that compile and render",
+        "The people shaping features are product managers",
+        "Figma could not be the way in",
+        "Storybook became the source of truth, and the vocabulary became closed",
+        "A refusal names what to use instead",
         "Twelve pixels is not twelve pixels",
-        "Trusting the tooling, carefully",
-        "The production rails are already live"
+        "What runs today, and what it is for",
+        "The next hardcoded 16 stops at the check",
+        "Guardrails worth copying into your own system",
+        "A review loop may be cheaper where designers read every screen"
       ],
-      "max_read_time": "5 min"
+      "max_read_time": "6 min"
     }
   },
   "related": [
@@ -186,7 +243,7 @@
     "bibeltv-app-redesign"
   ],
   "meta": {
-    "read_time_minutes": 8,
+    "read_time_minutes": 7,
     "confidential": false,
     "confidentiality_note": null,
     "_legacy_citation_anchors": [
@@ -205,7 +262,7 @@
       "CI that refuses off-system work"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical artifact sidecars continue to resolve after the 2026-09-01 public copy edit. Each statement remains supported by the current case-study narrative and the 2026-08-18 verification record.",
-    "source": "ProtoBible spec 095 (LLM-safe token prototyping): implementation, CI gates, MCP/plugin surface, and the 30-component Android parity audit, July 2026. Inspired in part by Polar's Orbit write-up. + flagship page published 2026-08-13 + Tobias clarification 2026-09-01 on the no-staff-designer constraint, PM/PO workflow and intended productionalization path",
+    "source": "ProtoBible spec 095 (LLM-safe token prototyping) + Tobias clarification 2026-09-01 on the no-staff-designer constraint, PM/PO workflow and intended productionalization path. Rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, then corrected the same day against voice-review-10: the scene is the real staged change (radius 16 and an invented token), the twelve-pixel lesson is Claude's aliasing error, unsourced paragraphs cut. Facts: data/verification-log/2026-08-18-token-tiers-and-the-32-values.md, data/verification-log/2026-10-11-llm-safe-check-refusal-capture.md, data/verification-log/2026-08-19-why-the-design-system-has-four-tiers.md, data/experiences/bibel-tv-head-of-product-design.md, CAREER-TRUTH.md §2 (f). Every claim is in bibeltv-llm-safe-design-system.citations.json. 2026-10-23: the opening is first person; Tobias staged the demonstration change himself (data/verification-log/2026-10-23-launch-open-questions-answers.md §5).",
     "screenshots_pending": "Removed 2026-08-29: the raw token-vocabulary palette dump (llm-safe-token-vocabulary.png) read as a meaningless wall of unlabeled color swatches with no context, contradicting its own caption about 'enumerate instead of recall.' A real replacement would show the enumerate-vs-invent point directly — e.g. an AI assistant's tool-call UI picking from a closed list — rather than the full resolved palette. Not urgent; the Storybook screenshot alone carries the section. Two other optional additions would strengthen it: (1) a light-mode before/after of the poster fallback gradient, flat white vs the correct ramp, which needs the token override captured deliberately; (2) the hero title-length scale (28/24/22/20/18) as one component at five title lengths. None block publication.",
     "published_url": "https://treppmann.design/case-studies/llm-safe-design-system"
   },

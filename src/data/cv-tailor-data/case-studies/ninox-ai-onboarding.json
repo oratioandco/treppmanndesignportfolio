@@ -1,7 +1,11 @@
 {
   "id": "ninox-ai-onboarding",
-  "title": "User-controlled prompt-to-database onboarding",
+  "title": "Making an AI-generated database editable from the first step",
   "subtitle": "I designed the onboarding for prompt-to-database: AI builds a database from a plain-language description, and split-screen direct manipulation keeps the user in control.",
+  "card": {
+    "title": "AI onboarding for a low-code database platform",
+    "line": "The split-screen editor became Ninox's primary onboarding pattern for AI-generated databases."
+  },
   "type": "design-case-study",
   "tags": [
     "ai",
@@ -17,7 +21,7 @@
   "team": "Freelance, stealth phase before the product-team handoff, Berlin",
   "duration": "Summer 2025",
   "status": "draft",
-  "last_updated": "2026-05-24",
+  "last_updated": "2026-10-22",
   "hero_image": {
     "src": "/images/ninox/ai-onboarding-hero.png",
     "alt": "Ninox AI onboarding interface: user types a database description, AI generates the structure, user edits the result"
@@ -36,71 +40,86 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "User-controlled prompt-to-database onboarding",
-      "subtext": "A founder-led stealth project to extend Ninox's reach. The platform is incredibly powerful once a schema exists, but defining the schema was the gate that kept most non-technical SMEs out. Prompt-to-database generates a schema from a plain-language description. The design problem: how to hand a non-database-savvy user a schema they can actually own.",
-      "images": [
+      "headline": "Making an AI-generated database editable from the first step",
+      "subtext": "Ninox is a low-code platform for small and mid-sized businesses, and it becomes powerful once a database schema exists. Defining that schema is steep for anyone without deep database knowledge. As a freelancer in the summer of 2025, I designed the onboarding for prompt-to-database: you describe the application you want, and the AI generates a working schema into the same editor you keep using."
+    },
+    {
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "The AI builds the database. The editor makes it yours.",
+      "metrics": [
         {
-          "src": "/images/ninox/ai-onboarding-hero.png",
-          "alt": "Ninox AI onboarding: prompt to database flow",
-          "caption": "Describe your database. AI generates the structure. You edit."
+          "label": "The setting",
+          "value": "Ninox, a low-code platform small and mid-sized businesses use to build ERP-style business apps. Once a schema exists, Ninox generates the interfaces. Defining the schema is the steep part."
+        },
+        {
+          "label": "My part",
+          "value": "Freelance, summer 2025, in a founder-led stealth phase before the initiative went to the product team. I ran the design end to end: the prompt-to-database flow and the split-screen editor beside the chat."
+        },
+        {
+          "label": "What changed",
+          "value": "Split-screen direct manipulation, editor and chat side by side, became the primary onboarding pattern and the basis for Ninox's public AI beta in 2026."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Generate into the surface the user will edit. Treat the first wrong answer as the normal case. Keep chat, never as the only path."
         }
       ]
     },
     {
       "type": "narrative",
-      "headline": "The schema kept non-technical builders out",
-      "content": "Ninox is a no-code business application platform, people build their own ERP systems, project trackers, case management tools and data apps without writing code. Its superpower (and its hurdle) is that it is database-first. Once a schema exists, Ninox auto-generates rich interfaces, applies direct manipulation everywhere, and the document/record mentality fits SME workflows perfectly, law firms, construction companies, contractors, inspectors, the kind of business where every job is a record with attachments and statuses.\n\nThat database-first design is also what kept Ninox's most successful customers in a narrow band: people who already had some database knowledge, or businesses that hired a consultant to set the platform up. The prompt-to-database initiative was meant to extend the reach. Generate the schema from a plain-language description, and people without database training can cross the gate that previously stopped them.\n\nI worked on this in a stealth pre-product-team phase, a founder-level exploration of how onboarding for this should feel. The engineering of the AI generation was being handled separately. My question was the harder one: what happens after the AI shows you what it built, when you are a non-technical SME owner who has never thought about tables and relations before?",
+      "mark": "The scene",
+      "headline": "One sentence in, a database out",
+      "content": "The onboarding starts with a prompt box: what would you like to create? Beside it, the panel reads “No preview yet. Create an app to see what Ninox AI can do.” You describe the application you want in plain language, and the AI generates a working database schema.\n\nFor Ninox, the schema is everything. The platform's strength is record-based workflows: an offer, a case or a construction project moving through stages and people. Once the schema exists, Ninox generates the interfaces. Historically, its most successful customers either knew databases already or brought in a consultant to set the schema up.\n\nPrompt-to-database was meant to get everyone else past that step. The design problem started where the generation stops. The AI shows you what it built. Now what?",
       "images": [
         {
           "src": "/images/ninox/prompt-input.png",
           "alt": "Ninox AI onboarding: the prompt input screen, with category suggestions and an empty preview panel",
-          "caption": "The entry point: describe what you want to build. The right panel is empty until the AI generates something."
+          "caption": "The entry point: describe what you want to build."
         }
       ]
-    },
-    {
-      "type": "callout",
-      "quote": "Show the output. Then let the user edit it. Never leave them staring at something they can't change.",
-      "context": "The core design principle that shaped the onboarding"
     },
     {
       "type": "narrative",
-      "headline": "Why chat alone wouldn't work",
-      "content": "The obvious AI-onboarding pattern is a chat interface: user describes the database, AI replies with the schema rendered as text or a structured response, user asks for changes in chat, repeat. That pattern breaks here in two ways that aren't theoretical.\n\n### Long chat outputs don't scale to schemas\n\nA realistic SME database has eight or twelve tables, each with ten or twenty fields, plus relations. A chat that prints that schema back to the user, and then expects the user to type 'change the `Customer` table's `phone` field to a multi-value field, and add a `country` field after it', is going to feel like writing migration scripts in prose. The schema is large enough that the chat transcript stops being a conversation and starts being a wall of generated text the user has to navigate.\n\n### Trial users won't write a long spec upfront\n\nThe other end of the conversation has the same problem in reverse. A trial user is not going to type a 400-word spec into the first prompt: 'I need a CRM for my law firm with clients, matters, case files, billing records, deadlines, contact people per client, document attachments per matter…' They will type one sentence. The first AI-generated schema will be off by at least a little, sometimes by more. Recovering from that mismatch through additional chat turns leads back to the first problem.\n\nBoth constraints together meant chat alone was not a viable interaction model. The schema had to live on a surface the user could see and touch directly.",
-      "images": [
-        {
-          "src": "/images/diagrams/ninox-chat-vs-editor.svg",
-          "alt": "Two columns. Chat alone: long outputs do not scale to schemas, trial users will not write a long spec upfront, and recovering from a first schema that is off leads back to the first problem. In the real editor: the schema renders into the data-model editor, tables appear as cards, direct manipulation comes first and chat is the alternative.",
-          "caption": "The schema had to live on a surface the user could see and touch directly."
-        }
-      ]
+      "mark": "Why it matters",
+      "headline": "Generating the schema only moves the problem",
+      "content": "A generated schema helps only if the user can change it: edit it, add or remove fields, even whole tables. Otherwise the AI has swapped a blank screen for someone else's database.\n\nThe same question comes up wherever AI produces something large and structured that a person has to keep, such as a data model, a contract or a schedule. How does the output become theirs?"
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Two constraints killed the obvious design",
+      "content": "The obvious pattern for AI onboarding is chat: you describe, the model replies with the schema, you request changes in words. Two facts about Ninox's users broke that pattern.\n\nA realistic SME schema has eight to twelve tables, plus relations. Printing it in the chat and taking every change request back through the chat becomes unmanageable as the schema grows. And trial users won't write a long, accurate spec into the first prompt, so the first generated schema will almost always be off, at least a little.\n\nTogether, the two constraints meant chat alone was not viable. The schema had to live on a surface the user can see and touch directly."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "The AI writes straight into the real editor",
+      "content": "So the AI doesn't render a preview of your database in the chat. It generates into Ninox's real data-model editor, the one you would use to build a database by hand.\n\nThe chat panel and the editor sit side by side. You can edit tables and fields directly, keep iterating in the chat, or mix both, and both paths change the same schema. Some changes are easier to describe than to click; you pick per change.\n\nOnce the schema feels right, there is no separate AI mode to leave. What you built is a regular Ninox app."
     },
     {
       "type": "process",
+      "mark": "The method",
       "headline": "Put the generated schema in the real editor",
+      "content": "Four design decisions carried the idea into an interaction model.",
       "steps": [
         {
           "label": "Schema renders into the real data-model editor",
-          "description": "The AI doesn't produce a chat-rendered preview of the schema; it generates directly into the same data-model editor a user would touch to build a database manually. Tables appear as cards, fields are clickable, relationships are drawn as arrows. The user sees what they would normally see, just generated, not built by hand."
+          "description": "The AI generates into the same editor you would use to build a database by hand, not into a chat-rendered preview."
         },
         {
-          "label": "Direct manipulation as the primary path; chat as the alternative",
-          "description": "Every table card has 'add field' and 'edit' affordances right there. Users can add fields, rename them, change types, add or remove entire tables without opening the chat. Chat stays available for changes that are easier to describe than to click, but the user picks which path matches the change they want to make. Both paths converge on the same schema."
+          "label": "Direct manipulation first; chat as the alternative",
+          "description": "You can add and remove fields, even whole tables, right on the schema, so a change doesn't have to go through the chat. Both paths converge on the same schema."
         },
         {
-          "label": "First-schema-is-wrong, handled gracefully",
-          "description": "Because the first prompt will be short and the first schema will be off, the design accepts that as the normal case. Suggested-actions chips below the chat propose obvious additions ('add SLA tracking to tickets', 'add escalation flags to agents'). The user doesn't have to remember everything they want, the AI keeps proposing, the user keeps editing, and the schema grows incrementally."
+          "label": "The first wrong answer is the normal case",
+          "description": "A one-sentence prompt produces a first schema that is a little off. The design expects that: suggested actions propose the obvious additions, and the schema grows step by step."
         },
         {
-          "label": "The schema, once built, is just a Ninox app",
-          "description": "There is no separate 'AI mode' the user has to leave. Once the schema feels right, they click into the app and start using it, same builder, same sidebar, same edit affordances they have just used. The prompt-to-database generation step folds into Ninox's normal authoring surface; it doesn't replace it."
+          "label": "There is no AI mode to leave",
+          "description": "The schema, once built, is just a Ninox app, in the same builder you have been editing in. Generation folds into Ninox's normal authoring surface instead of replacing it."
         }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "The design principle behind it",
-      "content": "The underlying principle isn't unique to databases. It applies to any AI-generated artefact that a human has to take ownership of.\n\nThe AI's job is to reduce the blank-screen problem. The hardest part of building a database from scratch, especially for a first-time builder, is starting. AI solves that. But once the screen has content, the user has to feel immediately in control of it, or the AI has just moved the problem: instead of staring at a blank screen, they're staring at someone else's database.\n\nFor an SME owner, a partner at a small law firm, the dispatcher at a roofing company, the schema needs to belong to them within a few minutes of seeing it. That ownership shift is what makes the rest of Ninox's power available to them. Auto-magical interfaces only feel magical if the data model underneath is yours.",
+      ],
       "images": [
         {
           "src": "/images/ninox/dual-paths.png",
@@ -133,27 +152,23 @@
     },
     {
       "type": "outcome",
+      "mark": "The result",
       "headline": "Direct manipulation became the beta's interaction model",
       "metrics": [
         {
           "label": "Engagement scope",
-          "value": "Founder-led stealth phase; design handed off to the product team as the basis for the public Ninox AI platform (beta 2026)"
+          "value": "Founder-led stealth phase; the design went to the product team as the basis for the public Ninox AI platform (beta 2026)"
         },
         {
           "label": "Interaction model",
-          "value": "Split-screen direct manipulation alongside chat: adopted as the primary onboarding pattern"
+          "value": "Split-screen direct manipulation alongside chat: the primary onboarding pattern"
         },
         {
-          "label": "Audience reach",
-          "value": "Designed to make Ninox usable for SMEs without database knowledge, law firms, construction, contractors, inspectors, where setup previously required a consultant"
+          "label": "Audience",
+          "value": "SMEs with document-heavy workflows, such as law firms, construction companies, contractors and inspectors, who lack database knowledge or a consultant"
         }
       ],
-      "narrative": "The 'show the schema, let the user edit it directly' principle became the spine of the AI onboarding when the work transitioned from founder collaboration to product-team build-out. The strategic point, that direct manipulation has to coexist with chat, not be replaced by it, set the interaction model for the beta."
-    },
-    {
-      "type": "reflection",
-      "headline": "What this means for AI product design",
-      "content": "Chat-only AI interfaces work well for short, completable interactions, write me an email, summarize this document, answer this question. They stop working when the artefact is structured and large enough that the user needs to see and touch it directly: a database schema, a contract draft, an org chart, a project plan.\n\nFor those cases, the design problem is the seam: how the chat output lands somewhere the user can actually own. In Ninox, that seam is the data-model editor: the AI generates into it, and the user picks up editing in it. The chat doesn't disappear; it stops being the only path. That coexistence is what made AI-assisted onboarding feasible for users who couldn't have written the spec themselves and wouldn't have managed the schema through chat.\n\nThe same seam will matter wherever AI is used to onboard non-experts into a structured artefact, legal AI included. The user needs the document, not a chat transcript about the document.",
+      "narrative": "The split-screen model, editor and chat side by side, became the primary onboarding pattern when the initiative moved from the stealth phase to the product team, and the basis for Ninox's public AI beta in 2026.",
       "images": [
         {
           "src": "/images/ninox/working-product.png",
@@ -164,21 +179,58 @@
     },
     {
       "type": "narrative",
-      "content": "The AI's first guess at your schema is almost always a little off. Ask me why the fix was never a smarter chatbot, and why a law-firm partner who has never thought about tables and relations should not have an 'AI mode' to escape from. Get in touch."
+      "mark": "The second edit",
+      "headline": "The second edit is yours",
+      "content": "The flow still starts with one sentence about the application you want, and the editor fills with a schema.\n\nWhat changed is everything after that. You add a field on a table, remove a table you didn't need, or ask the chat, whichever suits the change. The chat is a helper at the side, not a gatekeeper in front."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your team",
+      "headline": "For anyone handing generated work to users",
+      "steps": [
+        {
+          "label": "Generate into the surface the user will edit.",
+          "description": "The output should land where ownership lives: the data model, the document, the file the user keeps. If it lands in a chat transcript, the user is left negotiating with a machine over their own work. Test: ask where a user goes to make the second change."
+        },
+        {
+          "label": "Treat the first wrong answer as the normal case.",
+          "description": "First prompts are short, so first results are off. Make the obvious next edits one click away instead of another paragraph of prompting. Test: count the prompts a new user needs to fix the first result."
+        },
+        {
+          "label": "Keep chat, never as the only path.",
+          "description": "Some changes are easier to describe than to click. Let both paths exist, converge on the same artifact, and let the user choose per change. Test: can every chat change also be made by hand, and the other way round?"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Where chat is enough",
+      "headline": "Short, final answers belong in chat",
+      "content": "A summary, an answer, a one-shot draft: for short interactions that end when the answer arrives, chat is the right interface and an editing surface is overhead. The editor earns its place when the output is large, structured, and something the user has to keep and change. That is the boundary I can defend from this work."
+    },
+    {
+      "type": "narrative",
+      "content": "Here is a test you can run this week: the next time a model generates something for a user, watch where that user goes to change it. If the answer is a chat transcript, that is the seam worth redesigning. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Founder-led stealth project, before the product-team handoff, to extend Ninox's reach beyond the database-savvy. Designed the prompt-to-database onboarding with split-screen direct manipulation: AI generates the schema from a plain-language description; chat and direct manipulation coexist; users edit tables and fields directly in the real data-model editor. Adopted as the interaction model for the beta launching 2026.",
+      "summary": "Freelance, founder-led stealth project, summer 2025: designed Ninox's prompt-to-database onboarding so the AI generates into the real data-model editor, with split-screen direct manipulation alongside chat. The split-screen model became the primary onboarding pattern and the basis for the public AI beta (2026).",
       "angle": "Direct manipulation as the seam between AI generation and user ownership",
       "sections": [
         "hero",
-        "The schema kept non-technical builders out",
-        "Why chat alone wouldn't work",
+        "The AI builds the database. The editor makes it yours.",
+        "One sentence in, a database out",
+        "Generating the schema only moves the problem",
+        "Two constraints killed the obvious design",
+        "The AI writes straight into the real editor",
         "Put the generated schema in the real editor",
-        "Direct manipulation became the beta's interaction model"
+        "Direct manipulation became the beta's interaction model",
+        "The second edit is yours",
+        "For anyone handing generated work to users",
+        "Short, final answers belong in chat"
       ],
-      "max_read_time": "2 min"
+      "max_read_time": "6 min"
     }
   },
   "related": [
@@ -189,8 +241,8 @@
   "meta": {
     "read_time_minutes": 6,
     "confidential": false,
-    "confidentiality_note": "Freelance consultation post-employment, in the stealth phase before the product-team handoff. No confidential company data; platform is launching in public beta 2026.",
-    "source": "data/experiences/ninox-head-of-product-design.md + user corrections 2026-05-24 (stealth-phase context; collaborator corrected 2026-10-22: the CEO, who is also the technical founder, one person, not named in outputs; SME audience specifics; two UX constraints, long-chat-outputs infeasible + trial-users-won't-spec, that drove split-screen direct manipulation)"
+    "confidentiality_note": "Freelance consultation post-employment (summer 2025, roughly a year after the 2023–2024 tenure ended), in the stealth phase before the product-team handoff. The collaborator was the CEO, who is the technical founder, one person; outputs need not name them (corrected 2026-10-22). No confidential company data; platform launched in public beta 2026.",
+    "source": "Rewritten 2026-10-22 and revised the same day against the adversarial review to docs/voice-treppmann-design-en-2026-10-22.md (Tobias's decision that treppmann.design case studies may be longer stories with takeaways and light humor). Facts: data/experiences/ninox-head-of-product-design.md, data/verification-log/2026-09-16-ninox-context-for-video.md, data/verification-log/2026-10-22-ninox-collaborator-correction.md, data/verification-log/jupus-product-design-lead-verification.md (2026-05-24 user corrections: the two UX constraints, the 8–12-table schema scale, suggested-actions chips, split-screen as the primary pattern). Every claim is in ninox-ai-onboarding.citations.json."
   },
   "generation": 3,
   "cover": {

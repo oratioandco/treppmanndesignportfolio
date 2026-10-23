@@ -1,7 +1,11 @@
 {
   "id": "bibeltv-support-agent",
-  "title": "A Copilot Skill for Customer Care",
-  "subtitle": "Designed a Copilot skill that drafts customer-support responses against the CS handbook, and keeps every send decision with the team",
+  "title": "An AI reply assistant a viewer-services team chose to use",
+  "subtitle": "I built a drafting assistant for Bibel TV's viewer services and ran its rollout: optional, a week to try it, then one-to-one sessions.",
+  "card": {
+    "title": "AI drafting assistant for a viewer-services team",
+    "line": "Complex letters take minutes instead of hours, in the team's own experience; using it stayed optional."
+  },
   "type": "ai-product",
   "tags": [
     "ai-product",
@@ -12,60 +16,146 @@
   ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
-  "team": "Solo design lead in partnership with the CS team, Hamburg/Berlin",
+  "team": "Solo build in partnership with the viewer-services team, Hamburg/Berlin",
   "duration": "2025 – Present",
   "status": "in-progress",
-  "last_updated": "2026-08-25",
+  "last_updated": "2026-10-22",
   "format_priority": [
     "in-depth"
   ],
   "sections": [
     {
       "type": "hero",
-      "headline": "A Copilot Skill for Customer Care",
-      "subtext": "AI drafts a response to each incoming letter or email using the CS handbook as context. A support team member reads it, edits or rewrites, then sends. The blank-page work shrinks; the judgment stays with the team."
+      "headline": "An AI reply assistant a viewer-services team chose to use",
+      "subtext": "Much of the mail that reaches Bibel TV's viewer services still comes on paper. I built an assistant that writes the first draft of a reply in the house voice, and introduced it without making anyone use it. Reading, deciding and sending stay with a person."
+    },
+    {
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "Complex letters in minutes, and a team that chose the tool",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "Viewer services at Bibel TV, a German broadcaster moving from linear TV to apps and streaming. Letters, postcards, emails and social messages, many of them personal."
+        },
+        {
+          "label": "My part",
+          "value": "I built the assistant, a Microsoft Copilot agent, in September and October 2025, and ran the whole introduction myself, including the one-to-one sessions."
+        },
+        {
+          "label": "What changed",
+          "value": "Complex letters with many points take minutes instead of hours. New and part-time colleagues answer in the house voice from the start. Both early holdouts now use it regularly. These are the team's observations, not a per-letter measurement."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Give the assistant the first draft and keep the decision. Start from the standard you already wrote down. Invite, don't mandate, and prove it on the hardest case."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "What this is, and what it isn't",
-      "content": "This is a Copilot skill, not a custom-built agent. The platform does the heavy lifting; the design work was scoping what the skill should do, loading the right context, defining what 'a good draft' looks like in Bibel TV's tone, and building the workflow around it.\n\nIt isn't a custom-trained model, it doesn't have a self-learning feedback loop, and it doesn't auto-send. The team sees the draft, decides, and sends. The skill just compresses the blank-page part of the job."
+      "mark": "The scene",
+      "headline": "The mail still arrives on paper",
+      "content": "The post comes as letters and postcards, some handwritten, some typed. Viewers write to thank the channel for a program and to say what it meant to them. They ask about programs, and about books and materials they saw in one. They criticize content too, some with an opinion, some with a theological argument.\n\nThen there is the complaint that makes many points at once, complex and closely argued. Someone in viewer services reads it. The reply has to answer every point, in the house voice, with the wording of the service handbook. Nothing about that is quick."
     },
     {
       "type": "narrative",
-      "headline": "The Problem",
-      "content": "Bibel TV gets a steady stream of letters and emails from viewers, many of them sensitive, about faith, personal questions, or grief. Each reply has to feel pastoral and warm, follow the company's customer-support handbook, and address the specific concern. Drafting from a blank page eats hours per week, and tone consistency drifts depending on who's writing."
-    },
-    {
-      "type": "callout",
-      "quote": "Move the blank-page problem. Don't touch the judgment.",
-      "context": "The design point in one line"
+      "mark": "Why it matters",
+      "headline": "The hard part was getting a team to want the tool",
+      "content": "Today an assistant writes the first draft of those replies. That alone would not be worth your time.\n\nWhat is worth it is how the assistant got into the team: nobody was required to use it, it is connected to no inbox, and its standard is one the team had already written down. That transfers to almost any team that writes many similar replies, none of them quite the same."
     },
     {
       "type": "narrative",
-      "headline": "The design decisions",
-      "content": "### Handbook is the context, not the model\n\nThe skill loads the CS handbook, its wording, formatting and standard phrases, as context with each draft. The model isn't trained on it; it just reads it alongside the incoming message. Handbook updates take effect the moment the document changes. No retraining, no pipeline.\n\n### A fixed shape for a good reply, not a vibe\n\nThe system prompt doesn't stop at what to avoid. It specifies a fixed answer structure, a house-voice specification, and the channel links to close with. For emotional messages specifically it calls for high empathy and pastoral language, with scripture or a promise of prayer where it fits. That's a concrete target for what 'good' looks like, not a generic instruction to sound nice.\n\n### Human keeps the send decision, always\n\nThe draft never goes out without a human edit-and-send. Efficiency was never what was being traded here. This is the design point. For sensitive communications, the human judgment is the product. The skill moves the blank-page problem; nothing more.\n\n### The human is upstream, not downstream\n\nThe copilot is embedded in nothing. Viewer services works largely from paper post, so a person opens the letter, reads it, decides whether the tool is worth reaching for, enters the content, and edits the draft before anything is sent. The judgment sits ahead of the model rather than behind it, which is the opposite of how most assistive AI is arranged.\n\nThe system prompt refuses in one case, and it is a useful one. If the input is not a viewer enquiry at all, an internal team note for instance, it declines to produce a reply and asks for clarification instead. A confident draft answering the wrong thing is worse than no draft.\n\n### What changed\n\nLetters that touch several topics at once used to take hours to draft. Now they take minutes. Temporary support staff write in the company's voice from their first week instead of absorbing it slowly over months. And the skeptics on the team, the ones who doubted a drafting tool would hold up on anything real, came around only after they tried it on their hardest letter, not their easiest."
-    },
-    {
-      "type": "reflection",
-      "headline": "Compress drafting time, not judgment",
-      "content": "A Copilot skill is a small piece of design surface but a useful one to do well. The work sits in the scoping: what context to give the model, what counts as a good output, and where the human stays in charge. Those are design decisions, not engineering ones.\n\nThe principle that ports to other domains: AI augments judgment, it doesn't replace it. In customer support, in legal drafting, in any domain where the human is liable for the output, the design job is to compress drafting time while leaving the judgment surface untouched."
+      "mark": "The tension",
+      "headline": "Personal mail does not forgive an autopilot",
+      "content": "Internal guidelines say what viewer services responds to, what it doesn't, and how far it engages with contentious topics. Many on the team work part time, and finding the Bibel TV voice used to take new colleagues weeks, sometimes months.\n\nSo I agreed the goal with the head of the department first. The assistant would help with writing. Deciding what a reply says would stay a person's job.\n\nNot everyone wanted AI at all. Two people on the team held out. As I read it: the unknown, preconceived ideas, probably some worry about jobs, and one objection I took seriously, that a reply to a viewer needs a human touch. The phone hotline is never to be handed to AI in any case."
     },
     {
       "type": "narrative",
-      "content": "Curious how a copilot that never touches an inbox, no auto-read, no auto-send, still turned the team's skeptics around, each on their hardest letter? Get in touch."
+      "mark": "The turn",
+      "headline": "The assistant is connected to nothing, on purpose",
+      "content": "AI in customer service usually means automation: connect the inbox, let the model read along, send the replies. That would have missed how this team works. Viewer services works largely from paper post.\n\nSo the assistant is embedded in nothing. A person opens the letter and reads it. They decide whether the assistant is worth reaching for, and type or summarize the content in. They edit the draft, copy it into Word, print it and put it in the outbox. Email is more direct.\n\nIt sounds like a detour. It is the safeguard. A person has read every message before the model sees it, and a person decides whether and how to answer. Not answering at all stays an option."
+    },
+    {
+      "type": "narrative",
+      "mark": "How it works",
+      "headline": "The handbook already existed. It became the standard.",
+      "content": "I built the assistant in September and October 2025. I didn't have to invent its standard. Viewer services had already written down what a good reply looks like: the service handbook holds the wording, the formatting and the standard phrases. I wrote a web page that condenses the handbook, its wording and its standard phrases, and the assistant consults that page for every draft. When the summary changes, the drafts change.\n\nNo model was trained. It is a Microsoft Copilot agent with a system prompt I wrote: a fixed answer structure, a house-voice specification and the channel links to close with. For emotional letters it calls for high empathy and pastoral language, with scripture or a promise of prayer where it fits.\n\nMost teams have their standard written down somewhere. Just not for a machine."
+    },
+    {
+      "type": "narrative",
+      "mark": "The limits",
+      "headline": "The limits live in the instructions, and a person does the checking",
+      "content": "The assistant has a list of things it stays out of: no medical, legal or financial advice, no political or denominational judgments, no missionary language. The broadcaster wants to stay objective and ecumenical. If the input isn't a viewer inquiry at all, an internal team note for instance, it writes no draft and asks for clarification instead.\n\nTo be plain about it: that list is an instruction, not a technical lock. Nothing checks the finished draft automatically. That is why a person reads every draft before it becomes a reply."
+    },
+    {
+      "type": "narrative",
+      "mark": "The rollout",
+      "headline": "Optional, a week to try it, and won over on the hardest letter",
+      "content": "I showed the assistant to the team and ran the introduction myself. Whoever wanted to tried it on their own for a week. One-to-one sessions followed. The team lead encouraged all of it and required none of it.\n\nThe turn came from a letter like the one at the top. One of the two holdouts tried the assistant on exactly that kind of complaint: complex, closely argued, many points at once. The draft answered every point, in the handbook's tone and the house voice, and they were amazed. By hand, they said, it would have taken hours at least. They have used it regularly since.\n\nThe second holdout was skeptical of AI in general. Later they told me they use it regularly too, and looking back, both saw it as a tool they stay in control of. This is where rollouts stall: a tool demoed on an easy example, then left unused."
+    },
+    {
+      "type": "narrative",
+      "mark": "The result",
+      "headline": "Faster replies, and the house voice from the first day",
+      "content": "Complex letters with many points at once now take minutes instead of hours, because the assistant gives an immediate starting point. None of this was timed letter by letter; the minutes, hours and weeks are the team's own experience.\n\nNew and part-time colleagues answer in the Bibel TV voice from the start, where it used to take weeks or months.\n\nBy 2026 part of the team used it regularly. Today, I'm told, it is part of daily work across the whole team, though not every letter is written with it. Every reply is still read, adapted and sent by a person."
+    },
+    {
+      "type": "narrative",
+      "mark": "At the desk today",
+      "headline": "The letter still comes by post",
+      "content": "Someone opens it and reads it, as before. What changed is the sheet after that. It is no longer blank.\n\nOn it is a draft that answers every point, in the handbook's words. The person adjusts it, prints it and puts it in the outbox."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your team",
+      "headline": "Before you hand your drafting to an assistant",
+      "steps": [
+        {
+          "label": "Give the assistant the first draft and keep the decision.",
+          "description": "Name who reads before the model and who sends after it. If you can't name both, the boundary isn't ready yet."
+        },
+        {
+          "label": "Start from the standard you already wrote down.",
+          "description": "Handbooks, phrase banks and model replies are the best context an assistant can get, and most teams have one. Find yours before you write a single prompt."
+        },
+        {
+          "label": "Invite, don't mandate, and prove it on the hardest case.",
+          "description": "A week to try it alone, then one-to-one time on each person's own work. A hard letter answered well is what won over a holdout."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "When it doesn't fit",
+      "headline": "Skip this setup if nobody reads the message first",
+      "content": "If you want to answer high volumes fully automatically, with no person reading first, this is the wrong setup. The same goes if certain content must provably never appear in a reply. A list in the instructions can't promise that; you would need a separate check on the output."
+    },
+    {
+      "type": "narrative",
+      "content": "Does your team write many similar replies, none of them quite the same? Look first at where your first drafts get written today. That is where this assistant earned its place: it reads no inbox, sends nothing, and one hard complaint letter won over a holdout.\n\nGet in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Designed a Copilot skill for the Bibel TV customer-support team. It drafts replies using the company's CS handbook as context; the team edits and sends. Design work was scoping the context, defining what counts as a good draft, and keeping the human send-decision absolute.",
-      "angle": "AI augments judgment; the design work is the scoping",
+      "summary": "Built a Microsoft Copilot assistant that drafts replies for Bibel TV's viewer services from the service handbook, and ran its optional rollout. Complex letters take minutes instead of hours, new colleagues write in the house voice from the start, and both early holdouts now use it regularly. A person reads, edits and sends every reply.",
+      "angle": "Adoption without a mandate: the draft goes to the assistant, the decision stays with people",
       "sections": [
         "hero",
-        "The Problem",
-        "What this is, and what it isn't",
-        "The design decisions"
+        "Complex letters in minutes, and a team that chose the tool",
+        "The mail still arrives on paper",
+        "The hard part was getting a team to want the tool",
+        "Personal mail does not forgive an autopilot",
+        "The assistant is connected to nothing, on purpose",
+        "The handbook already existed. It became the standard.",
+        "The limits live in the instructions, and a person does the checking",
+        "Optional, a week to try it, and won over on the hardest letter",
+        "Faster replies, and the house voice from the first day",
+        "The letter still comes by post",
+        "Before you hand your drafting to an assistant",
+        "Skip this setup if nobody reads the message first"
       ],
-      "max_read_time": "2 min"
+      "max_read_time": "7 min"
     }
   },
   "related": [
@@ -74,9 +164,9 @@
     "churchdesk-booking-system"
   ],
   "meta": {
-    "read_time_minutes": 3,
+    "read_time_minutes": 7,
     "confidential": false,
-    "confidentiality_note": "In production. UI screenshots: Tobias's call, 2026-08-13 — he authored the agent, so he treats publishing its interface as his to decide and does not seek separate approval. Recorded rather than assumed, because the note previously said approval was required. TWO THINGS THAT DO NOT FOLLOW FROM AUTHORSHIP, and still bind: (a) the agent runs inside Bibel TV's M365 tenant, so tenant, agent and conversation GUIDs are cropped out of every frame — they are their infrastructure, not his work; (b) it drafts in Bibel TV's brand voice, so a published draft can read as their institutional position. Anything stating a position on a contested social topic stays off the site for that reason, whoever built the tool. Every message shown is invented for the purpose; no real viewer message is ever used.",
-    "source": "data/experiences/bibel-tv-head-of-product-design.md (CS Copilot skill) + Jupus rescope 2026-05-23 + MVP case-study pass 2026-08-25 (teaser close added; handbook-content and 'good draft' claims tightened to what data/experiences/bibel-tv-head-of-product-design.md and data/verification-log/bibeltv-copilot-safety-claims-2026-08-13.md actually verify, dropping unsourced specifics such as 'escalation rules' in the handbook and the Bible-verse/one-on-one-call good-draft criteria; 'What changed' outcomes paragraph added from CAREER-TRUTH.md §2 / the experience file's Outcomes line; no images available, ships text-only, generation left undeclared)"
+    "confidentiality_note": "In production. UI screenshots: Tobias's call, 2026-08-13 — he authored the agent, so he treats publishing its interface as his to decide and does not seek separate approval. TWO THINGS THAT DO NOT FOLLOW FROM AUTHORSHIP, and still bind: (a) the agent runs inside Bibel TV's M365 tenant, so tenant, agent and conversation GUIDs are cropped out of every frame; (b) it drafts in Bibel TV's brand voice, so a published draft can read as their institutional position. Anything stating a position on a contested social topic stays off the site for that reason. Every message shown is invented for the purpose; no real viewer message is ever used. The two holdouts are never described by age or gender (small, identifiable team), and staffing and volume figures stay out until the team lead confirms them. The organization's internal thinking about more automation is not public.",
+    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md (Tobias's decision that treppmann.design case studies may be longer stories with takeaways and light humor). Facts: data/verification-log/2026-10-22-bibeltv-copilot-rollout-details.md, data/verification-log/bibeltv-copilot-safety-claims-2026-08-13.md, data/verification-log/2026-08-22-the-copilot-is-a-microsoft-agent-and-the-churn-work.md, data/experiences/bibel-tv-head-of-product-design.md. Every claim is in bibeltv-support-agent.citations.json."
   }
 }
