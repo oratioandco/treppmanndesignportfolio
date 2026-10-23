@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="Illustration with invented values. Left: an average result per period, where one period looks clearly strongest. Right: each individual letter against its own period's average; in every period some letters land well above and some well below that average.">
+<rect width="1200" height="600" fill="#0b0d12"/>
+<rect x="870" y="24" width="300" height="32" rx="4" fill="none" stroke="#e0b86a" stroke-width="1.5"/>
+<text x="1020" y="45" text-anchor="middle" fill="#e0b86a" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600">ILLUSTRATION, VALUES INVENTED</text>
+<text x="70" y="62" fill="#e7e9ee" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600">1 · By the calendar</text>
+<text x="70" y="88" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Average result per period (illustrative)</text>
+<line x1="70" x2="470" y1="490.0" y2="490.0" stroke="#262c38" stroke-width="1"/>
+<line x1="70" x2="470" y1="390.0" y2="390.0" stroke="#262c38" stroke-width="1"/>
+<line x1="70" x2="470" y1="290.0" y2="290.0" stroke="#262c38" stroke-width="1"/>
+<line x1="70" x2="470" y1="190.0" y2="190.0" stroke="#262c38" stroke-width="1"/>
+<rect x="90" y="306.0" width="38" height="184.0" rx="4" fill="#8a909c"/>
+<text x="109" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period A</text>
+<rect x="152" y="322.0" width="38" height="168.0" rx="4" fill="#8a909c"/>
+<text x="171" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period B</text>
+<rect x="214" y="290.0" width="38" height="200.0" rx="4" fill="#8a909c"/>
+<text x="233" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period C</text>
+<rect x="276" y="190.0" width="38" height="300.0" rx="4" fill="#5394cc"/>
+<text x="295" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period D</text>
+<rect x="338" y="298.0" width="38" height="192.0" rx="4" fill="#8a909c"/>
+<text x="357" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period E</text>
+<rect x="400" y="314.0" width="38" height="176.0" rx="4" fill="#8a909c"/>
+<text x="419" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period F</text>
+<text x="560" y="62" fill="#e7e9ee" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="600">2 · Against its own period</text>
+<text x="560" y="88" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">Each letter vs. its period average (illustrative)</text>
+<line x1="560" x2="1140" y1="320" y2="320" stroke="#4a5262" stroke-width="1"/>
+<text x="552" y="324" text-anchor="end" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="12">average</text>
+<line x1="560" x2="1140" y1="170" y2="170" stroke="#262c38" stroke-width="1"/>
+<text x="552" y="174" text-anchor="end" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="12">above</text>
+<line x1="560" x2="1140" y1="470" y2="470" stroke="#262c38" stroke-width="1"/>
+<text x="552" y="474" text-anchor="end" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="12">below</text>
+<circle cx="600.2" cy="370.2" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="598.0" cy="277.0" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="606.2" cy="309.8" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="610.2" cy="446.0" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="608.1" cy="451.8" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="598.5" cy="442.6" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="619.2" cy="341.5" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="602.3" cy="427.2" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="622.5" cy="283.7" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<text x="610" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period A</text>
+<circle cx="702.1" cy="298.0" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="692.3" cy="184.3" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="699.1" cy="217.8" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="694.3" cy="421.4" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="713.9" cy="374.6" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="707.3" cy="411.0" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="701.4" cy="280.4" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="692.8" cy="306.4" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="696.8" cy="445.5" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<text x="705" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period B</text>
+<circle cx="798.0" cy="268.6" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="802.4" cy="373.0" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="794.4" cy="333.3" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="805.6" cy="236.1" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="802.1" cy="392.9" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="810.5" cy="312.8" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="794.1" cy="254.6" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="789.3" cy="183.2" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="807.2" cy="343.3" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<text x="800" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period C</text>
+<circle cx="894.7" cy="419.2" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="899.7" cy="451.3" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="897.0" cy="244.6" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="889.8" cy="213.0" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="897.6" cy="264.3" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="893.8" cy="297.2" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="907.5" cy="223.1" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="899.6" cy="327.4" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="900.6" cy="445.2" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<text x="895" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period D</text>
+<circle cx="1003.8" cy="278.1" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="984.0" cy="228.3" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="994.7" cy="352.5" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="988.9" cy="456.1" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="979.3" cy="414.6" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="997.5" cy="445.7" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="982.9" cy="425.6" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="1000.4" cy="351.1" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="988.6" cy="439.5" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<text x="990" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period E</text>
+<circle cx="1095.7" cy="305.9" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="1095.2" cy="229.0" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="1082.6" cy="383.1" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="1095.8" cy="360.3" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="1075.2" cy="189.5" r="6" fill="#5394cc" fill-opacity="0.9"/>
+<circle cx="1077.5" cy="412.3" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="1084.6" cy="396.0" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<circle cx="1078.4" cy="294.6" r="6" fill="#8a909c" fill-opacity="0.9"/>
+<circle cx="1082.7" cy="461.3" r="6" fill="#c4746e" fill-opacity="0.9"/>
+<text x="1085" y="512" text-anchor="middle" fill="#c6cad4" font-family="Helvetica, Arial, sans-serif" font-size="13">Period F</text>
+<text x="70" y="570" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="13">Illustration, values invented. Shows the shape of the finding, not the organization's data.</text>
+</svg>
