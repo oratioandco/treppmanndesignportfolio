@@ -1,0 +1,62 @@
+{
+  "slug": "doctolib-patient",
+  "aliases": [
+    "doctolib-product-design-director-patient"
+  ],
+  "title": "Designing Trust Into AI-Native Products",
+  "subtitle": "Consumer craft, measurable behavior, and product experiences that keep people in control.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-doctolib-patient.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Design Director - Patient role"
+  },
+  "bio": {
+    "short": "I lead product design where AI, complex systems, and consumer behavior meet. At Ninox I led five people across product design and UX writing and, for four months, Product and Design across nine reports. At Bibel TV, I hold product and design responsibility for consumer apps and work hands-on from research to prototypes against real systems.",
+    "long": "At Ninox I led a five-person product design and UX-writing function from the Senior Leadership Team. I hired two people, promoted two, developed the leveling framework, ran performance reviews, and coached the design lead. For four months I also led Product, bringing the span to nine reports across product design, UX writing, product management, and data science. Later, as a freelancer, I designed Ninox’s prompt-to-database onboarding so generated schemas appear in the real editor beside chat. People can inspect and change the result directly instead of surrendering control to a conversation.\n\nAt Bibel TV I lead product design and product management for consumer streaming across iOS, Android, web, and connected TV. Research turned the current redesign toward a warm, light-first experience when respondents asked for brightness and readability. I also redesigned the entry into a live AI passage feature. In four-week before-and-after averages, weekly starts rose from 205 to 518 on iOS and from 655 to 1,213 on Android. My current work includes product, design, motion, and agentic development for “Bibel erklärt,” a conversational AI Bible-study app in development.\n\nEarlier, at Spreadshirt, I led a nine-month seller-experience redesign for a marketplace serving hundreds of thousands of consumers. Interviews challenged an automation-first strategy because shop owners valued creative control, and the direction moved to controlled automation. A separate mobile t-shirt designer prototype tested strongly and moved into production. Across these roles, I connect product direction, team development, and hands-on craft. I use evidence to decide where automation helps and where human control has to remain visible.",
+    "context": {
+      "company": "Doctolib is evolving a high-traffic patient booking product into an AI-powered Health Companion across European markets.",
+      "role": "Product Design Director - Patient. The role leads six Senior Product Designers and one Senior Content Designer. It also sets the design vision, quality bar, and operating model for trustworthy AI-enabled patient experiences.",
+      "emphasis": "Lead with the combination of design leadership and current hands-on AI-native product practice. Show consumer craft, measurable product use, multi-market experience, user control, research-led direction, and the ability to raise quality through people and systems. Use American English."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
