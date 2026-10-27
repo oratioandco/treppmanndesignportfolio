@@ -1,0 +1,62 @@
+{
+  "slug": "edenspiekermann",
+  "aliases": [
+    "appsfactory-director-design-strategy"
+  ],
+  "title": "Strategy That Teams Can Ship",
+  "subtitle": "Product direction, organization design, and current AI delivery grounded in operating experience.",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-edenspiekermann.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director Design Strategy role"
+  },
+  "bio": {
+    "short": "I work where product direction, team design, and the quality of what ships meet. I have led Product and Design functions and advised executives and founders. I stay hands-on through AI products, agentic prototypes, and operational workflows built against real systems.",
+    "long": "At Ninox, I led five people across product design and UX writing from the Senior Leadership Team. For four months, I also led Product, bringing the span to nine reports across product design, UX writing, product management, and data science. I hired and promoted people, coached the design lead, developed the leveling framework, ran performance reviews, and established joint design-system governance with Engineering.\n\nAt Bibel TV, I connect product direction to implementation across iOS, Android, web, and connected TV. Current work includes a conversational AI Bible-study application in development and real-code prototypes against production APIs. I also built a shipped support copilot and an end-to-end fundraising system joining performance analysis, prompt architecture, a guided prototype, and a Claude skill. External engineering works from the prototypes and ships from their code.\n\nMy consulting and transformation work gives that operating experience an external frame. Through Oratio&Co, I have owned discovery, strategy, workshops, prototypes, and delivery guidance for organizations including Software AG, Bibel TV, and Ninox. At Hypoport, recurring workshops and reviews helped department heads move bespoke internal services toward standardized, productized offers. At Spreadshirt, in-person research challenged an automation-first product direction, while a separate mobile prototype tested strongly and moved into production.",
+    "context": {
+      "company": "Edenspiekermann is hiring a Director Design Strategy within the Appsfactory group to lead complex client engagements and help shape its strategy practice.",
+      "role": "The role combines executive product strategy, product-organization design, client leadership, AI-enabled delivery, hands-on design judgment, and people development.",
+      "emphasis": "Lead with the combination of operating accountability and consulting range. Show current AI proof, executive facilitation, organization design, research-led direction, and personal concern for what ships. Use American English."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
