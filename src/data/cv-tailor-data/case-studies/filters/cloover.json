@@ -1,0 +1,56 @@
+{
+  "slug": "cloover",
+  "aliases": [
+    "cloover-senior-product-designer"
+  ],
+  "title": "Products for the People Doing the Work",
+  "subtitle": "Consumer craft, operational B2B workflows, and systems that connect product decisions to delivery",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-cloover.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
+  "bio": {
+    "short": "I design products where complex work and everyday decisions have to feel clear. At Bibel TV, I lead a multi-platform consumer redesign and build working prototypes against real APIs. ChurchDesk, Ninox, and Spreadshirt add operational B2B software, design systems, and products connecting business users with consumers.",
+    "long": "At Bibel TV, I lead product design across streaming products and the current app redesign. Research changed a dark-first concept into a light-first direction because viewers asked for brightness and readability. The interface, design-token service, and artwork-driven color system now work as one product system. Working prototypes against production APIs give external engineering implementation-ready direction.\n\nAt ChurchDesk, I led product management and design for software used by church professionals across six European markets. A funeral-booking project turned phone-based coordination between funeral homes, pastors, and cemeteries into a reusable platform capability. Coordination went from days to hours. That was about 70% less time by my estimate, with 90% booking acceptance. The capability later served other booking workflows.\n\nAt Ninox, I owned the design system and established joint governance with Engineering for a no-code business platform. I later designed AI onboarding in which a plain-language prompt generates a database schema directly into the real editor beside chat. The throughline matches Cloover's work: understand unfamiliar operations and make them clear for different levels of technical literacy. Then give engineering a system that is ready to build.",
+    "context": {
+      "company": "Cloover builds an AI operating system for installation companies and a consumer product for homeowners making major energy decisions.",
+      "role": "Senior Product Designer: a hands-on role spanning end-to-end product design, polished UI, research, design systems, implementation-ready prototypes, AI-native workflows, and close Product and Engineering collaboration.",
+      "emphasis": "Lead with current consumer craft and operational B2B workflows, then show the implementation bridge through design systems, precise specifications, and working prototypes against real APIs."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
