@@ -1,7 +1,11 @@
 {
   "id": "bibeltv-color-api",
-  "title": "A color engine that automates what bigger streamers do by hand",
-  "subtitle": "Bibel TV's team is too small to hand-pick a theme color for 10,000+ videos, so the colors are computed from the artwork itself — perceptual extraction tuned to the brand's own needs, not a generic tool",
+  "title": "Readable app themes from 10,000 video covers",
+  "subtitle": "I built a color engine that computes a readable theme from each video's artwork.",
+  "card": {
+    "title": "Color engine for a catalog of 10,000+ videos",
+    "line": "Stores a readable color theme for every video, computed from its cover image."
+  },
   "type": "design-system",
   "tags": [
     "color-science",
@@ -11,7 +15,6 @@
     "streaming-media",
     "brand-alignment",
     "technical-depth",
-    "k-means",
     "oklch"
   ],
   "company": "Bibel TV",
@@ -19,7 +22,7 @@
   "team": "Design-led, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "in-progress",
-  "last_updated": "2026-08-25",
+  "last_updated": "2026-10-23",
   "hero_image": {
     "src": "/images/bibeltv/color-lab.png",
     "alt": "The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right, one in dark mode, one in light mode, both themed from the same extracted palette"
@@ -27,7 +30,7 @@
   "video": {
     "src": "/video/bibeltv-color-api.mp4",
     "poster": "/video/bibeltv-color-api-poster.jpg",
-    "caption": "The short version: an obvious tool wasn't enough, so design kept the thresholds — and the same engine that ships live also knows when to hold back.",
+    "caption": "The short version: an obvious tool wasn't enough, so design kept the thresholds, and the same engine that ships live also knows when to hold back.",
     "duration_s": 59,
     "variant": "master"
   },
@@ -39,18 +42,37 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "A color engine that automates what bigger streamers do by hand",
-      "subtext": "Bibel TV has over 10,000 videos in its catalog and a team too small to hand-pick a theme color for each one — the work a larger streaming operation might fold into its artwork pipeline by hand. So the colors come from the artwork itself, computed. I built the engine that does it, in OKLCH, tuned to the brand's own needs rather than a generic extraction tool."
+      "headline": "Readable app themes from 10,000 video covers",
+      "subtext": "Bibel TV has over 10,000 videos in its catalog and a team too small to hand-pick a theme color for each one. A larger operation might do that as part of its artwork pipeline; here the colors had to come from the artwork itself. I built the engine that does it, in OKLCH, tuned to the brand's own needs."
     },
     {
-      "type": "callout",
-      "quote": "Some cards demanded the page; others almost disappeared. The artwork didn't decide which, the RGB math did.",
-      "context": "What the off-the-shelf palette extractor produced"
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "A readable theme from every artwork, computed instead of picked",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "Bibel TV, a German broadcaster moving from linear TV to apps and streaming. More than 10,000 videos, not every one with professional cover art, and an app redesign in which light mode had to look good too."
+        },
+        {
+          "label": "My part",
+          "value": "I built the color engine and Color Lab, the configuration tool that keeps the engine's settings in design's hands. Both are live."
+        },
+        {
+          "label": "What changed",
+          "value": "Measured on 15 real artworks through the production API: the engine held every dark card panel at OKLCH lightness 0.25–0.27 and every light one at 0.84–0.87, and every card cleared contrast with its text. imgix's palette ranged from 0.16 to 0.57 on dark, and one card fell below 4.5:1. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Run the off-the-shelf tool on real images before you build. When output looks uneven, check the color space before the algorithm. Give the people who own the brand the settings."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "Why a custom engine, and how it works",
-      "content": "Research ahead of the app redesign found that Bibel TV users associate the brand with hope, and expected that in the interface itself, not just the content — against the industry's own dark-mode default — a considered choice, not a habit: a dark frame recedes the way a theater dims its walls, so artwork and video carry the screen instead of the interface competing with them. Taking that seriously meant the color engine had to prove itself in light mode first, the reverse of how a streaming product's theming normally gets built and tuned.\n\nThe first attempt wasn't a custom engine at all. Bibel TV already runs its images through imgix, and imgix ships with a palette-extraction feature. So we used it, and looked at what came out across the catalog.\n\nThere were two problems. The first was visible at a glance: too often the colors collapsed. In dark mode the catalog drifted toward beige and brown, in light mode toward pink and rose, different artworks ending up with too-similar themes. The second problem was less obvious in any one card but unmistakable across a grid: the colors weren't perceptually uniform. Some cards came back heavy and saturated, others washed out and weak, and the difference had no relationship to the artwork itself. Scrolling the grid was noisy: some cards demanded the eye, others almost disappeared, no rhythm to any of it. That uneven weight is the real reason the catalog stopped feeling like a coherent collection.\n\nThe diagnosis for both failures was the color space. RGB isn't perceptually uniform: two colors that are mathematically far apart can read as nearly the same shade to a human, and two colors that are mathematically close can read as very different visual weights. An RGB extractor has no way to control for either, so it produces both monotone drift and uneven weighting at the same time.\n\nSo I built the engine in OKLCH, the perceptual color space: where lightness and chroma map to how humans actually see, not to how RGB numerically partitions a cube. The win in OKLCH isn't theoretical: you can clamp output to a band of perceived lightness so every card lands in the same visual weight range, and reason about chroma directly so cards stay distinct without one demanding the page and another disappearing.\n\nThe algorithm is short. K-means clustering finds the most prominent colors in the artwork; a hue-and-vibrance filter drops the clusters that are dull or neutral, so muddy beiges never win just by covering the most pixels. The remaining clusters are mapped to roles: base, accent, text. Text colors are validated against the base using the WCAG contrast algorithm; if the pair fails, lightness and chroma are adjusted until it passes. The page-background gradient is computed from the base color at reduced opacity, so the page feels like it belongs to the content.\n\nFrom a single piece of artwork, the API returns a full theme: a base color anchoring the card gradient, an accent for the logo, one or two text colors that clear AA or AAA contrast against the base without anyone checking.\n\nThe engine is tuned through Color Lab, the internal configuration tool shown above. The normalization curves and hue-exclusion gradients on the left of that screen are how the extraction is calibrated for Bibel TV specifically; the system is bespoke to one brand, not a generic per-brand tool. The two phone previews on the right show the same content card rendered in dark and light mode from the same extracted palette.",
+      "mark": "The scene",
+      "headline": "The first attempt was one URL parameter",
+      "content": "Bibel TV already serves its images through imgix, and imgix returns a color palette for any image if you add one URL parameter. Because we basically had it for free, it won stakeholder buy-in for colors taken from the artwork. In October 2025 we tested it on 100 images.\n\nTwo problems showed up. The colors collapsed: dark mode drifted toward beige and brown, light mode toward pink and rose, so different artworks ended up with too-similar themes. And the colors were not perceptually uniform. Some cards came back heavy, others washed out, and the uneven weight added noise to the interface.\n\nImages that were mostly white came back white.",
       "images": [
         {
           "src": "/images/bibeltv/color-api-imgix-swatches.jpg",
@@ -61,113 +83,196 @@
           "src": "/images/bibeltv/color-api-imgix-variants.jpg",
           "alt": "The same content card four times, its text panel filled with the Vibrant Dark, Muted Dark, Vibrant Light and Muted Light color from imgix.",
           "caption": "The four palettes on a content card. The test's verdict: text colors taken from the palette were not reliably accessible; fixed text colors over the palette color were."
-        },
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Why it matters",
+      "headline": "Nobody hand-picks colors for 10,000 videos",
+      "content": "On a streaming home screen the artwork supplies the picture and the theme color frames it. Premium streamers color their interfaces from the artwork to varying degrees.\n\nBibel TV's catalog isn't the problem; Netflix's is bigger. Capacity is, and not every video has professional cover art.\n\nIf your product shows thousands of images you didn't make, the arithmetic is the same: the color has to be computed, and computed color has to hold up without a person checking each card."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Light mode was where generic extraction broke",
+      "content": "The app redesign had moved toward light mode after a concept survey named brightness and readability as the core need; that story is told in the redesign study. For color, it meant light mode had to look really good too.\n\nDark mode wasn't as difficult. In light mode, anything generic struggled. As I read it, an extractor picks an image's most prominent colors, and in artwork full of people those are often skin tones. Certain hue ranges showed up far too often.\n\nI didn't raise the issue before I had a solution. I built my own engine first, in a few iterations of Claude Code sessions against real images, and started the conversation once it worked."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "A perceptual color space made the weight controllable",
+      "content": "imgix's colors were not perceptually uniform: equal distances in its numbers did not look like equal distances to the eye, so cards came out at uneven visual weights. I built the engine in OKLCH, where lightness and chroma track how people see. That let the engine clamp every card to a narrow band of perceived lightness.\n\nThe hues needed their own handling. I added filter settings that exclude problem ranges, fall back to other colors from the image that meet the criteria, and boost certain hues.\n\nConcretely: on dark, a color that lands in muddy brown is skipped, and the next most common color in the image gets its turn. On light, the same happens to pink. Only when nothing qualifies does the engine shift a color's hue, as a last resort.",
+      "images": [
         {
           "src": "/images/bibeltv/color-api-imgix-vs-engine-grid.jpg",
           "alt": "Fifteen Bibel TV series artworks shown four times as content cards. On dark: imgix's Vibrant Dark panels range from near-black to bright green and rust; the color engine's panels sit at one even depth in purples, teals and navy. On light: imgix's Vibrant Light panels range from mid-tone peach and blue to plain white; the engine's are all the same soft lightness, mostly beige and pale blue.",
-          "caption": "Fifteen artworks, same card. imgix's dark panels span OKLCH lightness 0.16 to 0.57, and one falls below 4.5:1 for white text; its light panels run from mid-tone to pure white. The color engine, from its production API, holds every dark card at 0.25 to 0.27 and every light card at 0.85. The cost shows in light mode: with lightness and chroma fixed, the hues bunch into beige and pale blue."
+          "caption": "Fifteen artworks, same card. imgix's dark panels span OKLCH lightness 0.16 to 0.57, and one falls below 4.5:1 for white text; its light panels run from mid-tone to pure white. The color engine, from its production API, holds every dark card at 0.25 to 0.27 and every light card at 0.84 to 0.87. The cost shows in light mode: with lightness and chroma fixed, the hues bunch into beige and pale blue."
+        },
+        {
+          "src": "/images/diagrams/color-engine-lightness.svg",
+          "alt": "Two range bars of OKLCH lightness for the dark card panels across fifteen artworks: imgix's panels span 0.16 to 0.57; the color engine's span 0.25 to 0.27.",
+          "caption": "Dark card panels, fifteen artworks: imgix spans OKLCH lightness 0.16 to 0.57, the color engine 0.25 to 0.27."
         }
       ]
     },
     {
       "type": "process",
-      "headline": "How it works",
+      "mark": "How it works",
+      "headline": "From artwork to theme in six steps",
+      "content": "The engine takes an image and returns a light and a dark palette for it. A Figma plugin was also built against the same API, to put an artwork's colors or gradient on the selected layers.",
       "steps": [
         {
           "label": "Load the artwork",
-          "description": "Content image loaded from a URL or upload, converted to a pixel array."
+          "description": "The API takes the artwork's image URL, or the image file itself."
         },
         {
-          "label": "Cluster in OKLCH",
-          "description": "K-means finds the most prominent colors, working in OKLCH so proximity matches human vision, not just math."
+          "label": "Count the dominant colors",
+          "description": "The image is shrunk to 64 by 64 pixels and its colors are counted. The most common ones become up to 15 candidates."
         },
         {
-          "label": "Filter for character",
-          "description": "Low-vibrance clusters are dropped, so the theme is built from colors that actually define the artwork."
+          "label": "Normalize in OKLCH",
+          "description": "Each candidate's lightness and chroma are clamped into a narrow band per mode. The hue stays."
         },
         {
-          "label": "Map to roles",
-          "description": "Clusters are assigned to base, accent, and text roles, and the page-background gradient is computed from the base color."
+          "label": "Check contrast",
+          "description": "The text colors are fixed: white on dark, near-black on light. The engine darkens or lightens the base in small steps until it clears the luminance threshold for that text; on dark, that means at least 7:1 against white."
         },
         {
-          "label": "Validate contrast",
-          "description": "Text colors are checked against the base with the WCAG algorithm. Lightness and chroma are adjusted until the pair passes."
+          "label": "Fall back",
+          "description": "A color that lands in muddy brown on dark, or pink on light, is skipped for the next one. If none qualifies, the engine shifts the hue."
         },
         {
           "label": "Return the theme",
-          "description": "A JSON theme, colors in hex and OKLCH, gradient config, contrast ratios, ready to use directly in app theming."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "headline": "The decisions that mattered",
-      "content": "### Design owned the infrastructure\n\nColor extraction usually lives with platform engineering. I owned it, because the choices inside it — hue thresholds, vibrance filters, perceptual versus mathematical proximity — are design decisions. Delegate them to a generic API and you delegate brand quality.\n\n### Tunable by design, not by code\n\nColor Lab exists to keep the engine flexible. Calling it a debugging tool undersells it. K-means thresholds, hue-exclusion ranges, light- and dark-mode normalization curves, all of it lives behind dials in the config UI, not behind code commits. The dials control both the underlying logic and the resulting appearance, anywhere from soft pastels to rich and vibrant.\n\nWe don't yet know where the catalog feels best across the board. Early user feedback was that vibrant is too much, so we're shipping with a middle-of-the-road palette and watching how it lands. That's the point of building the config layer in the first place: we can keep adjusting as the data and the feedback come in, without an engineer in the loop.\n\n### Light mode came first\n\nBibel TV's brand is warm, hopeful, light. Users associate it with brightness, not a cinema black-out. So the pipeline was tuned for light-mode correctness first, then verified in dark mode, the reverse of the streaming-app norm.\n\n### Restraint on the phone\n\nBibel TV's 2025 on-air rebrand uses two text colors for visual hierarchy. The engine produces both. On a dense phone display the second text color tested as too much color, validated and shipped with one. The capability is kept in the engine for other surfaces where it still makes sense: web, tablet, or even on-air itself, where color picking is currently a manual process. The mobile call was not 'drop the feature' but 'don't use it here'.\n\n### The app should feel like the broadcast\n\nThe card gradient and the page gradient are digital translations of the on-air color language. Every piece of artwork produces a theme that feels like Bibel TV, not like Netflix with a different logo, and it happens automatically, with no manual color matching."
-    },
-    {
-      "type": "outcome",
-      "headline": "What changed",
-      "metrics": [
-        {
-          "label": "Light mode preference",
-          "value": "A concept survey (n=264) named brightness and readability as users' core need; shown the new design in dark mode, respondents called it too gloomy and uninviting"
-        },
-        {
-          "label": "Contrast compliance",
-          "value": "Every extracted theme validated at AA or AAA, no manual checking"
-        },
-        {
-          "label": "Delivery",
-          "value": "Live in production. Color data is written onto every image in the content library, so each artwork ships with its theme pre-computed. The engine is also accessible through a Figma plugin when designers are working with those images."
+          "description": "A dark and a light palette in hex: base, accent, text colors and a page gradient that ends on the app's own background color."
         }
       ],
       "images": [
         {
-          "src": "/images/bibeltv/color-api-one-artwork-two-themes.jpg",
-          "alt": "The Chosen's series page in the Bibel TV 6.0 app, twice: on the left in light mode with a peach page gradient, on the right in dark mode with a deep green one, both computed from the same artwork.",
-          "caption": "One artwork, two themes. In the 6.0 release build, the page gradient on Home and every detail view is computed from the image: peach in light mode, deep green in dark."
-        },
-        {
-          "src": "/images/bibeltv/app-redesign-home-themes.jpg",
-          "alt": "Six captures of the 6.0 Home, one per hero: the page background, card and logo asterisk change color with each artwork — beige, peach, slate blue, two light blues and aqua.",
-          "caption": "Six heroes, six themes, all light, with nobody picking a color by hand."
-        },
-        {
-          "src": "/images/bibeltv/color-lab-applied.png",
-          "alt": "The same Color Lab preview panel: a Bibel TV content card themed from one extracted palette, shown in dark mode and light mode side by side — both read warm and on-brand rather than generic."
+          "src": "/images/diagrams/color-engine-steps.svg",
+          "alt": "The color engine in six steps: load the artwork, count the dominant colors, normalize in OKLCH, check contrast, fall back, return the theme.",
+          "caption": "From artwork to a JSON theme, in six steps."
         }
       ]
     },
     {
-      "type": "reflection",
-      "headline": "Built two colors, shipped one",
-      "content": "Infrastructure work is design work. The thresholds and filters inside the extraction algorithm are design decisions, and when you hand them to a generic library you hand over brand quality with them.\n\nThe other lesson was restraint. The engine can produce complex multi-tone looks. On a phone, the simpler output was the better one. Sometimes the design decision is to not use what you built."
+      "type": "narrative",
+      "mark": "The decision",
+      "headline": "Design kept the settings",
+      "content": "The settings inside the engine decide what the brand looks like on every card, so I kept them in design's hands. Color Lab is the configuration interface for that. It runs the same extraction code as the live API, so a setting tuned there gives the same result. It keeps the API flexible, so the team can fine-tune it on findings from real data and on user feedback.\n\nThe range runs from soft pastels to rich and vibrant. Early user feedback didn't want it too vibrant, so the team started in the middle of the road. What works best across the board remains to be seen.\n\nThe engine is bespoke to one brand, not a generic per-brand tool. It went live when I handed my GitHub repository to the backend team and they put it on a server. It runs on the backend and stores a color and gradient for every video, computed from its cover image."
     },
     {
       "type": "narrative",
-      "content": "Curious why a color engine built for 10,000+ videos got tuned for light mode before dark, the reverse of the usual streaming default, or why the brand's own two-color hierarchy ships with only one color on phones, on purpose? Get in touch."
+      "mark": "The restraint",
+      "headline": "A text-color option, held back on mobile",
+      "content": "The engine also offers a text-color option. On mobile it was validated as too much color, so the mobile app goes without it.\n\nThe option stays in the engine for possible use on other platforms, or even on-air, where color picking is currently a manual process."
+    },
+    {
+      "type": "outcome",
+      "mark": "The result",
+      "headline": "Live, measured on fifteen artworks, and still being tuned",
+      "metrics": [
+        {
+          "label": "Readable text",
+          "value": "On the 15-artwork test, every engine card cleared contrast: 14.6–16.9 against white text on dark, 10.8–11.3 against dark text on light"
+        },
+        {
+          "label": "Even weight, measured",
+          "value": "Dark card panels at OKLCH lightness 0.25–0.27, light panels at 0.84–0.87, against imgix's 0.16–0.57 dark and 0.70–1.00 light, with two light tiles effectively white"
+        },
+        {
+          "label": "The honest trade",
+          "value": "With lightness and chroma fixed in light mode, the hues bunch: 6 of 15 light cards land near-identical beige, 8 in light blue. Distinctness in light mode is still a tuning question."
+        },
+        {
+          "label": "In the app",
+          "value": "The engine and Color Lab are live. On the backend, the engine stores a color and gradient for every video, computed from its cover image. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork; one artwork yields a light and a dark theme, and six heroes give six themes."
+        }
+      ],
+      "narrative": "What's still open: how distinct the light-mode cards can get without losing their even weight, and where on the pastel-to-vibrant range users settle.",
+      "images": [
+        {
+          "src": "/images/bibeltv/color-api-one-artwork-two-themes.jpg",
+          "alt": "The Chosen's series page in the Bibel TV 6.0 app, twice: on the left in light mode with a peach page gradient, on the right in dark mode with a deep green one, both computed from the same artwork.",
+          "caption": "One artwork, two themes. In the 6.0 release build, the page gradient on Home and the detail views is computed from the image: peach in light mode, deep green in dark."
+        },
+        {
+          "src": "/images/bibeltv/app-redesign-home-themes.jpg",
+          "alt": "Six captures of the 6.0 Home, one per hero: the page background, card and logo asterisk change color with each artwork: beige, peach, slate blue, two light blues and aqua.",
+          "caption": "Six heroes, six themes, all light, with nobody picking a color by hand."
+        },
+        {
+          "src": "/images/bibeltv/color-lab-applied.png",
+          "alt": "The same Color Lab preview panel: a Bibel TV content card themed from one extracted palette, shown in dark mode and light mode side by side, both read warm and on-brand rather than generic."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "The same fifteen artworks",
+      "headline": "One depth on dark, one lightness on light",
+      "content": "Put the same fifteen artworks through the same card again. On dark, panels that once ran from near-black to bright green sit at one even depth. On light, panels that once ran to pure white hold one readable value, and no one checks them by hand.\n\nThe cost is in the same picture: the light panels bunch into beige and pale blue. That is the next job for the settings in Color Lab."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "To take with you",
+      "headline": "Rules for theming artwork you don't control",
+      "steps": [
+        {
+          "label": "Run the off-the-shelf tool on real images before you build.",
+          "description": "One URL parameter and a test on 100 images showed what a custom engine had to solve. Look at a whole grid of results, not one card at a time; uneven weight only shows across many."
+        },
+        {
+          "label": "When output looks uneven, check the color space before the algorithm.",
+          "description": "If your pipeline reasons in RGB, distance in the numbers is not distance to the eye. Move the extraction into a perceptual space such as OKLCH, then see what is left to fix."
+        },
+        {
+          "label": "Give the people who own the brand the settings.",
+          "description": "Hue filters, boosts and the pastel-to-vibrant range are taste decisions. Test it: can someone outside engineering change one and see the result without a deploy?"
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Small catalogs",
+      "headline": "Dozens of images need a spot check, and nothing more",
+      "content": "If your product renders dozens of images rather than thousands, an off-the-shelf extractor and a spot check are the right amount of system. A bespoke engine would be maintenance without a payoff.\n\nThe same holds if nobody on your side will own the settings. An engine nobody tunes is a black box."
+    },
+    {
+      "type": "narrative",
+      "content": "How many images does your product show that nobody on your team chose? And who decides the color around them today? Those two answers tell you whether you need an engine or a spot check. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Built a K-means color extraction engine in OKLCH that powers dynamic theming, card gradients, and WCAG-compliant text for the Bibel TV app. A concept survey named brightness and readability as users' core need; zero manual contrast checking, brand-consistent by default.",
-      "angle": "Design-led infrastructure, when industry defaults don't fit the brand",
+      "summary": "Built an OKLCH color engine that computes a light and a dark theme from each Bibel TV artwork and holds its base colors to a contrast threshold against fixed text colors, plus Color Lab, the configuration tool that keeps its settings in design's hands. Both are live. Measured on 15 artworks through the production API: dark card panels hold lightness 0.25–0.27 and light panels 0.84–0.87, where the off-the-shelf extractor ranged from near-black to white and one card in fifteen failed readable contrast. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork.",
+      "angle": "Design-owned color infrastructure for a team without the capacity to pick colors by hand",
       "sections": [
         "hero",
-        "Why a custom engine, and how it works",
-        "What changed",
-        "Built two colors, shipped one"
+        "A readable theme from every artwork, computed instead of picked",
+        "The first attempt was one URL parameter",
+        "Nobody hand-picks colors for 10,000 videos",
+        "Light mode was where generic extraction broke",
+        "A perceptual color space made the weight controllable",
+        "From artwork to theme in six steps",
+        "Design kept the settings",
+        "A text-color option, held back on mobile",
+        "Live, measured on fifteen artworks, and still being tuned",
+        "One depth on dark, one lightness on light",
+        "Rules for theming artwork you don't control",
+        "Dozens of images need a spot check, and nothing more"
       ],
-      "max_read_time": "2 min"
+      "max_read_time": "7 min"
     },
     "blog": {
-      "summary": "Every streaming app defaults to dark mode. Bibel TV had to make theming work in light, for users who want warmth. Here is how the color engine does it.",
+      "summary": "Bibel TV can't hand-pick a theme color for more than 10,000 videos, and imgix's built-in palette extraction gave too-similar, unevenly weighted colors, worst in light mode. So the engine is built in OKLCH, with its settings in design's hands.",
       "angle": "The technical depth behind a color problem the industry skips",
       "sections": [
         "hero",
-        "callout",
-        "process",
-        "reflection"
+        "The first attempt was one URL parameter",
+        "A perceptual color space made the weight controllable",
+        "From artwork to theme in six steps",
+        "Rules for theming artwork you don't control"
       ],
       "max_read_time": "6 min"
     }
@@ -187,7 +292,7 @@
       "OKLCH so every card carries an evenly-weighted theme and the grid reads as a coherent"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical artifact sidecars continue to resolve after editorial copy changes. The current narrative preserves the same extraction and OKLCH facts.",
-    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + Figma plugin source + Jupus case-study quality pass 2026-05-22 + voice and teaser pass 2026-08-25"
+    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, corrected the same day against the adversarial review (unsourced rationale, Figma plugin and per-image color data cut; 'might' kept on the larger-operation claim). Corrected 2026-10-23 against the engine's code (data/verification-log/2026-10-23-color-engine-from-code.md): no K-means, contrast is a luminance threshold against fixed text colors, the hue fallbacks described, the Figma plugin restored as existing; per-video color data restored from Tobias's answer (§7 of data/verification-log/2026-10-23-launch-open-questions-answers.md). Facts: data/verification-log/jupus-product-design-lead-verification.md, data/verification-log/2026-10-10-mediathek-dark-reversed-by-user-research.md, data/verification-log/2026-10-11-color-engine-grid-production.md, data/verification-log/2026-10-10-app-builds-5-12-vs-6-0-7.md, data/verification-log/2026-10-10-survey-analysis-colour-test-not-evaluable.md, data/experiences/bibel-tv-head-of-product-design.md, data/projects/bibeltv-app-redesign-(interview_transcript_where_I_talk_about_it-2026-05-06.txt. Every claim is in bibeltv-color-api.citations.json."
   },
   "generation": 3,
   "cover": {

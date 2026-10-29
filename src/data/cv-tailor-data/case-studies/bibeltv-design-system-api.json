@@ -1,7 +1,11 @@
 {
   "id": "bibeltv-design-system-api",
-  "title": "A design system that ships to production, not to Figma",
-  "subtitle": "A platform-agnostic token API: Android, web and Figma already build on it; iOS and connected TV are an implementation task away.",
+  "title": "One source of design decisions for Android, web and Figma",
+  "subtitle": "A four-tier token repository, built by Style Dictionary and served as an API. Android, web and Figma read it today; the API is built to serve iOS and connected TV as well.",
+  "card": {
+    "title": "Design tokens served to Android, web and Figma",
+    "line": "One token source feeds all three, so spacing changes no longer go through the agency."
+  },
   "type": "design-case-study",
   "tags": [
     "design-systems",
@@ -17,7 +21,7 @@
   "team": "Design-led infrastructure, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "draft",
-  "last_updated": "2026-08-25",
+  "last_updated": "2026-10-22",
   "hero_image": {
     "src": "/images/diagrams/design-system-token-flow.svg",
     "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, and Figma syncs through a plugin; iOS and connected TV are drawn dashed as the next implementation step."
@@ -29,23 +33,55 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "A design system that ships to production, not to Figma",
-      "subtext": "Most design systems are Figma libraries; engineers copy the values into their own platforms by hand. I built a deployed service instead: a Git repo, Style Dictionary, and automated sync, so a token change updates every consuming platform in seconds. Figma is one consumer, not the source."
+      "headline": "One source of design decisions for Android, web and Figma",
+      "subtext": "Bibel TV's app had no design tokens: every value was hard-coded. I built a token repository that Style Dictionary turns into a served API, so Android, web and Figma read their values from one source. Figma is one consumer, not the source."
     },
     {
-      "type": "callout",
-      "quote": "A design system in Figma is a promise. A design system as an API is a guarantee.",
-      "context": "The difference between a library designers maintain and a service engineers consume"
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "One source, three platforms reading it today",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "Bibel TV, a German broadcaster moving from linear TV to streaming apps. The app was hard-coded, with no tokens or variables, and almost all development depended on an external agency."
+        },
+        {
+          "label": "My part",
+          "value": "I designed and built the token infrastructure: a Git repository in four tiers, Style Dictionary builds in CI, a token API, and automated sync to the platforms and a Figma plugin."
+        },
+        {
+          "label": "What changed",
+          "value": "Android, web and Figma read one source today; adding iOS or connected TV is an implementation task, not a system change. For the design system and tokens, 95–100% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from my prototype, by code comparison."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Put the source of truth where the build reads it. Hold standard and flexibility apart by architecture, not by policy. Design the control surface for the organization you have."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "The problem",
-      "content": "Change the radius on a card at Bibel TV, and that isn't a five-minute edit. Development sits with an external agency, so it's an estimate in hours and a slot in a sprint. Small changes were not small.\n\nThat cost existed because each of the four platforms — iOS, Android, web, connected TV — kept its own copy of every design decision: Kotlin values, Swift constants, CSS variables, Figma styles. Change a color in one place and four teams had to catch it in four others. In practice, three fell behind every time, and the platforms drifted apart. The design system was a Figma library people referenced, with nothing enforcing that the reference stayed true.\n\nThere was also a budget reality underneath all of it: no platform-engineering team to own design infrastructure. If the Head of Design didn't build it, nobody would."
+      "mark": "The scene",
+      "headline": "Every change started as an hour estimate",
+      "content": "Sprint planning at Bibel TV worked the way agency work does. The development agency estimated each ticket in hours, and with the hours came a cost estimate. Then the sprint started and the tickets were pulled into development.\n\nThe app made that expensive by construction. Everything was hard-coded; there were no design tokens and no variables. It got its data from the API and then applied its own custom behavior to it, and that made any change expensive.\n\nEven with the agency using AI for its own development work, change still took a long time."
     },
     {
       "type": "narrative",
-      "headline": "The architecture",
-      "content": "The other options each failed somewhere. A Figma-only library breaks at scale through copy-paste drift. Per-platform token sets give flexibility but make every change an N-times job. A Storybook system handles web and ignores native. Manual sync holds only as long as one person stays perfectly consistent.\n\nWhat I built is a Git-based token repository that builds to a live API the platforms consume directly.\n\n**One Git repo** holds the tokens, versioned and reviewed like any other code. **A four-tier hierarchy** keeps them sane, running from primitives (OKLCH colors, spacing, type) through semantic and component to the page and view tokens a product team works in. **Style Dictionary** builds platform-specific outputs from that single definition. **An automation layer** distributes every committed change to the platform endpoints and the Figma plugin.\n\nThe top two tiers are the part a purist would question. Component and page-or-view tokens introduce no new values at all; they alias downward to semantic and primitives. That redundancy is deliberate. Each is a place the company can reach in and change a component's spacing or type size, or border radius across the board, without going through the agency that owns the code. Read as a taxonomy it is redundant. Read as a control surface it is the whole point, and it is the first step toward server-driven UI for the streaming section of the app.\n\nThe agency backed it, which I did not take for granted. The architecture takes billable change work away from them and they were enthusiastic anyway.",
+      "mark": "Why it matters",
+      "headline": "Where engineering sits outside the company, the standard has to travel with the code",
+      "content": "If your developers work for another company, every design change crosses that boundary as a ticket. A library in a design file describes the standard; it gives nobody outside the file a way to change a running app. This study is about putting the standard where the apps read it."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Built for how this company works, not for a textbook",
+      "content": "In my own words at the time: \"in a way it is not what others would call best practice.\" The system had to hold without a design team to police it. Two product managers and two product owners call the shots and define the direction, and development sat with external agencies. The system had to work in that reality, with agentic tools baked into the process. Today far more is built in-house, by product managers and product owners working with AI.\n\nThe company also had a stated goal: move toward server-driven UI and external control, and reduce the dependency on the development agencies. For the streaming section of the app, that means becoming a renderer of what the API feeds it. Design tokens are a step toward that, and only a step."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "Two of the four tiers add no new values, and that is their job",
+      "content": "The tokens live in a Git repository in four tiers: primitives (OKLCH colors, spacing, type), then semantic, component, and page or view. Style Dictionary builds the platform outputs from that one definition in CI, and automation pushes each build to the platform endpoints and the Figma plugin.\n\nThe component and page-or-view tiers only alias downward to semantic and primitive tokens. Each is a place where the company can change a component's text size or spacing, or a view's, without going through the agency that owns the code. Read as a taxonomy it is redundant. Read as a control surface it is the whole point.\n\nThe agency was enthusiastic about it, even though, as I said in an interview at the time, they would probably lose some business over it.",
       "images": [
         {
           "src": "/images/diagrams/design-system-token-flow.svg",
@@ -56,50 +92,61 @@
     },
     {
       "type": "process",
-      "headline": "How it works in practice",
+      "mark": "How it works",
+      "headline": "How a token change travels",
+      "content": "A token change needs no code deploy.",
       "steps": [
         {
-          "label": "Change a token",
-          "description": "A designer or engineer opens a pull request against the token repo. Standard review, approve, merge."
+          "label": "Propose the change",
+          "description": "A token change goes in as a pull request against the repository and is reviewed like any code."
         },
         {
           "label": "Style Dictionary builds",
-          "description": "CI runs Style Dictionary, generating platform-specific token files from the single source definition."
+          "description": "CI runs Style Dictionary and generates the platform-specific token files from the single definition, in the Design Tokens Community Group format rather than a proprietary schema."
         },
         {
-          "label": "Sync runs automatically",
-          "description": "Automation workflows push the built tokens to the platform endpoints and the Figma plugin. No manual step."
+          "label": "Automation distributes",
+          "description": "The built tokens are pushed to the platform endpoints and to the Figma plugin."
         },
         {
-          "label": "Platforms pick it up",
-          "description": "The Android app reads the API on launch and stores tokens locally. The web build pulls the same tokens into Storybook. Figma updates through the plugin. None of it needs a new code deploy."
+          "label": "Platforms read it",
+          "description": "The Android app reads the API on launch and caches the tokens locally. Storybook reads the live token API. Figma updates through the plugin."
         }
       ]
     },
     {
-      "type": "narrative",
-      "headline": "The decisions that mattered",
-      "content": "### The repo is the source, not Figma\n\nThis flips the usual dependency. Normally Figma is the design source and each platform keeps its own copy. Here the repo is the source and Figma is a consumer, so design can change without engineering retouching every platform by hand.\n\n### A standard token format\n\nI used the Design Tokens Community Group format rather than inventing one. New tools will read it natively, and a new hire does not have to learn a proprietary system.\n\n### Design owned the architecture\n\nToken infrastructure is usually platform-engineering work. Owning it meant I could decide the color space, the spacing scale, and the naming semantics without negotiation, but it also meant learning style dictionaries, API endpoints, and automation workflows.\n\nBecause the system is a deployed service and not a document, it opens the door to server-driven UI: change a token on the server, and any platform already wired to it picks up the change on next launch — no rebuild, no ticket. Adjust a color for a campaign or fix a contrast issue without shipping a build."
-    },
-    {
       "type": "outcome",
-      "headline": "What changed",
+      "mark": "The result",
+      "headline": "What the Android build and the code comparison show",
       "metrics": [
         {
-          "label": "Sync",
-          "before": "Four teams hand-updating tokens; platforms drifting apart",
-          "after": "One commit in the token repo, and every consuming platform updates without anyone touching code"
+          "label": "A change",
+          "before": "Hard-coded values, so a change went to the agency as a ticket with an hour estimate",
+          "after": "A token change is a reviewed pull request; Android reads the API at launch, Storybook reads it live, Figma syncs through a plugin"
         },
         {
           "label": "Reach",
-          "value": "A platform-agnostic token API: Android, web and Figma already build on it, and reaching iOS or connected TV is an implementation task, not a system change"
+          "value": "Figma, Android and web consume the token API today. It is platform-agnostic: adding iOS or connected TV is an implementation task, not a system change."
         },
         {
           "label": "Structure",
-          "value": "Four-tier token hierarchy: consistency enforced by structure, not by coordination"
+          "value": "Four tiers: primitives, semantic, component, page or view. Standardization and flexibility are held apart by architecture rather than by policy."
+        },
+        {
+          "label": "In the Android build",
+          "value": "353 of 379 component-token field names from my token source are in the agency's 6.0.2 Android build, a pre-release build of the redesign, verified by teardown."
+        },
+        {
+          "label": "In the Android code",
+          "value": "For the design system and tokens, 95–100% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from my prototype, by code comparison against release 6.0.8. It is a lower bound: adapted or renamed code is not counted."
         }
       ],
       "images": [
+        {
+          "src": "/images/diagrams/design-system-teardown.svg",
+          "alt": "One bar: 353 of 379 component-token field names from my token source are in the agency's 6.0.2 Android build, a pre-release build of the redesign, verified by teardown.",
+          "caption": "353 of 379 component-token field names found in the pre-release 6.0.2 Android build, verified by teardown."
+        },
         {
           "src": "/images/bibeltv/design-system-tokens.jpg",
           "alt": "Figma with the BibelTV Design Tools plugin open: a 'Sync Tokens to Figma' button with the token API as source, beside the primitive color ramps (blue, brand, green, neutral, orange, purple, red) it wrote into the file, and a page list of components from buttons and cards to heroes.",
@@ -108,38 +155,79 @@
         {
           "src": "/images/bibeltv/design-system-one-token-two-platforms.jpg",
           "alt": "One token on two platforms. Left: the play button on an episode page of the Android app, version 6.0.7, dark on a light page and white on a dark page. Middle: the token API entries component.light.button.primary (background #252F35, text #EBF0F2) and component.dark.button.primary (background #FFFFFF, text #252F35). Right: the same button rendered in the web Storybook from the live token API, in both themes.",
-          "caption": "One token, two platforms. The shipped Android app loads this payload at launch, and Storybook reads the live token API. On both, the primary button's fill and label match the token to the hex, in light and in dark."
+          "caption": "One token, two platforms. The Android app's 6.0.7 release build loads this payload at launch, and Storybook reads the live token API. On both, the primary button's fill and label match the token to the hex, in light and in dark."
         }
       ]
     },
     {
       "type": "reflection",
-      "headline": "What doesn't travel",
-      "content": "Infrastructure work is design leadership work. This design system is not a Figma file but a running service, so I had to understand APIs, CI pipelines, and token architecture. Not to become an engineer, but because design decisions embedded in infrastructure carry further than design decisions documented in Figma.\n\nThe other lesson: choosing a standard format mattered more than building a clever custom one. It means the system can outlast the person who built it.\n\nI would not hand this architecture to another company as a template. It answers one organization: no design team, engineering outside the company, product managers and product owners setting direction. Somewhere with its own platform team would be right to build something simpler. What travels is the question rather than the answer, which is what this organization can actually hold."
+      "mark": "What doesn't travel",
+      "headline": "I would not hand this architecture to another company as a template",
+      "content": "This architecture answers one organization, where product managers and product owners set direction and development sat with an outside agency. It covers the streaming section of the app, including the redesigned home screen, and not yet the other surfaces such as Bible reading.\n\nServer-driven UI stays a direction here, not a shipped state. The tiers are a step toward it."
     },
     {
       "type": "narrative",
-      "content": "Want to know how I got the agency that bills for every UI tweak to back a system built to make most of those tweaks free, or why two of the four token tiers were built to add nothing at all? Get in touch."
+      "mark": "The radius, today",
+      "headline": "The radius change is meant to be a pull request",
+      "content": "The plan, as I described it in May 2026: if we decide the border radius of our cards is too round or too small, we change it in the token API, and the app pulls it and applies it. Small and medium changes on the home screen would then become free, because the API or the tokens can carry them.\n\nThe trip I have verified end to end is a button. The 6.0.7 Android build loads the token payload at launch, and its primary button's fill and label match the token to the hex, in light and in dark, as they do in Storybook."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your system",
+      "headline": "Questions to ask of your own token architecture",
+      "steps": [
+        {
+          "label": "Put the source of truth where the build reads it.",
+          "description": "Change one value in your design file and follow it. If someone has to copy it into each platform by hand, the file describes your standard but cannot hold it."
+        },
+        {
+          "label": "Hold standard and flexibility apart by architecture, not by policy.",
+          "description": "Tiers that only alias downward give a product team room without new values. Test it: can a team change a component's spacing without inventing a number?"
+        },
+        {
+          "label": "Design the control surface for the organization you have.",
+          "description": "Write down who sets direction, who owns the code and what a change costs. Build the tiers your company can actually reach, not the ones a conference talk recommends."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Other org shapes",
+      "headline": "A company with its own platform team should build less",
+      "content": "Where platform engineers sit down the hall, a maintained token pipeline belongs with them, and a Head of Design building CI workflows would be expensive overkill. On a single platform, four tiers and a served API buy little; a well-governed token file does most of the work."
+    },
+    {
+      "type": "narrative",
+      "content": "If you're weighing whether your design system should be a file or a service, I can show you why two of the four tiers here were built to add no new values, and what one button looks like when Android and Storybook read the same token. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Built a deployed design-token system, Git repo, Style Dictionary, automated sync, that keeps Android, web and Figma in step from one source of truth. Zero manual sync.",
+      "summary": "Built a four-tier design-token repository, Style Dictionary builds and a served token API that Android, web and Figma read from one source. For the design system and tokens, 95–100% of the code in the redesigned Android Home and detail views (release 6.0, in beta) comes verbatim from the prototype.",
       "angle": "Design infrastructure that outlasts the designer who built it",
       "sections": [
         "hero",
-        "The problem",
-        "The architecture",
-        "What changed"
+        "One source, three platforms reading it today",
+        "Every change started as an hour estimate",
+        "Where engineering sits outside the company, the standard has to travel with the code",
+        "Built for how this company works, not for a textbook",
+        "Two of the four tiers add no new values, and that is their job",
+        "How a token change travels",
+        "What the Android build and the code comparison show",
+        "I would not hand this architecture to another company as a template",
+        "The radius change is meant to be a pull request",
+        "Questions to ask of your own token architecture",
+        "A company with its own platform team should build less"
       ],
-      "max_read_time": "2 min"
+      "max_read_time": "6 min"
     },
     "in-depth": {
-      "summary": "Most design systems are Figma libraries. This one is a deployed service. How it was built, token architecture, automation, a path to server-driven UI, without a platform-engineering team.",
+      "summary": "Most design systems are Figma libraries. This one is a served token API, shaped by how Bibel TV actually works: four tiers, two of them a control surface, and a step toward server-driven UI.",
       "angle": "A Head of Design building infrastructure: when to own the token API",
       "sections": [
         "hero",
-        "callout",
+        "narrative",
+        "narrative",
         "narrative",
         "process",
         "reflection"
@@ -152,7 +240,7 @@
     "bibeltv-app-redesign"
   ],
   "meta": {
-    "read_time_minutes": 8,
+    "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": null,
     "_legacy_citation_anchors": [
@@ -160,7 +248,7 @@
       "a Git repo flowing to Android, iOS, web, and Figma"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical tailored-portfolio sidecars keep resolving after the MVP copy edit. The current narrative still states the repository flow and platform consumers precisely.",
-    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared)"
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared) + 2026-10-21: design-system and token code share (95–100%) from data/verification-log/2026-10-19-prototype-code-share-measured.md, kept separate from the 6.0.2 teardown figure + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md; revised the same day after the adversarial review (plan told as plan, agency persuasion story and 'no ticket' removed). Every claim is in bibeltv-design-system-api.citations.json."
   },
   "cover": {
     "src": "/images/covers/cover-design-system.jpg",

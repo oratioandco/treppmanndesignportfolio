@@ -1,0 +1,56 @@
+{
+  "slug": "here",
+  "aliases": [
+    "here-lead-ux-ui-designer"
+  ],
+  "title": "Systems for Complex Products",
+  "subtitle": "Design infrastructure, data-rich interfaces, and the decisions that connect Figma to implementation",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-here.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Lead UX/UI Designer role"
+  },
+  "bio": {
+    "short": "I build design systems as working product infrastructure and use them to make complex products simpler. At Bibel TV, I built a four-tier token API with Git/CI, Style Dictionary, and Figma sync. At Datameer, I designed data-dense analytics for regulated users; at Ninox, I owned the design system and established joint governance with Engineering.",
+    "long": "At Bibel TV, I built a four-tier token repository from a hard-coded starting point. Style Dictionary builds it in CI, a served API distributes it, and Android, web, and Figma consume the same source today. The system is shaped around how the organization actually works: product teams need control over system decisions while implementation sits with an external agency.\n\nThe same system includes a color engine that computes light and dark themes from program artwork in OKLCH. Color Lab keeps its configuration in design's hands, while contrast checks and measured output make quality inspectable rather than subjective. Together, the token service and color infrastructure show how I work across system architecture, visual craft, accessibility, documentation, and implementation.\n\nAt Datameer, I spent five years designing technical analytics software for regulated banks and insurers. I designed charts, big-data pivot tables, aggregated JSON views, and filters. One query-builder problem was sampled-data uncertainty: a preview could show nothing while matching rows existed in the full dataset. At Ninox, I owned the design system, designed core components, and established joint governance with Engineering. This pairing of hands-on system craft and complex-product UX is what I bring to a design-system team.",
+    "context": {
+      "company": "HERE Technologies builds location-data products across web, mobile, and automotive surfaces for technical and consumer use cases.",
+      "role": "Lead UX/UI Designer on the HERE Design System team: a hands-on system role spanning product UI, data visualization, documentation, implementation partnership, research, and adoption.",
+      "emphasis": "Lead with production-reaching design-system infrastructure, then prove technical-product and data-visualization depth. Make the implementation bridge visible: Figma, Storybook, tokens, Git, CI, APIs, accessibility, documentation, and Engineering collaboration."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
