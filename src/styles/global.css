@@ -1281,9 +1281,14 @@ main {
     .hero--tailored h1 {
         font-size: clamp(2.55rem, 11.5vw, 3.35rem);
         letter-spacing: -0.045em;
-        overflow-wrap: normal;
+        /* Several published tailored titles still contain a non-breaking
+           final phrase. Let that phrase break as a last resort instead of
+           widening the grid and clipping the whole hero on phones. */
+        min-width: 0;
+        overflow-wrap: anywhere;
     }
-    .editorial-hero__profile { gap: 1.5rem; }
+    .editorial-hero__profile { min-width: 0; gap: 1.5rem; }
+    .editorial-hero__bio { min-width: 0; }
     .editorial-hero__profile .portrait { width: 9rem; }
     .editorial-hero__actions { grid-template-columns: 1fr; gap: 1rem; }
     .section-header > h2,
