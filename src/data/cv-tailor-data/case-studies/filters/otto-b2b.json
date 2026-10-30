@@ -1,0 +1,56 @@
+{
+  "slug": "otto-b2b",
+  "aliases": [
+    "otto-senior-ux-manager-b2b"
+  ],
+  "title": "Research That Changes Marketplace Decisions",
+  "subtitle": "B2B partner research, two-sided marketplace judgment, and evidence carried into product direction",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-otto-b2b.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Für die Position Senior UX Manager B2B bei OTTO"
+  },
+  "bio": {
+    "short": "I use research to change product decisions where business-user and consumer needs pull in different directions. At Spreadshirt, in-person shop-owner research redirected an automation-first strategy for a two-sided marketplace. My current work combines survey design, critical quantitative analysis, and feature-level behavioral evidence.",
+    "long": "At Spreadshirt, I led the third attempt to redesign the seller experience. The platform served about 5,000 business sellers and hundreds of thousands of consumers. In-person interviews overturned the assumption that speed and full automation were the primary value. The research redirected strategy toward controlled automation that preserved seller agency. Executive workshops turned the evidence into a shared product direction.\n\nMy current work adds quantitative judgment. At Bibel TV I co-designed and analyzed a 264-response study with existing app users. I rejected a color comparison the study design could not support, then separated it from the valid evidence about Light Mode, brightness, and readability. Feature-level behavior across Bible use, AI features, streaming, live TV, and Sleep Timer continues to guide product questions.\n\nAt Datameer I secured research access to analysts inside regulated banks and insurers, developed protocols, and used iterative UserTesting.com screening to reach difficult personas. Across these settings, findings become roadmap input, prototypes, and product direction. Product teams and senior leaders can act on the evidence.",
+    "context": {
+      "company": "OTTO operates a two-sided commerce platform whose partner experience has to work for business users while supporting the consumer marketplace.",
+      "role": "Senior research and product-strategy ownership across B2B discovery, partner journeys, UX monitoring, analytics, product teams, and senior stakeholders.",
+      "emphasis": "Lead with Spreadshirt seller research and the shift from full to controlled automation. Then show quantitative judgment at Bibel TV and B2B research at Datameer."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
