@@ -199,13 +199,7 @@
           "value": "The launch customer needed funerals bookable for and by 20+ cemeteries. The capability then shipped to ChurchDesk's whole customer base, for room rentals, baptisms, weddings and youth-camp sign-ups."
         }
       ],
-      "narrative": "The 70% is my estimate, not a tracked figure. It rests on the customer's account of the old way: hours, sometimes days, of calling. The booking page now shows only slots that are actually free, with the on-call schedules behind the scenes. That means significantly less calling, and a higher acceptance rate, reached faster.\n\nBoth figures follow from the embedded-capability call.\n\nI sequenced the rollout from the launch customer to the wider customer base. The same availability model and form builder carried the new uses; nobody built a second engine.",
-      "images": [
-        {
-          "src": "/images/diagrams/churchdesk-outcome-proof.svg",
-          "alt": "Outcome metrics: coordination time reduced from days to hours (estimated 70% less), booking acceptance rate of 90%"
-        }
-      ]
+      "narrative": "The 70% is my estimate, not a tracked figure. It rests on the customer's account of the old way: hours, sometimes days, of calling. The booking page now shows only slots that are actually free, with the on-call schedules behind the scenes. That means significantly less calling, and a higher acceptance rate, reached faster.\n\nBoth figures follow from the embedded-capability call.\n\nI sequenced the rollout from the launch customer to the wider customer base. The same availability model and form builder carried the new uses; nobody built a second engine."
     },
     {
       "type": "narrative",
