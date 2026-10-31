@@ -1,0 +1,56 @@
+{
+  "slug": "packmatic",
+  "aliases": [
+    "packmatic-senior-product-designer-systems-ai"
+  ],
+  "title": "From Complex Workflows to Reusable Product Systems",
+  "subtitle": "Data-heavy B2B interaction, AI-first prototyping, and shared patterns that help teams ship",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-packmatic.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the (Senior) Product Designer - Systems & AI role"
+  },
+  "bio": {
+    "short": "I turn complex, domain-specific workflows into usable tools and repeatable product capabilities. At Datameer, I designed data-dense analytics for regulated banks and insurers. ChurchDesk and Ninox add reusable operational workflows, no-code systems, and AI-generated output that stays editable. Today I build working prototypes and cross-platform design infrastructure with AI coding agents.",
+    "long": "At Datameer, I led UX for an enterprise analytics platform used in regulated banking and insurance. The work covered query builders, big-data pivot tables, aggregated JSON views, filters, and uncertainty in sampled previews. I brought research into roadmap decisions for a new platform and defined design-system component behavior and specifications while UI created the visual system.\n\nAt ChurchDesk, I owned product management for the main platform and led product design across the company. I reframed a funeral-booking brief as a reusable capability inside the calendar and form builder customers already used. Coordination fell from days to hours: about 70% by my estimate. Booking acceptance reached 90%. At Ninox, I owned the design system. I later designed prompt-to-database onboarding in which generated schemas appear in the real editor beside chat and remain directly editable.\n\nToday at Bibel TV, I prototype product concepts in working code against production APIs. AI coding agents shorten the path from evidence to implementation. I also built a four-tier token system and served API that keep Android, web, and Figma aligned. The Packmatic throughline is concrete: learn the work, identify the repeatable interaction model, and build a system that users and engineers can rely on.",
+    "context": {
+      "company": "Packmatic builds data-based packaging-management software for specifications, supplier collaboration, compliance, cost, and sustainability workflows.",
+      "role": "A hands-on systems and AI product-design role spanning research, data-heavy B2B workflows, reusable UX patterns, design-system stewardship, working prototypes, and implementation collaboration.",
+      "emphasis": "Lead with data-heavy interaction design and reusable workflow capabilities, then show the current AI-first prototyping practice and the design-system bridge into engineering."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
