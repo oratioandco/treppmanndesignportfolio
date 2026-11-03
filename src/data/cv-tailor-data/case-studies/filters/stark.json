@@ -1,0 +1,56 @@
+{
+  "slug": "stark",
+  "aliases": [
+    "stark-ux-ui-designer"
+  ],
+  "title": "Clear Interfaces for Complex Systems",
+  "subtitle": "Cross-platform product systems, AI-native prototypes, and interaction decisions that keep people in control",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-stark.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the UX/UI Designer role"
+  },
+  "bio": {
+    "short": "I turn complex product behavior into clear interfaces and working prototypes. At Bibel TV, I design across mobile, web, and connected TV while building the system infrastructure that keeps those surfaces coherent. My earlier work includes regulated analytical products at Datameer and a sensitive multi-party workflow at ChurchDesk.",
+    "long": "At Bibel TV, I work across iOS, Android, web, and connected TV as both product design lead and hands-on maker. I prototype working product concepts against production APIs with AI coding agents, then stay close to the engineering implementation. I also built the token and governance infrastructure that keeps the product coherent across surfaces and makes design decisions usable outside Figma.\n\nAt Datameer, I designed data-dense analytical products for regulated banks and insurers. One interaction problem was sampled-data uncertainty: a preview could show no matching rows even though the full dataset contained them. The interface had to make the system state and its limits clear without simplifying away the work expert users needed to do.\n\nAt ChurchDesk, I led product and design for a sensitive operational workflow. A family could request a funeral appointment, but the pastor retained the final decision. I integrated the capability into the existing calendar and form builder instead of creating a separate module. Across these projects, I make control and uncertainty legible and give engineering something concrete to build from.",
+    "context": {
+      "company": "STARK builds AI-driven autonomous defence platforms and software for European and allied security.",
+      "role": "Hands-on UX/UI Designer for interconnected, cross-platform systems where clarity, reliability, rapid prototyping, and consensus with technical experts matter.",
+      "emphasis": "Lead with current AI-native prototyping and cross-platform product systems. Then prove interaction judgment through regulated analytics, uncertainty states, and a sensitive workflow that preserves human control."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

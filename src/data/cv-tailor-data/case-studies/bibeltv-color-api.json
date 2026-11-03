@@ -77,12 +77,14 @@
         {
           "src": "/images/bibeltv/color-api-imgix-swatches.jpg",
           "alt": "A Bibel TV still with two rows of extracted color swatches above and below it, labeled Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark and Muted Light.",
-          "caption": "The first attempt, October 2025: imgix's own palette extraction, six colors per image, tested on 100 images."
+          "caption": "The first attempt, October 2025: imgix's own palette extraction, six colors per image, tested on 100 images.",
+          "size": "small"
         },
         {
           "src": "/images/bibeltv/color-api-imgix-variants.jpg",
           "alt": "The same content card four times, its text panel filled with the Vibrant Dark, Muted Dark, Vibrant Light and Muted Light color from imgix.",
-          "caption": "The four palettes on a content card. The test's verdict: text colors taken from the palette were not reliably accessible; fixed text colors over the palette color were."
+          "caption": "The four palettes on a content card. The test's verdict: text colors taken from the palette were not reliably accessible; fixed text colors over the palette color were.",
+          "size": "small"
         }
       ]
     },
@@ -195,11 +197,6 @@
           "src": "/images/bibeltv/color-api-one-artwork-two-themes.jpg",
           "alt": "The Chosen's series page in the Bibel TV 6.0 app, twice: on the left in light mode with a peach page gradient, on the right in dark mode with a deep green one, both computed from the same artwork.",
           "caption": "One artwork, two themes. In the 6.0 release build, the page gradient on Home and the detail views is computed from the image: peach in light mode, deep green in dark."
-        },
-        {
-          "src": "/images/bibeltv/app-redesign-home-themes.jpg",
-          "alt": "Six captures of the 6.0 Home, one per hero: the page background, card and logo asterisk change color with each artwork: beige, peach, slate blue, two light blues and aqua.",
-          "caption": "Six heroes, six themes, all light, with nobody picking a color by hand."
         },
         {
           "src": "/images/bibeltv/color-lab-applied.png",

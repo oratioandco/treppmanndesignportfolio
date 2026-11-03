@@ -1,0 +1,56 @@
+{
+  "slug": "you-mawo",
+  "aliases": [
+    "you-mawo-ux-ui-designer"
+  ],
+  "title": "Visual Product Systems Across Web and App",
+  "subtitle": "Current consumer UI, design-system infrastructure, and the craft to make three digital businesses feel intentional",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-you-mawo.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Abgestimmt auf die UX/UI-Designer-Position"
+  },
+  "bio": {
+    "short": "I design the interface and the system that keeps it coherent. At Bibel TV, I combine current consumer UI with color, token, and component infrastructure across mobile, web, connected TV, and Figma. At Ninox and ChurchDesk, I connected design-system decisions, complex workflows, and close Engineering collaboration.",
+    "long": "At Bibel TV, I am leading a cross-platform product redesign while remaining hands-on in the interface. The work spans information architecture, interaction, typography, color, light and dark modes, and implementation review across mobile, web, and connected TV. A concept survey challenged the streaming industry's dark default and moved the product toward a warmer, light-first experience.\n\nThe visual system is backed by infrastructure. I built an OKLCH color engine that derives readable themes from program artwork, plus Color Lab so Design can tune the behavior without changing code. I also built the token architecture and synchronization that connect product decisions to Figma, Storybook, web, and Android.\n\nAt Ninox, I owned the design system, Figma Variables, core components, motion foundations, and joint governance with Engineering. At ChurchDesk, I led design across web and mobile and specified component behavior through annotated flows and redlines. I would bring YOU MAWO strong visual craft for each surface. The same systems judgment can keep three related businesses coherent without making them identical.",
+    "context": {
+      "company": "YOU MAWO, One of One, and Additive Scale connect personalized eyewear, software, and additive manufacturing.",
+      "role": "Hands-on UX/UI Designer establishing a shared design library and high-fidelity visual experience across website, app, customer portal, and selected campaign surfaces.",
+      "emphasis": "Show current visual UI before infrastructure: Bibel TV redesign and color system first, followed by Figma, components, tokens, Engineering handoff, and cross-platform governance."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
