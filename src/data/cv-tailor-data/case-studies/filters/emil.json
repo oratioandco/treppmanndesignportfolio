@@ -1,0 +1,56 @@
+{
+  "slug": "emil",
+  "aliases": [
+    "emil-senior-product-designer"
+  ],
+  "title": "Making Complex B2B Workflows Clear, Consistent and Implementable",
+  "subtitle": "Data-intensive enterprise UX, configuration-heavy tools and AI-assisted delivery",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-emil.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
+  "bio": {
+    "short": "I turn complex, configuration-heavy workflows into clear product systems that people can use with confidence. At Datameer, I designed data-intensive analytics for regulated banks and insurers. Ninox and ChurchDesk add no-code configuration, reusable operational workflows and AI-generated output that stays editable. Today I use Claude-directed prototypes and production-connected design infrastructure to shorten the path from evidence to implementation.",
+    "long": "At Datameer, I designed query builders, big-data pivot tables, aggregated JSON views, filter logic and uncertainty states. The enterprise analytics platform was used by regulated banks and insurers. I established research in a restricted customer environment and defined design-system component behavior and implementation specifications with Product, UI and Engineering.\n\nAt Ninox, I owned the design system for a no-code platform where customers configure their own records, relations, permissions and workflows. I later designed prompt-to-database onboarding in which generated schemas appear in the real editor beside chat and remain directly editable. At ChurchDesk, I reframed a multi-party funeral-booking brief as a reusable capability inside the calendar and form builder. Coordination fell by an estimated 70%, and booking acceptance reached 90%.\n\nToday at Bibel TV, I work hands-on across research, product direction, interaction design and implementation review. I prototype against production APIs with AI coding agents. I also built a token system whose Git repository, CI pipeline and served API keep Android, web and Figma on one source. The EMIL throughline is practical: learn the specialist workflow and make its rules and states legible. Give users and engineers one coherent system to rely on.",
+    "context": {
+      "company": "EMIL Group builds SaaS products for the insurance industry and is hiring for complex, configuration-heavy and data-intensive workflows.",
+      "role": "A hands-on senior product-design role spanning continuous validation, information architecture, high-fidelity interaction design, design-system stewardship, AI-assisted prototyping and precise engineering specifications.",
+      "emphasis": "Lead with Datameer's regulated insurer context and data-intensive interfaces, then show Ninox's configurable product system, ChurchDesk's reusable workflow capability and current Claude-assisted implementation practice."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
