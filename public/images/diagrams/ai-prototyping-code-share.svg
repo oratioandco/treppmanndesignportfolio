@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Two bars, measured by code comparison against release 6.0.8. 64% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from the prototype; 95 to 100% for the design system and tokens.">
+  <rect width="1200" height="520" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="600" y="62" text-anchor="middle" fill="#e7e9ee" font-size="23" font-weight="700">How much of the redesigned app’s code came from the prototype</text>
+    <text x="600" y="94" text-anchor="middle" fill="#9aa3b5" font-size="15">Method: code comparison, release 6.0.8</text>
+    <g transform="translate(100 150)">
+      <text x="0" y="28" fill="#bde8cf" font-size="34" font-weight="700">64%</text>
+      <text x="110" y="26" fill="#c6cad4" font-size="17">Home and detail views, Android release 6.0 (in beta)</text>
+      <rect x="0" y="48" width="1000" height="34" rx="6" fill="#343b49"/>
+      <rect x="0" y="48" width="640" height="34" rx="6" fill="#4f8f6b"/>
+    </g>
+    <g transform="translate(100 280)">
+      <text x="0" y="28" fill="#bde8cf" font-size="34" font-weight="700">95–100%</text>
+      <text x="180" y="26" fill="#c6cad4" font-size="17">design system and tokens</text>
+      <rect x="0" y="48" width="1000" height="34" rx="6" fill="#343b49"/>
+      <rect x="0" y="48" width="950" height="34" rx="6" fill="#4f8f6b"/>
+      <rect x="950" y="48" width="50" height="34" fill="#4f8f6b" opacity=".45"/>
+    </g>
+    <text x="600" y="440" text-anchor="middle" fill="#c6cad4" font-size="16">Verbatim blocks of Kotlin. A lower bound: code the agency adapted or renamed is not counted.</text>
+  </g>
+</svg>

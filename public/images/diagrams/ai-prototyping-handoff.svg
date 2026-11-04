@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Two handovers from the same Figma concept. Handing over a spec: a spec and redlines to interpret, with interaction states and rendering discovered later. Handing over a prototype: a working prototype already running against real data, which engineering builds from.">
+  <rect width="1200" height="520" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="70" y="60" fill="#9aa3b5" font-size="18" font-weight="700">Handing over a spec</text>
+    <rect x="70" y="82" width="330" height="150" rx="8" fill="#1b1f28" stroke="#343b49"/>
+    <text x="92" y="122" fill="#e7e9ee" font-size="20" font-weight="700">A Figma concept</text>
+    <text x="92" y="154" fill="#c6cad4" font-size="16">Layout, flow, hierarchy</text>
+    <path d="M406 157h22m-7 -6l7 6l-7 6" fill="none" stroke="#6b7385" stroke-width="2"/>
+    <rect x="435" y="82" width="330" height="150" rx="8" fill="#1b1f28" stroke="#343b49"/>
+    <text x="457" y="122" fill="#e7e9ee" font-size="20" font-weight="700">A spec and redlines</text>
+    <text x="457" y="154" fill="#c6cad4" font-size="16">To interpret: a document</text>
+    <text x="457" y="178" fill="#c6cad4" font-size="16">instead of an answer</text>
+    <path d="M771 157h22m-7 -6l7 6l-7 6" fill="none" stroke="#6b7385" stroke-width="2"/>
+    <rect x="800" y="82" width="330" height="150" rx="8" fill="#1b1f28" stroke="#343b49"/>
+    <text x="822" y="122" fill="#e7e9ee" font-size="20" font-weight="700">Discovered later</text>
+    <text x="822" y="154" fill="#c6cad4" font-size="16">Interaction states and the</text>
+    <text x="822" y="178" fill="#c6cad4" font-size="16">actual rendering, once a</text>
+    <text x="822" y="202" fill="#c6cad4" font-size="16">build exists</text>
+    <text x="70" y="290" fill="#bde8cf" font-size="18" font-weight="700">Handing over a prototype</text>
+    <rect x="70" y="312" width="330" height="150" rx="8" fill="#1b1f28" stroke="#343b49"/>
+    <text x="92" y="352" fill="#e7e9ee" font-size="20" font-weight="700">A Figma concept</text>
+    <text x="92" y="384" fill="#c6cad4" font-size="16">Layout, flow, hierarchy</text>
+    <path d="M406 387h22m-7 -6l7 6l-7 6" fill="none" stroke="#4f8f6b" stroke-width="2"/>
+    <rect x="435" y="312" width="330" height="150" rx="8" fill="#23382d" stroke="#4f8f6b"/>
+    <text x="457" y="352" fill="#e7e9ee" font-size="20" font-weight="700">A working prototype</text>
+    <text x="457" y="384" fill="#c6cad4" font-size="16">Already running against</text>
+    <text x="457" y="408" fill="#c6cad4" font-size="16">real data</text>
+    <path d="M771 387h22m-7 -6l7 6l-7 6" fill="none" stroke="#4f8f6b" stroke-width="2"/>
+    <rect x="800" y="312" width="330" height="150" rx="8" fill="#23382d" stroke="#4f8f6b"/>
+    <text x="822" y="352" fill="#e7e9ee" font-size="20" font-weight="700">Engineering builds on it</text>
+    <text x="822" y="384" fill="#c6cad4" font-size="16">Working from running code</text>
+    <text x="822" y="408" fill="#c6cad4" font-size="16">rather than guessing from</text>
+    <text x="822" y="432" fill="#c6cad4" font-size="16">a document</text>
+  </g>
+</svg>
