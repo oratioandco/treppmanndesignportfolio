@@ -63,6 +63,12 @@ const PLACEHOLDER_TITLES = new Set([
   SITE_TAGLINE,
 ]);
 
+// Optional per-page overrides. A filter without them keeps the site wording.
+const tagline = (filter.tagline ?? '').trim() || SITE_TAGLINE;
+const workIntro =
+  (filter.work_intro ?? '').trim() ||
+  'Selected work demonstrating hands-on leadership and technical depth';
+
 const tailoredTitle = (filter.title ?? '').trim();
 const hasTailoredTitle =
   tailoredTitle !== '' && !PLACEHOLDER_TITLES.has(tailoredTitle);
@@ -92,7 +98,7 @@ const headlineDisplay = headline;
       </nav>
 
       <div class="editorial-hero__mast">
-        <p class="hero-tagline">{SITE_TAGLINE}</p>
+        <p class="hero-tagline">{tagline}</p>
         <h1 class="animated-headline" id="animated-title">{headlineDisplay}</h1>
       </div>
 
@@ -151,7 +157,7 @@ const headlineDisplay = headline;
     <div class="container">
       <div class="section-header">
         <h2>Case Studies</h2>
-        <p class="text-muted">Selected work demonstrating hands-on leadership and technical depth</p>
+        <p class="text-muted">{workIntro}</p>
       </div>
 
       <div class="case-studies-grid">

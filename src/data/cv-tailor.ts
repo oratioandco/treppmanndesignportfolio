@@ -13,6 +13,10 @@ export interface FilterConfig {
   aliases?: string[];
   title: string;
   subtitle?: string;
+  /** Replaces the site tagline above the headline on this page. */
+  tagline?: string;
+  /** Replaces the site sentence under "Case Studies" on this page. */
+  work_intro?: string;
   theme?: string;
   show_all_label?: string;
   cv?: { href: string; label?: string; note?: string };
