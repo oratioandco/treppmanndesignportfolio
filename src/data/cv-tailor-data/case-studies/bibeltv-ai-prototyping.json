@@ -45,7 +45,7 @@
         },
         {
           "label": "What changed",
-          "value": "64% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from my prototype; for the design system and tokens it is 95–100%. Measured by code comparison against release 6.0.8, a lower bound. A separate teardown of a pre-release 6.0.2 build found 93.1% of the design-token field names."
+          "value": "64% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from my prototype; for the design system and tokens it is 95–100%. Measured by code comparison against release 6.0.8, a lower bound."
         },
         {
           "label": "Three takeaways",
@@ -136,30 +136,21 @@
           "after": "A working prototype, already running against real data"
         },
         {
-          "label": "Design-token fields found in the pre-release 6.0.2 Android build",
-          "value": "93.1% of token field names (353 of 379), 94% of the Kotlin token model (443 of 473), confirmed via a teardown of a pre-release build"
-        },
-        {
           "label": "Prototype code in the redesigned Android views, by code comparison",
           "value": "64% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from my prototype; 95–100% for the design system and tokens. A lower bound: code engineering adapted or renamed is not counted"
         }
       ],
-      "narrative": "Release 6.0 is in beta, so this measures how the redesign is being built. It isn't a consumer number. Two methods answer how much of what I hand over survives. A teardown of a pre-release 6.0.2 build checked the design tokens and data contracts field by field, but it can't see component code. A code comparison of my prototype against release 6.0.8 can: it counts verbatim blocks of Kotlin in the redesigned Home and detail views.\n\nRun against the previous app version, 5.15.5, the same comparison matches 0.03%. The matches with 6.0 are copies, not coincidence. By layer, the design system and tokens carry over at 95–100%, while screen frames and view logic, at 2–3%, are engineering's own.",
+      "narrative": "Release 6.0 is in beta, so this measures how the redesign is being built. It isn't a consumer number. A code comparison of my prototype against release 6.0.8 answers how much of what I hand over survives: it counts verbatim blocks of Kotlin in the redesigned Home and detail views.\n\nRun against the previous app version, 5.15.5, the same comparison matches 0.03%. The matches with 6.0 are copies, not coincidence. By layer, the design system and tokens carry over at 95–100%, while screen frames and view logic, at 2–3%, are engineering's own.",
       "images": [
         {
           "src": "/images/diagrams/ai-prototyping-code-share.svg",
           "alt": "Two bars, measured by code comparison against release 6.0.8. 64% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from the prototype; 95 to 100% for the design system and tokens.",
-          "caption": "Two shares from one code comparison, kept apart from the teardown figures."
-        },
-        {
-          "src": "/images/diagrams/ai-prototyping-teardown.svg",
-          "alt": "Two bars, from a teardown of the pre-release 6.0.2 build. 353 of 379 token field names (93.1%) and 443 of 473 of the Kotlin token model (94%).",
-          "caption": "A separate measurement by a different method: a teardown of a pre-release 6.0.2 build, which checks tokens and data contracts but cannot see component code."
+          "caption": "Two shares from one code comparison against release 6.0.8."
         },
         {
           "src": "/images/bibeltv/ai-prototyping-prototype-vs-shipped.jpg",
           "alt": "Two video detail pages side by side. Left, the prototype: a sermon episode on a warm peach page. Right, Bibel TV's Android app 6.0.7: an episode of The Chosen on a peach page with the same structure of breadcrumb, title, Play button, action row, description and Bible-verse section.",
-          "caption": "Left: the video detail page in the prototype, whose detail redesign I committed on June 12, 2026 and its Bible-verse section on June 18. Right: the same page in the 6.0.7 build of the Bibel TV Android app, October 1, 2026. Same structure; the figures above come from a teardown of the earlier 6.0.2 build and a code comparison against release 6.0.8, not from how alike they look."
+          "caption": "Left: the video detail page in the prototype, whose detail redesign I committed on June 12, 2026 and its Bible-verse section on June 18. Right: the same page in the 6.0.7 build of the Bibel TV Android app, October 1, 2026. Same structure; the figures above come from a code comparison against release 6.0.8, not from how alike they look."
         }
       ]
     },
@@ -201,7 +192,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Prototyped the Bibel TV app redesign in real code against real data and self-built APIs, so engineering builds from something that already runs. 64% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from the prototype; for the design system and tokens it is 95–100%. A separate teardown of a pre-release 6.0.2 build found 93.1% of the design-token field names and 94% of the Kotlin token model.",
+      "summary": "Prototyped the Bibel TV app redesign in real code against real data and self-built APIs, so engineering builds from something that already runs. 64% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from the prototype; for the design system and tokens it is 95–100%.",
       "angle": "Design leadership through a working prototype as the handoff",
       "sections": [
         "hero",
@@ -242,7 +233,7 @@
     "read_time_minutes": 7,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23, redesign prototyping-practice verification 2026-08-23, APK teardown 2026-08-26 + merged 2026-08-28 with bibeltv-agentic-engineering (retired: same underlying story under a separate title, told the reader two case studies existed where there was one; title, callout causality, and reflection headline corrected per Tobias's direct feedback) + 2026-10-18 relay (data/verification-log/2026-10-18-apk-teardown-relay-and-build-status.md): token figure corrected to 93.1%, analyzed build named as pre-release 6.0.2 rather than shipped, 94% scoped to the Kotlin token model, agency no longer named + 2026-10-21 (Tobias: \"we did an analysis in protobible with exact numbers, let's use those\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 4): measured code share from data/verification-log/2026-10-19-prototype-code-share-measured.md added as its own claim beside the teardown, never merged with it; an engineer's unmeasured estimate retired now that the code layer is measured + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md (gradient finding per data/verification-log/2026-08-20-the-gradient-problem-was-not-android.md).  Revised 2026-10-22 after the adversarial review (voice-review-10 §5): engineering counterparts no longer named, invented motives and the 'wrong about specs' reflection removed, 'most users' corrected to 'the largest part of the userbase', engineering setup restated per CAREER-TRUTH §2(f) of 2026-10-18. Every claim is in bibeltv-ai-prototyping.citations.json."
+    "source": "Bibel TV experience file + team conversations 2026-05-06, agentic engineering practice verification 2026-04-23, redesign prototyping-practice verification 2026-08-23, APK teardown 2026-08-26 + merged 2026-08-28 with bibeltv-agentic-engineering (retired: same underlying story under a separate title, told the reader two case studies existed where there was one; title, callout causality, and reflection headline corrected per Tobias's direct feedback) + 2026-10-18 relay (data/verification-log/2026-10-18-apk-teardown-relay-and-build-status.md): token figure corrected to 93.1%, analyzed build named as pre-release 6.0.2 rather than shipped, 94% scoped to the Kotlin token model, agency no longer named + 2026-10-21 (Tobias: \"we did an analysis in protobible with exact numbers, let's use those\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 4): measured code share from data/verification-log/2026-10-19-prototype-code-share-measured.md added as its own claim beside the teardown, never merged with it; an engineer's unmeasured estimate retired now that the code layer is measured + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md (gradient finding per data/verification-log/2026-08-20-the-gradient-problem-was-not-android.md).  Revised 2026-10-22 after the adversarial review (voice-review-10 §5): engineering counterparts no longer named, invented motives and the 'wrong about specs' reflection removed, 'most users' corrected to 'the largest part of the userbase', engineering setup restated per CAREER-TRUTH §2(f) of 2026-10-18. + 2026-11-03 (Tobias, on the teardown framing: \"Why would we brag about them not using all the tokens?\"): the 6.0.2 teardown chart, metric and mentions removed; the code comparison carries the outcome alone. Every claim is in bibeltv-ai-prototyping.citations.json."
   },
   "cover": {
     "src": "/images/covers/cover-ai-prototyping.jpg",
