@@ -69,6 +69,12 @@ const workIntro =
   (filter.work_intro ?? '').trim() ||
   'Selected work demonstrating hands-on leadership and technical depth';
 
+// With its own tagline a page also needs its own link preview, or the site
+// wording comes back in the meta description.
+const pageDescription = (filter.tagline ?? '').trim()
+  ? `${tagline}: ${(filter.subtitle ?? '').trim() || (filter.title ?? '').trim()}`
+  : undefined;
+
 const tailoredTitle = (filter.title ?? '').trim();
 const hasTailoredTitle =
   tailoredTitle !== '' && !PLACEHOLDER_TITLES.has(tailoredTitle);
@@ -87,7 +93,7 @@ const headlineDisplay = headline;
 </Fragment>
 
 
-<Layout title={documentTitle}>
+<Layout description={pageDescription} title={documentTitle}>
   <section class="hero hero--editorial hero--tailored">
     <DotField spacing={24} />
     <div class="container">
