@@ -1,7 +1,7 @@
 {
   "_generated_by": "engine/bin/export_policy.py in oratioandco/my-cv-tailor — DO NOT EDIT BY HAND",
   "_source": "engine/policy/policy.yaml",
-  "_source_commit": "9ecbffbd",
+  "_source_commit": "4a53c944",
   "employers": [
     "Bibel TV",
     "ChurchDesk",
@@ -52,15 +52,15 @@
       "near": "\\bskills?\\b|\\bproficien|\\bexpertise\\b|\\btoolkit\\b|\\bI (?:built|wrote|coded|developed|shipped|used)\\b|\\bmy (?:stack|skills|toolkit)\\b|\\b(?:his|own)\\s+stack\\b",
       "window": 120,
       "message": "React Native presented as Tobias's own skill or stack.",
-      "fix": "He wrote no React Native code. Attribute it: \"engineering built the mobile app in React Native\". His stack is React, Android/Kotlin, SwiftUI, web, connected TV."
+      "fix": "He does not write React Native himself, so it is never his skill or stack. Name it as a fact about the product instead: \"ChurchDesk engineering built the mobile app in React Native\"; \"VSB is a React Native app\". Never write \"engineering built\" about VSB, Aperto or Faith App Foundation. His stack is React, Android/Kotlin, SwiftUI, web, connected TV."
     },
     {
       "id": "BT-002b",
       "kind": "absent_in_block",
       "pattern": "React\\s?Native",
-      "requires": "engineering|they wrote|the team|built by|developers?\\b|not me",
-      "message": "React Native mentioned with no attribution in the same block.",
-      "fix": "Say who wrote it. Unattributed, a reader assumes it was him — and it was not."
+      "requires": "engineering|they wrote|the team|built by|developers?\\b|not me|\\bVSB\\b|Video-Studienbibel|\\bAperto\\b|Faith App Foundation",
+      "message": "React Native mentioned with no attribution or named product in the same block.",
+      "fix": "Say who wrote it, or tie it to the product whose stack it is (VSB, Aperto, Faith App Foundation). Unattributed, a reader assumes it is his skill."
     },
     {
       "id": "BT-003",
