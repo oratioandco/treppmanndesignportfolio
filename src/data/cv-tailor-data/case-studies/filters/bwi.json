@@ -1,0 +1,62 @@
+{
+  "slug": "bwi",
+  "aliases": [
+    "bwi-senior-ux-designer-bundesmessenger"
+  ],
+  "title": "Design and Code That Stay Consistent",
+  "subtitle": "Design tokens served as an API, binding standards in the build, and research-led interfaces for web and mobile",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-bwi.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior UX Designer role"
+  },
+  "bio": {
+    "short": "I design products where design and implementation stay consistent. At Bibel TV I built a four-tier token architecture served as an API that our Storybook reads, and engineering builds from my prototype code. I've mentored more than 100 designers one-on-one and led a design team at Ninox.",
+    "long": "At Bibel TV I own product design across iOS, Android, web and connected TV, and I build the system that keeps them consistent. The token architecture has four tiers, from primitives to page and view, and it is served as an API that our Storybook reads as its source of truth. The page and view tier gives product teams room while the lower tiers hold the standard. Engineering builds from my prototype code: 64% of the code behind the redesigned Home and detail views of the Bibel TV Android app (release 6.0, in beta) comes verbatim from my prototype; for the design system and tokens it is 95–100%.\n\nResearch sets the direction. We expected the Mediathek to stay dark; a concept survey showed brightness and readability as the core need, so light mode moved into it. Accessibility is an obligation the product meets: we tested the Bibel TV app, and at ChurchDesk the product and its website builder, against WCAG AA, and at ChurchDesk I led the capability that lets customers meet the European Accessibility Act on the websites they host.\n\nRaising a team's quality is work I have done for ten years. At CareerFoundry I mentored more than 100 career changers into UX design one-on-one. At Ninox I owned the design system, established joint governance with Engineering, and led a team of five with my own levelling framework, promoting two of them. I want to bring that to the BundesMessenger: I like the idea of serving my country and giving something back.",
+    "context": {
+      "company": "BWI is the IT service provider of the Bundeswehr; the BundesMessenger is its secure messenger for the federal administration and the armed forces.",
+      "role": "Senior UX Designer owning central product areas of the BundesMessenger, from UX strategy to web and mobile UI, with design tokens, component libraries and design-to-code consistency at the center, plus research and mentoring.",
+      "emphasis": "Lead with design-to-code consistency: the token API, Storybook as source of truth and the measured prototype-code share. Then mentoring and team leadership, then accessibility as an obligation met in the product."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
