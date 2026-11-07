@@ -25,8 +25,8 @@
   "status": "draft",
   "last_updated": "2026-10-23",
   "hero_image": {
-    "src": "/images/churchdesk/priest-availability.jpg",
-    "alt": "The pastor's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), the pastor's name blurred, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown"
+    "src": "/images/churchdesk/funeral-home-booking.jpg",
+    "alt": "The funeral home's booking page for Hauptfriedhof Hanau: a week from Monday 30 November to Sunday 6 December. Monday and Tuesday are inside the 48-hour lead time and show no times; Wednesday offers 10:00 and 14:00, Thursday 13:00 and 14:00, Friday 10:00 to 12:00, Saturday 10:00 and 11:00, Sunday no funerals. A note reads that only times with an on-call pastor and open cemetery hours are shown."
   },
   "video": {
     "src": "/video/churchdesk-booking-system.mp4",
@@ -78,7 +78,7 @@
         {
           "src": "/images/churchdesk/vision-sheet-design-thinking.jpg",
           "alt": "A flipchart sheet from a design-thinking workshop with the church customer, handwritten goals per stakeholder: funeral directors, parish assistants, pastors",
-          "caption": "The vision sheet from the church's own design-thinking session. The headline, ‘Das Herumtelefonieren hat ein Ende’ (no more phoning around), is the customer's phrase, not mine. So is ‘Damit Angehörige planen können’: so that bereaved families can plan."
+          "caption": "The vision sheet from the church's own design-thinking session. The headline, ‘Das Herumtelefonieren hat ein Ende’ (no more phoning around), is the customer's phrase, not mine. So is ‘Damit Angehörige planen können’: so that bereaved families can plan. A photo-viewer toolbar that covered two weekday labels has been retouched out."
         }
       ]
     },
@@ -148,30 +148,30 @@
       "images": [
         {
           "src": "/images/churchdesk/priest-availability.jpg",
-          "alt": "The pastor's ChurchDesk calendar with a Verfügbarkeit (availability) modal open, type ‘Bereitschaft Beerdigung’ (on-call for funerals), the pastor's name blurred, multiple cemeteries selected at once (Hauptfriedhof, Waldfriedhof) with more available in the dropdown",
-          "caption": "The decision that distinguishes the system from Calendly, captured in one screen. The pastor sets on-call availability in the same calendar where they already plan their week, and a single event covers several cemeteries at once. Captured in ChurchDesk's customer-presentation environment. Personal names are blurred.",
+          "alt": "The pastor's ChurchDesk week calendar with her services, home visits and lessons, and green dashed on-call blocks labeled Bereitschaft Beerdigung. A Verfügbarkeit modal is open for the Wednesday block, 09:00 to 15:30, repeating every Wednesday: type Bereitschaft Beerdigung, user Pfarrerin Anna Weber, resources Hauptfriedhof Hanau and Waldfriedhof Großauheim, both ticked in the open list, two other cemeteries unticked.",
+          "caption": "The decision that distinguishes the system from Calendly. The pastor sets on-call availability in the same calendar where she already plans her week, and one recurring entry covers two cemeteries at once. The booking page above is what this week produces: Wednesday loses 11:00 to the noon service and its buffers. Recreated from ChurchDesk's interface; names and appointments are invented demo data.",
           "annotations": [
             {
-              "x": 22,
+              "x": 50,
               "y": 42,
-              "label": "the same calendar where they already plan their week"
+              "label": "the same calendar where she already plans her week"
             },
             {
-              "x": 61,
-              "y": 49.4,
+              "x": 83,
+              "y": 37,
               "label": "‘Bereitschaft Beerdigung’ (on-call for funerals)"
             },
             {
-              "x": 56,
-              "y": 65,
-              "label": "multiple cemeteries selected at once"
+              "x": 80,
+              "y": 53,
+              "label": "two cemeteries in one entry"
             }
           ]
         },
         {
           "src": "/images/churchdesk/booking-form.jpg",
-          "alt": "The funeral home's booking-form step: date and time slot at the top, a Select staff member radio list with the staff name blurred, and a custom form with funeral-domain fields the parish configured itself: Name des/der Verstorbenen, Art der Bestattung (Erdbestattung), Ort der Trauerfeier, Angehörigen-Kontakt. Names, phone number and email in the fields are blurred.",
-          "caption": "The form is configured by the parish using ChurchDesk's existing form builder. Note the fields: name of the deceased, type of burial, place of the memorial service, family contact. Calendly cannot have these fields; its booking form is fixed. I reused infrastructure that was already in the product. Names, phone number and email are blurred; the rest is demo data."
+          "alt": "The funeral home's request form for Wednesday 2 December, 10:00 to 11:00, at the Hauptfriedhof Hanau chapel. Left: a choice of pastor, limited to those on call at that time. Right: fields the parish configured itself: funeral home and contact, name of the deceased, type of burial (Erdbestattung), place of the service (Trauerhalle), the family's main contact, and notes for the pastor. The button reads Termin anfragen (request appointment).",
+          "caption": "The form is configured by the parish in ChurchDesk's existing form builder: name of the deceased, type of burial, place of the service, family contact. Calendly's booking form is fixed and cannot ask these questions. I reused infrastructure that was already in the product, and the button says request, because the pastor still confirms. Recreated from ChurchDesk's interface; names and appointments are invented demo data."
         }
       ]
     },
@@ -278,5 +278,9 @@
     "confidentiality_note": "First customer (Evangelische Kirche von Kurhessen-Waldeck) is named with their consent; they are publicly identified in the ChurchDesk conference talk from 2025-02-26.",
     "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, revised the same day against the adversarial review (no invented stakeholder motives, outcome basis stated once). Facts: data/experiences/churchdesk-head-of-product-design.md, data/verification-log/jupus-product-design-lead-verification.md, data/verification-log/2026-09-16-ninox-context-for-video.md, data/verification-log/2026-09-18-churchdesk-48h-lead-time.md, data/verification-log/2026-09-19-churchdesk-slot-increments.md, data/verification-log/2026-10-21-portfolio-launch-answers.md, data/verification-log/churchdesk-booking-attribution-correction-2026-08-12.md. Every claim is in churchdesk-booking-system.citations.json. 2026-10-23: the 70% is stated as Tobias's estimate with its basis (data/verification-log/2026-10-23-launch-open-questions-answers.md §3); the 90% is never called measured."
   },
-  "generation": 3
+  "generation": 3,
+  "cover": {
+    "src": "/images/covers/cover-churchdesk.jpg",
+    "alt": "The funeral home's booking page for Hauptfriedhof Hanau with only the genuinely free times listed, and a request for Wednesday 10:00 waiting for the pastor's confirmation."
+  }
 }
