@@ -13,12 +13,12 @@
     "note": "Für die Position Senior UX Manager B2B bei OTTO"
   },
   "bio": {
-    "short": "I use research to change product decisions where business-user and consumer needs pull in different directions. At Spreadshirt, in-person shop-owner research redirected an automation-first strategy for a two-sided marketplace. My current work combines survey design, critical quantitative analysis, and feature-level behavioral evidence.",
-    "long": "At Spreadshirt, I led the third attempt to redesign the seller experience. The platform served about 5,000 business sellers and hundreds of thousands of consumers. In-person interviews overturned the assumption that speed and full automation were the primary value. The research redirected strategy toward controlled automation that preserved seller agency. Executive workshops turned the evidence into a shared product direction.\n\nMy current work adds quantitative judgment. At Bibel TV I co-designed and analyzed a 264-response study with existing app users. I rejected a color comparison the study design could not support, then separated it from the valid evidence about Light Mode, brightness, and readability. Feature-level behavior across Bible use, AI features, streaming, live TV, and Sleep Timer continues to guide product questions.\n\nAt Datameer I secured research access to analysts inside regulated banks and insurers, developed protocols, and used iterative UserTesting.com screening to reach difficult personas. Across these settings, findings become roadmap input, prototypes, and product direction. Product teams and senior leaders can act on the evidence.",
+    "short": "I run the research myself and always pair it with analytics. At Spreadshirt, in-person interviews with shop owners redirected an automation-first strategy for a two-sided marketplace. At ChurchDesk, a B2B platform in six European markets, I tested booking concepts with pastors and funeral directors.",
+    "long": "At Spreadshirt, I led the third attempt to redesign the seller experience. The platform served about 5,000 business sellers and hundreds of thousands of consumers. In-person interviews overturned the assumption that speed and full automation were the primary value. The research redirected strategy toward controlled automation that preserved seller agency. Executive workshops turned the evidence into a shared product direction.\n\nAt ChurchDesk I tested booking concepts in recurring calls with the launch customer's project lead and with pastors and funeral directors, partly in person. The result became a reusable booking capability in the platform's calendar and form builder.\n\nI always pair analytics with qualitative research. At Bibel TV I co-designed and analyzed a concept study with 264 existing app users; it showed brightness and readability as the core need, and the redesign went light-first. For the redesigned AI Bible feature, I read GA4 weekly starts before and after its release alongside user feedback on the new app design.\n\nAt Datameer I secured research access to analysts inside regulated banks and insurers, developed protocols, and used iterative UserTesting.com screening to reach difficult personas. Across these settings, findings become roadmap input, prototypes, and product direction. Product teams and senior leaders can act on the evidence.",
     "context": {
       "company": "OTTO operates a two-sided commerce platform whose partner experience has to work for business users while supporting the consumer marketplace.",
       "role": "Senior research and product-strategy ownership across B2B discovery, partner journeys, UX monitoring, analytics, product teams, and senior stakeholders.",
-      "emphasis": "Lead with Spreadshirt seller research and the shift from full to controlled automation. Then show quantitative judgment at Bibel TV and B2B research at Datameer."
+      "emphasis": "Lead with Spreadshirt seller research and the shift from full to controlled automation. Then ChurchDesk concept tests with pastors and funeral directors (B2B), analytics paired with research at Bibel TV, and in-person research with US banking analysts at Datameer."
     }
   },
   "case_studies": [
@@ -29,7 +29,7 @@
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-app-redesign",
+      "id": "churchdesk-booking-system",
       "visibility": "featured",
       "order": 2,
       "format_override": "executive"
@@ -41,7 +41,7 @@
       "format_override": "executive"
     },
     {
-      "id": "churchdesk-booking-system",
+      "id": "bibeltv-app-redesign",
       "visibility": "browseable",
       "order": 4,
       "format_override": "executive"
