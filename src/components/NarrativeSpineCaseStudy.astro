@@ -99,6 +99,19 @@ const supportingEvidence = selectedHasImage
   ? null
   : contentSections.flatMap((section) => section.images ?? [])[0] ?? null;
 
+// study.type is an internal schema value ("blog-post", "design-case-study").
+// Readers get a plain label, or nothing for a type without one.
+const TYPE_LABELS: Record<string, string> = {
+  'design-case-study': 'Case study',
+  'ai-product': 'AI product',
+  'leadership-story': 'Leadership',
+  'business-process': 'Process design',
+  'design-system': 'Design system',
+  'blog-post': 'Field story',
+  'streaming-media': 'Streaming',
+  'technical-deep-dive': 'Deep dive',
+};
+const typeLabel = TYPE_LABELS[study.type ?? ''];
 const title = hero?.headline || study.title;
 const projectArgument = hero?.subtext || study.subtitle;
 const kicker = ['Case Study', study.company, study.duration].filter(Boolean).join(' · ').toUpperCase();
@@ -124,7 +137,7 @@ let figureIndex = 0;
     </nav>
 
     <div class="cs-spine-hero-copy">
-      <p class="cs-spine-hero-index" aria-hidden="true">{study.type}</p>
+      {typeLabel && <p class="cs-spine-hero-index" aria-hidden="true">{typeLabel}</p>}
       <h1 id="cs-spine-title" class="cs-spine-title">{preventDisplayWidow(title)}</h1>
       <div class="cs-spine-hero-foot">
         <div class="cs-spine-meta">
