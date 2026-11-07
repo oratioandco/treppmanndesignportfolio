@@ -170,8 +170,8 @@
         },
         {
           "src": "/images/bibeltv/app-redesign-home-themes.jpg",
-          "alt": "Six captures of the 6.0 Home, one per hero in the carousel. The page background, card and logo asterisk change color with each hero: beige, peach, slate blue, two light blues and aqua, all light.",
-          "caption": "Light, but not one color: the 6.0 Home takes its page tint from each hero's artwork. Six heroes, six themes."
+          "alt": "Twelve captures of the prototype Home, one per hero: Betet unablässig, Don Matteo, Sabina, Anne with an E, Superbuch and Ein Hauch von Himmel, light mode above and dark mode below. Page, card and logo asterisk take their color from each hero's artwork: peach, beige, light blue, apricot, orange and pink in light; plum, teal, petrol, purple, red and mauve in dark.",
+          "caption": "Light, but not one color: in the prototype the 6.0 build is made from, Home takes its page tint from each hero's artwork. Six heroes, six themes, in light and in dark."
         },
         {
           "src": "/images/bibeltv/app-redesign-before-after-series.jpg",
@@ -326,6 +326,6 @@
   },
   "cover": {
     "src": "/images/covers/cover-app-redesign.jpg",
-    "alt": "The Bibel TV 6.0 Home in light mode: a hero card for a Don Matteo episode, the page tinted warm peach from its artwork."
+    "alt": "Three phone screens of the Bibel TV app prototype in light mode: Anne with an E in front on an apricot page, Sabina on light blue and Superbuch on orange behind it, each page tinted from its hero's artwork."
   }
 }
