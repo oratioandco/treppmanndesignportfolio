@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="One bar: 353 of 379 component-token field names from my token source are in the agency's 6.0.2 Android build, a pre-release build of the redesign, verified by teardown.">
+  <rect width="1200" height="400" fill="#0b0d12"/>
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="600" y="62" text-anchor="middle" fill="#e7e9ee" font-size="23" font-weight="700">How many of my component-token names are in the Android build</text>
+    <text x="600" y="94" text-anchor="middle" fill="#9aa3b5" font-size="15">Method: teardown of the pre-release 6.0.2 Android build</text>
+    <g transform="translate(100 150)">
+      <text x="0" y="28" fill="#bde8cf" font-size="34" font-weight="700">353 of 379</text>
+      <text x="200" y="26" fill="#c6cad4" font-size="17">component-token field names from my token source</text>
+      <rect x="0" y="48" width="1000" height="34" rx="6" fill="#343b49"/>
+      <rect x="0" y="48" width="931" height="34" rx="6" fill="#4f8f6b"/>
+    </g>
+    <text x="600" y="320" text-anchor="middle" fill="#c6cad4" font-size="16">Token and data contract only. A separate measure from the code comparison against release 6.0.8.</text>
+  </g>
+</svg>
