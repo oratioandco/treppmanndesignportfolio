@@ -193,5 +193,9 @@
     "confidential": false,
     "confidentiality_note": null,
     "source": "Rewritten 2026-10-22 after the adversarial review (voice-review-10, study 9): the interview thread and the mobile-prototype thread are told as two separate beats; the prototype is not claimed to have settled the automation question. Facts: data/experiences/spreadshirt-ux-strategy-lead.md, data/experiences/spreadshirt-research-prototyping.md, data/verification-log/2026-08-22-ab-testing-what-is-actually-true.md, data/verification-log/2026-08-22-the-operating-models-he-has-actually-worked-in.md. 'Most uplifting experience' is a phrase inside a paraphrased bullet, so it is never printed in quotation marks. Every claim is in spreadshirt-user-research-strategy.citations.json."
+  },
+  "cover": {
+    "src": "/images/covers/cover-spreadshirt.jpg",
+    "alt": "A vertical line from fully automated to full manual control. Management's vision, a 60-second automated journey, sits near the automated end; what shop owners valued, the design process they called the most uplifting experience, near the manual end; where the product shipped, automation that preserves control, is marked between them. Below: Research didn't adjust the roadmap. It moved the product."
   }
 }

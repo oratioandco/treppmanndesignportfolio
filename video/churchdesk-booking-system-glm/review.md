@@ -885,3 +885,16 @@ approval.
 filtering-pipeline diagram, study-JSON sync) deployed to treppmann.design. v22-ship.mp4 was
 in QuickTime in front of him when he said it. Approval status of v22 as a cut: deploy
 authorized; he has not separately stated a verdict on the cut itself.
+
+## v23 — 2026-11-08: screens replaced, nothing else touched
+
+The image audit of 2026-11-07 found both product screens in this film self-contradictory:
+the booking page read "25" on every day with Monday twice and 16:00 six times; the
+availability modal's chips contradicted its ticked cemeteries. Both captures came from
+ChurchDesk's demo environment and could not be retaken. S5 (31.8–36.5) and S6/S7-calendar
+now show the recreated screens published in the case study on 2026-11-07, whose data follows
+the study's rules (hourly grid, 30-min buffers, 48 h lead time). S5's crop now starts at the
+top of the page (img top 0) and marker5 moved to the selected 10:00 slot (761, 483). Timing,
+VO, music and every other scene are unchanged; duration 65.0s. Poster re-extracted at 35.8s.
+
+**Status: deployed, not approved.** Tobias has not watched v23.
