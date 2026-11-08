@@ -25,9 +25,9 @@
   "status": "draft",
   "last_updated": "2026-10-22",
   "hero_image": {
-    "src": "/images/diagrams/datameer-design-function-shift.svg",
-    "alt": "Two-panel diagram, before and after. Before: an execution-focused function. After: research with budget and executive support, design in the roadmap conversations, and a design system that got built, as a strategic business partner.",
-    "caption": "Design's role at Datameer, from an execution-focused function to a strategic business partner."
+    "src": "/images/datameer/new-platform-home.jpg",
+    "alt": "The start page of the new collaborative data platform: a search field for workspaces, datasets, documents and people; recently used workspaces with their team members; two Discover cards; and an activity feed of invitations, access requests and comments on the right.",
+    "caption": "The new collaborative data platform's start page: one search across workspaces, datasets, documents and people, and the team's activity beside it. Recreated from the 2020 design file, whose Sketch import had lost its icons; the names and datasets are the file's demo data."
   },
   "format_priority": [
     "in-depth",
@@ -67,7 +67,14 @@
       "type": "narrative",
       "mark": "The scene",
       "headline": "Dense screens, expert users, and design on execution",
-      "content": "The platform's screens were dense: column charts, pivot tables over big data, aggregated JSON views, result cards and a filter system for exploring data. The people working in them ranged from business users and data analysts to data engineers who wrote their own queries. They were sophisticated in data analytics without being software developers.\n\nMany of them worked at top banks and insurers in the US, Canada and the UK. Design's part in building those screens was execution."
+      "content": "The platform's screens were dense: column charts, pivot tables over big data, aggregated JSON views, result cards and a filter system for exploring data. The people working in them ranged from business users and data analysts to data engineers who wrote their own queries. They were sophisticated in data analytics without being software developers.\n\nMany of them worked at top banks and insurers in the US, Canada and the UK. Design's part in building those screens was execution.",
+      "images": [
+        {
+          "src": "/images/datameer/classic-platform-table.jpg",
+          "alt": "The existing Datameer platform's spreadsheet view: a formula bar with a CASE expression, a table of tokenized street addresses with 1000 rows, a column inspector listing the sheet's formulas, and a row of sheet tabs along the bottom.",
+          "caption": "The existing platform: a spreadsheet over big data, with formulas, an inspector for every sheet and many sheets per workbook. From a 2020 design file of the product."
+        }
+      ]
     },
     {
       "type": "narrative",
@@ -90,20 +97,20 @@
     {
       "type": "process",
       "mark": "The method",
-      "headline": "Three routes to the users, and designers assigned to product teams",
-      "content": "Access was the first problem to solve, so the research used more than one route.",
+      "headline": "Two platforms, two routes to the users, and designers assigned to product teams",
+      "content": "Access was the first problem to solve, and each platform had its own route.",
       "steps": [
         {
-          "label": "In person with US customers",
-          "description": "Research with the US customers was in person."
+          "label": "In person, for the existing platform",
+          "description": "Research with US customers of classic Datameer was in person, in Texas."
         },
         {
           "label": "A research trip with sales",
           "description": "I did a customer research trip together with the sales team, visiting customers."
         },
         {
-          "label": "Remote screening for the rest",
-          "description": "Iterative screening on usertesting.com identified and engaged user personas that were otherwise hard to reach."
+          "label": "Remote screening, for the new platform",
+          "description": "For the new collaborative data platform, iterative screening on usertesting.com identified and engaged user personas that were otherwise hard to reach."
         },
         {
           "label": "A design team organized around product work",
@@ -227,5 +234,9 @@
     "confidential": false,
     "confidentiality_note": "Cleared to publish by Tobias on 2026-10-21 (\"cleared to publish\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 3). Work photos with colleagues still need their faces, hair and clothing replaced with AI and the \"Edited with AI\" label (CAREER-TRUTH.md §2 Datameer).",
     "source": "Rewritten 2026-10-22 after the adversarial review (one subject: design's move from execution to the roadmap). Facts: data/experiences/datameer-director-of-design.md, data/verification-log/2026-08-22-datameer-was-a-pivot-and-comp-is-per-role.md, data/verification-log/liveeo-head-of-product-design-verification.md, CAREER-TRUTH.md §2 Datameer. Every claim is in datameer-data-dense-analytics.citations.json."
+  },
+  "cover": {
+    "src": "/images/covers/cover-datameer.jpg",
+    "alt": "Two Datameer screens stacked: above, the new collaborative data platform's start page with search, workspaces and team members; below, the existing platform's spreadsheet view, a formula over a dense table of addresses."
   }
 }
