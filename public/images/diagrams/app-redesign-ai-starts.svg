@@ -1,18 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Weekly starts of the redesigned AI Bible feature increased by 153 percent on iOS and 85 percent on Android, comparing four-week averages before and after the change.">
-  <rect width="1200" height="520" fill="#0b0d12"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="Weekly starts of the redesigned AI Bible feature, four-week averages before and after its release: iOS from 205 to 518, up 153 percent; Android from 655 to 1,213, up 85 percent.">
+  <rect width="1200" height="560" fill="#0b0d12"/>
   <g font-family="Helvetica,Arial,sans-serif">
-    <text x="600" y="62" text-anchor="middle" fill="#e7e9ee" font-size="23" font-weight="700">The new entry point made the AI feature easier to start</text>
-    <text x="600" y="94" text-anchor="middle" fill="#9aa3b5" font-size="15">GA4 · four-week averages before and after the change</text>
-    <g transform="translate(150 150)">
-      <text x="0" y="0" fill="#c6cad4" font-size="18" font-weight="700">iOS</text>
-      <rect x="0" y="38" width="160" height="58" rx="8" fill="#343b49"/><text x="178" y="75" fill="#9aa3b5" font-size="16">before</text>
-      <rect x="0" y="116" width="405" height="58" rx="8" fill="#4f8f6b"/><text x="423" y="153" fill="#bde8cf" font-size="19" font-weight="700">+153%</text>
+    <text x="80" y="70" fill="#e7e9ee" font-size="25" font-weight="700">Weekly starts of the redesigned AI feature</text>
+    <text x="80" y="102" fill="#9aa3b5" font-size="16">GA4 · average of the four full weeks before and after its own release · one scale for both platforms</text>
+    <g transform="translate(80 150)">
+      <text x="0" y="22" fill="#c6cad4" font-size="19" font-weight="700">iOS</text>
+      <text x="150" y="22" fill="#9aa3b5" font-size="15">before</text>
+      <rect x="230" y="0" width="118" height="34" rx="6" fill="#343b49"/><text x="362" y="23" fill="#c6cad4" font-size="17">205</text>
+      <text x="150" y="74" fill="#9aa3b5" font-size="15">after</text>
+      <rect x="230" y="52" width="299" height="34" rx="6" fill="#4f8f6b"/><text x="543" y="75" fill="#e7e9ee" font-size="17" font-weight="700">518</text>
+      <text x="600" y="75" fill="#bde8cf" font-size="17" font-weight="700">+153%</text>
     </g>
-    <g transform="translate(650 150)">
-      <text x="0" y="0" fill="#c6cad4" font-size="18" font-weight="700">Android</text>
-      <rect x="0" y="38" width="200" height="58" rx="8" fill="#343b49"/><text x="218" y="75" fill="#9aa3b5" font-size="16">before</text>
-      <rect x="0" y="116" width="370" height="58" rx="8" fill="#4f8f6b"/><text x="388" y="153" fill="#bde8cf" font-size="19" font-weight="700">+85%</text>
+    <g transform="translate(80 300)">
+      <text x="0" y="22" fill="#c6cad4" font-size="19" font-weight="700">Android</text>
+      <text x="150" y="22" fill="#9aa3b5" font-size="15">before</text>
+      <rect x="230" y="0" width="378" height="34" rx="6" fill="#343b49"/><text x="622" y="23" fill="#c6cad4" font-size="17">655</text>
+      <text x="150" y="74" fill="#9aa3b5" font-size="15">after</text>
+      <rect x="230" y="52" width="700" height="34" rx="6" fill="#4f8f6b"/><text x="944" y="75" fill="#e7e9ee" font-size="17" font-weight="700">1,213</text>
+      <text x="1010" y="75" fill="#bde8cf" font-size="17" font-weight="700">+85%</text>
     </g>
-    <text x="600" y="430" text-anchor="middle" fill="#c6cad4" font-size="16">Usage change only; no attribution to retention or revenue.</text>
+    <text x="80" y="500" fill="#9aa3b5" font-size="15">A feature metric, not a redesign outcome. Usage change only; no attribution to retention or revenue.</text>
   </g>
 </svg>

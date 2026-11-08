@@ -70,11 +70,6 @@
           "src": "/images/bibeltv/app-redesign-mediathek-dark-concept.jpg",
           "alt": "Four dark Mediathek concept screens, each with a hero card tinted from its own artwork: green, slate, gray and sand.",
           "caption": "Where we started: the October 2025 Mediathek concept, dark like the rest of the industry. The survey moved it to light."
-        },
-        {
-          "src": "/images/bibeltv/app-redesign-mindfulness-reference.jpg",
-          "alt": "A grid of mindfulness and meditation app screens: calm photography, warm gradients, sparse layouts.",
-          "caption": "The analysis looked past streaming too, at mindfulness and Bible apps such as Calm, Headspace, Hallow and YouVersion."
         }
       ]
     },
@@ -167,11 +162,6 @@
               }
             }
           }
-        },
-        {
-          "src": "/images/bibeltv/app-redesign-home-themes.jpg",
-          "alt": "Twelve captures of the prototype Home, one per hero: Betet unablässig, Don Matteo, Sabina, Anne with an E, Superbuch and Ein Hauch von Himmel, light mode above and dark mode below. Page, card and logo asterisk take their color from each hero's artwork: peach, beige, light blue, apricot, orange and pink in light; plum, teal, petrol, purple, red and mauve in dark.",
-          "caption": "Light, but not one color: in the prototype the 6.0 build is made from, Home takes its page tint from each hero's artwork. Six heroes, six themes, in light and in dark."
         },
         {
           "src": "/images/bibeltv/app-redesign-before-after-series.jpg",
@@ -326,6 +316,6 @@
   },
   "cover": {
     "src": "/images/covers/cover-app-redesign.jpg",
-    "alt": "Three phone screens of the Bibel TV app prototype in light mode: Anne with an E in front on an apricot page, Sabina on light blue and Superbuch on orange behind it, each page tinted from its hero's artwork."
+    "alt": "Two phones with the redesigned Bibel TV Home: light mode in warm sand with a sunrise verse card, dark mode in night blue with a starry one, the same layout in both."
   }
 }
