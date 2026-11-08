@@ -61,8 +61,8 @@
       "images": [
         {
           "src": "/images/bibeltv/ai-prototyping-native-home.jpg",
-          "alt": "Two screens of ProtoBible, the native Android prototype. Left: a verse-of-the-day card on a blue page tinted from the card. Right: Home with the same real episodes shown as two rows of cards, labeled 'Kürzlich overlay' and 'Kürzlich Split'.",
-          "caption": "ProtoBible, the Kotlin and Jetpack Compose prototype, running on real Bibel TV episodes. The rows put two card treatments side by side on the same content, so the choice is made on what renders, not on a mockup. Captured on an emulator from the October 2026 debug build."
+          "alt": "Two screens of ProtoBible, the native Android prototype, on Bibel TV's live home page. Left: a verse-of-the-day card, Romans 12:3, on a blue page tinted from the card. Right: the next card in the same carousel, a promotion for the echtjetzt channel, with the page tinted light blue from its artwork. Below both: the AI Bible button, three filter chips and the row 'Kürzlich hinzugefügt'.",
+          "caption": "ProtoBible, the Kotlin and Jetpack Compose prototype, running on Bibel TV's live home page and real episodes. Each card in the carousel tints the page behind it, so the color decision is tested on what actually renders. Captured on an Android emulator from the current prototype build, November 2026."
         }
       ]
     },
@@ -149,8 +149,8 @@
         },
         {
           "src": "/images/bibeltv/ai-prototyping-prototype-vs-shipped.jpg",
-          "alt": "Two video detail pages side by side. Left, the prototype: a sermon episode on a warm peach page. Right, Bibel TV's Android app 6.0.7: an episode of The Chosen on a peach page with the same structure of breadcrumb, title, Play button, action row, description and Bible-verse section.",
-          "caption": "Left: the video detail page in the prototype, whose detail redesign I committed on June 12, 2026 and its Bible-verse section on June 18. Right: the same page in the 6.0.7 build of the Bibel TV Android app, October 1, 2026. Same structure; the figures above come from a code comparison against release 6.0.8, not from how alike they look."
+          "alt": "The same episode, The Chosen season 5 episode 1 'Einzug', on two video detail pages side by side. Left, the prototype, on a page tinted light blue from the artwork. Right, Bibel TV's Android app 6.0.7, on a page tinted yellow. Both share the same structure: series breadcrumb, title, episode line, a sign-in button with the age-protection notice, the action row, description and the Bible-verse section.",
+          "caption": "Left: the video detail page in the prototype, whose detail redesign I committed on June 12, 2026 and its Bible-verse section on June 18. Right: the same episode in the 6.0.7 beta build of the Bibel TV Android app. Same structure, down to the age-protection notice; the figures above come from a code comparison against release 6.0.8, not from how alike they look."
         }
       ]
     },
@@ -237,6 +237,6 @@
   },
   "cover": {
     "src": "/images/covers/cover-ai-prototyping.jpg",
-    "alt": "The ProtoBible prototype's Home: a frosted verse-of-the-day card, Jeremiah 29:11, on a blue page tinted from the card."
+    "alt": "The same episode of The Chosen on two detail pages side by side: the prototype on the left, the Bibel TV Android app on the right, with the same structure from title to action row."
   }
 }
