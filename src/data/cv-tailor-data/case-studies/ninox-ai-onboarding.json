@@ -24,7 +24,7 @@
   "last_updated": "2026-10-22",
   "hero_image": {
     "src": "/images/ninox/ai-onboarding-hero.png",
-    "alt": "Ninox AI onboarding interface: user types a database description, AI generates the structure, user edits the result"
+    "alt": "Ninox AI builder split screen: the chat panel holds the ticketing prompt and the AI's key design decisions; the data-model editor on the right shows the six generated tables and their links"
   },
   "video": {
     "src": "/video/ninox-ai-onboarding.mp4",
@@ -75,7 +75,7 @@
         {
           "src": "/images/ninox/prompt-input.png",
           "alt": "Ninox AI onboarding: the prompt input screen, with category suggestions and an empty preview panel",
-          "caption": "The entry point: describe what you want to build."
+          "caption": "The entry point: describe what you want to build. Recreated from the Ninox AI builder; the ticketing app and its records are sample data."
         }
       ]
     },
@@ -123,8 +123,8 @@
       "images": [
         {
           "src": "/images/ninox/dual-paths.png",
-          "alt": "The AI builder showing both the chat panel (with iterative edits) and the visual data model with editable table cards",
-          "caption": "Two paths, side by side. Chat-driven iteration on the left; direct-edit affordances (‘Create field’ on every card) on the right. The user picks whichever matches the change they want to make.",
+          "alt": "The AI builder with the chat panel (an edit request adding an Agent reference to Ticket Status History) beside the data model, where every table card carries a Create field link",
+          "caption": "Two paths, side by side. Chat-driven iteration on the left; direct-edit affordances (‘Create field’ on every card) on the right. The user picks whichever matches the change they want to make. Recreated from the Ninox AI builder; the ticketing app and its records are sample data.",
           "annotations": [
             {
               "x": 27.5,
@@ -146,7 +146,7 @@
         {
           "src": "/images/ninox/schema-in-builder.png",
           "alt": "The generated schema running as a normal Ninox app, in the standard builder UI with the sidebar tables and Builder mode toggle",
-          "caption": "After generation, the AI-built schema is just a regular Ninox app. Same builder, same sidebar, same edit affordances. There is no separate ‘AI mode’ to leave."
+          "caption": "After generation, the AI-built schema is just a regular Ninox app. Same builder, same sidebar, same edit affordances. There is no separate ‘AI mode’ to leave. Recreated from the Ninox AI builder; the ticketing app and its records are sample data."
         }
       ]
     },
@@ -172,8 +172,8 @@
       "images": [
         {
           "src": "/images/ninox/working-product.png",
-          "alt": "The generated ticketing app in production use: Tickets table with colored Priority and Category chips, a record detail panel, and the full schema running as a real product",
-          "caption": "The proof: the AI-generated schema becomes a real working product. Records, relations, and field types behave like any hand-built Ninox app."
+          "alt": "The generated ticketing app filled with sample data: a Tickets table with colored Priority and Category chips and the record panel for TKT-001 with its customer and assignment",
+          "caption": "The AI-generated schema runs as a working app. Records, relations and field types behave like any hand-built Ninox app. Recreated from the Ninox AI builder; the ticketing app and its records are sample data."
         }
       ]
     },
@@ -247,6 +247,6 @@
   "generation": 3,
   "cover": {
     "src": "/images/covers/cover-ninox.jpg",
-    "alt": "A database schema generated from a plain-language prompt, shown as linked tables in the Ninox editor."
+    "alt": "A plain-language prompt for a ticketing solution above the database schema generated from it: six linked tables in the Ninox data-model editor."
   }
 }
