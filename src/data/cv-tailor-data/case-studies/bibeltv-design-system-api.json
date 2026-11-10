@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-design-system-api",
   "title": "One source of design decisions for Android, web and Figma",
-  "subtitle": "A four-tier token repository, built by Style Dictionary and served as an API. Android, web and Figma read it today; the API is built to serve iOS and connected TV as well.",
+  "subtitle": "A four-tier token repository, built by Style Dictionary and served as an API. Android, iOS, web and Figma read it today, and so do the detail views on connected TV.",
   "card": {
     "title": "Design tokens served to Android, web and Figma",
     "line": "One token source feeds all three, so spacing changes no longer go through the agency."
@@ -22,10 +22,6 @@
   "duration": "2025 – 2026",
   "status": "draft",
   "last_updated": "2026-10-22",
-  "hero_image": {
-    "src": "/images/diagrams/design-system-token-flow.svg",
-    "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, and Figma syncs through a plugin; iOS and connected TV are drawn dashed as the next implementation step."
-  },
   "format_priority": [
     "executive",
     "in-depth"
@@ -51,7 +47,7 @@
         },
         {
           "label": "What changed",
-          "value": "Android, web and Figma read one source today; adding iOS or connected TV is an implementation task, not a system change. For the design system and tokens, 95–100% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from my prototype, by code comparison."
+          "value": "Android, iOS, web, Figma and the detail views on connected TV read one source today. For the design system and tokens, 95–100% of the code behind the redesigned Home and detail views of the Android app (release 6.0, in beta) comes verbatim from my prototype, by code comparison."
         },
         {
           "label": "Three takeaways",
@@ -85,8 +81,8 @@
       "images": [
         {
           "src": "/images/diagrams/design-system-token-flow.svg",
-          "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, and Figma syncs through a plugin; iOS and connected TV are drawn dashed as the next implementation step.",
-          "caption": "Android, web and Figma read the same build today. iOS and connected TV are dashed: reaching them is an implementation task, not a system change."
+          "alt": "Diagram: one token repository is built by Style Dictionary in CI and served by a token API. Android reads the API on launch, the web build pulls the same tokens into Storybook, Figma syncs through a plugin; the iOS redesign in development reads the same tokens, and so do the video and series detail views on connected TV.",
+          "caption": "Android, iOS, web, Figma and the video and series detail views on connected TV all read the same build today. On iOS the redesign is in development, as it was on Android. Adding a platform is an implementation task, not a system change."
         }
       ]
     },
@@ -117,7 +113,7 @@
     {
       "type": "outcome",
       "mark": "The result",
-      "headline": "What the Android build and the code comparison show",
+      "headline": "What changed, and what the code shows",
       "metrics": [
         {
           "label": "A change",
@@ -126,15 +122,11 @@
         },
         {
           "label": "Reach",
-          "value": "Figma, Android and web consume the token API today. It is platform-agnostic: adding iOS or connected TV is an implementation task, not a system change."
+          "value": "Android, iOS, web, Figma and the video and series detail views on connected TV receive the tokens today. The API is platform-agnostic: adding a platform is an implementation task, not a system change."
         },
         {
           "label": "Structure",
           "value": "Four tiers: primitives, semantic, component, page or view. Standardization and flexibility are held apart by architecture rather than by policy."
-        },
-        {
-          "label": "In the Android build",
-          "value": "353 of 379 component-token field names from my token source are in the agency's 6.0.2 Android build, a pre-release build of the redesign, verified by teardown."
         },
         {
           "label": "In the Android code",
@@ -143,19 +135,14 @@
       ],
       "images": [
         {
-          "src": "/images/diagrams/design-system-teardown.svg",
-          "alt": "One bar: 353 of 379 component-token field names from my token source are in the agency's 6.0.2 Android build, a pre-release build of the redesign, verified by teardown.",
-          "caption": "353 of 379 component-token field names found in the pre-release 6.0.2 Android build, verified by teardown."
-        },
-        {
           "src": "/images/bibeltv/design-system-tokens.jpg",
-          "alt": "Figma with the BibelTV Design Tools plugin open: a 'Sync Tokens to Figma' button with the token API as source, beside the primitive color ramps (blue, brand, green, neutral, orange, purple, red) it wrote into the file, and a page list of components from buttons and cards to heroes.",
+          "alt": "Figma with the BibelTV Design Tools plugin open: a 'Sync Tokens to Figma' button with the token API as source, beside the primitive color ramps (blue, brand, green, marianBlue, neutral, orange, purple) it wrote into the file.",
           "caption": "Figma as a consumer, not the source: the plugin pulls the primitives from the token API into the design file, and every component page binds to them."
         },
         {
           "src": "/images/bibeltv/design-system-one-token-two-platforms.jpg",
-          "alt": "One token on two platforms. Left: the play button on an episode page of the Android app, version 6.0.7, dark on a light page and white on a dark page. Middle: the token API entries component.light.button.primary (background #252F35, text #EBF0F2) and component.dark.button.primary (background #FFFFFF, text #252F35). Right: the same button rendered in the web Storybook from the live token API, in both themes.",
-          "caption": "One token, two platforms. The Android app's 6.0.7 release build loads this payload at launch, and Storybook reads the live token API. On both, the primary button's fill and label match the token to the hex, in light and in dark."
+          "alt": "One token on two platforms. Left: the play button on an episode page of the Android app, version 6.0.7, dark on a light page and white on a dark page. Middle: the token API entries component.light.button.primary (background #252F35, text #EBF0F2) and component.dark.button.primary (background #FFFFFF, text #252F35). Right: the same play button, labeled Abspielen, rendered in the web Storybook from the live token API, in both themes.",
+          "caption": "One token, two platforms. The Android app's 6.0.7 release build loads this payload at launch, and Storybook reads the live token API. On both, the primary button's fill and label match the token to the hex, in light and in dark. The sizes differ; the figure compares color."
         }
       ]
     },
@@ -213,7 +200,7 @@
         "Built for how this company works, not for a textbook",
         "Two of the four tiers add no new values, and that is their job",
         "How a token change travels",
-        "What the Android build and the code comparison show",
+        "What changed, and what the code shows",
         "I would not hand this architecture to another company as a template",
         "The radius change is meant to be a pull request",
         "Questions to ask of your own token architecture",
@@ -248,10 +235,11 @@
       "a Git repo flowing to Android, iOS, web, and Figma"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical tailored-portfolio sidecars keep resolving after the MVP copy edit. The current narrative still states the repository flow and platform consumers precisely.",
-    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared) + 2026-10-21: design-system and token code share (95–100%) from data/verification-log/2026-10-19-prototype-code-share-measured.md, kept separate from the 6.0.2 teardown figure + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md; revised the same day after the adversarial review (plan told as plan, agency persuasion story and 'no ticket' removed). Every claim is in bibeltv-design-system-api.citations.json."
+    "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared) + 2026-10-21: design-system and token code share (95–100%) from data/verification-log/2026-10-19-prototype-code-share-measured.md, kept separate from the 6.0.2 teardown figure + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md; revised the same day after the adversarial review (plan told as plan, agency persuasion story and 'no ticket' removed). + 2026-11-03: iOS and connected TV now receive the tokens (data/verification-log/2026-11-03-ios-and-connected-tv-now-receive-tokens.md); the dashed consumers are solid. + 2026-11-10 image review: hero_image dropped (the token-flow diagram stays once, in its section), cover re-rendered from the token source, Figma shot cropped clear of working page prefixes, Storybook half of the one-token figure recaptured with the same Abspielen label; generation 3 declared (generations.py: reached 3). Every claim is in bibeltv-design-system-api.citations.json."
   },
+  "generation": 3,
   "cover": {
     "src": "/images/covers/cover-design-system.jpg",
-    "alt": "Primitive color tokens synced into Figma from the token API: blue, brand, green, neutral, orange and purple ramps."
+    "alt": "The primitive color ramps, rendered from the token source: neutral, blue, marianblue, green, yellow, orange, red, purple and warm, each from step 100 to 900."
   }
 }

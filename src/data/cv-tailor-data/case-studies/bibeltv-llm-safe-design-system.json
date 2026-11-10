@@ -138,8 +138,8 @@
       "images": [
         {
           "src": "/images/diagrams/llm-safe-twelve-pixels.svg",
-          "alt": "Diagram of a 12px value bound to the wrong primitive or semantic token: the pixels are right, the relationship is not.",
-          "caption": "Illustrative: a correct value, aliased to the wrong primitive or semantic token."
+          "alt": "Illustrative diagram. Today: a component value of 12px is aliased to a token from an unrelated design decision that is also 12px, while the token for the intended decision, also 12px, is not linked. It renders correctly. After a hypothetical change moves the unrelated token to 14px, the component value moves with it.",
+          "caption": "Illustrative, not a capture: a value with the right number, aliased to a token from an unrelated decision. The later change to 14px is hypothetical."
         }
       ]
     },
@@ -169,14 +169,9 @@
       ],
       "images": [
         {
-          "src": "/images/bibeltv/llm-safe-storybook.png",
-          "alt": "Storybook showing the BibelTV component library: the component list in the sidebar, theme and device switches in the toolbar, a token inspector, and a frosted-glass card variant rendered against a striped backdrop",
-          "caption": "Storybook, the shared reference: the real components, reading from the token API."
-        },
-        {
-          "src": "/images/bibeltv/llm-safe-frost-parity.png",
-          "alt": "Two identical donation cards over a striped backdrop: the upper card frosted so the stripes blur behind it, the lower card plain so the stripes show through sharply",
-          "caption": "The same donation card in two states: frosted, and plain."
+          "src": "/images/bibeltv/llm-safe-token-inspector.png",
+          "alt": "Storybook with the token inspector switched on and the toolbar set to the live token API: a secondary card, a Bible verse with a link to the passage, is selected in the dark theme. The Tokens panel lists the component tokens it consumes: corner radius 16px, surface color, surface alpha and content padding 20px.",
+          "caption": "Storybook, the shared reference: a real component, reading from the live token API. The token inspector lists the component tokens behind the selected card."
         }
       ]
     },
