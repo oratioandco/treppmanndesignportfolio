@@ -25,25 +25,32 @@
   <!-- 1% sample -->
   <text x="120" y="300" fill="#e7e9ee" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="600">A small sample</text>
   <rect x="120" y="320" width="500" height="60" rx="6" fill="#161c28" stroke="#333c50" stroke-width="1.5"/>
-  <rect x="120" y="320" width="20" height="60" rx="0" fill="#22293a" stroke="#4a5570" stroke-width="1.5"/>
-  <text x="130" y="410" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">sample</text>
-  <text x="120" y="428" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">the sliver actually read — no matches happened to fall inside it</text>
-  <text x="120" y="452" fill="#e0918f" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="600">Preview result: nothing</text>
+  <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#2a3550"/><line x1="0" y1="0" x2="0" y2="6" stroke="#7aa2e3" stroke-width="2"/></pattern></defs>
+  <g fill="#4f8f6b" opacity="0.28">
+    <rect x="210" y="332" width="10" height="36" rx="2"/>
+    <rect x="330" y="332" width="10" height="36" rx="2"/>
+    <rect x="450" y="332" width="10" height="36" rx="2"/>
+    <rect x="580" y="332" width="10" height="36" rx="2"/>
+  </g>
+  <rect x="160" y="316" width="36" height="68" rx="3" fill="url(#hatch)" stroke="#7aa2e3" stroke-width="2"/>
+  <text x="178" y="408" fill="#9dbcf0" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" text-anchor="middle">sample read</text>
+  <text x="120" y="436" fill="#7c8598" font-family="Helvetica, Arial, sans-serif" font-size="14">only this sliver is read, and no match happens to fall inside it</text>
+  <text x="120" y="460" fill="#e0918f" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="600">Preview result: nothing</text>
 
   <!-- arrow connecting concept -->
-  <line x1="660" y1="150" x2="660" y2="350" stroke="#4a5570" stroke-width="1" stroke-dasharray="4 5"/>
+  <line x1="660" y1="150" x2="660" y2="380" stroke="#4a5570" stroke-width="1" stroke-dasharray="4 5"/>
 
   <g font-family="Helvetica, Arial, sans-serif">
-    <rect x="700" y="110" width="380" height="260" rx="10" fill="#1c2230" stroke="#3a4256" stroke-width="1.5"/>
+    <rect x="700" y="110" width="400" height="290" rx="10" fill="#1c2230" stroke="#3a4256" stroke-width="1.5"/>
     <text x="722" y="145" fill="#e7e9ee" font-size="17" font-weight="600">Not a bug</text>
     <text x="722" y="175" fill="#c6cad4" font-size="14">The data is real. The full query would find</text>
     <text x="722" y="196" fill="#c6cad4" font-size="14">it. A preview built from a small sample can</text>
     <text x="722" y="217" fill="#c6cad4" font-size="14">still miss every match by chance — that is</text>
     <text x="722" y="238" fill="#c6cad4" font-size="14">a property of sampling, not a failure.</text>
-    <text x="722" y="270" fill="#e7e9ee" font-size="17" font-weight="600">The design problem</text>
-    <text x="722" y="298" fill="#c6cad4" font-size="14">Users read an empty preview as "my data</text>
-    <text x="722" y="319" fill="#c6cad4" font-size="14">is missing" and filed tickets. The interface</text>
-    <text x="722" y="340" fill="#c6cad4" font-size="14">had to say "this is a sample" without</text>
-    <text x="722" y="358" fill="#c6cad4" font-size="14">becoming unreadable.</text>
+    <text x="722" y="276" fill="#e7e9ee" font-size="17" font-weight="600">The design problem</text>
+    <text x="722" y="304" fill="#c6cad4" font-size="14">Users read an empty preview as "my data</text>
+    <text x="722" y="325" fill="#c6cad4" font-size="14">is missing" and filed tickets. The interface</text>
+    <text x="722" y="346" fill="#c6cad4" font-size="14">had to say "this is a sample" without</text>
+    <text x="722" y="367" fill="#c6cad4" font-size="14">becoming unreadable.</text>
   </g>
 </svg>
