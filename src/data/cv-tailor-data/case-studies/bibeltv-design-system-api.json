@@ -1,10 +1,10 @@
 {
   "id": "bibeltv-design-system-api",
-  "title": "One source of design decisions for Android, web and Figma",
+  "title": "One source of design decisions for Android, iOS, web, Figma and TV",
   "subtitle": "A four-tier token repository, built by Style Dictionary and served as an API. Android, iOS, web and Figma read it today, and so do the detail views on connected TV.",
   "card": {
-    "title": "Design tokens served to Android, web and Figma",
-    "line": "One token source feeds all three, so spacing changes no longer go through the agency."
+    "title": "Design tokens served to Android, iOS, web, Figma and TV",
+    "line": "One token source feeds every platform that reads it, so spacing changes no longer go through the agency."
   },
   "type": "design-case-study",
   "tags": [
@@ -29,13 +29,13 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "One source of design decisions for Android, web and Figma",
-      "subtext": "Bibel TV's app had no design tokens: every value was hard-coded. I built a token repository that Style Dictionary turns into a served API, so Android, web and Figma read their values from one source. Figma is one consumer, not the source."
+      "headline": "One source of design decisions for Android, iOS, web, Figma and TV",
+      "subtext": "Bibel TV's app had no design tokens: every value was hard-coded. I built a token repository that Style Dictionary turns into a served API, so Android, iOS, web and Figma read their values from one source, and so do the video and series detail views on connected TV. Figma is one consumer, not the source."
     },
     {
       "type": "outcome",
       "mark": "At a glance",
-      "headline": "One source, three platforms reading it today",
+      "headline": "One source, five platforms reading it today",
       "metrics": [
         {
           "label": "The setting",
@@ -190,11 +190,11 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built a four-tier design-token repository, Style Dictionary builds and a served token API that Android, web and Figma read from one source. For the design system and tokens, 95–100% of the code in the redesigned Android Home and detail views (release 6.0, in beta) comes verbatim from the prototype.",
+      "summary": "Built a four-tier design-token repository, Style Dictionary builds and a served token API that Android, iOS, web and Figma read from one source, as do the video and series detail views on connected TV. The redesign is in beta on Android (release 6.0) and in development on iOS. For the design system and tokens, 95–100% of the code in the redesigned Android Home and detail views comes verbatim from the prototype.",
       "angle": "Design infrastructure that outlasts the designer who built it",
       "sections": [
         "hero",
-        "One source, three platforms reading it today",
+        "One source, five platforms reading it today",
         "Every change started as an hour estimate",
         "Where engineering sits outside the company, the standard has to travel with the code",
         "Built for how this company works, not for a textbook",
@@ -232,7 +232,8 @@
     "confidentiality_note": null,
     "_legacy_citation_anchors": [
       "One commit flows to every platform automatically",
-      "a Git repo flowing to Android, iOS, web, and Figma"
+      "a Git repo flowing to Android, iOS, web, and Figma",
+      "Android, web and Figma read their values from one source"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical tailored-portfolio sidecars keep resolving after the MVP copy edit. The current narrative still states the repository flow and platform consumers precisely.",
     "source": "bibel-tv experience file + Bibel TV project interview 2026-05-06 + bibelv-design-token-sync project doc + Jupus case-study quality pass 2026-05-22 + MVP case-study pass 2026-08-25 (teaser close added; platform-reach claims corrected against data/verification-log/2026-08-20-the-token-api-is-platform-agnostic.md — web added to what's actually live today, iOS/connected TV no longer implied as current consumers; hero image is the hand-drawn token-flow diagram at data/case-studies/images/diagrams/design-system-token-flow.svg; the second shot-list image, tokens synced into the Figma plugin, is Tobias's own tooling and not producible here, so this ships with 1 of 2 images resolving and generation left undeclared) + 2026-10-21: design-system and token code share (95–100%) from data/verification-log/2026-10-19-prototype-code-share-measured.md, kept separate from the 6.0.2 teardown figure + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md; revised the same day after the adversarial review (plan told as plan, agency persuasion story and 'no ticket' removed). + 2026-11-03: iOS and connected TV now receive the tokens (data/verification-log/2026-11-03-ios-and-connected-tv-now-receive-tokens.md); the dashed consumers are solid. + 2026-11-10 image review: hero_image dropped (the token-flow diagram stays once, in its section), cover re-rendered from the token source, Figma shot cropped clear of working page prefixes, Storybook half of the one-token figure recaptured with the same Abspielen label; generation 3 declared (generations.py: reached 3). Every claim is in bibeltv-design-system-api.citations.json."

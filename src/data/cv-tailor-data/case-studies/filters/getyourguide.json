@@ -1,0 +1,62 @@
+{
+  "slug": "getyourguide",
+  "aliases": [
+    "getyourguide-senior-design-systems-manager"
+  ],
+  "title": "A Design System in Code, and the Team Around It",
+  "subtitle": "Token infrastructure built for AI-assisted work, and a record of leading designers and governing a system with engineering",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-getyourguide.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Design Systems Manager role"
+  },
+  "bio": {
+    "short": "I build design systems in code for AI-assisted work. At Bibel TV, four token tiers are served as an API, so a design change reaches the app without a release. Checks in the build refuse values from outside the system. At Ninox I led a team of five direct reports, owned the design system and established joint governance with engineering.",
+    "long": "At Bibel TV I am Head of Product Design and also product manager and product owner for the app redesign. I built the design system as a token architecture in four tiers, from primitives to page or view, delivered as an API. Design parameters come from the server, so a design change reaches the native app without an app release. Engineering builds from my prototype. For the design system and tokens in the Android app (release 6.0, in beta), 95–100% of the code comes verbatim from it.\n\nThe system is built for AI-assisted work. Storybook is the source of truth, and Claude gets a closed token vocabulary through a design-system MCP. Checks that run identically on a laptop and in CI refuse an unresolved token reference or a value hardcoded into a component. I also got the product managers and owners building with AI: Claude Code, GitHub with Spec Kit, MCP servers and individual tutorial sessions. Far more of the product is now built in-house. A live color API computes a readable theme from each video's artwork and checks contrast for light and dark themes.\n\nBefore that I ran design teams. At Ninox I led five direct reports across product design and UX writing, with my own leveling framework, and hired two and promoted two. I owned the design system and established joint governance with engineering, with Storybook and Figma Variables, and the team designed components with real translations. When Ninox moved into new product development, I moved design capacity to the new product, starting with one designer. At Datameer, where I led the UX team, the whole design team reoriented to the new product when the company moved into new product development. Your design language team needs someone who can build the system you are heading toward and lead the people who carry it.",
+    "context": {
+      "company": "GetYourGuide is a two-sided travel marketplace for travelers and suppliers. Its design language team is moving the system toward automation, AI-assisted tooling and code-driven design.",
+      "role": "Senior Design Systems Manager: a manager seat with hands on the material, leading the design language team and bridging design, engineering and product strategy.",
+      "emphasis": "Lead with the pairing: a design system built in code for AI-assisted work, and a record of managing designers and governing a system with engineering. Bibel TV first (token API, build checks, closed vocabulary, measured code share), framed as the standard holding in the build. Then the PM/PO enablement as leadership. Then Ninox: five direct reports, design-system ownership, joint governance, capacity moved when the goal changed."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "hidden",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
