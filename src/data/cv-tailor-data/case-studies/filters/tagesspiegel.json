@@ -3,6 +3,7 @@
   "aliases": [
     "tagesspiegel-leitung-produkt-design"
   ],
+  "_application": "tagesspiegel-leitung-produkt-design",
   "title": "Product and Design as One Discipline",
   "subtitle": "Product management, UX/UI and design held together on a multi-platform media product",
   "theme": "default",
@@ -18,7 +19,8 @@
     "context": {
       "company": "Tagesspiegel is a Berlin publisher bringing product management, UX/UI and design into one organization. Its touchpoints are web, app, e-paper and Mediathek, and the role co-leads the Newshub for audience and engagement.",
       "role": "Leitung Produkt & Design: product and design strategy, the whole digital experience, binding UX/UI, design-system and accessibility standards, and team development.",
-      "emphasis": "Lead with product and design as one discipline, done today at Bibel TV on a streaming app across four platforms. Then the measured engagement result, standards that hold across platforms and an external agency, and Ninox as combined product-and-design leadership."
+      "emphasis": "Lead with product and design as one discipline, done today at Bibel TV on a streaming app across four platforms. Then the measured engagement result, standards that hold across platforms and an external agency, and Ninox as combined product-and-design leadership.",
+      "_avoid": "No newsroom, Newshub, paywall, subscription, budget or vendor-contract claim. The age-rating decision is shared and has no confirmed release or result. The +153%/+85% are the AI feature's weekly starts only. Nine reports only with the July–October 2023 window. Never 'ships from'; never compare audience sizes."
     }
   },
   "case_studies": [
@@ -52,5 +54,7 @@
       "order": 5,
       "format_override": "executive"
     }
-  ]
+  ],
+  "tagline": "Product & Design Leader",
+  "work_intro": "Selected work on holding product, UX/UI and design together on a multi-platform media product"
 }

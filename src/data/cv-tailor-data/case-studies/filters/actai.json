@@ -3,6 +3,7 @@
   "aliases": [
     "bjak-lead-ux-designer"
   ],
+  "_application": "bjak-lead-ux-designer",
   "title": "The Visual Layer, as a System",
   "subtitle": "Typefaces, color and tokens for a consumer streaming app, and an AI feature designed for people who don't know what to type",
   "theme": "default",
@@ -18,7 +19,8 @@
     "context": {
       "company": "ActAI, listed on BJAK's careers service, builds proactive AI applications for people not used to complex prompting. Its first application is an agent-first mobile communication app.",
       "role": "Lead UX Designer, hands-on, focused on visual interface design. UI components and design systems, layout, typography, spacing and pixel-perfect delivery with product and engineering.",
-      "emphasis": "Lead with the visual layer owned as a system: typefaces, the OKLCH color engine, the token system, layouts and rendering detail. Then the AI feature entry for people who do not prompt, with its numbers."
+      "emphasis": "Lead with the visual layer owned as a system: typefaces, the OKLCH color engine, the token system, layouts and rendering detail. Then the AI feature entry for people who do not prompt, with its numbers.",
+      "_avoid": "Never claim typeface design or a type-scale system, or name the adopted on-air typeface. Never present release 6.0 or the study app as shipped. The AI entry numbers are feature starts, four-week averages, no control group: never an A/B test, app-level usage, conversion, retention or 'doubled' on both platforms. No messaging-app experience, no consumer reach figure. Never quote the posting's 'A1'. No step-down framing and no explanation of the IC seat."
     }
   },
   "case_studies": [
@@ -58,5 +60,7 @@
       "order": 6,
       "format_override": "executive"
     }
-  ]
+  ],
+  "tagline": "Hands-on Product Designer",
+  "work_intro": "Selected work on typefaces, color and tokens for a streaming app, and on AI for people who don't know what to type"
 }
