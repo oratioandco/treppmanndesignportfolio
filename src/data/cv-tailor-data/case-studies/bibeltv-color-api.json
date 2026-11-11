@@ -22,10 +22,10 @@
   "team": "Design-led, with an engineering partner. Hamburg / Berlin",
   "duration": "2025 – 2026",
   "status": "in-progress",
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-11-11",
   "hero_image": {
     "src": "/images/bibeltv/color-lab.png",
-    "alt": "The Color Lab interface: configuration sliders on the left (light- and dark-mode normalization curves, hue-exclusion gradients) and two phone previews of the same Bibel TV content card on the right, one in dark mode, one in light mode, both themed from the same extracted palette"
+    "alt": "Color Lab: configuration sliders on the left (light-mode lightness and chroma, per-hue chroma channels, dark hue exclusion) and the full Bibel TV home screen on the right in two phone previews, dark and light, with the hero card and the rows below themed from the same extracted palette."
   },
   "video": {
     "src": "/video/bibeltv-color-api.mp4",
@@ -60,7 +60,7 @@
         },
         {
           "label": "What changed",
-          "value": "Measured on 15 real artworks through the production API: the engine held every dark card panel at OKLCH lightness 0.25–0.27 and every light one at 0.84–0.87, and every card cleared contrast with its text. imgix's palette ranged from 0.16 to 0.57 on dark, and one card fell below 4.5:1. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork."
+          "value": "Measured on 14 real artworks through the production API: the engine held every dark card panel at OKLCH lightness 0.25–0.27 and every light one at 0.84–0.87, and every card cleared contrast with its text. imgix's palette ranged from 0.16 to 0.57 on dark, and one card fell below 4.5:1. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork."
         },
         {
           "label": "Three takeaways",
@@ -76,13 +76,13 @@
       "images": [
         {
           "src": "/images/bibeltv/color-api-imgix-swatches.jpg",
-          "alt": "A Bibel TV still with two rows of extracted color swatches above and below it, labeled Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark and Muted Light.",
-          "caption": "The first attempt, October 2025: imgix's own palette extraction, six colors per image, tested on 100 images.",
+          "alt": "A Bibel TV still above a row of six extracted color swatches, labeled Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark and Muted Light: salmon, dark brown, pale cream, mauve brown, dark brown and pale rose.",
+          "caption": "The first attempt, October 2025: imgix's named palette for one image, six colors from one URL parameter. On this still of green water and sand, all six land in brown, rose and cream.",
           "size": "small"
         },
         {
           "src": "/images/bibeltv/color-api-imgix-variants.jpg",
-          "alt": "The same content card four times, its text panel filled with the Vibrant Dark, Muted Dark, Vibrant Light and Muted Light color from imgix.",
+          "alt": "The same content card four times, its text panel filled with the Vibrant Dark, Muted Dark, Vibrant Light and Muted Light color from imgix, with a video title in white on the dark panels and in black on the light ones.",
           "caption": "The four palettes on a content card. The test's verdict: text colors taken from the palette were not reliably accessible; fixed text colors over the palette color were.",
           "size": "small"
         }
@@ -108,13 +108,13 @@
       "images": [
         {
           "src": "/images/bibeltv/color-api-imgix-vs-engine-grid.jpg",
-          "alt": "Fifteen Bibel TV series artworks shown four times as content cards. On dark: imgix's Vibrant Dark panels range from near-black to bright green and rust; the color engine's panels sit at one even depth in purples, teals and navy. On light: imgix's Vibrant Light panels range from mid-tone peach and blue to plain white; the engine's are all the same soft lightness, mostly beige and pale blue.",
-          "caption": "Fifteen artworks, same card. imgix's dark panels span OKLCH lightness 0.16 to 0.57, and one falls below 4.5:1 for white text; its light panels run from mid-tone to pure white. The color engine, from its production API, holds every dark card at 0.25 to 0.27 and every light card at 0.84 to 0.87. The cost shows in light mode: with lightness and chroma fixed, the hues bunch into beige and pale blue."
+          "alt": "Fourteen Bibel TV series artworks as portrait cards, once on a dark page and once on a light one. Under each artwork, an imgix panel above a color-engine panel, each with its contrast ratio. On dark, imgix's panels run from near-black to bright green and rust, one at 4.2:1; the engine's sit at one even depth in purples, teals and navy, 14.6:1 to 16.9:1. On light, imgix's run from mid-tone peach to plain white; the engine's hold one soft lightness, 10.8:1 to 11.3:1.",
+          "caption": "Fourteen artworks, imgix's panel above the engine's, with the WCAG contrast of each panel against its text. imgix's dark panels span OKLCH lightness 0.16 to 0.57, and one falls to 4.2:1 against white text; its light panels run from mid-tone to pure white. The color engine, from its production API, holds every dark panel at 0.25 to 0.27 and every light one at 0.84 to 0.87."
         },
         {
           "src": "/images/diagrams/color-engine-lightness.svg",
-          "alt": "Two range bars of OKLCH lightness for the dark card panels across fifteen artworks: imgix's panels span 0.16 to 0.57; the color engine's span 0.25 to 0.27.",
-          "caption": "Dark card panels, fifteen artworks: imgix spans OKLCH lightness 0.16 to 0.57, the color engine 0.25 to 0.27."
+          "alt": "Two range bars of OKLCH lightness for the dark card panels across fourteen artworks: imgix's panels span 0.16 to 0.57; the color engine's span 0.25 to 0.27.",
+          "caption": "Dark card panels, fourteen artworks: imgix spans OKLCH lightness 0.16 to 0.57, the color engine 0.25 to 0.27."
         }
       ]
     },
@@ -172,43 +172,35 @@
     {
       "type": "outcome",
       "mark": "The result",
-      "headline": "Live, measured on fifteen artworks, and still being tuned",
+      "headline": "Live, measured on fourteen artworks, and still being tuned",
       "metrics": [
         {
           "label": "Readable text",
-          "value": "On the 15-artwork test, every engine card cleared contrast: 14.6–16.9 against white text on dark, 10.8–11.3 against dark text on light"
+          "value": "On the 14-artwork test, every engine card cleared contrast: 14.6–16.9 against white text on dark, 10.8–11.3 against dark text on light"
         },
         {
           "label": "Even weight, measured",
           "value": "Dark card panels at OKLCH lightness 0.25–0.27, light panels at 0.84–0.87, against imgix's 0.16–0.57 dark and 0.70–1.00 light, with two light tiles effectively white"
         },
         {
-          "label": "The honest trade",
-          "value": "With lightness and chroma fixed in light mode, the hues bunch: 6 of 15 light cards land near-identical beige, 8 in light blue. Distinctness in light mode is still a tuning question."
-        },
-        {
           "label": "In the app",
           "value": "The engine and Color Lab are live. On the backend, the engine stores a color and gradient for every video, computed from its cover image. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork; one artwork yields a light and a dark theme, and six heroes give six themes."
         }
       ],
-      "narrative": "What's still open: how distinct the light-mode cards can get without losing their even weight, and where on the pastel-to-vibrant range users settle.",
+      "narrative": "What comes next is tuning in Color Lab, on findings from real data and on user feedback: where on the range from soft pastels to rich color the cards should sit.",
       "images": [
         {
           "src": "/images/bibeltv/color-api-one-artwork-two-themes.jpg",
           "alt": "The Chosen's series page in the Bibel TV 6.0 app, twice: on the left in light mode with a peach page gradient, on the right in dark mode with a deep green one, both computed from the same artwork.",
           "caption": "One artwork, two themes. In the 6.0 release build, the page gradient on Home and the detail views is computed from the image: peach in light mode, deep green in dark."
-        },
-        {
-          "src": "/images/bibeltv/color-lab-applied.png",
-          "alt": "The same Color Lab preview panel: a Bibel TV content card themed from one extracted palette, shown in dark mode and light mode side by side, both read warm and on-brand rather than generic."
         }
       ]
     },
     {
       "type": "narrative",
-      "mark": "The same fifteen artworks",
+      "mark": "The same fourteen artworks",
       "headline": "One depth on dark, one lightness on light",
-      "content": "Put the same fifteen artworks through the same card again. On dark, panels that once ran from near-black to bright green sit at one even depth. On light, panels that once ran to pure white hold one readable value, and no one checks them by hand.\n\nThe cost is in the same picture: the light panels bunch into beige and pale blue. That is the next job for the settings in Color Lab."
+      "content": "Put the same fourteen artworks through the same card again. On dark, panels that once ran from near-black to bright green sit at one even depth. On light, panels that once ran to pure white hold one readable value, and no one checks them by hand.\n\nThe cost is in the same picture: the light panels bunch into beige and pale blue. That is the next job for the settings in Color Lab."
     },
     {
       "type": "key-takeaway",
@@ -242,7 +234,7 @@
   ],
   "variants": {
     "executive": {
-      "summary": "Built an OKLCH color engine that computes a light and a dark theme from each Bibel TV artwork and holds its base colors to a contrast threshold against fixed text colors, plus Color Lab, the configuration tool that keeps its settings in design's hands. Both are live. Measured on 15 artworks through the production API: dark card panels hold lightness 0.25–0.27 and light panels 0.84–0.87, where the off-the-shelf extractor ranged from near-black to white and one card in fifteen failed readable contrast. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork.",
+      "summary": "Built an OKLCH color engine that computes a light and a dark theme from each Bibel TV artwork and holds its base colors to a contrast threshold against fixed text colors, plus Color Lab, the configuration tool that keeps its settings in design's hands. Both are live. Measured on 14 artworks through the production API: dark card panels hold lightness 0.25–0.27 and light panels 0.84–0.87, where the off-the-shelf extractor ranged from near-black to white and one card in fourteen failed readable contrast. In the 6.0 release build (in beta), the page gradient on Home and the detail views is computed from the artwork.",
       "angle": "Design-owned color infrastructure for a team without the capacity to pick colors by hand",
       "sections": [
         "hero",
@@ -254,7 +246,7 @@
         "From artwork to theme in six steps",
         "Design kept the settings",
         "A text-color option, held back on mobile",
-        "Live, measured on fifteen artworks, and still being tuned",
+        "Live, measured on fourteen artworks, and still being tuned",
         "One depth on dark, one lightness on light",
         "Rules for theming artwork you don't control",
         "Dozens of images need a spot check, and nothing more"
@@ -289,11 +281,11 @@
       "OKLCH so every card carries an evenly-weighted theme and the grid reads as a coherent"
     ],
     "_legacy_citation_note": "Non-rendered exact anchors retained so historical artifact sidecars continue to resolve after editorial copy changes. The current narrative preserves the same extraction and OKLCH facts.",
-    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, corrected the same day against the adversarial review (unsourced rationale, Figma plugin and per-image color data cut; 'might' kept on the larger-operation claim). Corrected 2026-10-23 against the engine's code (data/verification-log/2026-10-23-color-engine-from-code.md): no K-means, contrast is a luminance threshold against fixed text colors, the hue fallbacks described, the Figma plugin restored as existing; per-video color data restored from Tobias's answer (§7 of data/verification-log/2026-10-23-launch-open-questions-answers.md). Facts: data/verification-log/jupus-product-design-lead-verification.md, data/verification-log/2026-10-10-mediathek-dark-reversed-by-user-research.md, data/verification-log/2026-10-11-color-engine-grid-production.md, data/verification-log/2026-10-10-app-builds-5-12-vs-6-0-7.md, data/verification-log/2026-10-10-survey-analysis-colour-test-not-evaluable.md, data/experiences/bibel-tv-head-of-product-design.md, data/projects/bibeltv-app-redesign-(interview_transcript_where_I_talk_about_it-2026-05-06.txt. Every claim is in bibeltv-color-api.citations.json."
+    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, corrected the same day against the adversarial review (unsourced rationale, Figma plugin and per-image color data cut; 'might' kept on the larger-operation claim). Corrected 2026-10-23 against the engine's code (data/verification-log/2026-10-23-color-engine-from-code.md): no K-means, contrast is a luminance threshold against fixed text colors, the hue fallbacks described, the Figma plugin restored as existing; per-video color data restored from Tobias's answer (§7 of data/verification-log/2026-10-23-launch-open-questions-answers.md). Facts: data/verification-log/jupus-product-design-lead-verification.md, data/verification-log/2026-10-10-mediathek-dark-reversed-by-user-research.md, data/verification-log/2026-10-11-color-engine-grid-production.md, data/verification-log/2026-10-10-app-builds-5-12-vs-6-0-7.md, data/verification-log/2026-10-10-survey-analysis-colour-test-not-evaluable.md, data/experiences/bibel-tv-head-of-product-design.md, data/projects/bibeltv-app-redesign-(interview_transcript_where_I_talk_about_it-2026-05-06.txt. Every claim is in bibeltv-color-api.citations.json. Images corrected 2026-11-11 (data/verification-log/2026-10-11-color-engine-grid-production.md, addendum): grid redrawn from the recorded hex values with the 14 distinct artworks and real contrast labels; cover re-rendered from the production API; light-mode clustering moved out of the result block into 'The same fourteen artworks'."
   },
   "generation": 3,
   "cover": {
     "src": "/images/covers/cover-color-api.jpg",
-    "alt": "The same series page in the Bibel TV 6.0 app, side by side: peach in light mode, deep green in dark, both computed from one artwork."
+    "alt": "Three Bibel TV series artworks, each shown in a light and a dark tile whose page gradient, base and accent colors come from the color engine's production API."
   }
 }

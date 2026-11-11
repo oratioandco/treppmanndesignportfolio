@@ -41,6 +41,7 @@
     </g>
     <line x1="386" y1="200" x2="424" y2="200" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
     <line x1="776" y1="200" x2="814" y2="200" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M990 282 V300 H210 V316" fill="none" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
     <line x1="386" y1="400" x2="424" y2="400" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
     <line x1="776" y1="400" x2="814" y2="400" stroke="#667085" stroke-width="2" marker-end="url(#arrow)"/>
   </g>
