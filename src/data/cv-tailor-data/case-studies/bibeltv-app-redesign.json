@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-app-redesign",
   "title": "A light-first streaming app for viewers who asked for readability",
-  "subtitle": "A concept survey found Bibel TV's users wanted brightness and readability, so the redesign bets on a light app where streaming apps default to dark.",
+  "subtitle": "Home, series and episode pages that take their color from each artwork, light first, because a concept survey found Bibel TV's users wanted brightness and readability. Release 6.0 is in beta.",
   "card": {
     "title": "Light-first redesign of a streaming app",
     "line": "A user survey named brightness and readability as the core need, so light mode leads."
@@ -20,7 +20,7 @@
   "team": "Design-led, with cross-functional partners. Hamburg / Berlin",
   "duration": "2025 – Present",
   "status": "published",
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-11-11",
   "format_priority": [
     "in-depth",
     "executive",
@@ -30,7 +30,7 @@
     {
       "type": "hero",
       "headline": "A light-first streaming app for viewers who asked for readability",
-      "subtext": "Dark mode is the streaming industry's near-universal default, and it has good reasons. A concept survey told us Bibel TV's users wanted brightness and readability instead. As product manager, product owner and Head of Product Design, I turned the redesign toward light."
+      "subtext": "In the 6.0 beta, Home and the series and episode pages lead in light, each tinted from its own artwork, and one typeface pairing replaces the platform defaults on Android, iOS and web. Dark mode is the streaming industry's near-universal default, and it has good reasons. A concept survey told us Bibel TV's users wanted brightness and readability instead. As product manager, product owner and Head of Product Design, I turned the redesign toward light."
     },
     {
       "type": "outcome",
@@ -47,7 +47,7 @@
         },
         {
           "label": "What changed",
-          "value": "Shown the new design in dark mode, respondents to a February 2026 concept survey called it too gloomy and uninviting and asked for brightness and readability. The dark concept became a light-first redesign. The app redesign itself is in active development; engineering builds from working prototype code. Release 6.0 is in beta on Android."
+          "value": "In the 6.0 release build, Home and the series and episode pages are redesigned light-first, each page tinted from its artwork in light and in dark. Shown the new design in dark mode, respondents to a February 2026 concept survey called it too gloomy and uninviting and asked for brightness and readability. The dark concept became a light-first redesign. The app redesign itself is in active development; engineering builds from working prototype code. Release 6.0 is in beta on Android."
         },
         {
           "label": "Three takeaways",
@@ -57,84 +57,9 @@
     },
     {
       "type": "narrative",
-      "mark": "The scene",
-      "headline": "The wall of streaming apps was black from edge to edge",
-      "content": "The competitive analysis started as screenshots: Netflix, Apple TV+, Disney+, ARD, ZDF, WOW, Joyn, Pluto and the rest. Every one sat on a black or near-black background, whatever the system setting. Of the streaming apps analyzed, only YouTube offered light and dark.\n\nThe default has a reason. A near-black frame recedes, so artwork and video carry the screen. Our first concepts followed it: in October 2025, the Mediathek, the streaming part of the app, was planned consistently dark.\n\nThe analysis also looked past streaming, at mindfulness and Bible apps such as Calm, Headspace, Hallow and YouVersion.",
-      "images": [
-        {
-          "src": "/images/bibeltv/app-redesign-streaming-always-dark.jpg",
-          "alt": "A wall of streaming-app screens (WOW, Joyn, ZDF, Disney+, Pluto TV and others), every one on a black or near-black background.",
-          "caption": "From the competitive analysis: near-black backgrounds regardless of the system setting. Of the streaming apps analyzed, only YouTube offered light and dark."
-        },
-        {
-          "src": "/images/bibeltv/app-redesign-mediathek-dark-concept.jpg",
-          "alt": "Four dark Mediathek concept screens, each with a hero card tinted from its own artwork: green, slate, gray and sand.",
-          "caption": "Where we started: the October 2025 Mediathek concept, dark like the rest of the industry. The survey moved it to light."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "mark": "Why it matters",
-      "headline": "An industry default is a decision someone else made",
-      "content": "When every competitor ships the same answer, it stops being anyone's choice and becomes an assumption. Dark-first is a good assumption for most streaming.\n\nThe useful question is whether your users are the people it was made for. Copying the default skips that question."
-    },
-    {
-      "type": "narrative",
-      "mark": "The tension",
-      "headline": "Light had to win against a convention with real reasons behind it",
-      "content": "Research turned up something specific: users associate Bibel TV with hope, and expected the interface itself to show it. That ran against the industry standard of dark mode, which lets the content shine. We had to take it seriously anyway.\n\nThe app had always supported light and dark; the old version switched to dark from 7 in the evening to 5 in the morning by default. So the open question was never whether light mode works. It was which mode leads the design.",
-      "images": [
-        {
-          "src": "/images/bibeltv/app-redesign-light-dark-home.jpg",
-          "alt": "Four phone screens of the redesigned Bibel TV Home, October 2025 concepts: a warm light 'Guten Morgen' screen beside its dark 'Guten Abend' counterpart, then the verse-of-the-day card in light and in dark."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "mark": "The turn",
-      "headline": "The concept survey in February 2026 moved it",
-      "content": "Over five days in February 2026, 264 existing app users watched two videos: today's app in light mode and the new design in dark mode. Shown the dark version, respondents called it too gloomy and uninviting; the core need they named was brightness and readability, the older ones citing eye strain. They also assumed the new design had no light mode. It supports both.\n\nSo the dark Mediathek concept became a light-first redesign. The real bet was light mode as the primary direction, against the streaming-industry default of dark.\n\nThe survey had limits, and I read it with them. About four in ten answers were problematic, leaving a cleaned base of roughly 152, and the comparison of three color variants couldn't be evaluated. I took it as a direction, not a verdict."
-    },
-    {
-      "type": "process",
-      "mark": "How it works",
-      "headline": "Going light reopened the color system underneath",
-      "content": "The new branding colors the interface from each artwork, and image-based color themes like these are built dark-first across the industry. Making the same system hold a premium, on-brand feel in light mode was unsolved going in. The light design holds only because it depends on the color engine and the token system that keep it consistent and correct, so each became its own project.",
-      "steps": [
-        {
-          "label": "The direction, by hand",
-          "description": "I kept the analysis and the design direction as manual work, in screenshots and Figma explorations. The direction had to be my own judgment, in line with the new on-air brand and with where the market is."
-        },
-        {
-          "label": "Then real code, with real data",
-          "description": "Once the direction was set, I prototyped the interfaces in Claude Code with real data, first for the web, then as an Android app in Kotlin and Jetpack Compose, because Android is the largest part of Bibel TV's userbase. Custom APIs supplied data the production API didn't carry yet."
-        },
-        {
-          "label": "Feedback on a running app",
-          "description": "User and stakeholder sessions ran on the working prototype instead of a presentation. They surfaced issues and edge cases we would not have found in Figma alone, before implementation."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "mark": "A side note",
-      "headline": "The one number so far belongs to a feature, not the redesign",
-      "content": "The app already carries an AI feature for finding Bible passages, and we redesigned its entry point once before 6.0: suggestion swatches that explain what it is for, and a button restyled as an input field.\n\nWeekly starts went from 205 to 518 on iOS (+153%) and from 655 to 1,213 on Android (+85%), each an average of the four full weeks before and after its own release, measured in GA4. That is a feature metric. The redesign will be measured on its own.",
-      "images": [
-        {
-          "src": "/images/diagrams/app-redesign-ai-starts.svg",
-          "alt": "Paired bars for the redesigned AI feature, not the app redesign. Weekly starts on iOS went from 205 to 518 (+153%); on Android from 655 to 1,213 (+85%), each an average of the four full weeks before and after its own release (GA4).",
-          "caption": "Weekly starts of the redesigned AI feature, before and after its own release. A feature metric, not a redesign outcome."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
       "mark": "The result",
       "headline": "In the 6.0 beta, every page takes its color from the artwork",
-      "content": "In the 6.0 release build, Home and the series and episode pages are redesigned. Their page gradients are image-based, computed by the image color API from each artwork. One artwork gives a light theme and a dark one: The Chosen's series page is peach in light mode and deep green in dark.\n\nEpisode pages now show the episode's Bible verses next to the description. Release 6.0 is in beta, so the redesign's own numbers are still to come.",
+      "content": "In the 6.0 release build, Home and the series and episode pages are redesigned. Their page gradients are image-based, computed by the image color API from each artwork. One artwork gives a light theme and a dark one: The Chosen's series page is peach in light mode and deep green in dark.\n\nThe type changed with the color. Before, each platform used its own default: Roboto on Android, SF on iOS, Inter on the web. The redesigned app uses one pairing on all three: Diagramm, one of the two on-air brand typefaces, and Inter for small UI text. I evaluated the on-air faces for the product and made both choices.\n\nEpisode pages now show the episode's Bible verses next to the description. Release 6.0 is in beta, so the redesign's own numbers are still to come.",
       "images": [
         {
           "src": "/images/bibeltv/app-redesign-before-after-home.jpg",
@@ -220,6 +145,81 @@
       ]
     },
     {
+      "type": "narrative",
+      "mark": "The scene",
+      "headline": "The wall of streaming apps was black from edge to edge",
+      "content": "The competitive analysis started as screenshots: Netflix, Apple TV+, Disney+, ARD, ZDF, WOW, Joyn, Pluto and the rest. Every one sat on a black or near-black background, whatever the system setting. Of the streaming apps analyzed, only YouTube offered light and dark.\n\nThe default has a reason. A near-black frame recedes, so artwork and video carry the screen. Our first concepts followed it: in October 2025, the Mediathek, the streaming part of the app, was planned consistently dark.\n\nThe analysis also looked past streaming, at mindfulness and Bible apps such as Calm, Headspace, Hallow and YouVersion.",
+      "images": [
+        {
+          "src": "/images/bibeltv/app-redesign-streaming-always-dark.jpg",
+          "alt": "A wall of streaming-app screens (WOW, Joyn, ZDF, Disney+, Pluto TV and others), every one on a black or near-black background.",
+          "caption": "From the competitive analysis: near-black backgrounds regardless of the system setting. Of the streaming apps analyzed, only YouTube offered light and dark."
+        },
+        {
+          "src": "/images/bibeltv/app-redesign-mediathek-dark-concept.jpg",
+          "alt": "Four dark Mediathek concept screens, each with a hero card tinted from its own artwork: green, slate, gray and sand.",
+          "caption": "Where we started: the October 2025 Mediathek concept, dark like the rest of the industry. The survey moved it to light."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Why it matters",
+      "headline": "An industry default is a decision someone else made",
+      "content": "When every competitor ships the same answer, it stops being anyone's choice and becomes an assumption. Dark-first is a good assumption for most streaming.\n\nThe useful question is whether your users are the people it was made for. Copying the default skips that question."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Light had to win against a convention with real reasons behind it",
+      "content": "Research turned up something specific: users associate Bibel TV with hope, and expected the interface itself to show it. That ran against the industry standard of dark mode, which lets the content shine. We had to take it seriously anyway.\n\nThe app had always supported light and dark; the old version switched to dark from 7 in the evening to 5 in the morning by default. So the open question was never whether light mode works. It was which mode leads the design.",
+      "images": [
+        {
+          "src": "/images/bibeltv/app-redesign-light-dark-home.jpg",
+          "alt": "Four phone screens of the redesigned Bibel TV Home, October 2025 concepts: a warm light 'Guten Morgen' screen beside its dark 'Guten Abend' counterpart, then the verse-of-the-day card in light and in dark."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "The concept survey in February 2026 moved it",
+      "content": "Over five days in February 2026, 264 existing app users watched two videos: today's app in light mode and the new design in dark mode. Shown the dark version, respondents called it too gloomy and uninviting; the core need they named was brightness and readability, the older ones citing eye strain. They also assumed the new design had no light mode. It supports both.\n\nSo the dark Mediathek concept became a light-first redesign. The real bet was light mode as the primary direction, against the streaming-industry default of dark.\n\nThe survey had limits, and I read it with them. About four in ten answers were problematic, leaving a cleaned base of roughly 152, and the comparison of three color variants couldn't be evaluated. I took it as a direction, not a verdict."
+    },
+    {
+      "type": "process",
+      "mark": "How it works",
+      "headline": "Going light reopened the color system underneath",
+      "content": "The new branding colors the interface from each artwork, and image-based color themes like these are built dark-first across the industry. Making the same system hold a premium, on-brand feel in light mode was unsolved going in. The light design holds only because it depends on the color engine and the token system that keep it consistent and correct, so each became its own project.",
+      "steps": [
+        {
+          "label": "The direction, by hand",
+          "description": "I kept the analysis and the design direction as manual work, in screenshots and Figma explorations. The direction had to be my own judgment, in line with the new on-air brand and with where the market is."
+        },
+        {
+          "label": "Then real code, with real data",
+          "description": "Once the direction was set, I prototyped the interfaces in Claude Code with real data, first for the web, then as an Android app in Kotlin and Jetpack Compose, because Android is the largest part of Bibel TV's userbase. Custom APIs supplied data the production API didn't carry yet."
+        },
+        {
+          "label": "Feedback on a running app",
+          "description": "User and stakeholder sessions ran on the working prototype instead of a presentation. They surfaced issues and edge cases we would not have found in Figma alone, before implementation."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "A side note",
+      "headline": "The one number so far belongs to a feature, not the redesign",
+      "content": "The app already carries an AI feature for finding Bible passages, and we redesigned its entry point once before 6.0: suggestion swatches that explain what it is for, and a button restyled as an input field.\n\nWeekly starts went from 205 to 518 on iOS (+153%) and from 655 to 1,213 on Android (+85%), each an average of the four full weeks before and after its own release, measured in GA4. That is a feature metric. The redesign will be measured on its own.",
+      "images": [
+        {
+          "src": "/images/diagrams/app-redesign-ai-starts.svg",
+          "alt": "Paired bars for the redesigned AI feature, not the app redesign. Weekly starts on iOS went from 205 to 518 (+153%); on Android from 655 to 1,213 (+85%), each an average of the four full weeks before and after its own release (GA4).",
+          "caption": "Weekly starts of the redesigned AI feature, before and after its own release. A feature metric, not a redesign outcome."
+        }
+      ]
+    },
+    {
       "type": "video",
       "mark": "The film",
       "headline": "The 30-second spot",
@@ -273,13 +273,13 @@
       "sections": [
         "hero",
         "A survey turned the redesign from dark to light",
+        "In the 6.0 beta, every page takes its color from the artwork",
         "The wall of streaming apps was black from edge to edge",
         "An industry default is a decision someone else made",
         "Light had to win against a convention with real reasons behind it",
         "The concept survey in February 2026 moved it",
         "Going light reopened the color system underneath",
         "The one number so far belongs to a feature, not the redesign",
-        "In the 6.0 beta, every page takes its color from the artwork",
         "The 30-second spot",
         "Dark mode stayed. It stopped leading.",
         "How to test a default before you keep it",
@@ -308,11 +308,12 @@
     "read_time_minutes": 6,
     "confidential": false,
     "confidentiality_note": null,
-    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, revised after the adversarial review the same day. Facts: data/verification-log/2026-10-10-survey-analysis-colour-test-not-evaluable.md, 2026-10-10-mediathek-dark-reversed-by-user-research.md, 2026-10-10-app-builds-5-12-vs-6-0-7.md, 2026-08-23-the-bibel-tv-redesign-prototyping-practice.md, 2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md (hope insight, light-mode challenge), 2026-08-20-the-gradient-problem-was-not-android.md, 2026-08-27-ki-bibelaufschlag-feature.md (a feature metric, never a redesign outcome), data/experiences/bibel-tv-head-of-product-design.md, CAREER-TRUTH.md §2 (e)(f). Release 6.0 is in beta. The 30-second spot is restored as an internal draft, approved for publication 2026-10-23 (data/verification-log/2026-10-23-launch-open-questions-answers.md). Every claim is in bibeltv-app-redesign.citations.json."
+    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md, revised after the adversarial review the same day. Facts: data/verification-log/2026-10-10-survey-analysis-colour-test-not-evaluable.md, 2026-10-10-mediathek-dark-reversed-by-user-research.md, 2026-10-10-app-builds-5-12-vs-6-0-7.md, 2026-08-23-the-bibel-tv-redesign-prototyping-practice.md, 2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md (hope insight, light-mode challenge), 2026-08-20-the-gradient-problem-was-not-android.md, 2026-08-27-ki-bibelaufschlag-feature.md (a feature metric, never a redesign outcome), data/experiences/bibel-tv-head-of-product-design.md, CAREER-TRUTH.md §2 (e)(f). Release 6.0 is in beta. The 30-second spot is restored as an internal draft, approved for publication 2026-10-23 (data/verification-log/2026-10-23-launch-open-questions-answers.md). Every claim is in bibeltv-app-redesign.citations.json. Visual-first front 2026-11-11 (bjak-lead-ux-designer hiring review): hero image is the 6.0 before/after Home, the 6.0 result section moved to follow the at-a-glance band, and the typeface pairing added from data/verification-log/2026-11-11-tobias-answers-canonical-bjak.md. Release 6.0 still in beta."
   },
   "hero_image": {
-    "src": "/images/bibeltv/app-redesign-light-dark-home.jpg",
-    "alt": "Four phone screens of the redesigned Bibel TV Home, October 2025 concepts: a warm light 'Guten Morgen' screen beside its dark 'Guten Abend' counterpart, then the verse-of-the-day card in light and in dark."
+    "src": "/images/bibeltv/app-redesign-before-after-home.jpg",
+    "alt": "Four Home screens. Light pair: version 5.12 with blue text, a verse of the day, a gradient AI button and thumbnail rails, then 6.0 with a full-width hero and a page tinted aqua from it. Dark pair: the same two apps in dark mode.",
+    "caption": "Home in the current 5.x app and in the 6.0 release build, which is in beta. Light on the left, dark on the right."
   },
   "cover": {
     "src": "/images/covers/cover-app-redesign.jpg",

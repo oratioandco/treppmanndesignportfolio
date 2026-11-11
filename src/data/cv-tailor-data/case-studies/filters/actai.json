@@ -3,9 +3,8 @@
   "aliases": [
     "bjak-lead-ux-designer"
   ],
-  "_application": "bjak-lead-ux-designer",
   "title": "The Visual Layer, as a System",
-  "subtitle": "Typefaces, color and tokens for a consumer streaming app, and an AI feature designed for people who don't know what to type",
+  "subtitle": "Screens, typefaces and color for a streaming app, a Mac app I shipped, and AI for people who don't know what to type",
   "theme": "default",
   "show_all_label": "Show more work",
   "cv": {
@@ -14,13 +13,12 @@
     "note": "Tailored for the Lead UX Designer role"
   },
   "bio": {
-    "short": "I design the visual layer of consumer apps as a system, and AI features for people who don't know what to type. At Bibel TV I chose the product's typefaces and built its color engine and token system. When I redesigned the entry to the app's AI Bible feature, weekly iOS starts went from 205 to 518.",
-    "long": "At Bibel TV I own how the streaming apps look and read on phone, tablet, web and connected TV. I hold final design sign-off on UI. The redesign brings the app in line with the new on-air brand. I evaluated the on-air brand typefaces for the product, and one of them made it in. For small UI text I chose Inter. Color comes from the artwork. My OKLCH color engine computes a light and a dark theme from each cover. It holds base colors to a contrast threshold against fixed text colors. Color Lab keeps its settings in design's hands, and both are live in production.\n\nUnderneath sits a four-tier token system: primitives, semantic, component, page and view. Android, web, Figma, iOS and connected TV read from it. Product managers prototype with the design system in Claude. Storybook is the source of truth, and checks in CI refuse off-system values. Detail matters where it renders. A verse hero card sizes its own text so the whole verse always fits. Multi-step gradients keep artwork backgrounds from banding on old displays.\n\nThe app also has an AI feature for finding Bible passages. Its old entry was a small pill that gave no hint of what to type. I redesigned it as a field that looks like an input, with five tappable example prompts. Each is a different way in: a topic, an occasion, a passage, something personal, a reference. Weekly starts rose from 205 to 518 on iOS and from 655 to 1,213 on Android, four-week averages either side of each release. ActAI is building AI for people who don't want to learn prompting. Making that feel obvious on screen is the work I want to do.",
+    "short": "I design the visual layer of consumer apps as a system, and AI features for people who don't know what to type. At Bibel TV I chose the redesigned app's typefaces, Diagramm and Inter. I built the color engine that gives every artwork a light and a dark theme. On my own I designed Selah for macOS, its icon and its App Store screenshots.",
+    "long": "At Bibel TV I own how the streaming apps look and read on phone, tablet, web and connected TV. I hold final design sign-off on UI. The redesign, now in beta, brings the app in line with the new on-air brand. Home and the series and episode pages lead in light, and each takes its tint from the artwork. The same series page is peach in light mode and deep green in dark. I evaluated the on-air brand typefaces for the product and chose Diagramm, with Inter for small UI text. One pairing replaces the platform defaults, Roboto on Android and SF on iOS.\n\nThe color comes from my OKLCH color engine. It computes a light and a dark theme from each cover and holds base colors to a contrast threshold against fixed text colors. Measured on fourteen artworks, every dark card panel sat at OKLCH lightness 0.25–0.27. Color Lab keeps its settings in design's hands, and both are live in production. Underneath sits a four-tier token system that Android, web, Figma, iOS and connected TV read from. Detail matters where it renders: a verse hero card sizes its own text so the whole verse always fits.\n\nOn my own I designed Selah, a Mac app for short, structured transitions between meetings: the interface, its icon and its App Store screenshots. I built it with AI coding agents, and it is on the Mac App Store.\n\nThe Bibel TV app also has an AI feature for finding Bible passages. Its old entry was a small pill that gave no hint of what to type. I redesigned it as a field that looks like an input, with five tappable example prompts. Each is a different way in: a topic, an occasion, a passage, something personal, a reference. Weekly starts rose from 205 to 518 on iOS and from 655 to 1,213 on Android, four-week averages either side of each release. ActAI is building AI for people who don't want to learn prompting. Making that feel obvious on screen is the work I want to do.",
     "context": {
       "company": "ActAI, listed on BJAK's careers service, builds proactive AI applications for people not used to complex prompting. Its first application is an agent-first mobile communication app.",
       "role": "Lead UX Designer, hands-on, focused on visual interface design. UI components and design systems, layout, typography, spacing and pixel-perfect delivery with product and engineering.",
-      "emphasis": "Lead with the visual layer owned as a system: typefaces, the OKLCH color engine, the token system, layouts and rendering detail. Then the AI feature entry for people who do not prompt, with its numbers.",
-      "_avoid": "Never claim typeface design or a type-scale system, or name the adopted on-air typeface. Never present release 6.0 or the study app as shipped. The AI entry numbers are feature starts, four-week averages, no control group: never an A/B test, app-level usage, conversion, retention or 'doubled' on both platforms. No messaging-app experience, no consumer reach figure. Never quote the posting's 'A1'. No step-down framing and no explanation of the IC seat."
+      "emphasis": "Lead with finished screens: the light-first 6.0 redesign (in beta), the Diagramm and Inter pairing, the color engine's lightness band, and Selah for macOS. Then the AI feature entry for people who do not prompt, with its numbers. Systems stay underneath."
     }
   },
   "case_studies": [
@@ -37,19 +35,19 @@
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-llm-safe-design-system",
+      "id": "ninox-ai-onboarding",
       "visibility": "featured",
       "order": 3,
       "format_override": "executive"
     },
     {
-      "id": "bibeltv-design-system-api",
+      "id": "bibeltv-llm-safe-design-system",
       "visibility": "browseable",
       "order": 4,
       "format_override": "executive"
     },
     {
-      "id": "ninox-ai-onboarding",
+      "id": "bibeltv-design-system-api",
       "visibility": "browseable",
       "order": 5,
       "format_override": "executive"
@@ -62,5 +60,5 @@
     }
   ],
   "tagline": "Hands-on Product Designer",
-  "work_intro": "Selected work on typefaces, color and tokens for a streaming app, and on AI for people who don't know what to type"
+  "work_intro": "Selected work: a streaming app redesigned light-first, the color engine behind it, and AI onboarding for first-time builders"
 }

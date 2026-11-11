@@ -17,7 +17,7 @@
   "company": "Bibel TV",
   "role": "Head of Product Design",
   "team": "Solo build in partnership with the viewer-services team, Hamburg/Berlin",
-  "duration": "2025 – Present",
+  "duration": "2025 \u2013 Present",
   "status": "in-progress",
   "last_updated": "2026-10-22",
   "format_priority": [
@@ -56,7 +56,13 @@
       "type": "narrative",
       "mark": "The scene",
       "headline": "The mail still arrives on paper",
-      "content": "The post comes as letters and postcards, some handwritten, some typed. Viewers write to thank the channel for a program and to say what it meant to them. They ask about programs, and about books and materials they saw in one. They criticize content too, some with an opinion, some with a theological argument.\n\nThen there is the complaint that makes many points at once, complex and closely argued. Someone in viewer services reads it. The reply has to answer every point, in the house voice, with the wording of the service handbook. Nothing about that is quick."
+      "content": "The post comes as letters and postcards, some handwritten, some typed. Viewers write to thank the channel for a program and to say what it meant to them. They ask about programs, and about books and materials they saw in one. They criticize content too, some with an opinion, some with a theological argument.\n\nThen there is the complaint that makes many points at once, complex and closely argued. Someone in viewer services reads it. The reply has to answer every point, in the house voice, with the wording of the service handbook. Nothing about that is quick.",
+      "images": [
+        {
+          "src": "/images/diagrams/support-agent-flow.png",
+          "alt": "Flow diagram showing the support agent workflow: incoming viewer message, assistant drafts reply in house voice, human reviews and decides, final reply sent"
+        }
+      ]
     },
     {
       "type": "narrative",
@@ -166,7 +172,7 @@
   "meta": {
     "read_time_minutes": 7,
     "confidential": false,
-    "confidentiality_note": "In production. UI screenshots: Tobias's call, 2026-08-13 — he authored the agent, so he treats publishing its interface as his to decide and does not seek separate approval. TWO THINGS THAT DO NOT FOLLOW FROM AUTHORSHIP, and still bind: (a) the agent runs inside Bibel TV's M365 tenant, so tenant, agent and conversation GUIDs are cropped out of every frame; (b) it drafts in Bibel TV's brand voice, so a published draft can read as their institutional position. Anything stating a position on a contested social topic stays off the site for that reason. Every message shown is invented for the purpose; no real viewer message is ever used. The two holdouts are never described by age or gender (small, identifiable team), and staffing and volume figures stay out until the team lead confirms them. The organization's internal thinking about more automation is not public.",
+    "confidentiality_note": "In production. UI screenshots: Tobias's call, 2026-08-13 \u2014 he authored the agent, so he treats publishing its interface as his to decide and does not seek separate approval. TWO THINGS THAT DO NOT FOLLOW FROM AUTHORSHIP, and still bind: (a) the agent runs inside Bibel TV's M365 tenant, so tenant, agent and conversation GUIDs are cropped out of every frame; (b) it drafts in Bibel TV's brand voice, so a published draft can read as their institutional position. Anything stating a position on a contested social topic stays off the site for that reason. Every message shown is invented for the purpose; no real viewer message is ever used. The two holdouts are never described by age or gender (small, identifiable team), and staffing and volume figures stay out until the team lead confirms them. The organization's internal thinking about more automation is not public.",
     "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md (Tobias's decision that treppmann.design case studies may be longer stories with takeaways and light humor). Facts: data/verification-log/2026-10-22-bibeltv-copilot-rollout-details.md, data/verification-log/bibeltv-copilot-safety-claims-2026-08-13.md, data/verification-log/2026-08-22-the-copilot-is-a-microsoft-agent-and-the-churn-work.md, data/experiences/bibel-tv-head-of-product-design.md. Every claim is in bibeltv-support-agent.citations.json."
   }
 }
