@@ -1,0 +1,64 @@
+{
+  "slug": "sharpist-product-design",
+  "aliases": [
+    "sharpist-senior-product-designer"
+  ],
+  "title": "AI Products I Design and Build",
+  "subtitle": "Working prototypes, AI that leaves people in charge, and systems that keep a product coherent",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-sharpist-product-design.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role"
+  },
+  "bio": {
+    "short": "I design AI products and build them in working code. I built a conversational AI Bible study app for Bibel TV in about two months. 64% of the code behind the redesigned Android Home and detail views (release 6.0, in beta) comes verbatim from my prototype. The AI I put in front of people leaves them in charge: at Ninox, the generated database opens beside chat, where people change it directly.",
+    "long": "I build what I design. For Bibel TV, I designed, managed and built a Conversational AI Bible Study App (in development) in about two months. It has iOS and Android apps, a web sibling, chat and retrieval. I also prototype the redesigned Bibel TV app in working code against production APIs, directing and reviewing AI coding agents. 64% of the code behind the redesigned Android Home and detail views (release 6.0, in beta) comes verbatim from my prototype. I also redesigned the AI Bible-passage feature. Weekly starts rose from 205 to 518 on iOS and from 655 to 1,213 on Android. Each was measured in GA4 over four full weeks before and after its own release.\n\nThe AI I put in front of people leaves them in charge. Working as a freelancer for Ninox in summer 2025, I designed prompt-to-database AI onboarding. People rarely describe their work in full, so the first schema is often slightly wrong. I put the generated database in the real editor beside chat, where people can see it and change it directly. At Bibel TV, I built a reply assistant for viewer services as a Microsoft Copilot skill. Staff read each letter, use the draft by choice and decide what gets sent.\n\nUnderneath that is systems work. I built a four-tier design-token system that keeps Android, iOS, web, Figma and connected TV on one source. Product managers and Claude build with the design system, with Storybook as shared reference and checks that refuse off-system values. I introduced Claude Code, GitHub with Spec Kit and MCP servers for internal documentation with the product team, and ran individual tutorial sessions. Beside every job, I spent a decade mentoring and coaching designers at CareerFoundry.",
+    "context": {
+      "company": "Sharpist runs a digital platform for 1:1 and AI coaching in enterprise leadership development. Surfaces: learner web and mobile app, coach and internal platforms, enterprise client dashboard.",
+      "role": "A hands-on senior product designer in a lean trio with a lead designer, lead engineer and senior front-end engineer, no PM layer. AI-first prototyping and conversational AI patterns that keep coach and learner in control.",
+      "emphasis": "Lead with working things built AI-first: the study app and the prototype code share. Then AI that leaves people in charge (Ninox, the reply assistant). Then systems, measurement and enabling."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Hands-on Product Designer",
+  "work_intro": "Selected work on prototypes engineering builds from, AI output people can change, and a design system product managers build with"
+}

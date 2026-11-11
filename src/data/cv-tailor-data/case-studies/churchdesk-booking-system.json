@@ -159,12 +159,12 @@
             {
               "x": 83,
               "y": 37,
-              "label": "‘Bereitschaft Beerdigung’ (on-call for funerals)"
+              "label": "on-call availability"
             },
             {
               "x": 80,
               "y": 53,
-              "label": "two cemeteries in one entry"
+              "label": "covers two cemeteries at once"
             }
           ]
         },

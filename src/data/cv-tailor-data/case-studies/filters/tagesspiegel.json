@@ -1,0 +1,56 @@
+{
+  "slug": "tagesspiegel",
+  "aliases": [
+    "tagesspiegel-leitung-produkt-design"
+  ],
+  "title": "Product and Design as One Discipline",
+  "subtitle": "Product management, UX/UI and design held together on a multi-platform media product",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-tagesspiegel.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Für die Position Leitung Produkt & Design beim Tagesspiegel"
+  },
+  "bio": {
+    "short": "I lead product and design as one discipline. At Bibel TV I hold product management, product ownership and design for the streaming app's redesign across iOS, Android, web and connected TV. When I redesigned its AI Bible feature, weekly starts rose 153% on iOS and 85% on Android. Before that, as interim Head of Product at Ninox, I led product management and design together on the Senior Leadership Team.",
+    "long": "Bibel TV is a broadcaster moving from linear TV to streaming. There I hold product management, product ownership and design for the streaming app's redesign across iOS, Android, web and connected TV. I co-designed and analyzed a concept study with 264 existing app users. Brightness and readability were the core need, so the Mediathek went light-first. I set the standards as a system. The design system is an API whose four token tiers serve all four platforms from one source. The app was tested extensively against WCAG AA. The external engineering agency builds from my prototype code. For the redesigned Home and detail views of the Android app (release 6.0, in beta), 64% of the code is verbatim from my prototype.\n\nAt Ninox I sat on the Senior Leadership Team with five direct reports across product design and UX writing. I owned the function's capacity, allocation, prioritization, team structure and processes. I wrote the leveling framework for both disciplines, hired two and promoted two. As interim Head of Product from July to October 2023, I led Product and Design together. That meant nine direct reports across product management, data science, product design and UX writing. At ChurchDesk I held product management for the main platform and all product design across six European markets. A requested funeral-booking module went into the platform's calendar and form builder instead of a standalone add-on. The launch customer reported an estimated 70% less coordination time and 90% acceptance, and the capability then rolled out to every customer.\n\nContent shapes media products, and I like that part of the job. At Bibel TV, age ratings affect when logged-out viewers can play a title. We gave the rating less visual prominence and made the not-available-now state clear in the playback button. I also brought product managers and product owners into building with AI, through Claude Code, GitHub with Spec Kit and individual tutorial sessions. Most of the backend is now built in-house.",
+    "context": {
+      "company": "Tagesspiegel is a Berlin publisher bringing product management, UX/UI and design into one organization. Its touchpoints are web, app, e-paper and Mediathek, and the role co-leads the Newshub for audience and engagement.",
+      "role": "Leitung Produkt & Design: product and design strategy, the whole digital experience, binding UX/UI, design-system and accessibility standards, and team development.",
+      "emphasis": "Lead with product and design as one discipline, done today at Bibel TV on a streaming app across four platforms. Then the measured engagement result, standards that hold across platforms and an external agency, and Ninox as combined product-and-design leadership."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}

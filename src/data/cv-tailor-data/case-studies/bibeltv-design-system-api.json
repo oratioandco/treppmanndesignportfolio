@@ -3,8 +3,8 @@
   "title": "One source of design decisions for Android, iOS, web, Figma and TV",
   "subtitle": "A four-tier token repository, built by Style Dictionary and served as an API. Android, iOS, web and Figma read it today, and so do the detail views on connected TV.",
   "card": {
-    "title": "Design tokens served to Android, iOS, web, Figma and TV",
-    "line": "One token source feeds every platform that reads it, so spacing changes no longer go through the agency."
+    "title": "Design tokens served to Android, iOS, web, Figma, TV",
+    "line": "One token source feeds all five platforms, so spacing changes no longer go through the agency."
   },
   "type": "design-case-study",
   "tags": [
