@@ -1,0 +1,393 @@
+---
+// Course landing page: "Closer to the Model". Founding membership runs as an
+// email waitlist for now (the site is static, so there is no checkout); the
+// mailto carries the choice so a reply can confirm the price.
+//
+// This is the one page allowed to print prices: it is listed in
+// PRICE_LIST_ROOTS in scripts/check-public-output.mjs, which stands SAL-002
+// down here and nowhere else. Change the numbers in PRICES only.
+import Layout from '../../layouts/Layout.astro';
+import DotField from '../../components/DotField.astro';
+
+const PRICES = {
+  module: { founding: '€89', later: '€149' },
+  library: { founding: '€390', later: '€690', seats: 50 },
+  coaching: { price: '€640', sessions: 4 },
+};
+
+const STAGES = [
+  {
+    label: 'Foundations',
+    note: 'Opens first',
+    modules: [
+      {
+        title: 'Choosing the model',
+        body: 'How models differ in reasoning, speed, context and cost, and how to pick one for a design problem instead of defaulting to whatever chat app is open.',
+      },
+      {
+        title: 'Prototypes on real data',
+        body: 'Replace lorem ipsum with a live API and real records. You build a prototype that behaves like the product, including its failures.',
+      },
+      {
+        title: 'Research analysis at scale',
+        body: 'Turn interview notes, tickets and open-text feedback into structured data you can check, count and cite back to the source quote.',
+      },
+    ],
+  },
+  {
+    label: 'Building',
+    modules: [
+      {
+        title: 'Your first iOS app',
+        body: 'Design and build a SwiftUI app with a coding agent, then run it on your own phone.',
+      },
+      {
+        title: 'Your first cross-platform app',
+        body: 'One codebase on the web and on mobile, with the trade-offs explained in design terms.',
+      },
+      {
+        title: 'Working in code with agents',
+        body: 'Claude Code, skills, version control and review: the working setup that keeps an agent productive and your project recoverable.',
+      },
+    ],
+  },
+  {
+    label: 'Systems',
+    modules: [
+      {
+        title: 'Design systems agents can use safely',
+        body: 'Tokens and component contracts an agent can read, plus the CI checks that stop generated UI from drifting off-system.',
+        link: { href: '/work/bibeltv-llm-safe-design-system', label: 'The Bibel TV version' },
+      },
+      {
+        title: 'Your own MCP server',
+        body: 'Give agents direct access to your design system and data through a server you write and control.',
+      },
+      {
+        title: 'Evaluating AI features',
+        body: 'Eval sets, failure review and designing for the wrong answer, so an AI feature can be judged before it ships.',
+      },
+    ],
+  },
+];
+
+const MAIL = 'hello@treppmann.design';
+function waitlist(choice: string) {
+  const subject = `Closer to the Model: ${choice}`;
+  const body = `Hi Tobias,\n\nI'd like to join as a founding member (${choice}).\n\nMy role:\nWhat I want to build:\n`;
+  return `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+---
+
+<Layout
+  title="Closer to the Model"
+  description="Project-based AI courses for mid-level, senior and lead product designers: real models, real APIs, real data. Founding membership open."
+>
+  <section class="hero hero--editorial">
+    <DotField spacing={24} />
+    <div class="container">
+      <nav class="site-rail" aria-label="Site navigation">
+        <a href="/">Tobias Treppmann</a>
+        <span>Course · founding membership open</span>
+        <a href={waitlist('founding library')}>Join</a>
+      </nav>
+
+      <div class="editorial-hero__mast">
+        <p class="hero-tagline">Closer to the Model</p>
+        <h1>Build with real models, APIs and data</h1>
+      </div>
+
+      <div class="editorial-hero__profile learn-hero__lede">
+        <p class="learn-hero__kicker">For mid-level, senior and lead product designers</p>
+        <p>
+          A library of short, project-based courses. Each module ends with
+          something you made and can show: a prototype on a live API, an
+          analyzed research set, an app running on your phone. Self-paced, with
+          the AI Design Mentor skill for Claude Code reviewing your work as you
+          go.
+        </p>
+      </div>
+
+      <div class="editorial-hero__actions">
+        <a href="#pricing">Founding prices <span aria-hidden="true">↓</span></a>
+        <a href="#curriculum">The curriculum <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fit">
+    <div class="container">
+      <div class="section-header">
+        <h2>Who it's for</h2>
+        <p class="text-muted">
+          You design products for a living and already use AI chat tools. You
+          want to work with models directly: call an API, run a coding agent,
+          put something real in front of users. No coding background is needed.
+          You will be reading and changing code from the first module.
+        </p>
+      </div>
+
+      <ul class="learn-list">
+        <li class="learn-item">
+          <h3>One project per module</h3>
+          <p>A brief, a starter repository and a finished artifact at the end. Your portfolio grows with the library.</p>
+        </li>
+        <li class="learn-item">
+          <h3>A mentor in your editor</h3>
+          <p>The AI Design Mentor skill explains concepts, critiques your work and helps when you are stuck, at any hour.</p>
+        </li>
+        <li class="learn-item">
+          <h3>A person when it matters</h3>
+          <p>Add 1:1 sessions with Tobias for critique, a second opinion on your project, or help applying it at work.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="curriculum">
+    <div class="container">
+      <div class="section-header">
+        <h2>The curriculum</h2>
+        <p class="text-muted">
+          Nine modules in three stages, released one at a time. Founding
+          members get every module as it comes out.
+        </p>
+      </div>
+
+      {STAGES.map((stage, i) => (
+        <div class="learn-stage">
+          <p class="learn-stage__label">
+            Stage {i + 1} · {stage.label}{stage.note && <span> · {stage.note}</span>}
+          </p>
+          <ol class="learn-list">
+            {stage.modules.map((m) => (
+              <li class="learn-item">
+                <h3>{m.title}</h3>
+                <p>{m.body}</p>
+                {m.link && <p><a href={m.link.href}>{m.link.label} <span aria-hidden="true">→</span></a></p>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Founding prices</h2>
+        <p class="text-muted">
+          Join the founding group by email. Nothing is charged until the first
+          module opens, and the founding price stays yours after prices go up.
+          Prices include VAT.
+        </p>
+      </div>
+
+      <ul class="learn-list price-list">
+        <li class="learn-item price">
+          <p class="price__label">Single module</p>
+          <p class="price__amount">{PRICES.module.founding}</p>
+          <p class="price__later">later {PRICES.module.later}</p>
+          <p>One module of your choice, with its project, starter repository and mentor skill. Yours to keep.</p>
+          <a class="btn" href={waitlist('single module')}>Join for one module</a>
+        </li>
+        <li class="learn-item price price--featured">
+          <p class="price__label">Founding library</p>
+          <p class="price__amount">{PRICES.library.founding}</p>
+          <p class="price__later">one-time · later {PRICES.library.later}</p>
+          <p>Lifetime access to every module, including the ones not yet released. Open to the first {PRICES.library.seats} members.</p>
+          <a class="btn btn--solid" href={waitlist('founding library')}>Join the founding group</a>
+        </li>
+        <li class="learn-item price">
+          <p class="price__label">1:1 coaching add-on</p>
+          <p class="price__amount">{PRICES.coaching.price}</p>
+          <p class="price__later">{PRICES.coaching.sessions} sessions × 60 min</p>
+          <p>Critique and sparring with Tobias on your projects, booked when you need them.</p>
+          <a class="btn" href={waitlist('library + 1:1 coaching')}>Add coaching</a>
+        </li>
+      </ul>
+
+      <p class="learn-note text-muted">
+        Buying for a team, or paying from an employer learning budget? <a href={`mailto:${MAIL}?subject=${encodeURIComponent('Closer to the Model: team seats')}`}>Ask for team seats</a> and an invoice with your company details.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="teacher">
+    <div class="container">
+      <div class="section-header">
+        <h2>Who teaches it</h2>
+        <p class="text-muted">
+          Tobias Treppmann, Head of Product Design at Bibel TV, where
+          engineering builds from his prototype code and the design system
+          carries CI checks for AI-generated interfaces. He mentored career
+          changers 1:1 at CareerFoundry for ten years, more than 100 of them,
+          and taught AI for design and prototyping to the designers and developers of a web agency.
+        </p>
+      </div>
+      <p class="offer-cta">
+        <a class="btn" href="/work">See the work</a>
+        <a class="btn" href={`mailto:${MAIL}?subject=${encodeURIComponent('Closer to the Model: question')}`}>Ask a question</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Questions</h2>
+      </div>
+      <dl class="learn-faq">
+        <div>
+          <dt>What do I need?</dt>
+          <dd>A Mac or PC, and a paid plan for a coding agent such as Claude Code. The iOS module needs a Mac. Each module lists its setup before you start.</dd>
+        </div>
+        <div>
+          <dt>When does it open?</dt>
+          <dd>Stage 1 opens first. Founding members get the date by email before anyone else.</dd>
+        </div>
+        <div>
+          <dt>Is it live or self-paced?</dt>
+          <dd>Self-paced. The 1:1 add-on is the live part, scheduled around you.</dd>
+        </div>
+        <div>
+          <dt>I'm changing careers into design. Is this for me?</dt>
+          <dd>The library assumes you already work as a designer. For career changers there is 1:1 mentoring through the AI Design Mentor program. <a href={`mailto:${MAIL}?subject=${encodeURIComponent('AI Design Mentor: career change')}`}>Write and ask</a>.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .learn-hero__lede {
+    color: #d7dfdb;
+  }
+
+  .learn-hero__lede p {
+    max-width: 58ch;
+    margin: 0;
+  }
+
+  .learn-hero__lede .learn-hero__kicker {
+    color: #a4c6b9;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .learn-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .learn-item {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .learn-item h3 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    line-height: 1.1;
+  }
+
+  .learn-item p {
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  .learn-item p + p {
+    margin-top: 0.75rem;
+  }
+
+  .learn-stage {
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .learn-stage .learn-list {
+    margin-top: 1rem;
+  }
+
+  .learn-stage__label,
+  .price__label,
+  .price__later {
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .price .price__amount {
+    margin: 0.25rem 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1;
+  }
+
+  .price .btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  .price p:not(.price__amount):not(.price__label):not(.price__later) {
+    margin-bottom: 1.25rem;
+  }
+
+  .price--featured {
+    border-top: 3px solid var(--color-accent);
+  }
+
+  .learn-note {
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .offer-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .learn-faq {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+  }
+
+  .learn-faq > div {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .learn-faq dt {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .learn-faq dd {
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  @media (max-width: 760px) {
+    .learn-list,
+    .learn-faq {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

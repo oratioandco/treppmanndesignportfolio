@@ -124,7 +124,7 @@ export function getCaseStudy(id: string): CaseStudy | undefined {
 }
 
 /** Every real case study eligible for the canonical, untailored public route
- *  (src/pages/case-studies/[study].astro) and the homepage. Filters out the
+ *  (src/pages/work/[study].astro) and the /work index. Filters out the
  *  two schema definition files (schema.json, filter-schema.json — not case
  *  studies, just shapes) and anything explicitly marked confidential. Does
  *  NOT filter by `status` — draft/review/in-progress already render fine on

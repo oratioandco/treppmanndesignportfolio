@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BioRegenerator from '../../components/BioRegenerator.astro';
+import Portrait from '../../components/Portrait.astro';
+import Selah from '../../components/Selah.astro';
+import DotField from '../../components/DotField.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { getAllPublicCaseStudies, type CaseStudy, type CaseStudySection } from '../../data/cv-tailor';
+
+// Editorial curation: which real case studies lead on first load — the same
+// featured/browseable split /for/[slug].astro uses, just without a specific
+// employer's filter behind it. Everything else real and non-confidential is
+// one click away under "Show more work," sourced live from the data rather
+// than a hand-typed list that silently goes stale as studies are added —
+// exactly what happened to the five cards this replaced.
+const FEATURED_IDS = [
+  'bibeltv-llm-safe-design-system',
+  'churchdesk-booking-system',
+  'leading-a-team-is-a-design-problem',
+  'bibeltv-ai-prototyping',
+];
+
+const allStudies = getAllPublicCaseStudies();
+const featuredStudies = FEATURED_IDS
+  .map((id) => allStudies.find((s) => s.id === id))
+  .filter((s): s is CaseStudy => !!s);
+const browseableStudies = allStudies.filter((s) => !FEATURED_IDS.includes(s.id));
+
+function cardProps(study: CaseStudy) {
+  const heroSection = study.sections?.find((s: CaseStudySection) => s.type === 'hero');
+  return {
+    href: `/work/${study.id}`,
+    headline: heroSection?.headline || study.title,
+    caption: [study.company, study.duration].filter(Boolean).join(' · '),
+    studyId: study.id,
+    cover: study.cover,
+  };
+}
+
+function preventDisplayWidow(text: string, keepWords = 2): string {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const keep = Math.min(keepWords, words.length);
+  if (words.length <= keep) return words.join('\u00A0');
+  return `${words.slice(0, -keep).join(' ')} ${words.slice(-keep).join('\u00A0')}`;
+}
+
+const homepageHeadline = preventDisplayWidow('The design leader moving closer to the model');
+---
+
+<Layout title="Product & Design Leader who ships production code">
+  <section class="hero hero--editorial">
+    <DotField spacing={24} />
+    <div class="container">
+      <nav class="site-rail" aria-label="Portfolio navigation">
+        <a href="/">Tobias Treppmann</a>
+        <span>Berlin · Product &amp; Design</span>
+        <a href="mailto:hello@treppmann.design">Get in touch</a>
+      </nav>
+
+      <div class="editorial-hero__mast">
+        <p class="hero-tagline">Product &amp; Design Leader who ships production code</p>
+        <h1 class="animated-headline" id="animated-title">{homepageHeadline}</h1>
+      </div>
+
+      <div class="editorial-hero__profile">
+        <Portrait
+          alt="Tobias Treppmann, photographed on a Berlin rooftop, a church tower out of focus behind him"
+        />
+        <div class="editorial-hero__bio">
+          <BioRegenerator />
+        </div>
+      </div>
+
+      <div class="editorial-hero__actions">
+        <a href="#case-studies">View selected work <span aria-hidden="true">↓</span></a>
+        <a href="mailto:hello@treppmann.design">Start a conversation <span aria-hidden="true">↗</span></a>
+      </div>
+
+<script>
+  const fonts = ['Redaction 20', 'Redaction 35', 'Redaction 50', 'Redaction 70'];
+  const title = document.getElementById('animated-title');
+  const text = title.textContent || '';
+
+  // Wrap each letter in a span
+  title.innerHTML = text.split('').map((char, i) =>
+    char === ' ' ? ' ' : `<span class="letter" data-index="${i}">${char}</span>`
+  ).join('');
+
+  const letters = title.querySelectorAll('.letter');
+
+  // Each letter gets its own random behavior
+  letters.forEach((letter) => {
+    let currentFontIndex = Math.floor(Math.random() * fonts.length);
+    letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+
+    const animate = () => {
+      // Random jump to any font (not just neighbors)
+      const newIndex = Math.floor(Math.random() * fonts.length);
+      currentFontIndex = newIndex;
+      letter.style.fontFamily = `"${fonts[currentFontIndex]}", Georgia, serif`;
+
+      // Random interval between 1500-4000ms per change
+      const nextInterval = 1500 + Math.random() * 2500;
+      setTimeout(animate, nextInterval);
+    };
+
+    // Random start delay between 0-5000ms
+    const delay = Math.random() * 5000;
+    setTimeout(animate, delay);
+  });
+</script>
+    </div>
+  </section>
+
+  <section class="section" id="case-studies">
+    <div class="container">
+      <div class="section-header">
+        <h2>Case Studies</h2>
+        <p class="text-muted">Recent work demonstrating hands-on leadership and technical depth</p>
+      </div>
+
+      <div class="case-studies-grid">
+        {featuredStudies.map((study) => {
+          const c = cardProps(study);
+          return <CaseStudyCard href={c.href} headline={c.headline} caption={c.caption} studyId={c.studyId} cover={c.cover} />;
+        })}
+      </div>
+    </div>
+  </section>
+
+  {browseableStudies.length > 0 && (
+    <section class="section more-work-section" id="more-work">
+      <div class="container">
+        <details class="show-more">
+          <summary>Show more work</summary>
+          <div class="case-studies-grid" style="margin-top: var(--space-lg);">
+            {browseableStudies.map((study) => {
+              const c = cardProps(study);
+              return <CaseStudyCard href={c.href} headline={c.headline} caption={c.caption} studyId={c.studyId} cover={c.cover} />;
+            })}
+          </div>
+        </details>
+      </div>
+    </section>
+  )}
+
+  <Selah />
+</Layout>
+
+<style>
+  /* This section is just a one-line toggle when collapsed, not a full section
+     with its own heading — the generic .section padding (8rem top and bottom)
+     stacked with the sections on either side to a ~256px gap that read as
+     broken rather than restrained. */
+  .more-work-section {
+    padding-top: 0;
+    padding-bottom: var(--space-lg);
+  }
+
+  .show-more {
+    border: none;
+    cursor: pointer;
+  }
+
+  .show-more summary {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 500;
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+</style>

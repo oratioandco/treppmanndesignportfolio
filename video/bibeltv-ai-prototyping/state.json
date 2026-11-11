@@ -25,7 +25,7 @@
   "budget": {
     "currency": "USD",
     "approved_max": 5,
-    "spent": 0.34,
+    "spent": 0.44,
     "entries": [
       {
         "date": "2026-10-07T10:52",
@@ -81,6 +81,13 @@
         "item": "ElevenLabs b8-r1.mp3",
         "provider": "ElevenLabs",
         "cost": 0.04,
+        "evidence": ".buildlog.jsonl"
+      },
+      {
+        "date": "2026-10-07T11:10",
+        "item": "Lyria bed rr1",
+        "provider": "Gemini/Lyria 3.5",
+        "cost": 0.1,
         "evidence": ".buildlog.jsonl"
       }
     ],

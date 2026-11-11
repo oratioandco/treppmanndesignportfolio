@@ -1,7 +1,7 @@
 {
   "id": "bibeltv-metadata-extraction",
-  "title": "The Metadata Nobody Sees",
-  "subtitle": "I did some of the logging work by hand, then used AI agents to create and operate the n8n pipeline that turns sermon videos into source-linked material for an AI product",
+  "title": "From sermon videos to source-linked clips: agent-built n8n workflows",
+  "subtitle": "I did some of the logging work by hand, then used AI agents to create and operate the n8n pipeline that turns sermon videos into source-linked material for an AI product.",
   "type": "technical-deep-dive",
   "tags": [
     "ai",
@@ -23,7 +23,7 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "The Metadata Nobody Sees",
+      "headline": "From sermon videos to source-linked clips: agent-built n8n workflows",
       "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did some of the logging work by hand, then used AI agents to create the n8n pipeline and live-tested it until timed transcripts became source-linked clips, chapters and retrievable material."
     },
     {
@@ -59,6 +59,11 @@
       ],
       "images": [
         {
+          "src": "/images/diagrams/metadata-pipeline.svg",
+          "alt": "Pipeline in three stages. Every night, new videos are imported and a timed transcript is stored. Every 15 minutes, clips, chapters and topics are derived from the transcript segments. Each clip is made retrievable through embeddings and records that link it back to its source video and time range.",
+          "caption": "New videos are imported every night and turned into clips, chapters and topics every 15 minutes, without anyone starting a run."
+        },
+        {
           "src": "/images/bibeltv/n8n-sermon-insights-workflow.png",
           "alt": "Sanitized overview of the real n8n sermon-insight workflow for Bibel erklärt, showing transcription inputs branching into Bible clip extraction, summaries, chapters, embeddings, topic classification and stored records."
         },
@@ -93,6 +98,11 @@
       "narrative": "This is a pipeline result, not an adoption metric. The app remains in development. What is already real is the path from a source video to retrievable, time-bounded material that the product can cite, and the operational evidence behind it.",
       "images": [
         {
+          "src": "/images/diagrams/metadata-corpus-counts.svg",
+          "alt": "Four counts, as of 9 October 2026: 11,405 sermon clips from 3,504 videos, 3,574 transcripts processed and 91 gott-erklärt articles.",
+          "caption": "The corpus, counted live on 9 October 2026."
+        },
+        {
           "src": "/images/bibeltv/metadata-extraction-verse-to-clip.jpg",
           "alt": "Three screens of the Bibel erklärt app. Left: John 3 in the reader, with a small video marker after several verses. Middle: the passage John 3:1-21 with a row of sermon clips, the first titled 'Nikodemus und die Bedeutung der neuen Geburt', 4:44, John 3:1-8. Right: that clip open, its player at 00:18 of 04:44, with title, summary, passage, a button to watch the full sermon and more clips from the same sermon.",
           "caption": "What the pipeline produces, in the unpublished app's development build, October 2026. A marker in the reader means a verse has clips; the passage lists them; a clip plays only its own 4:44 window of the sermon, with its passage and summary and a way back to the full video."
@@ -107,7 +117,7 @@
     {
       "type": "narrative",
       "headline": "The details worth discussing",
-      "content": "Curious why I removed an apparently useful legacy chain from the critical path, what two live execution failures taught me about n8n's branch behavior, or why a clip title matters to retrieval quality? Get in touch."
+      "content": "Ask me why I removed an apparently useful legacy chain from the critical path, what two live execution failures taught me about n8n's branch behavior, and why a clip title matters to retrieval quality. Get in touch."
     }
   ],
   "variants": {

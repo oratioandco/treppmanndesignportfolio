@@ -1,11 +1,11 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import NarrativeSpineCaseStudy from '../../../components/NarrativeSpineCaseStudy.astro';
+import Layout from '../../../../layouts/Layout.astro';
+import NarrativeSpineCaseStudy from '../../../../components/NarrativeSpineCaseStudy.astro';
 import {
   getAllFilters,
   getFilterPaths,
   getFilterWithStudies,
-} from '../../../data/cv-tailor';
+} from '../../../../data/cv-tailor';
 
 export function getStaticPaths() {
   const filters = getAllFilters();
@@ -31,7 +31,7 @@ export function getStaticPaths() {
 }
 
 const { filter, study } = Astro.props;
-const backUrl = `/for/${filter.slug}`;
+const backUrl = `/work/for/${filter.slug}`;
 
 const heroSection = study.sections?.find((s: any) => s.type === 'hero');
 const pageTitle = heroSection?.headline || study.title;

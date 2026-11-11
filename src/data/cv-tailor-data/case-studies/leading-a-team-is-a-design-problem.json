@@ -1,7 +1,11 @@
 {
   "id": "leading-a-team-is-a-design-problem",
-  "title": "Leading a team is a design problem",
-  "subtitle": "Building a design function, and what I changed when collaboration kept breaking down in one working relationship",
+  "title": "Changing team meetings to repair a working relationship",
+  "subtitle": "When one working relationship kept breaking down, I changed how the team worked instead of trying to change the person. The new habits became everyone's.",
+  "card": {
+    "title": "Repairing a team dynamic through process",
+    "line": "I changed how the team worked instead of the person, and the new habits spread."
+  },
   "type": "leadership-story",
   "tags": [
     "org-building",
@@ -13,12 +17,12 @@
     "saas",
     "transformation"
   ],
-  "company": "A B2B SaaS platform company",
+  "company": "A B2B platform company",
   "role": "Head of Product Design",
   "team": "Team of five, including a design lead",
   "duration": "",
   "status": "draft",
-  "last_updated": "2026-08-06",
+  "last_updated": "2026-10-22",
   "format_priority": [
     "in-depth",
     "executive",
@@ -27,34 +31,68 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "Leading a team is a design problem",
-      "subtext": "As Head of Product Design at a B2B SaaS platform company I had a team of five, a seat at the leadership table, and a design practice to turn into a real function. The part I think about most was none of that. It was a working relationship that kept breaking down, and how long it took me to look in the right place."
+      "headline": "Changing team meetings to repair a working relationship",
+      "subtext": "As Head of Product Design at a B2B platform company, I led a team of five and had a design function to build. The lesson I use most came from somewhere else: a working relationship that kept breaking down, and what changed when I stopped looking at the person and started looking at the conditions."
+    },
+    {
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "Change the conditions, and the collaboration follows",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "A B2B platform company in the middle of a platform shift. I was Head of Product Design, leading a team of five, including a design lead."
+        },
+        {
+          "label": "The problem",
+          "value": "One engineer's work wasn't landing with the team. Meetings were tense, points got cut off, and the team had learned to route around the collaboration."
+        },
+        {
+          "label": "What changed",
+          "value": "I changed the conditions the team met under: agendas shared early, material sent ahead, turn-taking on purpose, decisions in writing. Within months the dynamic shifted, and the habits became the team's default. What I observed as the team's lead; nothing here was measured."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Ask what's wrong with the system before you ask what's wrong with the person. Make the cheap conditions the default. Answer \"why change for one person?\" with the cost."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "The role",
-      "content": "I joined to make design a real function. The company was in the middle of a platform shift, and design needed to carry the same weight as product and engineering rather than sit downstream of them.\n\nMost of that was the expected work. I managed a team of five, including a design lead. I built a planning process so design, product, and engineering worked from the same picture. The design system was mine, and I set up joint governance with engineering around it, a working group of four designers and the engineering team. I hired people, and when someone was not the right fit, I made that call too.\n\nThe part that taught me the most was not on that list."
-    },
-    {
-      "type": "callout",
-      "quote": "When collaboration breaks down, the first question is 'what is wrong with our system?', not 'what is wrong with that person?'",
-      "context": "The reframe at the center of how I lead"
+      "mark": "The scene",
+      "headline": "Quick syncs that ran for an hour",
+      "content": "The meetings had a pattern. A \"quick sync\" turned into an hour-long debate nobody could have prepared for. No agenda went out in advance. Discussion was fast and verbal, and whoever spoke first and loudest set the direction.\n\nOne engineer's points got cut off before they were finished. The discussion moved on. Over time, the team learned to route around the collaboration rather than work through it."
     },
     {
       "type": "narrative",
-      "headline": "Where collaboration kept breaking down",
-      "content": "The work of one senior engineer was not landing with the rest of the team. Meetings were tense. Points got cut off before they were finished. Over time the team learned to route around the collaboration rather than work through it.\n\nIt did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room.\n\nI tried the conventional moves first. Feedback about how contributions were landing. Smaller meetings. Clearer expectations. None of it changed anything, and it should not have. Every one of those moves put the cost of the problem on one person and left the process that produced it completely untouched. That was my mistake, and I made it for longer than I would like.\n\nSo I stopped assessing a person and started recording conditions. When did this collaboration fail, and when did it work? The pattern was consistent. It failed in fast group discussion, on questions asked cold, and under time pressure. It worked one to one, in writing, and whenever the material had gone out in advance. Same person, same capability, opposite outcomes. The variable was the setting, not the individual.\n\nOur collaboration ran on a single default: fast, verbal, loudest voice first. Nobody had chosen that default on purpose, which is exactly why nobody was accountable for what it filtered out.",
+      "mark": "Why it matters",
+      "headline": "When collaboration fails, the reflex is to manage the person",
+      "content": "This is a story about that working relationship, and about the question I ended up asking instead of the usual one.\n\nThe usual one is about the individual: what is wrong with that person? It is the comfortable question, because the answer never involves your own process. The question I now ask first is about the system, and it travels to almost any team."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "Excellent work that kept getting talked over",
+      "content": "I had joined to make design a real function, with the same weight as product and engineering. I built a planning process so design, product and engineering worked from the same picture. The design system was mine, and I set up joint governance with engineering around it.\n\nInside that team, one collaboration kept failing. It did not add up. The engineering work itself was excellent, and the ideas, once there was room for them, were often the sharpest in the room. They just kept getting talked over."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "I stopped assessing a person and started recording conditions",
+      "content": "So I started watching the pattern instead of the person. When did this collaboration fail, and when did it work?\n\nIt failed in fast, talk-over-each-other discussion and under time pressure. It worked in writing, and with time to think before answering.\n\nOur collaboration ran on one default: fast, verbal, loudest voice first. It filtered out good ideas before anyone heard them.",
       "images": [
         {
           "src": "/images/diagrams/collaboration-before.svg",
-          "alt": "Two-part diagram. Above, the order input arrived in: fastest to speak, loudest to hold the floor, whoever remembered it after, then the decision — with no agenda, no prep time and nothing written down. Below, three boxes: the discussion, a senior engineer, the decision. The link into the engineer is marked cut off and the link out is marked rarely arrived, and a dashed arc runs beneath from the discussion straight to the decision, bypassing them.",
+          "alt": "Two-part diagram. Above, the order input arrived in: fastest to speak, loudest to hold the floor, whoever remembered it after, then the decision — with no agenda, no prep time and nothing written down. Below, three boxes: the discussion, an engineer, the decision. The link into the engineer is marked cut off and the link out is marked rarely arrived, and a dashed arc runs beneath from the discussion straight to the decision, bypassing them.",
           "caption": "The pattern I was actually looking at, once I stopped looking at the person."
         }
       ]
     },
     {
       "type": "process",
-      "headline": "What I changed",
+      "mark": "What I changed",
+      "headline": "Five changes to how the team worked, none of them about one person",
+      "content": "Every one of these changed the conditions the whole team worked under. All of them were cheap, and all of them applied to everybody.",
       "steps": [
         {
           "label": "Agendas, shared early",
@@ -70,11 +108,11 @@
         },
         {
           "label": "Decisions in writing",
-          "description": "Important decisions were written down, not left to whoever remembered the conversation their way."
+          "description": "Important decisions were written down, so nobody had to rely on their own memory of the conversation."
         },
         {
           "label": "Coaching the design lead",
-          "description": "I coached my design lead through the same shift: how to set up the conditions for a strained engineering relationship and work through it directly, rather than routing around it."
+          "description": "I coached my design lead through the same shift: how to work through a strained engineering relationship directly, rather than routing around it."
         }
       ],
       "images": [
@@ -87,17 +125,19 @@
     },
     {
       "type": "narrative",
-      "headline": "The pushback",
-      "content": "Not everyone agreed at first. \"Why should we change how we work for one person?\", sometimes asked out loud, sometimes through eye-rolls and foot-dragging.\n\nMy answer was that we were not changing it for one person. We were changing it because the process had a bias we had never examined: it rewarded speed of response over quality of thinking, and we had no idea what that was costing us.\n\nI also made the plain business case. Good ideas were being filtered out before they were heard. That is a cost, not just a fairness question. And the changes were cheap, an agenda, material sent ahead, a decision written down."
+      "mark": "The pushback",
+      "headline": "\"Why change for one person?\" Because the process had a cost.",
+      "content": "Not everyone agreed. \"Why should we change how we work for one person?\" came sometimes out loud, sometimes through eye-rolls and foot-dragging.\n\nPart of my answer was about fairness. Equality is everyone getting the same thing. Equity is everyone getting what they need to contribute, and people need different conditions to do their best work.\n\nThe other part was the plain business case. Our process was filtering out good ideas before they were heard. That is a cost, on top of the fairness question."
     },
     {
       "type": "outcome",
-      "headline": "What changed",
+      "mark": "The result",
+      "headline": "Within months, the habits belonged to everyone",
       "metrics": [
         {
           "label": "The collaboration",
           "before": "Tension, points dismissed, the team routing around the working relationship",
-          "after": "Contributions landed and got airtime, and problems got caught earlier"
+          "after": "Ideas got airtime, and problems others missed got caught"
         },
         {
           "label": "Team norms",
@@ -109,38 +149,73 @@
           "value": "People started asking what was wrong with the process before deciding what was wrong with a person"
         }
       ],
-      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread. Other people adopted the prep, the agendas, and the written decisions for themselves. They stopped being a fix for one situation and became the norm. The same attention I gave to one set of working conditions is the attention I give to product design: understand the real need, design for the edge case, check the assumption."
-    },
-    {
-      "type": "reflection",
-      "headline": "The working conditions were the defect",
-      "content": "Good leadership is not mainly about managing people. It is about designing the conditions people work within. When collaboration breaks down, look at the system before you look at the person, and notice how much more comfortable it is to do the reverse.\n\nAnd you cannot build inclusive software with an exclusive team process. Human-centered teams are what make human-centered products possible."
+      "narrative": "Within months the dynamic shifted. The bigger change was that the structured habits spread: other people adopted the prep, the agendas and the written decisions for themselves. They stopped being a fix for one situation and became the norm.\n\nNone of this was measured. It is what I saw as the team's lead."
     },
     {
       "type": "narrative",
-      "content": "Want to know why my first three fixes changed nothing, and what changed once I stopped diagnosing a person and started recording conditions instead? Get in touch."
+      "mark": "Back in the room",
+      "headline": "The agenda goes out first now",
+      "content": "The meetings still happen. The agenda goes out first, the material goes with it, and turns are taken on purpose. A decision ends up in writing instead of in five different memories.\n\nAnd the points that used to get cut off now get finished."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your team",
+      "headline": "Three things to try with your own team",
+      "steps": [
+        {
+          "label": "Ask what's wrong with the system before you ask what's wrong with the person.",
+          "description": "Write down when a collaboration fails and when it works. If the same person does well in one setting and struggles in another, the setting is your variable."
+        },
+        {
+          "label": "Make the cheap conditions the default.",
+          "description": "An agenda sent ahead, material before the meeting, turns taken on purpose, the decision in writing. None of it needs a budget, and none of it helps only one person."
+        },
+        {
+          "label": "Answer \"why change for one person?\" with the cost.",
+          "description": "Good ideas filtered out before anyone hears them are a business cost. Say so plainly, alongside the fairness argument."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "When it doesn't fit",
+      "headline": "If it fails in every setting, the setting isn't your variable",
+      "content": "This approach is for collaboration that fails in some conditions and works in others. If it fails everywhere, in writing and with time to prepare too, changing the conditions won't fix it, and you need a different conversation."
+    },
+    {
+      "type": "narrative",
+      "content": "Ask me what changed once the agenda started going out in advance, and why habits meant for one working relationship spread to the whole team. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Built a design function from the ground up: a team of five, a design system, a seat at the leadership table. Defining example: diagnosed why one collaboration kept failing, redesigned how the team worked, and turned lost contribution into some of the team's strongest.",
+      "summary": "Built a design function as Head of Product Design: a team of five, a design system, a seat at the leadership table. Defining example: diagnosed why one collaboration kept failing, changed how the team worked instead of the person, and the habits became the team's default.",
       "angle": "Leadership as system design",
       "sections": [
         "hero",
-        "Where collaboration kept breaking down",
-        "What I changed",
-        "What changed"
+        "Change the conditions, and the collaboration follows",
+        "Quick syncs that ran for an hour",
+        "When collaboration fails, the reflex is to manage the person",
+        "Excellent work that kept getting talked over",
+        "I stopped assessing a person and started recording conditions",
+        "Five changes to how the team worked, none of them about one person",
+        "\"Why change for one person?\" Because the process had a cost.",
+        "Within months, the habits belonged to everyone",
+        "The agenda goes out first now",
+        "Three things to try with your own team",
+        "If it fails in every setting, the setting isn't your variable"
       ],
-      "max_read_time": "2 min"
+      "max_read_time": "7 min"
     },
     "blog": {
       "summary": "When collaboration keeps breaking down, the instinct is to manage the person. Usually the person is fine and the working conditions are the defect.",
       "angle": "Designing team collaboration around how people actually work",
       "sections": [
         "hero",
-        "narrative",
-        "callout",
-        "reflection"
+        "Quick syncs that ran for an hour",
+        "I stopped assessing a person and started recording conditions",
+        "Five changes to how the team worked, none of them about one person",
+        "Three things to try with your own team"
       ],
       "max_read_time": "5 min"
     }
@@ -150,10 +225,10 @@
     "churchdesk-booking-system"
   ],
   "meta": {
-    "read_time_minutes": 6,
+    "read_time_minutes": 7,
     "confidential": false,
-    "confidentiality_note": "Anonymized on purpose. The employer is not named in this study, and no detail identifying the individual, role specifics, personality description, timeline, or outcome of their employment, appears anywhere in it. The story is about the collaboration system, not about a person. Do not reintroduce the company name, dates, or any characterization of the individual.",
-    "source": "leadership experience file + verification log 2026-04-23 + Jupus case-study quality pass 2026-05-22 + anonymization pass 2026-08-06"
+    "confidentiality_note": "Anonymized on purpose. The employer is not named in this study, and no detail identifying the individual, role specifics, personality description, timeline, or outcome of their employment, appears anywhere in it. The story is about the collaboration system, not about a person. Do not reintroduce the company name, dates, or any characterization of the individual. They/them only; no diagnostic or psychological label.",
+    "source": "Long-form rewrite 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md. Facts: data/case-studies/ninox-org-building.json (the archived, un-anonymized original), data/experiences/ninox-head-of-product-design.md, CAREER-TRUTH §2 Ninox. The 2026-08-06 anonymization pass had added an account of three failed first fixes (feedback, smaller meetings, clearer expectations); no source records that, so it was removed pending Tobias. Every claim is in leading-a-team-is-a-design-problem.citations.json."
   },
   "generation": 3
 }

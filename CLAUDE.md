@@ -1,7 +1,25 @@
 # CLAUDE.md — treppmanndesignportfolio
 
-Tobias Treppmann's portfolio. Astro static site, deployed to **treppmann.design**.
+Tobias Treppmann's site. Astro static site, deployed to **treppmann.design**.
 GitHub: `oratioandco/treppmanndesignportfolio`.
+
+## Site structure (since 2026-10-21)
+
+- `/` — commercial homepage: the course first, then engagements (AI design sprint,
+  fractional design leadership, design system check, training/coaching), then a
+  short run of work. No prices here.
+- `/learn` — course landing page, **"Closer to the Model"** (working title):
+  project-based AI courses for mid-level+ product designers. Founding membership
+  is an **email waitlist** (mailto); prices live in the `PRICES` object at the top
+  of `src/pages/learn/index.astro`. `/learn` is the only page where
+  `check-public-output.mjs` lets `SAL-002` (currency amounts) stand down.
+- `/work`, `/work/[study]` — the public portfolio (formerly `/` and `/case-studies/*`).
+- `/work/for/[slug]` — tailored per-company pages (formerly `/for/*`). noindex +
+  robots-disallowed. Their nav links to `/work`, never to the commercial `/`.
+- Every old `/case-studies/*` and `/for/*` URL is a one-hop redirect
+  (`astro.config.mjs`). They are printed on sent CVs: never remove them.
+- Field Visit consulting offer stays **off the site** until 2–3 clients sign up.
+  Never link treppmann.de from here or vice versa.
 
 ## Deploy — GitHub Actions (NOT manual rsync)
 
@@ -37,7 +55,7 @@ via `prefers-color-scheme`). They're used as both the **card image** and the
 
 ## Anonymised leadership study — do not reverse
 
-`leading-a-team-is-a-design-problem` (page: `/case-studies/collaboration-redesign`) is
+`leading-a-team-is-a-design-problem` (page: `/work/leading-a-team-is-a-design-problem`) is
 **deliberately anonymised**. It describes a real, still-identifiable former colleague.
 
 - The employer is **not** named in this study — it is "a B2B SaaS platform company". Ninox
@@ -51,14 +69,14 @@ via `prefers-color-scheme`). They're used as both the **card image** and the
   or any diagnostic/psychological label anywhere in the portfolio. The story is framed
   entirely as *when* collaboration failed (group settings, cold questions, time pressure)
   versus when it worked (1:1, in writing, prepared) — conditions, not people.
-- `/case-studies/ninox` is a redirect (`astro.config.mjs`) so old indexed links land on the
+- `/case-studies/ninox` is a redirect to `/work/leading-a-team-is-a-design-problem` (`astro.config.mjs`) so old indexed links land on the
   anonymised page. Keep it.
 
 ## Data & components
 
 - Case studies: `src/data/cv-tailor-data/case-studies/*.json`. Filters (which
   studies show per audience): `.../case-studies/filters/*.json`.
-- `[study].astro` inlines `.svg` heroes (theme-aware); raster heroes render as `<img>`.
+- `work/[study].astro` inlines `.svg` heroes (theme-aware); raster heroes render as `<img>`.
 - Bio: `src/components/BioRegenerator.astro` + `src/data/bio-variants.json`. The
   full name **"Tobias Treppmann"** is always bolded (server render + `renderBio` +
   fallbacks). Live bios come from the external bio API (below).
@@ -82,22 +100,9 @@ a Hono service deployed via **Coolify on Hetzner**. The prompt is in
 - WIP studies reference body images that don't exist yet (datameer/draft,
   spreadshirt, app-redesign, agentic, ai-prototyping) — the image guard warns
   (non-blocking). Add the assets or remove the refs when those studies are finished.
-- **`npm install` needed before any build**: `node_modules/astro/dist/runtime/server/
-  render/astro/` is missing, so `astro build` and `astro dev` both fail with
-  `Cannot find module … factory.js`. Unrelated to any content change — the install is
-  just incomplete. `npm ci` fixes it. Nothing has been built or previewed since.
-- **`bibeltv-llm-safe-design-system` is new and at `status: review`** — needs a read
-  before it goes to `published`. Authored from the ProtoBible repo (spec 095: CI gates
-  for token safety + the MCP/plugin prototyping surface); source of record is that
-  repo's `specs/095-llm-safe-token-prototyping/plan.md`.
-  - Framing to preserve: the driver is that **Bibel TV has no in-house design team**,
-    so Storybook-as-source-of-truth plus a prototyping layer was the pre-existing
-    strategy, and CI enforcement is what makes it safe without a design reviewer.
-    Polar's Orbit is deliberately kept to a single closing reference — it is
-    convergent prior art, **not** the origin of the approach. Don't promote it.
-  - Three body screenshots are in `public/images/bibeltv/llm-safe-*.png`, captured
-    headlessly from the ProtoBible Storybook (`packages/design-system`, port 6007).
-  - Two optional screenshots are noted in the study's `meta.screenshots_pending`;
-    neither blocks publishing.
-  - Not yet added to any `case-studies/filters/*.json`, so it won't appear for a
-    tailored audience until it is.
+- **my-cv-tailor still prints `/for/` URLs** (`templates/cv-template-tailored.html`,
+  generate-portfolio skill, `engine/bin/dashboard.py`, `send_today.py`,
+  `emit_filter.py`). They resolve via redirect; switch new CVs to `/work/for/` when
+  convenient.
+- **Course open decisions**: VAT wording on `/learn` ("Prices include VAT") needs
+  confirming; the "pro design MCP/CLI" access Tobias mentioned isn't on the page yet.

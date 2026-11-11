@@ -36,14 +36,19 @@ const TAILORED_FILTERS = (() => {
   return [...paths];
 })();
 
-// /work/ is retired — /for/ is the only tailored-audience route going
-// forward. It never carried a real 301 of its own (both routes always set
-// noindex, nofollow), so no redirect is owed to it; only /for/ needs the
-// per-filter old-study-id redirect.
+// The portfolio moved under /work on 2026-10-21 so the site root can carry
+// the commercial offer: /case-studies/<id> became /work/<id>, and the tailored
+// /for/<slug> pages became /work/for/<slug>. Both old shapes are printed on
+// CVs and in sent applications, so every one keeps resolving — straight to the
+// final URL, never through a second hop.
+//
+// (The /work/<filter>/ tree retired on 2026-08-26 was a different shape: a
+// filter slug one level under /work. Nothing generates that shape now, so
+// /work/<filter>/ninox-org-building, where the un-anonymised study was once
+// reachable, stays a 404.)
 const tailoredStudyRedirects = Object.fromEntries(
-  TAILORED_FILTERS.map((filter) => [
-    `/for/${filter}/${OLD_STUDY_ID}`,
-    `/for/${filter}/${NEW_STUDY_ID}`,
+  TAILORED_FILTERS.flatMap((filter) => [
+    [`/for/${filter}/${OLD_STUDY_ID}`, `/work/for/${filter}/${NEW_STUDY_ID}`],
   ]),
 );
 
@@ -63,14 +68,20 @@ export default defineConfig({
   site: "https://treppmann.design",
   base: "/",
   redirects: {
-    "/case-studies/ninox": `/case-studies/${NEW_STUDY_ID}`,
-    "/case-studies/collaboration-redesign": `/case-studies/${NEW_STUDY_ID}`,
-    "/case-studies/churchdesk": "/case-studies/churchdesk-booking-system",
-    "/case-studies/llm-safe-design-system": "/case-studies/bibeltv-llm-safe-design-system",
-    "/case-studies/modern-practice": "/case-studies/bibeltv-ai-prototyping",
+    "/case-studies/ninox": `/work/${NEW_STUDY_ID}`,
+    "/case-studies/collaboration-redesign": `/work/${NEW_STUDY_ID}`,
+    "/case-studies/churchdesk": "/work/churchdesk-booking-system",
+    "/case-studies/llm-safe-design-system": "/work/bibeltv-llm-safe-design-system",
+    "/case-studies/modern-practice": "/work/bibeltv-ai-prototyping",
     // No single real case study replaces this hand-typed placeholder — send
-    // visitors to the homepage to pick a real one rather than fake a 1:1 map.
-    "/case-studies/shipping-ai": "/",
+    // visitors to the portfolio to pick a real one rather than fake a 1:1 map.
+    "/case-studies/shipping-ai": "/work",
+    // The two moves themselves. Astro expands a dynamic redirect over the
+    // destination route's getStaticPaths, so every study and every filter
+    // (aliases included) gets its own stub without a list to keep in step.
+    "/case-studies/[study]": "/work/[study]",
+    "/for/[slug]": "/work/for/[slug]",
+    "/for/[slug]/[study]": "/work/for/[slug]/[study]",
     ...tailoredStudyRedirects,
   },
 });

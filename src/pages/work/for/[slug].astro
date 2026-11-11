@@ -1,17 +1,17 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import BioRegenerator from '../../components/BioRegenerator.astro';
-import Portrait from '../../components/Portrait.astro';
-import Selah from '../../components/Selah.astro';
-import DotField from '../../components/DotField.astro';
-import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import Layout from '../../../layouts/Layout.astro';
+import BioRegenerator from '../../../components/BioRegenerator.astro';
+import Portrait from '../../../components/Portrait.astro';
+import Selah from '../../../components/Selah.astro';
+import DotField from '../../../components/DotField.astro';
+import CaseStudyCard from '../../../components/CaseStudyCard.astro';
 import {
   getAllFilters,
   getFilterPaths,
   getFilterWithStudies,
   type FilterConfig,
   type CaseStudy,
-} from '../../data/cv-tailor';
+} from '../../../data/cv-tailor';
 
 export function getStaticPaths() {
   const filters = getAllFilters();
@@ -38,7 +38,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
 // coverFor() lookup against public/images/covers/generated/ is gone; those
 // static SVGs are still used as case-study page HEROES, just not here.
 
-// Scoped case study routes: /for/{slug}/{study-id}
+// Scoped case study routes: /work/for/{slug}/{study-id}
 // No separate mapping needed — the scoped route IS the link
 
 // The tailored title, which until now rendered nowhere.
@@ -53,7 +53,7 @@ const browseableStudies = studies.filter(s => s.visibility === 'browseable');
 // filters still carry one. So a placeholder counts as no title: it falls back
 // to the site headline rather than greeting a hiring manager with the word
 // "Selected Work" set in 101px display serif.
-const SITE_TAGLINE = 'AI-Native Product & Design Leader';
+const SITE_TAGLINE = 'Product & Design Leader who ships production code';
 const SITE_HEADLINE = 'The design leader moving closer to the model';
 const PLACEHOLDER_TITLES = new Set([
   'Selected Work',
@@ -86,7 +86,7 @@ const headlineDisplay = headline;
     <DotField spacing={24} />
     <div class="container">
       <nav class="site-rail" aria-label="Portfolio navigation">
-        <a href="/">Tobias Treppmann</a>
+        <a href="/work">Tobias Treppmann</a>
         <span>Selected for this role</span>
         <a href="mailto:hello@treppmann.design">Get in touch</a>
       </nav>
@@ -157,7 +157,7 @@ const headlineDisplay = headline;
       <div class="case-studies-grid">
         {featuredStudies.map((study: any) => {
           const heroSection = study.sections?.find((s: any) => s.type === 'hero');
-          const link = `/for/${filter.slug}/${study.id}`;
+          const link = `/work/for/${filter.slug}/${study.id}`;
 
           return (
             <CaseStudyCard
@@ -181,7 +181,7 @@ const headlineDisplay = headline;
           <div class="case-studies-grid" style="margin-top: var(--space-lg);">
             {browseableStudies.map((study: any) => {
               const heroSection = study.sections?.find((s: any) => s.type === 'hero');
-              const link = `/for/${filter.slug}/${study.id}`;
+              const link = `/work/for/${filter.slug}/${study.id}`;
 
               return (
                 <CaseStudyCard

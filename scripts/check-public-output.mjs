@@ -128,17 +128,34 @@ const policy = JSON.parse(readFileSync(POLICY, 'utf8'));
  * point. `public_exclude: ["case-study"]` carries it across. Landing pages,
  * the site root and the CV PDFs are pitches on both sides and stay enforced.
  *
- * Study routes are two segments deep — for/<slug>/<study>/ — plus everything
- * under case-studies/. (/work/ was retired — /for/ is the only
- * tailored-audience route now.)
+ * Study routes since 2026-10-21: work/<study>/ and work/for/<slug>/<study>/.
+ * The old case-studies/ and for/ trees are redirect stubs now, but they are
+ * still matched so a stub never gets judged as a pitch.
  */
 function isCaseStudy(rel) {
   const parts = rel.split(/[\\/]/).filter(Boolean);
+  if (parts[0] === 'work' && parts[1] === 'for') return parts.length >= 5;
+  if (parts[0] === 'work') return parts.length >= 3;
   if (parts[0] === 'case-studies') return true;
   if (parts[0] === 'for' && parts.length >= 3) return true;
   return false;
 }
 const employers = policy.employers ?? [];
+
+/**
+ * Is this built page a PRICE LIST? Added 2026-10-21 with the course page.
+ *
+ * SAL-002 fires on any currency amount, because a salary figure can leak in
+ * any shape. A course page has to print its prices, so on these pages alone
+ * SAL-002 stands down. SAL-001 still runs there, so a salary written as prose
+ * ("current salary", "salary was") is caught on a price list as anywhere.
+ * Keep the list to pages whose job is to state a price.
+ */
+const PRICE_LIST_ROOTS = ['learn'];
+const PRICE_LIST_RULES = new Set(['SAL-002']);
+function isPriceList(rel) {
+  return PRICE_LIST_ROOTS.includes(rel.split(/[\\/]/).filter(Boolean)[0]);
+}
 
 // ---------------------------------------------------------------- 1 + 2
 const PRIVATE_KEY = /"_[a-zA-Z][\w-]*"\s*:|\b_(?:context|why|source|blocker|asset_gap|notes?)\b/;
@@ -166,8 +183,10 @@ for (const file of walk(DIST)) {
 
   // 2. banned terms
   const caseStudy = isCaseStudy(rel);
+  const priceList = isPriceList(rel);
   for (const r of policy.rules) {
     if (caseStudy && (r.public_exclude || []).includes('case-study')) continue;
+    if (priceList && PRICE_LIST_RULES.has(r.id)) continue;
     const re = new RegExp(r.pattern, 'gi' + (r.flags || '').replace(/[gi]/g, ''));
     if (r.kind === 'regex') {
       const m = re.exec(text);
