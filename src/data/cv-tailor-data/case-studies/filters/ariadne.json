@@ -1,0 +1,58 @@
+{
+  "slug": "ariadne",
+  "aliases": [
+    "ariadne-teamlead-ux-product-design"
+  ],
+  "title": "Where the Person Keeps the Last Word",
+  "subtitle": "Design systems built for AI-assisted work, and design teams led and developed",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-ariadne.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Für die Position Teamlead UX/Product Design bei Ariadne"
+  },
+  "bio": {
+    "short": "I'm a product and design leader who ships production code. At Bibel TV I built a design system that product managers and Claude build with directly. I also built a reply assistant where a person reads, edits and sends every letter. At Ninox I led five people across product design and UX writing, and I want to lead designers again while still designing.",
+    "long": "Which work should AI take over, and where does a person keep the last word? I have answered that twice in work that is in use. As an independent consultant for Ninox in summer 2025, I designed an onboarding where AI builds a database from a plain-language description. The user edits the schema from the first step, with editor and chat side by side. Trial users write short prompts, so the first schema is rarely complete. The pattern became the basis for Ninox's public AI beta. At Bibel TV I built a reply assistant for viewer services that drafts in the support handbook's wording, formatting and standard phrases. A person reads every letter, edits the draft and decides every send.\n\nUnderneath that kind of work sits a design system AI tools can rely on. At Bibel TV I built the token architecture myself, in four tiers: primitives, semantic, component and page/view. It is served as an API and built to serve iOS, Android, web, connected TV and Figma from one source. Storybook is the source of truth, and Claude gets a closed list of valid token names. Checks refuse an off-system value and name the token to use instead. Product managers and Claude build with it directly.\n\nAt Ninox I sat on the Senior Leadership Team with five direct reports across product design and UX writing. I wrote the leveling framework for both disciplines and used it for growth plans and performance reviews. I hired two, promoted two, and owned the design system with joint governance with engineering. At Datameer I led the UX team across Germany and New York for five years. I work closely with product and engineering on discovery, at the kickoff of larger initiatives and day to day in the sprint cycle.",
+    "context": {
+      "company": "Ariadne turns process documentation into something people use daily. AI agents take over much of the effort.",
+      "role": "Teamlead UX/Product Design: lead and develop three designers and own a design system AI tools can rely on. Design agentic interactions hands-on and run discovery with product and engineering.",
+      "emphasis": "Lead with the posting's own question, where the person keeps the last word, answered with the Ninox onboarding and the Bibel TV reply assistant. Then the design system built for AI-assisted work. Then people leadership at Ninox and Datameer, and the wish to lead designers while still designing."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Product & Design Leader",
+  "work_intro": "Selected work on AI features people stay in control of, a design system AI tools can work with, and leading a design team"
+}
