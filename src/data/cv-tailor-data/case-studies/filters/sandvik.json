@@ -1,0 +1,58 @@
+{
+  "slug": "sandvik",
+  "aliases": [
+    "sandvik-design-ux-lead"
+  ],
+  "title": "Research That Changes What Gets Built",
+  "subtitle": "Design strategy, customer research and hands-on design for complex software",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-sandvik.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Design & UX Lead role at Sandvik"
+  },
+  "bio": {
+    "short": "I own design strategy and still do the research and design myself. As Bibel TV's Head of Product Design, I set the direction with product managers and owners, down to prototype code the apps build from. At ChurchDesk, Datameer and Spreadshirt, what I learned from customers changed what got built.",
+    "long": "At Bibel TV, a broadcaster moving from linear TV to apps on iOS, Android, web and connected TV, I was Head of Product Design. I set the design direction with product managers and product owners and did the design work myself. In a concept study with 264 app users that I co-designed and analyzed, people found the dark design too gloomy. Their need for brightness and readability made the redesign light-first. The external engineering agency builds from my prototype code. For the redesigned Android Home and detail views, 64% comes verbatim from my prototype (release 6.0, in beta).\n\nAt ChurchDesk I owned product management for the main platform and all product design across six European markets. About ten engineers built to my roadmap. A church client asked for funeral booking. Validation with the launch customer, pastors and funeral directors, partly in person, shaped it. I built booking into the platform's calendar instead of a standalone add-on, and it rolled out to every customer.\n\nAt Datameer I led UX for five years on data-dense analytics for leading US, Canadian and UK banks and insurers. My research reached hard-to-find enterprise users. At Ninox I learned how small businesses digitize their own workflows, from team leads, owners and the service providers implementing their solutions.",
+    "context": {
+      "company": "Sandvik Machining's Cloud Product Organization builds cloud products for machining customers across the TFS portfolio.",
+      "role": "Design & UX Lead: owns design strategy across the portfolio. Leads hands-on design, user research and usability with Product Managers, Owners and Specialists.",
+      "emphasis": "Lead with research that changed decisions and with strategy owned and executed hands-on. Then consistency across products, and learning a domain from the people who do the work."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Design & UX Lead",
+  "work_intro": "Selected work where talking to the people who do the work changed the product"
+}
