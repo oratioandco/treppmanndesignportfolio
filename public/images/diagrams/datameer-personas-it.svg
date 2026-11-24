@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="Diagram: the product vision assumed data people sat scattered across departments such as HR, finance and marketing. The screened research placed the analyst, the analyst team lead and the cloud architect personas inside the IT department, close to the data.">
+  <rect width="1200" height="560" fill="#0b0d12"/>
+  <g font-family="Helvetica, Arial, sans-serif">
+    <text x="300" y="60" text-anchor="middle" fill="#c6cad4" font-size="16">What the vision assumed</text>
+    <text x="900" y="60" text-anchor="middle" fill="#c6cad4" font-size="16">What about 150 screened participants showed</text>
+    <line x1="600" y1="40" x2="600" y2="520" stroke="#333c50" stroke-width="1.5" stroke-dasharray="4 6"/>
+
+    <!-- Left: scattered departments -->
+    <g>
+      <rect x="70" y="100" width="210" height="150" rx="8" fill="#161c28" stroke="#333c50" stroke-width="1.5"/>
+      <text x="90" y="132" fill="#e7e9ee" font-size="17" font-weight="600">HR</text>
+      <circle cx="110" cy="190" r="16" fill="#7aa2e3"/><text x="136" y="196" fill="#9aa3b5" font-size="14">data person</text>
+
+      <rect x="320" y="100" width="210" height="150" rx="8" fill="#161c28" stroke="#333c50" stroke-width="1.5"/>
+      <text x="340" y="132" fill="#e7e9ee" font-size="17" font-weight="600">Finance</text>
+      <circle cx="360" cy="190" r="16" fill="#7aa2e3"/><text x="386" y="196" fill="#9aa3b5" font-size="14">data person</text>
+
+      <rect x="70" y="280" width="210" height="150" rx="8" fill="#161c28" stroke="#333c50" stroke-width="1.5"/>
+      <text x="90" y="312" fill="#e7e9ee" font-size="17" font-weight="600">Marketing</text>
+      <circle cx="110" cy="370" r="16" fill="#7aa2e3"/><text x="136" y="376" fill="#9aa3b5" font-size="14">data person</text>
+
+      <rect x="320" y="280" width="210" height="150" rx="8" fill="#161c28" stroke="#333c50" stroke-width="1.5"/>
+      <text x="340" y="312" fill="#e7e9ee" font-size="17" font-weight="600">IT</text>
+      <rect x="340" y="350" width="150" height="40" rx="6" fill="#2a3550"/><text x="415" y="376" text-anchor="middle" fill="#c6cad4" font-size="14">the data</text>
+    </g>
+    <text x="300" y="480" text-anchor="middle" fill="#7c8598" font-size="14">Data people in every department, waiting on IT for access.</text>
+    <text x="300" y="504" text-anchor="middle" fill="#7c8598" font-size="14">The plan: permissions so departments could serve themselves.</text>
+
+    <!-- Right: all in IT -->
+    <rect x="660" y="100" width="480" height="330" rx="10" fill="#161c28" stroke="#4f8f6b" stroke-width="2"/>
+    <text x="684" y="134" fill="#8fd9b0" font-size="18" font-weight="600">IT department</text>
+    <rect x="684" y="160" width="200" height="40" rx="6" fill="#2a3550"/><text x="784" y="186" text-anchor="middle" fill="#c6cad4" font-size="14">the data</text>
+
+    <g>
+      <rect x="684" y="225" width="432" height="52" rx="8" fill="#0f141d" stroke="#333c50"/>
+      <circle cx="712" cy="251" r="14" fill="#4f8f6b"/>
+      <text x="738" y="247" fill="#e7e9ee" font-size="15" font-weight="600">Senior data analyst</text>
+      <text x="738" y="267" fill="#9aa3b5" font-size="13">wants to reuse work instead of recreating it</text>
+
+      <rect x="684" y="287" width="432" height="52" rx="8" fill="#0f141d" stroke="#333c50"/>
+      <circle cx="712" cy="313" r="14" fill="#4f8f6b"/>
+      <text x="738" y="309" fill="#e7e9ee" font-size="15" font-weight="600">Analyst team lead</text>
+      <text x="738" y="329" fill="#9aa3b5" font-size="13">would reuse other teams' work, if the context were there</text>
+
+      <rect x="684" y="349" width="432" height="52" rx="8" fill="#0f141d" stroke="#333c50"/>
+      <circle cx="712" cy="375" r="14" fill="#4f8f6b"/>
+      <text x="738" y="371" fill="#e7e9ee" font-size="15" font-weight="600">Cloud architect</text>
+      <text x="738" y="391" fill="#9aa3b5" font-size="13">balances security against ease of access for analysts</text>
+    </g>
+    <text x="900" y="480" text-anchor="middle" fill="#7c8598" font-size="14">Most already sat inside IT, close to the data.</text>
+    <text x="900" y="504" text-anchor="middle" fill="#8fd9b0" font-size="14">For most, access wasn't the problem. Reuse and missing context were.</text>
+  </g>
+</svg>

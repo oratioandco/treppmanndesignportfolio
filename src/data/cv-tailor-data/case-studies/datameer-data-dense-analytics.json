@@ -1,242 +1,293 @@
 {
-  "id": "datameer-data-dense-analytics",
-  "title": "Bringing user research into planning a new analytics platform",
-  "subtitle": "Five years as Director of Design at a data analytics platform for banks and insurers, and the new-product bet that brought research and design into the roadmap conversations.",
-  "card": {
-    "title": "Design leadership at a data analytics platform",
-    "line": "When the company bet on a new product, research got budget and design entered roadmap conversations."
+ "id": "datameer-data-dense-analytics",
+ "title": "Bringing user research into planning a new analytics platform",
+ "subtitle": "Five years as Director of Design at a data analytics platform for banks and insurers, and the new-product bet that brought research and design into the roadmap conversations.",
+ "card": {
+  "title": "Design leadership at a data analytics platform",
+  "line": "When the company bet on a new product, research got budget and design entered roadmap conversations."
+ },
+ "type": "design-case-study",
+ "tags": [
+  "enterprise",
+  "data-dense",
+  "regulated",
+  "org-building",
+  "design-system",
+  "user-research",
+  "analytics",
+  "from-scratch",
+  "saas"
+ ],
+ "company": "Datameer",
+ "role": "Director of Design",
+ "team": "Led the UX team (two UX designers reporting to me) within a four-person design org across Germany and New York, reporting to the VP Design",
+ "duration": "2016 – 2021",
+ "status": "draft",
+ "last_updated": "2026-11-23",
+ "hero_image": {
+  "src": "/images/datameer/new-platform-home.jpg",
+  "alt": "The start page of the new collaborative data platform: a search field for workspaces, datasets, documents and people; recently used workspaces with their team members; two Discover cards; and an activity feed of invitations, access requests and comments on the right.",
+  "caption": "The new collaborative data platform's start page: one search across workspaces, datasets, documents and people, and the team's activity beside it. Recreated from the 2020 design file, whose Sketch import had lost its icons; the names and datasets are the file's demo data."
+ },
+ "format_priority": [
+  "in-depth",
+  "executive",
+  "blog"
+ ],
+ "sections": [
+  {
+   "type": "hero",
+   "headline": "Bringing user research into planning a new analytics platform",
+   "subtext": "For five years I was Director of Design at Datameer, a collaborative data analytics platform used at top US, Canadian and UK banks and insurers. When the company bet on a new product, design went from an execution-focused function to a strategic partner, with executive support for user research. I led the UX team, and design and user research for the new platform from concept to release."
   },
-  "type": "design-case-study",
-  "tags": [
-    "enterprise",
-    "data-dense",
-    "regulated",
-    "org-building",
-    "design-system",
-    "user-research",
-    "analytics",
-    "from-scratch",
-    "saas"
-  ],
-  "company": "Datameer",
-  "role": "Director of Design",
-  "team": "Led the UX team (two designers) across Germany and New York, as a functional head alongside product and engineering",
-  "duration": "2016 – 2021",
-  "status": "draft",
-  "last_updated": "2026-10-22",
-  "hero_image": {
-    "src": "/images/datameer/new-platform-home.jpg",
-    "alt": "The start page of the new collaborative data platform: a search field for workspaces, datasets, documents and people; recently used workspaces with their team members; two Discover cards; and an activity feed of invitations, access requests and comments on the right.",
-    "caption": "The new collaborative data platform's start page: one search across workspaces, datasets, documents and people, and the team's activity beside it. Recreated from the 2020 design file, whose Sketch import had lost its icons; the names and datasets are the file's demo data."
-  },
-  "format_priority": [
-    "in-depth",
-    "executive",
-    "blog"
-  ],
-  "sections": [
+  {
+   "type": "outcome",
+   "mark": "At a glance",
+   "headline": "A new-product bet brought research and design into the roadmap",
+   "metrics": [
     {
-      "type": "hero",
-      "headline": "Bringing user research into planning a new analytics platform",
-      "subtext": "For five years I was Director of Design at Datameer, a collaborative data analytics platform used at top US, Canadian and UK banks and insurers. When the company bet on a new product, design went from an execution-focused function to a strategic partner, with executive support for user research. I led the UX team, and design and user research for the new platform from concept to release."
+     "label": "The setting",
+     "value": "Datameer, a collaborative data analytics platform for highly regulated industries, including top US, Canadian and UK banks and insurers. The company kept its existing product and went after a new one."
     },
     {
-      "type": "outcome",
-      "mark": "At a glance",
-      "headline": "A new-product bet brought research and design into the roadmap",
-      "metrics": [
-        {
-          "label": "The setting",
-          "value": "Datameer, a collaborative data analytics platform for highly regulated industries, including top US, Canadian and UK banks and insurers. The company kept its existing product and went after a new one."
-        },
-        {
-          "label": "My part",
-          "value": "Director of Design, 2016 to 2021. I led the UX team, two designers across Germany and New York, and led design and user research for the new collaborative data platform from concept to product release."
-        },
-        {
-          "label": "What changed",
-          "value": "Research got budget and executive support, design entered roadmap conversations, and the design system got built."
-        },
-        {
-          "label": "Three takeaways",
-          "value": "Tie research to the bet your company is already making. Give every hard-to-reach user a route. Track which decisions design is part of."
-        }
-      ]
+     "label": "My part",
+     "value": "Director of Design, 2016 to 2021. I led the UX team, two designers across Germany and New York, and led design and user research for the new collaborative data platform from concept to product release."
     },
     {
-      "type": "narrative",
-      "mark": "The scene",
-      "headline": "Dense screens, expert users, and design on execution",
-      "content": "The platform's screens were dense: column charts, pivot tables over big data, aggregated JSON views, result cards and a filter system for exploring data. The people working in them ranged from business users and data analysts to data engineers who wrote their own queries. They were sophisticated in data analytics without being software developers.\n\nMany of them worked at top banks and insurers in the US, Canada and the UK. Design's part in building those screens was execution.",
-      "images": [
-        {
-          "src": "/images/datameer/classic-platform-table.jpg",
-          "alt": "The existing Datameer platform's spreadsheet view: a formula bar with a CASE expression, a table of tokenized street addresses with 1000 rows, a column inspector listing the sheet's formulas, and a row of sheet tabs along the bottom.",
-          "caption": "The existing platform: a spreadsheet over big data, with formulas, an inspector for every sheet and many sheets per workbook. From a 2020 design file of the product."
-        }
-      ]
+     "label": "What changed",
+     "value": "Research got budget and executive support, design entered roadmap conversations, and the design system got built. Screened research with about 150 participants overturned a core assumption and let the team change course before a large engineering investment."
     },
     {
-      "type": "narrative",
-      "mark": "Why it matters",
-      "headline": "Buying software did not mean using it",
-      "content": "Datameer's bank and insurer customers had bought the platform. Buying software did not mean using it. It is the same pattern I see with AI today.\n\nThis study is about the part that comes before use: who gets to decide what the product will be, and how research and design came to be part of that decision."
-    },
-    {
-      "type": "narrative",
-      "mark": "The tension",
-      "headline": "The users were hard to reach, and the company was changing course",
-      "content": "Research with these users meant working around access limits, because banking and insurance are regulated industries. By default, design also sat apart from sales, with occasional sales support.\n\nThen the company's course changed. Datameer kept its existing product and business, but it saw the market shifting and wanted to launch a new product that met new market demands."
-    },
-    {
-      "type": "narrative",
-      "mark": "The turn",
-      "headline": "The new product needed research and design where it was decided",
-      "content": "The new product needed research and design in the room where it was decided. That is what changed design's role. Research got budget and executive support, design entered roadmap conversations, and the design system got built.\n\nI led design and user research for the new collaborative data platform, built from scratch, from concept through to product release."
-    },
-    {
-      "type": "process",
-      "mark": "The method",
-      "headline": "Two platforms, two routes to the users, and designers assigned to product teams",
-      "content": "Access was the first problem to solve, and each platform had its own route.",
-      "steps": [
-        {
-          "label": "In person, for the existing platform",
-          "description": "Research with US customers of classic Datameer was in person, in Texas."
-        },
-        {
-          "label": "A research trip with sales",
-          "description": "I did a customer research trip together with the sales team, visiting customers."
-        },
-        {
-          "label": "Remote screening, for the new platform",
-          "description": "For the new collaborative data platform, iterative screening on usertesting.com identified and engaged user personas that were otherwise hard to reach."
-        },
-        {
-          "label": "A design team organized around product work",
-          "description": "The design team was a dedicated, centralized team whose designers were assigned to specific product teams' work. I worked as a functional head among functional heads, trading scope with product and engineering counterparts."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "mark": "Up close",
-      "headline": "One problem from that work: a preview that came back empty",
-      "content": "Big data analytics ran on sampling. A query builder preview could show empty results even when the full data held matches.\n\nI experimented with different sampling approaches and user feedback mechanisms. The design that solved it gave visual and text feedback on sampling status, so users understood the limits of a preview against the results of the full query.",
-      "images": [
-        {
-          "src": "/images/diagrams/datameer-sample-uncertainty.svg",
-          "alt": "Diagram: a query against the full dataset finds matches, while a preview built from a small sample can miss all of them and report nothing. That is a property of sampling, not a bug.",
-          "caption": "Why a sampled preview can report nothing while the data is there."
-        }
-      ]
-    },
-    {
-      "type": "outcome",
-      "mark": "The result",
-      "headline": "Design in the roadmap conversations, and a design system to build with",
-      "metrics": [
-        {
-          "label": "Design's role",
-          "before": "Execution-focused function",
-          "after": "Strategic business partner, in the roadmap conversations"
-        },
-        {
-          "label": "User research",
-          "value": "Budget and executive support; in person with US customers, a research trip with sales, and remote screening on usertesting.com"
-        },
-        {
-          "label": "The new platform",
-          "value": "Design and user research led from concept through to product release"
-        },
-        {
-          "label": "Design system",
-          "value": "Co-built, with components such as data-table column headers and inspector panels; I led its implementation across the design team and engineering"
-        }
-      ],
-      "narrative": "The record of the change is the sequence: a new product bet, research with budget and executive support, design in the roadmap conversations, and a design system that got built."
-    },
-    {
-      "type": "narrative",
-      "mark": "The same screens, later",
-      "headline": "The charts and pivot tables stayed dense",
-      "content": "The screens were still column charts, pivot tables and result cards for people who knew their data. What changed sat upstream of them.\n\nResearch with the people using the platform had executive support, and design sat in the conversations where the roadmap was set."
-    },
-    {
-      "type": "key-takeaway",
-      "mark": "For your team",
-      "headline": "Getting design into the roadmap conversation",
-      "steps": [
-        {
-          "label": "Tie research to the bet your company is already making.",
-          "description": "At Datameer, executive support for research came with a new product bet. Name the decision on your roadmap that research would change. If you can't, the request for budget isn't ready."
-        },
-        {
-          "label": "Give every hard-to-reach user a route.",
-          "description": "Regulated customers limit access, so one method rarely covers everyone. List your personas and the route to each: in person, alongside sales, or remote screening."
-        },
-        {
-          "label": "Track which decisions design is part of.",
-          "description": "Write down which roadmap conversations design is in today, and which decisions research has fed. Review the list each quarter."
-        }
-      ]
-    },
-    {
-      "type": "narrative",
-      "mark": "Settled roadmaps",
-      "headline": "A settled roadmap needs a different argument",
-      "content": "This path depended on a company deciding something new. Where the product and the roadmap are settled, research has no open decision to attach to, and the case for executive support has to rest on something else, such as the cost of a problem you can already see."
-    },
-    {
-      "type": "narrative",
-      "content": "Bring me the product decision your company is about to make, and the users nobody on the team has watched at work yet. We can work out how to reach them before the roadmap is set. Get in touch."
+     "label": "Three takeaways",
+     "value": "Tie research to the bet your company is already making. Ask your screener questions twice, in different ways. Track which decisions design is part of."
     }
-  ],
-  "variants": {
-    "executive": {
-      "summary": "Five years as Director of Design at Datameer, a collaborative data analytics platform for top US, Canadian and UK banks and insurers. When the company bet on a new product, design moved from an execution-focused function to a strategic business partner: research got budget and executive support, design entered roadmap conversations, and the design system got built. Led design and user research for the new platform from concept to product release.",
-      "angle": "A new-product bet that brought research and design into the roadmap conversations",
-      "sections": [
-        "hero",
-        "A new-product bet brought research and design into the roadmap",
-        "Dense screens, expert users, and design on execution",
-        "Buying software did not mean using it",
-        "The users were hard to reach, and the company was changing course",
-        "The new product needed research and design where it was decided",
-        "Three routes to the users, and designers assigned to product teams",
-        "One problem from that work: a preview that came back empty",
-        "Design in the roadmap conversations, and a design system to build with",
-        "The charts and pivot tables stayed dense",
-        "Getting design into the roadmap conversation",
-        "A settled roadmap needs a different argument"
-      ],
-      "max_read_time": "5 min"
-    },
-    "blog": {
-      "summary": "How a company's new-product bet brought research and design into the roadmap conversations at a data analytics platform for banks and insurers.",
-      "angle": "Tying research to the company's own bet",
-      "sections": [
-        "hero",
-        "Dense screens, expert users, and design on execution",
-        "The new product needed research and design where it was decided",
-        "Getting design into the roadmap conversation"
-      ],
-      "max_read_time": "3 min"
+   ]
+  },
+  {
+   "type": "narrative",
+   "mark": "The scene",
+   "headline": "Dense screens, expert users, and design on execution",
+   "content": "The platform's screens were dense: column charts, pivot tables over big data, aggregated JSON views, result cards and a filter system for exploring data. The people working in them ranged from business users and data analysts to data engineers who wrote their own queries. They were sophisticated in data analytics without being software developers.\n\nMany of them worked at top banks and insurers in the US, Canada and the UK. Design's part in building those screens was execution.",
+   "images": [
+    {
+     "src": "/images/datameer/classic-platform-table.jpg",
+     "alt": "The existing Datameer platform's spreadsheet view: a formula bar with a CASE expression, a table of tokenized street addresses with 1000 rows, a column inspector listing the sheet's formulas, and a row of sheet tabs along the bottom.",
+     "caption": "The existing platform: a spreadsheet over big data, with formulas, an inspector for every sheet and many sheets per workbook. From a 2020 design file of the product."
     }
+   ]
   },
-  "related": [
-    "churchdesk-booking-system",
-    "leading-a-team-is-a-design-problem",
-    "bibeltv-ai-native-practice"
-  ],
-  "meta": {
-    "read_time_minutes": 5,
-    "confidential": false,
-    "confidentiality_note": "Cleared to publish by Tobias on 2026-10-21 (\"cleared to publish\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 3). Work photos with colleagues still need their faces, hair and clothing replaced with AI and the \"Edited with AI\" label (CAREER-TRUTH.md §2 Datameer).",
-    "source": "Rewritten 2026-10-22 after the adversarial review (one subject: design's move from execution to the roadmap). Facts: data/experiences/datameer-director-of-design.md, data/verification-log/2026-08-22-datameer-was-a-pivot-and-comp-is-per-role.md, data/verification-log/liveeo-head-of-product-design-verification.md, CAREER-TRUTH.md §2 Datameer. Every claim is in datameer-data-dense-analytics.citations.json."
+  {
+   "type": "narrative",
+   "mark": "Why it matters",
+   "headline": "Buying software did not mean using it",
+   "content": "Datameer's bank and insurer customers had bought the platform. Buying software did not mean using it. It is the same pattern I see with AI today.\n\nThis study is about the part that comes before use: who gets to decide what the product will be, and how research and design came to be part of that decision."
   },
-  "cover": {
-    "src": "/images/covers/cover-datameer.jpg",
-    "alt": "Two Datameer screens stacked: above, the new collaborative data platform's start page with search, workspaces and team members; below, the existing platform's spreadsheet view, a formula over a dense table of addresses."
+  {
+   "type": "narrative",
+   "mark": "The tension",
+   "headline": "The users were hard to reach, and the company was changing course",
+   "content": "Research with these users meant working around access limits, because banking and insurance are regulated industries. By default, design also sat apart from sales, with occasional sales support.\n\nThen the company's course changed. Datameer kept its existing product and business, but it saw the market shifting and wanted to launch a new product that met new market demands."
+  },
+  {
+   "type": "narrative",
+   "mark": "The turn",
+   "headline": "The new product needed research and design where it was decided",
+   "content": "The new product needed research and design in the room where it was decided. That is what changed design's role. Research got budget and executive support, design entered roadmap conversations, and the design system got built.\n\nI led design and user research for the new collaborative data platform, built from scratch, from concept through to product release."
+  },
+  {
+   "type": "process",
+   "mark": "The method",
+   "headline": "Two platforms, two routes to the users, and designers assigned to product teams",
+   "content": "Access was the first problem to solve, and each platform had its own route.",
+   "steps": [
+    {
+     "label": "In person, for the existing platform",
+     "description": "Research with US customers of classic Datameer was in person, in Texas."
+    },
+    {
+     "label": "A research trip with sales",
+     "description": "I did a customer research trip together with the sales team, visiting customers."
+    },
+    {
+     "label": "Remote screening, for the new platform",
+     "description": "For the new collaborative data platform, iterative screening on usertesting.com identified and engaged user personas that were otherwise hard to reach."
+    },
+    {
+     "label": "A design team organized around product work",
+     "description": "The design team was a dedicated, centralized team whose designers were assigned to specific product teams' work. I worked as a functional head among functional heads, trading scope with product and engineering counterparts."
+    }
+   ]
+  },
+  {
+   "type": "process",
+   "mark": "How we screened",
+   "headline": "Three screener questions, then the same questions again",
+   "content": "The new platform was a new venture: we were learning a market, and the people we needed were cloud architects and others responsible for cloud migration inside an enterprise. Running in parallel with the go-to-market team's focus groups in the US and Canada, we went after them on usertesting.com.",
+   "steps": [
+    {
+     "label": "Two filters at the door",
+     "description": "The platform's audience filters, plus a screener that allowed only three questions. We spent them on the highest-impact ones, such as company size and job role."
+    },
+    {
+     "label": "A long form instead of recorded tasks",
+     "description": "usertesting.com is usually for unmoderated tasks with screen recordings. We asked participants to fill in a form of more than 100 questions instead, and because they were paid through the platform, they did."
+    },
+    {
+     "label": "Round one let the wrong people through",
+     "description": "Some picked the first option every time. Some were there for the payment. Some profiles were out of date, and some were external consultants for cloud migration rather than people inside the enterprise."
+    },
+    {
+     "label": "Ask again, in different ways",
+     "description": "A handful of questions at the start of the form re-asked the qualification: team size, actual job title, where they were in the cloud migration, how many data engineers and data scientists the organization and their team had. Wrong participants could be disqualified quickly."
+    },
+    {
+     "label": "Batches made it better",
+     "description": "The platform limited participants per test, which forced several batches. Between them we refined the screener questions."
+    },
+    {
+     "label": "Checked against the focus groups",
+     "description": "Comparing the answers with the go-to-market focus groups showed we were talking to the same people, so the findings and the data held."
+    }
+   ]
+  },
+  {
+   "type": "narrative",
+   "mark": "What we found",
+   "headline": "The data people already sat inside IT",
+   "content": "The vision assumed data engineers and data scientists were spread across departments such as HR, waiting on IT for access. The platform would let those departments serve themselves through smart permission settings, cut redundant analysis across the enterprise and reuse each other's work where that was permitted.\n\nWith most of the roughly 150 participants, the people doing the data work already sat inside the IT organization. The access and permission problems the vision was built around were not theirs. The research also identified and sharpened the personas we designed for, and the need to reuse work and the missing context around data held up.\n\nThe finding let the team change course. The planned direction would have been a feat of engineering and a large investment that, in the end, was not needed.",
+   "images": [
+    {
+     "src": "/images/diagrams/datameer-personas-it.svg",
+     "alt": "Diagram: the vision assumed data people sat in departments such as HR, finance and marketing, waiting on IT for access. The research placed the analyst, analyst team lead and cloud architect personas inside the IT department, close to the data; for most, access was not the problem, while reuse and missing context were.",
+     "caption": "Redrawn and anonymised from the personas the research produced."
+    }
+   ]
+  },
+  {
+   "type": "narrative",
+   "mark": "Up close",
+   "headline": "One problem from that work: a preview that came back empty",
+   "content": "Big data analytics ran on sampling. A query builder preview could show empty results even when the full data held matches.\n\nI experimented with different sampling approaches and user feedback mechanisms. The design that solved it gave visual and text feedback on sampling status, so users understood the limits of a preview against the results of the full query.",
+   "images": [
+    {
+     "src": "/images/diagrams/datameer-sample-uncertainty.svg",
+     "alt": "Diagram: a query against the full dataset finds matches, while a preview built from a small sample can miss all of them and report nothing. That is a property of sampling, not a bug.",
+     "caption": "Why a sampled preview can report nothing while the data is there."
+    }
+   ]
+  },
+  {
+   "type": "outcome",
+   "mark": "The result",
+   "headline": "Design in the roadmap conversations, and a design system to build with",
+   "metrics": [
+    {
+     "label": "Design's role",
+     "before": "Execution-focused function",
+     "after": "Strategic business partner, in the roadmap conversations"
+    },
+    {
+     "label": "User research",
+     "value": "Budget and executive support; in person with US customers, a research trip with sales, and remote screening on usertesting.com"
+    },
+    {
+     "label": "The research",
+     "value": "About 150 screened participants, cross-checked against the go-to-market focus groups. It overturned a core assumption of the vision and let the team change course."
+    },
+    {
+     "label": "The new platform",
+     "value": "Design and user research led from concept through to product release"
+    },
+    {
+     "label": "Design system",
+     "value": "Co-built, with components such as data-table column headers and inspector panels; I led its implementation across the design team and engineering"
+    }
+   ],
+   "narrative": "The record of the change is the sequence: a new product bet, research with budget and executive support, design in the roadmap conversations, and a design system that got built."
+  },
+  {
+   "type": "narrative",
+   "mark": "The same screens, later",
+   "headline": "The charts and pivot tables stayed dense",
+   "content": "The screens were still column charts, pivot tables and result cards for people who knew their data. What changed sat upstream of them.\n\nResearch with the people using the platform had executive support, and design sat in the conversations where the roadmap was set."
+  },
+  {
+   "type": "key-takeaway",
+   "mark": "For your team",
+   "headline": "Getting design into the roadmap conversation",
+   "steps": [
+    {
+     "label": "Tie research to the bet your company is already making.",
+     "description": "At Datameer, executive support for research came with a new product bet. Name the decision on your roadmap that research would change. If you can't, the request for budget isn't ready."
+    },
+    {
+     "label": "Ask your screener questions twice, in different ways.",
+     "description": "Hard-to-reach users exist, and so do participants who click the first option. Re-ask the qualification early, in different words, and refine the screener between batches."
+    },
+    {
+     "label": "Track which decisions design is part of.",
+     "description": "Write down which roadmap conversations design is in today, and which decisions research has fed. Review the list each quarter."
+    }
+   ]
+  },
+  {
+   "type": "narrative",
+   "mark": "Settled roadmaps",
+   "headline": "A settled roadmap needs a different argument",
+   "content": "This path depended on a company deciding something new. Where the product and the roadmap are settled, research has no open decision to attach to, and the case for executive support has to rest on something else, such as the cost of a problem you can already see."
+  },
+  {
+   "type": "narrative",
+   "content": "Bring me the product decision your company is about to make, and the users nobody on the team has watched at work yet. We can work out how to reach them before the roadmap is set. Get in touch."
   }
+ ],
+ "variants": {
+  "executive": {
+   "summary": "Five years as Director of Design at Datameer, a collaborative data analytics platform for top US, Canadian and UK banks and insurers. When the company bet on a new product, design moved from an execution-focused function to a strategic business partner: research got budget and executive support, design entered roadmap conversations, and the design system got built. Led design and user research for the new platform from concept to product release.",
+   "angle": "A new-product bet that brought research and design into the roadmap conversations",
+   "sections": [
+    "hero",
+    "A new-product bet brought research and design into the roadmap",
+    "Dense screens, expert users, and design on execution",
+    "Buying software did not mean using it",
+    "The users were hard to reach, and the company was changing course",
+    "The new product needed research and design where it was decided",
+    "Three routes to the users, and designers assigned to product teams",
+    "Three screener questions, then the same questions again",
+    "The data people already sat inside IT",
+    "One problem from that work: a preview that came back empty",
+    "Design in the roadmap conversations, and a design system to build with",
+    "The charts and pivot tables stayed dense",
+    "Getting design into the roadmap conversation",
+    "A settled roadmap needs a different argument"
+   ],
+   "max_read_time": "6 min"
+  },
+  "blog": {
+   "summary": "How a company's new-product bet brought research and design into the roadmap conversations at a data analytics platform for banks and insurers.",
+   "angle": "Tying research to the company's own bet",
+   "sections": [
+    "hero",
+    "Dense screens, expert users, and design on execution",
+    "The new product needed research and design where it was decided",
+    "Getting design into the roadmap conversation"
+   ],
+   "max_read_time": "3 min"
+  }
+ },
+ "related": [
+  "churchdesk-booking-system",
+  "leading-a-team-is-a-design-problem",
+  "bibeltv-ai-native-practice"
+ ],
+ "meta": {
+  "read_time_minutes": 6,
+  "confidential": false,
+  "confidentiality_note": "Cleared to publish by Tobias on 2026-10-21 (\"cleared to publish\", data/verification-log/2026-10-21-portfolio-launch-answers.md item 3). Work photos with colleagues still need their faces, hair and clothing replaced with AI and the \"Edited with AI\" label (CAREER-TRUTH.md §2 Datameer).",
+  "source": "Rewritten 2026-10-22 after the adversarial review (one subject: design's move from execution to the roadmap). Facts: data/experiences/datameer-director-of-design.md, data/verification-log/2026-08-22-datameer-was-a-pivot-and-comp-is-per-role.md, data/verification-log/liveeo-head-of-product-design-verification.md, CAREER-TRUTH.md §2 Datameer. Every claim is in datameer-data-dense-analytics.citations.json."
+ },
+ "cover": {
+  "src": "/images/covers/cover-datameer.jpg",
+  "alt": "Two Datameer screens stacked: above, the new collaborative data platform's start page with search, workspaces and team members; below, the existing platform's spreadsheet view, a formula over a dense table of addresses."
+ }
 }
