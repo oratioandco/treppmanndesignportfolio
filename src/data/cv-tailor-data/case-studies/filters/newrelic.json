@@ -1,0 +1,58 @@
+{
+  "slug": "newrelic",
+  "aliases": [
+    "newrelic-principal-product-designer"
+  ],
+  "title": "Design Systems Built for AI-First Work",
+  "subtitle": "A design system people and AI tools can build with, gates that hold it, and AI features designed for unpredictable output",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-newrelic.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Principal Product Designer role at New Relic"
+  },
+  "bio": {
+    "short": "I design products and the systems behind them, and I build both. At Bibel TV I made the design system something product managers and AI tools can build with, and the quality gates to hold it. Before that, I was Director of Design at Datameer, on data-dense analytics for banks.",
+    "long": "At Bibel TV, a broadcaster moving from linear TV to apps on iOS, Android, web and connected TV, I was Head of Product Design. Product managers and product owners shape new features there, so I made the design system something they and Claude can build with. It is served as an API in four token tiers, with Storybook as the source of truth and a closed token vocabulary. Checks refuse an off-system value and name the token to use.\n\nI built the quality gates with AI coding agents. They run 2,195 unit, contract and snapshot tests, device flows and pixel checks against real-device screenshots. Then I checked whether the gates catch real problems. A review of 100 CI runs found 18 real defects flagged. For the design system and tokens, 95–100% of the code in the Android app (release 6.0, in beta) comes verbatim from my prototype.\n\nI design AI features for output nobody can fully predict. For Ninox, the generated database renders into the real editor beside the chat. People fix it directly, and it became the onboarding of the AI beta. At Datameer I was Director of Design for five years. We designed data-dense analytics for leading US, Canadian and UK banks and insurers, including how to show approximate results.",
+    "context": {
+      "company": "New Relic builds intelligent observability software. The UX Platform team owns daily-use products and the Design System that ties them together.",
+      "role": "Principal Product Designer: the most senior individual design voice on the UX Platform and the Design Director's right hand. Central themes are AI-native experiences and AI-first, spec-driven design workflows.",
+      "emphasis": "Lead with the design system built for AI tools plus measured quality gates; AI-native experience design second; director-level judgment and data-dense analytics third."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Principal-level product designer",
+  "work_intro": "Selected work on design systems and AI-native products, with the evidence of what held up"
+}

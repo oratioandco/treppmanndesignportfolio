@@ -1,0 +1,58 @@
+{
+  "slug": "adidas",
+  "aliases": [
+    "adidas-director-experience-design-running-app"
+  ],
+  "title": "Design That Reaches Production",
+  "subtitle": "Hands-on experience design for a consumer app, and a team moved onto AI-assisted work",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-adidas.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Director Experience Design role at adidas"
+  },
+  "bio": {
+    "short": "I lead design and still do it myself, from insight to production code. As Head of Product Design at Bibel TV, I shaped a consumer streaming app across iOS, Android, web and TV. I also moved the product team onto AI-assisted design and building. Before that, I led design teams at Ninox and Datameer.",
+    "long": "At Bibel TV, a broadcaster moving from linear TV to apps on iOS, Android, web and connected TV, I was Head of Product Design. I owned product design for the app end to end and prototyped in real code. 64% of the code behind the redesigned Android Home and detail views comes verbatim from my prototype (release 6.0, in beta). Small changes moved numbers: when I made the app's AI Bible feature self-explaining, weekly starts rose 153% on iOS and 85% on Android.\n\nI also changed how the product team works. We went from AI as a better search tool to prototyping and developing with Claude Code, GitHub Spec Kit and MCP servers. I got there with tutorials and hands-on sessions, not mandates, and the team now builds internal tools in-house.\n\nBefore that I led design teams. At Ninox I had five direct reports on the Senior Leadership Team and promoted two. At Datameer I led the UX team across Germany and New York for five years. And I run a few times a week, so a running app is a product I use.",
+    "context": {
+      "company": "adidas Digital runs the adidas Running App, one of adidas' key digital experiences for runners.",
+      "role": "Director Experience Design: a hands-on player-coach who owns the app experience against WAU, engagement, retention and NPS. Coaches a small design team and pioneers AI-enabled design practice for the wider design community.",
+      "emphasis": "Lead with craft that reaches production code and AI-assisted practice the team adopted; the AI Bible feature lift as consumer proof; team leadership second."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-app-redesign",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "spreadshirt-user-research-strategy",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Experience design leader",
+  "work_intro": "Selected work where the design went all the way to working code, and changed how the team builds"
+}
