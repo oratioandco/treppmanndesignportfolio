@@ -1,0 +1,58 @@
+{
+  "slug": "langfuse",
+  "aliases": [
+    "clickhouse-langfuse-product-designer"
+  ],
+  "title": "Design That Lands in Code",
+  "subtitle": "Data-dense products, design systems for coding agents, and an LLM evaluation loop",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-langfuse.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Senior Product Designer role at Langfuse"
+  },
+  "bio": {
+    "short": "I design data-dense products and ship the design in code. At Bibel TV, engineering built the redesigned Android screens from my prototype, on a design system I built for coding agents. I designed analytics for data engineers at Datameer, and for my own AI product I designed and directed an LLM evaluation loop.",
+    "long": "At Bibel TV I was Head of Product Design and the only in-house designer, across iOS, Android, web and connected TV. Engineering builds from my prototype code. 64% of the code behind the redesigned Android Home and detail views comes verbatim from my prototype (release 6.0, in beta). It is 95–100% for the design system and tokens. The design system has four token tiers served as an API, with Storybook as the source of truth. An MCP server and CLI give coding agents the real component and token vocabulary. I built the quality pipeline with AI coding agents: 2,195 unit, contract and snapshot tests and Storybook pixel parity against real-device screenshots.\n\nFor Aperto, my own AI product for Bible translation, I designed and directed an evaluation loop, implemented with AI coding agents. Nine binary criteria are each judged in a separate LLM call, with judge-drift calibration, closed-loop revision and pre-registered A/B experiments on prompt changes. At Bibel TV I also redesigned the entry to the app's AI Bible feature for people who don't know what to ask. Weekly starts rose 153% on iOS and 85% on Android.\n\nAt Datameer I designed data-dense analytics for analysts and data engineers at leading US, Canadian and UK banks and insurers. The work spanned query builders, big-data pivot tables, aggregated JSON views and filter logic. At Ninox I owned the design system with joint governance with engineering. At ChurchDesk a customer request became a booking capability that rolled out to every customer.",
+    "context": {
+      "company": "Langfuse, part of ClickHouse, builds open-source LLM engineering software: tracing, evaluation, prompt management and monitoring, used daily by developers and non-developers.",
+      "role": "Senior Product Designer: owns critical launches end to end and designs data-dense, agent-driven workflows (Halo). Pairs with engineers and ships design to code with AI tools.",
+      "emphasis": "Lead with design shipped in code, the design system built for coding agents, and the LLM evaluation loop. Then data-dense analytics for technical users."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Product Designer who ships in code",
+  "work_intro": "Selected work where the design is the thing engineering builds from"
+}
