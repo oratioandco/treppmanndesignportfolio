@@ -1,0 +1,58 @@
+{
+  "slug": "ashby",
+  "aliases": [
+    "ashby-staff-design-engineer-eu"
+  ],
+  "title": "Designed as Systems, Built as Software",
+  "subtitle": "Design systems as code, product design and working software for complex products",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-ashby.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Staff Design Engineer role at Ashby"
+  },
+  "bio": {
+    "short": "I'm a product designer who builds. At Bibel TV I made the design system an API that iOS, Android, web and connected TV read from one source. I designed in code against production APIs. 64% of the code behind the redesigned Android Home and detail views comes verbatim from my prototype (release 6.0, in beta). Before that I owned the design system of Ninox's no-code platform.",
+    "long": "At Bibel TV, a broadcaster moving from linear TV to apps on iOS, Android, web and connected TV, I was Head of Product Design. I built the design system every platform reads its design decisions from, served from one source. A design-system MCP server and CLI let engineers and coding agents build with it directly. I designed in code against production APIs, and the Android app builds on that code. For the redesigned Home and detail views, 64% comes verbatim from my prototype (release 6.0, in beta). I also shipped a colour-extraction API that derives card gradients from artwork in OKLCH, with WCAG contrast held in light and dark. I built an AI Bible chat app for Bibel TV in about two months. I build with AI coding agents, and 2,195 automated tests stand behind the apps and the design system.\n\nAt Ninox I owned the design system of a no-code platform where customers build their own business apps, and established joint governance with engineering. As a consultant in summer 2025 I designed its prompt-to-database AI onboarding, with chat beside direct manipulation so people edit the schema the model proposed. It became the public AI beta's onboarding.\n\nAt Datameer I led the UX team for five years on data-dense analytics for leading US, Canadian and UK banks and insurers. I contributed component behavior and specs to the co-built design system. Selah, my Mac app on the Mac App Store, I designed and built solo.",
+    "context": {
+      "company": "Ashby builds recruiting and HR software used by over 100,000 weekly active users, with Design Engineering as its own department inside Engineering.",
+      "role": "Staff Design Engineer: designs and implements complex product features end to end, extends the in-house design system, and consults on Product Engineers' designs.",
+      "emphasis": "Lead with design systems as code and designing in code against production APIs, then complex configurable B2B products. AI coding agents named plainly as how he builds."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-ai-prototyping",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Design engineer",
+  "work_intro": "Selected work where the design decision and the working code came from the same hands"
+}
