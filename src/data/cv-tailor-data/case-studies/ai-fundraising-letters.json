@@ -1,10 +1,10 @@
 {
   "id": "ai-fundraising-letters",
-  "title": "The month didn't decide which fundraising letters worked. The letter did.",
-  "subtitle": "I analyzed every past mailing of a donor-funded nonprofit, found what separated the strong letters from the weak, and built an assistant that asks before it writes.",
+  "title": "A system that writes measurably more successful fundraising letters",
+  "subtitle": "I analyzed every past mailing of a donor-funded nonprofit, found what separated the strong letters from the weak, and turned that research into an AI system. With a writer's input and guidance, it writes measurably more successful letters.",
   "card": {
-    "title": "AI writing assistant for nonprofit fundraising letters",
-    "line": "Past mailings showed the letter, not the month, decided results; the assistant asks before writing."
+    "title": "Fundraising letters that are measurably more successful",
+    "line": "An AI system built on research into every past mailing, guided by a writer's input."
   },
   "type": "ai-product",
   "tags": [
@@ -20,7 +20,7 @@
   "team": "Solo, end to end: analysis, prompt design, prototype, Claude skill",
   "duration": "",
   "status": "draft",
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-11-04",
   "format_priority": [
     "in-depth",
     "executive"
@@ -28,13 +28,13 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "The month didn't decide which fundraising letters worked. The letter did.",
-      "subtext": "A donor-funded nonprofit planned its fundraising letters around the calendar. I went through every main mailing on record, measured each one against its own month, and found what the strong letters had in common. Then I turned that into an assistant that asks questions and checks the draft instead of writing the letter in one go."
+      "headline": "A system that writes measurably more successful fundraising letters",
+      "subtext": "A donor-funded nonprofit raises money with letters across the year. I built it an AI system that writes measurably more successful ones. The writer brings the input and guidance; the system brings what I found by measuring every main mailing on record against its own month."
     },
     {
       "type": "outcome",
       "mark": "At a glance",
-      "headline": "A theory about timing, tested against every letter",
+      "headline": "Research into every past letter, built into a system that writes the next one",
       "metrics": [
         {
           "label": "The setting",
@@ -42,15 +42,15 @@
         },
         {
           "label": "My part",
-          "value": "Solo, end to end: the performance analysis, a Claude Project that guides the writing, a web prototype, and a Claude skill for follow-up content."
+          "value": "Solo, end to end: the research into past mailings, a Claude Project that writes with the writer, a web prototype, and a Claude skill for follow-up content."
         },
         {
           "label": "What changed",
-          "value": "Many of the strongest letters came from months the averages called weak. The patterns behind them became an assistant that asks before it drafts, and the first letter written with it was a success."
+          "value": "Letters written with the system are measurably more successful, and the first one was already a success. It rests on one finding: many of the strongest letters came from months the averages called weak. No amounts are published."
         },
         {
           "label": "Three takeaways",
-          "value": "Compare each result with its own baseline before you look for patterns. Check what you find against what the field already knows. Build an assistant that asks before it writes."
+          "value": "Compare each result with its own baseline before you look for patterns. Check what you find against what the field already knows. Build the findings into the system that writes."
         }
       ]
     },
@@ -58,13 +58,20 @@
       "type": "narrative",
       "mark": "The scene",
       "headline": "Two letters, the same month, opposite results",
-      "content": "The analysis starts as a table: every main mailing on record, each result put on a common basis so a large mailing and a small one can be compared.\n\nTwo rows come from the same month. One letter did far better than that month's average. The other did far worse.\n\nThe calendar could not explain that."
+      "content": "The analysis starts as a table: every main mailing on record, each result put on a common basis so a large mailing and a small one can be compared.\n\nTwo rows come from the same month. One letter did far better than that month's average. The other did far worse.\n\nThe calendar could not explain that.",
+      "images": [
+        {
+          "src": "/images/diagrams/fundraising-shared-baseline.svg",
+          "alt": "Explanatory illustration: one mailing above its period average and another below the same average. Bar lengths are schematic, not measured data.",
+          "caption": "Illustration of the comparison, not the organization’s results. The bars are schematic: the same period can contain letters above and below its average. No amounts or letter excerpts are shown."
+        }
+      ]
     },
     {
       "type": "narrative",
       "mark": "Why it matters",
       "headline": "Fundraising by the calendar hides the letters that beat it",
-      "content": "Planning letters by the month is the obvious move, and the averages back it up: some months raise more than others. Stop there, and all the calendar gives you is a send date.\n\nIf you write these letters, what goes in them is the question you face every time, from the first line."
+      "content": "Planning letters by the month is the obvious move, and the averages back it up: some months raise more than others. Stop there, and all the calendar gives you is a send date.\n\nThe donations a weak letter fails to raise don't show up in any average. If you write these letters, what goes in them is the question you face every time, from the first line."
     },
     {
       "type": "narrative",
@@ -87,7 +94,7 @@
     },
     {
       "type": "process",
-      "mark": "How I analyzed it",
+      "mark": "The research",
       "headline": "From seasonality to what made the difference, in five steps",
       "content": "The order mattered. Each step only made sense once the one before it had removed a false signal.",
       "steps": [
@@ -117,25 +124,32 @@
       "type": "narrative",
       "mark": "What it found",
       "headline": "A concrete need beat an abstract mission",
-      "content": "Once the season was out of the way, what separated the strong letters lined up with what fundraising practice has long held: a concrete, tangible need beats an abstract mission.\n\nThe last step was that check against general fundraising best practice. A pattern in a handful of letters is a hunch until something outside them backs it up, so only patterns the wider field also supports went into the assistant."
+      "content": "Once the season was out of the way, what separated the strong letters lined up with what fundraising practice has long held: a concrete, tangible need beats an abstract mission.\n\nThe last step was that check against general fundraising best practice. A pattern in a handful of letters is a hunch until something outside them backs it up, so only patterns the wider field also supports went into the system."
     },
     {
       "type": "narrative",
       "mark": "What I built",
-      "headline": "An assistant that asks before it writes",
-      "content": "I put the findings together with the writing guidelines into a Claude Project. It doesn't write the letter in one shot. It guides the writer through the process, asks questions before it drafts, and checks things along the way. One of its seasonal rules says just that: the text decides, not the month.\n\nI also built a web prototype for the same flow, and a Claude skill that carries a finished letter's message into follow-up content for other channels. All four pieces are mine: the analysis, the Claude Project, the prototype and the skill."
+      "headline": "The research became a system that writes the letter with you",
+      "content": "I put the findings together with the writing guidelines into a Claude Project, an AI workspace with its own standing instructions. The system carries what the strong letters did. The writer brings the input and guidance no table can supply. So it asks questions first, drafts from the answers and checks things along the way. One of its seasonal rules says what the research found: the text decides, not the month.\n\nI also built a web prototype for the same flow, and a Claude skill that carries a finished letter's message into follow-up content for other channels. All four pieces are mine: the analysis, the Claude Project, the prototype and the skill.",
+      "images": [
+        {
+          "src": "/images/diagrams/fundraising-writing-guidance.svg",
+          "alt": "Explanatory workflow: past mailing patterns, writing guidelines and fundraising practice feed a system that asks, drafts and checks, guided by the writer's input. The result is measurably more successful letters, and a Claude skill carries them into follow-up content.",
+          "caption": "Explanatory illustration, not a product screenshot. It maps the research, the Claude Project, the web prototype and the follow-up skill. No donor information, private results or original letter copy is shown."
+        }
+      ]
     },
     {
       "type": "narrative",
       "mark": "The result",
-      "headline": "The first letter written with it was a success",
-      "content": "No amounts or results from the organization are published here, the chart is an illustration with invented values, and the organization stays unnamed.\n\nThe first letter written with the assistant was a success. That it worked is all I'll claim for now."
+      "headline": "Letters written with it are measurably more successful",
+      "content": "With a writer's input and guidance, the system writes letters that measurably do better. The first letter written with it was already a success.\n\nThe organization keeps its numbers private, so no amounts or results appear here, the chart above is an illustration with invented values, and the organization stays unnamed."
     },
     {
       "type": "narrative",
       "mark": "The table today",
       "headline": "Those two rows are still in the table",
-      "content": "They no longer look like noise.\n\nThey are the reason the assistant asks its questions before it writes a word."
+      "content": "They no longer look like noise.\n\nWhat separates them is now built into the system that writes the next letter."
     },
     {
       "type": "key-takeaway",
@@ -151,8 +165,8 @@
           "description": "Your own top performers are a small sample. Where they agree with general fundraising best practice, trust the pattern. Where they don't, test it before you build on it."
         },
         {
-          "label": "Build an assistant that asks before it writes.",
-          "description": "Turn the findings and your writing guidelines into questions and checks, not a one-shot prompt. The person writing still decides what the letter says."
+          "label": "Build the findings into the system that writes.",
+          "description": "Turn the findings and your writing guidelines into questions and checks, not a one-shot prompt. The writer brings the input and guidance; the system brings the evidence."
         }
       ]
     },
@@ -160,28 +174,28 @@
       "type": "narrative",
       "mark": "When it doesn't fit",
       "headline": "Without consistent results, there is nothing to analyze yet",
-      "content": "If you have only a handful of mailings, or results you can't put on a common basis, the analysis has nothing to stand on. Start by recording results the same way every time; the assistant can wait."
+      "content": "If you have only a handful of mailings, or results you can't put on a common basis, the analysis has nothing to stand on. Start by recording results the same way every time; the system can wait."
     },
     {
       "type": "narrative",
-      "content": "The assistant won't draft until it has asked its questions. If your writers could use that kind of constraint, measuring your own letters against their season is a good place for us to start. Get in touch."
+      "content": "The system won't draft until it has asked its questions, and it learned what to ask from letters that beat their month. If you raise money with letters, measuring your own against their season is a good place for us to start. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Analyzed every past fundraising mailing of a donor-funded nonprofit against its own month's average, found that the letter, not the month, decided the result, and built a Claude Project that guides the writing by questions and checks, plus a web prototype and a Claude skill for follow-up content. Solo end to end.",
-      "angle": "The analysis is the product; the assistant is how it reaches the writer",
+      "summary": "Researched every past fundraising mailing of a donor-funded nonprofit against its own month's average, and built the findings into an AI system that, with a writer's input and guidance, writes measurably more successful letters: a Claude Project, a web prototype and a Claude skill for follow-up content. Solo end to end.",
+      "angle": "The system and its result lead; the research is why the letters do better",
       "sections": [
         "hero",
-        "A theory about timing, tested against every letter",
+        "Research into every past letter, built into a system that writes the next one",
         "Two letters, the same month, opposite results",
         "Fundraising by the calendar hides the letters that beat it",
         "The prevailing theory was the calendar",
         "Measured against its own month, every letter told a different story",
         "From seasonality to what made the difference, in five steps",
         "A concrete need beat an abstract mission",
-        "An assistant that asks before it writes",
-        "The first letter written with it was a success",
+        "The research became a system that writes the letter with you",
+        "Letters written with it are measurably more successful",
         "Those two rows are still in the table",
         "What to check before your next appeal",
         "Without consistent results, there is nothing to analyze yet"

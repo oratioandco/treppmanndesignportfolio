@@ -1,0 +1,56 @@
+{
+  "slug": "bavariadirekt",
+  "aliases": [
+    "vkb-bavariadirekt-ai-designer-conversational-ai"
+  ],
+  "title": "Conversational AI That Holds Up",
+  "subtitle": "Dialog logic, guardrails and evaluation, and an AI assistant a service team chose to use",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-bavariadirekt.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the AI Designer, Conversational AI & Agents role"
+  },
+  "bio": {
+    "short": "I design and build conversational AI that holds up with real people: dialog logic, guardrails set in code, and tests against labeled cases. At Bibel TV I built a Microsoft Copilot assistant for viewer services and introduced it myself. By the team's account it's now part of their regular work.",
+    "long": "At Bibel TV I built a Microsoft Copilot assistant that drafts replies to viewer letters, emails and social messages in the support handbook's wording. A person reads every message and makes every send decision. I introduced it myself as an optional tool, with a self-test week and one-to-one sessions. As the team reported it, complex letters took minutes instead of hours, and part-time staff answered in the house voice from the start. Both early skeptics use it.\n\nAperto is a spiritual guide app in development. I designed its dialog and guardrails so that code decides what may happen and the model only how it's phrased. A safety classifier can only raise the level, helplines come from a verified list, and the assistant asks at most one clarifying question. I also built a voice mode with spoken input and reply. Against labeled sets, the safety layer caught 102 of 102 crisis messages and 147 of 147 passive signals. Designed and directed; implemented with AI coding agents.\n\nI also created an n8n pipeline with AI agents that turns sermon videos into Bible-verse-tagged clips: 11,405 from 3,504 videos by October 2026. I'm a product designer who ships production code. I like building a new capability from the start, with the people who will use it.",
+    "context": {
+      "company": "BavariaDirekt is the direct insurer of the Versicherungskammer group. Its Operations unit is building a new capability around conversational AI and AI agents on a conversational-AI platform.",
+      "role": "A hands-on AI Designer seat. It designs, configures and develops AI voice agents on the platform and tests them systematically. It works with business units, IT and external implementation partners.",
+      "emphasis": "Lead with guarded dialog design and systematic evaluation, then the production assistant a service team adopted. Mechanisms, not subject matter. Name the built voice mode once, plainly, as built."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ai-fundraising-letters",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
