@@ -1,0 +1,56 @@
+{
+  "slug": "n8n-design-manager",
+  "aliases": [
+    "n8n-product-design-manager"
+  ],
+  "title": "Making Designers Better, Close to the Product",
+  "subtitle": "A people system for a two-discipline design team, and current hands-on AI and n8n practice",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-n8n-design-manager.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Product Design Manager role"
+  },
+  "bio": {
+    "short": "I'm a product and design leader who ships production code. At Ninox I led five people across product design and UX writing. I wrote the leveling framework we grew people against, ran the performance reviews and promoted two people. At Bibel TV I used AI agents to create a live n8n pipeline and brought the product team to building with AI.",
+    "long": "At Ninox I led Product Design from the Senior Leadership Team: five people, roughly half product designers and half UX writers. I was responsible for capacity, allocation, prioritization, team structure and processes. I wrote a leveling framework covering both disciplines and used it for personal growth plans. It showed the junior designer and writer what the next level asked of them. I ran performance reviews and designed a lean 360 that ran as a workshop. I coached the Design Lead through a strained engineering relationship. I promoted a designer to Design Lead and a senior designer to Principal. For four months I also led Product as interim Head of Product, nine direct reports across four disciplines.\n\nThe product problem at Ninox will sound familiar: a powerful, configurable builder platform that people without database knowledge found hard to start with. Later, as an independent consultant in summer 2025, I designed prompt-to-database onboarding with the CEO. The generated schema opens in the real data-model editor. A less technical user can start from a description and still correct the structure directly.\n\nAt Bibel TV I led product design and product management across iOS, Android, web and connected TV. I used AI agents to create an n8n sermon pipeline for an AI Bible study app, then tested, operated and iterated it. By October 2026 it had processed 3,574 transcripts into 11,405 clips from 3,504 videos. I also brought the product managers and product owners who do the design work to building with AI. That meant individual tutorial sessions, Claude Code, Spec Kit, MCP servers for internal documentation and team rules in the company Claude account.",
+    "context": {
+      "company": "n8n is an open workflow-orchestration platform widening from developers to a broader set of builders; more than 80% of workflows involve AI agents.",
+      "role": "First-line Product Design Manager for designers, design engineers and researchers. Reports to the VP of Product until the Head of Design joins.",
+      "emphasis": "Lead with the Ninox people system: leveling framework, reviews, two promotions, staffing ownership and coaching. Then the audience-widening problem worked at Ninox. Then current AI and n8n practice that reaches the people doing design work."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-metadata-extraction",
+      "visibility": "browseable",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ]
+}
