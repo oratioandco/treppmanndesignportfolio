@@ -1,0 +1,62 @@
+{
+  "slug": "grc-saas",
+  "aliases": [
+    "reviva-grc-head-of-product-design"
+  ],
+  "title": "Automation People Can Check",
+  "subtitle": "AI that people inspect and correct, data-dense software for regulated customers, and a design team built to last",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-grc-saas.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Head of Product Design role"
+  },
+  "bio": {
+    "short": "I'm a product and design leader who ships production code. I design AI automation that people can check and correct. I spent five years as Director of Design on data analytics for leading banks and insurers. At Ninox I led design from the leadership team, and for four months ran product as well.",
+    "long": "Software that automates serious work only gets used if people can see what it did and change it. At Bibel TV I built a Microsoft Copilot assistant for viewer services. It drafts replies in the support handbook's wording, formatting and standard phrases. A person reads every message and makes every send decision. I introduced it myself as an optional tool, and both early skeptics now use it.\n\nFreelancing for Ninox in summer 2025, I designed AI onboarding that generates a database from a short description. The result opens in the real editor, because most people describe their work briefly and the first guess will be incomplete. It became the onboarding of the launched AI beta.\n\nAt Datameer I spent five years as Director of Design on data analytics for leading US, Canadian and UK banks and insurers. I led a UX team of two designers. Query-builder previews worked on samples, so the interface had to tell people when a result came from a sample. At ChurchDesk, AI-generated alt text let customers meet the European Accessibility Act automatically. The product carried the obligation, not the customer.\n\nAt Ninox I led product design from the Senior Leadership Team with five reports. I wrote the leveling framework, hired two people and promoted two. I owned the design system and established joint governance with engineering. For four months I ran Product and Design together, with nine reports.\n\nI still build. At Bibel TV the design system was served as an API. 64% of the code behind the redesigned Android Home and detail views (release 6.0, in beta) comes verbatim from my prototype. I love making software that helps people get their work done.",
+    "context": {
+      "company": "A VC-backed, AI-powered B2B SaaS company building a GRC platform that helps international businesses simplify and automate regulatory processes. Undisclosed; the role is advertised by the recruiter Reviva.",
+      "role": "Head of Product Design. Owns design vision and strategy and leads the designers. Partners with executives, product and engineering. Builds the design system, research practice and design metrics, and stays hands-on.",
+      "emphasis": "Lead with automation people can inspect and correct. Then regulated, data-dense enterprise UX at Datameer. Then function leadership at Ninox plus hands-on systems at Bibel TV. Mechanisms over scale."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "leading-a-team-is-a-design-problem",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 6,
+      "format_override": "executive"
+    }
+  ]
+}
