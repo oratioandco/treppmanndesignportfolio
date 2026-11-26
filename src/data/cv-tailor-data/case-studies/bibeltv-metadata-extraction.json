@@ -1,7 +1,11 @@
 {
   "id": "bibeltv-metadata-extraction",
-  "title": "The Metadata Nobody Sees",
-  "subtitle": "I did some of the logging work by hand, then used AI agents to create and operate the n8n pipeline that turns sermon videos into source-linked material for an AI product",
+  "title": "Turning sermon videos into clips linked to Bible passages",
+  "subtitle": "I did some of the logging work by hand, added the end point the logs were missing, and used AI agents to create the n8n pipeline that turns sermon videos into source-linked clips for a Bible-study app in development.",
+  "card": {
+    "title": "Turning sermon videos into source-linked clips",
+    "line": "I had AI agents build and run the n8n pipeline, for a Bible-study app in development."
+  },
   "type": "technical-deep-dive",
   "tags": [
     "ai",
@@ -12,10 +16,10 @@
   ],
   "company": "Bibel TV",
   "role": "Head of Product Design",
-  "team": "Solo product, design and development; grounded with the logging team",
+  "team": "Solo product, design and development",
   "duration": "2026 – Present",
   "status": "review",
-  "last_updated": "2026-10-12",
+  "last_updated": "2026-10-22",
   "format_priority": [
     "executive",
     "in-depth"
@@ -23,55 +27,108 @@
   "sections": [
     {
       "type": "hero",
-      "headline": "The Metadata Nobody Sees",
-      "subtext": "Most sermon videos arrived with no structured way for the product to know which passage was discussed, where the useful segment began, or why it answered a question. I first did some of the logging work by hand, then used AI agents to create the n8n pipeline and live-tested it until timed transcripts became source-linked clips, chapters and retrievable material."
+      "headline": "Turning sermon videos into clips linked to Bible passages",
+      "subtext": "Bibel TV's sermons, Bible studies and lectures are full of references to Bible verses, and the logs recorded where each reference started, never where it ended. I did some of the logging work by hand, added the end point, and used AI agents to create an n8n pipeline that turns timed transcripts into source-linked clips for a conversational AI Bible-study app in development."
+    },
+    {
+      "type": "outcome",
+      "mark": "At a glance",
+      "headline": "Thousands of source-linked clips, from a pipeline nobody has to start",
+      "metrics": [
+        {
+          "label": "The setting",
+          "value": "Bibel TV's catalog of sermons, Bible studies and lectures, and a conversational AI Bible-study app in development whose chat answers from sermon clips and from articles on gott-erklaert.de."
+        },
+        {
+          "label": "My part",
+          "value": "I work single-handedly across the app's design, product management and development. I did some of the logging work by hand during onboarding, then created the n8n workflows with AI agents and live-tested, operated and iterated them."
+        },
+        {
+          "label": "What changed",
+          "value": "Counted live on 9 October 2026: 11,405 sermon clips from 3,504 videos, and 3,574 transcripts processed (299 transcribed by the pipeline itself, the rest imported from the catalog's existing transcription). A pipeline result, not an adoption metric: the app is unpublished."
+        },
+        {
+          "label": "Three takeaways",
+          "value": "Do the manual work before you automate it. Record where a reference ends as well as where it starts. Cut quoted text by code and let the model propose structure."
+        }
+      ]
     },
     {
       "type": "narrative",
-      "headline": "A correct search result could still look wrong",
-      "content": "Bibel TV's catalog contains sermons, Bible studies and lectures. Connecting that catalog to a Bible-study product requires more than a transcript. The system needs to know which passage is discussed, when the discussion starts and ends, and what the segment is about.\n\nThe failure became concrete in one result. A sermon titled **\"Who is Jesus?\"** also discussed the creation account. Someone reading that passage could receive a technically relevant result whose inherited video title made it look irrelevant. The search had found the right source and still failed to explain itself.\n\nA timestamp was not merely metadata. It was a product interface: the address a person would tap, the point where playback would begin, and the boundary of the evidence supporting an answer."
+      "mark": "The scene",
+      "headline": "A relevant result that reads as irrelevant",
+      "content": "Look up the creation account in the Bible feature, and a result appears titled \"Who is Jesus?\". The passage genuinely is discussed in that sermon. The title conceals it.\n\nThe search found the right source and still could not say why. An inherited title describes the parent video, not the reason this result surfaced."
     },
     {
       "type": "narrative",
-      "headline": "I learned the workflow before automating it",
-      "content": "During onboarding I worked alongside the logging team and did some of the capture work on real videos myself. Scripture extraction alone took three to five minutes per video by my own count, sometimes more. The broader task also included identifying structure, recording timecodes, capturing graphics and selecting a cover frame. And what the logs held for each Bible reference was a start point, never an end point: where a verse came up, not where the passage about it ended.\n\nThat experience shaped the automation boundary. The goal was not to make a model watch a video so a person never had to. It was to remove repeated capture work and make the resulting structure usable by a product. I built a feasibility prototype first, then carried its validated transcript-driven extraction approach into the Bible-study app's active product pipeline."
+      "mark": "Why it matters",
+      "headline": "A verse becomes an index into the whole catalog",
+      "content": "The verse references power two features that run in opposite directions. From a video, you open the verse it cites. From a verse, you see which videos discuss it. The second direction is what turns a tagging job into a content graph.\n\nIt also makes the timestamp a product decision. A timecode is a jump target a viewer lands on, and landing mid-sentence is worse than not landing at all. If your product sits on hours of video, audio or archive material, this is where metadata stops being bookkeeping."
+    },
+    {
+      "type": "narrative",
+      "mark": "The tension",
+      "headline": "The logs knew where a verse came up, not where the passage ended",
+      "content": "During onboarding I worked in the logging department and did some of the capture work on real videos myself. For every newly ingested video, someone watches it completely, captures its structure, timestamps each segment, screenshots graphics, extracts and documents the Bible verses, and picks a cover frame. The verse extraction alone took me three to five minutes per video, sometimes more. That is my own estimate from doing it, not a measurement.\n\nThe logs also had a structural gap. For each Bible reference they recorded a start time and nothing more: where a verse came up, not the span in which the sermon actually discussed it.\n\nThe goal was to automate the capture, with the existing logging as the starting point of the design, not its end state."
+    },
+    {
+      "type": "narrative",
+      "mark": "The turn",
+      "headline": "Adding the end point turned a mention into a clip",
+      "content": "I added the end time: the span over which the video discusses the verse or passage. A reference stops being a point and becomes a segment.\n\nA segment can carry its own metadata. I call it a virtual clip: a record over the original sermon, derived from transcript timestamps, not a newly rendered video file. It gets its own passage, summary and title instead of inheriting the sermon's. A sermon about Jesus that also talks about the creation story can carry a clip titled for what it says about creation."
     },
     {
       "type": "process",
+      "mark": "How it works",
       "headline": "Turn the transcript into product structure",
+      "content": "I created the workflows with AI agents rather than assembling them node by node, then live-tested, operated and iterated them in the product environment.",
       "steps": [
         {
           "label": "Create one consistent transcript",
-          "description": "The n8n transcription workflow obtains the source video, extracts audio and stores timed transcript segments in Postgres. The app's own catalog status is the source of truth instead of accepting transcripts of unknown provenance."
+          "description": "A transcription workflow obtains the source video, extracts the audio and stores the timed transcript segments in Postgres. The app's own catalog status decides whether a video has been transcribed by this pipeline, instead of accepting transcripts of unknown provenance."
+        },
+        {
+          "label": "Take the fragile chain off the critical path",
+          "description": "The old route formatted HTML, copied files to S3, wrote transcripts back into the video platform and tracked them in a spreadsheet. I removed that chain from the critical path. The transcript now goes straight to the product database."
         },
         {
           "label": "Derive clips, chapters and topics",
-          "description": "A second active workflow converts the timed transcript into Bible-passage clips and structural chapters. Clip text is derived deterministically from source segments rather than invented by the model."
+          "description": "A second workflow turns the timed transcript into Bible-passage clips, structural chapters and topics. Each clip's text is derived from the stored segments by code, not written by the model."
         },
         {
-          "label": "Make each segment retrievable",
-          "description": "The workflow creates embeddings and structured records that connect each virtual clip back to its source video and time range. The app can retrieve the segment as evidence for a Bible-study answer."
-        },
-        {
-          "label": "Keep cost and failure visible",
-          "description": "Model usage and estimated cost are recorded with the corpus data. Live n8n traces exposed an execution-order race and a broken upstream node reference; I worked through both problems with the coding agent and re-verified the transcription path end to end."
+          "label": "Make each clip retrievable, and keep failure visible",
+          "description": "Embeddings and structured records connect each clip back to its source video and time range, so the app's chat can retrieve it. Model usage and estimated cost are recorded with the corpus data. Live n8n traces exposed an execution-order race and a broken upstream node reference; I corrected both and re-ran the workflow end to end."
         }
       ],
       "images": [
         {
-          "src": "/images/bibeltv/n8n-sermon-insights-workflow.png",
-          "alt": "Sanitized overview of the real n8n sermon-insight workflow for Bibel erklärt, showing transcription inputs branching into Bible clip extraction, summaries, chapters, embeddings, topic classification and stored records."
+          "src": "/images/diagrams/metadata-pipeline.svg",
+          "alt": "Pipeline in three stages. Every night, new transcripts are imported and their timed segments stored. Every 15 minutes, clips, chapters and topics are derived from the transcript segments. Each clip is made retrievable through embeddings and records that link it back to its source video and time range.",
+          "caption": "Three stages, each linking its output back to the source video and time range."
         },
         {
+          "src": "/images/bibeltv/n8n-sermon-insights-workflow.png",
+          "alt": "Sanitized overview of the real n8n sermon-insight workflow for an AI Bible study app, showing transcription inputs branching into Bible clip extraction, summaries, chapters, embeddings, topic classification and stored records."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "The division",
+      "headline": "The model proposes the structure; the quote is never the model's",
+      "content": "The model proposes the Bible passage, the time range, the title and the summary. The time range has to come from the timestamps already in the transcript, not be invented. The quote under the transcript toggle is cut from the sermon's own transcript by code, so those words are the preacher's, never the model's.\n\nMalformed clips are dropped, not published: no quote, no book, or an end before the start, and the parser filters them out.",
+      "images": [
+        {
           "src": "/images/bibeltv/metadata-extraction-clip-fields.jpg",
-          "alt": "One clip open in the Bibel erklärt app, annotated. The time range (03:08), the title 'Nikodemus braucht neues Leben statt mehr Gesetzestreue', the summary and the passage Johannes 3,1-3 are labeled as model output. The transcript text under 'Transkript ausblenden' is labeled as cut from the transcript by code.",
+          "alt": "One clip open in the AI Bible study app, annotated. The time range (03:08), the title 'Nikodemus braucht neues Leben statt mehr Gesetzestreue', the summary and the passage Johannes 3,1-3 are labeled as model output. The transcript text under 'Transkript ausblenden' is labeled as cut from the transcript by code.",
           "caption": "One clip, field by field. The model proposes the passage, the time range, the title and the summary. The quote under the transcript toggle is cut from the sermon's own transcript by code, so those words are the preacher's, never the model's."
         }
       ]
     },
     {
       "type": "outcome",
-      "headline": "Thousands of source-linked clips, and new videos processed every night",
+      "mark": "The result",
+      "headline": "The corpus, counted, and the automation that keeps it current",
       "metrics": [
         {
           "label": "Corpus",
@@ -79,48 +136,85 @@
         },
         {
           "label": "Automation",
-          "value": "New videos are imported every night and turned into clips, chapters and topics every 15 minutes, without anyone starting a run"
+          "value": "Every night, new transcripts are imported; every 15 minutes, a workflow turns them into clips, chapters and topics, without anyone starting a run"
         },
         {
           "label": "Product connection",
-          "value": "The clips were wired into the app's running chat system during development"
+          "value": "The clips are available to the app's chat, which answers from clips and gott-erklärt articles only"
         },
         {
           "label": "Verified workflow",
           "value": "The corrected transcription path completed end to end; the sermon-insight workflow later passed a 31-node dry run on a real transcript"
         }
       ],
-      "narrative": "This is a pipeline result, not an adoption metric. The app remains in development. What is already real is the path from a source video to retrievable, time-bounded material that the product can cite, and the operational evidence behind it.",
+      "narrative": "This is a pipeline result, not an adoption metric. The app is unpublished.\n\nOne attribution note: 3,275 of the 3,574 transcripts came from the catalog's existing transcription and were imported; 299 were transcribed by the pipeline itself. The clips, chapters, Bible-verse tagging and topics are the pipeline's own output.",
       "images": [
         {
+          "src": "/images/diagrams/metadata-corpus-counts.svg",
+          "alt": "Four counts, as of 9 October 2026: 11,405 sermon clips from 3,504 videos, 3,574 transcripts processed and 91 gott-erklärt articles.",
+          "caption": "The corpus, counted live on 9 October 2026."
+        },
+        {
           "src": "/images/bibeltv/metadata-extraction-verse-to-clip.jpg",
-          "alt": "Three screens of the Bibel erklärt app. Left: John 3 in the reader, with a small video marker after several verses. Middle: the passage John 3:1-21 with a row of sermon clips, the first titled 'Nikodemus und die Bedeutung der neuen Geburt', 4:44, John 3:1-8. Right: that clip open, its player at 00:18 of 04:44, with title, summary, passage, a button to watch the full sermon and more clips from the same sermon.",
+          "alt": "Three screens of the AI Bible study app. Left: John 3 in the reader, with a small video marker after several verses. Middle: the passage John 3:1-21 with a row of sermon clips, the first titled 'Nikodemus und die Bedeutung der neuen Geburt', 4:44, John 3:1-8. Right: that clip open, its player at 00:18 of 04:44, with title, summary, passage, a button to watch the full sermon and more clips from the same sermon.",
           "caption": "What the pipeline produces, in the unpublished app's development build, October 2026. A marker in the reader means a verse has clips; the passage lists them; a clip plays only its own 4:44 window of the sermon, with its passage and summary and a way back to the full video."
         }
       ]
     },
     {
       "type": "reflection",
-      "headline": "Lower the floor without hiding the system",
-      "content": "The useful automation is not the one that produces the most content. It is the one that makes its source, boundary and failure state legible. A virtual clip has a source video, a time range and text derived from the same timed segments. When the workflow fails, its state and cost remain inspectable.\n\nThat is the same interaction principle I use in configurable products: let AI remove the blank page and repetitive capture, then give the next person something they can inspect, correct and own."
+      "mark": "What I'd argue",
+      "headline": "Automation worth having shows its source and its seams",
+      "content": "The useful automation is the one that keeps its source, its boundary and its failure state legible. A virtual clip points to a source video and a time range, and its quoted text comes from the same timed segments. The cost of each run is recorded with the data.\n\nThe order mattered to me as well. I did the capture work by hand before designing anything to replace it, so when someone asks how I know verse extraction takes minutes per video, the answer is that I did it."
     },
     {
       "type": "narrative",
-      "headline": "The details worth discussing",
-      "content": "Curious why I removed an apparently useful legacy chain from the critical path, what two live execution failures taught me about n8n's branch behavior, or why a clip title matters to retrieval quality? Get in touch."
+      "mark": "The verse, now",
+      "headline": "In John 3, the clips carry their own titles",
+      "content": "In the app's development build, John 3 shows a small marker after the verses that have clips. The passage lists them. A clip plays only its own window of the sermon, with its passage, its summary and a way back to the full video.\n\nOne of those clips comes from a sermon titled \"Dem Gesetz gestorben (2/2)\". Nothing in that title says John 3 or Nicodemus. The clip's own title does."
+    },
+    {
+      "type": "key-takeaway",
+      "mark": "For your team",
+      "headline": "What carries over to your own catalog",
+      "steps": [
+        {
+          "label": "Do the manual work before you automate it.",
+          "description": "Long enough to know every step the task involves and where your time estimate comes from. If you can't say why it takes as long as it does, you aren't ready to replace it."
+        },
+        {
+          "label": "Record where a reference ends as well as where it starts.",
+          "description": "A start point gives you a mention. A span gives the product something it can address, title and play. Check your own records for the half that's missing."
+        },
+        {
+          "label": "Cut quoted text by code; let the model propose structure.",
+          "description": "Passages, ranges, titles and summaries are proposals you can check. Anything a reader would take as someone's words should come from the source, cut by code."
+        }
+      ]
+    },
+    {
+      "type": "narrative",
+      "mark": "Before the pipeline",
+      "headline": "A catalog nobody has logged by hand needs that first",
+      "content": "If no one has ever logged your material manually, there is no baseline: no sense of what a unit of capture should be, no feel for where the judgment sits, and no honest estimate of what automation saves. Build the manual practice first, even lightly. And if your content has no natural unit smaller than the whole file, nothing like a passage, a scene or a topic, a clip has nothing to attach to."
+    },
+    {
+      "type": "narrative",
+      "content": "Tell me where your catalog keeps a start time and no end, or which old chain still sits on the critical path of your content pipeline. Get in touch."
     }
   ],
   "variants": {
     "executive": {
-      "summary": "Used AI agents to create, live-test and operate an n8n pipeline that turns sermon videos into source-linked clips and retrievable material for an AI product, after first doing some of the logging work by hand.",
+      "summary": "Did some of Bibel TV's logging work by hand, added the end point the verse references were missing, and used AI agents to create, live-test and operate an n8n pipeline that turns sermon videos into source-linked clips for an AI Bible-study app in development.",
       "angle": "Workflow productization grounded in the manual work and hardened through live execution",
       "sections": [
         "hero",
-        "A correct search result could still look wrong",
-        "I learned the workflow before automating it",
+        "Thousands of source-linked clips, from a pipeline nobody has to start",
+        "A relevant result that reads as irrelevant",
+        "A verse becomes an index into the whole catalog",
+        "Adding the end point turned a mention into a clip",
         "Turn the transcript into product structure",
-        "Thousands of source-linked clips, and new videos processed every night",
-        "The details worth discussing"
+        "The corpus, counted, and the automation that keeps it current"
       ],
       "max_read_time": "3 min"
     }
@@ -134,11 +228,11 @@
     "read_time_minutes": 4,
     "confidential": false,
     "confidentiality_note": "Cleared for publication by Tobias on 2026-08-25. Public material must not show credentials, private URLs, internal identifiers, execution payloads or colleague names. A workflow overview screenshot is acceptable only after those details are excluded.",
-    "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md; data/projects/bibeltv-vsb-n8n-sermon-pipeline.md; Tobias direct confirmation 2026-10-07; sanitized workflow overview rendered from 03-extract-sermon-insights.json on 2026-10-09"
+    "source": "data/verification-log/2026-08-25-the-verse-extraction-and-video-analysis-pipeline.md; data/projects/bibeltv-vsb-n8n-sermon-pipeline.md; Tobias direct confirmation 2026-10-07; sanitized workflow overview rendered from 03-extract-sermon-insights.json on 2026-10-09 + rewritten 2026-10-22 to docs/voice-treppmann-design-en-2026-10-22.md. Every claim is in bibeltv-metadata-extraction.citations.json."
   },
   "cover": {
     "src": "/images/covers/cover-metadata-extraction.jpg",
-    "alt": "The Bibel erklärt app showing John 3:1-21 with a row of sermon clips under the passage, the first titled 'Nikodemus und die Bedeutung der neuen Geburt'."
+    "alt": "The AI Bible study app showing John 3:1-21 with a row of sermon clips under the passage, the first titled 'Nikodemus und die Bedeutung der neuen Geburt'."
   },
   "generation": 3
 }
