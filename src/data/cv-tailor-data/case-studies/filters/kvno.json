@@ -1,0 +1,40 @@
+{
+  "slug": "kvno",
+  "aliases": [
+    "kvno-experte-contact-center-ai"
+  ],
+  "title": "AI Dialogue People Understand",
+  "subtitle": "Conversational AI for a broad public, and bringing it into a service team",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-kvno.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Experte (w/m/d) Contact Center AI role at KV Nordrhein (in German)"
+  },
+  "bio": {
+    "short": "I design AI dialogue that people of any age and background understand, and I bring it into service teams. At Bibel TV I built an AI assistant for viewer services and introduced it myself. Complex letters now take minutes instead of hours.",
+    "long": "At Bibel TV I built an AI assistant for the viewer service on Microsoft Copilot. I wrote its system prompt and grounding from the service handbook, with a restricted-topic list and a scope rule. It drafts letters, emails and social messages in the house voice, and a person decides every send. I introduced it myself, as an option, with a self-test week and one-to-one sessions. Complex letters take minutes instead of hours. New and part-time staff answer in the house voice from the start, and both skeptics now use it regularly.\n\nI also made an AI feature understandable for a broad audience. The app's AI Bible feature sat behind an unlabeled entry. I replaced it with a self-explaining input and example prompts. Weekly starts rose 153% on iOS and 85% on Android, comparing four weeks before and after each release.\n\nAperto is a multilingual AI Bible app I am building; I designed and directed it, and AI coding agents implemented it. I designed its multi-turn conversation rules: at most one clarifying question, and a per-message choice between answering, going deeper or listening. Its safety layer caught all 102 crisis messages in labeled test sets. Deliberate testing found a misjudged reply, and a prompt revision fixed it. Before that, at Ninox, I led five direct reports, about half of them UX writers.",
+    "context": {
+      "company": "KV Nordrhein secures outpatient care for 9.5 million people in North Rhine. Its Contact Center Operations department runs conversational and agentic AI on voice and chat.",
+      "role": "Experte Contact Center AI: plans and runs the conversational AI platform. Designs dialogue flows, prompts and conversation guides, analyses misunderstandings and builds QA.",
+      "emphasis": "Lead with the service-team assistant and its adoption. Then dialogue people of every background understand. Then conversation rules tested against labeled data."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Conversational AI and dialogue design",
+  "work_intro": "Selected work: an AI assistant a service team chose to use, and AI conversations people of any background can follow"
+}

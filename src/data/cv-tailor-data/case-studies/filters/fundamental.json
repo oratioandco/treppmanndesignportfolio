@@ -1,0 +1,52 @@
+{
+  "slug": "fundamental",
+  "aliases": [
+    "fundamental-founding-product-designer"
+  ],
+  "title": "Design Systems People and Agents Build With",
+  "subtitle": "An AI-native design system, and AI products where people stay in control of what the model produces",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-fundamental.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the Founding Product Designer role at Fundamental"
+  },
+  "bio": {
+    "short": "I build design systems that people and coding agents use, and AI products where people review and correct what the model produces. At Bibel TV, as the entire in-house design function, I built the design system every platform and coding agent builds from. I've led design teams, and spent five years on data analytics for banks and insurers.",
+    "long": "Bibel TV is a broadcaster moving from linear TV to apps on iOS, Android, web and connected TV. I was its Head of Product Design and the entire in-house design function. My design system has four token tiers: primitives, semantic, component and page/view. They serve every platform from one source, with Storybook as the source of truth. An MCP server and matching CLI give coding agents its vocabulary and implementation guidance. Six checks in CI refuse an off-system value and name the token to use instead. Engineering builds from my prototype code. 64% of the code behind the redesigned Android Home and detail views is verbatim from it (release 6.0, in beta). It is 95–100% for the design system and tokens.\n\nThe AI products I design keep people in control of what the model produces. As an independent consultant for Ninox in summer 2025, I designed its AI onboarding. AI builds a database from a plain-language description and writes it into the real editor. The user corrects it there, by hand or in chat. It became the basis for Ninox's public AI beta. At Bibel TV I built a reply assistant for viewer services that drafts in the support handbook's wording; a person decides every send.\n\nI've led design teams before. At Ninox I was on the Senior Leadership Team with five direct reports across product design and UX writing. I owned the design system and established joint governance with engineering. At Datameer I led the UX team for five years. We designed data-dense analytics for business users, analysts and data engineers at leading US, Canadian and UK banks and insurers. A preview built on a sample could show nothing while the full data held matches. Visual and text feedback on sampling status showed users the limits of a preview.",
+    "context": {
+      "company": "Fundamental is an AI research lab building NEXUS, a large tabular model for enterprise decision-making on structured records, with Fortune 100 customers.",
+      "role": "Founding Product Designer. Establishes product design and owns the AI-native design system. Leads UX and UI of the platform and agentic products, hands-on.",
+      "emphasis": "Lead with the AI-native design system built for coding agents. Then AI products where people review and correct model output. Then design practice and data tools for technical users."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-llm-safe-design-system",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "datameer-data-dense-analytics",
+      "visibility": "browseable",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "Founding Product Designer",
+  "work_intro": "Selected work: a design system built for coding agents, and AI output people review and correct"
+}
