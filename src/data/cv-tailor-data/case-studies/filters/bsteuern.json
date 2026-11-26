@@ -1,0 +1,58 @@
+{
+  "slug": "bsteuern",
+  "aliases": [
+    "bsteuern-ui-ux-engineer"
+  ],
+  "title": "Tools for Specialist Work, Designed and Built",
+  "subtitle": "AI tools where the person stays in control, built with the people who use them",
+  "theme": "default",
+  "show_all_label": "Show more work",
+  "cv": {
+    "href": "/documents/tobias-treppmann-cv-bsteuern.pdf",
+    "label": "Download CV (PDF)",
+    "note": "Tailored for the UI/UX Engineer role at b'steuern"
+  },
+  "bio": {
+    "short": "I design software for people doing specialist work, and I build it myself with AI coding agents. At Bibel TV I built an AI Bible chat app end to end. I also gave the viewer-services team an AI assistant where every send decision stays human. At ChurchDesk and Ninox I turned expert workflows into product capabilities.",
+    "long": "At Bibel TV, a broadcaster moving from linear TV to apps, I was Head of Product Design, and much of the work was building. The viewer-services team answers letters, emails and social messages. I designed a Microsoft Copilot skill that drafts from their support handbook and ran the introduction myself, with a self-test week and one-to-one sessions. Every send decision stays with the person. Complex letters now take minutes instead of hours.\n\nI also built an AI Bible chat app for Bibel TV end to end in about two months. I designed and directed it; AI coding agents implemented it. It spans iOS and Android apps with a web sibling, a server with chat and RAG, and a sermon-video pipeline that produces source-linked clips. The existing logs held a start point per verse reference but no end; I added the end. Underneath sits a design system I built as an API, with four token tiers for iOS, Android, web and connected TV. A test pipeline I built runs 2,195 unit, contract and snapshot tests.\n\nAt ChurchDesk I owned product management for the main platform. A customer asked for funeral booking. After validation with pastors and funeral directors, I built booking into the platform calendar instead of a standalone add-on. It rolled out to every customer. In a freelance engagement in summer 2025, I designed Ninox's AI onboarding with the CEO. The generated database stays editable, because people describe their work briefly.",
+    "context": {
+      "company": "b'steuern combines a tax practice with its own software and AI agents, built in-house next to the tax team.",
+      "role": "UI/UX Engineer: designs and builds internal tools, the human–agent layer and the client experience, takes them live, and builds the design system.",
+      "emphasis": "Lead with human-in-control AI for an internal team and with building the tool himself. Then expert-workflow judgment (ChurchDesk, Ninox) and the design system built as code."
+    }
+  },
+  "case_studies": [
+    {
+      "id": "bibeltv-support-agent",
+      "visibility": "featured",
+      "order": 1,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-design-system-api",
+      "visibility": "featured",
+      "order": 2,
+      "format_override": "executive"
+    },
+    {
+      "id": "ninox-ai-onboarding",
+      "visibility": "featured",
+      "order": 3,
+      "format_override": "executive"
+    },
+    {
+      "id": "churchdesk-booking-system",
+      "visibility": "browseable",
+      "order": 4,
+      "format_override": "executive"
+    },
+    {
+      "id": "bibeltv-color-api",
+      "visibility": "browseable",
+      "order": 5,
+      "format_override": "executive"
+    }
+  ],
+  "tagline": "UI/UX Engineer",
+  "work_intro": "Selected work where people hand work to AI and keep the decision"
+}
